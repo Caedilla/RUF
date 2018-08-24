@@ -1,0 +1,41 @@
+## Interface: 80000
+## Title: RUF [|c5500DBBDRaeli's Unit Frames|r]
+## Notes: Raeli's Unit Frames. Simple lightweight unitframes using oUF
+## Author: Raeli
+## Version: @project-revision@
+## SavedVariables: RUFDB
+## X-SavedVariables: RUFDB
+## OptionalDeps: oUF, oUF_Smooth, Ace3, LibDualSpec-1.0, LibSharedMedia-3.0
+## X-Credits: Some icons from Freepik & Plainicon, from www.flaticon.com 
+
+#@no-lib-strip@
+embeds.xml
+#@end-no-lib-strip@
+
+Localisation\enUS.lua
+Fonts.xml
+Init.lua
+Config.lua
+Utilities.lua
+Tags.lua
+Elements\Absorb.lua
+Elements\Class.lua
+Elements\Health.lua
+Elements\Power.lua
+Elements\Text.lua
+Elements\Auras.lua
+Elements\Castbars.lua
+Elements\Indicators\AssistIndicator.lua
+Elements\Indicators\HonorIndicator.lua
+Elements\Indicators\InCombatIndicator.lua
+Elements\Indicators\LeadIndicator.lua
+Elements\Indicators\MainTankAssistIndicator.lua
+Elements\Indicators\ObjectiveIndicator.lua
+Elements\Indicators\PhasedIndicator.lua
+Elements\Indicators\PvPCombatIndicator.lua
+Elements\Indicators\ReadyIndicator.lua
+Elements\Indicators\RestIndicator.lua
+Elements\Indicators\RoleIndicator.lua
+Elements\Indicators\TargetMarkIndicator.lua
+Elements\Indicators.lua
+Core.lua
