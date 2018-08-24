@@ -1,5 +1,5 @@
 local L = LibStub("AceLocale-3.0"):NewLocale("RUF", "deDE")
-L = L or {}
+if not L then return end
 L["0%"] = true
 L["100%"] = true
 L["50%"] = true
