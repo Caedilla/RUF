@@ -4,6 +4,27 @@ local LSM = LibStub("LibSharedMedia-3.0")
 local _, ns = ...
 local oUF = ns.oUF
 
+--[[
+Assist / Leader - icon-Crown 
+Honor - Default?
+Combat - icon-Combat-2 
+Main Tank - icon-shield-3 
+Main Assist - icon-fire 
+Objective - icon-Exclamation 
+Phased - icon-Phased 
+PvP - Default?
+Ready:
+	Yes - icon-Tick-2 
+	No - icon-Cross 
+	? - icon-Question-mark 
+Rest - icon-Sleep 
+Role:
+	Tank - icon-Shield-3 
+	DPS - icon-fire 
+	Heal - icon-Plus 
+
+]]--
+
 local function GetAnchorFrame(self,unit,indicator)
     -- TODO:
     -- Anchor to element (health, power)

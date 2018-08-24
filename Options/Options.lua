@@ -24,12 +24,43 @@ local Options = {
 	order = 0,
 	childGroups = "tab",
 	args = {
+		Notes = {
+			name = "Known Issues",
+			type = "group",
+			order = 2000,
+			args = {
+				KnownIssuesHeader = {
+						name = "|cffFFCC00".."Known Issues".."|r",
+						type = "description",
+						order = 0,
+						fontSize = "large",
+					},
+				AuraTestMode = {
+					name = "Buffs and Debuffs don't currently display correctly while using Test Mode.",
+					type = "description",
+					order = 1,
+					width = "full",
+				},
+				Configuring = {
+					name = "The options panel can cause significant frame drops while using it, particularly when using sliders to adjust settings. This is only while configuring the addon though.",
+					type = "description",
+					order = 1,
+					width = "full",	
+				},
+				IndicatorStyle = {
+					name = "Switching Indicator styles currently requires a UI Reload to take effect.",
+					type = "description",
+					order = 1,
+					width = "full",
+				},
+			},
+		},
 		Appearance = {
 			name = L["Appearance Options"],
 			desc = L["These settings affect all frames."],
 			type = "group",
 			childGroups = "tab",
-			order = 0,
+			order = 1,
 			args = {
 				FrameLock = {
 					name = "|cff00B2FA"..L["Frame Lock"].."|r",
@@ -447,7 +478,7 @@ local Options = {
 		Unit = {
 			name = L["Unit Options"],
 			type = "group",
-			order = 1,
+			order = 2,
 			args = {
 
 			},
@@ -455,7 +486,7 @@ local Options = {
 		Filtering = {
 			name = L["Filtering"],
 			type = "group",
-			order = 2,
+			order = 3,
 			hidden = true,
 			args = {
 
@@ -2155,7 +2186,7 @@ local function Units()
 							name = L["Quest"],
 							type = "group",
 							order = 0,
-							hidden = RUF.db.global.UnitList[i].name == "pet" or RUF.db.global.UnitList[i].name == "player" or RUF.db.global.UnitList[i].name == "party" or RUF.db.global.UnitList[i].name == "arena",
+							hidden = RUF.db.global.UnitList[i].name == "pet" or RUF.db.global.UnitList[i].name == "player" or RUF.db.global.UnitList[i].group == "party" or RUF.db.global.UnitList[i].group == "arena",
 							args = {
 							},
 						},
@@ -3525,7 +3556,7 @@ local function Units()
 					desc = L["Changes Indicator icon style. Requires a UI Reload to take effect."],
 					type = "select",
 					order = 0.05,
-					hidden = j == 2 or j== 7,
+					hidden = j == 2,
 					values = {
 						["Blizzard"] = L["Blizzard Icons"],
 						["RUF"] = L["RUF Icons"],
