@@ -44,7 +44,7 @@ function RUF:OnInitialize()
 	end
 
 	--project-revision
-	RUF.db.global.Version = GetAddOnMetadata("RUF","Version")
+	RUF.db.global.Version = string.match(GetAddOnMetadata("RUF","Version"),"%d+")
 
 
 	do -- Register Class Bar Variable Values
