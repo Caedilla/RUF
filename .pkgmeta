@@ -39,3 +39,4 @@ move-folders:
 	
 ignore:
  - .pkgmeta
+ - README.md
