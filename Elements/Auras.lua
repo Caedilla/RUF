@@ -171,6 +171,13 @@ local DebuffDispel = {-- DISPELLING ALLIES
 }
 
 
+local function GetCurrentSpec()
+	Specialization = GetSpecialization()
+end
+
+local TalenMonitor = CreateFrame("Frame")
+TalenMonitor:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+TalenMonitor:SetScript("OnEvent",GetCurrentSpec)
 
 
 function RUF.GetAuraAnchorFrame(self,unit,aura)    
