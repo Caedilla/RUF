@@ -209,10 +209,13 @@ local function CustomBuffFilter(element, unit, button, ...)
 	--]]
 
 
+	-- If the unit is in a vehicle etc.
+	local frame = element:GetParent()
+	if frame.realUnit then
+		unit = frame.realUnit
+	end
 
 
-
-	if unit == "vehicle" then unit = "player" end
 	if RUF.db.profile.unit[unit].Buffs.Icons.Enabled == false then 
 		button.shoudShow = false
 		return false
