@@ -319,7 +319,13 @@ local function CustomDebuffFilter(element, unit, button, ...)
 
 	* show - indicates whether the aura button should be shown (boolean)
 	--]]
-	if unit == "vehicle" then unit = "player" end
+
+	-- If the unit is in a vehicle etc.
+	local frame = element:GetParent()
+	if frame.realUnit then
+		unit = frame.realUnit
+	end
+	
 	if RUF.db.profile.unit[unit].Debuffs.Icons.Enabled == false then 
 		button.shoudShow = false
 		return false
