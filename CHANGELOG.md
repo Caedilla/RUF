@@ -2,8 +2,11 @@
 ### Added
 * Added several new fonts
 
+### Changed
+* The tag CurPower - Power % now only shows current power value if the max value is 100. For example a display of say 50 - 50% becomes just 50.
+
 ### Fixed
-* Insanity bar should now hide in vehicles correctly.
+* Insanity, Holy Power etc. should now hide in vehicles correctly.
 * Power text should now be correctly coloured in vehicles.
 * Test mode should no longer cause issues when a unit is in a vehicle. 
 
