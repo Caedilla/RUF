@@ -515,7 +515,7 @@ function RUF:GetClassColor(unit)
 end
 
 function RUF:UpdateHealthBackgroundPosition(element)
-	local unit = element.__owner.unit
+	local unit = element.__owner.frame
 	local frame = element.__owner:GetName()
 	local bar = _G[frame:GetName() .. ".Health.Bar"]
 	local background = _G[frame:GetName() .. ".Health.Background"]
@@ -822,7 +822,7 @@ function RUF:BarVisibility(element, bar, show)
 	end
 
 
-	local FrameIndex = RUF:UnitToIndex(_G[unit].unit)
+	local FrameIndex = RUF:UnitToIndex(_G[unit].frame)
 	RUF:UpdateHealthBackground(FrameIndex)
 end
 
@@ -884,7 +884,7 @@ end
 function RUF:UpdateAuras(unit)
 	if _G[unit.frame] then
 		local UnitFrame = _G[unit.frame]
-		local profile = unit.name
+		local profile = _G[unit.frame].frame
 
 		UnitFrame.Buffs:SetSize((RUF.db.profile.unit[profile].Buffs.Icons.Size * RUF.db.profile.unit[profile].Buffs.Icons.Columns), (RUF.db.profile.unit[profile].Buffs.Icons.Size * RUF.db.profile.unit[profile].Buffs.Icons.Rows) + 2) -- x,y size of buff holder frame
 		UnitFrame.Buffs.size = RUF.db.profile.unit[profile].Buffs.Icons.Size
@@ -1577,6 +1577,7 @@ function RUF:SpawnUnits()
 	for k, v in next, oUF.objects do
 		v:SetAttribute('oldUnit',v.unit)
 		v.oldUnit = v:GetAttribute('oldUnit')
+		if v.realUnit then v.oldUnit = v.realUnit end
 		v:SetAttribute('unit','player')
 		v:Disable()
 		if RUF.db.profile.unit[v.oldUnit].Enabled then

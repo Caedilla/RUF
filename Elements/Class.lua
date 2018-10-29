@@ -50,6 +50,14 @@ end
 
 function RUF.UpdateClassBar(self, event)
 	if (RUF.db.char.ClassPowerID) then -- If we're a class that should show a class bar
+		if UnitHasVehicleUI('player') then
+			if self.Class:IsVisible() == true then
+				RUF:BarVisibility(self, "Class", false)
+				return
+			else
+				return
+			end
+        end
 		if RUF.db.profile.unit.player.Frame.Bars.Class.Enabled == false then
 			if self.Class:IsVisible() == true then
 				RUF:BarVisibility(self, "Class", false)

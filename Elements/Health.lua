@@ -62,7 +62,7 @@ function RUF.SetHealth(self, unit)
 	Bar:SetStatusBarTexture(Texture)
 	Bar:SetAllPoints(self)
 	Bar:SetFrameLevel(2)
-	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Health.Fill)
+	Bar:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill)
 	
 	-- Background
 	local r,g,b = unpack(RUF.db.profile.Appearance.Bars.Health.Background.CustomColor)

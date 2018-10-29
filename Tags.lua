@@ -119,7 +119,7 @@ tags['RUF:CurPowerPerc'] = function(unit,realunit)
 		cur = math.random(75000)
 		max = math.random(75000,100000)
 	end
-	if realunit then
+	if realunit and unit ~= string.match(unit, "vehicle") then
 		r,g,b = RUF:ReturnTextColors(realunit, "CurPowerPerc", cur, max)
 	end
 	if RUF.db.profile.Appearance.Text.CurPowerPerc.Enabled == 1 and cur == 0 then
@@ -156,7 +156,7 @@ tags['RUF:PowerPerc'] = function(unit,realunit)
 		cur = math.random(75000)
 		max = math.random(75000,100000)
 	end
-	if realunit then
+	if realunit and unit ~= string.match(unit, "vehicle") then
 		r,g,b = RUF:ReturnTextColors(realunit, "PowerPerc", cur, max)
 	end
 	if RUF.db.profile.Appearance.Text.PowerPerc.Enabled == 1 and cur == 0 then
@@ -166,7 +166,7 @@ tags['RUF:PowerPerc'] = function(unit,realunit)
 end
 events['RUF:PowerPerc'] = 'UNIT_POWER'
 
-tags['RUF:CurPower'] = function(unit)
+tags['RUF:CurPower'] = function(unit,realunit)
 	if not UnitName(unit) then return end
 	local pType,pToken,altr,altg,altb = UnitPowerType(unit)
 	local cur, max = UnitPower(unit), UnitPowerMax(unit)
@@ -175,7 +175,7 @@ tags['RUF:CurPower'] = function(unit)
 		cur = math.random(75000)
 		max = math.random(75000,100000)
 	end
-	if realunit then
+	if realunit and unit ~= string.match(unit, "vehicle") then
 		r,g,b = RUF:ReturnTextColors(realunit, "CurPower", cur, max)
 	end
 	if RUF.db.profile.Appearance.Text.CurPower.Enabled == 1 and cur == 0 then
@@ -204,7 +204,7 @@ events['RUF:CurPower'] = 'UNIT_POWER'
 
 
 ----------------------------------------------------------------------------------- MANA
-tags['RUF:CurManaPerc'] = function(unit,realunit)
+tags['RUF:CurManaPerc'] = function(unit)
 	if not UnitName(unit) then return end
 	local pType,pToken,altr,altg,altb = UnitPowerType(unit)
 	local cur, max = UnitPower(unit,0), UnitPowerMax(unit,0)
@@ -212,9 +212,6 @@ tags['RUF:CurManaPerc'] = function(unit,realunit)
 	if RUF.db.global.TestMode == true then
 		cur = math.random(75000)
 		max = math.random(75000,100000)
-	end
-	if realunit then
-		r,g,b = RUF:ReturnTextColors(realunit, "CurManaPerc", cur, max)
 	end
 	if RUF.db.profile.Appearance.Text.CurManaPerc.HideWhenPrimaryIsMana == true then
 		local _,PlayerClass = UnitClass(unit)
@@ -248,7 +245,7 @@ tags['RUF:CurManaPerc'] = function(unit,realunit)
 end
 events['RUF:CurManaPerc'] = 'UNIT_POWER'
 
-tags['RUF:ManaPerc'] = function(unit,realunit)
+tags['RUF:ManaPerc'] = function(unit)
 	if not UnitName(unit) then return end
 	local pType,pToken,altr,altg,altb = UnitPowerType(unit)
 	local cur, max = UnitPower(unit,0), UnitPowerMax(unit,0)
@@ -256,9 +253,6 @@ tags['RUF:ManaPerc'] = function(unit,realunit)
 	if RUF.db.global.TestMode == true then
 		cur = math.random(75000)
 		max = math.random(75000,100000)
-	end
-	if realunit then
-		r,g,b = RUF:ReturnTextColors(realunit, "ManaPerc", cur, max)
 	end
 	if RUF.db.profile.Appearance.Text.ManaPerc.HideWhenPrimaryIsMana == true then
 		local _,PlayerClass = UnitClass(unit)
@@ -281,9 +275,6 @@ tags['RUF:CurMana'] = function(unit)
 	if RUF.db.global.TestMode == true then
 		cur = math.random(75000)
 		max = math.random(75000,100000)
-	end
-	if realunit then
-		r,g,b = RUF:ReturnTextColors(realunit, "CurMana", cur, max)
 	end
 	if RUF.db.profile.Appearance.Text.CurMana.HideWhenPrimaryIsMana == true then
 		local _,PlayerClass = UnitClass(unit)

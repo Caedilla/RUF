@@ -8,8 +8,18 @@ local oUF = ns.oUF
 function RUF.AdditionalPowerUpdate(self, event, unit, ...)
 	-- TODO:
 	-- None, fine for now.
+	if self.frame == "player" then
+		if UnitHasVehicleUI('player') then
+			if self.AdditionalPower:IsVisible() == true then
+				RUF:BarVisibility(self.AdditionalPower, "AdditionalPower", false)
+				return
+			else
+				return
+			end
+		end
+	end
 
-	if unit ~= "player" then return end
+	if self.frame ~= "player" then return end
 	if not RUF.db.profile.unit[unit] then return end
 	local element = self.AdditionalPower
 	if(element.PreUpdate) then element:PreUpdate(unit) end
@@ -26,7 +36,9 @@ function RUF.OverrideVisibility(self, event, unit)
 
 	self:RegisterEvent('UNIT_POWER_FREQUENT', RUF.AdditionalPowerUpdate)
 	self:RegisterEvent('UNIT_MAXPOWER', RUF.AdditionalPowerUpdate)
-	--AdditionalPowerUpdate(self, 'Test', 'player', ADDITIONAL_POWER_BAR_NAME)
+	self:RegisterEvent('UNIT_ENTERED_VEHICLE', RUF.AdditionalPowerUpdate)
+	self:RegisterEvent('UNIT_EXITED_VEHICLE', RUF.AdditionalPowerUpdate)
+	self:RegisterEvent('UNIT_EXITING_VEHICLE', RUF.AdditionalPowerUpdate)
 end
 
 function RUF.PowerPostUpdate(element, unit, cur, min, max) -- Update ShadowPriest Mana too
@@ -35,13 +47,15 @@ function RUF.PowerPostUpdate(element, unit, cur, min, max) -- Update ShadowPries
 
 	-- On moving bars, again, should only be required here for druid/shaman on form change. Others should only need on spec change, including shadow priest.
 	-- Figure out a better way to deal with this.
+	
 
 	if not unit then return end
-	if unit == "vehicle" then return end
-	if not RUF.db.profile.unit[unit] then return end
+	if not RUF.db.profile.unit[element.__owner.frame] then return end
+	local realUnit = unit
+	local unit = element.__owner.frame
 	pType = (select(2,UnitPowerType("player")))
 	if RUF:GetSpec() == 1 and element.__owner:GetName() == "oUF_RUF_Player" then -- Correct Class and Player
-		if RUF.db.profile.unit.player.Frame.Bars.Class.Enabled then
+		if RUF.db.profile.unit.player.Frame.Bars.Class.Enabled and not UnitHasVehicleUI('player') then
 			RUF:UpdateElementColor(element,"Power","Power")
 			RUF:UpdateElementColor(element,"Class","AdditionalPower")
 			local Multiplier = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
@@ -110,6 +124,13 @@ function RUF.PowerPostUpdate(element, unit, cur, min, max) -- Update ShadowPries
 					end
 				end
 			end
+		elseif UnitHasVehicleUI('player') then
+			RUF:BarVisibility(element, "AdditionalPower", false)
+			element.__owner.Power:ClearAllPoints()
+			element.__owner.Power:SetPoint('LEFT',0,0)
+			element.__owner.Power:SetPoint('RIGHT',0,0)
+			element.__owner.Power:SetPoint(RUF.db.profile.unit.player.Frame.Bars.Power.Position.Anchor,0,0)
+			element.__owner.Power:SetHeight(RUF.db.profile.unit.player.Frame.Bars.Power.Height)
 		else
 			if element.__owner.AdditionalPower:IsShown() then
 				if RUF.db.profile.unit.player.Frame.Bars.Power.Enabled == 0 then 
@@ -167,7 +188,7 @@ function RUF.PowerPostUpdate(element, unit, cur, min, max) -- Update ShadowPries
 		end
 	end]]--
 
-	local r,g,b = RUF:GetPowerColor(element, unit)
+	local r,g,b = RUF:GetPowerColor(element, realUnit)
 	element.__owner.Power:SetStatusBarColor(r,g,b)
 	local Multiplier = RUF.db.profile.Appearance.Bars.Power.Background.Multiplier
 	if RUF.db.profile.Appearance.Bars.Power.Background.UseBarColor == false then
@@ -175,8 +196,8 @@ function RUF.PowerPostUpdate(element, unit, cur, min, max) -- Update ShadowPries
 	end
 	element.__owner.Power.bg:SetVertexColor(r*Multiplier,g*Multiplier,b*Multiplier,RUF.db.profile.Appearance.Bars.Power.Background.Alpha)
 
-	--local FrameIndex = RUF:UnitToIndex(unit)
-	--RUF:UpdateHealthBackground(FrameIndex)
+	local FrameIndex = RUF:UnitToIndex(unit)
+	RUF:UpdateHealthBackground(FrameIndex)
 end	
 
 function RUF.SetPower(self, unit) -- Mana, Rage, Insanity, Maelstrom etc.
@@ -184,7 +205,7 @@ function RUF.SetPower(self, unit) -- Mana, Rage, Insanity, Maelstrom etc.
 	local Name = self:GetName()
 	local Bar = CreateFrame("StatusBar",Name..".Power.Bar",self)
 	local Border = CreateFrame("Frame",Name..".Power.Border",Bar) --/run print(oUF_RUF_Player.Power:GetParent():GetName())
-	local Background = Bar:CreateTexture(Name..".Power.Background","BACKGROUND")	
+	local Background = Bar:CreateTexture(Name..".Power.Background","BACKGROUND")
 	
 	-- Bar
 	Bar.colorClass = RUF.db.profile.Appearance.Bars.Power.Color.Class
