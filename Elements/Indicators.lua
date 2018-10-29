@@ -76,6 +76,29 @@ local function FrameToggle(self)
     if self.Enabled == false then
         self:Hide()
     end
+
+--[[    local indicator = _G[self:GetName()].Indicator
+    local UnitFrame = self:GetParent():GetParent()
+    if self:IsVisible() then
+        local from,frame,to,x,y = self:GetPoint()
+        if not frame:IsVisible() then
+            self:SetPoint(
+                RUF.db.profile.unit[UnitFrame.frame].Frame.Indicators[indicator].Position.AnchorFrom,
+                GetAnchorFrame(UnitFrame,UnitFrame.frame,indicator),
+                RUF.db.profile.unit[UnitFrame.frame].Frame.Indicators[indicator].Position.AnchorTo,
+                RUF.db.profile.unit[UnitFrame.frame].Frame.Indicators[indicator].Position.x,
+                RUF.db.profile.unit[UnitFrame.frame].Frame.Indicators[indicator].Position.y)
+        else
+            self:SetPoint(
+                RUF.db.profile.unit[UnitFrame.frame].Frame.Indicators[indicator].Position.AnchorFrom,
+                GetAnchorFrame(UnitFrame,UnitFrame.frame,indicator),
+                RUF.db.profile.unit[UnitFrame.frame].Frame.Indicators[indicator].Position.AnchorTo,
+                RUF.db.profile.unit[UnitFrame.frame].Frame.Indicators[indicator].Position.x,
+                RUF.db.profile.unit[UnitFrame.frame].Frame.Indicators[indicator].Position.y)
+        end
+    end]]--
+
+
 end
 
 function RUF.GetIndicatorFont(self,unit,indicator)
@@ -200,10 +223,11 @@ function RUF.SetIndicators(self, unit)
     self.Indicators = Indicators
 
     -- Assist  
-    if unit ~= "boss" then     
+    if unit ~= "boss" then
         self.AssistIndicator = IndicatorCreatorType(self,unit,"Assist",Indicators) 
         self.AssistIndicator.Enabled = IsFrameEnabled(self,unit,"Assist")
         self.AssistIndicator.PostUpdate = FrameToggle
+        self.AssistIndicator.Indicator = "Assist"
     end
 
     if unit ~= "pet" then
@@ -212,6 +236,7 @@ function RUF.SetIndicators(self, unit)
             self.InCombatIndicator = IndicatorCreatorType(self,unit,"InCombat",Indicators) 
             self.InCombatIndicator.Enabled = IsFrameEnabled(self,unit,"InCombat")
             self.InCombatIndicator.PostUpdate = FrameToggle
+            self.InCombatIndicator.Indicator = "InCombat"
         end
 
         -- Honor
@@ -224,17 +249,20 @@ function RUF.SetIndicators(self, unit)
         self.HonorIndicator.AlwaysShow = RUF.db.profile.unit[unit].Frame.Indicators.Honor.AlwaysShow
         self.HonorIndicator.Enabled = IsFrameEnabled(self,unit,"Honor")
         self.HonorIndicator.PostUpdate = FrameToggle
+        self.HonorIndicator.Indicator = "Honor"
 
         -- Lead 
         if unit ~= "boss" then
             self.LeadIndicator = IndicatorCreatorType(self,unit,"Lead",Indicators) 
             self.LeadIndicator.Enabled = IsFrameEnabled(self,unit,"Lead")
             self.LeadIndicator.PostUpdate = FrameToggle
+            self.LeadIndicator.Indicator = "Lead"
 
             -- MainTankAssist
             self.MainTankAssistIndicator = IndicatorCreatorType(self,unit,"MainTankAssist",Indicators)
             self.MainTankAssistIndicator.Enabled = IsFrameEnabled(self,unit,"MainTankAssist")
             self.MainTankAssistIndicator.PostUpdate = FrameToggle
+            self.MainTankAssistIndicator.Indicator = "MainTankAssist"
         end
 
         -- Phased
@@ -242,18 +270,21 @@ function RUF.SetIndicators(self, unit)
             self.PhasedIndicator = IndicatorCreatorType(self,unit,"Phased",Indicators) 
             self.PhasedIndicator.Enabled = IsFrameEnabled(self,unit,"Phased")
             self.PhasedIndicator.PostUpdate = FrameToggle
+            self.PhasedIndicator.Indicator = "Phased"
         end
 
         -- PvP
         self.PvPCombatIndicator = IndicatorCreatorType(self,unit,"PvPCombat",Indicators,"ARTWORK")
         self.PvPCombatIndicator.Enabled = IsFrameEnabled(self,unit,"PvPCombat")
         self.PvPCombatIndicator.PostUpdate = FrameToggle
+        self.PvPCombatIndicator.Indicator = "PvPCombat"
 
         -- Objective
         if unit ~= "player" and unit ~= "party" and unit ~= "arena" then
             self.ObjectiveIndicator = IndicatorCreatorType(self,unit,"Objective",Indicators) 
             self.ObjectiveIndicator.Enabled = IsFrameEnabled(self,unit,"Objective")
             self.ObjectiveIndicator.PostUpdate = FrameToggle
+            self.ObjectiveIndicator.Indicator = "Objective"
         end
 
         -- Ready Check
@@ -261,6 +292,7 @@ function RUF.SetIndicators(self, unit)
             self.ReadyIndicator = IndicatorCreatorType(self,unit,"Ready",Indicators) 
             self.ReadyIndicator.Enabled = IsFrameEnabled(self,unit,"Ready")
             self.ReadyIndicator.PostUpdate = FrameToggle
+            self.ReadyIndicator.Indicator = "Ready"
         end
 
         -- Rest
@@ -268,6 +300,7 @@ function RUF.SetIndicators(self, unit)
             self.RestIndicator = IndicatorCreatorType(self,unit,"Rest",Indicators)
             self.RestIndicator.Enabled = IsFrameEnabled(self,unit,"Rest")
             self.RestIndicator.PostUpdate = FrameToggle
+            self.RestIndicator.Indicator = "Rest"
         end
 
         -- Role
@@ -275,6 +308,7 @@ function RUF.SetIndicators(self, unit)
             self.RoleIndicator = IndicatorCreatorType(self,unit,"Role",Indicators)
             self.RoleIndicator.Enabled = IsFrameEnabled(self,unit,"Role")
             self.RoleIndicator.PostUpdate = FrameToggle
+            self.RoleIndicator.Indicator = "Role"
         end
     end
 
@@ -282,8 +316,7 @@ function RUF.SetIndicators(self, unit)
     self.TargetMarkIndicator = IndicatorCreatorType(self,unit,"TargetMark",Indicators)
     self.TargetMarkIndicator.Enabled = IsFrameEnabled(self,unit,"TargetMark")
     self.TargetMarkIndicator.PostUpdate = FrameToggle
+    self.TargetMarkIndicator.Indicator = "TargetMark"
 
     RUF.UpdateIndicators(self,unit)
 end
-
-

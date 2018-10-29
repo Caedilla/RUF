@@ -414,6 +414,8 @@ local function SetupFrames(self, unit)
 	-- Setup Auras
 	RUF.SetBuffs(self,unit)
 	RUF.SetDebuffs(self,unit)
+
+	-- Setup Indicators
 	RUF.SetIndicators(self, unit)
 
 	if unit == 'targettarget' then

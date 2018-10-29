@@ -55,7 +55,6 @@ local function Update(self, event)
 				element:SetText("")
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,253/255,229/255)
-				
 			else
 				element:SetText(" ")
 				element:SetWidth(1)
@@ -105,7 +104,7 @@ local function Enable(self)
 			element:SetTexture([[Interface\TargetingFrame\UI-RaidTargetingIcons]])
 		end
 		if element:IsObjectType('FontString') then
-			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.unit].Frame.Indicators["TargetMark"].Size, "OUTLINE")
+			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.frame].Frame.Indicators["TargetMark"].Size, "OUTLINE")
 			element:SetText(" ")
 			element:SetJustifyH("CENTER")
 			element:SetWidth(1)
