@@ -216,6 +216,9 @@ function RUF.SetClassBar(self, unit)
 		self:RegisterEvent('UNIT_POWER_UPDATE',RUF.UpdateClassBar)
 		self:RegisterEvent('UNIT_DISPLAYPOWER',RUF.UpdateClassBar)
 		self:RegisterEvent('PLAYER_ENTERING_WORLD',RUF.UpdateClassBar)
+		self:RegisterEvent('UNIT_ENTERED_VEHICLE', RUF.UpdateClassBar)
+		self:RegisterEvent('UNIT_EXITED_VEHICLE', RUF.UpdateClassBar)
+		self:RegisterEvent('UNIT_EXITING_VEHICLE', RUF.UpdateClassBar)
 	else
 		self.Class = GroupParent
 		self.ClassPower = ClassPowerBar
@@ -225,6 +228,9 @@ function RUF.SetClassBar(self, unit)
 		self:RegisterEvent('UNIT_POWER_UPDATE',RUF.UpdateClassBar)
 		self:RegisterEvent('UNIT_DISPLAYPOWER',RUF.UpdateClassBar)
 		self:RegisterEvent('PLAYER_ENTERING_WORLD',RUF.UpdateClassBar)
+		self:RegisterEvent('UNIT_ENTERED_VEHICLE', RUF.UpdateClassBar)
+		self:RegisterEvent('UNIT_EXITED_VEHICLE', RUF.UpdateClassBar)
+		self:RegisterEvent('UNIT_EXITING_VEHICLE', RUF.UpdateClassBar)
 	end
 	RUF.UpdateClassBar(self)
 end
