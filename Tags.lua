@@ -125,6 +125,9 @@ tags['RUF:CurPowerPerc'] = function(unit,realunit)
 	if RUF.db.profile.Appearance.Text.CurPowerPerc.Enabled == 1 and cur == 0 then
 		return ' '
 	end
+	if max == 100 then
+		return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
+	end
 	if cur == max and cur > 0 then
 		if RUF.db.profile.Appearance.Text.CurPowerPerc.Case == 2 then
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(RUF:Short(cur,true)))
@@ -222,6 +225,9 @@ tags['RUF:CurManaPerc'] = function(unit)
 
 	if RUF.db.profile.Appearance.Text.CurManaPerc.Enabled == 1 and cur == 0 then
 		return ''
+	end
+	if max == 100 then
+		return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
 	end
 	if cur == max and cur > 0 then
 		if RUF.db.profile.Appearance.Text.CurManaPerc.Case == 2 then
