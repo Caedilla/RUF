@@ -36,10 +36,10 @@ function RUF:OnInitialize()
 	LSM:Register("font","Overwatch Oblique",[[Interface\Addons\RUF\Media\Extra\BigNoodleTooOblique.ttf]])
 	LSM:Register("font","Overwatch",[[Interface\Addons\RUF\Media\Extra\BigNoodleToo.ttf]])
 	LSM:Register("font","Futura",[[Interface\Addons\RUF\Media\Extra\Futura.ttf]])
-	LSM:Register("font","Semplicita Light",[[Interface\Addons\RUF\Media\Extra\semplicita.light.ttf]])
-	LSM:Register("font","Semplicita Light Italic",[[Interface\Addons\RUF\Media\Extra\semplicita.light-italic.ttf]])
-	LSM:Register("font","Semplicita Medium",[[Interface\Addons\RUF\Media\Extra\semplicita.medium.ttf]])
-	LSM:Register("font","Semplicita Medium Italic",[[Interface\Addons\RUF\Media\Extra\semplicita.medium-italic.ttf]])
+	LSM:Register("font","Semplicita Light",[[Interface\Addons\RUF\Media\Extra\semplicita.light.otf]])
+	LSM:Register("font","Semplicita Light Italic",[[Interface\Addons\RUF\Media\Extra\semplicita.light-italic.otf]])
+	LSM:Register("font","Semplicita Medium",[[Interface\Addons\RUF\Media\Extra\semplicita.medium.otf]])
+	LSM:Register("font","Semplicita Medium Italic",[[Interface\Addons\RUF\Media\Extra\semplicita.medium-italic.otf]])
 	RUF.db.global.TestMode = false
 	RUF.db.global.Lock = true
 	if RUF.db.global.Version then
