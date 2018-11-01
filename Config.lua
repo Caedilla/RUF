@@ -594,7 +594,7 @@ local function LargeLeftUnits()
 				Assist = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 14,
 					Position = {
 						x = 0,
 						y = 0,
@@ -619,7 +619,7 @@ local function LargeLeftUnits()
 				InCombat = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 36,
+					Size = 20,
 					Position = {
 						x = 0,
 						y = 0,
@@ -631,7 +631,7 @@ local function LargeLeftUnits()
 				Lead = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 14,
 					Position = {
 						x = 0,
 						y = 0,
@@ -643,7 +643,7 @@ local function LargeLeftUnits()
 				MainTankAssist = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 12,
 					Position = {
 						x = 0,
 						y = 0,
@@ -655,7 +655,7 @@ local function LargeLeftUnits()
 				Phased = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -665,7 +665,7 @@ local function LargeLeftUnits()
 					},
 				},
 				PvPCombat = {
-					Enabled = false,
+					Enabled = true,
 					Style = "RUF",
 					Size = 28,
 					Position = {
@@ -679,7 +679,7 @@ local function LargeLeftUnits()
 				Objective = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -693,47 +693,47 @@ local function LargeLeftUnits()
 					Style = "RUF",
 					Size = 36,
 					Position = {
-						x = 75,
-						y = 2,
+						x = 10,
+						y = 0,
 						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
-						AnchorTo = "BOTTOMLEFT",
-						AnchorFrom = "BOTTOMLEFT",								
+						AnchorTo = "RIGHT",
+						AnchorFrom = "LEFT",								
 					},
 				},
 				Rest = {
-					Enabled = false,
+					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
 						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
-						AnchorTo = "CENTER",
-						AnchorFrom = "CENTER",								
+						AnchorTo = "TOPRIGHT",
+						AnchorFrom = "BOTTOMLEFT",								
 					},
 				},
 				Role = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
-						x = -50,
+						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
-						AnchorTo = "RIGHT",
+						AnchorFrame = "InCombat", -- Icon to Anchor to, if none, anchor to frame
+						AnchorTo = "LEFT",
 						AnchorFrom = "RIGHT",								
 					},
 				},
 				TargetMark = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 40,
+					Size = 26,
 					Position = {
 						x = 0,
-						y = 2,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
-						AnchorTo = "BOTTOM",
-						AnchorFrom = "BOTTOM",								
+						y = 0,
+						AnchorFrame = "InCombat", -- Icon to Anchor to, if none, anchor to frame
+						AnchorTo = "RIGHT",
+						AnchorFrom = "LEFT",								
 					},
 				},
 			},
@@ -949,7 +949,7 @@ local function MediumLeftUnits()
 				Assist = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -962,7 +962,7 @@ local function MediumLeftUnits()
 					Badge = false,
 					AlwaysShow = false,
 					Enabled = false,
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -974,7 +974,7 @@ local function MediumLeftUnits()
 				Lead = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -986,7 +986,7 @@ local function MediumLeftUnits()
 				MainTankAssist = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -998,7 +998,7 @@ local function MediumLeftUnits()
 				Phased = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = -2,
@@ -1010,7 +1010,7 @@ local function MediumLeftUnits()
 				PvPCombat = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1022,7 +1022,7 @@ local function MediumLeftUnits()
 				Objective = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1034,7 +1034,7 @@ local function MediumLeftUnits()
 				Ready = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = -50,
 						y = -2,
@@ -1058,7 +1058,7 @@ local function MediumLeftUnits()
 				TargetMark = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1295,7 +1295,7 @@ local function LargeRightUnits()
 				Assist = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 14,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1320,7 +1320,7 @@ local function LargeRightUnits()
 				Lead = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 14,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1332,7 +1332,7 @@ local function LargeRightUnits()
 				MainTankAssist = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 12,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1344,7 +1344,7 @@ local function LargeRightUnits()
 				Phased = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1354,7 +1354,7 @@ local function LargeRightUnits()
 					},
 				},
 				PvPCombat = {
-					Enabled = false,
+					Enabled = true,
 					Style = "RUF",
 					Size = 28,
 					Position = {
@@ -1368,7 +1368,7 @@ local function LargeRightUnits()
 				Objective = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1382,17 +1382,17 @@ local function LargeRightUnits()
 					Style = "RUF",
 					Size = 36,
 					Position = {
-						x = -75,
-						y = 2,
+						x = -10,
+						y = 0,
 						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
-						AnchorTo = "BOTTOMRIGHT",
-						AnchorFrom = "BOTTOMRIGHT",								
+						AnchorTo = "LEFT",
+						AnchorFrom = "RIGHT",								
 					},
 				},
 				Rest = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1404,25 +1404,25 @@ local function LargeRightUnits()
 				Role = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
-						x = 50,
+						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Phased", -- Icon to Anchor to, if none, anchor to frame
 						AnchorTo = "LEFT",
-						AnchorFrom = "LEFT",								
+						AnchorFrom = "RIGHT",								
 					},
 				},
 				TargetMark = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 40,
+					Size = 26,
 					Position = {
 						x = 0,
-						y = 2,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
-						AnchorTo = "CENTER",
-						AnchorFrom = "CENTER",								
+						y = 0,
+						AnchorFrame = "Phased", -- Icon to Anchor to, if none, anchor to frame
+						AnchorTo = "RIGHT",
+						AnchorFrom = "LEFT",								
 					},
 				},
 			},
@@ -1638,7 +1638,7 @@ local function MediumRightUnits()
 				Assist = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1651,7 +1651,7 @@ local function MediumRightUnits()
 					Badge = false,
 					AlwaysShow = false,
 					Enabled = false,
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1663,7 +1663,7 @@ local function MediumRightUnits()
 				Lead = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1675,7 +1675,7 @@ local function MediumRightUnits()
 				MainTankAssist = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1687,7 +1687,7 @@ local function MediumRightUnits()
 				Phased = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = -2,
@@ -1699,7 +1699,7 @@ local function MediumRightUnits()
 				PvPCombat = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1711,7 +1711,7 @@ local function MediumRightUnits()
 				Objective = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -1723,7 +1723,7 @@ local function MediumRightUnits()
 				Ready = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 50,
 						y = -2,
@@ -1747,7 +1747,7 @@ local function MediumRightUnits()
 				TargetMark = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -2018,7 +2018,7 @@ local function SmallUnits()
 				Phased = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = -2,
 						y = -1,
@@ -2030,7 +2030,7 @@ local function SmallUnits()
 				PvPCombat = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = -2,
@@ -2042,7 +2042,7 @@ local function SmallUnits()
 				Objective = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -2054,7 +2054,7 @@ local function SmallUnits()
 				Ready = {
 					Enabled = false,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 0,
 						y = 0,
@@ -2078,7 +2078,7 @@ local function SmallUnits()
 				TargetMark = {
 					Enabled = true,
 					Style = "RUF",
-					Size = 24,
+					Size = 26,
 					Position = {
 						x = 2,
 						y = -1,
