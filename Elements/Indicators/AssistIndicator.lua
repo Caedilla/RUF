@@ -62,7 +62,7 @@ local function Enable(self)
 			element:SetTexture([[Interface\GroupFrame\UI-Group-AssistantIcon]])
 		end
 		if element:IsObjectType('FontString') then
-			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.unit].Frame.Indicators["Assist"].Size, "OUTLINE")
+			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.frame].Frame.Indicators["Assist"].Size, "OUTLINE")
 			element:SetText(" ")
 			element:SetJustifyH("CENTER")
 			element:SetTextColor(191/255,178/255,143/255)

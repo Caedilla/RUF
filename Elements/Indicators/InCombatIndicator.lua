@@ -65,7 +65,7 @@ local function Enable(self, unit)
 			element:SetTexCoord(.5, 1, 0, .49)
 		end
 		if element:IsObjectType('FontString') then
-			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.unit].Frame.Indicators["InCombat"].Size, "OUTLINE")
+			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.frame].Frame.Indicators["InCombat"].Size, "OUTLINE")
 			element:SetText(" ")
 			element:SetJustifyH("RIGHT")
 			element:SetWidth(1)

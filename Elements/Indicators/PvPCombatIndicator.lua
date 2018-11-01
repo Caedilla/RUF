@@ -107,7 +107,7 @@ local function Enable(self)
 		self:RegisterEvent('UNIT_FACTION', Path)
 		self:RegisterEvent('HONOR_LEVEL_UPDATE', Path)
 		if element:IsObjectType('FontString') then
-			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.unit].Frame.Indicators["PvPCombat"].Size, "OUTLINE")
+			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.frame].Frame.Indicators["PvPCombat"].Size, "OUTLINE")
 			element:SetText(" ")
 			element:SetWidth(1)
 			element:SetJustifyH("CENTER")

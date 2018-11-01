@@ -124,7 +124,7 @@ local function Enable(self, unit)
 		self:RegisterEvent('READY_CHECK_FINISHED', Path, true)
 
 		if element:IsObjectType('FontString') then
-			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.unit].Frame.Indicators["Ready"].Size, "OUTLINE")
+			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.frame].Frame.Indicators["Ready"].Size, "OUTLINE")
 			element:SetText(" ")
 			element:SetWidth(1)
 			element:SetJustifyH("CENTER")

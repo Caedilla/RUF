@@ -64,7 +64,7 @@ local function Enable(self)
 			element:SetTexture([[Interface\GroupFrame\UI-Group-LeaderIcon]])
 		end
 		if element:IsObjectType('FontString') then
-			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.unit].Frame.Indicators["Lead"].Size, "OUTLINE")
+			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.frame].Frame.Indicators["Lead"].Size, "OUTLINE")
 			element:SetText(" ")
 			element:SetWidth(1)
 			element:SetJustifyH("CENTER")

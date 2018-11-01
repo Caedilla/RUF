@@ -85,7 +85,7 @@ local function Enable(self)
 
 		self:RegisterEvent('GROUP_ROSTER_UPDATE', Path, true)
 		if element:IsObjectType('FontString') then
-			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.unit].Frame.Indicators["MainTankAssist"].Size, "OUTLINE")
+			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.frame].Frame.Indicators["MainTankAssist"].Size, "OUTLINE")
 			element:SetText(" ")
 			element:SetWidth(1)
 			element:SetJustifyH("CENTER")

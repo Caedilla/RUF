@@ -40,6 +40,7 @@ function RUF:OnInitialize()
 	LSM:Register("font","Semplicita Light Italic",[[Interface\Addons\RUF\Media\Extra\semplicita.light-italic.otf]])
 	LSM:Register("font","Semplicita Medium",[[Interface\Addons\RUF\Media\Extra\semplicita.medium.otf]])
 	LSM:Register("font","Semplicita Medium Italic",[[Interface\Addons\RUF\Media\Extra\semplicita.medium-italic.otf]])
+	
 	RUF.db.global.TestMode = false
 	RUF.db.global.Lock = true
 	if RUF.db.global.Version then

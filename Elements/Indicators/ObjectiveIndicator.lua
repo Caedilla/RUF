@@ -64,7 +64,7 @@ local function Enable(self)
 			element:SetTexture([[Interface\TargetingFrame\PortraitQuestBadge]])
 		end
 		if element:IsObjectType('FontString') then
-			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.unit].Frame.Indicators["Objective"].Size, "OUTLINE")
+			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.frame].Frame.Indicators["Objective"].Size, "OUTLINE")
 			element:SetText(" ")
 			element:SetWidth(1)
 			element:SetJustifyH("CENTER")

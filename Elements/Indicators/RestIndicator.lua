@@ -62,7 +62,7 @@ local function Enable(self, unit)
 			element:SetTexCoord(0, 0.5, 0, 0.421875)
 		end
 		if element:IsObjectType('FontString') then
-			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.unit].Frame.Indicators["Rest"].Size, "OUTLINE")
+			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.frame].Frame.Indicators["Rest"].Size, "OUTLINE")
 			element:SetText(" ")
 			element:SetJustifyH("CENTER")
 			element:SetTextColor(242/255,230/255,153/255)
