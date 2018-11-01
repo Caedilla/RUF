@@ -1,3 +1,11 @@
+# RUF r137-Release
+### Fixed
+* Fixed RUF Phased Icon from clipping the bottom of the icon
+
+### Changed
+* Default config updated size and placement of indicators to look a little better by default.
+
+
 # RUF r136-Alpha
 ### Added
 * Added several new fonts
