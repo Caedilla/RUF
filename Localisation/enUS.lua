@@ -356,6 +356,7 @@ L["Magic"] = true
 L["Disease"] = true
 L["Curse"] = true
 L["Poison"] = true
+L["Enrage"] = true
 L["Color Buffs by Type"] = true
 L["Color Debuffs by Type"] = true
 L["Color only removable"] = true

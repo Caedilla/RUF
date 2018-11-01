@@ -560,7 +560,7 @@ local function PostUpdateBuffIcon(self,unit,button,index,position,duration,expir
 		end
 	end
 	if (RUF.db.profile.Appearance.Aura.OnlyDispellable == true and removable == true) or RUF.db.profile.Appearance.Aura.OnlyDispellable == false  then
-		if debuffType and (debuffType == "Magic" or debuffType == "Curse" or debuffType == "Disease" or debuffType == "Poison") then
+		if debuffType and (debuffType == "Magic" or debuffType == "Curse" or debuffType == "Disease" or debuffType == "Poison" or debuffType == "Enrage") then
 			if self.visibleBuffs and RUF.db.profile.Appearance.Aura.Buff == true then -- Buff
 				r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura[debuffType])
 			elseif self.visibleDebuffs and RUF.db.profile.Appearance.Aura.Debuff == true then -- Debuffs
@@ -620,7 +620,7 @@ local function PostUpdateDebuffIcon(self,unit,button,index,position,duration,exp
 		end
 	end
 	if (RUF.db.profile.Appearance.Aura.OnlyDispellable == true and removable == true) or RUF.db.profile.Appearance.Aura.OnlyDispellable == false  then
-		if debuffType and (debuffType == "Magic" or debuffType == "Curse" or debuffType == "Disease" or debuffType == "Poison") then
+		if debuffType and (debuffType == "Magic" or debuffType == "Curse" or debuffType == "Disease" or debuffType == "Poison" or debuffType == "Enrage") then
 			if self.visibleBuffs and RUF.db.profile.Appearance.Aura.Buff == true then -- Buff
 				r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura[debuffType])
 			elseif self.visibleDebuffs and RUF.db.profile.Appearance.Aura.Debuff == true then -- Debuffs

@@ -177,6 +177,7 @@ local cfg = {
 					Disease = {1,156/255,0,1},
 					Curse = {84/255,43/255,189/255,1},
 					Poison = {145/255,190/255,15/255,1},
+					Enrage = {1,0,143/255,1},
 				},
 				DifficultyColors = {
 					[0] = {1,0.1,0.1}, -- Impossible
