@@ -300,6 +300,19 @@ local Options = {
 								RUF:UpdateAllAuras()
 							end,
 						},
+						DebuffPoison = {
+							name = L["Enrage"],
+							type = "color",
+							hasAlpha = true,
+							order = 0.2,
+							get = function(info)
+								return unpack(RUF.db.profile.Appearance.Colors.Aura.Enrage)
+							end,
+							set = function(info, r,g,b,a)
+								RUF.db.profile.Appearance.Colors.Aura.Enrage = {r,g,b,a}
+								RUF:UpdateAllAuras()
+							end,
+						},
 						Buff = {
 							name = L["Color Buffs by Type"],
 							type = "toggle",
