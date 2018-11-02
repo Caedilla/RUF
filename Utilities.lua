@@ -1216,9 +1216,13 @@ function RUF:UpdateFrames()
 			if UnitFrame.ClassPower or UnitFrame.Runes then
 				if UnitFrame.Runes then
 					UnitFrame.Runes:ForceUpdate()
-					UnitFrame.Runes.border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
+					--UnitFrame.Runes.border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
 					local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
-					UnitFrame.Runes.border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
+					--UnitFrame.Runes.border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
+					for r = 1,6 do
+						_G["oUF_RUF_Player.Class"..r..".Border"]:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
+						_G["oUF_RUF_Player.Class"..r..".Border"]:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
+					end
 				else
 					if PlayerClass == "MONK" and GetSpecialization() == 3 or PlayerClass ~= "MONK" then
 						UnitFrame.ClassPower:ForceUpdate()
