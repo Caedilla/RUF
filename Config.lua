@@ -625,8 +625,8 @@ local function LargeLeftUnits()
 						x = 0,
 						y = 0,
 						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
-						AnchorTo = "TOP",
-						AnchorFrom = "TOP",								
+						AnchorTo = "CENTER",
+						AnchorFrom = "CENTER",								
 					},
 				},
 				Lead = {
