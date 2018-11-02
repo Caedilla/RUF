@@ -300,7 +300,7 @@ local Options = {
 								RUF:UpdateAllAuras()
 							end,
 						},
-						DebuffDisease = {
+						DebuffEnrage = {
 							name = L["Enrage"],
 							type = "color",
 							hasAlpha = true,
