@@ -502,12 +502,24 @@ function RUF:GetClassColor(unit)
 	if not class then class = "PRIEST" end	
 	local r,g,b = unpack(RUF.db.profile.Appearance.Bars.Class.Color.BaseColor)	
 	if RUF.db.profile.Appearance.Bars.Class.Color.Class and UnitIsPlayer(unit) then
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.ClassColors[class])			
+		r,g,b = unpack(RUF.db.profile.Appearance.Colors.ClassColors[class])
 	elseif RUF.db.profile.Appearance.Bars.Class.Color.Percentage then
 		local cur, max = UnitPower(unit), UnitPowerMax(unit)
 		r,g,b = RUF:ColorGradient(cur, max, unpack(RUF.db.profile.Appearance.Bars.Class.Color.PercentageGradient))
 	elseif RUF.db.profile.Appearance.Bars.Class.Color.PowerType then
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[RUF.db.char.ClassPowerID])			
+		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[RUF.db.char.ClassPowerID])
+		if PlayerClass == "DEATHKNIGHT" then--and event == "PLAYER_TALENT_UPDATE" then -- Update Bar Colors for Death Knight Specs.
+			local Spec = GetSpecialization()
+			if Spec == 1 then --Blood
+				r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[50])
+			elseif Spec == 2 then -- Frost
+				r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[51])
+			elseif Spec == 3 then -- Unholy
+				r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[52])
+			else
+				r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[RUF.db.char.ClassPowerID])
+			end
+		end
 	else
 		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Class.Color.BaseColor)
 	end

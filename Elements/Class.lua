@@ -8,25 +8,13 @@ local _, PlayerClass = UnitClass('player')
 
 function RUF.ClassPostUpdate(element, cur, max, hasMaxChanged, powerType)
 	if not _G[element.__owner:GetName() .. ".Class"]:IsShown() then return end
-	local r,g,b = RUF:GetClassColor("player")
-	local UnitPowerMaxAmount = UnitPowerMax("player", RUF.db.char.ClassPowerID)			
+	local r,g,b = RUF:GetClassColor(element.__owner.frame)
+	local UnitPowerMaxAmount = UnitPowerMax(element.__owner.frame, RUF.db.char.ClassPowerID)			
 	local Multiplier = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local BarMult = RUF.db.profile.Appearance.Bars.Class.Color.Multiplier
 	local Texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Class.Texture)
 	local br,bg,bb	
 
-	if PlayerClass == "DEATHKNIGHT" then--and event == "PLAYER_TALENT_UPDATE" then -- Update Bar Colors for Death Knight Specs.
-		local Spec = GetSpecialization()
-		if Spec == 1 then --Blood
-			r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[50])
-		elseif Spec == 2 then -- Frost
-			r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[51])
-		elseif Spec == 3 then -- Unholy
-			r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[52])
-		else
-			r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[RUF.db.char.ClassPowerID])
-		end
-	end
 	for index = 1,UnitPowerMaxAmount do
 		local ir = r - (r*(((-index + UnitPowerMaxAmount)*BarMult)/100))
 		local ig = g - (g*(((-index + UnitPowerMaxAmount)*BarMult)/100))
