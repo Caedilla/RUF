@@ -1,6 +1,6 @@
 # RUF r140-Alpha
 ### Fixed
-* Return Disease coloring option.
+* Return Poison coloring option.
 
 # RUF r139-Alpha
 ### Fixed
