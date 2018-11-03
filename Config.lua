@@ -1410,8 +1410,8 @@ local function LargeRightUnits()
 						x = 0,
 						y = 0,
 						AnchorFrame = "Phased", -- Icon to Anchor to, if none, anchor to frame
-						AnchorTo = "LEFT",
-						AnchorFrom = "RIGHT",								
+						AnchorTo = "RIGHT",
+						AnchorFrom = "LEFT",								
 					},
 				},
 				TargetMark = {
@@ -1422,8 +1422,8 @@ local function LargeRightUnits()
 						x = 0,
 						y = 0,
 						AnchorFrame = "Phased", -- Icon to Anchor to, if none, anchor to frame
-						AnchorTo = "RIGHT",
-						AnchorFrom = "LEFT",								
+						AnchorTo = "LEFT",
+						AnchorFrom = "RIGHT",								
 					},
 				},
 			},
