@@ -519,7 +519,7 @@ local function LargeLeftUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:CurHPPerc]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 28,
 					Width = 150,
 					Position = {
@@ -534,7 +534,7 @@ local function LargeLeftUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:Level]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 18,
 					Width = 100,
 					Position = {
@@ -549,7 +549,7 @@ local function LargeLeftUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:CurPowerPerc]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 18,
 					Width = 100,
 					Position = {
@@ -564,7 +564,7 @@ local function LargeLeftUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:Name]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 21,
 					Width = 100,
 					Position = {
@@ -612,7 +612,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "CENTER",								
 					},
@@ -624,7 +624,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -636,7 +636,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "TOPRIGHT",
 						AnchorFrom = "CENTER",								
 					},
@@ -648,7 +648,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Lead", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Lead",
 						AnchorTo = "LEFT",
 						AnchorFrom = "RIGHT",								
 					},
@@ -660,7 +660,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -672,7 +672,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "CENTER",								
 					},
@@ -684,7 +684,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "CENTER",								
 					},
@@ -696,7 +696,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 10,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "LEFT",								
 					},
@@ -708,7 +708,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "TOPRIGHT",
 						AnchorFrom = "BOTTOMLEFT",								
 					},
@@ -720,7 +720,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "InCombat", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "InCombat",
 						AnchorTo = "LEFT",
 						AnchorFrom = "RIGHT",								
 					},
@@ -732,7 +732,7 @@ local function LargeLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "InCombat", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "InCombat",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "LEFT",								
 					},
@@ -854,19 +854,19 @@ local function MediumLeftUnits()
 				Width = 300,
 			},
 			Bars = {
-				Health = { -- Doesn't need options. Health Height is Height -2, Position is filling the frame aside from Power bars for the Health BG.
+				Health = {
 					Fill = "STANDARD",
 				},
 				Absorb = {
 					Enabled = 1,
-					Fill = "STANDARD", -- Use Health Fill if Enabled == 1
+					Fill = "STANDARD",
 					Height = 8,
 					Position = {
 						Anchor = "BOTTOM",
-						Order = 1, -- If 2 bars are at bottom, then order determines which comes first (closest to anchor)
+						Order = 1,
 					}, 
 				},
-				Class = { -- Class or Mana on Additional Mana units.
+				Class = {
 					Enabled = false,
 					Fill = "STANDARD", 
 					Height = 4,
@@ -874,8 +874,8 @@ local function MediumLeftUnits()
 						Anchor = "TOP",
 					},
 				},
-				Power = { -- Primary Power or Class on Additional Mana units.
-					Enabled = 1, -- 0 Hidden, 1 Show above 0, 2 Always Show
+				Power = {
+					Enabled = 1,
 					Fill = "STANDARD",
 					Height = 4,
 					Position = {
@@ -890,7 +890,7 @@ local function MediumLeftUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:CurHPPerc]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 21,
 					Width = 150,
 					Position = {
@@ -905,7 +905,7 @@ local function MediumLeftUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:Level]",
-					Enabled = false, -- Boolean
+					Enabled = false,
 					Size = 18,
 					Width = 100,
 					Position = {
@@ -920,7 +920,7 @@ local function MediumLeftUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:CurPowerPerc]",
-					Enabled = false, -- Boolean
+					Enabled = false,
 					Size = 18,
 					Width = 100,
 					Position = {
@@ -935,7 +935,7 @@ local function MediumLeftUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:Name]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 21,
 					Width = 100,
 					Position = {
@@ -954,7 +954,7 @@ local function MediumLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Lead", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Lead",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -967,7 +967,7 @@ local function MediumLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "PvPCombat", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "PvPCombat",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -979,7 +979,7 @@ local function MediumLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "TOPRIGHT",
 						AnchorFrom = "CENTER",								
 					},
@@ -991,7 +991,7 @@ local function MediumLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Lead", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Lead",
 						AnchorTo = "LEFT",
 						AnchorFrom = "RIGHT",								
 					},
@@ -1003,7 +1003,7 @@ local function MediumLeftUnits()
 					Position = {
 						x = 0,
 						y = -2,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1015,7 +1015,7 @@ local function MediumLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "BOTTOMRIGHT",
 						AnchorFrom = "BOTTOM",								
 					},
@@ -1027,7 +1027,7 @@ local function MediumLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "BOTTOMRIGHT",
 						AnchorFrom = "BOTTOM",								
 					},
@@ -1039,7 +1039,7 @@ local function MediumLeftUnits()
 					Position = {
 						x = -50,
 						y = -2,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1051,7 +1051,7 @@ local function MediumLeftUnits()
 					Position = {
 						x = 50,
 						y = -2,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1063,7 +1063,7 @@ local function MediumLeftUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1185,19 +1185,19 @@ local function LargeRightUnits()
 				Width = 300,
 			},
 			Bars = {
-				Health = { -- Doesn't need options. Health Height is Height -2, Position is filling the frame aside from Power bars for the Health BG.
+				Health = {
 					Fill = "REVERSE",
 				},
 				Absorb = {
 					Enabled = 1,
-					Fill = "REVERSE", -- Use Health Fill if Enabled == 1
+					Fill = "REVERSE",
 					Height = 8,
 					Position = {
 						Anchor = "BOTTOM",
-						Order = 1, -- If 2 bars are at bottom, then order determines which comes first (closest to anchor)
+						Order = 1,
 					}, 
 				},
-				Class = { -- Class or Mana on Additional Mana units.
+				Class = {
 					Enabled = true,
 					Fill = "REVERSE", 
 					Height = 8,
@@ -1205,8 +1205,8 @@ local function LargeRightUnits()
 						Anchor = "TOP",
 					},
 				},
-				Power = { -- Primary Power or Class on Additional Mana units.
-					Enabled = 1, -- 0 Hidden, 1 Show above 0, 2 Always Show
+				Power = {
+					Enabled = 1,
 					Fill = "REVERSE",
 					Height = 8,
 					Position = {
@@ -1221,7 +1221,7 @@ local function LargeRightUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:CurHPPerc]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 28,
 					Width = 150,
 					Position = {
@@ -1236,7 +1236,7 @@ local function LargeRightUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:Level]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 18,
 					Width = 100,
 					Position = {
@@ -1251,7 +1251,7 @@ local function LargeRightUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:CurPowerPerc]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 18,
 					Width = 100,
 					Position = {
@@ -1266,7 +1266,7 @@ local function LargeRightUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:Name]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 21,
 					Width = 100,
 					Position = {
@@ -1300,7 +1300,7 @@ local function LargeRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Lead", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Lead",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1313,7 +1313,7 @@ local function LargeRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "LEFT",
 						AnchorFrom = "CENTER",								
 					},
@@ -1325,7 +1325,7 @@ local function LargeRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "TOPLEFT",
 						AnchorFrom = "CENTER",								
 					},
@@ -1337,7 +1337,7 @@ local function LargeRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Lead", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Lead",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "LEFT",								
 					},
@@ -1349,7 +1349,7 @@ local function LargeRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1361,7 +1361,7 @@ local function LargeRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "LEFT",
 						AnchorFrom = "CENTER",								
 					},
@@ -1373,7 +1373,7 @@ local function LargeRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "LEFT",
 						AnchorFrom = "CENTER",								
 					},
@@ -1385,7 +1385,7 @@ local function LargeRightUnits()
 					Position = {
 						x = -10,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "LEFT",
 						AnchorFrom = "RIGHT",								
 					},
@@ -1397,7 +1397,7 @@ local function LargeRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1409,7 +1409,7 @@ local function LargeRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Phased", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Phased",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "LEFT",								
 					},
@@ -1421,7 +1421,7 @@ local function LargeRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Phased", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Phased",
 						AnchorTo = "LEFT",
 						AnchorFrom = "RIGHT",								
 					},
@@ -1543,19 +1543,19 @@ local function MediumRightUnits()
 				Width = 300,
 			},
 			Bars = {
-				Health = { -- Doesn't need options. Health Height is Height -2, Position is filling the frame aside from Power bars for the Health BG.
+				Health = {
 					Fill = "REVERSE",
 				},
 				Absorb = {
 					Enabled = 1,
-					Fill = "REVERSE", -- Use Health Fill if Enabled == 1
+					Fill = "REVERSE",
 					Height = 8,
 					Position = {
 						Anchor = "BOTTOM",
-						Order = 1, -- If 2 bars are at bottom, then order determines which comes first (closest to anchor)
+						Order = 1,
 					}, 
 				},
-				Class = { -- Class or Mana on Additional Mana units.
+				Class = {
 					Enabled = false,
 					Fill = "REVERSE", 
 					Height = 4,
@@ -1563,8 +1563,8 @@ local function MediumRightUnits()
 						Anchor = "TOP",
 					},
 				},
-				Power = { -- Primary Power or Class on Additional Mana units.
-					Enabled = 1, -- 0 Hidden, 1 Show above 0, 2 Always Show
+				Power = {
+					Enabled = 1,
 					Fill = "REVERSE",
 					Height = 4,
 					Position = {
@@ -1579,7 +1579,7 @@ local function MediumRightUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:CurHPPerc]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 21,
 					Width = 150,
 					Position = {
@@ -1594,7 +1594,7 @@ local function MediumRightUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:Level]",
-					Enabled = false, -- Boolean
+					Enabled = false,
 					Size = 18,
 					Width = 100,
 					Position = {
@@ -1609,7 +1609,7 @@ local function MediumRightUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:CurPowerPerc]",
-					Enabled = false, -- Boolean
+					Enabled = false,
 					Size = 18,
 					Width = 100,
 					Position = {
@@ -1624,7 +1624,7 @@ local function MediumRightUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:Name]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 21,
 					Width = 100,
 					Position = {
@@ -1643,7 +1643,7 @@ local function MediumRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Lead", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Lead",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1656,7 +1656,7 @@ local function MediumRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "PvPCombat", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "PvPCombat",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1668,7 +1668,7 @@ local function MediumRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "TOPLEFT",
 						AnchorFrom = "CENTER",								
 					},
@@ -1680,7 +1680,7 @@ local function MediumRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Lead", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Lead",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "LEFT",								
 					},
@@ -1692,7 +1692,7 @@ local function MediumRightUnits()
 					Position = {
 						x = 0,
 						y = -2,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1704,7 +1704,7 @@ local function MediumRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "BOTTOMLEFT",
 						AnchorFrom = "BOTTOM",								
 					},
@@ -1716,7 +1716,7 @@ local function MediumRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "BOTTOMLEFT",
 						AnchorFrom = "BOTTOM",								
 					},
@@ -1728,7 +1728,7 @@ local function MediumRightUnits()
 					Position = {
 						x = 50,
 						y = -2,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1740,7 +1740,7 @@ local function MediumRightUnits()
 					Position = {
 						x = -50,
 						y = -2,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1752,7 +1752,7 @@ local function MediumRightUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1874,19 +1874,19 @@ local function SmallUnits()
 				Width = 125,
 			},
 			Bars = {
-				Health = { -- Doesn't need options. Health Height is Height -2, Position is filling the frame aside from Power bars for the Health BG.
+				Health = {
 					Fill = "STANDARD",
 				},
 				Absorb = {
 					Enabled = 1,
-					Fill = "STANDARD", -- Use Health Fill if Enabled == 1
+					Fill = "STANDARD",
 					Height = 8,
 					Position = {
 						Anchor = "BOTTOM",
-						Order = 1, -- If 2 bars are at bottom, then order determines which comes first (closest to anchor)
+						Order = 1,
 					}, 
 				},
-				Class = { -- Class or Mana on Additional Mana units.
+				Class = {
 					Enabled = false,
 					Fill = "STANDARD", 
 					Height = 8,
@@ -1894,8 +1894,8 @@ local function SmallUnits()
 						Anchor = "TOP",
 					},
 				},
-				Power = { -- Primary Power or Class on Additional Mana units.
-					Enabled = 1, -- 0 Hidden, 1 Show above 0, 2 Always Show
+				Power = {
+					Enabled = 1,
 					Fill = "STANDARD",
 					Height = 4,
 					Position = {
@@ -1910,7 +1910,7 @@ local function SmallUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:CurHPPerc]",
-					Enabled = false, -- Boolean
+					Enabled = false,
 					Size = 21,
 					Width = 100,
 					Position = {
@@ -1925,7 +1925,7 @@ local function SmallUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:Level]",
-					Enabled = false, -- Boolean
+					Enabled = false,
 					Size = 18,
 					Width = 100,
 					Position = {
@@ -1940,7 +1940,7 @@ local function SmallUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:CurPowerPerc]",
-					Enabled = false, -- Boolean
+					Enabled = false,
 					Size = 18,
 					Width = 100,
 					Position = {
@@ -1955,7 +1955,7 @@ local function SmallUnits()
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Tag = "[RUF:Name]",
-					Enabled = true, -- Boolean
+					Enabled = true,
 					Size = 21,
 					Width = 100,
 					Position = {
@@ -1974,7 +1974,7 @@ local function SmallUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Lead", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Lead",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -1987,7 +1987,7 @@ local function SmallUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "PvPCombat", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "PvPCombat",
 						AnchorTo = "TOPRIGHT",
 						AnchorFrom = "CENTER",								
 					},
@@ -1999,7 +1999,7 @@ local function SmallUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "TOPRIGHT",
 						AnchorFrom = "CENTER",								
 					},
@@ -2011,7 +2011,7 @@ local function SmallUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Lead", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Lead",
 						AnchorTo = "LEFT",
 						AnchorFrom = "RIGHT",								
 					},
@@ -2023,7 +2023,7 @@ local function SmallUnits()
 					Position = {
 						x = -2,
 						y = -1,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "RIGHT",								
 					},
@@ -2035,7 +2035,7 @@ local function SmallUnits()
 					Position = {
 						x = 0,
 						y = -2,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "CENTER",								
 					},
@@ -2047,7 +2047,7 @@ local function SmallUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "TargetMark", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "TargetMark",
 						AnchorTo = "RIGHT",
 						AnchorFrom = "LEFT",								
 					},
@@ -2059,7 +2059,7 @@ local function SmallUnits()
 					Position = {
 						x = 0,
 						y = 0,
-						AnchorFrame = "Phased", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Phased",
 						AnchorTo = "LEFT",
 						AnchorFrom = "RIGHT",								
 					},
@@ -2071,7 +2071,7 @@ local function SmallUnits()
 					Position = {
 						x = 0,
 						y = -2,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "CENTER",
 						AnchorFrom = "CENTER",								
 					},
@@ -2083,7 +2083,7 @@ local function SmallUnits()
 					Position = {
 						x = 2,
 						y = -1,
-						AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+						AnchorFrame = "Frame",
 						AnchorTo = "LEFT",
 						AnchorFrom = "LEFT",								
 					},
@@ -2224,7 +2224,7 @@ do
 		Outline = "OUTLINE",
 		Shadow = 0,
 		Tag = "[RUF:CurMana]",
-		Enabled = true, -- Boolean
+		Enabled = true,
 		Size = 18,
 		Width = 100,
 		Position = {
@@ -2303,7 +2303,7 @@ do
 		Position = {
 			x = 0,
 			y = 0,
-			AnchorFrame = "Frame", -- Icon to Anchor to, if none, anchor to frame
+			AnchorFrame = "Frame",
 			AnchorTo = "LEFT",
 			AnchorFrom = "CENTER",								
 		},		
