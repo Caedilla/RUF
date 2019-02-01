@@ -8,8 +8,8 @@ local _, PlayerClass = UnitClass('player')
 
 function RUF.ClassPostUpdate(element, cur, max, hasMaxChanged, powerType)
 	if not _G[element.__owner:GetName() .. ".Class"]:IsShown() then return end
-	local r,g,b = RUF:GetClassColor(element.__owner.frame)
-	local UnitPowerMaxAmount = UnitPowerMax(element.__owner.frame, RUF.db.char.ClassPowerID)			
+	local r,g,b = RUF:GetClassColor("player")
+	local UnitPowerMaxAmount = UnitPowerMax("player", RUF.db.char.ClassPowerID)			
 	local Multiplier = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local BarMult = RUF.db.profile.Appearance.Bars.Class.Color.Multiplier
 	local Texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Class.Texture)
