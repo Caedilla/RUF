@@ -1,4 +1,4 @@
-## Interface: 80100
+## Interface: 80200
 ## Title: RUF [|c5500DBBDRaeli's Unit Frames|r]
 ## Notes: Raeli's Unit Frames. Simple lightweight unitframes using oUF
 ## Author: Raeli
