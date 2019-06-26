@@ -1,3 +1,3 @@
-# RUF r144-Release
-### Changed
-Updated interface version for 8.2
+# RUF r145-Release
+### Fixed
+* Fixed various Lua errors preventing RUF from functioning.
