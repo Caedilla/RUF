@@ -1,4 +1,4 @@
-## Interface: 70300
+## Interface: 80200
 ## Title: RUF [|c5500DBBDOptions|r]
 ## Notes: Load on Demand configuration options for Raeli's Unit Frames.
 ## Author: Raeli
