@@ -212,7 +212,7 @@ function RUF.SetClassBar(self, unit)
 		self.ClassPower = ClassPowerBar
 		self.ClassPower.border = ClassPowerBorder	
 		self.ClassPower.bg = ClassPowerBG
-		self:RegisterEvent('PLAYER_TALENT_UPDATE',RUF.UpdateClassBar)
+		--self:RegisterEvent('PLAYER_TALENT_UPDATE',RUF.UpdateClassBar)
 		self:RegisterEvent('UNIT_POWER_UPDATE',RUF.UpdateClassBar)
 		self:RegisterEvent('UNIT_DISPLAYPOWER',RUF.UpdateClassBar)
 		self:RegisterEvent('PLAYER_ENTERING_WORLD',RUF.UpdateClassBar)

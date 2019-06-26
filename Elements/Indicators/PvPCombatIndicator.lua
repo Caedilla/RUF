@@ -105,7 +105,7 @@ local function Enable(self)
 		element.ForceUpdate = ForceUpdate
 
 		self:RegisterEvent('UNIT_FACTION', Path)
-		self:RegisterEvent('HONOR_LEVEL_UPDATE', Path)
+		--self:RegisterEvent('HONOR_LEVEL_UPDATE', Path)
 		if element:IsObjectType('FontString') then
 			element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[self.frame].Frame.Indicators["PvPCombat"].Size, "OUTLINE")
 			element:SetText(" ")
@@ -123,7 +123,7 @@ local function Disable(self)
 		element:Hide()
 
 		self:UnregisterEvent('UNIT_FACTION', Path)
-		self:UnregisterEvent('HONOR_LEVEL_UPDATE', Path)
+		--self:UnregisterEvent('HONOR_LEVEL_UPDATE', Path)
 	end
 end
 

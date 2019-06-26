@@ -82,7 +82,7 @@ local function Enable(self)
 		element.ForceUpdate = ForceUpdate
 
 		self:RegisterEvent('UNIT_FACTION', Path)
-		self:RegisterEvent('HONOR_LEVEL_UPDATE', Path)
+		--self:RegisterEvent('HONOR_LEVEL_UPDATE', Path)
 
 		return true
 	end
@@ -98,8 +98,9 @@ local function Disable(self)
 		end
 
 		self:UnregisterEvent('UNIT_FACTION', Path)
-		self:UnregisterEvent('HONOR_LEVEL_UPDATE', Path)
+		--self:UnregisterEvent('HONOR_LEVEL_UPDATE', Path)
 	end
 end
 
 oUF:AddElement('HonorIndicator', Path, Enable, Disable)
+-
