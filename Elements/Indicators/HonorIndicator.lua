@@ -103,4 +103,3 @@ local function Disable(self)
 end
 
 oUF:AddElement('HonorIndicator', Path, Enable, Disable)
--
