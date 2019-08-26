@@ -1,8 +1,8 @@
 package-as: RUF
 
 manual-changelog:
-    filename: CHANGELOG.md
-    markup-type: markdown
+	filename: CHANGELOG.md
+	markup-type: markdown
 
 externals:
  Libs/oUF:
@@ -38,7 +38,7 @@ externals:
   
   
 move-folders:
-    RUF/Options: RUF_Options
+	RUF/Options: RUF_Options
 	
 ignore:
  - .pkgmeta

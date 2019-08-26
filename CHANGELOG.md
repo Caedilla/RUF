@@ -1,3 +1,3 @@
-# RUF r146-Release
-### Fixed
-* Fixed various Lua errors preventing RUF from functioning.
+# RUF r147-Alpha
+### Changed
+Core rewrite of the addon

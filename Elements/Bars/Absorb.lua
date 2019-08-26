@@ -1,0 +1,125 @@
+local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
+local LSM = LibStub("LibSharedMedia-3.0")
+local _, ns = ...
+local oUF = ns.oUF
+
+--[[
+	TODO: Set Statusbar Alpha for Type 1
+
+]]--
+
+
+function RUF.SetAbsorbBar(self, unit)
+
+	local Texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Absorb.Texture)
+	local Bar = CreateFrame("StatusBar",nil,self)
+	local Border = CreateFrame("Frame",nil,Bar)
+	local Background = Bar:CreateTexture(nil,"BACKGROUND")
+
+	-- Bar
+	Bar.colorClass = RUF.db.profile.Appearance.Bars.Absorb.Color.Class
+	Bar.colorDisconnected = RUF.db.profile.Appearance.Bars.Absorb.Color.Disconnected
+	Bar.colorSmooth = RUF.db.profile.Appearance.Bars.Absorb.Color.Percentage
+	Bar.smoothGradient = RUF.db.profile.Appearance.Bars.Absorb.Color.PercentageGradient
+	Bar.colorReaction = RUF.db.profile.Appearance.Bars.Absorb.Color.Reaction
+	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Absorb.Color.Tapped
+	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
+	Bar.Smooth = RUF.db.profile.Appearance.Bars.Absorb.Animate
+	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Absorb.Enabled == 1
+	Bar:SetStatusBarTexture(Texture)
+	Bar:SetFrameLevel(3)
+	Bar:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Absorb.Fill)
+
+	if RUF.db.profile.Appearance.Bars.Absorb.Type == 1 then
+		local a = RUF.db.profile.Appearance.Bars.Absorb.Color.Alpha
+		Bar:SetAlpha(a)
+		Bar:SetAllPoints(self)
+		Border:Hide()
+		Background:Hide()
+	end
+
+
+	-- Register with oUF
+	self.Absorb = Bar
+	self.Absorb.Border = Border
+	self.Absorb.Background = Background
+
+	self.Absorb.UpdateOptions = RUF.AbsorbUpdateOptions
+end
+
+function RUF.AbsorbUpdate(self, event, unit)
+	if(self.unit ~= unit) then return end
+	if (RUF.db.profile.Appearance.Bars.Absorb.Type == 0) or (RUF.db.profile.unit[self.frame].Frame.Bars.Absorb.Enabled == 0) then
+		self:DisableElement('Absorb')
+		return
+	end
+
+	local element = self.Absorb
+
+	--[[ Callback: Absorb:PreUpdate(unit)
+	Called before the element has been updated.
+
+	* self - the Absorb element
+	* unit - the unit for which the update has been triggered (string)
+	--]]
+	if(element.PreUpdate) then
+		element:PreUpdate(unit)
+	end
+
+	local absorb = UnitGetTotalAbsorbs(unit) or 0
+	local health, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
+
+	if RUF.db.global.TestMode == true then
+		absorb = math.random(25,75)
+		maxHealth = 100
+	end
+
+	element:SetMinMaxValues(0, maxHealth)
+	element:SetValue(absorb)
+	local r,g,b = RUF:GetBarColor(element, unit, "Absorb")
+	element:SetStatusBarColor(r,g,b)
+
+	if element.hideAtZero == true then
+		if absorb < 1 then
+			if element:IsVisible() then
+				element:Hide()
+			end
+		else
+			if not element:IsVisible() then
+				element:Show()
+			end
+		end
+	end
+
+	--[[ Callback: Absorb:PostUpdate(unit, absorb)
+	Called after the element has been updated.
+
+	* self			  - the Absorb element
+	* unit			  - the unit for which the update has been triggered (string)
+	* absorb			- the amount of damage the unit can absorb without losing health (number)
+	--]]
+	if(element.PostUpdate) then
+		return element:PostUpdate(unit, absorb)
+	end
+end
+
+function RUF.AbsorbUpdateOptions(self)
+	local unit = self.__owner.frame
+	local Bar = self
+
+	local Texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Absorb.Texture)
+	Bar.colorClass = RUF.db.profile.Appearance.Bars.Absorb.Color.Class
+	Bar.colorDisconnected = RUF.db.profile.Appearance.Bars.Absorb.Color.Disconnected
+	Bar.colorSmooth = RUF.db.profile.Appearance.Bars.Absorb.Color.Percentage
+	Bar.smoothGradient = RUF.db.profile.Appearance.Bars.Absorb.Color.PercentageGradient
+	Bar.colorReaction = RUF.db.profile.Appearance.Bars.Absorb.Color.Reaction
+	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Absorb.Color.Tapped
+	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
+	Bar.Smooth = RUF.db.profile.Appearance.Bars.Absorb.Animate
+	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Absorb.Enabled == 1
+	Bar:SetStatusBarTexture(Texture)
+	Bar:SetFrameLevel(3)
+	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Absorb.Fill)
+
+	self:ForceUpdate()
+end
