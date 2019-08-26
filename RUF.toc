@@ -1,8 +1,8 @@
-## Interface: 80100
+## Interface: 11302
 ## Title: RUF [|c5500DBBDRaeli's Unit Frames|r]
 ## Notes: Raeli's Unit Frames. Simple lightweight unitframes using oUF
 ## Author: Raeli
-## Version: r143-Release
+## Version: @project-version@
 ## SavedVariables: RUFDB
 ## X-SavedVariables: RUFDB
 ## OptionalDeps: oUF, oUF_Smooth, Ace3, LibDualSpec-1.0, LibSharedMedia-3.0
