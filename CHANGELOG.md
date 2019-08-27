@@ -1,4 +1,4 @@
-# RUF r148-Alpha
+# RUF r149-Alpha
 ### Changed
 * RUF now includes a modified version of oUF to check client type (classic/live) so oUF doesn't try to register vehicle frame events. Should stop Lua errors preventing frames from initialising.
 
