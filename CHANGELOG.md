@@ -1,6 +1,6 @@
-# RUF r147-Alpha
+# RUF r148-Alpha
 ### Changed
-* Core rewrite of the addon
+* RUF now includes a modified version of oUF to check client type (classic/live) so oUF doesn't try to register vehicle frame events. Should stop Lua errors preventing frames from initialising.
 
 ### Known Issues
 * When switching profiles, some custom text elements don't update correctly (Fix upcoming) - ReloadUI fixes this
