@@ -15,6 +15,7 @@ RUF isn't as fully featured as some unit frames, but should also use less resour
 **RUF** supports Classic, and should work with the same profiles you have on live. To do so, you'll want to copy your saved settings from the the retail folder to the classic folder. You'll then need to just set your profile in the RUF config window in game. 
 
 Example paths:
+
 `<WOW INSTALL LOCATION>\_retail_\WTF\Account\<ACCOUNT NAME>\SavedVariables\RUF.lua`
   
 `<WOW INSTALL LOCATION>\_classic_\WTF\Account\<ACCOUNT NAME>\SavedVariables\RUF.lua`
