@@ -5,9 +5,6 @@ manual-changelog:
 	markup-type: markdown
 
 externals:
- Libs/oUF:
-  url: git://github.com/oUF-wow/oUF
-  tag: latest
  Libs/LibStub-1.0:
   url: svn://svn.wowace.com/wow/libstub/mainline/trunk
  Libs/CallbackHandler-1.0:
