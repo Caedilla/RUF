@@ -44,7 +44,9 @@ local function SetupFrames(self, unit)
 	local profileReference = RUF.db.profile.unit[unit]
 
 	-- Set Colors
-	SetClassColors()
+	if RUF.Client == 1 then
+		SetClassColors()
+	end
 
 	self:RegisterForClicks('AnyUp')
 	self:SetScript('OnEnter', UnitFrame_OnEnter)
