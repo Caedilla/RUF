@@ -44,7 +44,7 @@ You can configure RUF by typing /ruf in game.
 
 You can [report issues on Curseforge](https://wow.curseforge.com/projects/ruf/issues) or contact me directly on [Discord](https://discord.gg/99QZ6sd).
 
-I've setup a Patreon to go toward my WoW subscription so I can keep my addons up to date as I'm not currently playing WoW. If you'd like to throw me a dollar to keep my addons working, check out the link below. Cheers.
+I've setup a Patreon to go toward my WoW subscription. If you'd like to throw me a dollar to keep my addons working, check out the link below. Cheers.
 
 [![Support me on Patreon](https://c5.patreon.com/external/logo/become_a_patron_button.png "")](https://www.patreon.com/join/raeli "")
 
