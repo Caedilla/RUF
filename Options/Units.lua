@@ -625,6 +625,7 @@ local function TextSettings(profileName,groupFrame)
 							Anchor = 'CENTER',
 						},
 					}
+					RUF:OptionsAddTexts(passUnit,groupFrame,value)
 					RUF:UpdateOptions()
 				end,
 			},

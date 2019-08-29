@@ -151,6 +151,42 @@ function RUF:OptionsUpdateIndicators(profileName,groupFrame,indicator)
 
 end
 
+function RUF:OptionsAddTexts(profileName,groupFrame,textName)
+	-- TODO Remove Texts
+	-- Add/Remove on all relevant elements on profile switch.
+
+	local function AddText(profileName,groupFrame,textName,i)
+		local currentUnit,unitFrame,profileReference
+		if partyUnit then
+			unitFrame = partyUnit
+		else
+			if i == -1 then
+				currentUnit = profileName
+			else
+				currentUnit = profileName .. i
+			end
+			unitFrame = _G['oUF_RUF_' .. currentUnit]
+		end
+
+		RUF.CreateTextArea(unitFrame, unitFrame.Frame, textName)
+		RUF.SetTextPoints(unitFrame, unitFrame.Frame, textName)
+	end
+
+	if string.lower(groupFrame) == 'party' then
+		local partyUnits = { oUF_RUF_Party:GetChildren() }
+		partyUnits[#partyUnits] = nil -- Remove last entry which is the moveBG holder.
+		for i = 1,#partyUnits do
+			AddText(profileName,groupFrame,text,i,partyUnits[i])
+		end
+	elseif groupFrame ~= 'none' and string.lower(profileName) == string.lower(profileName) then
+		for i = 1,5 do
+			AddText(profileName,groupFrame,text,i)
+		end
+	else
+		AddText(profileName,groupFrame,text,-1)
+	end
+end
+
 function RUF:OptionsUpdateAllTexts()
 	-- Runs when we change a Bar setting in Global Options
 	local frames = {}
