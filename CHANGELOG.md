@@ -1,6 +1,6 @@
-# RUF r149-Alpha
-### Changed
-* RUF now includes a modified version of oUF to check client type (classic/live) so oUF doesn't try to register vehicle frame events. Should stop Lua errors preventing frames from initialising.
+# RUF r150-Alpha
+### Added
+* Added support for RealMobHealth.
 
 ### Known Issues
 * When switching profiles, some custom text elements don't update correctly (Fix upcoming) - ReloadUI fixes this

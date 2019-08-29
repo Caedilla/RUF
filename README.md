@@ -9,16 +9,19 @@ A unitframe layout for oUF
 ## About
 **RUF** is a configurable Unit Frame addon using oUF. It is still very much in early development, but I have made it available on curse so that I can get feedback along the way.
 
-RUF isn't as fully featured as some unit frames, but should also use less resources while playing than most unit frame addons too. 
+RUF isn't as fully featured as some unit frames, but should also use less resources while playing than most unit frame addons too.
 
 ## Classic Support
-**RUF** supports Classic, and should work with the same profiles you have on live. To do so, you'll want to copy your saved settings from the the retail folder to the classic folder. You'll then need to just set your profile in the RUF config window in game. 
+**RUF** supports Classic, and should work with the same profiles you have on live. To do so, you'll want to copy your saved settings from the the retail folder to the classic folder. You'll then need to just set your profile in the RUF config window in game.
 
 Example paths:
 
 `<WOW INSTALL LOCATION>\_retail_\WTF\Account\<ACCOUNT NAME>\SavedVariables\RUF.lua`
-  
+
 `<WOW INSTALL LOCATION>\_classic_\WTF\Account\<ACCOUNT NAME>\SavedVariables\RUF.lua`
+
+### RealMobHealth
+**RUF** works with [RealMobHealth](https://www.curseforge.com/wow/addons/real-mob-health) in classic to try and estimate an enemy unit's actual health. If you want show actual health instead of only percentages for enemy units, all you need to do is download RealMobHealth.
 
 ## Features
 * Currently supports Player, Pet, Pet's Target, Target, Target's Target, Focus, Focus's Target, Boss, Party, and Arena units
@@ -34,7 +37,7 @@ Example paths:
 
 
 ## Options
-You can configure RUF by typing /ruf in game. 
+You can configure RUF by typing /ruf in game.
 * Usability of the configuration options will improve with time with the ability to copy and paste settings from unit to unit.
 
 ## Feedback

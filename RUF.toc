@@ -5,7 +5,7 @@
 ## Version: @project-version@
 ## SavedVariables: RUFDB
 ## X-SavedVariables: RUFDB
-## OptionalDeps: oUF, oUF_Smooth, Ace3, LibDualSpec-1.0, LibSharedMedia-3.0
+## OptionalDeps: oUF, oUF_Smooth, Ace3, LibDualSpec-1.0, LibSharedMedia-3.0, RealMobHealth
 ## X-Credits: Some icons from Freepik & Plainicon, from www.flaticon.com
 
 #@no-lib-strip@
