@@ -16,9 +16,9 @@ RUF isn't as fully featured as some unit frames, but should also use less resour
 
 Example paths:
 
-`<WOW INSTALL LOCATION>\_retail_\WTF\Account\<ACCOUNT NAME>\SavedVariables\RUF.lua`
+`WOW INSTALL LOCATION\_retail_\WTF\Account\ACCOUNT NAME\SavedVariables\RUF.lua`
 
-`<WOW INSTALL LOCATION>\_classic_\WTF\Account\<ACCOUNT NAME>\SavedVariables\RUF.lua`
+`WOW INSTALL LOCATION\_classic_\WTF\Account\ACCOUNT NAME\SavedVariables\RUF.lua`
 
 ### RealMobHealth
 **RUF** works with [RealMobHealth](https://www.curseforge.com/wow/addons/real-mob-health) in classic to try and estimate an enemy unit's actual health. If you want show actual health instead of only percentages for enemy units, all you need to do is download RealMobHealth.
