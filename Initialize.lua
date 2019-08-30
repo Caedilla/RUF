@@ -51,12 +51,17 @@ function RUF:OnInitialize()
 	--project-revision
 	RUF.db.global.Version = string.match(GetAddOnMetadata("RUF","Version"),"%d+")
 
-
-	if not RUFDB.profiles["Alidie's Layout"] then
+	if not RUFDB.profiles then
+		RUFDB.profiles = {}
 		RUFDB.profiles["Alidie's Layout"] = RUF.Layout.Alidie
-	end
-	if not RUFDB.profiles["Raeli's Layout"] then
 		RUFDB.profiles["Raeli's Layout"] = RUF.Layout.Raeli
+	else
+		if not RUFDB.profiles["Alidie's Layout"] then
+			RUFDB.profiles["Alidie's Layout"] = RUF.Layout.Alidie
+		end
+		if not RUFDB.profiles["Raeli's Layout"] then
+			RUFDB.profiles["Raeli's Layout"] = RUF.Layout.Raeli
+		end
 	end
 end
 
