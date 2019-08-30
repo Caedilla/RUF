@@ -31,24 +31,22 @@ function RUF_Options:TempOptions()
 	self.optionsFrame = ACD:AddToBlizOptions('RUF_Blizz', 'RUF')
 end
 
-local function AddOptions()
-	Options = RUF_Options.MainOptions()
-	--Options.args.Filtering = RUF_Options.Filters()
-	Options.args.Appearance.args.Colors = RUF_Options.Colors()
-	Options.args.Appearance.args.Bars = RUF_Options.Bars()
-	Options.args.Appearance.args.Texts = RUF_Options.Texts()
-	--Options.args.Unit = RUF_Options.Units()
+local function UnitOptions()
 	Options.args.Unit = RUF_Options.GenerateUnits()
-
 end
 
 function RUF_Options:OnEnable()
-	AddOptions()
+	Options = RUF_Options.MainOptions()
+	Options.args.Appearance.args.Colors = RUF_Options.Colors()
+	Options.args.Appearance.args.Bars = RUF_Options.Bars()
+	Options.args.Appearance.args.Texts = RUF_Options.Texts()
+	--Options.args.Filtering = RUF_Options.Filters()
 
 	LibStub('AceConfigRegistry-3.0'):RegisterOptionsTable('RUF', Options)
 	local Profiles = LibStub('AceDBOptions-3.0'):GetOptionsTable(self.db)
 	Options.args.profiles = Profiles
 	Options.args.profiles.order = 99
+	UnitOptions()
 
 	ACD:SetDefaultSize('RUF',975,680)
 	if RUF.Client == 1 then
@@ -87,15 +85,11 @@ function RUF_Options:OnInitialize()
 end
 
 function RUF:UpdateOptions()
-	AddOptions()
+	UnitOptions()
 	LibStub('AceConfigRegistry-3.0'):NotifyChange('RUF')
 end
 
 function RUF_Options:RefreshConfig()
-	--RUF.db.profile = self.db.profile
 	RUF:UpdateAllUnitSettings()
-	--RUF:UpdateUnitSettings()
-	--RUF:UpdateFrames()
-	--RUF:UpdateAllAuras()
 	RUF:UpdateOptions()
 end

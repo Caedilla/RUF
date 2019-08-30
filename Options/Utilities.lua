@@ -187,7 +187,6 @@ function RUF:OptionsAddTexts(profileName,groupFrame,textName)
 	end
 end
 
-
 function RUF:OptionsDisableTexts(profileName,groupFrame,textName)
 	-- TODO Remove Texts
 	-- Add/Remove on all relevant elements on profile switch.
