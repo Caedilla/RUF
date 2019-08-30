@@ -32,7 +32,7 @@ externals:
   url: https://repos.wowace.com/wow/libsharedmedia-3-0/trunk/LibSharedMedia-3.0
  Libs/AceGUI-3.0-SharedMediaWidgets:
   url: https://repos.wowace.com/wow/ace-gui-3-0-shared-media-widgets/trunk
- Libs/LibClassicDurations/
+ Libs/LibClassicDurations:
   url: https://repos.curseforge.com/wow/libclassicdurations
 
 ignore:
