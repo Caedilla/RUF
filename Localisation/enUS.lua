@@ -322,11 +322,6 @@ L["Always Show"] = true
 L["Feedback"] = true
 L["Current Revision"] = true
 L["When reporting an issue, please also post the revision number above. Thanks!"] = true
-L["Online"] = true
-L["If you encounter a bug, or have a feature request, please file a ticket on Curseforge using the link below."] = true
-L["RUF on Curseforge"] = true
-L["In Game"] = true
-L["I have a Battle.net community for my addons. If you have any issues, now you can easily report them to me in game. Just copy the invite link below and throw me a message."] = true
 L["Invite Link"] = true
 
 
@@ -407,3 +402,6 @@ L['Role'] = 'Group Role'
 L['TargetMark'] = 'Target Marks'
 L['Global Appearance Options'] = true
 L['LootMaster'] = 'Master Looter'
+L['Curseforge'] = true
+L['Discord'] = true
+L['URL'] = true
