@@ -77,7 +77,12 @@ function RUF.AbsorbUpdate(self, event, unit)
 	element:SetMinMaxValues(0, maxHealth)
 	element:SetValue(absorb)
 	local r,g,b = RUF:GetBarColor(element, unit, "Absorb")
-	element:SetStatusBarColor(r,g,b)
+	local a = RUF.db.profile.Appearance.Bars.Absorb.Color.Alpha
+	local barMult = RUF.db.profile.Appearance.Bars.Absorb.Color.Multiplier
+	if RUF.db.profile.Appearance.Bars.Absorb.Type == 1 then
+		element:SetAlpha(a)
+	end
+	element:SetStatusBarColor(r*barMult,g*barMult,b*barMult)
 
 	if element.hideAtZero == true then
 		if absorb < 1 then

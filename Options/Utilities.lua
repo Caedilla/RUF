@@ -544,15 +544,15 @@ function RUF:OptionsUpdateBars(profileName,groupFrame,bar)
 			end
 		end
 		profileReference = RUF.db.profile.unit[string.lower(profileName)].Frame.Bars[bar]
-		unitFrame[bar]:UpdateOptions()
+		unitFrame[bar].UpdateOptions(unitFrame[bar])
 		unitFrame[bar]:ForceUpdate()
 		if bar then
-			unitFrame[bar]:UpdateOptions()
+			unitFrame[bar].UpdateOptions(unitFrame[bar])
 			if PlayerClass == 'MONK' then
-				unitFrame['Stagger']:UpdateOptions()
+				unitFrame['Stagger'].UpdateOptions(unitFrame['Stagger'])
 			end
 			if PlayerClass == 'DRUID' then
-				unitFrame['FakeClassPower']:UpdateOptions()
+				unitFrame['FakeClassPower'].UpdateOptions(unitFrame['FakeClassPower'])
 			end
 		end
 		if bar == 'Power' or bar == 'Absorb' then
