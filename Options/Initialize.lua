@@ -36,6 +36,7 @@ local function UnitOptions()
 end
 
 function RUF_Options:OnEnable()
+
 	Options = RUF_Options.MainOptions()
 	Options.args.Appearance.args.Colors = RUF_Options.Colors()
 	Options.args.Appearance.args.Bars = RUF_Options.Bars()
@@ -56,17 +57,17 @@ function RUF_Options:OnEnable()
 	end
 	InterfaceAddOnsList_Update()
 	GuildRoster()
+
+	-- Profile Management
+	self.db.RegisterCallback(self, 'OnProfileChanged', 'RefreshConfig')
+	self.db.RegisterCallback(self, 'OnProfileCopied', 'RefreshConfig')
+	self.db.RegisterCallback(self, 'OnProfileReset', 'RefreshConfig')
 end
 
 function RUF_Options:OnInitialize()
 	self:SetEnabledState(false)
 	self.db = RUF.db -- Setup Saved Variables
 	--RUF:UpdateUnitSettings()
-
-	-- Profile Management
-	self.db.RegisterCallback(self, 'OnProfileChanged', 'RefreshConfig')
-	self.db.RegisterCallback(self, 'OnProfileCopied', 'RefreshConfig')
-	self.db.RegisterCallback(self, 'OnProfileReset', 'RefreshConfig')
 
 
 	RUF_Options:TempOptions()
@@ -85,6 +86,7 @@ function RUF_Options:OnInitialize()
 end
 
 function RUF:UpdateOptions()
+	local Options = LibStub('AceDBOptions-3.0'):GetOptionsTable(self.db)
 	UnitOptions()
 	LibStub('AceConfigRegistry-3.0'):NotifyChange('RUF')
 end

@@ -255,7 +255,6 @@ function RUF.RefreshTextElements(frame,groupNum)
 		unitFrame = _G['oUF_RUF_' .. frame .. groupNum]
 		referenceUnit = frame .. groupNum
 	end
-
 	local profileTexts = {}
 	for k,v in pairs(RUF.db.profile.unit[unitFrame.frame].Frame.Text) do
 		if v ~= "" then

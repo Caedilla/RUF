@@ -273,8 +273,16 @@ function RUF:OptionsUpdateAllTexts()
 	end
 	for i = 1,#groupFrames do
 		local profileName = string.lower(groupFrames[i])
-		for groupNum = 1,5 do
-			RUF.RefreshTextElements(groupFrames,groupNum)
+		if groupFrames[i] == 'Party' then
+			local partyUnits = { oUF_RUF_Party:GetChildren() }
+			partyUnits[#partyUnits] = nil -- Remove last entry which is the moveBG holder.
+			for groupNum = 1,#partyUnits do
+				RUF.RefreshTextElements(groupFrames[i],groupNum)
+			end
+		else
+			for groupNum = 1,5 do
+				RUF.RefreshTextElements(groupFrames[i],groupNum)
+			end
 		end
 		for k,v in pairs(RUF.db.profile.unit[profileName].Frame.Text) do
 			if v ~= '' then
