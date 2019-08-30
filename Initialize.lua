@@ -9,6 +9,8 @@ function RUF:OnInitialize()
 	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
 		-- Running classic client, set global variable so we run classic code alterations.
 		RUF.Client = 2
+		local LibClassicDurations = LibStub("LibClassicDurations")
+		LibClassicDurations:Register(RUF)
 	end
 
 	if RUF.Client == 1 then

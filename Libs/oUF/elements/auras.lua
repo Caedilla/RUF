@@ -69,6 +69,7 @@ button.isPlayer - indicates if the aura caster is the player or their vehicle (b
 
 local _, ns = ...
 local oUF = ns.oUF
+LibClassicDurations = LibStub("LibClassicDurations")
 
 local VISIBLE = 1
 local HIDDEN = 0
@@ -149,6 +150,15 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 		timeMod, effect1, effect2, effect3 = UnitAura(unit, index, filter)
 
 	if(name) then
+		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+			if not duration or duration == 0 then
+				if spellID then
+					local newDuration, newExpiration = LibClassicDurations:GetAuraDurationByUnit(unit, spellID, caster)
+					duration = newDuration or duration
+					expiration = newExpiration or expiration
+				end
+			end
+		end
 		local position = visible + offset + 1
 		local button = element[position]
 		if(not button) then

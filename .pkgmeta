@@ -21,7 +21,7 @@ externals:
  Libs/AceDBOptions-3.0:
   url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceDBOptions-3.0
  Libs/AceEvent-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceEvent-3.0  
+  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceEvent-3.0
  Libs/AceGUI-3.0:
   url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceGUI-3.0
  Libs/AceLocale-3.0:
@@ -32,7 +32,9 @@ externals:
   url: https://repos.wowace.com/wow/libsharedmedia-3-0/trunk/LibSharedMedia-3.0
  Libs/AceGUI-3.0-SharedMediaWidgets:
   url: https://repos.wowace.com/wow/ace-gui-3-0-shared-media-widgets/trunk
-	
+ Libs/LibClassicDurations/
+  url: https://repos.curseforge.com/wow/libclassicdurations
+
 ignore:
  - .pkgmeta
  - README.md

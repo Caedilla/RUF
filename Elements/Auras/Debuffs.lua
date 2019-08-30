@@ -210,7 +210,7 @@ local function PostUpdateDebuffIcon(self,unit,button,index,position,duration,exp
 	--]]
 	if button.shoudShow and button.shoudShow == false then return end
 	if button.AuraName then
-		if button.AuraName == name and button.expirationTime == expirationTime and button.updated then
+		if button.AuraName == name and button.expirationTime == expiration and button.updated then
 			if button.updated == true then return end
 		end
 	end
