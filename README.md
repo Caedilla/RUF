@@ -15,9 +15,13 @@ RUF isn't as fully featured as some unit frames, but should also use less resour
 ## Classic Support
 **RUF** supports Classic as of r148-alpha, but requires my modified version of oUF to function. This is included with RUF here on Curseforge automatically. As such, you should ensure that you do not have oUF installed separately as it's own addon. (This doesn't matter for Live users, only Classic users)
 
+#### RealMobHealth
+**RUF** works with [RealMobHealth](https://www.curseforge.com/wow/addons/real-mob-health) in classic to try and estimate an enemy unit's actual health. If you want show actual health instead of only percentages for enemy units, all you need to do is download RealMobHealth.
 
+#### LibClassicDurations
+In Classic, UnitAura (how you track buffs/debuffs) returns 0 for the duration of a buff or debuff on a non-group target (enemies or allied players not in your group). LibClassicDuration attempts to solve this. It's included with RUF when you download it from Curseforge and works automatically. If you want to see numbers on RUF's buffs or debuffs, you'll want to grab [OmniCC](https://www.curseforge.com/wow/addons/omni-cc) or [TullaCC](https://www.curseforge.com/wow/addons/tullacc) as well.
 
-#### Copying Profiles
+#### Copying Profiles from Live to Classic
 RUF Classic should work with the same profiles you have on live. To do so, you'll want to copy your saved settings from the the retail folder to the classic folder. You'll then need to just set your profile in the RUF config window in game.
 
 Example paths:
@@ -26,15 +30,9 @@ Example paths:
 
 `WOW INSTALL LOCATION\_classic_\WTF\Account\ACCOUNT NAME\SavedVariables\RUF.lua`
 
-#### RealMobHealth
-**RUF** works with [RealMobHealth](https://www.curseforge.com/wow/addons/real-mob-health) in classic to try and estimate an enemy unit's actual health. If you want show actual health instead of only percentages for enemy units, all you need to do is download RealMobHealth.
 
-#### Known Issues
-RUF has been rewritten with the release of Classic - versions from this point on (for both BFA and Classic) currently have the following known issues (that will be fixed soon), the TLDR though is that a UI Reload fixes these issues, and they should mostly only crop up when configuring RUF.
-
-* Certain options require a UI reload to take effect - attempting to change some of them can also trigger a Lua error (though the values will be changed and everything should work as expected after a UI reload) Notably these are Buff/Debuff settings and settings that change element borders. Adding or Removing text is also a little iffy right now too (Does work, again, a UI Reload is required to take full effect of changes)
-* In Classic the Master Looter icon is currently missing, but will be available shortly.
-* When switching profiles, text elements that are 'new' to the profile you are switching to will not work properly. This is only an issue if you have added text elements, if you use the default ones (even if you have different settings for those ones), this shouldn't be an issue. Again, a UI Reload fixes this.
+## Known Issues
+RUF has been rewritten with the release of Classic, as such, some features are still being worked on. Currently options that affect Buffs/Debuffs or Borders of any type will require a UI Reload to take effect. 
 
 
 ## Features
