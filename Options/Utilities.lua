@@ -81,7 +81,13 @@ function RUF:OptionsUpdateAllIndicators()
 			'Target',
 			'TargetTarget',
 		}
-		-- No Arena or Boss units in vanilla.
+		groupFrames = {
+			--'Boss',
+			--'BossTarget',
+			--'Arena',
+			--'ArenaTarget',
+			'Party',
+		}
 	end
 
 	for i = 1,#frames do
@@ -493,7 +499,13 @@ function RUF:OptionsUpdateAllBars()
 			'Target',
 			'TargetTarget',
 		}
-		-- No Arena or Boss units in vanilla.
+		groupFrames = {
+			--'Boss',
+			--'BossTarget',
+			--'Arena',
+			--'ArenaTarget',
+			'Party',
+		}
 	end
 
 	for i = 1,#frames do
@@ -712,6 +724,10 @@ function RUF:UpdateAllUnitSettings()
 			'TargetTarget',
 		}
 		groupFrames = {
+			--'Boss',
+			--'BossTarget',
+			--'Arena',
+			--'ArenaTarget',
 			'Party',
 		}
 		-- No Arena or Boss units in vanilla.

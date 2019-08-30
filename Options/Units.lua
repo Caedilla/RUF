@@ -2188,7 +2188,13 @@ function RUF_Options.GenerateUnits()
 			'Target',
 			'TargetTarget',
 		}
-		-- No Arena or Boss units in vanilla.
+		groupFrames = {
+			--'Boss',
+			--'BossTarget',
+			--'Arena',
+			--'ArenaTarget',
+			'Party',
+		}
 	end
 
 	local Units = {
