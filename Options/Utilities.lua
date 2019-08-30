@@ -155,7 +155,7 @@ function RUF:OptionsAddTexts(profileName,groupFrame,textName)
 	-- TODO Remove Texts
 	-- Add/Remove on all relevant elements on profile switch.
 
-	local function AddText(profileName,groupFrame,textName,i)
+	local function AddText(profileName,groupFrame,textName,i,partyUnit)
 		local currentUnit,unitFrame,profileReference
 		if partyUnit then
 			unitFrame = partyUnit
@@ -168,22 +168,22 @@ function RUF:OptionsAddTexts(profileName,groupFrame,textName)
 			unitFrame = _G['oUF_RUF_' .. currentUnit]
 		end
 
-		RUF.CreateTextArea(unitFrame, unitFrame.Frame, textName)
-		RUF.SetTextPoints(unitFrame, unitFrame.Frame, textName)
+		RUF.CreateTextArea(unitFrame, unitFrame.frame, textName)
+		RUF.SetTextPoints(unitFrame, unitFrame.frame, textName)
 	end
 
 	if string.lower(groupFrame) == 'party' then
 		local partyUnits = { oUF_RUF_Party:GetChildren() }
 		partyUnits[#partyUnits] = nil -- Remove last entry which is the moveBG holder.
 		for i = 1,#partyUnits do
-			AddText(profileName,groupFrame,text,i,partyUnits[i])
+			AddText(profileName,groupFrame,textName,i,partyUnits[i])
 		end
 	elseif groupFrame ~= 'none' and string.lower(profileName) == string.lower(profileName) then
 		for i = 1,5 do
-			AddText(profileName,groupFrame,text,i)
+			AddText(profileName,groupFrame,textName,i)
 		end
 	else
-		AddText(profileName,groupFrame,text,-1)
+		AddText(profileName,groupFrame,textName,-1)
 	end
 end
 
@@ -450,9 +450,11 @@ function RUF:OptionsUpdateAllBars()
 		if _G['oUF_RUF_' .. profileName] then
 			RUF:OptionsUpdateBars(profileName,'none','Health')
 			RUF:OptionsUpdateBars(profileName,'none','Power')
-			RUF:OptionsUpdateBars(profileName,'none','Absorb')
-			if i == 1 then
-				RUF:OptionsUpdateBars(profileName,'none','Class')
+			if RUF.Client == 1 then
+				RUF:OptionsUpdateBars(profileName,'none','Absorb')
+				if i == 1 then
+					RUF:OptionsUpdateBars(profileName,'none','Class')
+				end
 			end
 		end
 	end
@@ -657,6 +659,9 @@ function RUF:UpdateAllUnitSettings()
 			'PetTarget',
 			'Target',
 			'TargetTarget',
+		}
+		groupFrames = {
+			'Party',
 		}
 		-- No Arena or Boss units in vanilla.
 	end

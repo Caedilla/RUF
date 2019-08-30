@@ -9,7 +9,7 @@ local _, PlayerClass = UnitClass('player')
 local Options = {}
 
 function RUF_Options:TempOptions()
-	local Options = {
+	local tempOptions = {
 		type = 'group',
 		name = function(info)
 			return "RUF [|c5500DBBDRaeli's Unit Frames|r] r|c5500DBBD" .. string.match(GetAddOnMetadata('RUF','Version'),'%d+') ..'|r'
@@ -27,12 +27,11 @@ function RUF_Options:TempOptions()
 				},
 			},
 		}
-	LibStub('AceConfig-3.0'):RegisterOptionsTable('RUF_Blizz', Options) -- Register Options
+	LibStub('AceConfig-3.0'):RegisterOptionsTable('RUF_Blizz', tempOptions) -- Register Options
 	self.optionsFrame = ACD:AddToBlizOptions('RUF_Blizz', 'RUF')
 end
 
 local function AddOptions()
-
 	Options = RUF_Options.MainOptions()
 	--Options.args.Filtering = RUF_Options.Filters()
 	Options.args.Appearance.args.Colors = RUF_Options.Colors()

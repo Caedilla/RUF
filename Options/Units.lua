@@ -638,6 +638,7 @@ local function TextSettings(profileName,groupFrame)
 					if not RUF.db.profile.unit[profileName].Frame.Text[value] then return end --TODO Error Message
 					if RUF.db.profile.unit[profileName].Frame.Text[value] == '' then return end
 					RUF.db.profile.unit[profileName].Frame.Text[value] = 'DISABLED'
+					--RUF:UpdateFrames() -- Disable/Delete element
 					RUF.db.profile.unit[profileName].Frame.Text[value] = ''
 					RUF:UpdateOptions()
 				end,
@@ -648,6 +649,7 @@ local function TextSettings(profileName,groupFrame)
 
 	-- Generate list of text elements
 	local textList = {}
+	wipe(textList)
 	for k,v in pairs(RUF.db.profile.unit[profileName].Frame.Text) do
 		if v ~= '' then
 			table.insert(textList,k)
@@ -981,7 +983,7 @@ local function IndicatorSettings(profileName,groupFrame)
 						elseif k == 'PvPCombat' then
 							indicatorAnchors[k] = L['PvP']
 						elseif k == 'LootMaster' then
-							indicatorAnchors[k] = L['Master Looter']
+							indicatorAnchors[k] = L['LootMaster']
 						end
 					end
 				end
