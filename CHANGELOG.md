@@ -1,13 +1,6 @@
-# RUF r153-Release
+# RUF r154-Release
 ### New
-* Added Master Looter icon for the Master Looter indicator
-
-### Changed
-* Updated default Master Looter indicator positions
-
-### Fixed
-* Main Tank / Main Assist indicator now correctly shows in TestMode
-* Absorb and Class bar settings no longer show in Classic
+* Added LibClassicDurations. Buffs and Debuffs should now show the cooldown spiral thanks to this. (If you want to see numbers, you'll still need an addon such as OmniCC or TullaCC)
 
 ### Known Issues
 * The Options panel settings for Buffs and Debuffs requires a reload to take effect.
