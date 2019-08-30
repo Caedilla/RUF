@@ -15,37 +15,33 @@ local function Update(self, event)
 		element:PreUpdate()
 	end
 	if element.Enabled == true then
-		local role, isShown
+		local role
 		local unit = self.unit
 		if(UnitInRaid(unit) and not UnitHasVehicleUI(unit)) then
 			if(GetPartyAssignment('MAINTANK', unit)) then
-				isShown = true
 				element:SetText(elementStringMAINTANK)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,190/255,25/255)
 				role = 'MAINTANK'
 			elseif(GetPartyAssignment('MAINASSIST', unit)) then
-				isShown = true
 				element:SetText(elementStringMAINASSIST)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,190/255,25/255)
 				role = 'MAINASSIST'
+			else
+				element:Hide()
+				element:SetText(' ')
+				element:SetWidth(1)
 			end
-		end
-		if not isShown then
+		else
+			element:Hide()
 			element:SetText(' ')
 			element:SetWidth(1)
 		end
-		element:SetShown(isShown)
 		if RUF.db.global.TestMode == true then
-			if element:IsObjectType('Texture') then
-				element:SetTexture(MAINASSIST_ICON)
-				element:Show()
-			elseif element:IsObjectType('FontString') then
-				element:SetText(elementStringMAINASSIST)
-				element:SetWidth(element:GetStringWidth()+2)
-				element:SetTextColor(1,190/255,25/255)
-			end
+			element:SetText(elementStringMAINASSIST)
+			element:SetWidth(element:GetStringWidth()+2)
+			element:Show()
 		end
 	else
 		self:DisableElement('MainTankAssistIndicator')

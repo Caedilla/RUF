@@ -25,20 +25,11 @@ local function Update(self, event)
 				element:SetText(' ')
 				element:SetWidth(1)
 			end
-			if(isAssistant) then
-				element:Show()
-			else
-				element:Hide()
-			end
 		end
 		if RUF.db.global.TestMode == true then
-			if element:IsObjectType('Texture') then
-				element:Show()
-			elseif element:IsObjectType('FontString') then
-				element:SetText(elementString)
-				element:SetWidth(element:GetStringWidth()+2)
-				element:Show()
-			end
+			element:SetText(elementString)
+			element:SetWidth(element:GetStringWidth()+2)
+			element:Show()
 		end
 	else
 		self:DisableElement('AssistIndicator')

@@ -58,7 +58,7 @@ local function Enable(self)
 		element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], profileReference.Size, 'OUTLINE')
 		element:SetText(' ')
 		element:SetJustifyH('CENTER')
-		element:SetTextColor(191/255,178/255,143/255)
+		element:SetTextColor(1,190/255,25/255)
 		element:ClearAllPoints()
 		element:SetPoint(
 			profileReference.Position.AnchorFrom,
