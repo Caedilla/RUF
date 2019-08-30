@@ -3,6 +3,8 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'PvPCombat'
+local elementStringAlliance = RUF.IndicatorGlyphs['PvP-Alliance']
+local elementStringHorde = RUF.IndicatorGlyphs['PvP-Horde']
 
 --TODO Add PVP Rank Icon for classic
 
@@ -35,21 +37,21 @@ local function Update(self, event, unit)
 		if element:IsObjectType('FontString') then
 			if status == 'FFA' then
 				if factionGroup == 'Horde' then
-					element:SetText('')
+					element:SetText(elementStringHorde)
 				elseif factionGroup == 'Alliance' then
-					element:SetText('')
+					element:SetText(elementStringAlliance)
 				end
 				element:Show()
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,190/255,25/255)
 			elseif status == 'Horde' then
 				element:Show()
-				element:SetText('')
+				element:SetText(elementStringHorde)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,0/255,25/255)
 			elseif status == 'Alliance' then
 				element:Show()
-				element:SetText('')
+				element:SetText(elementStringAlliance)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(0,158/255,1)
 			else
@@ -61,12 +63,12 @@ local function Update(self, event, unit)
 		if RUF.db.global.TestMode == true then
 			if factionGroup == 'Horde' then
 				element:Show()
-				element:SetText('')
+				element:SetText(elementStringHorde)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,0/255,25/255)
 			elseif factionGroup == 'Alliance' then
 				element:Show()
-				element:SetText('')
+				element:SetText(elementStringAlliance)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(0,158/255,1)
 			end

@@ -3,6 +3,8 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'MainTankAssist'
+local elementStringMAINASSIST = RUF.IndicatorGlyphs['MainAssist']
+local elementStringMAINTANK = RUF.IndicatorGlyphs['MainTank']
 
 
 local function Update(self, event)
@@ -18,13 +20,13 @@ local function Update(self, event)
 		if(UnitInRaid(unit) and not UnitHasVehicleUI(unit)) then
 			if(GetPartyAssignment('MAINTANK', unit)) then
 				isShown = true
-				element:SetText('')
+				element:SetText(elementStringMAINTANK)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,190/255,25/255)
 				role = 'MAINTANK'
 			elseif(GetPartyAssignment('MAINASSIST', unit)) then
 				isShown = true
-				element:SetText('')
+				element:SetText(elementStringMAINASSIST)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,190/255,25/255)
 				role = 'MAINASSIST'
@@ -40,7 +42,7 @@ local function Update(self, event)
 				element:SetTexture(MAINASSIST_ICON)
 				element:Show()
 			elseif element:IsObjectType('FontString') then
-				element:SetText('')
+				element:SetText(elementStringMAINASSIST)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,190/255,25/255)
 			end

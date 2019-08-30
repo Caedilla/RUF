@@ -3,6 +3,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'Assist'
+local elementString = RUF.IndicatorGlyphs['Assist']
 
 local function Update(self, event)
 	local element = self.AssistIndicator
@@ -16,7 +17,7 @@ local function Update(self, event)
 		local isAssistant = UnitInRaid(unit) and UnitIsGroupAssistant(unit) and not UnitIsGroupLeader(unit)
 		if element:IsObjectType('FontString') then
 			if(isAssistant) then
-				element:SetText('')
+				element:SetText(elementString)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:Show()
 			else
@@ -34,7 +35,7 @@ local function Update(self, event)
 			if element:IsObjectType('Texture') then
 				element:Show()
 			elseif element:IsObjectType('FontString') then
-				element:SetText('')
+				element:SetText(elementString)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:Show()
 			end

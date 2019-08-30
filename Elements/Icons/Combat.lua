@@ -3,6 +3,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'InCombat'
+local elementString = RUF.IndicatorGlyphs['InCombat']
 
 local function Update(self, event)
 	local element = self.InCombatIndicator
@@ -14,7 +15,7 @@ local function Update(self, event)
 	if element.Enabled == true then
 		local inCombat = UnitAffectingCombat(self.unit)
 		if(inCombat) then
-			element:SetText('')
+			element:SetText(elementString)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:Show()
 		else
@@ -26,7 +27,7 @@ local function Update(self, event)
 			if element:IsObjectType('Texture') then
 				element:Show()
 			elseif element:IsObjectType('FontString') then
-				element:SetText('')
+				element:SetText(elementString)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:Show()
 			end

@@ -3,6 +3,9 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'Role'
+local elementStringDAMAGER = RUF.IndicatorGlyphs['Role-DPS']
+local elementStringHEALER = RUF.IndicatorGlyphs['Role-Heal']
+local elementStringTANK = RUF.IndicatorGlyphs['Role-Tank']
 
 local function Update(self, event)
 	local element = self.RoleIndicator
@@ -15,17 +18,17 @@ local function Update(self, event)
 	if element.Enabled == true then
 		local role = UnitGroupRolesAssigned(self.unit)
 		if role == 'TANK' then
-			element:SetText('')
+			element:SetText(elementStringTANK)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:SetTextColor(115/255,142/255,153/255)
 			element:Show()
 		elseif role == 'HEALER' then
-			element:SetText('')
+			element:SetText(elementStringHEALER)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:SetTextColor(38/255,190/255,65/255)
 			element:Show()
 		elseif role == 'DAMAGER' then
-			element:SetText('')
+			element:SetText(elementStringDAMAGER)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:SetTextColor(207/255,55/255,77/255)
 			element:Show()
@@ -35,7 +38,7 @@ local function Update(self, event)
 			element:Hide()
 		end
 		if RUF.db.global.TestMode == true then
-			element:SetText('')
+			element:SetText(elementStringHEALER)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:SetTextColor(38/255,190/255,65/255)
 			element:Show()

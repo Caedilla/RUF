@@ -3,6 +3,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'Phased'
+local elementString = RUF.IndicatorGlyphs['Phased']
 
 local function Update(self, event)
 	local element = self.PhasedIndicator
@@ -19,7 +20,7 @@ local function Update(self, event)
 				element:SetWidth(1)
 				element:Hide()
 			else
-				element:SetText('')
+				element:SetText(elementString)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:Show()
 			end
@@ -34,7 +35,7 @@ local function Update(self, event)
 			if element:IsObjectType('Texture') then
 				element:Show()
 			elseif element:IsObjectType('FontString') then
-				element:SetText('')
+				element:SetText(elementString)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:Show()
 			end

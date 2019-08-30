@@ -4,6 +4,36 @@ local _, ns = ...
 local oUF = ns.oUF
 RUF.Indicators = RUF.Indicators or {}
 
+RUF.IndicatorGlyphs = {
+	['Assist'] = '',
+	['InCombat'] = '',
+	['Lead'] = '',
+	['LootMaster'] = '',
+	['MainAssist'] = '',
+	['MainTank'] = '',
+	['Objective'] = '',
+	['Phased'] = '',
+	['PvP-Alliance'] = '',
+	['PvP-Horde'] = '',
+	['Ready-No'] = '',
+	['Ready-Question'] = '',
+	['Ready-Yes'] = '',
+	['Resting'] = '',
+	['Role-DPS'] = '', -- Fire
+	['Role-DPS-Alternative-1'] = '', -- Sword
+	['Role-Heal'] = '',
+	['Role-Heal-Alternative-1'] = '', -- Heart
+	['Role-Heal-Alternative-2'] = '', -- Plaster
+	['Role-Tank'] = '',
+	['Target-Circle'] = '',
+	['Target-Cross'] = '',
+	['Target-Diamond'] = '',
+	['Target-Moon'] = '',
+	['Target-Skull'] = '',
+	['Target-Square'] = '',
+	['Target-Star'] = '',
+	['Target-Triangle'] = '',
+}
 
 -- TODO
 --[[
@@ -27,12 +57,6 @@ RUF.Indicators = RUF.Indicators or {}
 
 	becomes
 	B = 25 - Aw
-
-
-
-
-
-
 ]]--
 
 function RUF.SetIndicators(self, unit)

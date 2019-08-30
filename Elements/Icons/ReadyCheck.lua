@@ -3,6 +3,9 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'Ready'
+local elementStringNo = RUF.IndicatorGlyphs['Ready-No']
+local elementStringMaybe = RUF.IndicatorGlyphs['Ready-Question']
+local elementStringYes = RUF.IndicatorGlyphs['Ready-Yes']
 
 local function OnFinished(self)
 	local element = self:GetParent()
@@ -25,15 +28,15 @@ local function Update(self, event)
 		local status = GetReadyCheckStatus(unit)
 		if UnitExists(unit) and status then
 			if(status == 'ready') then
-				element:SetText('')
+				element:SetText(elementStringYes)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(46/255,255/255,0)
 			elseif(status == 'notready') then
-				element:SetText('')
+				element:SetText(elementStringNo)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,0,55/255)
 			else
-				element:SetText('')
+				element:SetText(elementStringMaybe)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,216/255,0)
 			end
@@ -47,14 +50,14 @@ local function Update(self, event)
 		end
 		if event == 'READY_CHECK_FINISHED' then
 			if element.status == 'waiting' then
-				element:SetText('')
+				element:SetText(elementStringNo)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,0,55/255)
 			end
 			element.Animation:Play()
 		end
 		if RUF.db.global.TestMode == true then
-			element:SetText('')
+			element:SetText(elementStringYes)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:SetTextColor(46/255,255/255,0)
 		end

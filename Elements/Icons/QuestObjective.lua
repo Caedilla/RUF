@@ -3,6 +3,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'Objective'
+local elementString = RUF.IndicatorGlyphs['Objective']
 
 local function Update(self, event, unit)
 	if(unit ~= self.unit) then return end
@@ -16,7 +17,7 @@ local function Update(self, event, unit)
 		local isQuestBoss = UnitIsQuestBoss(unit)
 		if element:IsObjectType('FontString') then
 			if(isQuestBoss) then
-				element:SetText('')
+				element:SetText(elementString)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:Show()
 			else
@@ -35,7 +36,7 @@ local function Update(self, event, unit)
 			if element:IsObjectType('Texture') then
 				element:Show()
 			elseif element:IsObjectType('FontString') then
-				element:SetText('')
+				element:SetText(elementString)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:Show()
 			end

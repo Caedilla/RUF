@@ -1,8 +1,9 @@
-local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
-local LSM = LibStub("LibSharedMedia-3.0")
+local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
+local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'Rest'
+local elementString = RUF.IndicatorGlyphs['Resting']
 
 local function Update(self, event)
 	local element = self.RestIndicator
@@ -14,15 +15,15 @@ local function Update(self, event)
 	if element.Enabled == true then
 		local isResting = IsResting()
 		if(isResting) then
-			element:SetText("")
+			element:SetText(elementString)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:Show()
 		else
-			element:SetText(" ")
+			element:SetText(' ')
 			element:Hide()
 		end
 		if RUF.db.global.TestMode == true then
-			element:SetText("")
+			element:SetText(elementString)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:Show()
 		end
@@ -82,9 +83,9 @@ end
 oUF:AddElement('RestIndicator', Path, Enable, Disable)
 
 function RUF.Indicators.Rest(self, unit)
-	if unit ~= "player" then return end
+	if unit ~= 'player' then return end
 
-	local element = self.Indicators:CreateFontString(self:GetName()..".RestIndicator", "OVERLAY")
+	local element = self.Indicators:CreateFontString(self:GetName()..'.RestIndicator', 'OVERLAY')
 	element:SetPoint(
 		RUF.db.profile.unit[unit].Frame.Indicators[elementName].Position.AnchorFrom,
 		RUF.GetIndicatorAnchorFrame(self,unit,elementName),
@@ -93,7 +94,7 @@ function RUF.Indicators.Rest(self, unit)
 		RUF.db.profile.unit[unit].Frame.Indicators[elementName].Position.y
 	)
 
-	element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[unit].Frame.Indicators[elementName].Size, "OUTLINE")
+	element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], RUF.db.profile.unit[unit].Frame.Indicators[elementName].Size, 'OUTLINE')
 
 
 	self.RestIndicator = element

@@ -3,6 +3,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'LootMaster'
+local elementString = RUF.IndicatorGlyphs['LootMaster']
 
 local function Update(self, event)
 	local element = self.LootMasterIndicator
@@ -15,7 +16,7 @@ local function Update(self, event)
 		local unit = self.unit
 		local isLootMasterant = UnitInRaid(unit) and UnitIsGroupLootMasterant(unit) and not UnitIsGroupLeader(unit)
 		if(isLootMasterant) then
-			element:SetText('MLREPLACE')
+			element:SetText(elementString)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:Show()
 		else
@@ -24,7 +25,7 @@ local function Update(self, event)
 			element:SetWidth(1)
 		end
 		if RUF.db.global.TestMode == true then
-			element:SetText('MLREPLACE')
+			element:SetText(elementString)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:Show()
 		end

@@ -3,6 +3,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'Lead'
+local elementString = RUF.IndicatorGlyphs['Lead']
 
 local function Update(self, event)
 	local element = self.LeadIndicator
@@ -15,7 +16,7 @@ local function Update(self, event)
 		local unit = self.unit
 		local isLeader = (UnitInParty(unit) or UnitInRaid(unit)) and UnitIsGroupLeader(unit)
 		if(isLeader) then
-			element:SetText('')
+			element:SetText(elementString)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:Show()
 		else
@@ -24,7 +25,7 @@ local function Update(self, event)
 			element:Hide()
 		end
 		if RUF.db.global.TestMode == true then
-			element:SetText('')
+			element:SetText(elementString)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:Show()
 		end

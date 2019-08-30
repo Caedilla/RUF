@@ -4,6 +4,15 @@ local _, ns = ...
 local oUF = ns.oUF
 local elementName = 'TargetMark'
 
+local stringIconCircle = RUF.IndicatorGlyphs['Target-Circle']
+local stringIconCross = RUF.IndicatorGlyphs['Target-Cross']
+local stringIconDiamond = RUF.IndicatorGlyphs['Target-Diamond']
+local stringIconMoon = RUF.IndicatorGlyphs['Target-Moon']
+local stringIconSkull = RUF.IndicatorGlyphs['Target-Skull']
+local stringIconSquare = RUF.IndicatorGlyphs['Target-Square']
+local stringIconStar = RUF.IndicatorGlyphs['Target-Star']
+local stringIconTriangle = RUF.IndicatorGlyphs['Target-Triangle']
+
 local GetRaidTargetIndex = GetRaidTargetIndex
 local SetRaidTargetIconTexture = SetRaidTargetIconTexture
 
@@ -19,35 +28,35 @@ local function Update(self, event)
 		if(index) then
 			element:Show()
 			if index == 1 then -- Star
-				element:SetText("")
+				element:SetText(stringIconStar)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,234/255,0/255)
 			elseif index == 2 then -- Circle
-				element:SetText("")
+				element:SetText(stringIconCircle)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,156/255,0/255)
 			elseif index == 3 then -- Diamond
-				element:SetText("")
+				element:SetText(stringIconDiamond)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(240/255,0/255,255/255)
 			elseif index == 4 then -- Triangle
-				element:SetText("")
+				element:SetText(stringIconTriangle)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(46/255,206/255,0/255)
 			elseif index == 5 then -- Moon
-				element:SetText("")
+				element:SetText(stringIconMoon)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(163/255,217/255,255/255)
 			elseif index == 6 then -- Square
-				element:SetText("")
+				element:SetText(stringIconSquare)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(61/255,180/255,255/255)
 			elseif index == 7 then -- Cross
-				element:SetText("")
+				element:SetText(stringIconCross)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,52/255,52/255)
 			elseif index == 8 then -- Skull
-				element:SetText("")
+				element:SetText(stringIconSkull)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,253/255,229/255)
 			else
@@ -62,7 +71,7 @@ local function Update(self, event)
 		end
 
 		if RUF.db.global.TestMode == true then
-			element:SetText("") -- Star
+			element:SetText(stringIconStar) -- Star
 			element:SetTextColor(1,234/255,0/255)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:Show()
