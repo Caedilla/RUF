@@ -89,7 +89,7 @@ function RUF:OptionsUpdateAllIndicators()
 		if _G['oUF_RUF_' .. profileName] then
 			for k,v in pairs(RUF.db.profile.unit[profileName].Frame.Indicators) do
 				if v ~= '' then
-					RUF:OptionsUpdateIndicators(profileName,'none',k)
+					RUF:OptionsUpdateIndicators(frames[i],'none',k)
 				end
 			end
 		end
@@ -258,19 +258,24 @@ function RUF:OptionsUpdateAllTexts()
 		-- No Arena or Boss units in vanilla.
 	end
 
+
+
 	for i = 1,#frames do
 		local profileName = string.lower(frames[i])
-		if _G['oUF_RUF_' .. profileName] then
+		if _G['oUF_RUF_' .. frames[i]] then
+			RUF.RefreshTextElements(frames[i],-1)
 			for k,v in pairs(RUF.db.profile.unit[profileName].Frame.Text) do
 				if v ~= '' then
-					RUF:OptionsUpdateTexts(profileName,'none',k)
+					RUF:OptionsUpdateTexts(frames[i],'none',k)
 				end
 			end
-
 		end
 	end
 	for i = 1,#groupFrames do
 		local profileName = string.lower(groupFrames[i])
+		for groupNum = 1,5 do
+			RUF.RefreshTextElements(groupFrames,groupNum)
+		end
 		for k,v in pairs(RUF.db.profile.unit[profileName].Frame.Text) do
 			if v ~= '' then
 				RUF:OptionsUpdateTexts(groupFrames[i],groupFrames[i],k)

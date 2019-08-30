@@ -79,7 +79,6 @@ function RUF:ChatCommand(input)
 end
 
 function RUF:RefreshConfig()
-	if IsAddOnLoaded("RUF_Options") then
-		RUF:UpdateOptions()
-	end
+	RUF.db.profile = self.db.profile
+	RUF:UpdateAllUnitSettings()
 end

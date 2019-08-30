@@ -242,6 +242,56 @@ function RUF.ReturnTextColors(self, unit, tag, cur, max, test) -- Get Text Color
 	return r,g,b
 end
 
+function RUF.RefreshTextElements(frame,groupNum)
+	local unitFrame
+	local referenceUnit
+	if groupNum == -1 then
+		unitFrame = _G['oUF_RUF_' .. frame]
+		referenceUnit = frame
+	elseif frame == 'Party' then
+		unitFrame = _G['oUF_RUF_PartyUnitButton' .. groupNum]
+		referenceUnit = 'PartyUnitButton' .. groupNum
+	else
+		unitFrame = _G['oUF_RUF_' .. frame .. groupNum]
+		referenceUnit = frame .. groupNum
+	end
+
+	local profileTexts = {}
+	for k,v in pairs(RUF.db.profile.unit[unitFrame.frame].Frame.Text) do
+		if v ~= "" then
+			table.insert(profileTexts,k)
+		end
+	end
+
+
+	local existingTexts = { unitFrame.Text:GetChildren() }
+	for old = 1,#existingTexts do
+		local currentText = existingTexts[old]
+		local currentTextName = currentText:GetName()
+		for new = 1,#profileTexts do
+			local newTextName = 'oUF_RUF_'  .. referenceUnit .. '.Text.' .. profileTexts[new]
+			local exists = false
+			if currentTextName == newTextName then
+				currentText:Show()
+				break
+			end
+			if exists == false then
+				currentText:Hide()
+				unitFrame:Untag(currentText)
+			end
+		end
+	end
+
+	for new = 1,#profileTexts do
+		local currentTextName = 'oUF_RUF_'  .. referenceUnit .. '.Text.' .. profileTexts[new]
+		if not _G[currentTextName] then
+			RUF.CreateTextArea(unitFrame, unitFrame.frame, profileTexts[new])
+			RUF.SetTextPoints(unitFrame, unitFrame.frame, profileTexts[new])
+		end
+	end
+
+end
+
 function RUF.ToggleFrameLock(status, unitFrame)
 	local anchorFrom1, anchorFrame1, anchorTo1, x1, y1, anchorFrom2, anchorFrame2, anchorTo2, x2, y2, x3, y3
 	local frames = {}
