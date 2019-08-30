@@ -92,7 +92,7 @@ function RUF:UpdateOptions()
 end
 
 function RUF_Options:RefreshConfig()
-	RUF.db.profile = self.db.profile
+	--RUF.db.profile = self.db.profile
 	RUF:UpdateAllUnitSettings()
 	--RUF:UpdateUnitSettings()
 	--RUF:UpdateFrames()

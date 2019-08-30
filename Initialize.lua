@@ -79,7 +79,7 @@ function RUF:ChatCommand(input)
 end
 
 function RUF:RefreshConfig()
-	RUF.db.profile = self.db.profile
+	--RUF.db.profile = self.db.profile
 	--RUF:UpdateUnitSettings()
 	--RUF:UpdateFrames()
 	--RUF:UpdateAllAuras()

@@ -187,6 +187,45 @@ function RUF:OptionsAddTexts(profileName,groupFrame,textName)
 	end
 end
 
+
+function RUF:OptionsDisableTexts(profileName,groupFrame,textName)
+	-- TODO Remove Texts
+	-- Add/Remove on all relevant elements on profile switch.
+
+	local function RemoveText(profileName,groupFrame,textName,i,partyUnit)
+		local currentUnit,unitFrame,profileReference
+		if partyUnit then
+			unitFrame = partyUnit
+		else
+			if i == -1 then
+				currentUnit = profileName
+			else
+				currentUnit = profileName .. i
+			end
+			unitFrame = _G['oUF_RUF_' .. currentUnit]
+		end
+		profileReference = RUF.db.profile.unit[string.lower(profileName)].Frame.Text[textName]
+		if profileReference == 'DISABLED' then
+			unitFrame.Text[textName]:Hide()
+			unitFrame:Untag(frame)
+		end
+	end
+
+	if string.lower(groupFrame) == 'party' then
+		local partyUnits = { oUF_RUF_Party:GetChildren() }
+		partyUnits[#partyUnits] = nil -- Remove last entry which is the moveBG holder.
+		for i = 1,#partyUnits do
+			RemoveText(profileName,groupFrame,textName,i,partyUnits[i])
+		end
+	elseif groupFrame ~= 'none' and string.lower(profileName) == string.lower(profileName) then
+		for i = 1,5 do
+			RemoveText(profileName,groupFrame,textName,i)
+		end
+	else
+		RemoveText(profileName,groupFrame,textName,-1)
+	end
+end
+
 function RUF:OptionsUpdateAllTexts()
 	-- Runs when we change a Bar setting in Global Options
 	local frames = {}

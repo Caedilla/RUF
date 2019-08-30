@@ -638,7 +638,7 @@ local function TextSettings(profileName,groupFrame)
 					if not RUF.db.profile.unit[profileName].Frame.Text[value] then return end --TODO Error Message
 					if RUF.db.profile.unit[profileName].Frame.Text[value] == '' then return end
 					RUF.db.profile.unit[profileName].Frame.Text[value] = 'DISABLED'
-					--RUF:UpdateFrames() -- Disable/Delete element
+					RUF:OptionsDisableTexts(passUnit,groupFrame,value)
 					RUF.db.profile.unit[profileName].Frame.Text[value] = ''
 					RUF:UpdateOptions()
 				end,
