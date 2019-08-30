@@ -525,7 +525,9 @@ function RUF:OptionsUpdateAllBars()
 		local profileName = groupFrames[i]
 		RUF:OptionsUpdateBars(profileName,groupFrames[i],'Health')
 		RUF:OptionsUpdateBars(profileName,groupFrames[i],'Power')
-		RUF:OptionsUpdateBars(profileName,groupFrames[i],'Absorb')
+		if RUF.Client == 1 then
+			RUF:OptionsUpdateBars(profileName,groupFrames[i],'Absorb')
+		end
 	end
 end
 

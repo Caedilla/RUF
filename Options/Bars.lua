@@ -32,6 +32,11 @@ function RUF_Options.Bars()
 			name = LocalisedBar[i],
 			type = 'group',
 			order = i,
+			hidden = function()
+				if RUF.Client ~= 1 then
+					if i == 3 or i == 4 then return true end
+				end
+			end,
 			args = {
 				Texture = {
 					name = L['Texture'],
