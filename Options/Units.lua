@@ -582,6 +582,37 @@ local function TextSettings(profileName,groupFrame)
 			ord = i
 		end
 	end
+
+	-- Generate list of units we can copy text elements from
+	local copyList = {}
+	if RUF.Client == 1 then
+		copyList = {
+			['Player'] = 'player',
+			['Pet'] = 'pet',
+			['PetTarget'] = 'pettarget',
+			['Focus'] = 'focus',
+			['FocusTarget'] = 'focustarget',
+			['Target'] = 'target',
+			['TargetTarget'] = 'targettarget',
+			['Boss'] = 'boss',
+			--['BossTarget'] = 'bosstarget',
+			['Arena'] = 'arena',
+			--['ArenaTarget'] = 'arenatarget',
+			['Party'] = 'party',
+		}
+	else
+		copyList = {
+			['Player'] = 'player',
+			['Pet'] = 'pet',
+			['PetTarget'] = 'pettarget',
+			['Target'] = 'target',
+			['TargetTarget'] = 'targettarget',
+			['Party'] = 'party',
+		}
+	end
+	copyList[profileName] = nil
+	copyList[groupFrame] = nil
+
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
 		referenceUnit = profileName .. 'UnitButton1'
@@ -643,13 +674,34 @@ local function TextSettings(profileName,groupFrame)
 					RUF:UpdateOptions()
 				end,
 			},
+			copyUnit = {
+				name = 'Copy Settings from:',
+				type = 'select',
+				desc = 'Copy and replace all text elements from the selected unit to this unit.',
+				order = 0.2,
+				values = L[copyList],
+				set = function(info, value)
+					RUF:PopUp(
+					"Replace all Text Settings",
+					'Are you sure you want to replace these settings? You cannot undo this change.',
+					'Accept',
+					'Cancel',
+					function()
+						RUF.db.profile.unit[profileName].Frame.Text = nil
+						RUF.db.profile.unit[profileName].Frame.Text = RUF.db.profile.unit[value].Frame.Text
+						RUF:UpdateAllUnitSettings()
+						RUF:UpdateOptions()
+					end)
+					StaticPopup_Show("Replace all Text Settings")
+
+				end,
+			},
 		},
 	}
 
 
 	-- Generate list of text elements
 	local textList = {}
-	wipe(textList)
 	for k,v in pairs(RUF.db.profile.unit[profileName].Frame.Text) do
 		if v ~= '' then
 			table.insert(textList,k)

@@ -3,6 +3,27 @@ local LSM = LibStub("LibSharedMedia-3.0")
 local _, ns = ...
 local oUF = ns.oUF
 
+function RUF:Print_Self(message) -- Send a message to your default chat window.
+	ChatFrame1:AddMessage("|c5500DBBDRaeli's Unit Frames|r: " .. format(message))
+end
+
+function RUF:PopUp(name,message,button1value,button2value,acceptfunc)
+	StaticPopupDialogs[name] = {
+		text = message,
+		button1 = button1value,
+		button2 = button2value,
+		OnAccept = acceptfunc,--function()
+			--GreetTheWorld()
+			--ReloadUI()
+		--end,
+		timeout = 0,
+		whileDead = true,
+		hideOnEscape = false,
+		showAlert = true,
+		preferredIndex = 3,  -- avoid some UI taint, see http://www.wowace.com/announcements/how-to-avoid-some-ui-taint/
+	  }
+end
+
 function RUF:Short(value,format)
 	if type(value) == "number" then
 		local fmt

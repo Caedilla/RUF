@@ -158,8 +158,6 @@ function RUF:OptionsUpdateIndicators(profileName,groupFrame,indicator)
 end
 
 function RUF:OptionsAddTexts(profileName,groupFrame,textName)
-	-- TODO Remove Texts
-	-- Add/Remove on all relevant elements on profile switch.
 
 	local function AddText(profileName,groupFrame,textName,i,partyUnit)
 		local currentUnit,unitFrame,profileReference
@@ -194,8 +192,6 @@ function RUF:OptionsAddTexts(profileName,groupFrame,textName)
 end
 
 function RUF:OptionsDisableTexts(profileName,groupFrame,textName)
-	-- TODO Remove Texts
-	-- Add/Remove on all relevant elements on profile switch.
 
 	local function RemoveText(profileName,groupFrame,textName,i,partyUnit)
 		local currentUnit,unitFrame,profileReference
@@ -749,7 +745,4 @@ function RUF:UpdateAllUnitSettings()
 	RUF:OptionsUpdateAllBars()
 	RUF:OptionsUpdateAllTexts()
 	RUF:OptionsUpdateAllIndicators()
-
-
-
 end
