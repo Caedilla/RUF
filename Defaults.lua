@@ -232,6 +232,7 @@ local cfg = {
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Case = 1, -- 0,1,2 0 == Default, 1 == Uppercase, 2 == Lowercase
+					ShowPercAtMax = true,
 					Color = {
 						BaseColor = {1,1,1},
 						Class = false,
@@ -252,6 +253,8 @@ local cfg = {
 					Outline = "OUTLINE",
 					Shadow = 0,
 					Case = 1, -- 0,1,2 0 == Default, 1 == Uppercase, 2 == Lowercase
+					ShowMaxAtMax = true,
+					ShowPercAtMax = true,
 					Color = {
 						BaseColor = {1,1,1},
 						Class = false,

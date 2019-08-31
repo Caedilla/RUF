@@ -262,7 +262,7 @@ L["X Spacing"] = true
 L["Horizontal Offset from the previous unit in the group."] = true
 
 
-L["CurHPPerc"] = "Health: Cur - % < 100"
+L["CurHPPerc"] = "Health: Cur - %"
 L["CurHP"] = "Health: Cur"
 L["HPPerc"] = "Health: %"
 L["CurManaPerc"] = "Mana: Cur - % < 100"
@@ -405,3 +405,7 @@ L['LootMaster'] = 'Master Looter'
 L['Curseforge'] = true
 L['Discord'] = true
 L['URL'] = true
+L['MaxHP'] = 'Health: Max'
+L['CurMaxHPPerc'] = 'Health: Cur/Max - %'
+L['Show Percentage at Max'] = true
+L['Show Max at Max'] = true

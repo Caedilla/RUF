@@ -234,7 +234,6 @@ function RUF_Options.Texts()
 					desc = L['Hide this tag at 0 or always display.'],
 					type = 'select',
 					order = 10.01,
-					hidden = function() return TagList[i] ~= 'CurManaPerc' end,
 					hidden = function()
 						if TagList[i] == 'CurMana' or TagList[i] == 'ManaPerc' or TagList[i] == 'CurManaPerc' or
 						   TagList[i] == 'CurPower' or TagList[i] == 'PowerPerc' or TagList[i] == 'CurPowerPerc'
@@ -253,6 +252,36 @@ function RUF_Options.Texts()
 					end,
 					set = function(info, value)
 						RUF.db.profile.Appearance.Text[TagList[i]].Enabled = value
+					end,
+				},
+				MaxAtMax = {
+					name = L['Show Max at Max'],
+					type = 'toggle',
+					hidden = function() return TagList[i] ~= 'CurMaxHPPerc' end,
+					order = 10.01,
+					get = function(info)
+						return RUF.db.profile.Appearance.Text[TagList[i]].ShowMaxAtMax
+					end,
+					set = function(info, value)
+						RUF.db.profile.Appearance.Text[TagList[i]].ShowMaxAtMax = value
+					end,
+				},
+				PercAtMax = {
+					name = L['Show Percentage at Max'],
+					type = 'toggle',
+					hidden = function()
+						if TagList[i] == 'CurMaxHPPerc' or TagList[i] == 'CurHPPerc' then
+							return false
+						else
+							return true
+						end
+					end,
+					order = 10.01,
+					get = function(info)
+						return RUF.db.profile.Appearance.Text[TagList[i]].ShowPercAtMax
+					end,
+					set = function(info, value)
+						RUF.db.profile.Appearance.Text[TagList[i]].ShowPercAtMax = value
 					end,
 				},
 			},
