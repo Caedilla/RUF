@@ -212,12 +212,7 @@ local function PostUpdateBuffIcon(self,unit,button,index,position,duration,expir
 	* isStealable - whether the aura can be stolen or purged (boolean)
 	--]]
 	if button.shoudShow and button.shoudShow == false then return end
-	if button.AuraName then
-		if button.expirationTime == expiration and button.updated then
-			if button.updated == true then return end
-		end
-	end
-	button.updated = false
+
 	local r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultBuff)
 
 	local BuffTypes
@@ -250,7 +245,6 @@ local function PostUpdateBuffIcon(self,unit,button,index,position,duration,expir
 		self[position].border:SetBackdropBorderColor(r,g,b,a)
 	end
 
-	button.updated = true
 end
 
 function RUF.SetBuffs(self, unit)
