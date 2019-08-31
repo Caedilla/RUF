@@ -1,6 +1,11 @@
 # RUF r154-Release
 ### New
-* Added LibClassicDurations. Buffs and Debuffs should now show the cooldown spiral thanks to this. (If you want to see numbers, you'll still need an addon such as OmniCC or TullaCC)
+* Added Cur / Max - Percent HP tag
+* Added Max HP tag
+* Added option to copy & replace text elements and their settings from one unit to another
+
+### Fixed
+* The main bar / health bar background now properly updates based on it's config
 
 ### Known Issues
 * The Options panel settings for Buffs and Debuffs requires a reload to take effect.
