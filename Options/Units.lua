@@ -587,27 +587,27 @@ local function TextSettings(profileName,groupFrame)
 	local copyList = {}
 	if RUF.Client == 1 then
 		copyList = {
-			['Player'] = 'player',
-			['Pet'] = 'pet',
-			['PetTarget'] = 'pettarget',
-			['Focus'] = 'focus',
-			['FocusTarget'] = 'focustarget',
-			['Target'] = 'target',
-			['TargetTarget'] = 'targettarget',
-			['Boss'] = 'boss',
-			--['BossTarget'] = 'bosstarget',
-			['Arena'] = 'arena',
-			--['ArenaTarget'] = 'arenatarget',
-			['Party'] = 'party',
+			['Player'] = L['player'],
+			['Pet'] = L['pet'],
+			['PetTarget'] = L['pettarget'],
+			['Focus'] = L['focus'],
+			['FocusTarget'] = L['focustarget'],
+			['Target'] = L['target'],
+			['TargetTarget'] = L['targettarget'],
+			['Boss'] = L['boss'],
+			--['BossTarget'] = L['bosstarget'],
+			['Arena'] = L['arena'],
+			--['ArenaTarget'] = L['arenatarget'],
+			['Party'] = L['party'],
 		}
 	else
 		copyList = {
-			['Player'] = 'player',
-			['Pet'] = 'pet',
-			['PetTarget'] = 'pettarget',
-			['Target'] = 'target',
-			['TargetTarget'] = 'targettarget',
-			['Party'] = 'party',
+			['Player'] = L['player'],
+			['Pet'] = L['pet'],
+			['PetTarget'] = L['pettarget'],
+			['Target'] = L['target'],
+			['TargetTarget'] = L['targettarget'],
+			['Party'] = L['party'],
 		}
 	end
 	copyList[profileName] = nil
@@ -679,21 +679,13 @@ local function TextSettings(profileName,groupFrame)
 				type = 'select',
 				desc = 'Copy and replace all text elements from the selected unit to this unit.',
 				order = 0.2,
-				values = L[copyList],
+				values = copyList,
+				confirm = function() return 'Are you sure you want to replace these settings? You cannot undo this change?' end,
 				set = function(info, value)
-					RUF:PopUp(
-					"Replace all Text Settings",
-					'Are you sure you want to replace these settings? You cannot undo this change.',
-					'Accept',
-					'Cancel',
-					function()
 						RUF.db.profile.unit[profileName].Frame.Text = nil
-						RUF.db.profile.unit[profileName].Frame.Text = RUF.db.profile.unit[value].Frame.Text
+						RUF.db.profile.unit[profileName].Frame.Text = RUF.db.profile.unit[string.lower(value)].Frame.Text
 						RUF:UpdateAllUnitSettings()
 						RUF:UpdateOptions()
-					end)
-					StaticPopup_Show("Replace all Text Settings")
-
 				end,
 			},
 		},
