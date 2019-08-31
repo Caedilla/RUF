@@ -15,7 +15,7 @@ function RUF.SetCastBar(self, unit)
 	-- Add a background
 	local Background = Castbar:CreateTexture(nil, 'BACKGROUND')
 	Background:SetAllPoints(Castbar)
-	Background:SetTexture(1, 1, 1, .5)
+	Background:SetColorTexture(1, 1, 1, .5)
 
 	-- Add a spark
 	local Spark = Castbar:CreateTexture(nil, 'OVERLAY')

@@ -69,7 +69,7 @@ button.isPlayer - indicates if the aura caster is the player or their vehicle (b
 
 local _, ns = ...
 local oUF = ns.oUF
-LibClassicDurations = LibStub("LibClassicDurations",true)
+local LibClassicDurations = LibStub("LibClassicDurations",true)
 
 local VISIBLE = 1
 local HIDDEN = 0

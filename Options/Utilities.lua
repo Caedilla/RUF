@@ -5,6 +5,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local _, PlayerClass = UnitClass('player')
+local TestModeToggle,UnitsSpawned
 local anchorSwap = {
 	["BOTTOM"] = "TOP",
 	["BOTTOMLEFT"] = "TOPRIGHT",
@@ -41,8 +42,8 @@ function RUF:UpdateFramePosition(unitFrame,profileName,groupFrame,i,anchorFrom,a
 			elseif profileReference.growth == "TOP" then
 				groupAnchorFrom = "BOTTOM"
 			end
-			spacingX = profileReference.offsetx
-			spacingY = profileReference.offsety
+			local spacingX = profileReference.offsetx
+			local spacingY = profileReference.offsety
 			local _, originalAnchorFrame, originalAnchorTo = unitFrame:GetPoint()
 			unitFrame:ClearAllPoints()
 			unitFrame:SetPoint(groupAnchorFrom,originalAnchorFrame,profileReference.growth,spacingX,spacingY)
@@ -125,7 +126,7 @@ function RUF:OptionsUpdateIndicators(profileName,groupFrame,indicator)
 			end
 			unitFrame = _G['oUF_RUF_' .. currentUnit]
 		end
-		currentIndicator = unitFrame[indicator .. 'Indicator']
+		local currentIndicator = unitFrame[indicator .. 'Indicator']
 		if not currentIndicator then return end -- When refresh profile, ensure we don't try to update indicators that don't exist.
 		profileReference = RUF.db.profile.unit[string.lower(profileName)].Frame.Indicators[indicator]
 		currentIndicator:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], profileReference.Size, "OUTLINE")
@@ -316,7 +317,7 @@ function RUF:OptionsUpdateTexts(profileName,groupFrame,text)
 			end
 			unitFrame = _G['oUF_RUF_' .. currentUnit]
 		end
-		currentText = unitFrame.Text[text].String
+		local currentText = unitFrame.Text[text].String
 		if not currentText then return end -- When refresh profile, ensure we don't try to update indicators that don't exist.
 		profileReference = RUF.db.profile.unit[string.lower(profileName)].Frame.Text[text]
 		currentText:SetFont(LSM:Fetch('font',profileReference.Font), profileReference.Size, profileReference.Outline)
@@ -379,7 +380,7 @@ function RUF:OptionsUpdateFrame(profileName,groupFrame)
 	if not profileName or not groupFrame then return end
 
 	local function UpdateFrame(profileName,groupFrame,i,partyUnit)
-		local currentUnit,unitFrame,profileReference
+		local currentUnit,unitFrame,profileReference,passUnit
 		if partyUnit then
 			unitFrame = partyUnit
 		else
@@ -696,6 +697,7 @@ function RUF:TestMode()
 end
 
 function RUF:UpdateAllUnitSettings()
+	local frames,groupFrames
 	if RUF.Client == 1 then
 		frames = {
 			'Player',
