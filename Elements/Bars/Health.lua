@@ -57,9 +57,12 @@ function RUF.HealthUpdate(self, event, unit)
 	end
 
 	local cur, max = UnitHealth(unit), UnitHealthMax(unit)
+	local tapped = not UnitPlayerControlled(unit) and UnitIsTapDenied(unit)
 	local disconnected = not UnitIsConnected(unit)
 	element:SetMinMaxValues(0, max)
 
+	element.disconnected = disconnected
+	element.tapped = tapped
 
 	if(disconnected) then
 		element:SetValue(max)
@@ -71,8 +74,6 @@ function RUF.HealthUpdate(self, event, unit)
 		cur = math.random(max /4, max - (max/4))
 		element:SetValue(cur)
 	end
-
-	element.disconnected = disconnected
 
 	--[[ Override: Health:UpdateColor(unit, cur, max)
 	Used to completely override the internal function for updating the widgets' colors.

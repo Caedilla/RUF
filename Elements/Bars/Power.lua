@@ -62,8 +62,6 @@ function RUF.PowerUpdate(self, event, unit)
 	local element = self.Power
 
 	local disconnected = not UnitIsConnected(unit)
-
-
 	local tapped = not UnitPlayerControlled(unit) and UnitIsTapDenied(unit)
 	local _,pType = UnitPowerType(unit)
 	local cur,max,r,g,b,a,bgMult
