@@ -14,10 +14,14 @@ function RUF.HealthUpdateColor(element, unit, cur, max)
 	local r,g,b = RUF:GetBarColor(element, unit, "Health","Health",cur)
 	element:SetStatusBarColor(r,g,b)
 
+
+	-- Update background
 	local bgMult = RUF.db.profile.Appearance.Bars.Health.Background.Multiplier
+	local a = RUF.db.profile.Appearance.Bars.Health.Background.Alpha
 	if RUF.db.profile.Appearance.Bars.Health.Background.UseBarColor == false then
 		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Health.Background.CustomColor)
 	end
+	element.__owner.Background.Base.Texture:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
 
 	local Background = {}
 	if element.__owner.frame == 'player' then

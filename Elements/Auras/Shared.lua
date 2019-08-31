@@ -27,7 +27,7 @@ function RUF.GetAuraAnchorFrame(self,unit,aura)
 	return AnchorFrame
 end
 
-function UpdateTooltip(self)
+local function UpdateTooltip(self)
 	GameTooltip:SetUnitAura(self:GetParent().__owner.unit, self:GetID(), self.filter)
 end
 

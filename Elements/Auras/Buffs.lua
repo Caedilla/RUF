@@ -213,7 +213,7 @@ local function PostUpdateBuffIcon(self,unit,button,index,position,duration,expir
 	--]]
 	if button.shoudShow and button.shoudShow == false then return end
 	if button.AuraName then
-		if button.AuraName == name and button.expirationTime == expiration and button.updated then
+		if button.expirationTime == expiration and button.updated then
 			if button.updated == true then return end
 		end
 	end
