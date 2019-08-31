@@ -69,29 +69,45 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 	return r,g,b
 end
 
-function RUF:UpdateBarLocation(self,unit,element)
-	--[[if unit == 'player' then
+function RUF:UpdateBarLocation(self,unit,element,cur)
+	local barsAtTop = {}
+	local barsAtBottom = {}
+	local profileReference = RUF.db.profile.unit[unit].Frame.Bars
+	if unit == 'player' then
 
 
 	else
-		element:ClearAllPoints()
-		element:SetPoint('TOP',0,0)
-		element:SetPoint('LEFT',0,0)
-		element:SetPoint('RIGHT',0,0)
-		element:SetHeight(RUF.db.profile.unit[unit].Frame.Bars[profileName].Height)
-		element.anchorTo = 'TOP'
-		self.Background.Base:SetPoint('TOPLEFT',element,'BOTTOMLEFT',0,0)
-
-		element:ClearAllPoints()
-		element:SetPoint('BOTTOM',0,0)
-		element:SetPoint('LEFT',0,0)
-		element:SetPoint('RIGHT',0,0)
-		element:SetHeight(RUF.db.profile.unit[unit].Frame.Bars[profileName].Height)
-		element.anchorTo = 'BOTTOM'
-		self.Background.Base:SetPoint('BOTTOMRIGHT',element,'TOPRIGHT',0,0)
-	end]]--
-
-
+		if profileReference.Power.Enabled == 2 then
+			if profileReference.Power.Position.Anchor == 'TOP' then
+				self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
+				self.Background.Base:SetPoint('TOPLEFT',element,'BOTTOMLEFT',0,0)
+			else
+				self.Background.Base:SetPoint('TOPLEFT',self,0,0)
+				self.Background.Base:SetPoint('BOTTOMRIGHT',element,'TOPRIGHT',0,0)
+			end
+		elseif profileReference.Power.Enabled == 1 then
+			if cur then
+				if cur > 0 then
+					if profileReference.Power.Position.Anchor == 'TOP' then
+						self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
+						self.Background.Base:SetPoint('TOPLEFT',element,'BOTTOMLEFT',0,0)
+					else
+						self.Background.Base:SetPoint('TOPLEFT',self,0,0)
+						self.Background.Base:SetPoint('BOTTOMRIGHT',element,'TOPRIGHT',0,0)
+					end
+				else
+					self.Background.Base:SetPoint('TOPLEFT',self,0,0)
+					self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
+				end
+			else
+				self.Background.Base:SetPoint('TOPLEFT',self,0,0)
+				self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
+			end
+		else
+			self.Background.Base:SetPoint('TOPLEFT',self,0,0)
+			self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
+		end
+	end
 
 
 		--[[

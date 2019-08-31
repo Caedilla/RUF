@@ -247,7 +247,47 @@ local cfg = {
 						Reaction = false,
 					},
 				},
+				CurMaxHPPerc = {
+					Font = "RUF",
+					Outline = "OUTLINE",
+					Shadow = 0,
+					Case = 1, -- 0,1,2 0 == Default, 1 == Uppercase, 2 == Lowercase
+					Color = {
+						BaseColor = {1,1,1},
+						Class = false,
+						Level = false,
+						Percentage = true, -- Below 100%
+						PercentageAtMax = true,
+						PercentageGradient = {
+							1,0,0,
+							1,1,0,
+							0,1,0,
+						},
+						PowerType = false,
+						Reaction = false,
+					},
+				},
 				CurHP = {
+					Font = "RUF",
+					Outline = "OUTLINE",
+					Shadow = 0,
+					Case = 1, -- 0,1,2 0 == Default, 1 == Uppercase, 2 == Lowercase
+					Color = {
+						BaseColor = {1,1,1},
+						Class = false,
+						Level = false,
+						Percentage = true, -- Below 100%
+						PercentageAtMax = true,
+						PercentageGradient = {
+							1,0,0,
+							1,1,0,
+							0,1,0,
+						},
+						PowerType = false,
+						Reaction = false,
+					},
+				},
+				MaxHP = {
 					Font = "RUF",
 					Outline = "OUTLINE",
 					Shadow = 0,
