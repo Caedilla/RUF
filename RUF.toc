@@ -9,9 +9,13 @@
 ## OptionalDeps: oUF, oUF_Smooth, Ace3, LibDualSpec-1.0, LibSharedMedia-3.0, RealMobHealth
 ## X-Credits: Icon Font created with IcoMoon.io using icons from Freepik & Plainicon, from www.flaticon.com
 
+
+#EmbedLive.xml, EmbedClassic.xml
 #@no-lib-strip@
-embeds.xml
+EmbedClassic.xml
 #@end-no-lib-strip@
+EmbedAlways.xml
+
 
 Elements\Plugins\Absorb_Plugin.lua
 Elements\Plugins\FakeClassPower_Plugin.lua
