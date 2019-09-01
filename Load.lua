@@ -1,3 +1,3 @@
-local RUF = LibStub("AceAddon-3.0"):NewAddon("RUF", "AceConsole-3.0", "AceEvent-3.0")
+local RUF = LibStub("AceAddon-3.0"):NewAddon("RUF", "AceConsole-3.0", "AceComm-3.0", "AceEvent-3.0", "AceSerializer-3.0", "AceTimer-3.0", "NickTag-1.0")
 local _, ns = ...
 local oUF = ns.oUF

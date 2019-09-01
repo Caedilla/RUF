@@ -6,6 +6,9 @@ local cfg = {
 	},
 	char = {
 		Nickname = "",
+		NickCache = {
+
+		},
 	},
 	profile = {
 		Appearance = {

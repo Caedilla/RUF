@@ -12,7 +12,6 @@ local tagInputs = {}
 local frames = {}
 local groupFrames = {}
 
-
 local function UnitGroup(profileName,groupFrame)
 	if not groupFrame then groupFrame = 'none' end
 	local ord = 99
@@ -51,11 +50,29 @@ local function UnitGroup(profileName,groupFrame)
 						hidden = function() return (profileName ~= 'player') end,
 						order = 0.0,
 						multiline = false,
+						validate = function(info, value)
+							local trimString = string.match(value,"^%s*(.-)%s*$")
+							local valid = RUF:NickValidator(trimString)
+							if valid == true then return true end
+							if valid == 'Length' then return L['Nickname cannot be more than 12 characters long.'] end
+							if valid == 'Letters' then return L['Nickname can only contain letters and spaces.'] end
+							if valid == 'Spaces' then return L['Nickname cannot have repeating spaces or more than two total spaces.'] end
+						end,
 						get = function(info)
-							return RUF.db.char.NickName
+							return RUF.db.char.Nickname
 						end,
 						set = function(info, value)
-							RUF.db.char.NickName = value
+							local trimString = string.match(value,"^%s*(.-)%s*$")
+							local toStore = trimString
+							if string.len(trimString) < 1 then
+								toStore = UnitName('Player')
+							end
+							RUF:SetNickname(toStore)
+							if toStore ~= UnitName('Player') then
+								RUF.db.char.Nickname = toStore
+							else
+								RUF.db.char.Nickname = ""
+							end
 						end,
 					},
 					enabled = {

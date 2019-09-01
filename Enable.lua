@@ -138,6 +138,13 @@ local function SetupFrames(self, unit)
 end
 
 function RUF:OnEnable()
+	if RUF.db.char.Nickname ~= "" then
+		if RUF:GetNickname(UnitName('player'),false,true) ~= RUF.db.char.Nickname then
+			if RUF:NickValidator(RUF.db.char.Nickname) == true and RUF.db.char.Nickname ~= UnitName('player') then
+				RUF:SetNickname(RUF.db.char.Nickname)
+			end
+		end
+	end
 	oUF:RegisterStyle('RUF_', SetupFrames)
 	oUF:Factory(function(self)
 		self:SetActiveStyle('RUF_')

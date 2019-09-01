@@ -18,6 +18,10 @@ function RUF:OnInitialize()
 		LibDualSpec:EnhanceDatabase(self.db, "RUF")
 	end
 
+	RUF.db.char.Nickname = string.match(RUF.db.char.Nickname,"^%s*(.-)%s*$")
+	RUF:NickTagSetCache(RUF.db.char.NickCache)
+
+
 	-- Register /RUF command
 	self:RegisterChatCommand("RUF", "ChatCommand")
 
@@ -65,6 +69,7 @@ function RUF:OnInitialize()
 			RUFDB.profiles["Raeli's Layout"] = RUF.Layout.Raeli
 		end
 	end
+
 end
 
 function RUF:ChatCommand(input)

@@ -18,6 +18,28 @@ local anchorSwap = {
 	["TOPRIGHT"] = "BOTTOMLEFT",
 }
 
+function RUF:NickValidator(string)
+	if (string.len(string) > 12) then
+		return 'Length'
+	end
+	if string.find(string, '%p') then
+		return 'Letters'
+	end
+	if string.find(string, '%d') then
+		return 'Letters'
+	end
+	if string.find(string, '%s%s+') then
+		return 'Spaces'
+	end
+	local numSpaces = select(2,string.gsub(string, '%s',''))
+	if numSpaces then
+		if numSpaces > 2 then
+			return 'Spaces'
+		end
+	end
+		return true
+end
+
 function RUF:UpdateFramePosition(unitFrame,profileName,groupFrame,i,anchorFrom,anchorFrame,anchorTo,offsetX,offsetY)
 	if not unitFrame and not profileName and not groupFrame then return end
 	local profileName = string.lower(profileName)
