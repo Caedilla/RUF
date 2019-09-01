@@ -34,6 +34,8 @@ externals:
   url: https://repos.wowace.com/wow/ace-gui-3-0-shared-media-widgets/trunk
  Libs/LibClassicDurations:
   url: https://repos.curseforge.com/wow/libclassicdurations
+ Libs/NickTag-1.0:
+  url: https://repos.curseforge.com/wow/nicktag
 
 ignore:
  - .pkgmeta
