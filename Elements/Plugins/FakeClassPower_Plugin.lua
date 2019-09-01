@@ -52,7 +52,8 @@ local _, PlayerClass = UnitClass('player')
 -- Holds the class specific stuff.
 local ClassPowerID, ClassPowerType
 local FakeClassPowerEnable, FakeClassPowerDisable
-local RequireSpec, RequirePower, RequireSpell
+local RequireSpec, RequirePower
+local RequireSpell = false
 
 local function UpdateColor(element, powerType)
 	local color = element.__owner.colors.power[powerType]
@@ -92,7 +93,7 @@ local function Update(self, event, unit, powerType)
 	* powerType	 - the active power type (string)
 	--]]
 	if(element.PostUpdate) then
-		return element:PostUpdate(cur, max, oldMax ~= max, powerType)
+		return element:PostUpdate(cur, max, false, powerType)
 	end
 end
 
@@ -199,7 +200,7 @@ do
 	elseif(PlayerClass == 'SHAMAN') then
 		ClassPowerID = 11
 		ClassPowerType = 'MAELSTROM'
-		RequirePower = Enum.PowerType.Maelstrom 
+		RequirePower = Enum.PowerType.Maelstrom
 	end
 end
 
@@ -235,7 +236,7 @@ local function Enable(self, unit)
 			self:RegisterEvent('UNIT_POWER_UPDATE', Path)
 		end
 
-		if(RequireSpec or RequireSpell) then
+		if(RequireSpec) then
 			self:RegisterEvent('PLAYER_TALENT_UPDATE', VisibilityPath, true)
 		end
 
@@ -250,11 +251,11 @@ local function Enable(self, unit)
 			element.texture = element:GetStatusBarTexture() and element:GetStatusBarTexture():GetTexture() or [[Interface\TargetingFrame\UI-StatusBar]]
 			element:SetStatusBarTexture(element.texture)
 		end
-		
+
 		if(not element.UpdateColor) then
 			element.UpdateColor = UpdateColor
 		end
-		
+
 		return true
 	end
 end
@@ -268,7 +269,7 @@ local function Disable(self)
 		self:UnregisterEvent('SPELLS_CHANGED', Visibility)
 		self:UnregisterEvent('UNIT_POWER_FREQUENT', Path)
 		self:UnregisterEvent('UNIT_POWER_UPDATE', Path)
-		
+
 	end
 end
 
