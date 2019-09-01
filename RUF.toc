@@ -1,5 +1,5 @@
 # Interface Versions: 80200, 11302
-## Interface: 11302
+## Interface: 80200
 ## Title: RUF [|c5500DBBDRaeli's Unit Frames|r]
 ## Notes: Raeli's Unit Frames. Simple lightweight unitframes using oUF
 ## Author: Raeli
@@ -12,7 +12,7 @@
 
 #EmbedLive.xml, EmbedClassic.xml
 #@no-lib-strip@
-EmbedClassic.xml
+EmbedLive.xml
 #@end-no-lib-strip@
 EmbedAlways.xml
 
