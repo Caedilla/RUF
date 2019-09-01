@@ -12,8 +12,17 @@ A unitframe layout for oUF
 
 RUF isn't as fully featured as some unit frames, but should also use less resources while playing than most unit frame addons too.
 
+## Planned Features
+* Copying settings from one unit to another (Started - already functioning for Text elements)
+* NickTag library support so your Nickname can sync to other addons that use it (Such as Details!)
+* Classification colouring colors (To colour units if they are Elite, Rare, Boss etc.)
+* Range Fading
+* Border / Frame highlighting for mouseover and dispellable debuffs (and generally more Border options)
+* Buff/Debuff whitelisting / blacklisting
+* More tags, and increased options for existing tags
+
 ## Classic Support
-**RUF** supports Classic as of r148-alpha, but requires my modified version of oUF to function. This is included with RUF here on Curseforge automatically. As such, you should ensure that you do not have oUF installed separately as it's own addon. (This doesn't matter for Live users, only Classic users)
+**RUF** supports Classic, but requires my modified version of oUF to function. This is included with RUF on Curseforge automatically. As such, you should ensure that you do not have oUF installed separately as it's own addon. (This doesn't matter for Live users, only Classic users)
 
 #### RealMobHealth
 **RUF** works with [RealMobHealth](https://www.curseforge.com/wow/addons/real-mob-health) in classic to try and estimate an enemy unit's actual health. If you want show actual health instead of only percentages for enemy units, all you need to do is download RealMobHealth.
@@ -36,16 +45,14 @@ RUF has been rewritten with the release of Classic, as such, some features are s
 
 
 ## Features
-* Currently supports Player, Pet, Pet's Target, Target, Target's Target, Focus, Focus's Target, Boss, Party, and Arena units
-* Class Resource bars - soul shards, runes etc.
-* Absorb Bar - show all the unit's absorbs as a percentage of their maximum health, overlaid over the health bar. (In the future, you can also have this as it's own separate bar)
-* Stagger Bar (Obviously not in Classic)
-* Personal Nickname - you can change the name displayed of your character. As shown below, my warlock's name is Raerae, but the displayed name is Raeli - this is displayed on other units too (Target frames for example)
-* You can color health bar, power, class resources, absorb, text by various criteria such as class colors, reaction colors, power colors, and health gradients.
+* Includes Player, Pet, Pet's Target, Target, Target's Target, Party for both Live & Classic, and also Focus, Focus's Target, Boss, and Arena units for Live
+* Class Resources (Live Only) - this includes Runes, Stagger, Holy Power etc. 
+* Absorb Bar (Live Only) - an overlay bar that shows over the health bar semi transparent showing your current absorbs as a percentage of max health. 
+* Give yourself a Nickname, and your nickname will show up across all RUF frames with this nickname instead.
+* Custom class and resource colouring, coloring of all elements bars, and text through various criteria such as class colour, health percent, reaction colour etc. 
+* Unique custom indicator icons (placement, size etc. configurable) in place of the standard ones. These are the icons such as your PvP status, Target Marks etc. They are also scalable without losing detail (since it's done via a font, rather than rasterised textures)
 * Several different pre-configured layouts to chose from in the profile section.
-* Configurable unit state icons (such as Target Mark, Ready Check status, Dungeon Role etc.)
-* Unique state icons, a custom font is used to display icons which means they scale to any size great, and can easily be coloured in any way (Config options pending on that last part)
-* Buff & Debuff icons, (Whitelist/Blacklisting coming later, though basic filtering currently exists)
+* Buff & Debuff icons with highlighting for types and if they're dispellable or not.
 
 
 ## Options
