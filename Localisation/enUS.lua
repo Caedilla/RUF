@@ -411,3 +411,5 @@ L['Show Percentage at Max'] = true
 L['Show Max at Max'] = true
 L["RUF [|c5500DBBDRaeli's Unit Frames|r] needs to reload your UI to properly finish installing on first use. Please do this now."] = true
 L["Accept"] = true
+L['Hide Classification'] = true
+L['Hide the ++ for rare elites, + for elites etc.'] = true

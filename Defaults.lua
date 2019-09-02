@@ -336,7 +336,6 @@ local cfg = {
 				CurManaPerc = {
 					Enabled = 1,
 					HideWhenPrimaryIsMana = true,
-					Enabled = 1,
 					Case = 1, -- 0,1,2 0 == Default, 1 == Uppercase, 2 == Lowercase
 					Color = {
 						BaseColor = {1,1,1},
@@ -466,6 +465,7 @@ local cfg = {
 				Level = {
 					Case = 1, -- 0,1,2 0 == Default, 1 == Uppercase, 2 == Lowercase
 					HideSameLevel = false,
+					HideClassification = false,
 					Color = {
 						BaseColor = {1,1,1},
 						Class = false,
@@ -511,7 +511,7 @@ local cfg = {
 				},
 			},
 		},
-		unit =  {
+		unit = {
 		},
 	},
 }
@@ -2894,71 +2894,6 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 6,
 						},
-					},
-					["AFKDND"] = {
-						["Enabled"] = false,
-					},
-				},
-				["Bars"] = {
-					["Power"] = {
-						["Height"] = 6,
-					},
-				},
-				["Size"] = {
-					["Height"] = 45,
-					["Width"] = 200,
-				},
-			},
-		},
-		["boss"] = {
-			["Frame"] = {
-				["Indicators"] = {
-					["Objective"] = {
-						["Enabled"] = false,
-					},
-					["Phased"] = {
-						["Position"] = {
-							["y"] = 2,
-						},
-					},
-				},
-				["Text"] = {
-					["Health"] = {
-						["Position"] = {
-							["y"] = 2,
-						},
-						["Tag"] = "[RUF:HPPerc]",
-						["Size"] = 36,
-					},
-					["Power"] = {
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-						},
-						["Tag"] = "[RUF:PowerPerc]",
-						["Size"] = 16,
-					},
-					["Name"] = {
-						["Position"] = {
-							["y"] = 6,
-						},
-					},
-					["Level"] = {
-						["Size"] = 14,
-					},
-					["Health Current"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["Anchor"] = "RIGHT",
-							["AnchorFrame"] = "Name",
-						},
-						["Shadow"] = 0,
-						["Size"] = 21,
-						["Enabled"] = false,
-						["Tag"] = "[RUF:CurHP]",
 					},
 					["AFKDND"] = {
 						["Enabled"] = false,

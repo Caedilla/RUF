@@ -32,7 +32,9 @@ tags['RUF:Level'] = function(unit)
 			return ''
 		end
 	end
-
+	if profileReference.HideClassification == true then
+		elite = ''
+	end
 	return string.format('|cff%02x%02x%02x%s%s|r',r*255,g*255,b*255,elite,l)
 end
 events['RUF:Level'] = 'UNIT_LEVEL PLAYER_LEVEL_UP UNIT_CLASSIFICATION_CHANGED'
