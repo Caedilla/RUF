@@ -1,6 +1,6 @@
-local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
-local L = LibStub("AceLocale-3.0"):GetLocale("RUF")
-local LSM = LibStub("LibSharedMedia-3.0")
+local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
+local L = LibStub('AceLocale-3.0'):GetLocale('RUF')
+local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local _, PlayerClass = UnitClass('player')
@@ -36,7 +36,7 @@ local function SetClassColors()
 end
 
 -- TODO Check if following elements should be enabled and disable them after creation if necessary.
--- self:DisableElement("Power")
+-- self:DisableElement('Power')
 
 local function SetupFrames(self, unit)
 	unit = unit:match('^(.-)%d+') or unit
@@ -75,7 +75,7 @@ local function SetupFrames(self, unit)
 	RUF.SetPowerBar(self, unit)
 	self.Power.Override = RUF.PowerUpdate
 	--self.Power.PreUpdate = RUF.PowerPreUpdate
-	--self:RegisterEvent("UNIT_TARGET", RUF.PowerPreUpdate)
+	--self:RegisterEvent('UNIT_TARGET', RUF.PowerPreUpdate)
 
 	if RUF.Client == 1 then
 		-- Prevents trying to load these elements for Classic since they don't exist in Classic.
@@ -112,7 +112,7 @@ local function SetupFrames(self, unit)
 	RUF.SetTextParent(self,unit)
 	local texts = {}
 	for k,v in pairs(profileReference.Frame.Text) do
-		if v ~= "" then
+		if v ~= '' then
 			table.insert(texts,k)
 		end
 	end
@@ -137,8 +137,16 @@ local function SetupFrames(self, unit)
 
 end
 
+
 function RUF:OnEnable()
-	if RUF.db.char.Nickname ~= "" then
+	if RUF.FirstRun then
+		local function FirstRunReload()
+			C_UI.Reload()
+		end
+		RUF:PopUp('RUFFirstRun',L["RUF [|c5500DBBDRaeli's Unit Frames|r] needs to reload your UI to properly finish installing on first use. Please do this now."],L["Accept"],nil,FirstRunReload)
+		StaticPopup_Show('RUFFirstRun')
+	end
+	if RUF.db.char.Nickname ~= '' then
 		if RUF:GetNickname(UnitName('player'),false,true) ~= RUF.db.char.Nickname then
 			if RUF:NickValidator(RUF.db.char.Nickname) == true and RUF.db.char.Nickname ~= UnitName('player') then
 				RUF:SetNickname(RUF.db.char.Nickname)
@@ -193,10 +201,10 @@ function RUF:OnEnable()
 		end
 
 		local AnchorFrom
-		if RUF.db.profile.unit["party"].Frame.Position.growth == "BOTTOM" then
-			AnchorFrom = "TOP"
-		elseif RUF.db.profile.unit["party"].Frame.Position.growth == "TOP" then
-			AnchorFrom = "BOTTOM"
+		if RUF.db.profile.unit['party'].Frame.Position.growth == 'BOTTOM' then
+			AnchorFrom = 'TOP'
+		elseif RUF.db.profile.unit['party'].Frame.Position.growth == 'TOP' then
+			AnchorFrom = 'BOTTOM'
 		end
 
 		-- Spawn party
@@ -206,24 +214,24 @@ function RUF:OnEnable()
 			'showParty', true,
 			'showRaid', false,
 			'showPlayer', false,
-			'yOffset', RUF.db.profile.unit["party"].Frame.Position.offsety,
+			'yOffset', RUF.db.profile.unit['party'].Frame.Position.offsety,
 			'Point', AnchorFrom
 		):SetPoint(
-			RUF.db.profile.unit["party"].Frame.Position.AnchorFrom,
-			RUF.db.profile.unit["party"].Frame.Position.AnchorFrame,
-			RUF.db.profile.unit["party"].Frame.Position.AnchorTo,
-			RUF.db.profile.unit["party"].Frame.Position.x,
-			RUF.db.profile.unit["party"].Frame.Position.y)
+			RUF.db.profile.unit['party'].Frame.Position.AnchorFrom,
+			RUF.db.profile.unit['party'].Frame.Position.AnchorFrame,
+			RUF.db.profile.unit['party'].Frame.Position.AnchorTo,
+			RUF.db.profile.unit['party'].Frame.Position.x,
+			RUF.db.profile.unit['party'].Frame.Position.y)
 
 		-- Spawn single frames for Boss and Arena units
 		for i = 1, #groupFrames do
 			local frameName = 'oUF_RUF_' .. groupFrames[i]
 			local profile = string.lower(groupFrames[i])
 			local AnchorFrom
-			if RUF.db.profile.unit[profile].Frame.Position.growth == "BOTTOM" then
-				AnchorFrom = "TOP"
-			elseif RUF.db.profile.unit[profile].Frame.Position.growth == "TOP" then
-				AnchorFrom = "BOTTOM"
+			if RUF.db.profile.unit[profile].Frame.Position.growth == 'BOTTOM' then
+				AnchorFrom = 'TOP'
+			elseif RUF.db.profile.unit[profile].Frame.Position.growth == 'TOP' then
+				AnchorFrom = 'BOTTOM'
 			end
 			for u = 1,5 do
 				local frame = self:Spawn(profile..u)
@@ -253,7 +261,7 @@ function RUF:OnEnable()
 	-- Spawn full list of party frames immediately
 	-- rather than on-demand, so it's easier to manage test-mode display
 	local PartyNum = GetNumSubgroupMembers()
-	oUF_RUF_Party.Enabled = RUF.db.profile.unit["party"].Enabled
+	oUF_RUF_Party.Enabled = RUF.db.profile.unit['party'].Enabled
 	oUF_RUF_Party:SetAttribute('startingIndex', -3 + PartyNum)
 	oUF_RUF_Party:Show()
 	oUF_RUF_Party:SetAttribute('startingIndex', 1)
@@ -267,13 +275,13 @@ function RUF:OnEnable()
 	end
 
 	-- Create Party Holder for dragging.
-	local MoveBG = CreateFrame("Frame",oUF_RUF_Party:GetName()..".MoveBG",oUF_RUF_Party)
+	local MoveBG = CreateFrame('Frame',oUF_RUF_Party:GetName()..'.MoveBG',oUF_RUF_Party)
 	MoveBG:SetAllPoints(oUF_RUF_Party)
-	local Background = MoveBG:CreateTexture(oUF_RUF_Party:GetName()..".MoveBG.BG","BACKGROUND")
-	Background:SetTexture(LSM:Fetch("background", "Solid"))
+	local Background = MoveBG:CreateTexture(oUF_RUF_Party:GetName()..'.MoveBG.BG','BACKGROUND')
+	Background:SetTexture(LSM:Fetch('background', 'Solid'))
 	Background:SetAllPoints(MoveBG)
 	Background:SetVertexColor(0,0,0,0)
-	MoveBG:SetFrameStrata("HIGH")
+	MoveBG:SetFrameStrata('HIGH')
 	MoveBG:Hide()
 
 

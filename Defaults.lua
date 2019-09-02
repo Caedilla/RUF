@@ -3373,7 +3373,7 @@ local Alidie = {
 		},
 	},
 }
-RUF.Layout.Alidie = Alidie
+RUF.Layout["Alidie's Layout"] = Alidie
 
 local Raeli = {
 	["Appearance"] = {
@@ -4213,4 +4213,4 @@ local Raeli = {
 		},
 	},
 }
-RUF.Layout.Raeli = Raeli
+RUF.Layout["Raeli's Layout"] = Raeli

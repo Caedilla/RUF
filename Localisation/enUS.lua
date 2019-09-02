@@ -409,3 +409,5 @@ L['MaxHP'] = 'Health: Max'
 L['CurMaxHPPerc'] = 'Health: Cur/Max - %'
 L['Show Percentage at Max'] = true
 L['Show Max at Max'] = true
+L["RUF [|c5500DBBDRaeli's Unit Frames|r] needs to reload your UI to properly finish installing on first use. Please do this now."] = true
+L["Accept"] = true

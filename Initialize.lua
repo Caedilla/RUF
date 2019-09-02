@@ -2,6 +2,10 @@ local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
 local L = LibStub("AceLocale-3.0"):GetLocale("RUF")
 local ACD = LibStub("AceConfigDialog-3.0")
 local LSM = LibStub("LibSharedMedia-3.0")
+local includedLayouts = {
+	"Alidie's Layout",
+	"Raeli's Layout",
+}
 
 function RUF:OnInitialize()
 	self.db = LibStub("AceDB-3.0"):New("RUFDB", RUF.Layout.cfg, true) -- Setup Saved Variables
@@ -28,7 +32,7 @@ function RUF:OnInitialize()
 	-- Profile Management
 	self.db.RegisterCallback(self, "OnProfileChanged", "RefreshConfig")
 	self.db.RegisterCallback(self, "OnProfileCopied", "RefreshConfig")
-	self.db.RegisterCallback(self, "OnProfileReset", "RefreshConfig")
+	self.db.RegisterCallback(self, "OnProfileReset", "ResetProfile")
 
 	-- Register Media
 	LSM:Register("font", "RUF", [[Interface\Addons\RUF\Media\TGL.ttf]],LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
@@ -58,15 +62,16 @@ function RUF:OnInitialize()
 	RUF.db.global.Version = string.match(GetAddOnMetadata("RUF","Version"),"%d+")
 
 	if not RUFDB.profiles then
+		RUF.FirstRun = true
 		RUFDB.profiles = {}
-		RUFDB.profiles["Alidie's Layout"] = RUF.Layout.Alidie
-		RUFDB.profiles["Raeli's Layout"] = RUF.Layout.Raeli
-	else
-		if not RUFDB.profiles["Alidie's Layout"] then
-			RUFDB.profiles["Alidie's Layout"] = RUF.Layout.Alidie
+		for i = 1,#includedLayouts do
+			RUFDB.profiles[includedLayouts[i]] = RUF.Layout[includedLayouts[i]]
 		end
-		if not RUFDB.profiles["Raeli's Layout"] then
-			RUFDB.profiles["Raeli's Layout"] = RUF.Layout.Raeli
+	else
+		for i = 1,#includedLayouts do
+			if not RUFDB.profiles[includedLayouts[i]] then
+				RUFDB.profiles[includedLayouts[i]] = RUF.Layout[includedLayouts[i]]
+			end
 		end
 	end
 
@@ -83,6 +88,20 @@ function RUF:ChatCommand(input)
 	else
 		RUF:Print_Self(L["Cannot configure while in combat."])
 	end
+end
+
+function RUF:ResetProfile()
+	local currentProfile = self.db:GetCurrentProfile()
+
+	for i = 1,#includedLayouts do
+		if includedLayouts[i] == currentProfile then
+			local profile = RUF.db.profile
+			local source = RUF.Layout[includedLayouts[i]]
+			RUF:copyTable(source, profile)
+		end
+	end
+	RUF:RefreshConfig()
+	RUF:GetModule("Options"):RefreshConfig()
 end
 
 function RUF:RefreshConfig()

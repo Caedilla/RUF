@@ -24,6 +24,21 @@ function RUF:PopUp(name,message,button1value,button2value,acceptfunc)
 	  }
 end
 
+function RUF:copyTable(src, dest)
+	if type(dest) ~= "table" then dest = {} end
+	if type(src) == "table" then
+		for k,v in pairs(src) do
+			if type(v) == "table" then
+				-- try to index the key first so that the metatable creates the defaults, if set, and use that table
+				v = RUF:copyTable(v, dest[k])
+			end
+			dest[k] = v
+		end
+	end
+	return dest
+end
+
+
 function RUF:Short(value,format)
 	if type(value) == "number" then
 		local fmt
