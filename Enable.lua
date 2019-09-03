@@ -146,13 +146,18 @@ function RUF:OnEnable()
 		RUF:PopUp('RUFFirstRun',L["RUF [|c5500DBBDRaeli's Unit Frames|r] needs to reload your UI to properly finish installing on first use. Please do this now."],L["Accept"],nil,FirstRunReload)
 		StaticPopup_Show('RUFFirstRun')
 	end
+
+	-- Set RUF stored nickname to one from NickTag so we can have the options menu display correctly (displaying blank if a nickname is not set)
+	RUF:NickTagSetCache(RUF.db.char.NickCache)
+	local nickName = RUF:GetNickname(UnitName('player'),false,true) or UnitName('player')
 	if RUF.db.char.Nickname ~= '' then
-		if RUF:GetNickname(UnitName('player'),false,true) ~= RUF.db.char.Nickname then
-			if RUF:NickValidator(RUF.db.char.Nickname) == true and RUF.db.char.Nickname ~= UnitName('player') then
-				RUF:SetNickname(RUF.db.char.Nickname)
-			end
+		if nickName ~= UnitName('player') then
+			RUF.db.char.Nickname = nickName
+		else
+			RUF.db.char.Nickname = ""
 		end
 	end
+
 	oUF:RegisterStyle('RUF_', SetupFrames)
 	oUF:Factory(function(self)
 		self:SetActiveStyle('RUF_')
