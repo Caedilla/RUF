@@ -6,8 +6,6 @@ local oUF = ns.oUF
 local tags = oUF.Tags.Methods or oUF.Tags
 local events = oUF.TagEvents or oUF.Tags.Events
 
-
-
 ----------------------------------------------------------------------------------- STATUS
 tags['RUF:Level'] = function(unit)
 	local profileReference = RUF.db.profile.Appearance.Text.Level
