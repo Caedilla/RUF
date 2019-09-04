@@ -965,6 +965,7 @@ local function TextSettings(profileName,groupFrame)
 end
 
 local function HideIndicatorOptions(profileName,indicator)
+	if RUF.Client == 1 and indicator == 'LootMaster' then return true end
 	if (indicator == 'InCombat' or indicator == 'Rest') and profileName ~= 'player' then return true end
 	if profileName == 'pet' then
 		if indicator == 'Objective' or indicator == 'Phased' or indicator == 'Role' or indicator == 'Honor' then
@@ -1043,8 +1044,6 @@ local function IndicatorSettings(profileName,groupFrame)
 							indicatorAnchors[k] = L['Main Tank / Assist']
 						elseif k == 'PvPCombat' then
 							indicatorAnchors[k] = L['PvP']
-						elseif k == 'LootMaster' then
-							indicatorAnchors[k] = L['LootMaster']
 						end
 					end
 				end
