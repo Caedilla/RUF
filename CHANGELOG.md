@@ -1,6 +1,6 @@
-# RUF r169-Alpha
-### Changed
-* Start using BigWigs packager to distribute releases for live and classic.
+# RUF r179-Alpha
+### Fixed
+* Don't try to check for vehicle UI on Classic.
 
 ### Known Issues
 * The Options panel settings for Buffs and Debuffs requires a reload to take effect.
