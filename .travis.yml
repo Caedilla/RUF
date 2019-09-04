@@ -12,8 +12,10 @@ script: /home/travis/.luarocks/bin/luacheck .
 git:
   depth: 150
 
+
+
 deploy:
   provider: script
-  script: bash ./Release/release.sh
+  script: bash Release/release.sh
   on:
     tags: true
