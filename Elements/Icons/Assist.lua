@@ -16,7 +16,7 @@ local function Update(self, event)
 		local unit = self.unit
 		local isAssistant = UnitInRaid(unit) and UnitIsGroupAssistant(unit) and not UnitIsGroupLeader(unit)
 		if element:IsObjectType('FontString') then
-			if(isAssistant) then
+			if isAssistant then
 				element:SetText(elementString)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:Show()
@@ -37,7 +37,7 @@ local function Update(self, event)
 	end
 
 	if(element.PostUpdate) then
-		return element:PostUpdate(isAssistant)
+		return element:PostUpdate()
 	end
 end
 

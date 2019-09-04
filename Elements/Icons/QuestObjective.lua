@@ -47,7 +47,7 @@ local function Update(self, event, unit)
 	end
 
 	if(element.PostUpdate) then
-		return element:PostUpdate(isQuestBoss)
+		return element:PostUpdate()
 	end
 end
 

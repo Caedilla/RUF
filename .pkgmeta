@@ -27,5 +27,6 @@ externals:
  Libs/NickTag-1.0:  https://github.com/Tercioo/NickTag-1.0
 
 ignore:
+ - Release
  - .pkgmeta
  - README.md

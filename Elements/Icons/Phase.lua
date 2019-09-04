@@ -32,13 +32,9 @@ local function Update(self, event)
 			end
 		end
 		if RUF.db.global.TestMode == true then
-			if element:IsObjectType('Texture') then
-				element:Show()
-			elseif element:IsObjectType('FontString') then
-				element:SetText(elementString)
-				element:SetWidth(element:GetStringWidth()+2)
-				element:Show()
-			end
+			element:SetText(elementString)
+			element:SetWidth(element:GetStringWidth()+2)
+			element:Show()
 		end
 	else
 		self:DisableElement('PhasedIndicator')
@@ -46,7 +42,7 @@ local function Update(self, event)
 	end
 
 	if(element.PostUpdate) then
-		return element:PostUpdate(isInSamePhase)
+		return element:PostUpdate()
 	end
 end
 

@@ -5,6 +5,8 @@ addons:
     packages:
       - luarocks
 
+install: luarocks install --local luacheck
+
 git:
   depth: 150
 

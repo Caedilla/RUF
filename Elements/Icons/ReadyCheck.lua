@@ -67,7 +67,7 @@ local function Update(self, event)
 	end
 
 	if(element.PostUpdate) then
-		return element:PostUpdate(status)
+		return element:PostUpdate()
 	end
 end
 
@@ -85,10 +85,6 @@ local function Enable(self, unit)
 	if(element) then
 		element.__owner = self
 		element.ForceUpdate = ForceUpdate
-
-		element.readyTexture = element.readyTexture or READY_CHECK_READY_TEXTURE
-		element.notReadyTexture = element.notReadyTexture or READY_CHECK_NOT_READY_TEXTURE
-		element.waitingTexture = element.waitingTexture or READY_CHECK_WAITING_TEXTURE
 
 		local AnimationGroup = element:CreateAnimationGroup()
 		AnimationGroup:HookScript('OnFinished', OnFinished)

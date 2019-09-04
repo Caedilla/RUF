@@ -38,7 +38,7 @@ local function Update(self, event)
 	end
 
 	if(element.PostUpdate) then
-		return element:PostUpdate(inCombat)
+		return element:PostUpdate()
 	end
 end
 

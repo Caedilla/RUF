@@ -45,7 +45,7 @@ tags['RUF:Name'] = function(unit, realUnit)
 		else
 			name = RUF.db.char.Guild[val].Name
 		end]]--
-		r,g,b = RUF:ReturnTextColors(unit, 'Name', cur, max,val)
+		r,g,b = RUF:ReturnTextColors(unit, 'Name', cur, max)--val)
 	end
 	local CharLimit = RUF.db.profile.Appearance.Text.Name.CharLimit
 	if CharLimit == 0 then CharLimit = 5000 end

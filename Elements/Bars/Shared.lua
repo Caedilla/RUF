@@ -69,7 +69,7 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 	return r,g,b
 end
 
-function RUF:UpdateBarLocation(self,unit,element,cur)
+function RUF:UpdateBarLocation(unit,element,cur)
 	local barsAtTop = {}
 	local barsAtBottom = {}
 	local profileReference = RUF.db.profile.unit[unit].Frame.Bars
@@ -116,7 +116,7 @@ function RUF:UpdateBarLocation(self,unit,element,cur)
 
 end
 
-function RUF:SetBarLocation(self,unit,element)
+function RUF:SetBarLocation(unit,element)
 	if not self then return end
 	local barsAtTop = {}
 	local barsAtBottom = {}

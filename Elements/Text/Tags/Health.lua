@@ -8,7 +8,7 @@ local tags = oUF.Tags.Methods or oUF.Tags
 local events = oUF.TagEvents or oUF.Tags.Events
 
 ----------------------------------------------------------------------------------- HEALTH
-tags['RUF:CurHPPerc'] = function(unit) -- Current Health and Percent if below 100%.
+tags['RUF:CurHPPerc'] = function(unit, realunit) -- Current Health and Percent if below 100%.
 	if not UnitName(unit) then return end
 	local cur, max
 	if RUF.Client == 2 and RMH then
@@ -60,7 +60,7 @@ tags['RUF:CurHPPerc'] = function(unit) -- Current Health and Percent if below 10
 end
 events['RUF:CurHPPerc'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
-tags['RUF:HPPerc'] = function(unit)
+tags['RUF:HPPerc'] = function(unit, realunit)
 	if not UnitName(unit) then return end
 	local cur, max
 	if RUF.Client == 2 and RMH then
@@ -80,7 +80,7 @@ tags['RUF:HPPerc'] = function(unit)
 end
 events['RUF:HPPerc'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
-tags['RUF:CurHP'] = function(unit)
+tags['RUF:CurHP'] = function(unit, realunit)
 	if not UnitName(unit) then return end
 	local cur, max
 	if RUF.Client == 2 and RMH then
@@ -116,7 +116,7 @@ tags['RUF:CurHP'] = function(unit)
 end
 events['RUF:CurHP'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
-tags['RUF:CurMaxHPPerc'] = function(unit) -- Current Health / Max Health and Percent if below 100%.
+tags['RUF:CurMaxHPPerc'] = function(unit, realunit) -- Current Health / Max Health and Percent if below 100%.
 	if not UnitName(unit) then return end
 	local cur, max
 	if RUF.Client == 2 and RMH then
@@ -174,7 +174,7 @@ tags['RUF:CurMaxHPPerc'] = function(unit) -- Current Health / Max Health and Per
 end
 events['RUF:CurMaxHPPerc'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
-tags['RUF:MaxHP'] = function(unit)
+tags['RUF:MaxHP'] = function(unit, realunit)
 	if not UnitName(unit) then return end
 	local cur, max
 	if RUF.Client == 2 and RMH then

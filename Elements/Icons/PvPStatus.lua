@@ -80,7 +80,7 @@ local function Update(self, event, unit)
 	end
 
 	if(element.PostUpdate) then
-		return element:PostUpdate(unit, status)
+		return element:PostUpdate()
 	end
 end
 

@@ -82,14 +82,14 @@ tags['RUF:CurPower'] = function(unit,realunit)
 	if RUF.db.profile.Appearance.Text.CurPower.Enabled == 1 and cur == 0 then
 		return ''
 	end
-	if cur == max and cur > 0 then -- if we're at full health 
+	if cur == max and cur > 0 then -- if we're at full health
 		if RUF.db.profile.Appearance.Text.CurPower.Case == 1 then
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
 		elseif RUF.db.profile.Appearance.Text.CurPower.Case == 2 then
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(RUF:Short(cur,true)))
 		else
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
-		end		
+		end
 	else
 		if RUF.db.profile.Appearance.Text.CurPower.Case == 1 then
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
@@ -97,7 +97,7 @@ tags['RUF:CurPower'] = function(unit,realunit)
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(RUF:Short(cur,true)))
 		else
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
-		end	
+		end
 	end
 end
 events['RUF:CurPower'] = 'UNIT_POWER'
@@ -189,14 +189,14 @@ tags['RUF:CurMana'] = function(unit)
 	if RUF.db.profile.Appearance.Text.CurMana.Enabled == 1 and cur == 0 then
 		return ''
 	end
-	if cur == max  and cur > 0 then 
+	if cur == max  and cur > 0 then
 		if RUF.db.profile.Appearance.Text.CurMana.Case == 1 then
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
 		elseif RUF.db.profile.Appearance.Text.CurMana.Case == 2 then
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(RUF:Short(cur,true)))
 		else
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
-		end		
+		end
 	else
 		if RUF.db.profile.Appearance.Text.CurMana.Case == 1 then
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
@@ -204,7 +204,7 @@ tags['RUF:CurMana'] = function(unit)
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(RUF:Short(cur,true)))
 		else
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
-		end	
+		end
 	end
 end
 events['RUF:CurMana'] = 'UNIT_POWER'

@@ -14,8 +14,17 @@ local function Update(self, event)
 	end
 	if element.Enabled == true then
 		local unit = self.unit
-		local isLootMasterant = UnitInRaid(unit) and UnitIsGroupLootMasterant(unit) and not UnitIsGroupLeader(unit)
-		if(isLootMasterant) then
+		local lootMethod, partyLooter, raidLooter = GetLootMethod()
+		local lootMaster
+		if partyLooter then
+			lootMaster = 'party' .. partyLooter
+			if partyLooter == 0 then lootMaster = 'player' end
+		end
+		if raidLooter then
+			lootMaster = 'raid' .. raidLooter
+			if raidLooter == 0 then lootMaster = 'player' end -- This shouldn't ever happen. If player is Master Looter, then partyLooter will be 0 not nil
+		end
+		if lootMethod == 'master' and (partyLooter ~= 0 or raidLooter ~= 0) then
 			element:SetText(elementString)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:Show()
@@ -35,7 +44,7 @@ local function Update(self, event)
 	end
 
 	if(element.PostUpdate) then
-		return element:PostUpdate(isLootMasterant)
+		return element:PostUpdate()
 	end
 end
 

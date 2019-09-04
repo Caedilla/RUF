@@ -1,4 +1,3 @@
-# Interface Versions: 80200, 11302
 #@retail@
 ## Interface: 80200
 #@end-retail@
