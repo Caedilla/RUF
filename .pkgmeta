@@ -4,6 +4,8 @@ manual-changelog:
 	filename: CHANGELOG.md
 	markup-type: markdown
 
+enable-nolib-creation: yes
+
 externals:
  Libs/LibStub-1.0: https://repos.wowace.com/wow/libstub/trunk
  Libs/CallbackHandler-1.0: https://repos.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
