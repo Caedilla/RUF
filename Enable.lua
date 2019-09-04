@@ -102,7 +102,7 @@ local function SetupFrames(self, unit)
 	-- FUNCTIONNAME(self, unit)
 
 	--RUF:SetBarLocation(self,unit)
-	--RUF:UpdateBarLocation(self,unit)
+	--RUF.UpdateBarLocation(self,unit)
 
 
 	-- Castbars
