@@ -5,4 +5,11 @@ addons:
     packages:
       - pandoc
 
+git:
+  depth: 150
+
+deploy:
+  on:
+    tags: true
+
 script: curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash
