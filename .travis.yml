@@ -13,6 +13,7 @@ git:
   depth: 150
 
 deploy:
+  provider: script
   script: bash ./Release/release.sh
   on:
     tags: true
