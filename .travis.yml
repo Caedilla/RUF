@@ -13,4 +13,6 @@ deploy:
     tags: true
 
 script: curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash
-script: curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh -g 1.13.2 | bash
+
+after_success:
+  - curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh -g 1.13.2 | bash
