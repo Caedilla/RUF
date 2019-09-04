@@ -464,8 +464,9 @@ local cfg = {
 				},
 				Level = {
 					Case = 1, -- 0,1,2 0 == Default, 1 == Uppercase, 2 == Lowercase
-					HideSameLevel = false,
-					HideClassification = false,
+					HideSameLevel = true,
+					ShowLevel = true,
+					ShowClassification = true,
 					Color = {
 						BaseColor = {1,1,1},
 						Class = false,

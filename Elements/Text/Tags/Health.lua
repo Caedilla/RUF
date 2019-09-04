@@ -26,27 +26,27 @@ tags['RUF:CurHPPerc'] = function(unit, realunit) -- Current Health and Percent i
 	end
 	if UnitIsDead(unit) then
 		if RUF.db.profile.Appearance.Text.CurHPPerc.Case == 1 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L['Dead']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L["Dead"]))
 		elseif RUF.db.profile.Appearance.Text.CurHPPerc.Case == 2 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L['Dead']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L["Dead"]))
 		else
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L['Dead'])
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L["Dead"])
 		end
 	elseif UnitIsGhost(unit) then
 		if RUF.db.profile.Appearance.Text.CurHPPerc.Case == 1 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L['Ghost']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L["Ghost"]))
 		elseif RUF.db.profile.Appearance.Text.CurHPPerc.Case == 2 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L['Ghost']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L["Ghost"]))
 		else
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L['Ghost'])
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L["Ghost"])
 		end
 	elseif not UnitIsConnected(unit) then
 		if RUF.db.profile.Appearance.Text.CurHPPerc.Case == 1 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L['Offline']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L["Offline"]))
 		elseif RUF.db.profile.Appearance.Text.CurHPPerc.Case == 2 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L['Offline']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L["Offline"]))
 		else
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L['Offline'])
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L["Offline"])
 		end
 	elseif cur == max then -- if we're at full health
 		if RUF.db.profile.Appearance.Text.CurHPPerc.ShowPercAtMax == true then
@@ -134,27 +134,27 @@ tags['RUF:CurMaxHPPerc'] = function(unit, realunit) -- Current Health / Max Heal
 	end
 	if UnitIsDead(unit) then
 		if RUF.db.profile.Appearance.Text.CurMaxHPPerc.Case == 1 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L['Dead']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L["Dead"]))
 		elseif RUF.db.profile.Appearance.Text.CurMaxHPPerc.Case == 2 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L['Dead']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L["Dead"]))
 		else
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L['Dead'])
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L["Dead"])
 		end
 	elseif UnitIsGhost(unit) then
 		if RUF.db.profile.Appearance.Text.CurMaxHPPerc.Case == 1 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L['Ghost']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L["Ghost"]))
 		elseif RUF.db.profile.Appearance.Text.CurMaxHPPerc.Case == 2 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L['Ghost']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L["Ghost"]))
 		else
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L['Ghost'])
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L["Ghost"])
 		end
 	elseif not UnitIsConnected(unit) then
 		if RUF.db.profile.Appearance.Text.CurMaxHPPerc.Case == 1 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L['Offline']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.upper(L["Offline"]))
 		elseif RUF.db.profile.Appearance.Text.CurMaxHPPerc.Case == 2 then
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L['Offline']))
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L["Offline"]))
 		else
-			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L['Offline'])
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L["Offline"])
 		end
 	elseif cur == max then -- if we're at full health
 		if RUF.db.profile.Appearance.Text.CurMaxHPPerc.ShowMaxAtMax == true then

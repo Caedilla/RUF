@@ -17,7 +17,7 @@ function RUF_Options:TempOptions()
 		order = 0,
 		args = {
 				Open = {
-					name = L['Open Configuration Panel'],
+					name = L["Open Configuration Panel"],
 					type = 'execute',
 					order = 0,
 					func = function()

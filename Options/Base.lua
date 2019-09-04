@@ -16,15 +16,15 @@ function RUF_Options.MainOptions()
 		childGroups = 'tab',
 		args = {
 			Appearance = {
-				name = L['Global Appearance Options'],
-				desc = L['These settings affect all frames.'],
+				name = L["Global Appearance Options"],
+				desc = L["These settings affect all frames."],
 				type = 'group',
 				childGroups = 'tab',
 				order = 1,
 				args = {
 					FrameLock = {
-						name = '|cff00B2FA'..L['Frame Lock']..'|r',
-						desc = L['Allow unit frames to be repositioned by dragging.'],
+						name = '|cff00B2FA'..L["Frame Lock"]..'|r',
+						desc = L["Allow unit frames to be repositioned by dragging."],
 						order = 0,
 						type = 'toggle',
 						get = function(info)
@@ -36,8 +36,8 @@ function RUF_Options.MainOptions()
 						end,
 					},
 					TestMode = {
-						name = '|cff00B2FA'..L['Test Mode']..'|r',
-						desc = L['Shows all unitframes so you can easily configure them.'],
+						name = '|cff00B2FA'..L["Test Mode"]..'|r',
+						desc = L["Shows all unitframes so you can easily configure them."],
 						order = 1,
 						type = 'toggle',
 						get = function(info)
@@ -50,8 +50,8 @@ function RUF_Options.MainOptions()
 						end,
 					},
 					TestModeShowUnits = {
-						name = '|cff00B2FA'..L['Show Unit in Test Mode.']..'|r',
-						desc = L['Displays the name of the unit frame in test mode.'],
+						name = '|cff00B2FA'..L["Show Unit in Test Mode."]..'|r',
+						desc = L["Displays the name of the unit frame in test mode."],
 						order = 2,
 						type = 'toggle',
 						get = function(info)
@@ -64,19 +64,19 @@ function RUF_Options.MainOptions()
 						end,
 					},
 					Border = {
-						name = L['Border'],
+						name = L["Border"],
 						type = 'group',
 						order = 5,
 						args = {
 							Debuff = {
-								name = L['Debuff Highlighting'],
-								desc = L['Not Yet Implemented.'],
+								name = L["Debuff Highlighting"],
+								desc = L["Not Yet Implemented."],
 								type = 'toggle',
 								disabled = true,
 								order = 0.01,
 							},
 							Texture = {
-								name = L['Border Texture'],
+								name = L["Border Texture"],
 								type = 'select',
 								order = 0.02,
 								values = LSM:HashTable('border'),
@@ -89,7 +89,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							Size = {
-								name = L['Border Size'],
+								name = L["Border Size"],
 								type = 'range',
 								order = 0.03,
 								min = -20,
@@ -106,7 +106,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							Alpha = {
-								name = L['Alpha'],
+								name = L["Alpha"],
 								type = 'range',
 								order = 0.03,
 								min = 0,
@@ -123,7 +123,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							Offset = {
-								name = L['Offset'],
+								name = L["Offset"],
 								type = 'range',
 								order = 0.03,
 								min = -30,
@@ -140,7 +140,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							Color = {
-								name = L['Base Color'],
+								name = L["Base Color"],
 								type = 'color',
 								order = 0.04,
 								get = function(info)
@@ -155,29 +155,29 @@ function RUF_Options.MainOptions()
 						},
 					},
 					Bars = {
-						name = L['Bars'],
+						name = L["Bars"],
 						type = 'group',
 						order = 1,
 						args = {},
 					},
 					Colors = {
-						name = L['Colors'],
+						name = L["Colors"],
 						type = 'group',
 						order = 0,
 						args = {},
 					},
 					Auras = {
-						name = L['Auras'],
+						name = L["Auras"],
 						type = 'group',
 						order = 3,
 						args = {
 							Highlight = {
-								name = L['Aura Highlighting'],
+								name = L["Aura Highlighting"],
 								type = 'header',
 								order = 0,
 							},
 							DefaultBuff = {
-								name = L['Default Buff Glow'],
+								name = L["Default Buff Glow"],
 								type = 'color',
 								hasAlpha = true,
 								order = 0.1,
@@ -189,7 +189,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							DefaultDebuff = {
-								name = L['Default Debuff Glow'],
+								name = L["Default Debuff Glow"],
 								type = 'color',
 								hasAlpha = true,
 								order = 0.1,
@@ -201,7 +201,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							DebuffMagic = {
-								name = L['Magic'],
+								name = L["Magic"],
 								type = 'color',
 								hasAlpha = true,
 								order = 0.2,
@@ -213,7 +213,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							DebuffDisease = {
-								name = L['Disease'],
+								name = L["Disease"],
 								type = 'color',
 								hasAlpha = true,
 								order = 0.2,
@@ -225,7 +225,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							DebuffCurse = {
-								name = L['Curse'],
+								name = L["Curse"],
 								type = 'color',
 								hasAlpha = true,
 								order = 0.2,
@@ -237,7 +237,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							DebuffPoison = {
-								name = L['Poison'],
+								name = L["Poison"],
 								type = 'color',
 								hasAlpha = true,
 								order = 0.2,
@@ -249,7 +249,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							DebuffEnrage = {
-								name = L['Enrage'],
+								name = L["Enrage"],
 								type = 'color',
 								hasAlpha = true,
 								order = 0.2,
@@ -261,7 +261,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							Buff = {
-								name = L['Color Buffs by Type'],
+								name = L["Color Buffs by Type"],
 								type = 'toggle',
 								order = 10.1,
 								get = function(info)
@@ -272,7 +272,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							Debuff = {
-								name = L['Color Debuffs by Type'],
+								name = L["Color Debuffs by Type"],
 								type = 'toggle',
 								order = 10.1,
 								get = function(info)
@@ -283,7 +283,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							Dispellable = {
-								name = L['Color only removable'],
+								name = L["Color only removable"],
 								type = 'toggle',
 								order = 10.2,
 								get = function(info)
@@ -299,7 +299,7 @@ function RUF_Options.MainOptions()
 								order = 10.5,
 							},
 							BorderTexture = {
-								name = L['Highlight Texture'],
+								name = L["Highlight Texture"],
 								type = 'select',
 								order = 11,
 								values = LSM:HashTable('border'),
@@ -312,7 +312,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							BorderSize = {
-								name = L['Highlight Size'],
+								name = L["Highlight Size"],
 								type = 'range',
 								order = 11.1,
 								min = -20,
@@ -329,7 +329,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							BorderOffset = {
-								name = L['Offset'],
+								name = L["Offset"],
 								type = 'range',
 								order = 11.2,
 								min = -30,
@@ -346,12 +346,12 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							Pixel = {
-								name = 'Pixel Border',
+								name = L["Pixel Border"],
 								type = 'header',
 								order = 15,
 							},
 							Enabled = {
-								name = L['Enabled'],
+								name = L["Enabled"],
 								type = 'toggle',
 								order = 15.1,
 								get = function(info)
@@ -362,7 +362,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							PixelColor = {
-								name = L['Border Color'],
+								name = L["Border Color"],
 								type = 'color',
 								hasAlpha = true,
 								order = 16,
@@ -374,7 +374,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							PixelTexture = {
-								name = L['Border Texture'],
+								name = L["Border Texture"],
 								type = 'select',
 								order = 16.1,
 								values = LSM:HashTable('border'),
@@ -387,7 +387,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							PixelSize = {
-								name = L['Border Size'],
+								name = L["Border Size"],
 								type = 'range',
 								order = 16.1,
 								min = -20,
@@ -404,7 +404,7 @@ function RUF_Options.MainOptions()
 								end,
 							},
 							PixelOffset = {
-								name = L['Offset'],
+								name = L["Offset"],
 								type = 'range',
 								order = 16.2,
 								min = -30,
@@ -425,7 +425,7 @@ function RUF_Options.MainOptions()
 				},
 			},
 			Unit = {
-				name = L['Unit Options'],
+				name = L["Unit Options"],
 				type = 'group',
 				order = 2,
 				args = {
@@ -433,7 +433,7 @@ function RUF_Options.MainOptions()
 				},
 			},
 			Filtering = {
-				name = L['Filtering'],
+				name = L["Filtering"],
 				type = 'group',
 				order = 3,
 				hidden = true,
@@ -442,23 +442,23 @@ function RUF_Options.MainOptions()
 				},
 			},
 			Feedback = {
-				name = L['Feedback'],
+				name = L["Feedback"],
 				type = 'group',
 				order = 1000,
 				args = {
 					Head = {
-						name = L['Feedback'],
+						name = L["Feedback"],
 						type = 'header',
 						order = 0,
 					},
 					Revision = {
-						name = '|cffFFCC00'..L['Current Revision']..'|r |c5500DBBD'.. RUF.db.global.Version .. '|r',
+						name = "|cffFFCC00" .. L["Current Version: %s"]:format("r|r|c5500DBBD" .. RUF.db.global.Version) .. "|r",
 						type = 'description',
 						order = 0.5,
 						fontSize = 'large',
 					},
 					RevisionDescription = {
-						name = L['When reporting an issue, please also post the revision number above. Thanks!'],
+						name = L["When reporting an issue, please also post the revision number above. Thanks!"],
 						type = 'description',
 						order = 0.6,
 					},
@@ -468,13 +468,13 @@ function RUF_Options.MainOptions()
 						order = 1,
 					},
 					Curseforge_Header = {
-						name = '|cff91BE0F'..L['Curseforge']..'|r',
+						name = '|cff91BE0F'..L["Curseforge"]..'|r',
 						type = 'description',
 						order = 50,
 						fontSize = 'large',
 					},
 					Curseforge_URL = {
-						name = L['URL'],
+						name = L["URL"],
 						type = 'input',
 						order = 50.2,
 						width = 'full',
@@ -482,18 +482,18 @@ function RUF_Options.MainOptions()
 						set = function() return 'https://wow.curseforge.com/projects/ruf/issues' end,
 					},
 					Spacer_OnlineCommunity = {
-						name = '\n\n\n\n',
+						name = '\n\n',
 						type = 'description',
 						order = 75,
 					},
 					Community_Header = {
-						name = '|cff00B2FA'..L['Discord']..'|r',
+						name = '|cff00B2FA'..L["Discord"]..'|r',
 						type = 'description',
 						order = 100,
 						fontSize = 'large',
 					},
 					Community_URL = {
-						name = L['Invite Link'],
+						name = L["Invite Link"],
 						type = 'input',
 						order = 100.2,
 						width = 'full',

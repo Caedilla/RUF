@@ -8,23 +8,23 @@ local _, PlayerClass = UnitClass('player')
 
 function RUF_Options.Colors()
 	local Reactions = {
-		[1] = L['Hated'],
-		[2] = L['Hostile'],
-		[3] = L['Unfriendly'],
-		[4] = L['Neutral'],
-		[5] = L['Friendly'],
-		[6] = L['Honored'],
-		[7] = L['Revered'],
-		[8] = L['Exalted'],
-		--[9] = L['Paragon'],
-		[10] = L['Friendly Pet'],
+		[1] = FACTION_STANDING_LABEL1,
+		[2] = FACTION_STANDING_LABEL2,
+		[3] = FACTION_STANDING_LABEL3,
+		[4] = FACTION_STANDING_LABEL4,
+		[5] = FACTION_STANDING_LABEL5,
+		[6] = FACTION_STANDING_LABEL6,
+		[7] = FACTION_STANDING_LABEL7,
+		[8] = FACTION_STANDING_LABEL8,
+		--[9] = L["Paragon"],
+		[10] = L["Friendly Pet"],
 	}
 	local Difficulties = {
-		[0] = L['Very Hard'],
-		[1] = L['Hard'],
-		[2] = L['Normal'],
-		[3] = L['Easy'],
-		[4] = L['Trivial'],
+		[0] = L["Very Hard"],
+		[1] = L["Hard"],
+		[2] = L["Normal"],
+		[3] = L["Easy"],
+		[4] = L["Trivial"],
 	}
 	local Powers = {}
 	if RUF.Client == 1 then
@@ -48,12 +48,12 @@ function RUF_Options.Colors()
 			[16] = _G['ARCANE_CHARGES'] or ARCANE_CHARGES,
 			[17] = _G['FURY'] or FURY,
 			[18] = _G['PAIN'] or PAIN,
-			[50] = L['Runes - Blood'],
-			[51] = L['Runes - Frost'],
-			[52] = L['Runes - Unholy'],
-			[75] = L['Stagger - Low'],
-			[76] = L['Stagger - Medium'],
-			[77] = L['Stagger - High'],
+			[50] = L["Runes - Blood"],
+			[51] = L["Runes - Frost"],
+			[52] = L["Runes - Unholy"],
+			[75] = L["Stagger - Low"],
+			[76] = L["Stagger - Medium"],
+			[77] = L["Stagger - High"],
 		}
 	else
 		Powers = {
@@ -79,19 +79,19 @@ function RUF_Options.Colors()
 		[11] = C_CreatureInfo.GetClassInfo(1), -- Warrior
 	}
 	local Colors = {
-		name = L['Colors'],
+		name = L["Colors"],
 		type = 'group',
 		order = 0,
 		args = {
 			Class = {
-				name = L['Class Colors'],
+				name = L["Class Colors"],
 				type = 'header',
 				order = 00,
 			},
 			ClassColors_UseAddon = {
 				order = 0.01,
 				type = 'toggle',
-				name = L['Use colors from the Class Colors addon'],
+				name = L["Use colors from the Class Colors addon"],
 				width = 'double',
 				get = function(info)
 					if(CUSTOM_CLASS_COLORS) and RUF.db.profile.Appearance.Colors.UseClassColors then
@@ -114,8 +114,8 @@ function RUF_Options.Colors()
 			UseBlizz_CC = {
 				order = 0.011,
 				type = 'execute',
-				name = L['Set Blizard Default'],
-				desc = L['Set class colors to the default Blizzard colors.'],
+				name = L["Set Blizard Default"],
+				desc = L["Set class colors to the default Blizzard colors."],
 				width = 'double',
 				func = function(info, value)
 					RUF.db.profile.Appearance.Colors.UseClassColors = false
@@ -132,12 +132,12 @@ function RUF_Options.Colors()
 				width = 'full',
 			},
 			Misc = {
-				name = L['Misc Colors'],
+				name = L["Misc Colors"],
 				type = 'header',
 				order = 9,
 			},
 			Disconnected = {
-				name = L['Disconnected'],
+				name = L["Disconnected"],
 				type = 'color',
 				order = 9.01,
 				get = function(info)
@@ -149,7 +149,7 @@ function RUF_Options.Colors()
 				end,
 			},
 			Tapped = {
-				name = L['Tapped'],
+				name = L["Tapped"],
 				type = 'color',
 				order = 9.02,
 				get = function(info)
@@ -161,17 +161,17 @@ function RUF_Options.Colors()
 				end,
 			},
 			Power = {
-				name = L['Power Colors'],
+				name = L["Power Colors"],
 				type = 'header',
 				order = 10,
 			},
 			Reaction = {
-				name = L['Reaction Colors'],
+				name = L["Reaction Colors"],
 				type = 'header',
 				order = 20,
 			},
 			Difficulty = {
-				name = L['Difficulty Colors'],
+				name = L["Difficulty Colors"],
 				type = 'header',
 				order = 30,
 			},

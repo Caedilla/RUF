@@ -75,5 +75,4 @@ Options\Base.lua
 Options\Bars.lua
 Options\Colors.lua
 Options\Text.lua
-Options\Auras.lua
 Options\Units.lua

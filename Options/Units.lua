@@ -37,15 +37,15 @@ local function UnitGroup(profileName,groupFrame)
 		order = ord,
 		args = {
 			frameSettings = {
-				name = L['Frame'],
+				name = L["Frame"],
 				type = 'group',
 				childGroups = 'tab',
 				order = 0,
 				args = {
 					nickName = {
 						type = 'input',
-						name = L['Nickname'],
-						desc = L["You can set a nickname to replace your character's name on all RUF frames. Leave blank for your character's name."],
+						name = L["Nickname"],
+						desc = L["This syncs with other addons that support NickTag-1.0 such as Details!"],
 						width = 'full',
 						hidden = function() return (profileName ~= 'player') end,
 						order = 0.0,
@@ -54,9 +54,9 @@ local function UnitGroup(profileName,groupFrame)
 							local trimString = string.match(value,"^%s*(.-)%s*$")
 							local valid = RUF:NickValidator(trimString)
 							if valid == true then return true end
-							if valid == 'Length' then return L['Nickname cannot be more than 12 characters long.'] end
-							if valid == 'Letters' then return L['Nickname can only contain letters and spaces.'] end
-							if valid == 'Spaces' then return L['Nickname cannot have repeating spaces or more than two total spaces.'] end
+							if valid == 'Length' then return L["Nickname cannot be more than 12 characters long."] end
+							if valid == 'Letters' then return L["Nickname can only contain letters and spaces."] end
+							if valid == 'Spaces' then return L["Nickname cannot have repeating spaces or more than two total spaces."] end
 						end,
 						get = function(info)
 							return RUF.db.char.Nickname
@@ -78,12 +78,12 @@ local function UnitGroup(profileName,groupFrame)
 					enabled = {
 						name = function()
 							if RUF.db.profile.unit[profileName].Enabled == true then
-								return '|cFF00FF00'..L['Enabled']..'|r'
+								return '|cFF00FF00'..L["Enabled"]..'|r'
 							else
-								return '|cFFFF0000'..L['Enabled']..'|r'
+								return '|cFFFF0000'..L["Enabled"]..'|r'
 							end
 						end,
-						desc = L['Enable the Unit Frame.'],
+						desc = L["Enable the Unit Frame."],
 						type = 'toggle',
 						order = 0.004,
 						disabled = function() return (profileName == 'Player') end,
@@ -103,8 +103,8 @@ local function UnitGroup(profileName,groupFrame)
 						width = 'full',
 					},
 					rangeFading = {
-						name = L['Fade out of Range'],
-						desc = L['Fade the unit frame it the target is out of range of your spells.'],
+						name = L["Fade out of Range"],
+						desc = L["Fade the unit frame it the target is out of range of your spells."],
 						type = 'toggle',
 						order = 0.01,
 						disabled = true, -- IMPLEMENT THIS FUNCTIONALITY
@@ -118,8 +118,8 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 					},
 					rangeFadingAlpha = {
-						name = L['Alpha'],
-						desc = L['Out of Range transparency'],
+						name = L["Alpha"],
+						desc = L["Out of Range transparency"],
 						type = 'range',
 						order = 0.02,
 						min = 0,
@@ -139,7 +139,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 					},
 					frameWidth = {
-						name = L['Width'],
+						name = L["Width"],
 						type = 'range',
 						order = 0.03,
 						min = 50,
@@ -157,7 +157,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 					},
 					frameHeight = {
-						name = L['Height'],
+						name = L["Height"],
 						type = 'range',
 						order = 0.04,
 						min = 10,
@@ -182,8 +182,8 @@ local function UnitGroup(profileName,groupFrame)
 					},
 					frameAnchor = {
 						type = 'input',
-						name = L['Anchor Frame'],
-						desc = L['The name of the frame for the unit to anchor to. Defaults to UI Parent if set blank.'],
+						name = L["Anchor Frame"],
+						desc = L["The name of the frame for the unit to anchor to. Defaults to UI Parent if set blank."],
 						multiline = false,
 						order = 0.06,
 						get = function(info)
@@ -207,8 +207,8 @@ local function UnitGroup(profileName,groupFrame)
 					},
 					frameHorizontal = {
 						type = 'range',
-						name = L['X Offset'],
-						desc = L['Horizontal Offset from the Frame Anchor.'],
+						name = L["X Offset"],
+						desc = L["Horizontal Offset from the Frame Anchor."],
 						order = 0.07,
 						min = -5000,
 						max = 5000,
@@ -226,8 +226,8 @@ local function UnitGroup(profileName,groupFrame)
 					},
 					frameVertical = {
 						type = 'range',
-						name = L['Y Offset'],
-						desc = L['Vertical Offset from the Frame Anchor.'],
+						name = L["Y Offset"],
+						desc = L["Vertical Offset from the Frame Anchor."],
 						order = 0.08,
 						min = -5000,
 						max = 5000,
@@ -245,19 +245,19 @@ local function UnitGroup(profileName,groupFrame)
 					},
 					frameAnchorPoint = {
 						type = 'select',
-						name = L['Anchor From'],
-						desc = L['Location area of the Unitframe to anchor from.'],
+						name = L["Anchor From"],
+						desc = L["Location area of the Unitframe to anchor from."],
 						order = 0.09,
 						values = {
-							TOP = L['Top'],
-							RIGHT = L['Right'],
-							BOTTOM = L['Bottom'],
-							LEFT = L['Left'],
-							TOPRIGHT = L['Top-right'],
-							TOPLEFT = L['Top-left'],
-							BOTTOMRIGHT = L['Bottom-right'],
-							BOTTOMLEFT = L['Bottom-left'],
-							CENTER = L['Center'],
+							TOP = L["Top"],
+							RIGHT = L["Right"],
+							BOTTOM = L["Bottom"],
+							LEFT = L["Left"],
+							TOPRIGHT = L["Top-right"],
+							TOPLEFT = L["Top-left"],
+							BOTTOMRIGHT = L["Bottom-right"],
+							BOTTOMLEFT = L["Bottom-left"],
+							CENTER = L["Center"],
 						},
 						get = function(info)
 							return RUF.db.profile.unit[profileName].Frame.Position.AnchorFrom
@@ -269,19 +269,19 @@ local function UnitGroup(profileName,groupFrame)
 					},
 					frameAnchorTo = {
 						type = 'select',
-						name = L['Anchor To'],
-						desc = L['Area on the anchor frame to anchor the unitframe to.'],
+						name = L["Anchor To"],
+						desc = L["Area on the anchor frame to anchor the unitframe to."],
 						order = 0.09,
 						values = {
-							TOP = L['Top'],
-							RIGHT = L['Right'],
-							BOTTOM = L['Bottom'],
-							LEFT = L['Left'],
-							TOPRIGHT = L['Top-right'],
-							TOPLEFT = L['Top-left'],
-							BOTTOMRIGHT = L['Bottom-right'],
-							BOTTOMLEFT = L['Bottom-left'],
-							CENTER = L['Center'],
+							TOP = L["Top"],
+							RIGHT = L["Right"],
+							BOTTOM = L["Bottom"],
+							LEFT = L["Left"],
+							TOPRIGHT = L["Top-right"],
+							TOPLEFT = L["Top-left"],
+							BOTTOMRIGHT = L["Bottom-right"],
+							BOTTOMLEFT = L["Bottom-left"],
+							CENTER = L["Center"],
 						},
 						get = function(info)
 							return RUF.db.profile.unit[profileName].Frame.Position.AnchorTo
@@ -299,13 +299,13 @@ local function UnitGroup(profileName,groupFrame)
 					},
 					groupFrameGrowthDirection = {
 						type = 'select',
-						name = L['Growth Direction'],
-						desc = L['Grow up or down.'],
+						name = L["Growth Direction"],
+						desc = L["Grow up or down."],
 						hidden = groupFrame ~= 'boss' or groupFrame ~= 'arena' or groupFrame ~= 'bosstarget' or groupFrame ~= 'arenatarget',
 						order = 0.1,
 						values = {
-							TOP = L['Up'],
-							BOTTOM = L['Down'],
+							TOP = L["Up"],
+							BOTTOM = L["Down"],
 						},
 						get = function(info)
 							return RUF.db.profile.unit[profileName].Frame.Position.growth
@@ -327,12 +327,12 @@ local function UnitGroup(profileName,groupFrame)
 					},
 					partyFrameSortOrder = {
 						type = 'select',
-						name = L['Sort Direction'],
+						name = L["Sort Direction"],
 						hidden = groupFrame ~= 'party',
 						order = 0.1,
 						values = {
-							TOP = L['Up'],
-							BOTTOM = L['Down'],
+							TOP = L["Up"],
+							BOTTOM = L["Down"],
 						},
 						get = function(info)
 							return RUF.db.profile.unit[profileName].Frame.Position.growth
@@ -353,8 +353,8 @@ local function UnitGroup(profileName,groupFrame)
 					},
 					groupFrameHorizontalOffset = {
 						type = 'range',
-						name = L['X Spacing'],
-						desc = L['Horizontal Offset from the previous unit in the group.'],
+						name = L["X Spacing"],
+						desc = L["Horizontal Offset from the previous unit in the group."],
 						hidden = groupFrame == 'none',
 						order = 0.11,
 						min = -5000,
@@ -373,8 +373,8 @@ local function UnitGroup(profileName,groupFrame)
 					},
 					groupFrameVerticalOffset = {
 						type = 'range',
-						name = L['Y Spacing'],
-						desc = L['Vertical Offset from the previous unit in the group.'],
+						name = L["Y Spacing"],
+						desc = L["Vertical Offset from the previous unit in the group."],
 						hidden = groupFrame == 'none',
 						order = 0.12,
 						min = -5000,
@@ -418,20 +418,20 @@ local function BarSettings(profileName,groupFrame)
 	groupFrame = string.lower(groupFrame)
 
 	local barOptions = {
-		name = L['Bars'],
+		name = L["Bars"],
 		type = 'group',
 		childGroups = 'tab',
 		order = 10,
 		args = {
 			Health = {
-				name = L['Health'],
+				name = L["Health"],
 				type = 'group',
 				order = 10,
 				args = {
 				},
 			},
 			Power = {
-				name = L['Power'],
+				name = L["Power"],
 				type = 'group',
 				order = 15,
 				args = {
@@ -439,7 +439,7 @@ local function BarSettings(profileName,groupFrame)
 				},
 			},
 			Class = {
-				name = L['Class'],
+				name = L["Class"],
 				type = 'group',
 				order = 20,
 				hidden = function() return (profileName ~= 'player') or (RUF.Client ~= 1) end,
@@ -448,7 +448,7 @@ local function BarSettings(profileName,groupFrame)
 				},
 			},
 			Absorb = {
-				name = L['Absorb'],
+				name = L["Absorb"],
 				type = 'group',
 				order = 25,
 				hidden = RUF.Client ~= 1,
@@ -469,14 +469,14 @@ local function BarSettings(profileName,groupFrame)
 	for i = 1,#barList do
 		barOptions.args[barList[i]].args = {
 			displayStyleAbsorbPower = {
-				name = L['Display Style'],
+				name = L["Display Style"],
 				type = 'select',
 				order = 0,
 				hidden = i < 3,
 				values = {
-					[0] = L['Always Hidden'],
-					[1] = L['Hidden at 0'],
-					[2] = L['Always Visible'],
+					[0] = L["Always Hidden"],
+					[1] = L["Hidden at 0"],
+					[2] = L["Always Visible"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].Enabled
@@ -489,9 +489,9 @@ local function BarSettings(profileName,groupFrame)
 			classEnabled = {
 				name = function()
 					if RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].Enabled == true then
-						return '|cFF00FF00'..L['Enabled']..'|r'
+						return '|cFF00FF00'..L["Enabled"]..'|r'
 					else
-						return '|cFFFF0000'..L['Enabled']..'|r'
+						return '|cFFFF0000'..L["Enabled"]..'|r'
 					end
 				end,
 				type = 'toggle',
@@ -506,22 +506,21 @@ local function BarSettings(profileName,groupFrame)
 				end,
 			},
 			fillStyle = {
-				name = L['Fill Type'],
+				name = L["Fill Type"],
 				type = 'select',
 				order = 1,
 				values = function()
 					local table = {}
 					if i == 2 then
 						table = {
-							['STANDARD'] = 'Standard',
-							['REVERSE'] = 'Reverse',
+							['STANDARD'] = L["Standard"],
+							['REVERSE'] = L["Reverse"],
 						}
 					else
 						table = {
-							['STANDARD'] = 'Standard',
-							['REVERSE'] = 'Reverse',
-							['CENTER'] = 'Center',
-							--['STANDARD_NO_RANGE_FILL'] = 'Show no value as full',
+							['STANDARD'] = L["Standard"],
+							['REVERSE'] = L["Reverse"],
+							['CENTER'] = L["Center"],
 						}
 					end
 					return table
@@ -535,7 +534,7 @@ local function BarSettings(profileName,groupFrame)
 				end,
 			},
 			barHeight = {
-				name = L['Height'],
+				name = L["Height"],
 				type = 'range',
 				order = 0.04,
 				hidden = i == 1,
@@ -556,13 +555,13 @@ local function BarSettings(profileName,groupFrame)
 			},
 			barAnchor = {
 				type = 'select',
-				name = L['Anchor'],
+				name = L["Anchor"],
 				order = 0.05,
 				hidden = i == 1,
 				disabled = function() if RUF.db.profile.Appearance.Bars.Absorb.Type == 1 and i == 4 then return true end end,
 				values = {
-					['TOP'] = L['Top'],
-					['BOTTOM'] = L['Bottom'],
+					['TOP'] = L["Top"],
+					['BOTTOM'] = L["Bottom"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].Position.Anchor
@@ -604,27 +603,27 @@ local function TextSettings(profileName,groupFrame)
 	local copyList = {}
 	if RUF.Client == 1 then
 		copyList = {
-			['Player'] = L['player'],
-			['Pet'] = L['pet'],
-			['PetTarget'] = L['pettarget'],
-			['Focus'] = L['focus'],
-			['FocusTarget'] = L['focustarget'],
-			['Target'] = L['target'],
-			['TargetTarget'] = L['targettarget'],
-			['Boss'] = L['boss'],
-			--['BossTarget'] = L['bosstarget'],
-			['Arena'] = L['arena'],
-			--['ArenaTarget'] = L['arenatarget'],
-			['Party'] = L['party'],
+			['Player'] = L["player"],
+			['Pet'] = L["pet"],
+			['PetTarget'] = L["pettarget"],
+			['Focus'] = L["focus"],
+			['FocusTarget'] = L["focustarget"],
+			['Target'] = L["target"],
+			['TargetTarget'] = L["targettarget"],
+			['Boss'] = L["boss"],
+			--['BossTarget'] = L["bosstarget"],
+			['Arena'] = L["arena"],
+			--['ArenaTarget'] = L["arenatarget"],
+			['Party'] = L["party"],
 		}
 	else
 		copyList = {
-			['Player'] = L['player'],
-			['Pet'] = L['pet'],
-			['PetTarget'] = L['pettarget'],
-			['Target'] = L['target'],
-			['TargetTarget'] = L['targettarget'],
-			['Party'] = L['party'],
+			['Player'] = L["player"],
+			['Pet'] = L["pet"],
+			['PetTarget'] = L["pettarget"],
+			['Target'] = L["target"],
+			['TargetTarget'] = L["targettarget"],
+			['Party'] = L["party"],
 		}
 	end
 	copyList[profileName] = nil
@@ -641,20 +640,20 @@ local function TextSettings(profileName,groupFrame)
 	groupFrame = string.lower(groupFrame)
 
 	local textOptions = {
-		name = L['Texts'],
+		name = L["Texts"],
 		type = 'group',
 		childGroups = 'select',
 		order = 20,
 		args = {
 			addTextElement = {
-				name = L['Add Text Area'],
+				name = L["Add Text Area"],
 				type = 'input',
-				desc = L['Add a Text Area for this unit with this name.'],
+				desc = L["Add a Text Area for this unit with this name."],
 				order = 0.0,
 				set = function(info, value)
 					if RUF.db.profile.unit[profileName].Frame.Text[value] then
 						if RUF.db.profile.unit[profileName].Frame.Text[value] ~= '' then
-							RUF:Print_Self(L['A text area with that name already exists!'])
+							RUF:Print_Self(L["A text area with that name already exists!"])
 							return
 						end
 					end
@@ -678,9 +677,9 @@ local function TextSettings(profileName,groupFrame)
 				end,
 			},
 			removeTextElement = {
-				name = L['Remove Text Area'],
+				name = L["Remove Text Area"],
 				type = 'input',
-				desc = L['Remove Text Area from this unit with this name.'],
+				desc = L["Remove Text Area from this unit with this name."],
 				order = 0.1,
 				set = function(info, value)
 					if not RUF.db.profile.unit[profileName].Frame.Text[value] then return end --TODO Error Message
@@ -739,9 +738,9 @@ local function TextSettings(profileName,groupFrame)
 				enabled = {
 					name = function()
 						if RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Enabled == true then
-							return '|cFF00FF00'..L['Enabled']..'|r'
+							return '|cFF00FF00'..L["Enabled"]..'|r'
 						else
-							return '|cFFFF0000'..L['Enabled']..'|r'
+							return '|cFFFF0000'..L["Enabled"]..'|r'
 						end
 					end,
 					type = 'toggle',
@@ -756,7 +755,7 @@ local function TextSettings(profileName,groupFrame)
 					end,
 				},
 				tag = {
-					name = L['Tag'],
+					name = L["Tag"],
 					type = 'select',
 					order = 0.01,
 					values = tagInputs,
@@ -775,9 +774,9 @@ local function TextSettings(profileName,groupFrame)
 					width = 'full',
 				},
 				offsetX = {
-					name = L['X Offset'],
+					name = L["X Offset"],
 					type = 'range',
-					desc = L['Horizontal Offset from the Anchor.'],
+					desc = L["Horizontal Offset from the Anchor."],
 					order = 0.03,
 					min = -500,
 					max = 500,
@@ -794,9 +793,9 @@ local function TextSettings(profileName,groupFrame)
 					end,
 				},
 				offsetY = {
-					name = L['Y Offset'],
+					name = L["Y Offset"],
 					type = 'range',
-					desc = L['Vertical Offset from the Anchor.'],
+					desc = L["Vertical Offset from the Anchor."],
 					order = 0.04,
 					min = -500,
 					max = 500,
@@ -813,9 +812,9 @@ local function TextSettings(profileName,groupFrame)
 					end,
 				},
 				textWidth = {
-					name = L['Max Width'],
+					name = L["Max Width"],
 					type = 'range',
-					desc = L['Limit text width.'],
+					desc = L["Limit text width."],
 					type = 'range',order = 0.05,
 					hidden = true,
 					min = 0,
@@ -833,9 +832,9 @@ local function TextSettings(profileName,groupFrame)
 					end,
 				},
 				anchorFrame = {
-					name = L['Attach To'],
+					name = L["Attach To"],
 					type = 'select',
-					desc = L['Choose an element to attach to, either the frame or another text area.'],
+					desc = L["Choose an element to attach to, either the frame or another text area."],
 					order = 0.06,
 					values = textAnchors,
 					get = function(info)
@@ -860,19 +859,19 @@ local function TextSettings(profileName,groupFrame)
 					end,
 				},
 				anchorPoint = {
-					name = L['Anchor To'],
+					name = L["Anchor To"],
 					type = 'select',
 					order = 0.07,
 					values = {
-						TOP = L['Top'],
-						RIGHT = L['Right'],
-						BOTTOM = L['Bottom'],
-						LEFT = L['Left'],
-						TOPRIGHT = L['Top-right'],
-						TOPLEFT = L['Top-left'],
-						BOTTOMRIGHT = L['Bottom-right'],
-						BOTTOMLEFT = L['Bottom-left'],
-						CENTER = L['Center'],
+						TOP = L["Top"],
+						RIGHT = L["Right"],
+						BOTTOM = L["Bottom"],
+						LEFT = L["Left"],
+						TOPRIGHT = L["Top-right"],
+						TOPLEFT = L["Top-left"],
+						BOTTOMRIGHT = L["Bottom-right"],
+						BOTTOMLEFT = L["Bottom-left"],
+						CENTER = L["Center"],
 					},
 					get = function(info)
 						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.Anchor
@@ -883,7 +882,7 @@ local function TextSettings(profileName,groupFrame)
 					end,
 				},
 				font = {
-					name = L['Font'],
+					name = L["Font"],
 					type = 'select',
 					order = 10,
 					values = LSM:HashTable('font'),
@@ -897,7 +896,7 @@ local function TextSettings(profileName,groupFrame)
 					end,
 				},
 				fontSize = {
-					name = L['Font Size'],
+					name = L["Font Size"],
 					type = 'range',
 					order = 10,
 					min = 4,
@@ -915,16 +914,16 @@ local function TextSettings(profileName,groupFrame)
 					end,
 				},
 				fontOutline = {
-					name = L['Outline'],
+					name = L["Outline"],
 					type = 'select',
 					order = 10,
 					values = {
-						[''] = L['None'],
-						['OUTLINE'] = L['Outline'],
-						['THICKOUTLINE'] = L['Thick Outline'],
-						['MONOCHROME'] = L['Monochrome'],
-						['MONOCHROME,OUTLINE'] = L['Monochrome Outline'],
-						['MONOCHROME,THICKOUTLINE'] = L['Monochrome Thick Outline'],
+						[''] = L["None"],
+						['OUTLINE'] = L["Outline"],
+						['THICKOUTLINE'] = L["Thick Outline"],
+						['MONOCHROME'] = L["Monochrome"],
+						['MONOCHROME,OUTLINE'] = L["Monochrome Outline"],
+						['MONOCHROME,THICKOUTLINE'] = L["Monochrome Thick Outline"],
 					},
 					get = function(info)
 						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Outline
@@ -935,9 +934,9 @@ local function TextSettings(profileName,groupFrame)
 					end,
 				},
 				fontShadow = {
-					name = L['Shadow'],
+					name = L["Shadow"],
 					type = 'toggle',
-					desc = L['Enable Text Shadow'],
+					desc = L["Enable Text Shadow"],
 					order = 10,
 					get = function(info)
 						if RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Shadow == 1 then
@@ -1019,7 +1018,7 @@ local function IndicatorSettings(profileName,groupFrame)
 	}
 
 	local indicatorOptions = {
-		name = L['Indicators'],
+		name = L["Indicators"],
 		type = 'group',
 		order = 30,
 		args = {
@@ -1036,15 +1035,6 @@ local function IndicatorSettings(profileName,groupFrame)
 					local targetIndicator = k..'Indicator'
 					if RUF:CanAttach(_G['oUF_RUF_' .. referenceUnit][currentIndicator],_G['oUF_RUF_' .. referenceUnit][targetIndicator]) then
 						indicatorAnchors[k] = k
-						if k == 'TargetMark' then
-							indicatorAnchors[k] = L['Target Markers']
-						elseif k == 'InCombat' then
-							indicatorAnchors[k] = L['Combat']
-						elseif k == 'MainTankAssist' then
-							indicatorAnchors[k] = L['Main Tank / Assist']
-						elseif k == 'PvPCombat' then
-							indicatorAnchors[k] = L['PvP']
-						end
 					end
 				end
 			end
@@ -1058,9 +1048,9 @@ local function IndicatorSettings(profileName,groupFrame)
 				enabled = {
 					name = function()
 						if RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Enabled == true then
-							return '|cFF00FF00'..L['Enabled']..'|r'
+							return '|cFF00FF00'..L["Enabled"]..'|r'
 						else
-							return '|cFFFF0000'..L['Enabled']..'|r'
+							return '|cFFFF0000'..L["Enabled"]..'|r'
 						end
 					end,
 					type = 'toggle',
@@ -1080,7 +1070,7 @@ local function IndicatorSettings(profileName,groupFrame)
 					width = 'full',
 				},
 				indicatorSize = {
-					name = L['Size'],
+					name = L["Size"],
 					type = 'range',
 					order = 2,
 					min = 4,
@@ -1098,9 +1088,9 @@ local function IndicatorSettings(profileName,groupFrame)
 					end,
 				},
 				offsetX = {
-					name = L['X Offset'],
+					name = L["X Offset"],
 					type = 'range',
-					desc = L['Horizontal Offset from the Anchor.'],
+					desc = L["Horizontal Offset from the Anchor."],
 					order = 3,
 					min = -500,
 					max = 500,
@@ -1117,9 +1107,9 @@ local function IndicatorSettings(profileName,groupFrame)
 					end,
 				},
 				offsetY = {
-					name = L['Y Offset'],
+					name = L["Y Offset"],
 					type = 'range',
-					desc = L['Vertical Offset from the Anchor.'],
+					desc = L["Vertical Offset from the Anchor."],
 					order = 4,
 					min = -500,
 					max = 500,
@@ -1136,20 +1126,20 @@ local function IndicatorSettings(profileName,groupFrame)
 					end,
 				},
 				anchorFrom = {
-					name = L['Anchor From'],
+					name = L["Anchor From"],
 					type = 'select',
-					desc = L['Location area of the Indicator to anchor from.'],
+					desc = L["Location area of the Indicator to anchor from."],
 					order = 5,
 					values = {
-						TOP = L['Top'],
-						RIGHT = L['Right'],
-						BOTTOM = L['Bottom'],
-						LEFT = L['Left'],
-						TOPRIGHT = L['Top-right'],
-						TOPLEFT = L['Top-left'],
-						BOTTOMRIGHT = L['Bottom-right'],
-						BOTTOMLEFT = L['Bottom-left'],
-						CENTER = L['Center'],
+						TOP = L["Top"],
+						RIGHT = L["Right"],
+						BOTTOM = L["Bottom"],
+						LEFT = L["Left"],
+						TOPRIGHT = L["Top-right"],
+						TOPLEFT = L["Top-left"],
+						BOTTOMRIGHT = L["Bottom-right"],
+						BOTTOMLEFT = L["Bottom-left"],
+						CENTER = L["Center"],
 					},
 					get = function(info)
 						return RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Position.AnchorFrom
@@ -1160,9 +1150,9 @@ local function IndicatorSettings(profileName,groupFrame)
 					end,
 				},
 				anchorFrame = {
-					name = L['Attach To'],
+					name = L["Attach To"],
 					type = 'select',
-					desc = L['Choose an element to attach to, either the frame or another indicator.'],
+					desc = L["Choose an element to attach to, either the frame or another indicator."],
 					values = indicatorAnchors,
 					order = 6,
 					get = function(info)
@@ -1186,20 +1176,20 @@ local function IndicatorSettings(profileName,groupFrame)
 					end,
 				},
 				anchorPoint = {
-					name = L['Anchor To'],
+					name = L["Anchor To"],
 					type = 'select',
-					desc = L['Area on the anchor frame to anchor the indicator to.'],
+					desc = L["Area on the anchor frame to anchor the indicator to."],
 					order = 7,
 					values = {
-						TOP = L['Top'],
-						RIGHT = L['Right'],
-						BOTTOM = L['Bottom'],
-						LEFT = L['Left'],
-						TOPRIGHT = L['Top-right'],
-						TOPLEFT = L['Top-left'],
-						BOTTOMRIGHT = L['Bottom-right'],
-						BOTTOMLEFT = L['Bottom-left'],
-						CENTER = L['Center'],
+						TOP = L["Top"],
+						RIGHT = L["Right"],
+						BOTTOM = L["Bottom"],
+						LEFT = L["Left"],
+						TOPRIGHT = L["Top-right"],
+						TOPLEFT = L["Top-left"],
+						BOTTOMRIGHT = L["Bottom-right"],
+						BOTTOMLEFT = L["Bottom-left"],
+						CENTER = L["Center"],
 					},
 					get = function(info)
 						return RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Position.AnchorTo
@@ -1232,16 +1222,16 @@ local function BuffSettings(profileName,groupFrame)
 	profileName = string.lower(profileName)
 
 	local buffOptions = {
-		name = L['Buffs'],
+		name = L["Buffs"],
 		type = 'group',
 		order = 40,
 		args = {
 			enabled = {
 				name = function()
 					if RUF.db.profile.unit[profileName].Buffs.Icons.Enabled == true then
-						return '|cFF00FF00'..L['Enabled']..'|r'
+						return '|cFF00FF00'..L["Enabled"]..'|r'
 					else
-						return '|cFFFF0000'..L['Enabled']..'|r'
+						return '|cFFFF0000'..L["Enabled"]..'|r'
 					end
 				end,
 				type = 'toggle',
@@ -1263,7 +1253,7 @@ local function BuffSettings(profileName,groupFrame)
 				width = 'full',
 			},
 			buffSize = {
-				name = L['Size'],
+				name = L["Size"],
 				type = 'range',
 				order = 2,
 				min = 4,
@@ -1281,7 +1271,7 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			numRows = {
-				name = L['Rows'],
+				name = L["Rows"],
 				type = 'range',
 				hidden = true, -- Why? I don't remember. Check it out.
 				order = 3,
@@ -1300,7 +1290,7 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			numColumns = {
-				name = L['Columns'],
+				name = L["Columns"],
 				type = 'range',
 				order = 3,
 				min = 1,
@@ -1318,7 +1308,7 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			horizontalPadding = {
-				name = L['Horizontal Spacing'],
+				name = L["Horizontal Spacing"],
 				type = 'range',
 				order = 3.1,
 				min = -500,
@@ -1336,7 +1326,7 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			verticalPadding = {
-				name = L['Vertical Spacing'],
+				name = L["Vertical Spacing"],
 				type = 'range',
 				order = 3.2,
 				min = -500,
@@ -1355,11 +1345,11 @@ local function BuffSettings(profileName,groupFrame)
 			},
 			horizontalGrowthDirection = {
 				type = 'select',
-				name = L['Horizontal Growth'],
+				name = L["Horizontal Growth"],
 				order = 3.3,
 				values = {
-					RIGHT = L['Right'],
-					LEFT = L['Left'],
+					RIGHT = L["Right"],
+					LEFT = L["Left"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Growth.x
@@ -1371,11 +1361,11 @@ local function BuffSettings(profileName,groupFrame)
 			},
 			verticalGrowthDirection = {
 				type = 'select',
-				name = L['Vertical Growth'],
+				name = L["Vertical Growth"],
 				order = 3.3,
 				values = {
-					DOWN = L['Down'],
-					UP = L['Up'],
+					DOWN = L["Down"],
+					UP = L["Up"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Growth.y
@@ -1386,19 +1376,19 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			sortingHeader = {
-				name = L['Sorting'],
+				name = L["Sorting"],
 				type = 'header',
 				order = 3.5,
 				hidden = true,
 			},
 			sortDirection = {
-				name = L['Direction'],
+				name = L["Direction"],
 				type = 'select',
 				hidden = true, -- Why?
 				order = 4,
 				values = {
-					Ascending = L['Ascending'],
-					Descending = L['Descending'],
+					Ascending = L["Ascending"],
+					Descending = L["Descending"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Sort.Direction
@@ -1410,15 +1400,15 @@ local function BuffSettings(profileName,groupFrame)
 			},
 			sortType = {
 				type = 'select',
-				name = L['Sort By'],
+				name = L["Sort By"],
 				hidden = true, -- Why? NYI? Check it.
 				order = 4,
 				values = {
-					Alphabetically = L['Alphabetically'],
-					Duration = L['Duration'],
-					Index = L['Index'],
-					Player = L['Player'],
-					Remaining = L['Time Remaining'],
+					Alphabetically = L["Alphabetically"],
+					Duration = L["Duration"],
+					Index = L["Index"],
+					Player = L["Player"],
+					Remaining = L["Time Remaining"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Sort.SortBy
@@ -1429,14 +1419,14 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			anchorHeader = {
-				name = L['Anchoring'],
+				name = L["Anchoring"],
 				type = 'header',
 				order = 4.5,
 			},
 			horizontalOffset = {
-				name = L['X Offset'],
+				name = L["X Offset"],
 				type = 'range',
-				desc = L['Horizontal Offset from the Anchor.'],
+				desc = L["Horizontal Offset from the Anchor."],
 				order = 5,
 				min = -500,
 				max = 500,
@@ -1453,9 +1443,9 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			verticalOffset = {
-				name = L['Y Offset'],
+				name = L["Y Offset"],
 				type = 'range',
-				desc = L['Vertical Offset from the Anchor.'],
+				desc = L["Vertical Offset from the Anchor."],
 				order = 6,
 				min = -500,
 				max = 500,
@@ -1472,20 +1462,20 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			anchorFrom = {
-				name = L['Anchor From'],
+				name = L["Anchor From"],
 				type = 'select',
-				desc = L['Location area of the Indicator to anchor from.'],
+				desc = L["Location area of the Indicator to anchor from."],
 				order = 7,
 				values = {
-					TOP = L['Top'],
-					RIGHT = L['Right'],
-					BOTTOM = L['Bottom'],
-					LEFT = L['Left'],
-					TOPRIGHT = L['Top-right'],
-					TOPLEFT = L['Top-left'],
-					BOTTOMRIGHT = L['Bottom-right'],
-					BOTTOMLEFT = L['Bottom-left'],
-					CENTER = L['Center'],
+					TOP = L["Top"],
+					RIGHT = L["Right"],
+					BOTTOM = L["Bottom"],
+					LEFT = L["Left"],
+					TOPRIGHT = L["Top-right"],
+					TOPLEFT = L["Top-left"],
+					BOTTOMRIGHT = L["Bottom-right"],
+					BOTTOMLEFT = L["Bottom-left"],
+					CENTER = L["Center"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrom
@@ -1496,13 +1486,13 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			anchorFrame = {
-				name = L['Attach To'],
+				name = L["Attach To"],
 				type = 'select',
-				desc = L['Choose an element to attach to, either the frame or another indicator.'],
+				desc = L["Choose an element to attach to, either the frame or another indicator."],
 				hidden = true,
 				values = {
-					Frame = L['Frame'],
-					DebuffIcons = L['Debuff Icons'],
+					Frame = L["Frame"],
+					DebuffIcons = L["Debuff Icons"],
 				},
 				order = 8,
 				get = function(info)
@@ -1528,20 +1518,20 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			anchorPoint = {
-				name = L['Anchor To'],
+				name = L["Anchor To"],
 				type = 'select',
-				desc = L['Area on the anchor frame to anchor the indicator to.'],
+				desc = L["Area on the anchor frame to anchor the indicator to."],
 				order = 7,
 				values = {
-					TOP = L['Top'],
-					RIGHT = L['Right'],
-					BOTTOM = L['Bottom'],
-					LEFT = L['Left'],
-					TOPRIGHT = L['Top-right'],
-					TOPLEFT = L['Top-left'],
-					BOTTOMRIGHT = L['Bottom-right'],
-					BOTTOMLEFT = L['Bottom-left'],
-					CENTER = L['Center'],
+					TOP = L["Top"],
+					RIGHT = L["Right"],
+					BOTTOM = L["Bottom"],
+					LEFT = L["Left"],
+					TOPRIGHT = L["Top-right"],
+					TOPLEFT = L["Top-left"],
+					BOTTOMRIGHT = L["Bottom-right"],
+					BOTTOMLEFT = L["Bottom-left"],
+					CENTER = L["Center"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorTo
@@ -1552,7 +1542,7 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			clickThrough = {
-				name = L['Click Through'],
+				name = L["Click Through"],
 				type = 'toggle',
 				order = 8,
 				get = function(info)
@@ -1564,16 +1554,14 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			filterHeader = {
-				name = L['Filtering'],
+				name = L["Filtering"],
 				type = 'header',
 				order = 10.5,
 			},
 			filterCasterByPlayer = {
-				name = L['Show Player'],
+				name = L["Show Player"],
 				type = 'toggle',
-				desc = L['Show Buffs cast by '].. L['Player'] .. L[' on this unit.'],
-				-- TODO change string to 'Show Buffs cast by %s on this unit.','Player'
-				-- So translation is nicely done with correct grammar
+				desc = L["Show buffs cast by %s on this unit."]:format(L["Player"]),
 				order = 15,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Caster.Player
@@ -1584,9 +1572,9 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			filterCasterByCurrentUnit = {
-				name = L['Show '].. L[profileName], --Update localisation string
+				name = L["Show %s"]:format(L[profileName]),
 				type = 'toggle',
-				desc = L['Show Buffs cast by '].. profileName .. L[' on this unit.'],
+				desc = L["Show buffs cast by %s on this unit."]:format(L[profileName]),
 				hidden = profileName == 'player',
 				order = 16,
 				get = function(info)
@@ -1598,9 +1586,9 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			filterCasterByGroupUnits = {
-				name = L['Show Group Members'],
+				name = L["Show Group Members"],
 				type = 'toggle',
-				desc = L['Show Buffs cast by '].. L['group members'] .. L[' on this unit.'],
+				desc = L["Show buffs cast by %s on this unit."]:format(L["group members"]),
 				order = 16,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Caster.Group
@@ -1611,9 +1599,9 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			filterCasterByOtherUnits = {
-				name = L['Show Others'],
+				name = L["Show Others"],
 				type = 'toggle',
-				desc = L['Show Buffs cast by '].. L['others'] .. L[' on this unit.'],
+				desc = L["Show buffs cast by %s on this unit."]:format(L["others"]),
 				order = 16,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Caster.Other
@@ -1630,7 +1618,7 @@ local function BuffSettings(profileName,groupFrame)
 				width = 'full',
 			},
 			minDuration = {
-				name = L['Minimum Duration'],
+				name = L["Minimum Duration"],
 				type = 'range',
 				order = 20,
 				min = 0,
@@ -1648,7 +1636,7 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			maxDuration = {
-				name = L['Maximum Duration'],
+				name = L["Maximum Duration"],
 				type = 'range',
 				order = 21,
 				min = 0,
@@ -1666,7 +1654,7 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			toggleDurationLimit = {
-				name = L['Show Unlimited Duration'],
+				name = L["Show Unlimited Duration"],
 				type = 'toggle',
 				order = 22,
 				get = function(info)
@@ -1678,9 +1666,9 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			filterDispellable = {
-				name = L['Show Only Dispellable'],
+				name = L["Show Only Dispellable"],
 				type = 'toggle',
-				desc = L['Show only auras you can dispel'],
+				desc = L["Show only auras you can dispel"],
 				order = 23,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Dispellable
@@ -1691,7 +1679,7 @@ local function BuffSettings(profileName,groupFrame)
 				end,
 			},
 			maxAuras = {
-				name = L['Max Auras'],
+				name = L["Max Auras"],
 				type = 'range',
 				order = 24,
 				min = 1,
@@ -1729,16 +1717,16 @@ local function DebuffSettings(profileName,groupFrame)
 	profileName = string.lower(profileName)
 
 	local debuffOptions = {
-		name = L['Debuffs'],
+		name = L["Debuffs"],
 		type = 'group',
 		order = 40,
 		args = {
 			enabled = {
 				name = function()
 					if RUF.db.profile.unit[profileName].Debuffs.Icons.Enabled == true then
-						return '|cFF00FF00'..L['Enabled']..'|r'
+						return '|cFF00FF00'..L["Enabled"]..'|r'
 					else
-						return '|cFFFF0000'..L['Enabled']..'|r'
+						return '|cFFFF0000'..L["Enabled"]..'|r'
 					end
 				end,
 				type = 'toggle',
@@ -1760,7 +1748,7 @@ local function DebuffSettings(profileName,groupFrame)
 				width = 'full',
 			},
 			debuffSize = {
-				name = L['Size'],
+				name = L["Size"],
 				type = 'range',
 				order = 2,
 				min = 4,
@@ -1778,7 +1766,7 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			numRows = {
-				name = L['Rows'],
+				name = L["Rows"],
 				type = 'range',
 				hidden = true, -- Why? I don't remember. Check it out.
 				order = 3,
@@ -1797,7 +1785,7 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			numColumns = {
-				name = L['Columns'],
+				name = L["Columns"],
 				type = 'range',
 				order = 3,
 				min = 1,
@@ -1815,7 +1803,7 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			horizontalPadding = {
-				name = L['Horizontal Spacing'],
+				name = L["Horizontal Spacing"],
 				type = 'range',
 				order = 3.1,
 				min = -500,
@@ -1833,7 +1821,7 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			verticalPadding = {
-				name = L['Vertical Spacing'],
+				name = L["Vertical Spacing"],
 				type = 'range',
 				order = 3.2,
 				min = -500,
@@ -1852,11 +1840,11 @@ local function DebuffSettings(profileName,groupFrame)
 			},
 			horizontalGrowthDirection = {
 				type = 'select',
-				name = L['Horizontal Growth'],
+				name = L["Horizontal Growth"],
 				order = 3.3,
 				values = {
-					RIGHT = L['Right'],
-					LEFT = L['Left'],
+					RIGHT = L["Right"],
+					LEFT = L["Left"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Growth.x
@@ -1868,11 +1856,11 @@ local function DebuffSettings(profileName,groupFrame)
 			},
 			verticalGrowthDirection = {
 				type = 'select',
-				name = L['Vertical Growth'],
+				name = L["Vertical Growth"],
 				order = 3.3,
 				values = {
-					DOWN = L['Down'],
-					UP = L['Up'],
+					DOWN = L["Down"],
+					UP = L["Up"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Growth.y
@@ -1883,19 +1871,19 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			sortingHeader = {
-				name = L['Sorting'],
+				name = L["Sorting"],
 				type = 'header',
 				order = 3.5,
 				hidden = true,
 			},
 			sortDirection = {
-				name = L['Direction'],
+				name = L["Direction"],
 				type = 'select',
 				hidden = true, -- Why?
 				order = 4,
 				values = {
-					Ascending = L['Ascending'],
-					Descending = L['Descending'],
+					Ascending = L["Ascending"],
+					Descending = L["Descending"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Sort.Direction
@@ -1907,15 +1895,15 @@ local function DebuffSettings(profileName,groupFrame)
 			},
 			sortType = {
 				type = 'select',
-				name = L['Sort By'],
+				name = L["Sort By"],
 				hidden = true, -- Why? NYI? Check it.
 				order = 4,
 				values = {
-					Alphabetically = L['Alphabetically'],
-					Duration = L['Duration'],
-					Index = L['Index'],
-					Player = L['Player'],
-					Remaining = L['Time Remaining'],
+					Alphabetically = L["Alphabetically"],
+					Duration = L["Duration"],
+					Index = L["Index"],
+					Player = L["Player"],
+					Remaining = L["Time Remaining"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Sort.SortBy
@@ -1926,14 +1914,14 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			anchorHeader = {
-				name = L['Anchoring'],
+				name = L["Anchoring"],
 				type = 'header',
 				order = 4.5,
 			},
 			horizontalOffset = {
-				name = L['X Offset'],
+				name = L["X Offset"],
 				type = 'range',
-				desc = L['Horizontal Offset from the Anchor.'],
+				desc = L["Horizontal Offset from the Anchor."],
 				order = 5,
 				min = -500,
 				max = 500,
@@ -1950,9 +1938,9 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			verticalOffset = {
-				name = L['Y Offset'],
+				name = L["Y Offset"],
 				type = 'range',
-				desc = L['Vertical Offset from the Anchor.'],
+				desc = L["Vertical Offset from the Anchor."],
 				order = 6,
 				min = -500,
 				max = 500,
@@ -1969,20 +1957,20 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			anchorFrom = {
-				name = L['Anchor From'],
+				name = L["Anchor From"],
 				type = 'select',
-				desc = L['Location area of the Indicator to anchor from.'],
+				desc = L["Location area of the Indicator to anchor from."],
 				order = 7,
 				values = {
-					TOP = L['Top'],
-					RIGHT = L['Right'],
-					BOTTOM = L['Bottom'],
-					LEFT = L['Left'],
-					TOPRIGHT = L['Top-right'],
-					TOPLEFT = L['Top-left'],
-					BOTTOMRIGHT = L['Bottom-right'],
-					BOTTOMLEFT = L['Bottom-left'],
-					CENTER = L['Center'],
+					TOP = L["Top"],
+					RIGHT = L["Right"],
+					BOTTOM = L["Bottom"],
+					LEFT = L["Left"],
+					TOPRIGHT = L["Top-right"],
+					TOPLEFT = L["Top-left"],
+					BOTTOMRIGHT = L["Bottom-right"],
+					BOTTOMLEFT = L["Bottom-left"],
+					CENTER = L["Center"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorFrom
@@ -1993,13 +1981,13 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			anchorFrame = {
-				name = L['Attach To'],
+				name = L["Attach To"],
 				type = 'select',
-				desc = L['Choose an element to attach to, either the frame or another indicator.'],
+				desc = L["Choose an element to attach to, either the frame or another indicator."],
 				hidden = true,
 				values = {
-					Frame = L['Frame'],
-					DebuffIcons = L['Debuff Icons'],
+					Frame = L["Frame"],
+					BuffIcons = L["Buff Icons"],
 				},
 				order = 8,
 				get = function(info)
@@ -2025,20 +2013,20 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			anchorPoint = {
-				name = L['Anchor To'],
+				name = L["Anchor To"],
 				type = 'select',
-				desc = L['Area on the anchor frame to anchor the indicator to.'],
+				desc = L["Area on the anchor frame to anchor the indicator to."],
 				order = 7,
 				values = {
-					TOP = L['Top'],
-					RIGHT = L['Right'],
-					BOTTOM = L['Bottom'],
-					LEFT = L['Left'],
-					TOPRIGHT = L['Top-right'],
-					TOPLEFT = L['Top-left'],
-					BOTTOMRIGHT = L['Bottom-right'],
-					BOTTOMLEFT = L['Bottom-left'],
-					CENTER = L['Center'],
+					TOP = L["Top"],
+					RIGHT = L["Right"],
+					BOTTOM = L["Bottom"],
+					LEFT = L["Left"],
+					TOPRIGHT = L["Top-right"],
+					TOPLEFT = L["Top-left"],
+					BOTTOMRIGHT = L["Bottom-right"],
+					BOTTOMLEFT = L["Bottom-left"],
+					CENTER = L["Center"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorTo
@@ -2049,7 +2037,7 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			clickThrough = {
-				name = L['Click Through'],
+				name = L["Click Through"],
 				type = 'toggle',
 				order = 8,
 				get = function(info)
@@ -2061,16 +2049,14 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			filterHeader = {
-				name = L['Filtering'],
+				name = L["Filtering"],
 				type = 'header',
 				order = 10.5,
 			},
 			filterCasterByPlayer = {
-				name = L['Show Player'],
+				name = L["Show Player"],
 				type = 'toggle',
-				desc = L['Show Debuffs cast by '].. L['Player'] .. L[' on this unit.'],
-				-- TODO change string to 'Show Buffs cast by %s on this unit.','Player'
-				-- So translation is nicely done with correct grammar
+				desc = L["Show debuffs cast by %s on this unit."]:format(L["Player"]),
 				order = 15,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Caster.Player
@@ -2081,9 +2067,9 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			filterCasterByCurrentUnit = {
-				name = L['Show '].. L[profileName], --Update localisation string
+				name = L["Show %s"]:format(L[profileName]),
 				type = 'toggle',
-				desc = L['Show Debuffs cast by '].. profileName .. L[' on this unit.'],
+				desc = L["Show debuffs cast by %s on this unit."]:format(L[profileName]),
 				hidden = profileName == 'player',
 				order = 16,
 				get = function(info)
@@ -2095,9 +2081,9 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			filterCasterByGroupUnits = {
-				name = L['Show Group Members'],
+				name = L["Show Group Members"],
 				type = 'toggle',
-				desc = L['Show Debuffs cast by '].. L['group members'] .. L[' on this unit.'],
+				desc = L["Show debuffs cast by %s on this unit."]:format(L["group members"]),
 				order = 16,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Caster.Group
@@ -2108,9 +2094,9 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			filterCasterByOtherUnits = {
-				name = L['Show Others'],
+				name = L["Show Others"],
 				type = 'toggle',
-				desc = L['Show Debuffs cast by '].. L['others'] .. L[' on this unit.'],
+				desc = L["Show debuffs cast by %s on this unit."]:format(L["others"]),
 				order = 16,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Caster.Other
@@ -2127,7 +2113,7 @@ local function DebuffSettings(profileName,groupFrame)
 				width = 'full',
 			},
 			minDuration = {
-				name = L['Minimum Duration'],
+				name = L["Minimum Duration"],
 				type = 'range',
 				order = 20,
 				min = 0,
@@ -2145,7 +2131,7 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			maxDuration = {
-				name = L['Maximum Duration'],
+				name = L["Maximum Duration"],
 				type = 'range',
 				order = 21,
 				min = 0,
@@ -2163,7 +2149,7 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			toggleDurationLimit = {
-				name = L['Show Unlimited Duration'],
+				name = L["Show Unlimited Duration"],
 				type = 'toggle',
 				order = 22,
 				get = function(info)
@@ -2175,9 +2161,9 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			filterDispellable = {
-				name = L['Show Only Dispellable'],
+				name = L["Show Only Dispellable"],
 				type = 'toggle',
-				desc = L['Show only auras you can dispel'],
+				desc = L["Show only auras you can dispel"],
 				order = 23,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Dispellable
@@ -2188,7 +2174,7 @@ local function DebuffSettings(profileName,groupFrame)
 				end,
 			},
 			maxAuras = {
-				name = L['Max Auras'],
+				name = L["Max Auras"],
 				type = 'range',
 				order = 24,
 				min = 1,
@@ -2258,7 +2244,7 @@ function RUF_Options.GenerateUnits()
 	end
 
 	local Units = {
-		name = L['Unit Options'],
+		name = L["Unit Options"],
 		type = 'group',
 		childGroups = 'tree',
 		order = 2,

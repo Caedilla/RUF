@@ -24,7 +24,7 @@ function RUF_Options.Texts()
 	end
 
 	local Texts = {
-		name = L['Tags'],
+		name = L["Tags"],
 		type = 'group',
 		order = 4,
 		args = {},
@@ -36,13 +36,13 @@ function RUF_Options.Texts()
 			args = {
 				Case = {
 					type = 'select',
-					name = L['Text Case'],
-					desc = L['Choose if text is Capitalised, All Lower Case or all Upper case.'],
+					name = L["Text Case"],
+					desc = L["Choose if text is Capitalised, All Lower Case or all Upper case."],
 					order = 0.03,
 					values = {
-						[0] = L['Normal'],
-						[1] = L['Upper Case'],
-						[2] = L['Lower Case'],
+						[0] = L["Normal"],
+						[1] = L["Upper Case"],
+						[2] = L["Lower Case"],
 					},
 					get = function(info)
 						return RUF.db.profile.Appearance.Text[TagList[i]].Case
@@ -52,8 +52,8 @@ function RUF_Options.Texts()
 					end,
 				},
 				Base_Color = {
-					name = L['Base Color'],
-					desc = L['Color used if none of the other options are checked.'],
+					name = L["Base Color"],
+					desc = L["Color used if none of the other options are checked."],
 					type = 'color',
 					order = 0.04,
 					get = function(info)
@@ -64,7 +64,7 @@ function RUF_Options.Texts()
 					end,
 				},
 				Class = {
-					name = L['Color Class'],
+					name = L["Color Class"],
 					type = 'toggle',
 					order = 0.05,
 					get = function(info)
@@ -75,7 +75,7 @@ function RUF_Options.Texts()
 					end,
 				},
 				Level = {
-					name = L['Color Level'],
+					name = L["Color Level"],
 					type = 'toggle',
 					order = 0.05,
 					get = function(info)
@@ -86,7 +86,7 @@ function RUF_Options.Texts()
 					end,
 				},
 				Reaction = {
-					name = L['Color Reaction'],
+					name = L["Color Reaction"],
 					type = 'toggle',
 					order = 0.05,
 					get = function(info)
@@ -97,7 +97,7 @@ function RUF_Options.Texts()
 					end,
 				},
 				PowerType = {
-					name = L['Color Power Type'],
+					name = L["Color Power Type"],
 					type = 'toggle',
 					order = 0.05,
 					get = function(info)
@@ -108,7 +108,7 @@ function RUF_Options.Texts()
 					end,
 				},
 				Percentage = {
-					name = L['Color Percentage'],
+					name = L["Color Percentage"],
 					type = 'toggle',
 					order = 0.05,
 					get = function(info)
@@ -119,7 +119,7 @@ function RUF_Options.Texts()
 					end,
 				},
 				PercentageAtMax = {
-					name = L['Color Percentage At Max'],
+					name = L["Color Percentage At Max"],
 					type = 'toggle',
 					order = 0.05,
 					get = function(info)
@@ -130,8 +130,8 @@ function RUF_Options.Texts()
 					end,
 				},
 				Percent_100 = {
-					name = L['100%'],
-					desc = L['Color at 100%.'],
+					name = L["100%"],
+					desc = L["Color at 100%"],
 					type = 'color',
 					order = 0.1,
 					hidden =  function() return not RUF.db.profile.Appearance.Text[TagList[i]].Color.Percentage end,
@@ -146,8 +146,8 @@ function RUF_Options.Texts()
 					end,
 				},
 				Percent_50 = {
-					name = L['50%'],
-					desc = L['Color at 50%'],
+					name = L["50%"],
+					desc = L["Color at 50%"],
 					type = 'color',
 					order = 0.11,
 					hidden =  function() return not RUF.db.profile.Appearance.Text[TagList[i]].Color.Percentage end,
@@ -161,8 +161,8 @@ function RUF_Options.Texts()
 					end,
 				},
 				Percent_0 = {
-					name = L['0%'],
-					desc = L['Color at 0%'],
+					name = L["0%"],
+					desc = L["Color at 0%"],
 					type = 'color',
 					order = 0.12,
 					hidden =  function() return not RUF.db.profile.Appearance.Text[TagList[i]].Color.Percentage end,
@@ -182,11 +182,12 @@ function RUF_Options.Texts()
 					order = 10.0,
 				},
 				HideSameLevel = {
-					name = L['Hide same level'],
-					desc = L['Hide the level text if the unit is the same level as you.'],
+					name = L["Hide same level"],
+					desc = L["Hide the level text if the unit is the same level as you."],
 					type = 'toggle',
 					width = 'full',
 					hidden = function() return TagList[i] ~= 'Level' end,
+					disabled = not RUF.db.profile.Appearance.Text[TagList[i]].ShowLevel,
 					order = 10.01,
 					get = function(info)
 						return RUF.db.profile.Appearance.Text[TagList[i]].HideSameLevel
@@ -195,23 +196,36 @@ function RUF_Options.Texts()
 						RUF.db.profile.Appearance.Text[TagList[i]].HideSameLevel = value
 					end,
 				},
-				HideClassification = {
-					name = L['Hide Classification'],
-					desc = L['Hide the ++ for rare elites, + for elites etc.'],
+				ShowLevel = {
+					name = L["Show Level"],
 					type = 'toggle',
 					width = 'full',
 					hidden = function() return TagList[i] ~= 'Level' end,
 					order = 10.01,
 					get = function(info)
-						return RUF.db.profile.Appearance.Text[TagList[i]].HideClassification
+						return RUF.db.profile.Appearance.Text[TagList[i]].ShowLevel
 					end,
 					set = function(info, value)
-						RUF.db.profile.Appearance.Text[TagList[i]].HideClassification = value
+						RUF.db.profile.Appearance.Text[TagList[i]].ShowLevel = value
+					end,
+				},
+				ShowClassification = {
+					name = L["Show Classification"],
+					desc = L["Show the ++ for rare elites, + for elites etc."],
+					type = 'toggle',
+					width = 'full',
+					hidden = function() return TagList[i] ~= 'Level' end,
+					order = 10.01,
+					get = function(info)
+						return RUF.db.profile.Appearance.Text[TagList[i]].ShowClassification
+					end,
+					set = function(info, value)
+						RUF.db.profile.Appearance.Text[TagList[i]].ShowClassification = value
 					end,
 				},
 				HideWhenPrimaryIsMana = {
-					name = L['Hide if Primary Power is Mana.'],
-					desc = L['Sets this to hidden if your primary resource is mana, so it only shows if you have a class resource, such as Maelstrom.'],
+					name = L["Hide if Primary Power is Mana."],
+					desc = L["Sets this to hidden if your primary resource is mana, so it only shows if you have a class resource, such as Maelstrom."],
 					type = 'toggle',
 					width = 'full',
 					hidden = function()
@@ -225,8 +239,8 @@ function RUF_Options.Texts()
 					end,
 				},
 				Name_Limit = {
-					name = L['Character Limit'],
-					desc = L['Abbreviate Character Names longer than this. Set 0 for no limit.'],
+					name = L["Character Limit"],
+					desc = L["Abbreviate Character Names longer than this. Set 0 for no limit."],
 					type = 'range',
 					order = 10.03,
 					hidden = function() return TagList[i] ~= 'Name' end,
@@ -244,8 +258,8 @@ function RUF_Options.Texts()
 					end,
 				},
 				CurManaPerc_Enabled = {
-					name = L['Display Style'],
-					desc = L['Hide this tag at 0 or always display.'],
+					name = L["Display Style"],
+					desc = L["Hide this tag at 0 or always display."],
 					type = 'select',
 					order = 10.01,
 					hidden = function()
@@ -258,8 +272,8 @@ function RUF_Options.Texts()
 						end
 					end,
 					values = {
-						[1] = L['Hidden at 0'],
-						[2] = L['Always Visible'],
+						[1] = L["Hidden at 0"],
+						[2] = L["Always Visible"],
 					},
 					get = function(info)
 						return RUF.db.profile.Appearance.Text[TagList[i]].Enabled
@@ -269,7 +283,7 @@ function RUF_Options.Texts()
 					end,
 				},
 				MaxAtMax = {
-					name = L['Show Max at Max'],
+					name = L["Show Max at Max"],
 					type = 'toggle',
 					hidden = function() return TagList[i] ~= 'CurMaxHPPerc' end,
 					order = 10.01,
@@ -281,7 +295,7 @@ function RUF_Options.Texts()
 					end,
 				},
 				PercAtMax = {
-					name = L['Show Percentage at Max'],
+					name = L["Show Percentage at Max"],
 					type = 'toggle',
 					hidden = function()
 						if TagList[i] == 'CurMaxHPPerc' or TagList[i] == 'CurHPPerc' then

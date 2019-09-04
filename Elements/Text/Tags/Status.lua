@@ -9,7 +9,7 @@ local events = oUF.TagEvents or oUF.Tags.Events
 ----------------------------------------------------------------------------------- STATUS
 tags['RUF:Level'] = function(unit)
 	local profileReference = RUF.db.profile.Appearance.Text.Level
-	local l = UnitLevel(unit)
+	local level = UnitLevel(unit)
 	local elite = UnitClassification(unit) -- worldboss, rareelite, elite, rare, normal, trivial, or minus
 	if elite == 'rareelite' then
 		elite = '++'
@@ -21,19 +21,50 @@ tags['RUF:Level'] = function(unit)
 		elite = ''
 	end
 	if RUF.db.global.TestMode == true then
-		l = math.random(120)
+		level = math.random(120)
 	end
 	local r,g,b = RUF:ReturnTextColors(unit, 'Level')
-	if l <= 0 then l = '??' end
-	if profileReference.HideSameLevel == true then
-		if l == UnitLevel('player') then
-			return ''
-		end
+	if level <= 0 then
+		level = ''
+		elite = '??'
+	 end
+	if profileReference.HideSameLevel == true and level == UnitLevel('player') then
+		level = ''
 	end
-	if profileReference.HideClassification == true then
+	if profileReference.ShowLevel == false then
+		level = ''
+	end
+	if profileReference.ShowClassification == false then
 		elite = ''
 	end
-	return string.format('|cff%02x%02x%02x%s%s|r',r*255,g*255,b*255,elite,l)
+	return string.format('|cff%02x%02x%02x%s%s|r',r*255,g*255,b*255,elite,level)
+
+
+
+
+	--[[
+
+	Same level:
+		Nothing
+		Level
+		Classification
+		Level + Classification
+	Other level:
+		Nothing
+		Level
+		Classification
+		Level + Classification
+
+
+	Show Classification
+	Show Level
+	HideSameLevel
+
+
+
+
+]]--
+
 end
 events['RUF:Level'] = 'UNIT_LEVEL PLAYER_LEVEL_UP UNIT_CLASSIFICATION_CHANGED'
 
