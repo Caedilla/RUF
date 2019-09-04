@@ -9,10 +9,6 @@ git:
   depth: 150
 
 deploy:
+  script bash ./Release/release.sh
   on:
     tags: true
-
-script: curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash
-
-after_success:
-  - curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh -g 1.13.2 | bash
