@@ -3,7 +3,7 @@ language: minimal
 addons:
   apt:
     packages:
-      - pandoc
+      - luarocks
 
 git:
   depth: 150
