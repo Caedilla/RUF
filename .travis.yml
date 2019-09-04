@@ -9,6 +9,6 @@ git:
   depth: 150
 
 deploy:
-  script bash ./Release/release.sh
+  script: bash ./Release/release.sh
   on:
     tags: true
