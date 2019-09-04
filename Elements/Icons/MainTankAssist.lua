@@ -17,7 +17,11 @@ local function Update(self, event)
 	if element.Enabled == true then
 		local role
 		local unit = self.unit
-		if(UnitInRaid(unit) and not UnitHasVehicleUI(unit)) then
+		local unitVehicleUI = false
+		if RUF.Client == 1 then
+			unitVehicleUI = UnitHasVehicleUI(unit)
+		end
+		if(UnitInRaid(unit) and not unitVehicleUI) then
 			if(GetPartyAssignment('MAINTANK', unit)) then
 				element:SetText(elementStringMAINTANK)
 				element:SetWidth(element:GetStringWidth()+2)
