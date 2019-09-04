@@ -43,6 +43,9 @@ globals = {
 	"oUF_RUF_Player",
 	"RUFDB",
 	"ChatFrame1",
+	"InterfaceOptionsFrame",
+	"GameMenuFrame",
+	"InterfaceAddOnsList_Update",
 
 	-- Libraries
 	"LibStub",

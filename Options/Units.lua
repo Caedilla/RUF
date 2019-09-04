@@ -27,8 +27,8 @@ local function UnitGroup(profileName,groupFrame)
 		referenceUnit = profileName .. '1'
 	end
 	local passUnit = profileName
-	local profileName = string.lower(profileName)
-	local groupFrame = string.lower(groupFrame)
+	profileName = string.lower(profileName)
+	groupFrame = string.lower(groupFrame)
 
 	local frameOptions = {
 		name = L[profileName],
@@ -414,8 +414,8 @@ local function BarSettings(profileName,groupFrame)
 		referenceUnit = profileName .. '1'
 	end
 	local passUnit = profileName
-	local profileName = string.lower(profileName)
-	local groupFrame = string.lower(groupFrame)
+	profileName = string.lower(profileName)
+	groupFrame = string.lower(groupFrame)
 
 	local barOptions = {
 		name = L['Bars'],
@@ -637,8 +637,8 @@ local function TextSettings(profileName,groupFrame)
 		referenceUnit = profileName .. '1'
 	end
 	local passUnit = profileName
-	local profileName = string.lower(profileName)
-	local groupFrame = string.lower(groupFrame)
+	profileName = string.lower(profileName)
+	groupFrame = string.lower(groupFrame)
 
 	local textOptions = {
 		name = L['Texts'],
@@ -998,8 +998,8 @@ local function IndicatorSettings(profileName,groupFrame)
 		referenceUnit = profileName .. '1'
 	end
 	local passUnit = profileName
-	local profileName = string.lower(profileName)
-	local groupFrame = string.lower(groupFrame)
+	profileName = string.lower(profileName)
+	groupFrame = string.lower(groupFrame)
 
 	local indicators = {
 		[1] = 'Assist',
@@ -1230,7 +1230,7 @@ local function BuffSettings(profileName,groupFrame)
 	elseif groupFrame ~= 'none' then
 		referenceUnit = profileName .. '1'
 	end
-	local profileName = string.lower(profileName)
+	profileName = string.lower(profileName)
 
 	local buffOptions = {
 		name = L['Buffs'],
@@ -1727,7 +1727,7 @@ local function DebuffSettings(profileName,groupFrame)
 	if groupFrame ~= 'none' then
 		referenceUnit = profileName .. '1'
 	end
-	local profileName = string.lower(profileName)
+	profileName = string.lower(profileName)
 
 	local debuffOptions = {
 		name = L['Debuffs'],

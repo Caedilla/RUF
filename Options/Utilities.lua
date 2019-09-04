@@ -42,14 +42,14 @@ end
 
 function RUF:UpdateFramePosition(unitFrame,profileName,groupFrame,i,anchorFrom,anchorFrame,anchorTo,offsetX,offsetY)
 	if not unitFrame and not profileName and not groupFrame then return end
-	local profileName = string.lower(profileName)
+	profileName = string.lower(profileName)
 	local profileReference = RUF.db.profile.unit[profileName].Frame.Position
 
-	local anchorFrom = anchorFrom or profileReference.AnchorFrom
-	local anchorFrame = anchorFrame or profileReference.AnchorFrame
-	local anchorTo = anchorTo or profileReference.AnchorTo
-	local offsetX = offsetX or profileReference.x
-	local offsetY = offsetY or profileReference.y
+	anchorFrom = anchorFrom or profileReference.AnchorFrom
+	anchorFrame = anchorFrame or profileReference.AnchorFrame
+	anchorTo = anchorTo or profileReference.AnchorTo
+	offsetX = offsetX or profileReference.x
+	offsetY = offsetY or profileReference.y
 	if not i then
 		unitFrame:ClearAllPoints()
 		unitFrame:SetPoint(anchorFrom,anchorFrame,anchorTo,offsetX,offsetY)
@@ -231,7 +231,7 @@ function RUF:OptionsDisableTexts(profileName,groupFrame,textName)
 		profileReference = RUF.db.profile.unit[string.lower(profileName)].Frame.Text[textName]
 		if profileReference == 'DISABLED' then
 			unitFrame.Text[textName]:Hide()
-			unitFrame:Untag(frame)
+			unitFrame:Untag(unitFrame.Text[textName])
 		end
 	end
 
@@ -448,6 +448,12 @@ function RUF:OptionsUpdateFrame(profileName,groupFrame)
 			RUF:UpdateFramePosition(unitFrame,profileName,groupFrame)
 		end
 		if groupFrame ~= 'none' then
+			local anchorFrom
+			if profileReference.Frame.Position.growth == "BOTTOM" then
+				anchorFrom = "TOP"
+			elseif profileReference.Frame.Position.growth == "TOP" then
+				anchorFrom = "BOTTOM"
+			end
 			if string.lower(groupFrame) == 'party' then
 				oUF_RUF_Party:SetAttribute("Point",anchorFrom)
 				oUF_RUF_Party:SetAttribute('yOffset', profileReference.Frame.Position.offsety)
@@ -456,12 +462,6 @@ function RUF:OptionsUpdateFrame(profileName,groupFrame)
 				end
 				RUF:UpdateFramePosition(oUF_RUF_Party,profileName,groupFrame)
 			else
-				local anchorFrom
-				if profileReference.Frame.Position.growth == "BOTTOM" then
-					anchorFrom = "TOP"
-				elseif profileReference.Frame.Position.growth == "TOP" then
-					anchorFrom = "BOTTOM"
-				end
 				if i == 1 then
 					RUF:UpdateFramePosition(unitFrame,profileName,groupFrame,i)
 				else
@@ -566,7 +566,6 @@ function RUF:OptionsUpdateBars(profileName,groupFrame,bar)
 			unitFrame = _G['oUF_RUF_' .. currentUnit]
 		end
 		local originalBar = bar
-		local bar = bar
 		if bar == 'Class' then
 			if PlayerClass == 'DEATHKNIGHT' then
 				bar = 'Runes'
@@ -589,7 +588,6 @@ function RUF:OptionsUpdateBars(profileName,groupFrame,bar)
 			end
 		end
 		if bar == 'Power' or bar == 'Absorb' then
-			if action == 'enabled' then
 				if profileReference.Enabled == 0 then
 					unitFrame:DisableElement(bar)
 				elseif profileReference.Enabled == 1 then
@@ -603,30 +601,27 @@ function RUF:OptionsUpdateBars(profileName,groupFrame,bar)
 					unitFrame:EnableElement(bar)
 					unitFrame[bar]:ForceUpdate()
 				end
-			end
 		elseif originalBar == 'Class' then
-			if action == 'enabled' then
-				if profileReference.Enabled == true then
-					unitFrame:EnableElement(bar)
-					if unitFrame[bar] then
-						unitFrame[bar]:ForceUpdate()
-					end
-					if PlayerClass == 'MONK' then
-						unitFrame:EnableElement('Stagger')
-						unitFrame['Stagger']:ForceUpdate()
-					end
-					if PlayerClass == 'DRUID' then
-						unitFrame:EnableElement('FakeClassPower')
-						unitFrame['FakeClassPower']:ForceUpdate()
-					end
-				else
-					unitFrame:DisableElement(bar)
-					if PlayerClass == 'MONK' then
-						unitFrame:DisableElement('Stagger')
-					end
-					if PlayerClass == 'DRUID' then
-						unitFrame:DisableElement('FakeClassPower')
-					end
+			if profileReference.Enabled == true then
+				unitFrame:EnableElement(bar)
+				if unitFrame[bar] then
+					unitFrame[bar]:ForceUpdate()
+				end
+				if PlayerClass == 'MONK' then
+					unitFrame:EnableElement('Stagger')
+					unitFrame['Stagger']:ForceUpdate()
+				end
+				if PlayerClass == 'DRUID' then
+					unitFrame:EnableElement('FakeClassPower')
+					unitFrame['FakeClassPower']:ForceUpdate()
+				end
+			else
+				unitFrame:DisableElement(bar)
+				if PlayerClass == 'MONK' then
+					unitFrame:DisableElement('Stagger')
+				end
+				if PlayerClass == 'DRUID' then
+					unitFrame:DisableElement('FakeClassPower')
 				end
 			end
 		end
