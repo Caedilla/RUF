@@ -5,43 +5,24 @@ manual-changelog:
 	markup-type: markdown
 
 externals:
- Libs/LibStub-1.0:
-  url: svn://svn.wowace.com/wow/libstub/mainline/trunk
- Libs/CallbackHandler-1.0:
-  url: svn://svn.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0
-  tag: latest
- Libs/AceAddon-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceAddon-3.0
- Libs/AceComm-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceComm-3.0
- Libs/AceConfig-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConfig-3.0
- Libs/AceConsole-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConsole-3.0
- Libs/AceDB-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceDB-3.0
- Libs/AceDBOptions-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceDBOptions-3.0
- Libs/AceEvent-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceEvent-3.0
- Libs/AceGUI-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceGUI-3.0
- Libs/AceLocale-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceLocale-3.0
- Libs/AceSerializer-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceSerializer-3.0
- Libs/AceTimer-3.0:
-  url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceTimer-3.0
- Libs/LibDualSpec-1.0:
-  url: git://git.wowace.com/wow/libdualspec-1-0/mainline.git
- Libs/LibSharedMedia-3.0:
-  url: https://repos.wowace.com/wow/libsharedmedia-3-0/trunk/LibSharedMedia-3.0
- Libs/AceGUI-3.0-SharedMediaWidgets:
-  url: https://repos.wowace.com/wow/ace-gui-3-0-shared-media-widgets/trunk
- Libs/LibClassicDurations:
-  url: https://repos.curseforge.com/wow/libclassicdurations
- Libs/NickTag-1.0:
-  url: https://repos.curseforge.com/wow/nicktag
+ Libs/LibStub-1.0: https://repos.wowace.com/wow/libstub/mainline/trunk
+ Libs/CallbackHandler-1.0: https://repos.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0
+ Libs/AceAddon-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceAddon-3.0
+ Libs/AceComm-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceComm-3.0
+ Libs/AceConfig-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceConfig-3.0
+ Libs/AceConsole-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceConsole-3.0
+ Libs/AceDB-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceDB-3.0
+ Libs/AceDBOptions-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceDBOptions-3.0
+ Libs/AceEvent-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceEvent-3.0
+ Libs/AceGUI-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceGUI-3.0
+ Libs/AceLocale-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceLocale-3.0
+ Libs/AceSerializer-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceSerializer-3.0
+ Libs/AceTimer-3.0: https://repos.wowace.com/wow/ace3/mainline/trunk/AceTimer-3.0
+ Libs/LibDualSpec-1.0: https://repos.wowace.com/wow/libdualspec-1-0/mainline.git
+ Libs/LibSharedMedia-3.0: https://repos.wowace.com/wow/libsharedmedia-3-0/trunk/LibSharedMedia-3.0
+ Libs/AceGUI-3.0-SharedMediaWidgets: https://repos.wowace.com/wow/ace-gui-3-0-shared-media-widgets/trunk
+ Libs/LibClassicDurations: https://repos.curseforge.com/wow/libclassicdurations
+ Libs/NickTag-1.0:https://repos.curseforge.com/wow/nicktag
 
 ignore:
  - .pkgmeta
