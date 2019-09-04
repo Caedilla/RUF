@@ -1,6 +1,6 @@
-# RUF r161-Release
-### Fixed
-* Fixed incorrect filename EmebedClassic.xml to EmbedClassic.xml 
+# RUF r169-Alpha
+### Changed
+* Start using BigWigs packager to distribute releases for live and classic.
 
 ### Known Issues
 * The Options panel settings for Buffs and Debuffs requires a reload to take effect.
