@@ -1,5 +1,10 @@
 # Interface Versions: 80200, 11302
+#@retail@
+## Interface: 80200
+#@end-retail@
+#@non-retail@
 ## Interface: 11302
+#@end-non-retail@
 ## Title: RUF [|c5500DBBDRaeli's Unit Frames|r]
 ## Notes: Raeli's Unit Frames. Simple lightweight unitframes using oUF
 ## Author: Raeli
@@ -8,11 +13,10 @@
 ## X-SavedVariables: RUFDB
 ## OptionalDeps: oUF, oUF_Smooth, Ace3, LibDualSpec-1.0, LibSharedMedia-3.0, RealMobHealth
 ## X-Credits: Icon Font created with IcoMoon.io using icons from Freepik & Plainicon, from www.flaticon.com
+## X-Curse-Project-ID: 283389
 
-
-#EmbedLive.xml, EmbedClassic.xml
 #@no-lib-strip@
-EmbedClassic.xml
+Embeds.xml
 #@end-no-lib-strip@
 EmbedAlways.xml
 
