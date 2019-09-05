@@ -15,30 +15,25 @@ local function Update(self, event)
 		element:PreUpdate()
 	end
 	if element.Enabled == true then
-		local role
 		local unit = self.unit
 		local unitVehicleUI = false
 		if RUF.Client == 1 then
 			unitVehicleUI = UnitHasVehicleUI(unit)
 		end
-		if(UnitInRaid(unit) and not unitVehicleUI) then
-			if(GetPartyAssignment('MAINTANK', unit)) then
+		if UnitInRaid(unit) and not unitVehicleUI then
+			if GetPartyAssignment('MAINTANK', unit) then
 				element:SetText(elementStringMAINTANK)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,190/255,25/255)
-				role = 'MAINTANK'
-			elseif(GetPartyAssignment('MAINASSIST', unit)) then
+			elseif GetPartyAssignment('MAINASSIST', unit) then
 				element:SetText(elementStringMAINASSIST)
 				element:SetWidth(element:GetStringWidth()+2)
 				element:SetTextColor(1,190/255,25/255)
-				role = 'MAINASSIST'
 			else
-				element:Hide()
 				element:SetText(' ')
 				element:SetWidth(1)
 			end
 		else
-			element:Hide()
 			element:SetText(' ')
 			element:SetWidth(1)
 		end
@@ -71,6 +66,7 @@ local function Enable(self)
 		element.__owner = self
 		element.ForceUpdate = ForceUpdate
 		self:RegisterEvent('GROUP_ROSTER_UPDATE', Path, true)
+		self:RegisterEvent('PLAYER_ROLES_ASSIGNED', Path, true)
 
 		local profileReference = RUF.db.profile.unit[self.frame].Frame.Indicators[elementName]
 		element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], profileReference.Size, 'OUTLINE')
@@ -96,6 +92,7 @@ local function Disable(self)
 	if(element) then
 		element:Hide()
 		self:UnregisterEvent('GROUP_ROSTER_UPDATE', Path)
+		self:UnregisterEvent('PLAYER_ROLES_ASSIGNED', Path)
 	end
 end
 

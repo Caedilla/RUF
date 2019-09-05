@@ -22,9 +22,8 @@ local function Update(self, event)
 		end
 		if raidLooter then
 			lootMaster = 'raid' .. raidLooter
-			if raidLooter == 0 then lootMaster = 'player' end -- This shouldn't ever happen. If player is Master Looter, then partyLooter will be 0 not nil
 		end
-		if lootMethod == 'master' and (partyLooter ~= 0 or raidLooter ~= 0) then
+		if lootMethod == 'master' and  UnitName(lootMaster) == UnitName(unit) then
 			element:SetText(elementString)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:Show()
