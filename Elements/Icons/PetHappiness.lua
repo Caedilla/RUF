@@ -6,6 +6,7 @@ local elementName = 'PetHappiness'
 local elementString1 = RUF.IndicatorGlyphs['PetHappiness1']
 local elementString2 = RUF.IndicatorGlyphs['PetHappiness2']
 local elementString3 = RUF.IndicatorGlyphs['PetHappiness3']
+local elementStringAlternative = RUF.IndicatorGlyphs['PetHappiness-Alternative']
 
 local function Update(self, event)
 	local element = self.PetHappinessIndicator

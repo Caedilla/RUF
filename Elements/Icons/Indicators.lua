@@ -33,9 +33,10 @@ RUF.IndicatorGlyphs = {
 	['Target-Square'] = '',
 	['Target-Star'] = '',
 	['Target-Triangle'] = '',
-	['PetHappiness1'] = '', -- TODO, temp hollow heart
-	['PetHappiness2'] = '',
-	['PetHappiness3'] = '',
+	['PetHappiness1'] = '', -- Angry Face
+	['PetHappiness2'] = '', -- Neutral Face
+	['PetHappiness3'] = '', -- Heart Happy Face
+	['PetHappiness-Alternative'] = '', -- Star
 }
 
 -- TODO
