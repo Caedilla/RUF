@@ -33,6 +33,9 @@ RUF.IndicatorGlyphs = {
 	['Target-Square'] = '',
 	['Target-Star'] = '',
 	['Target-Triangle'] = '',
+	['PetHappiness1'] = '', -- TODO, temp hollow heart
+	['PetHappiness2'] = '',
+	['PetHappiness3'] = '',
 }
 
 -- TODO
@@ -82,6 +85,7 @@ function RUF.SetIndicators(self, unit)
 		RUF.Indicators.Objective(self, unit) -- No UnitIsQuestBoss()
 		RUF.Indicators.Role(self, unit) -- No UnitGroupRolesAssigned()
 	else
+		RUF.Indicators.PetHappiness(self, unit)
 		RUF.Indicators.LootMaster(self, unit) -- We have master looting in Classic!
 	end
 end

@@ -712,6 +712,18 @@ local function LargeLeftUnits()
 						AnchorFrom = "RIGHT",
 					},
 				},
+				PetHappiness = {
+					Enabled = false,
+					Style = "RUF",
+					Size = 26,
+					Position = {
+						x = -2,
+						y = 0,
+						AnchorFrame = "Frame",
+						AnchorTo = "LEFT",
+						AnchorFrom = "RIGHT",
+					},
+				},
 				Phased = {
 					Enabled = true,
 					Style = "RUF",
@@ -1063,6 +1075,18 @@ local function MediumLeftUnits()
 						x = 0,
 						y = 0,
 						AnchorFrame = "Lead",
+						AnchorTo = "LEFT",
+						AnchorFrom = "RIGHT",
+					},
+				},
+				PetHappiness = {
+					Enabled = true,
+					Style = "RUF",
+					Size = 26,
+					Position = {
+						x = -2,
+						y = 0,
+						AnchorFrame = "Frame",
 						AnchorTo = "LEFT",
 						AnchorFrom = "RIGHT",
 					},
@@ -1425,6 +1449,18 @@ local function LargeRightUnits()
 						AnchorFrom = "LEFT",
 					},
 				},
+				PetHappiness = {
+					Enabled = false,
+					Style = "RUF",
+					Size = 26,
+					Position = {
+						x = 2,
+						y = 0,
+						AnchorFrame = "Frame",
+						AnchorTo = "RIGHT",
+						AnchorFrom = "LEFT",
+					},
+				},
 				Phased = {
 					Enabled = true,
 					Style = "RUF",
@@ -1780,6 +1816,18 @@ local function MediumRightUnits()
 						AnchorFrom = "LEFT",
 					},
 				},
+				PetHappiness = {
+					Enabled = false,
+					Style = "RUF",
+					Size = 26,
+					Position = {
+						x = 2,
+						y = 0,
+						AnchorFrame = "Frame",
+						AnchorTo = "RIGHT",
+						AnchorFrom = "LEFT",
+					},
+				},
 				Phased = {
 					Enabled = false,
 					Style = "RUF",
@@ -2121,6 +2169,18 @@ local function SmallUnits()
 						AnchorFrame = "Lead",
 						AnchorTo = "LEFT",
 						AnchorFrom = "RIGHT",
+					},
+				},
+				PetHappiness = {
+					Enabled = false,
+					Style = "RUF",
+					Size = 26,
+					Position = {
+						x = 0,
+						y = 0,
+						AnchorFrame = "Frame",
+						AnchorTo = "CENTER",
+						AnchorFrom = "CENTER",
 					},
 				},
 				Phased = {

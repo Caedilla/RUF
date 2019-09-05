@@ -54,6 +54,7 @@ Elements\Icons\Honor.lua
 Elements\Icons\Leader.lua
 Elements\Icons\LootMaster.lua
 Elements\Icons\MainTankAssist.lua
+Elements\Icons\PetHappiness.lua
 Elements\Icons\Phase.lua
 Elements\Icons\PvPStatus.lua
 Elements\Icons\QuestObjective.lua

@@ -964,8 +964,19 @@ local function TextSettings(profileName,groupFrame)
 end
 
 local function HideIndicatorOptions(profileName,indicator)
-	if RUF.Client == 1 and indicator == 'LootMaster' then return true end
+	if RUF.Client == 1 then
+		if indicator == 'LootMaster' or indicator == 'PetHappiness' then
+			return true
+		end
+	end
 	if (indicator == 'InCombat' or indicator == 'Rest') and profileName ~= 'player' then return true end
+	if indicator == 'PetHappiness' then
+		if profileName == 'player' or profileName == 'pet' then
+			return false
+		else
+			return true
+		end
+	end
 	if profileName == 'pet' then
 		if indicator == 'Objective' or indicator == 'Phased' or indicator == 'Role' or indicator == 'Honor' then
 			return true
@@ -1008,13 +1019,14 @@ local function IndicatorSettings(profileName,groupFrame)
 		[4] = 'Lead',
 		[5] = 'LootMaster',
 		[6] = 'MainTankAssist',
-		[7] = 'Phased',
-		[8] = 'PvPCombat',
-		[9] = 'Objective',
-		[10] = 'Ready',
-		[11] = 'Rest',
-		[12] = 'Role',
-		[13] = 'TargetMark',
+		[7] = 'PetHappiness',
+		[8] = 'Phased',
+		[9] = 'PvPCombat',
+		[10] = 'Objective',
+		[11] = 'Ready',
+		[12] = 'Rest',
+		[13] = 'Role',
+		[14] = 'TargetMark',
 	}
 
 	local indicatorOptions = {

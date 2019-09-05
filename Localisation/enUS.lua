@@ -209,6 +209,7 @@ L["party3"] = "Party 3"
 L["party4"] = "Party 4"
 L["party5"] = "Party 5"
 L["pet"] = "Pet"
+L["PetHappiness"] = "Pet Happiness"
 L["pettarget"] = "Pet's Target"
 L["Phased"] = true
 L["Pixel Border"] = true

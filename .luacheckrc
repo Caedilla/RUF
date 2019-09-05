@@ -46,6 +46,7 @@ globals = {
 	"InterfaceOptionsFrame",
 	"GameMenuFrame",
 	"InterfaceAddOnsList_Update",
+	"GetPetHappiness",
 
 	-- Libraries
 	"LibStub",
