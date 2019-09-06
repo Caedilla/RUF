@@ -159,6 +159,8 @@ function RUF.CastBarUpdate(element, unit, name)
 		local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
 		local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
 		element.SafeZone:SetColorTexture(sr, sg, sb, sa)
+	else
+		element.SafeZone:SetColorTexture(0, 0, 0, 0)
 	end
 end
 
