@@ -12,12 +12,14 @@ function RUF_Options.Bars()
 		[2] = L["Power"],
 		[3] = L["Class"],
 		[4] = L["Absorb"],
+		[5] = L["Cast Bar"]
 	}
 	local Bar = {
 		[1] = 'Health',
 		[2] = 'Power',
 		[3] = 'Class',
 		[4] = 'Absorb',
+		[5] = 'Cast',
 	}
 	local Bars = {
 		name = L["Bars"],
@@ -27,7 +29,7 @@ function RUF_Options.Bars()
 		args = {
 		},
 	}
-	for i=1,4 do
+	for i=1,5 do
 		Bars.args[Bar[i]] = {
 			name = LocalisedBar[i],
 			type = 'group',
@@ -38,7 +40,7 @@ function RUF_Options.Bars()
 				end
 			end,
 			args = {
-				Texture = {
+				barTexture = {
 					name = L["Texture"],
 					type = 'select',
 					order = 0,
@@ -52,7 +54,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Type = {
+				barType = {
 					name = L["Type"],
 					desc = L["Not Yet Implemented."],
 					type = 'select',
@@ -71,10 +73,11 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Animate = {
+				smoothAnimations = {
 					name = L["Animate"],
 					desc = L["Animate bar changes."],
 					type = 'toggle',
+					hidden = true,
 					order = 0.01,
 					desc = '',
 					get = function(info)
@@ -85,12 +88,12 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Disconnected = {
+				disconnected = {
 					name = L["Color Disconnected"],
 					desc = L["Colors the bar using the disconnected color if the unit is disconnected."],
 					type = 'toggle',
 					order = 0.02,
-					hidden = function() return (i == 4 or i == 3) end,
+					hidden = function() return (i >= 3) end,
 					get = function(info)
 						return RUF.db.profile.Appearance.Bars[Bar[i]].Color.Disconnected
 					end,
@@ -99,12 +102,12 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Tapped = {
+				tapped = {
 					name = L["Color Tapped"],
 					desc = L["Colors the bar using the tapped color if the unit is tapped."],
 					type = 'toggle',
 					order = 0.03,
-					hidden = function() return (i == 4 or i == 3) end,
+					hidden = function() return (i >= 3) end,
 					get = function(info)
 						return RUF.db.profile.Appearance.Bars[Bar[i]].Color.Tapped
 					end,
@@ -113,7 +116,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Class = {
+				class = {
 					name = L["Color Class"],
 					desc = L["Color player units by class color."],
 					type = 'toggle',
@@ -126,7 +129,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Power = {
+				power = {
 					name = L["Color Power Type"],
 					desc = L["Colors the bar using the power color."],
 					type = 'toggle',
@@ -140,7 +143,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Reaction = {
+				reaction = {
 					name = L["Color Reaction"],
 					desc = L["Color unit by reaction toward the player."],
 					type = 'toggle',
@@ -154,7 +157,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Absorb_Alpha = {
+				overlayAlpha = {
 					name = L["Alpha"],
 					desc = L["Overlay Alpha"],
 					type = 'range',
@@ -174,12 +177,11 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Absorb_Multiplier = {
+				brightnessMult = {
 					name = L["Brightness Multiplier"],
 					desc = L["Reduce Bar color's brightness by this percentage."],
 					type = 'range',
 					order = 0.08,
-					hidden = function() return (i ~= 4) end,
 					min = 0,
 					max = 1,
 					softMin = 0,
@@ -194,7 +196,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Class_Multiplier = {
+				segmentMult = {
 					name = L["Segment Multiplier"],
 					desc = L["Reduce each segment's brightness by this percentage."],
 					type = 'range',
@@ -207,19 +209,19 @@ function RUF_Options.Bars()
 					step = 0.01,
 					bigStep = 0.05,
 					get = function(info)
-						return RUF.db.profile.Appearance.Bars[Bar[i]].Color.Multiplier
+						return RUF.db.profile.Appearance.Bars[Bar[i]].Color.SegmentMultiplier
 					end,
 					set = function(info, value)
-						RUF.db.profile.Appearance.Bars[Bar[i]].Color.Multiplier = value
+						RUF.db.profile.Appearance.Bars[Bar[i]].Color.SegmentMultiplier = value
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Percentage = {
+				percentage = {
 					name = L["Color Percentage"],
 					desc = L["Color Bar by percentage colors."],
 					type = 'toggle',
 					order = 0.09,
-					hidden = function() return (i == 4 or i == 3) end,
+					hidden = function() return (i >= 3) end,
 					get = function(info)
 						return RUF.db.profile.Appearance.Bars[Bar[i]].Color.Percentage
 					end,
@@ -228,7 +230,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Percent_100 = {
+				percent100 = {
 					name = L["100%"],
 					desc = L["Color at 100%"],
 					type = 'color',
@@ -244,7 +246,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Percent_50 = {
+				percent50 = {
 					name = L["50%"],
 					desc = L["Color at 50%"],
 					type = 'color',
@@ -260,7 +262,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Percent_0 = {
+				percent0 = {
 					name = L["0%"],
 					desc = L["Color at 0%"],
 					type = 'color',
@@ -276,7 +278,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Base_Color = {
+				baseColor = {
 					name = L["Base Color"],
 					desc = L["Color used if none of the other options are checked."],
 					type = 'color',
@@ -289,13 +291,64 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Background = {
+				safeZoneHeader = {
+					name = L["Latency"],
+					type = 'header',
+					order = 5,
+					hidden = i ~= 5,
+				},
+				safeZoneEnabled = {
+					name = L["Enabled"],
+					type = 'toggle',
+					hidden = i ~= 5,
+					order = 5.01,
+					get = function(info)
+						return RUF.db.profile.Appearance.Bars[Bar[i]].SafeZone.Enabled
+					end,
+					set = function(info, value)
+						RUF.db.profile.Appearance.Bars[Bar[i]].SafeZone.Enabled = value
+						RUF:OptionsUpdateAllBars()
+					end,
+				},
+				safeZoneColor = {
+					name = L["Color"],
+					type = 'color',
+					order = 5.02,
+					hidden = i ~= 5,
+					get = function(info)
+						return unpack(RUF.db.profile.Appearance.Bars[Bar[i]].SafeZone.Color)
+					end,
+					set = function(info,r,g,b)
+						RUF.db.profile.Appearance.Bars[Bar[i]].SafeZone.Color = {r,g,b}
+						RUF:OptionsUpdateAllBars()
+					end,
+				},
+				safeZoneAlpha = {
+					name = L["Alpha"],
+					type = 'range',
+					order = 5.03,
+					hidden = i ~= 5,
+					min = 0,
+					max = 1,
+					softMin = 0,
+					softMax = 1,
+					step = 0.01,
+					bigStep = 0.05,
+					get = function(info)
+						return RUF.db.profile.Appearance.Bars[Bar[i]].SafeZone.Alpha
+					end,
+					set = function(info, value)
+						RUF.db.profile.Appearance.Bars[Bar[i]].SafeZone.Alpha = value
+						RUF:OptionsUpdateAllBars()
+					end,
+				},
+				backgroundHeader = {
 					name = L["Background"],
 					type = 'header',
 					order = 10,
 					disabled = function() return (i == 4 and RUF.db.profile.Appearance.Bars[Bar[i]].Type == 1) end,
 				},
-				CustomColor = {
+				customColor = {
 					name = L["Background Color"],
 					desc = L["Background Color to use if not using the bar's color."],
 					type = 'color',
@@ -309,7 +362,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				UseBarColor = {
+				useBarColor = {
 					name = L["Use Bar Color"],
 					desc = L["Color the background the same as the bar's color. Brightness reduced by the Multiplier setting."],
 					type = 'toggle',
@@ -323,7 +376,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Multiplier = {
+				backgroundMult = {
 					name = L["Brightness Multiplier"],
 					desc = L["Reduce background color's brightness by this percentage."],
 					type = 'range',
@@ -343,7 +396,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Alpha = {
+				backgroundAlpha = {
 					name = L["Alpha"],
 					desc = L["Background Alpha"],
 					type = 'range',
@@ -363,13 +416,13 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Border = {
+				borderHeader = {
 					name = L["Border"],
 					type = 'header',
 					order = 20,
 					hidden = i==1 or i==4,
 				},
-				Border_Texture = {
+				borderTexture = {
 					name = L["Border Texture"],
 					type = 'select',
 					order = 20.02,
@@ -384,7 +437,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Border_Size = {
+				borderSize = {
 					name = L["Border Size"],
 					type = 'range',
 					order = 20.03,
@@ -403,7 +456,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Border_Alpha = {
+				borderAlpha = {
 					name = L["Alpha"],
 					desc = L["Overlay Alpha"],
 					type = 'range',
@@ -423,7 +476,7 @@ function RUF_Options.Bars()
 						RUF:OptionsUpdateAllBars()
 					end,
 				},
-				Border_Color = {
+				borderColor = {
 					name = L["Base Color"],
 					type = 'color',
 					order = 20.04,

@@ -143,5 +143,21 @@ function RUF.SetCastBar(self, unit)
 	Bar.SafeZone = SafeZone
 	self.Castbar = Bar
 
+	self.Castbar.PostCastStart = RUF.CastBarUpdate
+	self.Castbar.PostChannelStart = RUF.CastBarUpdate
+
 	--self.Castbar.UpdateOptions = RUF.CastbarUpdateOptions
+end
+
+function RUF.CastBarUpdate(element, unit, name)
+	local unitFrame = element.__owner
+	local r,g,b
+
+	r,g,b = RUF:GetBarColor(element, unit, "Cast")
+	element:SetStatusBarColor(r,g,b)
+	if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
+		local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+		local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+		element.SafeZone:SetColorTexture(sr, sg, sb, sa)
+	end
 end

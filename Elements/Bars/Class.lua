@@ -69,7 +69,7 @@ function RUF.SetClassBar(self, unit)
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
 	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
-	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.Multiplier
+	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
 	for i = 1,unitPowerMaxAmount do
 		local Bar = CreateFrame('StatusBar',name..i,Holder)
@@ -138,7 +138,7 @@ end
 function RUF.ClassUpdateColor(element, powerType)
 	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
-	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.Multiplier
+	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 	for i = 1, #element do
 		local counter = i
 		if #element == 4 then
@@ -238,7 +238,7 @@ function RUF.ClassUpdateOptions(self)
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
 	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
-	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.Multiplier
+	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
 	local holder = self.__owner.ClassPower.Holder
 	holder:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)

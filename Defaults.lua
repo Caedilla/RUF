@@ -41,6 +41,7 @@ local cfg = {
 						},
 						Reaction = false,
 						Tapped = true,
+						Multiplier = 1,
 					},
 					Background = {
 						UseBarColor = false, -- Use Bar Color or Custom Color
@@ -82,7 +83,8 @@ local cfg = {
 						BaseColor = {100/255, 100/255, 100/255},
 						Class = false,
 						PowerType = true, -- Use Resource's Color
-						Multiplier = 10, -- Make the bars increase in brightness by this multiplier
+						Multiplier = 1,
+						SegmentMultiplier = 10, -- Make the bars increase in brightness by this multiplier
 					},
 					Border = {
 						Style = {
@@ -115,6 +117,7 @@ local cfg = {
 						Reaction = false,
 						Tapped = false,
 						PowerType = true,
+						Multiplier = 1,
 					},
 					Border = {
 						Style = {
@@ -135,7 +138,7 @@ local cfg = {
 					Texture = "RUF 1",
 					Animate = true,
 					Color = {
-						BaseColor = {50/255, 50/255, 50/255},
+						BaseColor = {1, 204/255, 0},
 						Class = false,
 						Disconnected = false,
 						Percentage = false,
@@ -146,7 +149,8 @@ local cfg = {
 						},
 						Reaction = false,
 						Tapped = false,
-						PowerType = true,
+						PowerType = false,
+						Multiplier = 1,
 					},
 					Border = {
 						Style = {
@@ -161,6 +165,11 @@ local cfg = {
 						CustomColor = {0,0,0},
 						Multiplier = 0.25,
 						Alpha = 0.5,
+					},
+					SafeZone = {
+						Enabled = true,
+						Color = {0, 194/255, 1},
+						Alpha = 1,
 					},
 				},
 			},

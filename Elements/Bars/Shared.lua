@@ -17,6 +17,11 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 	end
 	if not uClass then uClass = 'PRIEST' end
 	local r,g,b = unpack(RUF.db.profile.Appearance.Bars[barType].Color.BaseColor)
+	local colorMult = RUF.db.profile.Appearance.Bars[barType].Color.Multiplier
+	if colorMult > 1 then colorMult = 1 end -- Because we replaced Class bar multiplier which could be higher.
+	r = r * colorMult
+	g = g * colorMult
+	b = b * colorMult
 	-- Color Priority:
 	-- Disconnected
 	-- Tapped
@@ -28,25 +33,43 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 
 	if RUF.db.profile.Appearance.Bars[barType].Color.Disconnected and element.disconnected then
 		r,g,b = unpack(RUF.db.profile.Appearance.Colors.MiscColors.Disconnected)
+		r = r * colorMult
+		g = g * colorMult
+		b = b * colorMult
 		return r,g,b
 	end
 	if RUF.db.profile.Appearance.Bars[barType].Color.Tapped and element.tapped then
 		r,g,b = unpack(RUF.db.profile.Appearance.Colors.MiscColors.Tapped)
+		r = r * colorMult
+		g = g * colorMult
+		b = b * colorMult
 		return r,g,b
 	end
 	if RUF.db.profile.Appearance.Bars[barType].Color.Class and UnitIsPlayer(unit) then
 		r,g,b = unpack(RUF.db.profile.Appearance.Colors.ClassColors[uClass])
+		r = r * colorMult
+		g = g * colorMult
+		b = b * colorMult
 		return r,g,b
 	end
 	if RUF.db.profile.Appearance.Bars[barType].Color.Reaction then
 		if UnitPlayerControlled(unit) and not UnitCanAttack(unit,'player') and not UnitIsPlayer(unit) then  -- If the unit is an allied pet then show as blue.
 			r,g,b = unpack(RUF.db.profile.Appearance.Colors.ReactionColors[10])
+			r = r * colorMult
+			g = g * colorMult
+			b = b * colorMult
 			return r,g,b
 		elseif UnitReaction(unit,'player') then
 			r,g,b = unpack(RUF.db.profile.Appearance.Colors.ReactionColors[UnitReaction(unit, 'player')])
+			r = r * colorMult
+			g = g * colorMult
+			b = b * colorMult
 			return r,g,b
 		elseif UnitInParty(unit) then
 			r,g,b = unpack(RUF.db.profile.Appearance.Colors.ReactionColors[5]) -- So Reaction Works when Party member is in a different zone and UnitReaction returns nil
+			r = r * colorMult
+			g = g * colorMult
+			b = b * colorMult
 			return r,g,b
 		end
 	end
@@ -60,10 +83,16 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 			end
 		end
 		r,g,b = RUF:ColorGradient(cur, max, unpack(RUF.db.profile.Appearance.Bars[barType].Color.PercentageGradient))
+		r = r * colorMult
+		g = g * colorMult
+		b = b * colorMult
 		return r,g,b
 	end
 	if RUF.db.profile.Appearance.Bars[barType].Color.PowerType and barType ~= 'Health' then
 		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[pType])
+		r = r * colorMult
+		g = g * colorMult
+		b = b * colorMult
 		return r,g,b
 	end
 	return r,g,b

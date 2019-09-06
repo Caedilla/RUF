@@ -51,7 +51,7 @@ function RUF.SetRunes(self, unit)
 		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	end
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
-	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.Multiplier
+	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
 	for i = 1,unitPowerMaxAmount do
 		local Bar = CreateFrame('StatusBar',name..i,Holder)
@@ -206,8 +206,8 @@ function RUF.RunesUpdateColor(element, runeID)
 	else -- no value returned yet?
 		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	end
-	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.Multiplier
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
+	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
 
 	local ir = (r*((((runeID+colorAdd)*6.6667)/100)))
@@ -224,7 +224,7 @@ function RUF.RunesUpdateOptions(self)
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
 	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
-	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.Multiplier
+	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
 	local holder = self.__owner.Runes.Holder
 	holder:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
