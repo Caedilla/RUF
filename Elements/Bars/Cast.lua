@@ -146,7 +146,7 @@ function RUF.SetCastBar(self, unit)
 	self.Castbar.PostCastStart = RUF.CastBarUpdate
 	self.Castbar.PostChannelStart = RUF.CastBarUpdate
 
-	--self.Castbar.UpdateOptions = RUF.CastbarUpdateOptions
+	self.Castbar.UpdateOptions = RUF.CastbarUpdateOptions
 end
 
 function RUF.CastBarUpdate(element, unit, name)
@@ -160,4 +160,16 @@ function RUF.CastBarUpdate(element, unit, name)
 		local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
 		element.SafeZone:SetColorTexture(sr, sg, sb, sa)
 	end
+end
+
+
+
+function RUF.CastbarUpdateOptions(self)
+	local unit = self.__owner.frame
+	local Bar = self
+
+	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Cast.Texture)
+	Bar:SetStatusBarTexture(texture)
+	Bar:SetFrameLevel(5)
+	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Cast.Fill)
 end

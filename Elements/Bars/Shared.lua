@@ -145,7 +145,7 @@ function RUF.UpdateBarLocation(self,unit,element,cur)
 
 end
 
-function RUF.SetBarLocation(self,unit,element)
+function RUF.SetBarLocation(self,unit)
 	if not self then return end
 	local barsAtTop = {}
 	local barsAtBottom = {}
@@ -268,6 +268,7 @@ function RUF.SetBarLocation(self,unit,element)
 			self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
 		end
 	else
+		print(unit)
 		if RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled > 0 then
 			if RUF.db.profile.unit[unit].Frame.Bars.Power.Position.Anchor == 'TOP' then
 				table.insert(barsAtTop,'Power')

@@ -136,7 +136,7 @@ function RUF.PowerUpdateOptions(self)
 	Bar:SetFrameLevel(5)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Power.Fill)
 
-	RUF:SetBarLocation(self.__owner,unit)
+	RUF.SetBarLocation(self.__owner,unit)
 
 	self:ForceUpdate() -- Runs Update function for everything else.
 

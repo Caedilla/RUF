@@ -284,7 +284,7 @@ function RUF.ClassUpdateOptions(self)
 
 	end
 
-	RUF:SetBarLocation(self.__owner,unit)
+	RUF.SetBarLocation(self.__owner,unit)
 	self:ForceUpdate()
 
 end
