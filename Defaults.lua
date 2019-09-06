@@ -131,6 +131,38 @@ local cfg = {
 						Alpha = 0.5,
 					},
 				},
+				Cast = {
+					Texture = "RUF 1",
+					Animate = true,
+					Color = {
+						BaseColor = {50/255, 50/255, 50/255},
+						Class = false,
+						Disconnected = false,
+						Percentage = false,
+						PercentageGradient = {
+							1,1,1,
+							25/255,25/255,25/255,
+							25/255,25/255,25/255
+						},
+						Reaction = false,
+						Tapped = false,
+						PowerType = true,
+					},
+					Border = {
+						Style = {
+							edgeFile = "RUF Pixel", -- Pixel Border settings.
+							edgeSize = 1,
+						},
+						Color = {0,0,0},
+						Alpha = 1,
+					},
+					Background = {
+						UseBarColor = true,
+						CustomColor = {0,0,0},
+						Multiplier = 0.25,
+						Alpha = 0.5,
+					},
+				},
 			},
 			Aura = {
 				Buff = true,
@@ -559,6 +591,19 @@ local function LargeLeftUnits()
 						Order = 0,
 					},
 				},
+				Cast = {
+					Enabled = true,
+					Fill = "STANDARD",
+					Height = 26,
+					Width = 300,
+					Position = {
+						x = 0,
+						y = -38,
+						AnchorFrame = true,
+						AnchorTo = "BOTTOM",
+						AnchorFrom = "TOP",
+					},
+				},
 			},
 			Text = {
 				Health = {
@@ -954,6 +999,19 @@ local function MediumLeftUnits()
 						Order = 0,
 					},
 				},
+				Cast = {
+					Enabled = false,
+					Fill = "STANDARD",
+					Height = 26,
+					Width = 300,
+					Position = {
+						x = 0,
+						y = -38,
+						AnchorFrame = true,
+						AnchorTo = "BOTTOM",
+						AnchorFrom = "TOP",
+					},
+				},
 			},
 			Text = {
 				Health = {
@@ -1307,6 +1365,19 @@ local function LargeRightUnits()
 					Position = {
 						Anchor = "BOTTOM",
 						Order = 0,
+					},
+				},
+				Cast = {
+					Enabled = true,
+					Fill = "REVERSE",
+					Height = 26,
+					Width = 300,
+					Position = {
+						x = 0,
+						y = -38,
+						AnchorFrame = true,
+						AnchorTo = "BOTTOM",
+						AnchorFrom = "TOP",
 					},
 				},
 			},
@@ -1691,6 +1762,19 @@ local function MediumRightUnits()
 						Order = 0,
 					},
 				},
+				Cast = {
+					Enabled = false,
+					Fill = "REVERSE",
+					Height = 26,
+					Width = 300,
+					Position = {
+						x = 0,
+						y = -38,
+						AnchorFrame = true,
+						AnchorTo = "BOTTOM",
+						AnchorFrom = "TOP",
+					},
+				},
 			},
 			Text = {
 				Health = {
@@ -2044,6 +2128,19 @@ local function SmallUnits()
 					Position = {
 						Anchor = "BOTTOM",
 						Order = 0,
+					},
+				},
+				Cast = {
+					Enabled = false,
+					Fill = "STANDARD",
+					Height = 26,
+					Width = 300,
+					Position = {
+						x = 0,
+						y = -38,
+						AnchorFrame = true,
+						AnchorTo = "BOTTOM",
+						AnchorFrom = "TOP",
 					},
 				},
 			},

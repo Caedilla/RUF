@@ -2209,6 +2209,217 @@ local function DebuffSettings(profileName,groupFrame)
 	return debuffOptions
 end
 
+local function CastBarSettings(profileName, groupFrame)
+	if not groupFrame then groupFrame = 'none' end
+	local ord = 99
+	for i=1,#frames do
+		if frames[i] == profileName then
+			ord = i
+		end
+	end
+	local referenceUnit = profileName
+	if groupFrame == 'Party' then
+		referenceUnit = profileName .. 'UnitButton1'
+	elseif groupFrame ~= 'none' then
+		referenceUnit = profileName .. '1'
+	end
+	local passUnit = profileName
+	profileName = string.lower(profileName)
+	groupFrame = string.lower(groupFrame)
+
+
+	local castBarOptions = {
+		name = L["Cast Bar"],
+		type = 'group',
+		order = 15,
+		hidden = function()
+			if profileName == 'player' or profileName == 'target' then
+				return false
+			else
+				return true
+			end
+		end,
+		args = {
+			enabled = {
+				name = function()
+					if RUF.db.profile.unit[profileName].Frame.Bars.Cast.Enabled == true then
+						return '|cFF00FF00'..L["Enabled"]..'|r'
+					else
+						return '|cFFFF0000'..L["Enabled"]..'|r'
+					end
+				end,
+				type = 'toggle',
+				order = 0,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Enabled
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Enabled = value
+					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+				end,
+			},
+			fillStyle = {
+				name = L["Fill Type"],
+				type = 'select',
+				order = 0.01,
+				values = function()
+					local table = {
+						['STANDARD'] = L["Standard"],
+						['REVERSE'] = L["Reverse"],
+						['CENTER'] = L["Center"],
+					}
+					return table
+				end,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Fill
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Fill = value
+					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+				end,
+			},
+			width = {
+				name = L["Width"],
+				type = 'range',
+				order = 0.03,
+				min = 50,
+				max = 750,
+				softMin = 100,
+				softMax = 400,
+				step = 1,
+				bigStep = 10,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Width
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Width = value
+					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+				end,
+			},
+			height = {
+				name = L["Height"],
+				type = 'range',
+				order = 0.04,
+				min = 2,
+				max = 100,
+				softMin = 6,
+				softMax = 50,
+				step = 1,
+				bigStep = 5,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Height
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Height = value
+					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+				end,
+			},
+			frameAnchor = {
+				type = 'toggle',
+				name = L["Anchor to Unit Frame"],
+				desc = L["Attach to the unit frame or allow free placement."],
+				order = 0.06,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorFrame
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorFrame = value
+					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+				end,
+			},
+			frameHorizontal = {
+				type = 'range',
+				name = L["X Offset"],
+				desc = L["Horizontal Offset from the Frame Anchor."],
+				order = 0.07,
+				min = -5000,
+				max = 5000,
+				softMin = -1000,
+				softMax = 1000,
+				step = 0.5,
+				bigStep = 1,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.x
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.x = value
+					RUF:OptionsUpdateFrame(passUnit,groupFrame)
+				end,
+			},
+			frameVertical = {
+				type = 'range',
+				name = L["Y Offset"],
+				desc = L["Vertical Offset from the Frame Anchor."],
+				order = 0.08,
+				min = -5000,
+				max = 5000,
+				softMin = -1000,
+				softMax = 1000,
+				step = 0.5,
+				bigStep = 1,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.y
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.y = value
+					RUF:OptionsUpdateFrame(passUnit,groupFrame)
+				end,
+			},
+			frameAnchorPoint = {
+				type = 'select',
+				name = L["Anchor From"],
+				desc = L["Location area of the Unitframe to anchor from."],
+				order = 0.09,
+				values = {
+					TOP = L["Top"],
+					RIGHT = L["Right"],
+					BOTTOM = L["Bottom"],
+					LEFT = L["Left"],
+					TOPRIGHT = L["Top-right"],
+					TOPLEFT = L["Top-left"],
+					BOTTOMRIGHT = L["Bottom-right"],
+					BOTTOMLEFT = L["Bottom-left"],
+					CENTER = L["Center"],
+				},
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorFrom
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorFrom = value
+					RUF:OptionsUpdateFrame(passUnit,groupFrame)
+				end,
+			},
+			frameAnchorTo = {
+				type = 'select',
+				name = L["Anchor To"],
+				desc = L["Area on the anchor frame to anchor the unitframe to."],
+				order = 0.09,
+				values = {
+					TOP = L["Top"],
+					RIGHT = L["Right"],
+					BOTTOM = L["Bottom"],
+					LEFT = L["Left"],
+					TOPRIGHT = L["Top-right"],
+					TOPLEFT = L["Top-left"],
+					BOTTOMRIGHT = L["Bottom-right"],
+					BOTTOMLEFT = L["Bottom-left"],
+					CENTER = L["Center"],
+				},
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorTo
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorTo = value
+					RUF:OptionsUpdateFrame(passUnit,groupFrame)
+				end,
+			},
+		},
+	}
+
+	return castBarOptions
+
+end
+
 function RUF_Options.GenerateUnits()
 	wipe(tagList)
 	wipe(localisedTags)
@@ -2271,6 +2482,7 @@ function RUF_Options.GenerateUnits()
 		Units.args[frames[i]].args.indicatorOptions = IndicatorSettings(frames[i])
 		Units.args[frames[i]].args.buffOptions = BuffSettings(frames[i])
 		Units.args[frames[i]].args.debuffOptions = DebuffSettings(frames[i])
+		Units.args[frames[i]].args.castBarOptions = CastBarSettings(frames[i])
 	end
 	for i = 1,#groupFrames do
 		Units.args[groupFrames[i]] = UnitGroup(groupFrames[i],groupFrames[i])
@@ -2279,6 +2491,7 @@ function RUF_Options.GenerateUnits()
 		Units.args[groupFrames[i]].args.indicatorOptions = IndicatorSettings(groupFrames[i],groupFrames[i])
 		Units.args[groupFrames[i]].args.buffOptions = BuffSettings(groupFrames[i],groupFrames[i])
 		Units.args[groupFrames[i]].args.debuffOptions = DebuffSettings(groupFrames[i],groupFrames[i])
+		Units.args[groupFrames[i]].args.castBarOptions = CastBarSettings(groupFrames[i],groupFrames[i])
 	end
 
 	return Units

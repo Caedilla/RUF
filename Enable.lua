@@ -107,7 +107,9 @@ local function SetupFrames(self, unit)
 
 	-- Castbars
 	-- TODO Styling and Positioning from profile.
-	--RUF.SetCastBar(self, unit)
+	if unit == 'player' or unit == 'target' then
+		RUF.SetCastBar(self, unit)
+	end
 
 	RUF.SetTextParent(self,unit)
 	local texts = {}

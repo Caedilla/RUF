@@ -74,6 +74,10 @@ function RUF:UpdateFramePosition(unitFrame,profileName,groupFrame,i,anchorFrom,a
 
 end
 
+function RUF:OptionsUpdateCastbars(profileName,groupFrame)
+
+end
+
 function RUF:OptionsUpdateAllIndicators()
 	-- Runs when we change a Bar setting in Global Options
 	local frames = {}

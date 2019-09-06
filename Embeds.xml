@@ -18,6 +18,7 @@
 <Include file="Libs\AceGUI-3.0-SharedMediaWidgets\widget.xml"/>
 <Include file="Libs\NickTag-1.0\NickTag-1.0.xml"/>
 <!--@non-retail@
+<Include file="Libs\LibClassicCasterino\LibClassicCasterino.lua"/>
 <Include file="Libs\LibClassicDurations\LibClassicDurations.xml"/>
 @end-non-retail@-->
 </Ui>
