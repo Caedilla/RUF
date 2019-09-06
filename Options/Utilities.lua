@@ -606,7 +606,7 @@ function RUF:OptionsUpdateBars(profileName,groupFrame,bar)
 					unitFrame[bar]:ForceUpdate()
 				end
 		elseif originalBar == 'Class' then
-			if profileReference.Enabled == true then
+			if RUF.db.profile.unit[string.lower(profileName)].Frame.Bars.Class.Enabled == true then
 				unitFrame:EnableElement(bar)
 				if unitFrame[bar] then
 					unitFrame[bar]:ForceUpdate()

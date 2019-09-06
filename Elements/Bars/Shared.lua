@@ -268,7 +268,6 @@ function RUF.SetBarLocation(self,unit)
 			self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
 		end
 	else
-		print(unit)
 		if RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled > 0 then
 			if RUF.db.profile.unit[unit].Frame.Bars.Power.Position.Anchor == 'TOP' then
 				table.insert(barsAtTop,'Power')
