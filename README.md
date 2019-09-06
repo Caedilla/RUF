@@ -8,9 +8,7 @@ A unitframe layout for oUF
 
 
 ## About
-**RUF** is a configurable Unit Frame addon using oUF. It is still very much in early development, but I have made it available on curse so that I can get feedback along the way.
-
-RUF isn't as fully featured as some unit frames, but should also use less resources while playing than most unit frame addons too.
+**RUF** is a configurable Unit Frame addon using oUF. RUF isn't as fully featured as some unit frames, but should also use less resources while playing than most unit frame addons too.
 
 ## Features
 * Supports Player, Pet, Target, Pet's Target, Target's Target, and Party frames.
