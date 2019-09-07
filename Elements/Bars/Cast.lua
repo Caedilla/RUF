@@ -239,6 +239,9 @@ function RUF.SetCastBar(self, unit)
 
 	-- Safe Zone
 	local SafeZone = Bar:CreateTexture(nil, 'OVERLAY')
+	local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+	local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+	SafeZone:SetColorTexture(sr, sg, sb, sa)
 
 	-- Register with oUF
 	Bar.Background = Background
@@ -254,6 +257,9 @@ function RUF.SetCastBar(self, unit)
 	self.Castbar.PostCastStart = RUF.CastBarUpdate
 	self.Castbar.PostChannelStart = RUF.CastBarUpdate
 	self.Castbar.UpdateOptions = RUF.CastBarUpdateOptions
+
+	r,g,b = RUF:GetBarColor(self.Castbar, unit, "Cast")
+	Bar:SetStatusBarColor(r,g,b)
 end
 
 function RUF.CastBarUpdate(element, unit, name)
