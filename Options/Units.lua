@@ -1264,8 +1264,8 @@ local function BuffSettings(profileName,groupFrame)
 				order = 1,
 				width = 'full',
 			},
-			buffSize = {
-				name = L["Size"],
+			buffWidth = {
+				name = L["Icon Width"],
 				type = 'range',
 				order = 2,
 				min = 4,
@@ -1275,10 +1275,28 @@ local function BuffSettings(profileName,groupFrame)
 				step = 1,
 				bigStep = 1,
 				get = function(info)
-					return RUF.db.profile.unit[profileName].Buffs.Icons.Size
+					return RUF.db.profile.unit[profileName].Buffs.Icons.Width
 				end,
 				set = function(info, value)
-					RUF.db.profile.unit[profileName].Buffs.Icons.Size = value
+					RUF.db.profile.unit[profileName].Buffs.Icons.Width = value
+					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+				end,
+			},
+			buffHeight = {
+				name = L["Icon Height"],
+				type = 'range',
+				order = 2,
+				min = 4,
+				max = 64,
+				softMin = 12,
+				softMax = 32,
+				step = 1,
+				bigStep = 1,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Buffs.Icons.Height
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Buffs.Icons.Height = value
 					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
 				end,
 			},
@@ -1763,8 +1781,8 @@ local function DebuffSettings(profileName,groupFrame)
 				order = 1,
 				width = 'full',
 			},
-			debuffSize = {
-				name = L["Size"],
+			debuffWidth = {
+				name = L["Icon Width"],
 				type = 'range',
 				order = 2,
 				min = 4,
@@ -1774,10 +1792,28 @@ local function DebuffSettings(profileName,groupFrame)
 				step = 1,
 				bigStep = 1,
 				get = function(info)
-					return RUF.db.profile.unit[profileName].Debuffs.Icons.Size
+					return RUF.db.profile.unit[profileName].Debuffs.Icons.Width
 				end,
 				set = function(info, value)
-					RUF.db.profile.unit[profileName].Debuffs.Icons.Size = value
+					RUF.db.profile.unit[profileName].Debuffs.Icons.Width = value
+					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+				end,
+			},
+			debuffHeight = {
+				name = L["Icon Height"],
+				type = 'range',
+				order = 2,
+				min = 4,
+				max = 64,
+				softMin = 12,
+				softMax = 32,
+				step = 1,
+				bigStep = 1,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Debuffs.Icons.Height
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Debuffs.Icons.Height = value
 					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
 				end,
 			},

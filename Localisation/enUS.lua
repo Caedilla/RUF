@@ -317,3 +317,5 @@ L["Highlight Thickness"] = true
 L["Thickness of the highlight."] = true
 L["Highlight Inset"] = true
 L["Size relative to the aura icon."] = true
+L["Icon Height"] = true
+L["Icon Width"] = true

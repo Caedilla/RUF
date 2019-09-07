@@ -276,8 +276,10 @@ function RUF.SetBuffs(self, unit)
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.x,
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.y)
 
-	Buffs:SetSize((RUF.db.profile.unit[unit].Buffs.Icons.Size * RUF.db.profile.unit[unit].Buffs.Icons.Columns), (RUF.db.profile.unit[unit].Buffs.Icons.Size * RUF.db.profile.unit[unit].Buffs.Icons.Rows) + 2) -- x,y size of buff holder frame
-	Buffs.size = RUF.db.profile.unit[unit].Buffs.Icons.Size
+	Buffs:SetSize((RUF.db.profile.unit[unit].Buffs.Icons.Width * RUF.db.profile.unit[unit].Buffs.Icons.Columns), (RUF.db.profile.unit[unit].Buffs.Icons.Height * RUF.db.profile.unit[unit].Buffs.Icons.Rows) + 2) -- x,y size of buff holder frame
+	Buffs.size = RUF.db.profile.unit[unit].Buffs.Icons.Width
+	Buffs.width = RUF.db.profile.unit[unit].Buffs.Icons.Width
+	Buffs.height = RUF.db.profile.unit[unit].Buffs.Icons.Height
 	Buffs['growth-x'] = RUF.db.profile.unit[unit].Buffs.Icons.Growth.x
 	Buffs['growth-y'] = RUF.db.profile.unit[unit].Buffs.Icons.Growth.y
 	Buffs.initialAnchor = RUF.db.profile.unit[unit].Buffs.Icons.Position.AnchorFrom -- Where icons spawn from in the buff frame

@@ -234,7 +234,9 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 			if(button.count) then button.count:SetText(count > 1 and count) end
 
 			local size = element.size or 16
-			button:SetSize(size, size)
+			local width = element.width or size
+			local height = element.height or size
+			button:SetSize(width, height)
 
 			button:EnableMouse(not element.disableMouse)
 			button:SetID(index)
@@ -265,8 +267,8 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 end
 
 local function SetPosition(element, from, to)
-	local sizex = (element.size or 16) + (element['spacing-x'] or element.spacing or 0)
-	local sizey = (element.size or 16) + (element['spacing-y'] or element.spacing or 0)
+	local sizex = (element.width or element.size or 16) + (element['spacing-x'] or element.spacing or 0)
+	local sizey = (element.height or element.size or 16) + (element['spacing-y'] or element.spacing or 0)
 	local anchor = element.initialAnchor or 'BOTTOMLEFT'
 	local growthx = (element['growth-x'] == 'LEFT' and -1) or 1
 	local growthy = (element['growth-y'] == 'DOWN' and -1) or 1

@@ -867,9 +867,10 @@ local function LargeLeftUnits()
 		Buffs = {
 			Bars = {
 			},
-			Icons =  {
+			Icons = {
 				Enabled = true,
-				Size = 28,
+				Width = 28,
+				Height = 28,
 				Rows = 1,
 				Columns = 5,
 				Max = 5,
@@ -916,9 +917,10 @@ local function LargeLeftUnits()
 		Debuffs = {
 			Bars = {
 			},
-			Icons =  {
+			Icons = {
 				Enabled = true,
-				Size = 28,
+				Width = 28,
+				Height = 28,
 				Rows = 1,
 				Columns = 5,
 				Max = 5,
@@ -1235,9 +1237,10 @@ local function MediumLeftUnits()
 		Buffs = {
 			Bars = {
 			},
-			Icons =  {
+			Icons = {
 				Enabled = false,
-				Size = 30,
+				Width = 28,
+				Height = 28,
 				Rows = 1,
 				Columns = 5,
 				Max = 5,
@@ -1284,9 +1287,10 @@ local function MediumLeftUnits()
 		Debuffs = {
 			Bars = {
 			},
-			Icons =  {
+			Icons = {
 				Enabled = false,
-				Size = 30,
+				Width = 28,
+				Height = 28,
 				Rows = 1,
 				Columns = 5,
 				Max = 5,
@@ -1630,9 +1634,10 @@ local function LargeRightUnits()
 		Buffs = {
 			Bars = {
 			},
-			Icons =  {
+			Icons = {
 				Enabled = true,
-				Size = 28,
+				Width = 28,
+				Height = 28,
 				Rows = 1,
 				Columns = 5,
 				Max = 5,
@@ -1679,9 +1684,10 @@ local function LargeRightUnits()
 		Debuffs = {
 			Bars = {
 			},
-			Icons =  {
+			Icons = {
 				Enabled = true,
-				Size = 28,
+				Width = 28,
+				Height = 28,
 				Rows = 1,
 				Columns = 5,
 				Max = 5,
@@ -1998,9 +2004,10 @@ local function MediumRightUnits()
 		Buffs = {
 			Bars = {
 			},
-			Icons =  {
+			Icons = {
 				Enabled = false,
-				Size = 30,
+				Width = 28,
+				Height = 28,
 				Rows = 1,
 				Columns = 5,
 				Max = 5,
@@ -2047,9 +2054,10 @@ local function MediumRightUnits()
 		Debuffs = {
 			Bars = {
 			},
-			Icons =  {
+			Icons = {
 				Enabled = false,
-				Size = 30,
+				Width = 28,
+				Height = 28,
 				Rows = 1,
 				Columns = 5,
 				Max = 5,
@@ -2366,9 +2374,10 @@ local function SmallUnits()
 		Buffs = {
 			Bars = {
 			},
-			Icons =  {
+			Icons = {
 				Enabled = true,
-				Size = 32,
+				Width = 28,
+				Height = 28,
 				Rows = 2,
 				Columns = 5,
 				Max = 12,
@@ -2415,9 +2424,10 @@ local function SmallUnits()
 		Debuffs = {
 			Bars = {
 			},
-			Icons =  {
+			Icons = {
 				Enabled = true,
-				Size = 32,
+				Width = 28,
+				Height = 28,
 				Rows = 2,
 				Columns = 5,
 				Max = 12,

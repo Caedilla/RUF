@@ -275,8 +275,10 @@ function RUF.SetDebuffs(self, unit)
 		RUF.db.profile.unit[unit].Debuffs.Icons.Position.x,
 		RUF.db.profile.unit[unit].Debuffs.Icons.Position.y)
 
-	Debuffs:SetSize((RUF.db.profile.unit[unit].Debuffs.Icons.Size * RUF.db.profile.unit[unit].Debuffs.Icons.Columns), (RUF.db.profile.unit[unit].Debuffs.Icons.Size * RUF.db.profile.unit[unit].Debuffs.Icons.Rows) + 2) -- x,y size of buff holder frame
-	Debuffs.size = RUF.db.profile.unit[unit].Debuffs.Icons.Size
+	Debuffs:SetSize((RUF.db.profile.unit[unit].Debuffs.Icons.Width * RUF.db.profile.unit[unit].Debuffs.Icons.Columns), (RUF.db.profile.unit[unit].Debuffs.Icons.Height * RUF.db.profile.unit[unit].Debuffs.Icons.Rows) + 2) -- x,y size of buff holder frame
+	Debuffs.size = RUF.db.profile.unit[unit].Debuffs.Icons.Width
+	Debuffs.width = RUF.db.profile.unit[unit].Debuffs.Icons.Width
+	Debuffs.height = RUF.db.profile.unit[unit].Debuffs.Icons.Height
 	Debuffs['growth-x'] = RUF.db.profile.unit[unit].Debuffs.Icons.Growth.x
 	Debuffs['growth-y'] = RUF.db.profile.unit[unit].Debuffs.Icons.Growth.y
 	Debuffs.initialAnchor = RUF.db.profile.unit[unit].Debuffs.Icons.Position.AnchorFrom -- Where icons spawn from in the buff frame

@@ -124,7 +124,9 @@ function RUF:OptionsUpdateAuras(profileName,groupFrame,auraType)
 			profileReference.Position.x,
 			profileReference.Position.y
 		)
-		currentElement.size = profileReference.Size
+		currentElement.size = profileReference.Width
+		currentElement.width = profileReference.Width
+		currentElement.height = profileReference.Height
 		currentElement['spacing-x'] = profileReference.Spacing.x
 		currentElement['spacing-y'] = profileReference.Spacing.y
 		currentElement.num = profileReference.Max
@@ -132,7 +134,7 @@ function RUF:OptionsUpdateAuras(profileName,groupFrame,auraType)
 		currentElement['growth-y'] = profileReference.Growth.y
 		currentElement.initialAnchor = profileReference.Position.AnchorFrom
 		currentElement.disableMouse = profileReference.ClickThrough
-		currentElement:SetSize((profileReference.Size * profileReference.Columns), (profileReference.Size * profileReference.Rows) + 2) -- x,y size of buff holder frame
+		currentElement:SetSize((profileReference.Width * profileReference.Columns), (profileReference.Height * profileReference.Rows) + 2) -- x,y size of buff holder frame
 
 		currentElement.Enabled = profileReference.Enabled
 		if profileReference.Enabled == true then
