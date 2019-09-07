@@ -75,15 +75,23 @@ function RUF:UpdateFramePosition(unitFrame,profileName,groupFrame,i,anchorFrom,a
 end
 
 function RUF:OptionsUpdateCastbars(profileName,groupFrame)
+ -- TODO
+end
 
+function RUF:OptionsUpdateFrameBorders()
+	for k, v in next, oUF.objects do
+		local Border = v.Border
+		local offset = RUF.db.profile.Appearance.Border.Offset
+		Border:SetPoint('TOPLEFT',v,'TOPLEFT',-offset,offset)
+		Border:SetPoint('BOTTOMRIGHT',v,'BOTTOMRIGHT',offset,-offset)
+		Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Border.Style.edgeSize})
+		local r,g,b = unpack(RUF.db.profile.Appearance.Border.Color)
+		Border:SetBackdropBorderColor(r,g,b, RUF.db.profile.Appearance.Border.Alpha)
+	end
 end
 
 function RUF:OptionsUpdateAllAuras()
 	for k, v in next, oUF.objects do
-		--local buffs = { v.Buffs:GetChildren() }
-		--buffs[#buffs] = nil -- Remove last entry which is .__owner
-		--local debuffs = { v.Debuffs:GetChildren() }
-		--debuffs[#debuffs] = nil
 		v.Buffs:ForceUpdate()
 		v.Debuffs:ForceUpdate()
 	end
@@ -609,6 +617,9 @@ function RUF:OptionsUpdateAllBars()
 		if _G['oUF_RUF_' .. profileName] then
 			RUF:OptionsUpdateBars(profileName,'none','Health')
 			RUF:OptionsUpdateBars(profileName,'none','Power')
+			if _G['oUF_RUF_' .. profileName].Castbar then
+				_G['oUF_RUF_' .. profileName].Castbar:UpdateOptions()
+			end
 			if RUF.Client == 1 then
 				RUF:OptionsUpdateBars(profileName,'none','Absorb')
 				if i == 1 then

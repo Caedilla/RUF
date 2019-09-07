@@ -59,22 +59,22 @@ local oUF = ns.oUF
 ]]--
 
 local function onUpdate(self, elapsed)
+	local add = elapsed or 0
 	if RUF.db.global.TestMode == true and not InCombatLockdown() then
-		local duration = self.duration or 0
-		local add = elapsed or 0
+		local duration = self.testDuration or 0
 		duration = duration + add
-		self.duration = duration
+		self.testDuration = duration
+		self:Show()
 		if duration < 30.05 then
-			self:Show()
 			self:SetMinMaxValues(0,30)
 			self:SetValue(duration)
 			self.Time:SetFormattedText('%.1f', duration)
 			self.Text:SetText(L["Cast Bar"])
 		else
-			self.duration = 0
+			self.testDuration = 0
 		end
 	elseif(self.casting) then
-		local duration = self.duration + elapsed
+		local duration = self.duration + add
 		if(duration >= self.max) then
 			self.casting = nil
 			self:Hide()
@@ -114,7 +114,7 @@ local function onUpdate(self, elapsed)
 			self.Spark:SetPoint('CENTER', self, horiz and 'LEFT' or 'BOTTOM', horiz and offset or 0, horiz and 0 or offset)
 		end
 	elseif(self.channeling) then
-		local duration = self.duration - elapsed
+		local duration = self.duration - add
 
 		if(duration <= 0) then
 			self.channeling = nil
@@ -154,12 +154,12 @@ local function onUpdate(self, elapsed)
 			self.Spark:SetPoint('CENTER', self, horiz and 'LEFT' or 'BOTTOM', horiz and offset or 0, horiz and 0 or offset)
 		end
 	elseif(self.holdTime > 0) then
-		self.holdTime = self.holdTime - elapsed
+		self.holdTime = self.holdTime - add
 	else
 		self.casting = nil
 		self.castID = nil
 		self.channeling = nil
-		self.duration = nil
+		self.testDuration = nil
 		self:Hide()
 	end
 end
@@ -264,7 +264,7 @@ end
 
 function RUF.CastBarUpdate(element, unit, name)
 	local unitFrame = element.__owner
-	local r,g,b
+	local r,g,b,a,bgMult
 
 	r,g,b = RUF:GetBarColor(element, unit, "Cast")
 	element:SetStatusBarColor(r,g,b)
@@ -275,6 +275,13 @@ function RUF.CastBarUpdate(element, unit, name)
 	else
 		element.SafeZone:SetColorTexture(0, 0, 0, 0)
 	end
+
+	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
+		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
+	end
+	bgMult = RUF.db.profile.Appearance.Bars.Cast.Background.Multiplier
+	a = RUF.db.profile.Appearance.Bars.Cast.Background.Alpha
+	element.Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
 end
 
 function RUF.CastBarUpdateOptions(self)
@@ -285,4 +292,6 @@ function RUF.CastBarUpdateOptions(self)
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetFrameLevel(5)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Cast.Fill)
+	Bar:PostCastStart(unit)
+	Bar:OnUpdate()
 end

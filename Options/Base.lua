@@ -86,14 +86,15 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Border.Style.edgeFile = value
+									RUF:OptionsUpdateFrameBorders()
 								end,
 							},
 							Size = {
 								name = L["Border Size"],
 								type = 'range',
 								order = 0.03,
-								min = -20,
-								max = 20,
+								min = -100,
+								max = 100,
 								softMin = -20,
 								softMax = 20,
 								step = 0.01,
@@ -103,6 +104,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Border.Style.edgeSize = value
+									RUF:OptionsUpdateFrameBorders()
 								end,
 							},
 							Alpha = {
@@ -120,14 +122,15 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Border.Alpha = value
+									RUF:OptionsUpdateFrameBorders()
 								end,
 							},
 							Offset = {
 								name = L["Offset"],
 								type = 'range',
 								order = 0.03,
-								min = -30,
-								max = 30,
+								min = -100,
+								max = 100,
 								softMin = -30,
 								softMax = 30,
 								step = 1,
@@ -137,6 +140,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Border.Offset = value
+									RUF:OptionsUpdateFrameBorders()
 								end,
 							},
 							Color = {
@@ -144,12 +148,11 @@ function RUF_Options.MainOptions()
 								type = 'color',
 								order = 0.04,
 								get = function(info)
-									return RUF.db.profile.Appearance.Border.Color[1], RUF.db.profile.Appearance.Border.Color[2],RUF.db.profile.Appearance.Border.Color[3]
+									return unpack(RUF.db.profile.Appearance.Border.Color)
 								end,
 								set = function(info,r,g,b)
-									RUF.db.profile.Appearance.Border.Color[1] = r
-									RUF.db.profile.Appearance.Border.Color[2] = g
-									RUF.db.profile.Appearance.Border.Color[3] = b
+									RUF.db.profile.Appearance.Border.Color = {r,g,b}
+									RUF:OptionsUpdateFrameBorders()
 								end,
 							},
 						},
@@ -314,7 +317,6 @@ function RUF_Options.MainOptions()
 								order = 11,
 								values = LSM:HashTable('border'),
 								dialogControl = 'LSM30_Border',
-								width = 'double',
 								get = function(info)
 									return RUF.db.profile.Appearance.Aura.Border.Style.edgeFile
 								end,
