@@ -1,4 +1,5 @@
 local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
+local L = LibStub('AceLocale-3.0'):GetLocale('RUF')
 local LSM = LibStub("LibSharedMedia-3.0")
 local _, ns = ...
 local oUF = ns.oUF
@@ -57,6 +58,112 @@ local oUF = ns.oUF
 
 ]]--
 
+local function onUpdate(self, elapsed)
+	if RUF.db.global.TestMode == true and not InCombatLockdown() then
+		local duration = self.duration or 0
+		local add = elapsed or 0
+		duration = duration + add
+		self.duration = duration
+		if duration < 30.05 then
+			self:Show()
+			self:SetMinMaxValues(0,30)
+			self:SetValue(duration)
+			self.Time:SetFormattedText('%.1f', duration)
+			self.Text:SetText(L["Cast Bar"])
+		else
+			self.duration = 0
+		end
+	elseif(self.casting) then
+		local duration = self.duration + elapsed
+		if(duration >= self.max) then
+			self.casting = nil
+			self:Hide()
+
+			if(self.PostCastStop) then self:PostCastStop(self.__owner.unit) end
+			return
+		end
+
+		if(self.Time) then
+			if(self.delay ~= 0) then
+				if(self.CustomDelayText) then
+					self:CustomDelayText(duration)
+				else
+					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r', duration, self.delay)
+				end
+			else
+				if(self.CustomTimeText) then
+					self:CustomTimeText(duration)
+				else
+					self.Time:SetFormattedText('%.1f', duration)
+				end
+			end
+		end
+
+		self.duration = duration
+		self:SetValue(duration)
+
+		if(self.Spark) then
+			local horiz = self.horizontal
+			local size = self[horiz and 'GetWidth' or 'GetHeight'](self)
+
+			local offset = (duration / self.max) * size
+			if(self:GetReverseFill()) then
+				offset = size - offset
+			end
+
+			self.Spark:SetPoint('CENTER', self, horiz and 'LEFT' or 'BOTTOM', horiz and offset or 0, horiz and 0 or offset)
+		end
+	elseif(self.channeling) then
+		local duration = self.duration - elapsed
+
+		if(duration <= 0) then
+			self.channeling = nil
+			self:Hide()
+
+			if(self.PostChannelStop) then self:PostChannelStop(self.__owner.unit) end
+			return
+		end
+
+		if(self.Time) then
+			if(self.delay ~= 0) then
+				if(self.CustomDelayText) then
+					self:CustomDelayText(duration)
+				else
+					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r', duration, self.delay)
+				end
+			else
+				if(self.CustomTimeText) then
+					self:CustomTimeText(duration)
+				else
+					self.Time:SetFormattedText('%.1f', duration)
+				end
+			end
+		end
+
+		self.duration = duration
+		self:SetValue(duration)
+		if(self.Spark) then
+			local horiz = self.horizontal
+			local size = self[horiz and 'GetWidth' or 'GetHeight'](self)
+
+			local offset = (duration / self.max) * size
+			if(self:GetReverseFill()) then
+				offset = size - offset
+			end
+
+			self.Spark:SetPoint('CENTER', self, horiz and 'LEFT' or 'BOTTOM', horiz and offset or 0, horiz and 0 or offset)
+		end
+	elseif(self.holdTime > 0) then
+		self.holdTime = self.holdTime - elapsed
+	else
+		self.casting = nil
+		self.castID = nil
+		self.channeling = nil
+		self.duration = nil
+		self:Hide()
+	end
+end
+
 
 function RUF.SetCastBar(self, unit)
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
@@ -110,8 +217,8 @@ function RUF.SetCastBar(self, unit)
 	Background.colorSmooth = false
 
 	-- Text
-	local Time = Bar:CreateFontString(self:GetName() .. '.Cast.Time', 'OVERLAY', 'Raeli')
-	local Text = Bar:CreateFontString(self:GetName() .. '.Cast.Text', 'OVERLAY', 'Raeli')
+	local Time = Bar:CreateFontString(nil, 'OVERLAY', 'Raeli')
+	local Text = Bar:CreateFontString(nil, 'OVERLAY', 'Raeli')
 	if unitProfile.Fill == "REVERSE" then
 		Time:SetPoint('LEFT', Bar, 4, 0)
 		Text:SetPoint('RIGHT', Bar, -4, 0)
@@ -143,10 +250,10 @@ function RUF.SetCastBar(self, unit)
 	Bar.SafeZone = SafeZone
 	self.Castbar = Bar
 
+	self.Castbar.OnUpdate = onUpdate
 	self.Castbar.PostCastStart = RUF.CastBarUpdate
 	self.Castbar.PostChannelStart = RUF.CastBarUpdate
-
-	self.Castbar.UpdateOptions = RUF.CastbarUpdateOptions
+	self.Castbar.UpdateOptions = RUF.CastBarUpdateOptions
 end
 
 function RUF.CastBarUpdate(element, unit, name)
@@ -164,9 +271,7 @@ function RUF.CastBarUpdate(element, unit, name)
 	end
 end
 
-
-
-function RUF.CastbarUpdateOptions(self)
+function RUF.CastBarUpdateOptions(self)
 	local unit = self.__owner.frame
 	local Bar = self
 

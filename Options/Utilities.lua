@@ -675,6 +675,9 @@ function RUF:SpawnUnits()
 		else
 			v:Hide()
 		end
+		if v.Castbar then
+			v.Castbar:OnUpdate()
+		end
 	end
 	UnitsSpawned = true
 end
@@ -697,6 +700,9 @@ function RUF:RestoreUnits()
 			v:Enable()
 		else
 			v:Disable()
+		end
+		if v.Castbar then
+			v.Castbar:OnUpdate()
 		end
 	end
 	UnitsSpawned = false
