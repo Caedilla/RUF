@@ -9,5 +9,6 @@
 
 ### Known Issues
 * Cast Bar options in the unit options (bar placement and sizing) require a reload to take effect.
+* Cast Bars don't appear in Test Mode yet.
 * The Options panel settings for Buffs and Debuffs requires a reload to take effect.
 * Settings that affect borders require a reload to take effect.

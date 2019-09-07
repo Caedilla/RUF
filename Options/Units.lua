@@ -642,7 +642,7 @@ local function TextSettings(profileName,groupFrame)
 	local textOptions = {
 		name = L["Texts"],
 		type = 'group',
-		childGroups = 'select',
+		childGroups = 'tree',
 		order = 20,
 		args = {
 			addTextElement = {
