@@ -1,4 +1,4 @@
-# RUF r183-Alpha
+# RUF r184-Release
 ### New
 * Added Cast Bars for Player and Target frames.
 	* Cast Bars use LibClassicCasterino in Classic to try and determine non-player casts.
@@ -9,7 +9,8 @@
 
 ### Fixed
 * Buff and Debuff settings should now take effect immediately.
+* Frame Border settings should now take effect immediately.
 
 ### Known Issues
 * Cast Bar options in the unit options (bar placement and sizing) require a reload to take effect.
-* Settings that affect borders require a reload to take effect.
+* Settings that affect individual bar borders require a reload to take effect.
