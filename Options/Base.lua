@@ -186,6 +186,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, r,g,b,a)
 									RUF.db.profile.Appearance.Colors.Aura.DefaultBuff = {r,g,b,a}
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							DefaultDebuff = {
@@ -198,6 +199,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, r,g,b,a)
 									RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff = {r,g,b,a}
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							DebuffMagic = {
@@ -210,6 +212,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, r,g,b,a)
 									RUF.db.profile.Appearance.Colors.Aura.Magic = {r,g,b,a}
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							DebuffDisease = {
@@ -222,6 +225,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, r,g,b,a)
 									RUF.db.profile.Appearance.Colors.Aura.Disease = {r,g,b,a}
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							DebuffCurse = {
@@ -234,6 +238,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, r,g,b,a)
 									RUF.db.profile.Appearance.Colors.Aura.Curse = {r,g,b,a}
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							DebuffPoison = {
@@ -246,6 +251,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, r,g,b,a)
 									RUF.db.profile.Appearance.Colors.Aura.Poison = {r,g,b,a}
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							DebuffEnrage = {
@@ -258,6 +264,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, r,g,b,a)
 									RUF.db.profile.Appearance.Colors.Aura.Enrage = {r,g,b,a}
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							Buff = {
@@ -269,6 +276,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Aura.Buff = value
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							Debuff = {
@@ -280,6 +288,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Aura.Debuff = value
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							Dispellable = {
@@ -291,6 +300,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Aura.OnlyDispellable = value
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							BorderSpacer = {
@@ -304,19 +314,22 @@ function RUF_Options.MainOptions()
 								order = 11,
 								values = LSM:HashTable('border'),
 								dialogControl = 'LSM30_Border',
+								width = 'double',
 								get = function(info)
 									return RUF.db.profile.Appearance.Aura.Border.Style.edgeFile
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Aura.Border.Style.edgeFile = value
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							BorderSize = {
-								name = L["Highlight Size"],
+								name = L["Highlight Thickness"],
+								desc = L["Thickness of the highlight."],
 								type = 'range',
 								order = 11.1,
-								min = -20,
-								max = 20,
+								min = -100,
+								max = 100,
 								softMin = -20,
 								softMax = 20,
 								step = 0.01,
@@ -326,14 +339,16 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Aura.Border.Style.edgeSize = value
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							BorderOffset = {
-								name = L["Offset"],
+								name = L["Highlight Inset"],
+								desc = L["Size relative to the aura icon."],
 								type = 'range',
 								order = 11.2,
-								min = -30,
-								max = 30,
+								min = -100,
+								max = 100,
 								softMin = -30,
 								softMax = 30,
 								step = 1,
@@ -343,10 +358,11 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Aura.Border.Offset = value
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							Pixel = {
-								name = L["Pixel Border"],
+								name = L["Border"],
 								type = 'header',
 								order = 15,
 							},
@@ -359,6 +375,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Aura.Pixel.Enabled = value
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							PixelColor = {
@@ -371,6 +388,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, r,g,b,a)
 									RUF.db.profile.Appearance.Colors.Aura.Pixel = {r,g,b,a}
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							PixelTexture = {
@@ -384,14 +402,15 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile = value
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							PixelSize = {
 								name = L["Border Size"],
 								type = 'range',
 								order = 16.1,
-								min = -20,
-								max = 20,
+								min = -100,
+								max = 100,
 								softMin = -20,
 								softMax = 20,
 								step = 0.01,
@@ -401,14 +420,15 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize = value
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 							PixelOffset = {
 								name = L["Offset"],
 								type = 'range',
 								order = 16.2,
-								min = -30,
-								max = 30,
+								min = -100,
+								max = 100,
 								softMin = -30,
 								softMax = 30,
 								step = 1,
@@ -418,6 +438,7 @@ function RUF_Options.MainOptions()
 								end,
 								set = function(info, value)
 									RUF.db.profile.Appearance.Aura.Pixel.Offset = value
+									RUF:OptionsUpdateAllAuras()
 								end,
 							},
 						},

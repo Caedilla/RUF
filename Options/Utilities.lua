@@ -78,6 +78,79 @@ function RUF:OptionsUpdateCastbars(profileName,groupFrame)
 
 end
 
+function RUF:OptionsUpdateAllAuras()
+	for k, v in next, oUF.objects do
+		--local buffs = { v.Buffs:GetChildren() }
+		--buffs[#buffs] = nil -- Remove last entry which is .__owner
+		--local debuffs = { v.Debuffs:GetChildren() }
+		--debuffs[#debuffs] = nil
+		v.Buffs:ForceUpdate()
+		v.Debuffs:ForceUpdate()
+	end
+end
+
+function RUF:OptionsUpdateAuras(profileName,groupFrame,auraType)
+	if not profileName or not groupFrame or not auraType then return end
+
+	local function UpdateAura(profileName,groupFrame,auraType,i,partyUnit)
+		local currentUnit,unitFrame,profileReference
+		if partyUnit then
+			unitFrame = partyUnit
+		else
+			if i == -1 then
+				currentUnit = profileName
+			else
+				currentUnit = profileName .. i
+			end
+			unitFrame = _G['oUF_RUF_' .. currentUnit]
+		end
+		local currentElement = unitFrame[auraType]
+		if not currentElement then return end -- When refresh profile, ensure we don't try to update indicators that don't exist.
+		profileReference = RUF.db.profile.unit[string.lower(profileName)][auraType].Icons
+		--currentElement:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], profileReference.Size, "OUTLINE")
+		currentElement:ClearAllPoints()
+		currentElement:SetPoint(
+			profileReference.Position.AnchorFrom,
+			RUF.GetAuraAnchorFrame(unitFrame,string.lower(profileName),'Buffs'),
+			profileReference.Position.AnchorTo,
+			profileReference.Position.x,
+			profileReference.Position.y
+		)
+		currentElement.size = profileReference.Size
+		currentElement['spacing-x'] = profileReference.Spacing.x
+		currentElement['spacing-y'] = profileReference.Spacing.y
+		currentElement.num = profileReference.Max
+		currentElement['growth-x'] = profileReference.Growth.x
+		currentElement['growth-y'] = profileReference.Growth.y
+		currentElement.initialAnchor = profileReference.Position.AnchorFrom
+		currentElement.disableMouse = profileReference.ClickThrough
+		currentElement:SetSize((profileReference.Size * profileReference.Columns), (profileReference.Size * profileReference.Rows) + 2) -- x,y size of buff holder frame
+
+		currentElement.Enabled = profileReference.Enabled
+		if profileReference.Enabled == true then
+			unitFrame:EnableElement('Auras')
+		else
+			unitFrame:DisableElement('Auras')
+		end
+		currentElement:ForceUpdate()
+	end
+
+	if string.lower(groupFrame) == 'party' then
+		local partyUnits = { oUF_RUF_Party:GetChildren() }
+		partyUnits[#partyUnits] = nil -- Remove last entry which is the moveBG holder.
+		for i = 1,#partyUnits do
+			UpdateAura(profileName,groupFrame,auraType,i,partyUnits[i])
+		end
+	elseif groupFrame ~= 'none' and string.lower(profileName) == string.lower(profileName) then
+		for i = 1,5 do
+			UpdateAura(profileName,groupFrame,auraType,i)
+		end
+	else
+		UpdateAura(profileName,groupFrame,auraType,-1)
+	end
+
+end
+
 function RUF:OptionsUpdateAllIndicators()
 	-- Runs when we change a Bar setting in Global Options
 	local frames = {}

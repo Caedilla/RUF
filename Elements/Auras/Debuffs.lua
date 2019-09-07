@@ -100,24 +100,16 @@ local function CustomDebuffFilter(element, unit, button, ...)
 	end
 
 	-- If unit is party1, boss2, arena3 etc. we the group's profile.
-	local profileUnit = string.gsub(unit,'%d+','')
+	local profileUnit = string.gsub(frame.frame,'%d+','')
 
 	if RUF.db.profile.unit[profileUnit].Debuffs.Icons.Enabled == false then
 		button.shoudShow = false
+		frame:DisableElement('Auras')
 		return false
 	end
 
 	local name, icon, count, debuffType, duration, expirationTime, source, isStealable,
 	nameplateShowPersonal, spellId, canApplyAura, isBossDebuff, nameplateShowAll, timeMod, value1, value2, value3 = ...
-
-	if button.AuraName then
-		if button.AuraName == name and button.expirationTime == expirationTime and button.shoudShow then
-			return button.shoudShow
-		end
-	end
-
-	button.AuraName = name
-	button.expirationTime = expirationTime
 
 	local BuffTypes
 	if UnitIsFriend('player',unit) then
@@ -210,11 +202,6 @@ local function PostUpdateDebuffIcon(self,unit,button,index,position,duration,exp
 	--]]
 	if button.shoudShow and button.shoudShow == false then return end
 
-	local r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultBuff)
-
-	if self.visibleDebuffs then
-		r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff)
-	end
 	local BuffTypes
 	if UnitIsFriend('player',unit) then
 		BuffTypes = DebuffDispel[PlayerClass][RUF.Specialization]
@@ -231,20 +218,43 @@ local function PostUpdateDebuffIcon(self,unit,button,index,position,duration,exp
 			end
 		end
 	end
-	if (RUF.db.profile.Appearance.Aura.OnlyDispellable == true and removable == true) or RUF.db.profile.Appearance.Aura.OnlyDispellable == false  then
-		if debuffType and (debuffType == 'Magic' or debuffType == 'Curse' or debuffType == 'Disease' or debuffType == 'Poison' or debuffType == 'Enrage') then
-			if self.visibleBuffs and RUF.db.profile.Appearance.Aura.Buff == true then -- Buff
-				r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura[debuffType])
-			elseif self.visibleDebuffs and RUF.db.profile.Appearance.Aura.Debuff == true then -- Debuffs
-				r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura[debuffType])
-			end
-		else
-			r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff)
+
+	local r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff)
+	if ((RUF.db.profile.Appearance.Aura.OnlyDispellable == true and removable == true) or RUF.db.profile.Appearance.Aura.OnlyDispellable == false) and debuffType then
+		if RUF.db.profile.Appearance.Aura.Debuff == true then
+			r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura[debuffType])
 		end
 	end
 
 	if self[position] then
-		self[position].border:SetBackdropBorderColor(r,g,b,a)
+		local border = self[position].border
+		border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Aura.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Border.Style.edgeSize})
+		border:SetBackdropBorderColor(r,g,b,a)
+		local borderOffset = RUF.db.profile.Appearance.Aura.Border.Offset
+		if borderOffset == 0 then
+			border:SetPoint("TOPLEFT",button,"TOPLEFT",0,0)
+			border:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",0,0)
+		else
+			border:SetPoint("TOPLEFT",button,"TOPLEFT",-borderOffset,borderOffset)
+			border:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",borderOffset,-borderOffset)
+		end
+		local pixel = self[position].pixel
+		pixel:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize})
+		local pixelr,pixelg,pixelb,pixela = unpack(RUF.db.profile.Appearance.Colors.Aura.Pixel)
+		pixel:SetBackdropBorderColor(pixelr,pixelg,pixelb,pixela)
+		if RUF.db.profile.Appearance.Aura.Pixel.Enabled == true then
+			pixel:Show()
+		else
+			pixel:Hide()
+		end
+		local PixelOffset = RUF.db.profile.Appearance.Aura.Pixel.Offset
+		if PixelOffset == 0 then
+			pixel:SetPoint("TOPLEFT",button,"TOPLEFT",0,0)
+			pixel:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",0,0)
+		else
+			pixel:SetPoint("TOPLEFT",button,"TOPLEFT",-PixelOffset,PixelOffset)
+			pixel:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",PixelOffset,-PixelOffset)
+		end
 	end
 
 end
@@ -285,13 +295,10 @@ function RUF.SetDebuffs(self, unit)
 	end
 
 	Debuffs.num = RUF.db.profile.unit[unit].Debuffs.Icons.Max
-
 	Debuffs.CustomFilter = CustomDebuffFilter
 	Debuffs.CreateIcon = RUF.CreateAuraIcon
 	Debuffs.PostUpdateIcon = PostUpdateDebuffIcon
+	Debuffs.Enabled = true
 
-	if RUF.db.profile.unit[unit].Debuffs.Icons.Enabled == false then
-		Debuffs:Hide()
-	end
 	self.Debuffs = Debuffs
 end

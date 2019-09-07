@@ -556,12 +556,23 @@ local function Enable(self)
 end
 
 local function Disable(self)
-	if(self.Buffs or self.Debuffs or self.Auras) then
-		self:UnregisterEvent('UNIT_AURA', UpdateAuras)
-
-		if(self.Buffs) then self.Buffs:Hide() end
-		if(self.Debuffs) then self.Debuffs:Hide() end
-		if(self.Auras) then self.Auras:Hide() end
+	if self.Buffs then
+		if self.Buffs.Enabled == false then
+			self:UnregisterEvent('UNIT_AURA', UpdateAuras)
+			self.Buffs:Hide()
+		end
+	end
+	if self.Debuffs then
+		if self.Debuffs.Enabled == false then
+			self:UnregisterEvent('UNIT_AURA', UpdateAuras)
+			self.Debuffs:Hide()
+		end
+	end
+	if self.Auras then
+		if self.Auras.Enabled == false then
+			self:UnregisterEvent('UNIT_AURA', UpdateAuras)
+			self.Auras:Hide()
+		end
 	end
 end
 

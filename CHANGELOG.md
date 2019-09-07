@@ -7,8 +7,9 @@
 * Added unique Pet Happiness Icons (sad face, neutral face, happy face)
 * Bars now have a Brightness Multiplier for their colours in the Global Appearance Options. So if you want to use Class Colors, but want them darker on a specific bar, you can do that.
 
+### Fixed
+* Buff and Debuff settings should now take effect immediately.
+
 ### Known Issues
 * Cast Bar options in the unit options (bar placement and sizing) require a reload to take effect.
-* Cast Bars don't appear in Test Mode yet.
-* The Options panel settings for Buffs and Debuffs requires a reload to take effect.
 * Settings that affect borders require a reload to take effect.

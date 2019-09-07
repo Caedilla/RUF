@@ -46,15 +46,12 @@ function RUF.CreateAuraIcon(element, index)
 	local button = CreateFrame('Button', element:GetDebugName() .. 'Button' .. index, element)
 	button:RegisterForClicks('RightButtonUp')
 
-	local cd = CreateFrame('Cooldown', '$parentCooldown', button, 'CooldownFrameTemplate')
-	cd:SetAllPoints()
-
 	local icon = button:CreateTexture(nil, 'BORDER')
 	icon:SetTexCoord(0.05,0.95,0.05,0.95)
-	icon:SetAllPoints()
+	icon:SetAllPoints(button)
 
 	local pixel = CreateFrame("Frame",nil,button)
-	pixel:SetAllPoints()
+	pixel:SetAllPoints(button)
 	pixel:SetFrameLevel(7)
 	pixel:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize})
 	local pixelr,pixelg,pixelb,pixela = unpack(RUF.db.profile.Appearance.Colors.Aura.Pixel)
@@ -78,24 +75,25 @@ function RUF.CreateAuraIcon(element, index)
 	button.pixel = pixel
 
 	local border = CreateFrame("Frame",nil,button)
-	border:SetAllPoints()
+	border:SetAllPoints(button)
 	border:SetFrameLevel(8)
 	border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Aura.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Border.Style.edgeSize})
 	local borderr,borderg,borderb,bordera = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultBuff)
 	border:SetBackdropBorderColor(borderr,borderg,borderb,bordera)
 
-	local BorderOffset = RUF.db.profile.Appearance.Aura.Border.Offset
-	if BorderOffset == 0 then
+	local borderOffset = RUF.db.profile.Appearance.Aura.Border.Offset
+	if borderOffset == 0 then
 		border:SetPoint("TOPLEFT",button,"TOPLEFT",0,0)
 		border:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",0,0)
-	elseif BorderOffset > 0 then
-		border:SetPoint("TOPLEFT",button,"TOPLEFT",-BorderOffset,BorderOffset)
-		border:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",BorderOffset,-BorderOffset)
-	elseif BorderOffset < 0 then
-		border:SetPoint("TOPLEFT",button,"TOPLEFT",-BorderOffset,BorderOffset)
-		border:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",BorderOffset,-BorderOffset)
+	else
+		border:SetPoint("TOPLEFT",button,"TOPLEFT",-borderOffset,borderOffset)
+		border:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",borderOffset,-borderOffset)
 	end
 	button.border = border
+
+
+	local cd = CreateFrame('Cooldown', '$parentCooldown', button, 'CooldownFrameTemplate')
+	cd:SetAllPoints(button.border)
 
 	local count = button:CreateFontString(nil, 'OVERLAY', 'NumberFontNormal')
 	count:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', -1, 0)

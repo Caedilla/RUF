@@ -182,7 +182,7 @@ local cfg = {
 						edgeFile = "RUF Glow", -- Pixel Border settings.
 						edgeSize = 6,
 					},
-					Offset = -1,
+					Offset = -1, -- Inset from edge.
 				},
 				Pixel = {
 					Enabled = true,
