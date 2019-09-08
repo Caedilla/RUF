@@ -6,6 +6,11 @@ local oUF = ns.oUF
 
 local function onUpdate(self, elapsed)
 	local add = elapsed or 0
+	if RUF.db.profile.unit[self.__owner.frame].Frame.Bars.Cast.Enabled == false then
+		self.__owner:DisableElement('Castbar')
+		self:Hide()
+		return
+	end
 	if RUF.db.global.TestMode == true and not InCombatLockdown() then
 		local duration = self.testDuration or 0
 		duration = duration + add

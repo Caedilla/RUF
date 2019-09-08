@@ -132,11 +132,11 @@ function RUF:OptionsUpdateCastbars(profileName,groupFrame)
 			end
 			if unitProfile.Enabled == false then
 				v:DisableElement('Castbar')
+				v.Castbar:Hide()
 			else
 				v:EnableElement('Castbar')
+				v.Castbar:Show()
 			end
-
-
 		end
 	end
 end

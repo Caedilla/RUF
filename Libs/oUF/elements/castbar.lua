@@ -631,7 +631,7 @@ local function Disable(self)
 	local element = self.Castbar
 	if(element) then
 		element:Hide()
-		if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
+		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
 			if LibClassicCasterino then
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_START')
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_DELAYED')
