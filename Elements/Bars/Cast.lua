@@ -133,6 +133,7 @@ function RUF.SetCastBar(self, unit)
 	Bar:SetFillStyle(unitProfile.Fill)
 	Bar:SetWidth(unitProfile.Width)
 	Bar:SetHeight(unitProfile.Height)
+	Bar:SetClampedToScreen(true)
 	local anchorFrame
 	if unitProfile.Position.AnchorFrame == true then
 		anchorFrame = self

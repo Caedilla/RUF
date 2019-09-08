@@ -11,9 +11,26 @@ local localisedTags = {}
 local tagInputs = {}
 local frames = {}
 local groupFrames = {}
+local anchorPoints = {
+	['TOP'] = L["Top"],
+	['RIGHT'] = L["Right"],
+	['BOTTOM'] = L["Bottom"],
+	['LEFT'] = L["Left"],
+	['TOPRIGHT'] = L["Top-right"],
+	['TOPLEFT'] = L["Top-left"],
+	['BOTTOMRIGHT'] = L["Bottom-right"],
+	['BOTTOMLEFT'] = L["Bottom-left"],
+	['CENTER'] = L["Center"],
+}
 
 local function UnitGroup(profileName,groupFrame)
 	if not groupFrame then groupFrame = 'none' end
+	local ord = 99
+	for i=1,#frames do
+		if frames[i] == profileName then
+			ord = i
+		end
+	end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
 		referenceUnit = profileName .. 'UnitButton1'
@@ -242,17 +259,7 @@ local function UnitGroup(profileName,groupFrame)
 						name = L["Anchor From"],
 						desc = L["Location area of the Unitframe to anchor from."],
 						order = 0.09,
-						values = {
-							TOP = L["Top"],
-							RIGHT = L["Right"],
-							BOTTOM = L["Bottom"],
-							LEFT = L["Left"],
-							TOPRIGHT = L["Top-right"],
-							TOPLEFT = L["Top-left"],
-							BOTTOMRIGHT = L["Bottom-right"],
-							BOTTOMLEFT = L["Bottom-left"],
-							CENTER = L["Center"],
-						},
+						values = anchorPoints,
 						get = function(info)
 							return RUF.db.profile.unit[profileName].Frame.Position.AnchorFrom
 						end,
@@ -266,17 +273,7 @@ local function UnitGroup(profileName,groupFrame)
 						name = L["Anchor To"],
 						desc = L["Area on the anchor frame to anchor the unitframe to."],
 						order = 0.09,
-						values = {
-							TOP = L["Top"],
-							RIGHT = L["Right"],
-							BOTTOM = L["Bottom"],
-							LEFT = L["Left"],
-							TOPRIGHT = L["Top-right"],
-							TOPLEFT = L["Top-left"],
-							BOTTOMRIGHT = L["Bottom-right"],
-							BOTTOMLEFT = L["Bottom-left"],
-							CENTER = L["Center"],
-						},
+						values = anchorPoints,
 						get = function(info)
 							return RUF.db.profile.unit[profileName].Frame.Position.AnchorTo
 						end,
@@ -844,17 +841,7 @@ local function TextSettings(profileName,groupFrame)
 					name = L["Anchor To"],
 					type = 'select',
 					order = 0.07,
-					values = {
-						TOP = L["Top"],
-						RIGHT = L["Right"],
-						BOTTOM = L["Bottom"],
-						LEFT = L["Left"],
-						TOPRIGHT = L["Top-right"],
-						TOPLEFT = L["Top-left"],
-						BOTTOMRIGHT = L["Bottom-right"],
-						BOTTOMLEFT = L["Bottom-left"],
-						CENTER = L["Center"],
-					},
+					values = anchorPoints,
 					get = function(info)
 						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.Anchor
 					end,
@@ -1118,17 +1105,7 @@ local function IndicatorSettings(profileName,groupFrame)
 					type = 'select',
 					desc = L["Location area of the Indicator to anchor from."],
 					order = 5,
-					values = {
-						TOP = L["Top"],
-						RIGHT = L["Right"],
-						BOTTOM = L["Bottom"],
-						LEFT = L["Left"],
-						TOPRIGHT = L["Top-right"],
-						TOPLEFT = L["Top-left"],
-						BOTTOMRIGHT = L["Bottom-right"],
-						BOTTOMLEFT = L["Bottom-left"],
-						CENTER = L["Center"],
-					},
+					values = anchorPoints,
 					get = function(info)
 						return RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Position.AnchorFrom
 					end,
@@ -1168,17 +1145,7 @@ local function IndicatorSettings(profileName,groupFrame)
 					type = 'select',
 					desc = L["Area on the anchor frame to anchor the indicator to."],
 					order = 7,
-					values = {
-						TOP = L["Top"],
-						RIGHT = L["Right"],
-						BOTTOM = L["Bottom"],
-						LEFT = L["Left"],
-						TOPRIGHT = L["Top-right"],
-						TOPLEFT = L["Top-left"],
-						BOTTOMRIGHT = L["Bottom-right"],
-						BOTTOMLEFT = L["Bottom-left"],
-						CENTER = L["Center"],
-					},
+					values = anchorPoints,
 					get = function(info)
 						return RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Position.AnchorTo
 					end,
@@ -1348,8 +1315,8 @@ local function BuffSettings(profileName,groupFrame)
 				name = L["Horizontal Growth"],
 				order = 3.3,
 				values = {
-					RIGHT = L["Right"],
-					LEFT = L["Left"],
+					['RIGHT'] = L["Right"],
+					['LEFT'] = L["Left"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Growth.x
@@ -1466,17 +1433,7 @@ local function BuffSettings(profileName,groupFrame)
 				type = 'select',
 				desc = L["Location area of the Indicator to anchor from."],
 				order = 7,
-				values = {
-					TOP = L["Top"],
-					RIGHT = L["Right"],
-					BOTTOM = L["Bottom"],
-					LEFT = L["Left"],
-					TOPRIGHT = L["Top-right"],
-					TOPLEFT = L["Top-left"],
-					BOTTOMRIGHT = L["Bottom-right"],
-					BOTTOMLEFT = L["Bottom-left"],
-					CENTER = L["Center"],
-				},
+				values = anchorPoints,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrom
 				end,
@@ -1521,17 +1478,7 @@ local function BuffSettings(profileName,groupFrame)
 				type = 'select',
 				desc = L["Area on the anchor frame to anchor the indicator to."],
 				order = 7,
-				values = {
-					TOP = L["Top"],
-					RIGHT = L["Right"],
-					BOTTOM = L["Bottom"],
-					LEFT = L["Left"],
-					TOPRIGHT = L["Top-right"],
-					TOPLEFT = L["Top-left"],
-					BOTTOMRIGHT = L["Bottom-right"],
-					BOTTOMLEFT = L["Bottom-left"],
-					CENTER = L["Center"],
-				},
+				values = anchorPoints,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorTo
 				end,
@@ -1856,8 +1803,8 @@ local function DebuffSettings(profileName,groupFrame)
 				name = L["Horizontal Growth"],
 				order = 3.3,
 				values = {
-					RIGHT = L["Right"],
-					LEFT = L["Left"],
+					['RIGHT'] = L["Right"],
+					['LEFT'] = L["Left"],
 				},
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Growth.x
@@ -1974,17 +1921,7 @@ local function DebuffSettings(profileName,groupFrame)
 				type = 'select',
 				desc = L["Location area of the Indicator to anchor from."],
 				order = 7,
-				values = {
-					TOP = L["Top"],
-					RIGHT = L["Right"],
-					BOTTOM = L["Bottom"],
-					LEFT = L["Left"],
-					TOPRIGHT = L["Top-right"],
-					TOPLEFT = L["Top-left"],
-					BOTTOMRIGHT = L["Bottom-right"],
-					BOTTOMLEFT = L["Bottom-left"],
-					CENTER = L["Center"],
-				},
+				values = anchorPoints,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorFrom
 				end,
@@ -2030,17 +1967,7 @@ local function DebuffSettings(profileName,groupFrame)
 				type = 'select',
 				desc = L["Area on the anchor frame to anchor the indicator to."],
 				order = 7,
-				values = {
-					TOP = L["Top"],
-					RIGHT = L["Right"],
-					BOTTOM = L["Bottom"],
-					LEFT = L["Left"],
-					TOPRIGHT = L["Top-right"],
-					TOPLEFT = L["Top-left"],
-					BOTTOMRIGHT = L["Bottom-right"],
-					BOTTOMLEFT = L["Bottom-left"],
-					CENTER = L["Center"],
-				},
+				values = anchorPoints,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorTo
 				end,
@@ -2338,7 +2265,7 @@ local function CastBarSettings(profileName, groupFrame)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.x = value
-					RUF:OptionsUpdateFrame(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
 				end,
 			},
 			frameVertical = {
@@ -2357,7 +2284,7 @@ local function CastBarSettings(profileName, groupFrame)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.y = value
-					RUF:OptionsUpdateFrame(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
 				end,
 			},
 			frameAnchorPoint = {
@@ -2365,23 +2292,13 @@ local function CastBarSettings(profileName, groupFrame)
 				name = L["Anchor From"],
 				desc = L["Location area of the Unitframe to anchor from."],
 				order = 0.09,
-				values = {
-					TOP = L["Top"],
-					RIGHT = L["Right"],
-					BOTTOM = L["Bottom"],
-					LEFT = L["Left"],
-					TOPRIGHT = L["Top-right"],
-					TOPLEFT = L["Top-left"],
-					BOTTOMRIGHT = L["Bottom-right"],
-					BOTTOMLEFT = L["Bottom-left"],
-					CENTER = L["Center"],
-				},
+				values = anchorPoints,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorFrom
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorFrom = value
-					RUF:OptionsUpdateFrame(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
 				end,
 			},
 			frameAnchorTo = {
@@ -2389,23 +2306,13 @@ local function CastBarSettings(profileName, groupFrame)
 				name = L["Anchor To"],
 				desc = L["Area on the anchor frame to anchor the unitframe to."],
 				order = 0.09,
-				values = {
-					TOP = L["Top"],
-					RIGHT = L["Right"],
-					BOTTOM = L["Bottom"],
-					LEFT = L["Left"],
-					TOPRIGHT = L["Top-right"],
-					TOPLEFT = L["Top-left"],
-					BOTTOMRIGHT = L["Bottom-right"],
-					BOTTOMLEFT = L["Bottom-left"],
-					CENTER = L["Center"],
-				},
+				values = anchorPoints,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorTo
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorTo = value
-					RUF:OptionsUpdateFrame(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
 				end,
 			},
 		},

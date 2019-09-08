@@ -76,6 +76,69 @@ end
 
 function RUF:OptionsUpdateCastbars(profileName,groupFrame)
  -- TODO: Update Castbar appearance
+	for k, v in next, oUF.objects do
+		if v.Castbar then
+			local Bar = v.Castbar
+			local Border = Bar.Border
+			local Background = Bar.Background
+			local Time = Bar.Time
+			local Text = Bar.Text
+			local profileReference = RUF.db.profile.Appearance.Bars.Cast
+			local unitProfile = RUF.db.profile.unit[v.frame].Frame.Bars.Cast
+			local texture = LSM:Fetch("statusbar", profileReference.Texture)
+
+			Bar:SetStatusBarTexture(texture)
+			Bar:SetFillStyle(unitProfile.Fill)
+			Bar:SetWidth(unitProfile.Width)
+			Bar:SetHeight(unitProfile.Height)
+			local anchorFrame
+			if unitProfile.Position.AnchorFrame == true then
+				anchorFrame = v
+			else
+				anchorFrame = 'UIParent'
+			end
+			Bar:ClearAllPoints()
+			Bar:SetPoint(
+				unitProfile.Position.AnchorFrom,
+				anchorFrame,
+				unitProfile.Position.AnchorTo,
+				unitProfile.Position.x,
+				unitProfile.Position.y
+			)
+
+			Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
+			local borderr,borderg,borderb = unpack(profileReference.Border.Color)
+			Border:SetBackdropBorderColor(borderr,borderg,borderb, profileReference.Border.Alpha)
+
+			local r,g,b = RUF:GetBarColor(Bar, v.frame, "Cast")
+			Bar:SetStatusBarColor(r,g,b)
+			if profileReference.Background.UseBarColor == false then
+				r,g,b = unpack(profileReference.Background.CustomColor)
+			end
+			local Multiplier = profileReference.Background.Multiplier
+			Background:SetTexture(LSM:Fetch("background", "Solid"))
+			Background:SetVertexColor(r*Multiplier,g*Multiplier,b*Multiplier,profileReference.Background.Alpha)
+			Background:SetAllPoints(Bar)
+			Background.colorSmooth = false
+
+			Time:ClearAllPoints()
+			Text:ClearAllPoints()
+			if unitProfile.Fill == "REVERSE" then
+				Time:SetPoint('LEFT', Bar, 4, 0)
+				Text:SetPoint('RIGHT', Bar, -4, 0)
+			else
+				Time:SetPoint('RIGHT', Bar, -4, 0)
+				Text:SetPoint('LEFT', Bar, 4, 0)
+			end
+			if unitProfile.Enabled == false then
+				v:DisableElement('Castbar')
+			else
+				v:EnableElement('Castbar')
+			end
+
+
+		end
+	end
 end
 
 function RUF:OptionsUpdateFrameBorders()
