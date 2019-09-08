@@ -3,12 +3,6 @@ local LSM = LibStub("LibSharedMedia-3.0")
 local _, ns = ...
 local oUF = ns.oUF
 
---[[
-	TODO: Set Statusbar Alpha for Type 1
-
-]]--
-
-
 function RUF.SetAbsorbBar(self, unit)
 
 	local Texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Absorb.Texture)

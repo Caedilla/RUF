@@ -75,7 +75,7 @@ function RUF:UpdateFramePosition(unitFrame,profileName,groupFrame,i,anchorFrom,a
 end
 
 function RUF:OptionsUpdateCastbars(profileName,groupFrame)
- -- TODO
+ -- TODO: Update Castbar appearance
 end
 
 function RUF:OptionsUpdateFrameBorders()
@@ -113,9 +113,8 @@ function RUF:OptionsUpdateAuras(profileName,groupFrame,auraType)
 			unitFrame = _G['oUF_RUF_' .. currentUnit]
 		end
 		local currentElement = unitFrame[auraType]
-		if not currentElement then return end -- When refresh profile, ensure we don't try to update indicators that don't exist.
+		if not currentElement then return end
 		profileReference = RUF.db.profile.unit[string.lower(profileName)][auraType].Icons
-		--currentElement:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], profileReference.Size, "OUTLINE")
 		currentElement:ClearAllPoints()
 		currentElement:SetPoint(
 			profileReference.Position.AnchorFrom,
@@ -134,7 +133,7 @@ function RUF:OptionsUpdateAuras(profileName,groupFrame,auraType)
 		currentElement['growth-y'] = profileReference.Growth.y
 		currentElement.initialAnchor = profileReference.Position.AnchorFrom
 		currentElement.disableMouse = profileReference.ClickThrough
-		currentElement:SetSize((profileReference.Width * profileReference.Columns), (profileReference.Height * profileReference.Rows) + 2) -- x,y size of buff holder frame
+		currentElement:SetSize((profileReference.Width * profileReference.Columns), (profileReference.Height * profileReference.Rows) + 2)
 
 		currentElement.Enabled = profileReference.Enabled
 		if profileReference.Enabled == true then
@@ -406,13 +405,6 @@ end
 
 function RUF:OptionsUpdateTexts(profileName,groupFrame,text)
 	if not profileName or not groupFrame or not text then return end
-
-	-- TODO implement updateOptions function to each text like with bars
-	-- Call that function here based on the arguments provided by the options.
-	-- Also for add and remove, look at Enable.lua.
-	-- We call the creation function in Text/Parent.lua to create a text area with our settings,
-	-- then we use the SetTextPoints function to place it on the frame
-	-- Create a similar function that goes through the text and updates it
 
 	local function UpdateText(profileName,groupFrame,text,i,partyUnit)
 		local currentUnit,unitFrame,profileReference

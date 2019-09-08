@@ -51,10 +51,8 @@ function RUF.SetPowerBar(self, unit) -- Mana, Rage, Insanity, Maelstrom etc.
 	self.Power = Bar
 	self.Power.Border = Border
 	self.Power.Background = Background
-
-	--self.Background.Power:SetAllPoints(self.Power)
-
 	self.Power.UpdateOptions = RUF.PowerUpdateOptions
+
 end
 
 function RUF.PowerUpdate(self, event, unit)
@@ -103,24 +101,20 @@ function RUF.PowerUpdate(self, event, unit)
 		element:SetValue(cur)
 	end
 
-
 	if element.hideAtZero == true and not disconnected then
 		if cur < 1 then
 			if element:IsVisible() then
 				element:Hide()
-				--element.__owner.Background.Power:Show()
 			end
 			RUF.UpdateBarLocation(self,unit,element,cur)
 		else
 			if not element:IsVisible() then
 				element:Show()
-				--element.__owner.Background.Power:Hide()
 			end
 			RUF.UpdateBarLocation(self,unit,element,cur)
 		end
 	end
 
-	-- TODO Set random value for test mode and random colour, make sure to sync this with tags.
 end
 
 function RUF.PowerUpdateOptions(self)
@@ -135,10 +129,7 @@ function RUF.PowerUpdateOptions(self)
 	Bar:SetStatusBarTexture(Texture)
 	Bar:SetFrameLevel(5)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Power.Fill)
-
 	RUF.SetBarLocation(self.__owner,unit)
 
 	self:ForceUpdate() -- Runs Update function for everything else.
-
-
 end

@@ -35,9 +35,6 @@ local function SetClassColors()
 	end
 end
 
--- TODO Check if following elements should be enabled and disable them after creation if necessary.
--- self:DisableElement('Power')
-
 local function SetupFrames(self, unit)
 	unit = unit:match('^(.-)%d+') or unit
 	self.frame = unit
@@ -68,19 +65,12 @@ local function SetupFrames(self, unit)
 	RUF.SetHealthBar(self, unit)
 	self.Health.Override = RUF.HealthUpdate
 	self.Health.UpdateColor = RUF.HealthUpdateColor
-	-- self.Health.PostUpdate = RUF.HealthPostUpdate
-	-- Set PostUpdate only if needed. See Health.lua
 
-	-- Mana / Energy / Rage / Focus / Runic Power
 	RUF.SetPowerBar(self, unit)
 	self.Power.Override = RUF.PowerUpdate
-	--self.Power.PreUpdate = RUF.PowerPreUpdate
-	--self:RegisterEvent('UNIT_TARGET', RUF.PowerPreUpdate)
 
 	if RUF.Client == 1 then
 		-- Prevents trying to load these elements for Classic since they don't exist in Classic.
-
-		-- Absorb Bars
 		RUF.SetAbsorbBar(self, unit)
 		self.Absorb.Override = RUF.AbsorbUpdate
 
@@ -97,17 +87,8 @@ local function SetupFrames(self, unit)
 
 	end
 
-	-- Class (or Spec) specific resources
-	-- Holy Power, Chi, Arcane Charges, Astral Power, Combo Points, Soul Shards, Maelstrom, Insanity etc.
-	-- FUNCTIONNAME(self, unit)
 
-	--RUF:SetBarLocation(self,unit)
-	--RUF.UpdateBarLocation(self,unit)
-
-
-	-- Castbars
-	-- TODO Styling and Positioning from profile.
-	if unit == 'player' or unit == 'target' then
+	if unit == 'player' or unit == 'target' then -- TODO Implement for Focus (and maybe other units too)
 		RUF.SetCastBar(self, unit)
 	end
 

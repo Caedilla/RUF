@@ -149,20 +149,6 @@ function RUF.SetBarLocation(self,unit)
 	if not self then return end
 	local barsAtTop = {}
 	local barsAtBottom = {}
- -- TODO
- --[[
-
-
-	 Handle support for when elements are disabled, i.e move everything up a 'slot'
-	 Handle support for when power bar is set to hide at 0. Not sure how we should track that, register UNIT_POWER_FREQUENT or UNIT_POWER and make it run this? Could be inefficient.
-
-
-	 REMOVE SETTOPBOT OPTIONS. Fuck stacking elements.
-	Power can be top or bot. Class can be on opposite part, never both on same 'side'
-	Remove Absorb bar type shit, always an overlay. Maybe add height and vertical offset values so you can make it into a 'fake' stacking bar.
- ]]
-
-
 	if unit == 'player' then
 		local classPowerUser = {
 			['DEATHKNIGHT'] = true,
@@ -312,14 +298,6 @@ function RUF.SetBarLocation(self,unit)
 			self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
 		end
 
-
-
-
-		--[[
-			Check absorb type, if absorb type is full bar then check order else just set Power bar to proper anchor and absorb to full bar anchor
-		]]--
-
 	end
-
 
 end

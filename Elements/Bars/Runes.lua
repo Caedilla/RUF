@@ -12,7 +12,6 @@ local classPowerData = {
 	},
 }
 
--- TODO: Per-spec colouring needs to be on or off based on the option to colour by spec or power type etc.
 function RUF.SetRunes(self, unit)
 	if uClass ~= 'DEATHKNIGHT' then return end
 	local classPowerBar = {}
@@ -268,7 +267,6 @@ function RUF.RunesUpdateOptions(self)
 		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 
 	end
-
 
 	self:ForceUpdate()
 	self:UpdateColor()

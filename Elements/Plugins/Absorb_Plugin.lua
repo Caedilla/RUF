@@ -1,21 +1,3 @@
-
-
-
-
---[[
-
-TODO: Split into:
-				Damage Absorbption - Power Word Shield etc.
-				Heal Absorbption - Debuffs Absorbs X healing
-				Use these two for absorb bars, and then use original oUF healthprediction for the healthprediction bar.
-
-]]--
-
-
-
-
-
-
 --[[
 # Element: Absorb Bars
 

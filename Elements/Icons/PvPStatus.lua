@@ -6,8 +6,6 @@ local elementName = 'PvPCombat'
 local elementStringAlliance = RUF.IndicatorGlyphs['PvP-Alliance']
 local elementStringHorde = RUF.IndicatorGlyphs['PvP-Horde']
 
---TODO Add PVP Rank Icon for classic
-
 local function Update(self, event, unit)
 	if(unit ~= self.unit) then return end
 	local element = self.PvPCombatIndicator

@@ -193,8 +193,7 @@ function RUF:CanAttach(frame, otherFrame)
 end
 
 function RUF.GetIndicatorAnchorFrame(self,unit,indicator)
-	-- TODO:
-	-- Anchor to element (health, power)
+	-- TODO: Anchor to element (health, power)
 
 	local AnchorFrame = "Frame"
 	if RUF.db.profile.unit[unit].Frame.Indicators[indicator].Position.AnchorFrame == "Frame" then

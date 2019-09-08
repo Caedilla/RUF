@@ -39,30 +39,6 @@ RUF.IndicatorGlyphs = {
 	['PetHappiness-Alternative'] = '', -- Star
 }
 
--- TODO
---[[
-	Two attach modes - one free form, you choose anchor and offsets and the icon just stays there.
-	You can attach to other elements but when they are not visible, the element stays where it is.
-
-	Second mode, choose an area, and we make a table of elements in that area.
-	Each element has a location and order associated with it.
-	Elements lower in the order are offset from the original anchor point automatically set by me - no option.
-	So center icons grow out horizontally, icons in the top-right will grow left, icons in the top-left will grow right.
-
-	Check the visibility of parent elements on their update function. If not visible, swap their positions?
-		X - Y - Z becomes
-		Y - X - Z Z updates and it becomes
-		Y - Z - X with x hidden.
-
-	Or, get width of parent, and offset correctly based on width
-	So
-	A = 30
-	B = 25
-
-	becomes
-	B = 25 - Aw
-]]--
-
 function RUF.SetIndicators(self, unit)
 	local Indicators = CreateFrame('Frame', nil, self)
 

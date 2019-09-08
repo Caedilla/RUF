@@ -14,12 +14,6 @@ local groupFrames = {}
 
 local function UnitGroup(profileName,groupFrame)
 	if not groupFrame then groupFrame = 'none' end
-	local ord = 99
-	for i=1,#frames do
-		if frames[i] == profileName then
-			ord = i
-		end
-	end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
 		referenceUnit = profileName .. 'UnitButton1'
@@ -401,12 +395,6 @@ end
 
 local function BarSettings(profileName,groupFrame)
 	if not groupFrame then groupFrame = 'none' end
-	local ord = 99
-	for i=1,#frames do
-		if frames[i] == profileName then
-			ord = i
-		end
-	end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
 		referenceUnit = profileName .. 'UnitButton1'
@@ -592,12 +580,6 @@ end
 
 local function TextSettings(profileName,groupFrame)
 	if not groupFrame then groupFrame = 'none' end
-	local ord = 99
-	for i=1,#frames do
-		if frames[i] == profileName then
-			ord = i
-		end
-	end
 
 	-- Generate list of units we can copy text elements from
 	local copyList = {}
@@ -996,12 +978,6 @@ end
 
 local function IndicatorSettings(profileName,groupFrame)
 	if not groupFrame then groupFrame = 'none' end
-	local ord = 99
-	for i=1,#frames do
-		if frames[i] == profileName then
-			ord = i
-		end
-	end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
 		referenceUnit = profileName .. 'UnitButton1'
@@ -1054,7 +1030,7 @@ local function IndicatorSettings(profileName,groupFrame)
 		indicatorOptions.args[indicators[i]] = {
 			name = L[indicators[i]],
 			type = 'group',
-			order = 0, -- TODO or leave as whatever?
+			order = 0,
 			hidden = HideIndicatorOptions(profileName, indicators[i]),
 			args = {
 				enabled = {
@@ -1219,12 +1195,6 @@ end
 
 local function BuffSettings(profileName,groupFrame)
 	if not groupFrame then groupFrame = 'none' end
-	local ord = 99
-	for i=1,#frames do
-		if frames[i] == profileName then
-			ord = i
-		end
-	end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
 		referenceUnit = profileName .. 'UnitButton1'
@@ -1538,7 +1508,6 @@ local function BuffSettings(profileName,groupFrame)
 							RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrame = value
 						else
 							RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrame = 'Frame'
-							-- TODO Pop up to confirm force anchoring Debuffs back to frame, so we can anchor buffs to debuffs.
 						end
 					else
 						RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrame = 'Frame'
@@ -1734,12 +1703,6 @@ end
 
 local function DebuffSettings(profileName,groupFrame)
 	if not groupFrame then groupFrame = 'none' end
-	local ord = 99
-	for i=1,#frames do
-		if frames[i] == profileName then
-			ord = i
-		end
-	end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
 		referenceUnit = profileName .. 'UnitButton1'
@@ -1771,8 +1734,6 @@ local function DebuffSettings(profileName,groupFrame)
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Enabled = value
 					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
-					-- TODO UpdateAuras function. Just resetting all auras should work maybe?
-					-- Since the settings for an aura is updated when it is refreshed or a new one is applied
 				end,
 			},
 			enabledSpacer = {
@@ -2251,12 +2212,6 @@ end
 
 local function CastBarSettings(profileName, groupFrame)
 	if not groupFrame then groupFrame = 'none' end
-	local ord = 99
-	for i=1,#frames do
-		if frames[i] == profileName then
-			ord = i
-		end
-	end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
 		referenceUnit = profileName .. 'UnitButton1'

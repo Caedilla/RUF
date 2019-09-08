@@ -4,60 +4,6 @@ local LSM = LibStub("LibSharedMedia-3.0")
 local _, ns = ...
 local oUF = ns.oUF
 
--- TODO setup styling and positioning based on profile.
-
-
-
---[[
-	OPTIONS:
-
-	Bar Color:
-		Base Colors: - Cast, cancelled, interrupted etc. can we do all this?
-		Color by class maybe?
-		Brightness Multiplier
-
-	Bar Background:
-		Use Bar Color
-		Brightness Multiplier
-		Alpha
-		Base Color
-
-	Border:
-		Alpha
-		Size
-		Color
-		Texture
-
-	Text:
-		Time
-		Spell Name
-			Enabled
-			Location (Left/Right)
-			Font
-			Shadow
-			Outline
-			Size
-			X/Y Offset
-
-	Spark:
-		On/Off
-		Color?
-		Size?
-
-	Icon:
-		I don't want it. Do it later for other users.
-
-	Latency:
-		Enabled
-		Color
-		Alpha
-
-
-
-
-
-]]--
-
 local function onUpdate(self, elapsed)
 	local add = elapsed or 0
 	if RUF.db.global.TestMode == true and not InCombatLockdown() then

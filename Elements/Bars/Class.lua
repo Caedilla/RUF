@@ -38,7 +38,6 @@ local classPowerData = {
 }
 
 function RUF.SetClassBar(self, unit)
-	-- TODO set Class Bar as alternate Power bar for Feral, Guardian, and Restoraion Druids.
 	if not classPowerData[uClass] then return end
 	local classPowerBar = {}
 	local classPowerBorder = {}
@@ -125,11 +124,7 @@ function RUF.SetClassBar(self, unit)
 	self.ClassPower.UpdateColor = RUF.ClassUpdateColor
 	self.ClassPower.Holder = Holder
 	self.ClassPower.Holder.__owner = self
-
 	self.ClassPower.UpdateOptions = RUF.ClassUpdateOptions
-
-
-	--self.Background.ClassPower:SetAllPoints(self.ClassPower.Holder)
 
 	-- Force an update to make sure we are showing the correct number of bars for classes with talents that add additional points.
 	RUF.ClassUpdate(self, "PLAYER_TALENT_UPDATE", unit, classPowerData[uClass].classPowerType)
@@ -213,24 +208,15 @@ function RUF.ClassUpdate(self, event, unit, powerType)
 		end
 	end
 
-	--[[if element[1]:IsVisible() then
-		self.Background.ClassPower:Hide()
-	else
-		self.Background.ClassPower:Show()
-	end]]--
-
 	if event == 'ClassPowerDisable' then
 		self.ClassPower.Holder:Hide()
-		--self.Background.ClassPower:Show()
 	end
 	if event == 'ClassPowerEnable' then
 		self.ClassPower.Holder:Show()
-		--self.Background.ClassPower:Hide()
 	end
 end
 
 function RUF.ClassUpdateOptions(self)
-	-- TODO: Update Position
 
 	if not classPowerData[uClass] then return end
 	local unit = self.__owner.frame
@@ -279,8 +265,6 @@ function RUF.ClassUpdateOptions(self)
 		Background:SetAllPoints(Bar)
 		Background:SetTexture(LSM:Fetch('background', 'Solid'))
 		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
-
-
 
 	end
 
