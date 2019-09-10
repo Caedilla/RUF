@@ -14,6 +14,7 @@ local function Update(self, event, unit)
 		element:PreUpdate()
 	end
 	if element.Enabled == true then
+		self:EnableElement(elementName..'Indicator')
 		local isQuestBoss = UnitIsQuestBoss(unit)
 		if element:IsObjectType('FontString') then
 			if(isQuestBoss) then

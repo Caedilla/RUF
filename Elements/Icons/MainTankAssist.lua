@@ -15,6 +15,7 @@ local function Update(self, event)
 		element:PreUpdate()
 	end
 	if element.Enabled == true then
+		self:EnableElement(elementName..'Indicator')
 		local unit = self.unit
 		local unitVehicleUI = false
 		if RUF.Client == 1 then

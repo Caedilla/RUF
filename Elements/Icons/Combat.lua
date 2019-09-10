@@ -13,6 +13,7 @@ local function Update(self, event)
 		element:PreUpdate()
 	end
 	if element.Enabled == true then
+		self:EnableElement(elementName..'Indicator')
 		local inCombat = UnitAffectingCombat(self.unit)
 		if(inCombat) then
 			element:SetText(elementString)

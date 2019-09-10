@@ -933,8 +933,14 @@ local function TextSettings(profileName,groupFrame)
 end
 
 local function HideIndicatorOptions(profileName,indicator)
+	if indicator == 'Honor' then return true end -- Not implemented
 	if RUF.Client == 1 then
 		if indicator == 'LootMaster' or indicator == 'PetHappiness' then
+			return true
+		end
+	end
+	if RUF.Client == 2 then
+		if indicator == 'Role' or indicator == 'Objective' or indicator == 'Honor' then
 			return true
 		end
 	end

@@ -15,6 +15,7 @@ local function Update(self, event, unit)
 		element:PreUpdate(unit)
 	end
 	if element.Enabled == true then
+		self:EnableElement(elementName..'Indicator')
 		local status
 		local factionGroup = UnitFactionGroup(unit)
 		if(UnitIsPVPFreeForAll(unit)) then

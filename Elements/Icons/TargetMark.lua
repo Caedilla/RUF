@@ -24,6 +24,7 @@ local function Update(self, event)
 		element:PreUpdate()
 	end
 	if element.Enabled == true then
+		self:EnableElement(elementName..'Indicator')
 		local index = GetRaidTargetIndex(self.unit)
 		if(index) then
 			element:Show()

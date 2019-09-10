@@ -13,6 +13,7 @@ local function Update(self, event)
 		element:PreUpdate()
 	end
 	if element.Enabled == true then
+		self:EnableElement(elementName..'Indicator')
 		local unit = self.unit
 		local lootMethod, partyLooter, raidLooter = GetLootMethod()
 		local lootMaster
@@ -39,6 +40,7 @@ local function Update(self, event)
 		end
 	else
 		self:DisableElement('LootMasterIndicator')
+		element:SetText(' ')
 		element:Hide()
 	end
 

@@ -16,6 +16,7 @@ local function Update(self, event)
 	end
 
 	if element.Enabled == true then
+		self:EnableElement(elementName..'Indicator')
 		local role = UnitGroupRolesAssigned(self.unit)
 		if role == 'TANK' then
 			element:SetText(elementStringTANK)

@@ -13,6 +13,7 @@ local function Update(self, event)
 		element:PreUpdate()
 	end
 	if element.Enabled == true then
+		self:EnableElement(elementName..'Indicator')
 		local unit = self.unit
 		local isAssistant = UnitInRaid(unit) and UnitIsGroupAssistant(unit) and not UnitIsGroupLeader(unit)
 		if element:IsObjectType('FontString') then
