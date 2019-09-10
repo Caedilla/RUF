@@ -102,7 +102,8 @@ function RUF.SetBarLocation(self,unit)
 	if not self then return end
 	if unit == 'ACTIVE_TALENT_GROUP_CHANGED' then unit = 'player' end
 	if unit == 'PLAYER_ENTERING_WORLD' then unit = 'player' end
-	local profileReference = RUF.db.profile.unit[unit].Frame.Bars
+	local profileUnit = self.frame
+	local profileReference = RUF.db.profile.unit[profileUnit].Frame.Bars
 	local barsAtTop = {}
 	local barsAtBottom = {}
 	if unit == 'player' then
@@ -112,8 +113,8 @@ function RUF.SetBarLocation(self,unit)
 		local powerShouldShow = false
 		if profileReference.Class.Position.Anchor == profileReference.Power.Position.Anchor then
 			-- Force override from old broken ability to place both bars at same location
-			RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor = 'TOP'
-			RUF.db.profile.unit[unit].Frame.Bars.Power.Position.Anchor = 'BOTTOM'
+			RUF.db.profile.unit[profileUnit].Frame.Bars.Class.Position.Anchor = 'TOP'
+			RUF.db.profile.unit[profileUnit].Frame.Bars.Power.Position.Anchor = 'BOTTOM'
 		end
 		if self.ClassPower and profileReference.Class.Enabled == true then
 			if profileReference.Class.Position.Anchor == 'TOP' then

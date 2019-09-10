@@ -801,6 +801,9 @@ function RUF:SpawnUnits()
 		RegisterAttributeDriver(oUF_RUF_Party,'state-visibility',"show")
 	end
 	for k, v in next, oUF.objects do
+		if v.Castbar then
+			v.Castbar:OnUpdate()
+		end
 		v:SetAttribute('oldUnit',v.unit)
 		v.oldUnit = v:GetAttribute('oldUnit')
 		if v.realUnit then v.oldUnit = v.realUnit end
@@ -816,9 +819,7 @@ function RUF:SpawnUnits()
 		else
 			v:Hide()
 		end
-		if v.Castbar then
-			v.Castbar:OnUpdate()
-		end
+
 	end
 	UnitsSpawned = true
 end
@@ -833,17 +834,17 @@ function RUF:RestoreUnits()
 		RegisterAttributeDriver(oUF_RUF_Party,'state-visibility',"hide")
 	end
 	for k, v in next, oUF.objects do
+		if v.Castbar then
+			v.Castbar:OnUpdate()
+		end
 		v:SetAttribute('unit',v.oldUnit)
 		v.unit = v:GetAttribute('unit')
 		v.Text.DisplayName:Hide()
 		v:Hide()
-		if RUF.db.profile.unit[string.gsub(v.oldUnit,'%d','')].Enabled then
+		if RUF.db.profile.unit[string.gsub(v.frame,'%d','')].Enabled then
 			v:Enable()
 		else
 			v:Disable()
-		end
-		if v.Castbar then
-			v.Castbar:OnUpdate()
 		end
 	end
 	UnitsSpawned = false
