@@ -227,6 +227,10 @@ local function PostUpdateDebuffIcon(self,unit,button,index,position,duration,exp
 	end
 
 	if self[position] then
+		local icon = self[position].icon
+		local profileReference = RUF.db.profile.unit[self.__owner.frame].Debuffs.Icons
+		local left,right,top,bottom = RUF:IconTextureTrim(true,profileReference.Width,profileReference.Height)
+		icon:SetTexCoord(left,right,top,bottom)
 		local border = self[position].border
 		border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Aura.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Border.Style.edgeSize})
 		border:SetBackdropBorderColor(r,g,b,a)

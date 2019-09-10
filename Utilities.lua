@@ -20,8 +20,21 @@ function RUF:PopUp(name,message,button1value,button2value,acceptfunc)
 		whileDead = true,
 		hideOnEscape = false,
 		showAlert = true,
-		preferredIndex = 3,  -- avoid some UI taint, see http://www.wowace.com/announcements/how-to-avoid-some-ui-taint/
-	  }
+		preferredIndex = 3, -- avoid some UI taint, see http://www.wowace.com/announcements/how-to-avoid-some-ui-taint/
+	}
+end
+
+function RUF:IconTextureTrim(trim, w, h)
+	local left, right, top, bottom = 0, 1, 0, 1 -- default without trim
+	if trim then left = 0.05; right = 0.95; top = 0.05; bottom = 0.95 end
+	if w > h then -- rectangular with width greater than height
+		local crop = (bottom - top) * (w - h)/ w / 2 -- aspect ratio to reduce height by
+		top = top + crop; bottom = bottom - crop
+	elseif h > w then -- rectangular with height greater than width
+		local crop = (right - left) * (h - w)/ h / 2 -- aspect ratio to reduce height by
+		left = left + crop; right = right - crop
+	end
+	return left,right,top,bottom
 end
 
 function RUF:copyTable(src, dest)
