@@ -106,12 +106,12 @@ function RUF.PowerUpdate(self, event, unit)
 			if element:IsVisible() then
 				element:Hide()
 			end
-			RUF.UpdateBarLocation(self,unit,element,cur)
+			RUF.SetBarLocation(self,unit)
 		else
 			if not element:IsVisible() then
 				element:Show()
 			end
-			RUF.UpdateBarLocation(self,unit,element,cur)
+			RUF.SetBarLocation(self,unit)
 		end
 	end
 

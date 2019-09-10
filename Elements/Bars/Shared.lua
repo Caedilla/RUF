@@ -98,164 +98,127 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 	return r,g,b
 end
 
-function RUF.UpdateBarLocation(self,unit,element,cur)
-	local barsAtTop = {}
-	local barsAtBottom = {}
-	local profileReference = RUF.db.profile.unit[unit].Frame.Bars
-	if unit == 'player' then
-
-
-	else
-		if profileReference.Power.Enabled == 2 then
-			if profileReference.Power.Position.Anchor == 'TOP' then
-				self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
-				self.Background.Base:SetPoint('TOPLEFT',element,'BOTTOMLEFT',0,0)
-			else
-				self.Background.Base:SetPoint('TOPLEFT',self,0,0)
-				self.Background.Base:SetPoint('BOTTOMRIGHT',element,'TOPRIGHT',0,0)
-			end
-		elseif profileReference.Power.Enabled == 1 then
-			if cur then
-				if cur > 0 then
-					if profileReference.Power.Position.Anchor == 'TOP' then
-						self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
-						self.Background.Base:SetPoint('TOPLEFT',element,'BOTTOMLEFT',0,0)
-					else
-						self.Background.Base:SetPoint('TOPLEFT',self,0,0)
-						self.Background.Base:SetPoint('BOTTOMRIGHT',element,'TOPRIGHT',0,0)
-					end
-				else
-					self.Background.Base:SetPoint('TOPLEFT',self,0,0)
-					self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
-				end
-			else
-				self.Background.Base:SetPoint('TOPLEFT',self,0,0)
-				self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
-			end
-		else
-			self.Background.Base:SetPoint('TOPLEFT',self,0,0)
-			self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
-		end
-	end
-
-
-		--[[
-			Check absorb type, if absorb type is full bar then check order else just set Power bar to proper anchor and absorb to full bar anchor
-		]]--
-
-end
-
 function RUF.SetBarLocation(self,unit)
 	if not self then return end
+	if unit == 'ACTIVE_TALENT_GROUP_CHANGED' then unit = 'player' end
+	if unit == 'PLAYER_ENTERING_WORLD' then unit = 'player' end
+	local profileReference = RUF.db.profile.unit[unit].Frame.Bars
 	local barsAtTop = {}
 	local barsAtBottom = {}
 	if unit == 'player' then
-		local classPowerUser = {
-			['DEATHKNIGHT'] = true,
-			['DRUID'] = true,
-			['MAGE'] = true,
-			['MONK'] = true,
-			['PALADIN'] = true,
-			['PRIEST'] = true,
-			['ROGUE'] = true,
-			['SHAMAN'] = true,
-			['WARLOCK'] = true,
-		}
-		local hasClassBar = false
-		if classPowerUser[uClass] then
-			if self.ClassPower then
-				if self.ClassPower.Holder:IsVisible() then
-					hasClassBar = true
-				end
-			elseif self.FakeClassPower then
-				if self.FakeClassPower:IsVisible() then
-					hasClassBar = true
-				end
-			elseif self.Runes then
-				if self.Runes.Holder:IsVisible() then
-					hasClassBar = true
-				end
-			end
-		end
-
-		if RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == RUF.db.profile.unit[unit].Frame.Bars.Power.Position.Anchor then
+		local _,pType = UnitPowerType(unit)
+		local visibleTopBars = false
+		local visibleBottomBars = false
+		local powerShouldShow = false
+		if profileReference.Class.Position.Anchor == profileReference.Power.Position.Anchor then
 			-- Force override from old broken ability to place both bars at same location
 			RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor = 'TOP'
 			RUF.db.profile.unit[unit].Frame.Bars.Power.Position.Anchor = 'BOTTOM'
 		end
-		if hasClassBar and RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == true then
-			if RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == 'TOP' then
+		if self.ClassPower and profileReference.Class.Enabled == true then
+			if profileReference.Class.Position.Anchor == 'TOP' then
 				table.insert(barsAtTop,'ClassPower')
 			else
 				table.insert(barsAtBottom,'ClassPower')
 			end
 		end
-		if RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled > 0 then
-			if RUF.db.profile.unit[unit].Frame.Bars.Power.Position.Anchor == 'TOP' then
+		if self.FakeClassPower and profileReference.Class.Enabled == true then
+			if profileReference.Class.Position.Anchor == 'TOP' then
+				table.insert(barsAtTop,'FakeClassPower')
+			else
+				table.insert(barsAtBottom,'FakeClassPower')
+			end
+		end
+		if self.Runes and profileReference.Class.Enabled == true then
+			if profileReference.Class.Position.Anchor == 'TOP' then
+				table.insert(barsAtTop,'Runes')
+			else
+				table.insert(barsAtBottom,'Runes')
+			end
+		end
+		if self.Stagger and profileReference.Class.Enabled == true then
+			if profileReference.Class.Position.Anchor == 'TOP' then
+				table.insert(barsAtTop,'Stagger')
+			else
+				table.insert(barsAtBottom,'Stagger')
+			end
+		end
+		if profileReference.Power.Enabled == 1 then
+			if ((pType == "INSANITY" or pType == "MAELSTROM" or pType == "LUNAR_POWER") and UnitPower(unit,0) > 0) or UnitPower(unit) > 0 then
+				powerShouldShow = true
+			end
+		elseif profileReference.Power.Enabled == 2 then
+			powerShouldShow = true
+		end
+		if powerShouldShow == true then
+			if profileReference.Power.Position.Anchor == 'TOP' then
 				table.insert(barsAtTop,'Power')
 			else
 				table.insert(barsAtBottom,'Power')
 			end
 		end
-
 		local topOffset,bottomOffset
 		for i = 1,#barsAtTop do
 			local element
-			local profileName = barsAtTop[i]
-			if barsAtTop[i] == 'Power' then
+			local profileName = 'Class'
+			if barsAtTop[i] == 'ClassPower' then
+				element = self.ClassPower.Holder
+			elseif barsAtTop[i] == 'FakeClassPower' then
+				element = self.FakeClassPower
+			elseif barsAtTop[i] == 'Runes' then
+				element = self.Runes.Holder
+			elseif barsAtTop[i] == 'Stagger' then
+				element = self.Stagger
+			elseif barsAtTop[i] == 'Power' then
+				profileName = 'Power'
 				element = self.Power
-			elseif barsAtTop[i] == 'ClassPower' then
-				profileName = 'Class'
-				-- Handle Stagger and Druid FakeClass after.
-				if self.ClassPower then
-					element = self.ClassPower.Holder
-				elseif self.FakeClassPower then
-					element = self.FakeClassPower
-				elseif self.Runes then
-					element = self.Runes.Holder
-				end
 			end
 			element:ClearAllPoints()
 			element:SetPoint('TOP',0,0)
 			element:SetPoint('LEFT',0,0)
 			element:SetPoint('RIGHT',0,0)
-			element:SetHeight(RUF.db.profile.unit[unit].Frame.Bars[profileName].Height)
+			element:SetHeight(profileReference[profileName].Height)
 			element.anchorTo = 'TOP'
-			self.Background.Base:SetPoint('TOPLEFT',element,'BOTTOMLEFT',0,0)
+			if element:IsVisible() then
+				visibleTopBars = true
+				self.Background.Base:SetPoint('TOPLEFT',element,'BOTTOMLEFT',0,0)
+			end
 		end
 		for i = 1,#barsAtBottom do
 			local element
-			local profileName = barsAtBottom[i]
-			if barsAtBottom[i] == 'Power' then
+			local profileName = 'Class'
+			if barsAtBottom[i] == 'ClassPower' then
+				element = self.ClassPower.Holder
+			elseif barsAtBottom[i] == 'FakeClassPower' then
+				element = self.FakeClassPower
+			elseif barsAtBottom[i] == 'Runes' then
+				element = self.Runes.Holder
+			elseif barsAtBottom[i] == 'Stagger' then
+				element = self.Stagger
+			elseif barsAtBottom[i] == 'Power' then
+				profileName = 'Power'
 				element = self.Power
-			elseif barsAtBottom[i] == 'ClassPower' then
-				profileName = 'Class'
-				-- Handle Stagger and Druid FakeClass after.
-				if self.ClassPower then
-					element = self.ClassPower.Holder
-				elseif self.FakeClassPower then
-					element = self.FakeClassPower
-				elseif self.Runes then
-					element = self.Runes.Holder
-				end
 			end
 			element:ClearAllPoints()
 			element:SetPoint('BOTTOM',0,0)
 			element:SetPoint('LEFT',0,0)
 			element:SetPoint('RIGHT',0,0)
-			element:SetHeight(RUF.db.profile.unit[unit].Frame.Bars[profileName].Height)
+			element:SetHeight(profileReference[profileName].Height)
 			element.anchorTo = 'BOTTOM'
-			self.Background.Base:SetPoint('BOTTOMRIGHT',element,'TOPRIGHT',0,0)
+			if element:IsVisible() then
+				visibleBottomBars = true
+				self.Background.Base:SetPoint('BOTTOMRIGHT',element,'TOPRIGHT',0,0)
+			end
 		end
-		if #barsAtTop == 0 then
+		if visibleTopBars == false then
 			self.Background.Base:SetPoint('TOPLEFT',self,0,0)
 		end
-		if #barsAtBottom == 0 then
+		if visibleBottomBars == false then
 			self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
 		end
 	else
-		if RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled > 0 then
-			if RUF.db.profile.unit[unit].Frame.Bars.Power.Position.Anchor == 'TOP' then
+		if profileReference.Power.Enabled == 2 or (profileReference.Power.Enabled == 1 and UnitPower(unit) > 0) then
+			if profileReference.Power.Position.Anchor == 'TOP' then
 				table.insert(barsAtTop,'Power')
 			else
 				table.insert(barsAtBottom,'Power')
@@ -272,9 +235,9 @@ function RUF.SetBarLocation(self,unit)
 			element:SetPoint('TOP',0,0)
 			element:SetPoint('LEFT',0,0)
 			element:SetPoint('RIGHT',0,0)
-			element:SetHeight(RUF.db.profile.unit[unit].Frame.Bars[profileName].Height)
+			element:SetHeight(profileReference[profileName].Height)
 			element.anchorTo = 'TOP'
-			topOffset = RUF.db.profile.unit[unit].Frame.Bars[profileName].Height
+			topOffset = profileReference[profileName].Height
 			self.Background.Base:SetPoint('TOPLEFT',element,'BOTTOMLEFT',0,0)
 		end
 		for i = 1,#barsAtBottom do
@@ -287,7 +250,7 @@ function RUF.SetBarLocation(self,unit)
 			element:SetPoint('BOTTOM',0,0)
 			element:SetPoint('LEFT',0,0)
 			element:SetPoint('RIGHT',0,0)
-			element:SetHeight(RUF.db.profile.unit[unit].Frame.Bars[profileName].Height)
+			element:SetHeight(profileReference[profileName].Height)
 			element.anchorTo = 'BOTTOM'
 			self.Background.Base:SetPoint('BOTTOMRIGHT',element,'TOPRIGHT',0,0)
 		end

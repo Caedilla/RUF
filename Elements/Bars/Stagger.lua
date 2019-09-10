@@ -30,43 +30,19 @@ function RUF.SetStagger(self, unit)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Class.Fill)
 
 	-- Bar Position
-	local function SetTopBot()
-		if RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == "TOP" then
-			Bar:SetPoint('TOP',0,0)
-			Bar:SetPoint('LEFT',0,0)
-			Bar:SetPoint('RIGHT',0,0)
-			Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
-			Bar.anchorTo = "TOP"
-		elseif RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == "BOTTOM" then
-			Bar:SetPoint('BOTTOM',0,0)
-			Bar:SetPoint('LEFT',0,0)
-			Bar:SetPoint('RIGHT',0,0)
-			Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
-			Bar.anchorTo = "BOTTOM"
-		end
-	end
-	if self.ClassPower and RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled then
-		if RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor then
-			if RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Order == 0 then
-				SetTopBot()
-			elseif RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == "TOP" then
-				Bar:SetPoint('TOP',0,-RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
-				Bar:SetPoint('LEFT',0,0)
-				Bar:SetPoint('RIGHT',0,0)
-				Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
-				Bar.anchorTo = "TOP"
-			elseif RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == "BOTTOM" then
-				Bar:SetPoint('BOTTOM',0,RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
-				Bar:SetPoint('LEFT',0,0)
-				Bar:SetPoint('RIGHT',0,0)
-				Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
-				Bar.anchorTo = "BOTTOM"
-			end
-		else
-			SetTopBot()
-		end
+	if RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == 'TOP' then
+		Bar:SetPoint('TOP',0,0)
+		Bar:SetPoint('LEFT',0,0)
+		Bar:SetPoint('RIGHT',0,0)
+		Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
+		Bar.anchorTo = 'TOP'
 	else
-		SetTopBot()
+		Bar:ClearAllPoints()
+		Bar:SetPoint('BOTTOM',0,0)
+		Bar:SetPoint('LEFT',0,0)
+		Bar:SetPoint('RIGHT',0,0)
+		Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
+		Bar.anchorTo = 'BOTTOM'
 	end
 
 	-- Border
@@ -89,10 +65,8 @@ function RUF.SetStagger(self, unit)
 	self.Stagger.Border = Border
 	self.Stagger.Background = Background
 	self.Stagger.Override = RUF.StaggerUpdate
-
 	self.Stagger.UpdateOptions = RUF.StaggerUpdateOptions
 end
-
 
 function RUF.StaggerUpdate(self, event, unit)
 	if(unit and unit ~= self.unit) then return end

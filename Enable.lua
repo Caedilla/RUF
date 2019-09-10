@@ -126,6 +126,12 @@ local function SetupFrames(self, unit)
 	-- Indicators
 	RUF.SetIndicators(self, unit)
 
+	if unit == 'player' and RUF.Client == 1 then
+		self:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED', RUF.SetBarLocation, unit)
+		self:RegisterEvent('PLAYER_ENTERING_WORLD', RUF.SetBarLocation, unit)
+	end
+
+	RUF.SetBarLocation(self,unit)
 end
 
 
