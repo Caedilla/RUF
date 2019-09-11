@@ -2163,6 +2163,8 @@ local function CastBarSettings(profileName, groupFrame)
 		hidden = function()
 			if profileName == 'player' or profileName == 'target' then
 				return false
+			elseif RUF.Client == 1 and profileName == 'focus' then
+				return false
 			else
 				return true
 			end

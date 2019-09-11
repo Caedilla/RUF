@@ -88,7 +88,10 @@ local function SetupFrames(self, unit)
 	end
 
 
-	if unit == 'player' or unit == 'target' then -- TODO Implement for Focus (and maybe other units too)
+	if unit == 'player' or unit == 'target' then
+		RUF.SetCastBar(self, unit)
+	end
+	if RUF.Client == 1 and unit == 'focus' then
 		RUF.SetCastBar(self, unit)
 	end
 
