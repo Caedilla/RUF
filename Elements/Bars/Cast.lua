@@ -115,7 +115,6 @@ local function onUpdate(self, elapsed)
 	end
 end
 
-
 function RUF.SetCastBar(self, unit)
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
 	local unitProfile = RUF.db.profile.unit[unit].Frame.Bars.Cast
@@ -239,6 +238,15 @@ end
 function RUF.CastBarUpdateOptions(self)
 	local unit = self.__owner.frame
 	local Bar = self
+	local Border = self.Border
+	local profileReference = RUF.db.profile.Appearance.Bars.Cast
+
+	-- Border
+	Border:SetAllPoints(Bar)
+	Border:SetFrameLevel(7)
+	Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
+	local borderr,borderg,borderb = unpack(profileReference.Border.Color)
+	Border:SetBackdropBorderColor(borderr,borderg,borderb, profileReference.Border.Alpha)
 
 	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Cast.Texture)
 	Bar:SetStatusBarTexture(texture)

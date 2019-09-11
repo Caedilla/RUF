@@ -124,6 +124,7 @@ end
 function RUF.PowerUpdateOptions(self)
 	local unit = self.__owner.frame
 	local Bar = self
+	local Border = self.Border
 
 	local Texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Power.Texture)
 	Bar.Smooth = RUF.db.profile.Appearance.Bars.Power.Animate
@@ -134,6 +135,13 @@ function RUF.PowerUpdateOptions(self)
 	Bar:SetFrameLevel(5)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Power.Fill)
 	RUF.SetBarLocation(self.__owner,unit)
+
+	-- Border
+	Border:SetAllPoints(Bar)
+	Border:SetFrameLevel(7)
+	Border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeSize})
+	local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Power.Border.Color)
+	Border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Power.Border.Alpha)
 
 	self:ForceUpdate() -- Runs Update function for everything else.
 	if RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled == 0 then
