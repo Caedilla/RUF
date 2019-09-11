@@ -13,8 +13,14 @@ local cfg = {
 	profile = {
 		Appearance = {
 			Border = {
-				Debuff = {
+				Glow = {
 					Enabled = true,
+					Offset = -1,
+					Alpha = 1,
+					Style = {
+						edgeFile = "RUF Glow", -- Pixel Border settings.
+						edgeSize = 10,
+					},
 				},
 				Style = {
 					edgeFile = "RUF Pixel", -- Pixel Border settings.

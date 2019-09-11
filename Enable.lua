@@ -57,6 +57,12 @@ local function SetupFrames(self, unit)
 	-- Frame Border
 	RUF.SetFrameBorder(self,unit)
 
+	-- Aura Highlight Border
+	if not unit:match('%w+target') then
+	--if unit ~= 'targettarget' and unit ~= 'pettarget' and unit ~= 'focustarget' then
+		RUF.SetGlowBorder(self,unit)
+	end
+
 	-- Frame Background
 	RUF.SetFrameBackground(self, unit)
 

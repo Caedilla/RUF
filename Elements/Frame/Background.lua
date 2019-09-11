@@ -3,21 +3,164 @@ local L = LibStub('AceLocale-3.0'):GetLocale('RUF')
 local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
+local _,uClass = UnitClass("player")
 
+local DebuffDispel = {-- DISPELLING ALLIES, 10 = Classic since there are no specs in classic.
+	['DEATHKNIGHT'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+		[3] = {'None'},
+		[10] = {'None'},
+	},
+	['DEMONHUNTER'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+		[10] = {'None'},
+	},
+	['DRUID'] = {
+		[1] = {'Curse','Poison'},
+		[2] = {'Curse','Poison'},
+		[3] = {'Curse','Poison'},
+		[4] = {'Curse','Magic','Poison'},
+		[10] = {'Curse','Poison'}
+	},
+	['HUNTER'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+		[3] = {'None'},
+		[10] = {'None'},
+	},
+	['MAGE'] = {
+		[1] = {'Curse'},
+		[2] = {'Curse'},
+		[3] = {'Curse'},
+		[10] = {'Curse'},
+	},
+	['MONK'] = {
+		[1] = {'Disease','Poison'},
+		[2] = {'Disease','Magic','Poison'},
+		[3] = {'Disease','Poison'},
+		[10] = {'None'},
+	},
+	['PALADIN'] = {
+		[1] = {'Disease','Magic','Poison'},
+		[2] = {'Disease','Poison'},
+		[3] = {'Disease','Poison'},
+		[10] = {'Disease','Magic','Poison'},
+	},
+	['PRIEST'] = {
+		[1] = {'Disease','Magic'},
+		[2] = {'Disease','Magic'},
+		[3] = {'Disease'},
+		[10] = {'Disease','Magic'},
+	},
+	['ROGUE'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+		[3] = {'None'},
+		[10] = {'None'},
+	},
+	['SHAMAN'] = {
+		[1] = {'Curse'},
+		[2] = {'Curse'},
+		[3] = {'Curse','Magic'},
+		[10] = {'Disease','Poison'},
+	},
+	['WARLOCK'] = {
+		[1] = {'Magic'},
+		[2] = {'Magic'},
+		[3] = {'Magic'},
+		[10] = {'Magic'},
+	},
+	['WARRIOR'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+		[3] = {'None'},
+		[10] = {'None'},
+	},
+}
+local BuffDispel = {-- PURGES
+	['DEATHKNIGHT'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+		[3] = {'None'},
+		[10] = {'None'},
+	},
+	['DEMONHUNTER'] = {
+		[1] = {'Magic'},
+		[2] = {'Magic'},
+		[10] = {'None'},
+	},
+	['DRUID'] = {
+		[1] = {'Enrage'},
+		[2] = {'Enrage'},
+		[3] = {'Enrage'},
+		[4] = {'Enrage'},
+		[10] = {'None'},
+	},
+	['HUNTER'] = {
+		[1] = {'Enrage'},
+		[2] = {'Enrage'},
+		[3] = {'Enrage'},
+		[10] = {'Enrage'},
+	},
+	['MAGE'] = {
+		[1] = {'Magic'},
+		[2] = {'Magic'},
+		[3] = {'Magic'},
+		[10] = {'None'},
+	},
+	['MONK'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+		[3] = {'None'},
+		[10] = {'None'},
+	},
+	['PALADIN'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+		[3] = {'None'},
+		[10] = {'None'},
+	},
+	['PRIEST'] = {
+		[1] = {'Magic'},
+		[2] = {'Magic'},
+		[3] = {'Magic'},
+		[10] = {'Magic'},
+	},
+	['ROGUE'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+		[3] = {'None'},
+		[10] = {'None'},
+	},
+	['SHAMAN'] = {
+		[1] = {'Magic'},
+		[2] = {'Magic'},
+		[3] = {'Magic'},
+		[10] = {'Magic'},
+	},
+	['WARLOCK'] = {
+		[1] = {'Magic'},
+		[2] = {'Magic'},
+		[3] = {'Magic'},
+		[10] = {'Magic'},
+	},
+	['WARRIOR'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+		[3] = {'None'},
+		[10] = {'None'},
+	},
+}
 
 function RUF.SetFrameBorder(self, unit)
 	local name = self:GetName()
 	local Border = CreateFrame('Frame',name..'.Border',self)
-	local x = RUF.db.profile.Appearance.Border.Offset
-	local y = RUF.db.profile.Appearance.Border.Offset
+	local offset = RUF.db.profile.Appearance.Border.Offset
 
-	if x == 0 then
-		Border:SetPoint('TOPLEFT',self,'TOPLEFT',0,0)
-		Border:SetPoint('BOTTOMRIGHT',self,'BOTTOMRIGHT',0,0)
-	else
-		Border:SetPoint('TOPLEFT',self,'TOPLEFT',-x,y)
-		Border:SetPoint('BOTTOMRIGHT',self,'BOTTOMRIGHT',x,-y)
-	end
+	Border:SetPoint('TOPLEFT',self,'TOPLEFT',-offset,offset)
+	Border:SetPoint('BOTTOMRIGHT',self,'BOTTOMRIGHT',offset,-offset)
 
 	Border:SetFrameLevel(10)
 	Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Border.Style.edgeSize})
@@ -25,6 +168,86 @@ function RUF.SetFrameBorder(self, unit)
 	Border:SetBackdropBorderColor(r,g,b, RUF.db.profile.Appearance.Border.Alpha)
 
 	self.Border = Border
+end
+
+function RUF.SetGlowBorder(self, unit) -- Aura Highlight Border
+	--[[
+	TODO:
+	Options
+	Unregister Events in options too if set. We only set if enabled, so only need to disable if they have been set in that session.
+
+
+	]]--
+
+
+	local name = self:GetName()
+	local Border = CreateFrame('Frame',name..'.Border',self)
+	local profileReference = RUF.db.profile.Appearance.Border.Glow
+	local offset = profileReference.Offset
+
+	local GlowBorder = CreateFrame('Frame',name..'.GlowBorder',self)
+	GlowBorder:SetPoint('TOPLEFT',self,'TOPLEFT',-offset,offset)
+	GlowBorder:SetPoint('BOTTOMRIGHT',self,'BOTTOMRIGHT',offset,-offset)
+	GlowBorder:SetFrameLevel(10)
+	GlowBorder:SetBackdrop({edgeFile = LSM:Fetch('border', profileReference.Style.edgeFile), edgeSize = profileReference.Style.edgeSize})
+	GlowBorder:SetBackdropBorderColor(0,0,0, profileReference.Alpha)
+	GlowBorder:Hide()
+
+	self.GlowBorder = GlowBorder
+	if profileReference.Enabled == true then
+		self:RegisterEvent('UNIT_AURA',RUF.UpdateGlowBorder,true)
+		self:RegisterEvent('UNIT_TARGET',RUF.UpdateGlowBorder,true)
+	end
+end
+
+function RUF.UpdateGlowBorder(self, event)
+	local unit = self.unit
+	if event == 'UNIT_TARGET' then
+		self.GlowBorder:Hide() -- Immediately hide until we check the new unit.
+	end
+	if RUF.Client == 1 then
+		-- GetSpecialization doesn't exist for Classic. All 'specs' can dispel the same types, so set to 10 to follow those values where appropriate.
+		RUF.Specialization = GetSpecialization()
+	else
+		RUF.Specialization = 10
+	end
+	local removable = false
+	local dispelType
+	local auraTypes
+	local buffFilter
+	if UnitIsFriend('player',unit) then
+		auraTypes = DebuffDispel[uClass][RUF.Specialization]
+		buffFilter = "HARMFUL"
+	else
+		auraTypes = BuffDispel[uClass][RUF.Specialization]
+		buffFilter = "HELPFUL"
+	end
+	for i = 1,40 do
+		local name, texture, count, debuffType, duration, expiration, caster, isStealable,
+		nameplateShowSelf, spellID, canApply, isBossDebuff, casterIsPlayer, nameplateShowAll,
+		timeMod, effect1, effect2, effect3 = UnitAura(unit, i,buffFilter)
+		if auraTypes == 'None' then
+			removable = false
+			break
+		else
+			for k,v in pairs(auraTypes) do
+				if v == debuffType then
+					removable = true
+					dispelType = debuffType
+				end
+			end
+		end
+	end
+	if removable == true then
+		local r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff)
+		r,g,b = unpack(RUF.db.profile.Appearance.Colors.Aura[dispelType])
+		a = RUF.db.profile.Appearance.Border.Glow.Alpha
+		self.GlowBorder:SetBackdropBorderColor(r,g,b,a)
+		self.GlowBorder:Show()
+	else
+		self.GlowBorder:Hide()
+	end
+
 end
 
 function RUF.SetFrameBackground(self, unit)
@@ -45,31 +268,8 @@ function RUF.SetFrameBackground(self, unit)
 	BaseFrame:SetAllPoints(Background)
 	BaseTexture:SetAllPoints(BaseFrame)
 
-	-- Power
-	--[[local PowerFrame = CreateFrame('Frame',name..'.Background.Power',Background)
-	local PowerTexture = PowerFrame:CreateTexture(name..'.Background.Power.Texture','BACKGROUND')
-	PowerTexture:SetTexture(LSM:Fetch('background', 'Solid'))
-	PowerTexture:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Health.Background.Alpha)
-	PowerFrame:Hide()
-	PowerTexture:SetAllPoints(PowerFrame)]]--
-
 	self.Background = Background
 	self.Background.Base = BaseFrame
 	self.Background.Base.Texture = BaseTexture
-	--self.Background.Power = PowerFrame
-	--self.Background.Power.Texture = PowerTexture
-
-	--[[if unit == 'player' then
-		-- Class
-		local ClassPowerFrame = CreateFrame('Frame',name..'.Background.ClassPower',Background)
-		local ClassPowerTexture = ClassPowerFrame:CreateTexture(name..'.Background.ClassPower.Texture','BACKGROUND')
-		ClassPowerTexture:SetTexture(LSM:Fetch('background', 'Solid'))
-		ClassPowerTexture:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Health.Background.Alpha)
-		ClassPowerFrame:Hide()
-		ClassPowerTexture:SetAllPoints(ClassPowerFrame)
-
-		self.Background.ClassPower = ClassPowerFrame
-		self.Background.ClassPower.Texture = ClassPowerTexture
-	end]]--
 
 end
