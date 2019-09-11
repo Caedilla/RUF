@@ -156,6 +156,10 @@ function RUF.ClassUpdate(self, event, unit, powerType)
 	if not UnitIsUnit(unit,'player') and (powerType == classPowerData[uClass].classPowerType or (unit == 'vehicle' and powerType == 'COMBO_POINTS')) then return end
 
 	local element = self.ClassPower
+	if RUF.db.profile.unit[self.frame].Frame.Bars.Class.Enabled ~= true then
+		self:DisableElement('ClassPower')
+		return
+	end
 
 	local cur, max, oldMax
 	if event ~= 'ClassPowerDisable' then
@@ -217,7 +221,6 @@ function RUF.ClassUpdate(self, event, unit, powerType)
 end
 
 function RUF.ClassUpdateOptions(self)
-
 	if not classPowerData[uClass] then return end
 	local unit = self.__owner.frame
 	local unitPowerMaxAmount = classPowerData[uClass].unitPowerMaxAmount or UnitPowerMax(unit,classPowerData[uClass].classPowerID)
@@ -225,7 +228,7 @@ function RUF.ClassUpdateOptions(self)
 	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
-
+	local element = self.__owner.ClassPower
 	local holder = self.__owner.ClassPower.Holder
 	holder:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
 	holder.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
@@ -266,9 +269,29 @@ function RUF.ClassUpdateOptions(self)
 		Background:SetTexture(LSM:Fetch('background', 'Solid'))
 		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 
+		if RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == true then
+			self.__owner:EnableElement('ClassPower')
+			if i > unitPowerMaxAmount then
+				if element[i]:IsVisible() then
+					element[i]:Hide()
+					element[i]:SetValue(0)
+					for j = 1,#element do
+						element[j]:SetWidth(size)
+					end
+				end
+			else
+				if not element[i]:IsVisible() then
+					element[i]:Show()
+					for j = 1,#element do
+						element[j]:SetWidth(size)
+					end
+				end
+			end
+		end
+
+
 	end
 
 	RUF.SetBarLocation(self.__owner,unit)
 	self:ForceUpdate()
-
 end

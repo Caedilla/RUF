@@ -121,4 +121,9 @@ function RUF.AbsorbUpdateOptions(self)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Absorb.Fill)
 
 	self:ForceUpdate()
+	if (RUF.db.profile.Appearance.Bars.Absorb.Type == 0) or (RUF.db.profile.unit[unit].Frame.Bars.Absorb.Enabled == 0) then
+		self:Hide()
+	else
+		self.__owner:EnableElement('Absorb')
+	end
 end

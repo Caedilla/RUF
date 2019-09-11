@@ -58,6 +58,10 @@ end
 function RUF.PowerUpdate(self, event, unit)
 	if(self.unit ~= unit) then return end
 	local element = self.Power
+	if RUF.db.profile.unit[self.frame].Frame.Bars.Power.Enabled == 0 then
+		self:DisableElement('Power')
+		return
+	end
 
 	local disconnected = not UnitIsConnected(unit)
 	local tapped = not UnitPlayerControlled(unit) and UnitIsTapDenied(unit)
@@ -132,4 +136,9 @@ function RUF.PowerUpdateOptions(self)
 	RUF.SetBarLocation(self.__owner,unit)
 
 	self:ForceUpdate() -- Runs Update function for everything else.
+	if RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled == 0 then
+		self:Hide()
+	else
+		self.__owner:EnableElement('Power')
+	end
 end

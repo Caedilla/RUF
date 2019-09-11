@@ -146,6 +146,10 @@ end
 
 function RUF.RunesUpdate(self, event)
 	local element = self.Runes
+	if RUF.db.profile.unit[self.frame].Frame.Bars.Class.Enabled ~= true then
+		self:DisableElement('Runes')
+		return
+	end
 
 	if(element.sortOrder == 'asc') then
 		table.sort(runemap, ascSort)
@@ -267,8 +271,9 @@ function RUF.RunesUpdateOptions(self)
 		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 
 	end
-
+	if RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == true then
+		self.__owner:EnableElement('Runes')
+	end
 	self:ForceUpdate()
 	self:UpdateColor()
-
 end

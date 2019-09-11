@@ -726,10 +726,14 @@ function RUF:OptionsUpdateBars(profileName,groupFrame,bar)
 		if bar then
 			unitFrame[bar].UpdateOptions(unitFrame[bar])
 			if PlayerClass == 'MONK' then
-				unitFrame['Stagger'].UpdateOptions(unitFrame['Stagger'])
+				if unitFrame['Stagger'] then
+					unitFrame['Stagger'].UpdateOptions(unitFrame['Stagger'])
+				end
 			end
 			if PlayerClass == 'DRUID' then
-				unitFrame['FakeClassPower'].UpdateOptions(unitFrame['FakeClassPower'])
+				if unitFrame['FakeClassPower'] then
+					unitFrame['FakeClassPower'].UpdateOptions(unitFrame['FakeClassPower'])
+				end
 			end
 		end
 		if bar == 'Power' or bar == 'Absorb' then

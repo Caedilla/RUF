@@ -94,6 +94,10 @@ function RUF.FakeClassUpdate(self, event, unit, powerType)
 		return
 	end
 	local element = self.FakeClassPower
+	if RUF.db.profile.unit[self.frame].Frame.Bars.Class.Enabled ~= true then
+		self:DisableElement('FakeClassPower')
+		return
+	end
 
 
 	local cur, max = UnitPower(unit,fakeClassPower[uClass].classPowerID), UnitPowerMax(unit,fakeClassPower[uClass].classPowerID)
@@ -166,4 +170,9 @@ function RUF.FakeClassPowerUpdateOptions(self)
 	Background.colorSmooth = false
 
 	self:ForceUpdate()
+	if RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled ~= true then
+		self:Hide()
+	else
+		self.__owner:EnableElement('FakeClassPower')
+	end
 end

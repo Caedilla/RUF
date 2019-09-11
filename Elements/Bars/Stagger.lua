@@ -70,8 +70,11 @@ end
 
 function RUF.StaggerUpdate(self, event, unit)
 	if(unit and unit ~= self.unit) then return end
-
 	local element = self.Stagger
+	if RUF.db.profile.unit[self.frame].Frame.Bars.Class.Enabled ~= true then
+		self:DisableElement('Stagger')
+		return
+	end
 
 	-- Set Values
 	local cur,max = UnitStagger('player') or 0, UnitHealthMax('player')
@@ -146,4 +149,9 @@ function RUF.StaggerUpdateOptions(self)
 	Background.colorSmooth = false
 
 	self:ForceUpdate()
+	if RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled ~= true then
+		self:Hide()
+	else
+		self.__owner:EnableElement('Stagger')
+	end
 end
