@@ -270,10 +270,10 @@ function RUF.RunesUpdateOptions(self)
 		Background:SetTexture(LSM:Fetch('background', 'Solid'))
 		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 
+		self:UpdateColor(i)
 	end
 	if RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == true then
 		self.__owner:EnableElement('Runes')
 	end
 	self:ForceUpdate()
-	self:UpdateColor()
 end
