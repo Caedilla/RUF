@@ -1,4 +1,4 @@
-# RUF - Raeli's Unit Frames.
+# RUF - Raeli's Unit Frames
 A unitframe layout for oUF
 
 ## Download
@@ -15,7 +15,8 @@ A unitframe layout for oUF
 * Nickname - Like Details! In fact, this is synced with Details! This will sync to other people using RUF or Details! (or any other addon that supports NickTag-1.0)
 * Unique custom indicator status icons in place of the standard ones. These are icons such as PvP stats, Target Marks etc. These are made through a font file, so they scale much better and retain clarity better than the normal indicator icons.
 * Buff and Debuff icons with optional type and dispellable highlighting and basic filtering. (more advanced filtering coming later)
-* Cast Bars for Player and Target frames (as of r182-alpha)
+* Frame Highlighting for dispellable auras (debuffs on friendly units, or buffs on enemy units)
+* Cast Bars for Player, Target, and Focus frames.
 * Several pre-configured layouts to choose from in the profile section.
 
 ### Live Only Features
@@ -32,7 +33,7 @@ A unitframe layout for oUF
 * Copying settings from one unit to another (Started - already functioning for Text elements)
 * Classification colouring colors (To colour units if they are Elite, Rare, Boss etc.)
 * Range Fading
-* Border / Frame highlighting for mouseover and dispellable debuffs (and generally more Border options)
+* Frame highlighting for mouseover
 * Buff/Debuff whitelisting / blacklisting
 * More tags, and increased options for existing tags
 
