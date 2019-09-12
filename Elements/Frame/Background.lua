@@ -271,5 +271,4 @@ function RUF.SetFrameBackground(self, unit)
 	self.Background = Background
 	self.Background.Base = BaseFrame
 	self.Background.Base.Texture = BaseTexture
-
 end

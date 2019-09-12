@@ -443,6 +443,98 @@ function RUF_Options.MainOptions()
 									RUF:OptionsUpdateAllAuras()
 								end,
 							},
+							frameGlowHeader = {
+								name = L["Frame Highlighting"],
+								type = 'header',
+								order = 100,
+							},
+							frameGlowEnabled = {
+								name = function()
+									if RUF.db.profile.Appearance.Border.Glow.Enabled == true then
+										return '|cFF00FF00'..L["Enabled"]..'|r'
+									else
+										return '|cFFFF0000'..L["Enabled"]..'|r'
+									end
+								end,
+								order = 100.01,
+								type = 'toggle',
+								get = function(info)
+									return RUF.db.profile.Appearance.Border.Glow.Enabled
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.Border.Glow.Enabled = value
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
+							frameGlowAlpha = {
+								name = L["Alpha"],
+								type = 'range',
+								order = 100.02,
+								min = 0,
+								max = 1,
+								softMin = 0,
+								softMax = 1,
+								step = 0.1,
+								bigStep = 0.1,
+								get = function(info)
+									return RUF.db.profile.Appearance.Border.Glow.Alpha
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.Border.Glow.Alpha = value
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
+							frameGlowOffset = {
+								name = L["Highlight Inset"],
+								desc = L["How far the glow is inset from the frame edge."],
+								type = 'range',
+								order = 100.03,
+								min = -100,
+								max = 100,
+								softMin = -30,
+								softMax = 30,
+								step = 1,
+								bigStep = 1,
+								get = function(info)
+									return RUF.db.profile.Appearance.Border.Glow.Offset
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.Border.Glow.Offset = value
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
+							frameGlowTexture = {
+								name = L["Border Texture"],
+								type = 'select',
+								order = 100.03,
+								values = LSM:HashTable('border'),
+								dialogControl = 'LSM30_Border',
+								get = function(info)
+									return RUF.db.profile.Appearance.Border.Glow.Style.edgeFile
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.Border.Glow.Style.edgeFile = value
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
+							frameGlowSize = {
+								name = L["Border Size"],
+								type = 'range',
+								order = 100.04,
+								min = -100,
+								max = 100,
+								softMin = -20,
+								softMax = 20,
+								step = 0.01,
+								bigStep = 0.05,
+								get = function(info)
+									return RUF.db.profile.Appearance.Border.Glow.Style.edgeSize
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.Border.Glow.Style.edgeSize = value
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
 						},
 					},
 				},

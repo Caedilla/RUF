@@ -16,10 +16,10 @@ local cfg = {
 				Glow = {
 					Enabled = true,
 					Offset = -1,
-					Alpha = 1,
+					Alpha = 0.75,
 					Style = {
 						edgeFile = "RUF Glow", -- Pixel Border settings.
-						edgeSize = 10,
+						edgeSize = 14,
 					},
 				},
 				Style = {
