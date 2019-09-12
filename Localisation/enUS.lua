@@ -319,3 +319,5 @@ L["Highlight Inset"] = true
 L["Size relative to the aura icon."] = true
 L["Icon Height"] = true
 L["Icon Width"] = true
+L["Frame Highlighting"] = true
+L["How far the glow is inset from the frame edge."] = true
