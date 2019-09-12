@@ -83,107 +83,127 @@ function RUF_Options.Colors()
 		type = 'group',
 		order = 0,
 		args = {
-			Class = {
+			classColors = {
 				name = L["Class Colors"],
-				type = 'header',
-				order = 00,
+				type = 'group',
+				order = 0,
+				inline = true,
+				args = {
+					useClassColorsAddon = {
+						order = 0.01,
+						type = 'toggle',
+						name = L["Use Class Colors addon"],
+						desc = L["Sets if RUF will use class colours from the Class Colors addon if you have it installed."],
+						disabled = not CUSTOM_CLASS_COLORS,
+						get = function(info)
+							if(CUSTOM_CLASS_COLORS) and RUF.db.profile.Appearance.Colors.UseClassColors then
+								for classToken, color in next, CUSTOM_CLASS_COLORS do
+									RUF.db.profile.Appearance.Colors.ClassColors[classToken] = {(color.r), (color.g), (color.b)}
+								end
+							end
+							if not CUSTOM_CLASS_COLORS then RUF.db.profile.Appearance.Colors.UseClassColors = false end
+							return RUF.db.profile.Appearance.Colors.UseClassColors
+						end,
+						set = function(info, value)
+							if CUSTOM_CLASS_COLORS then
+								RUF.db.profile.Appearance.Colors.UseClassColors = value
+							else
+								RUF.db.profile.Appearance.Colors.UseClassColors = false
+							end
+							if(CUSTOM_CLASS_COLORS) and RUF.db.profile.Appearance.Colors.UseClassColors then
+								for classToken, color in next, CUSTOM_CLASS_COLORS do
+									RUF.db.profile.Appearance.Colors.ClassColors[classToken] = {(color.r), (color.g), (color.b)}
+								end
+							end
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					setBlizzColors = {
+						order = 0.02,
+						type = 'execute',
+						name = L["Use Blizard Colors"],
+						desc = L["Set class colors to the default Blizzard colors."],
+						func = function(info, value)
+							RUF.db.profile.Appearance.Colors.UseClassColors = false
+							for classToken, color in next, RAID_CLASS_COLORS do
+								RUF.db.profile.Appearance.Colors.ClassColors[classToken] = {(color.r), (color.g), (color.b)}
+							end
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					spacer = {
+						name = " ",
+						type = 'description',
+						order = 0.05,
+						width = 'full',
+					},
+				},
 			},
-			ClassColors_UseAddon = {
-				order = 0.01,
-				type = 'toggle',
-				name = L["Use colors from the Class Colors addon"],
-				width = 'double',
-				get = function(info)
-					if(CUSTOM_CLASS_COLORS) and RUF.db.profile.Appearance.Colors.UseClassColors then
-						for classToken, color in next, CUSTOM_CLASS_COLORS do
-							RUF.db.profile.Appearance.Colors.ClassColors[classToken] = {(color.r), (color.g), (color.b)}
-						end
-					end
-					return RUF.db.profile.Appearance.Colors.UseClassColors
-				end,
-				set = function(info, value)
-					RUF.db.profile.Appearance.Colors.UseClassColors = value
-					if(CUSTOM_CLASS_COLORS) and RUF.db.profile.Appearance.Colors.UseClassColors then
-						for classToken, color in next, CUSTOM_CLASS_COLORS do
-							RUF.db.profile.Appearance.Colors.ClassColors[classToken] = {(color.r), (color.g), (color.b)}
-						end
-					end
-					RUF:OptionsUpdateAllBars()
-				end,
-			},
-			UseBlizz_CC = {
-				order = 0.011,
-				type = 'execute',
-				name = L["Set Blizard Default"],
-				desc = L["Set class colors to the default Blizzard colors."],
-				width = 'double',
-				func = function(info, value)
-					RUF.db.profile.Appearance.Colors.UseClassColors = false
-					for classToken, color in next, RAID_CLASS_COLORS  do
-						RUF.db.profile.Appearance.Colors.ClassColors[classToken] = {(color.r), (color.g), (color.b)}
-					end
-					RUF:OptionsUpdateAllBars()
-				end,
-			},
-			Spacer_CC = {
-				name = '',
-				type = 'description',
-				order = 0.012,
-				width = 'full',
-			},
-			Misc = {
-				name = L["Misc Colors"],
-				type = 'header',
-				order = 9,
-			},
-			Disconnected = {
-				name = L["Disconnected"],
-				type = 'color',
-				order = 9.01,
-				get = function(info)
-					return unpack(RUF.db.profile.Appearance.Colors.MiscColors.Disconnected)
-				end,
-				set = function(info, r,g,b)
-					RUF.db.profile.Appearance.Colors.MiscColors.Disconnected = {r,g,b}
-					RUF:OptionsUpdateAllBars()
-				end,
-			},
-			Tapped = {
-				name = L["Tapped"],
-				type = 'color',
-				order = 9.02,
-				get = function(info)
-					return unpack(RUF.db.profile.Appearance.Colors.MiscColors.Tapped)
-				end,
-				set = function(info, r,g,b)
-					RUF.db.profile.Appearance.Colors.MiscColors.Tapped = {r,g,b}
-					RUF:OptionsUpdateAllBars()
-				end,
-			},
-			Power = {
+			powerColors = {
 				name = L["Power Colors"],
-				type = 'header',
-				order = 10,
+				type = 'group',
+				order = 1,
+				inline = true,
+				args = {
+				},
 			},
-			Reaction = {
+			reactionColors = {
 				name = L["Reaction Colors"],
-				type = 'header',
-				order = 20,
+				type = 'group',
+				order = 2,
+				inline = true,
+				args = {
+				},
 			},
-			Difficulty = {
+			difficultyColors = {
 				name = L["Difficulty Colors"],
-				type = 'header',
-				order = 30,
+				type = 'group',
+				order = 3,
+				inline = true,
+				args = {
+				},
+			},
+			miscColors = {
+				name = L["Misc Colors"],
+				type = 'group',
+				order = 4,
+				inline = true,
+				args = {
+					Disconnected = {
+						name = L["Disconnected"],
+						type = 'color',
+						order = 0,
+						get = function(info)
+							return unpack(RUF.db.profile.Appearance.Colors.MiscColors.Disconnected)
+						end,
+						set = function(info, r,g,b)
+							RUF.db.profile.Appearance.Colors.MiscColors.Disconnected = {r,g,b}
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					Tapped = {
+						name = L["Tapped"],
+						type = 'color',
+						order = 0,
+						get = function(info)
+							return unpack(RUF.db.profile.Appearance.Colors.MiscColors.Tapped)
+						end,
+						set = function(info, r,g,b)
+							RUF.db.profile.Appearance.Colors.MiscColors.Tapped = {r,g,b}
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+				},
 			},
 		},
 	}
 	for i=0,11 do
 		if classData[i] then
-			Colors.args[classData[i]['classFile']] = {
+			Colors.args.classColors.args[classData[i]['classFile']] = {
 				name = classData[i]['className'],
 				type = 'color',
-				order = 0 + ((i)+2)/100,
-				disabled = function()
+				order = 1,
+				hidden = function()
 					if(CUSTOM_CLASS_COLORS) and RUF.db.profile.Appearance.Colors.UseClassColors then
 						return true
 					end
@@ -200,10 +220,10 @@ function RUF_Options.Colors()
 	end
 	for i=0,#Powers do
 		if Powers[i] then
-			Colors.args[Powers[i]] = {
+			Colors.args.powerColors.args[Powers[i]] = {
 				name = Powers[i],
 				type = 'color',
-				order = 10 + ((i)+2)/100,
+				order = 0,
 				get = function(info)
 					return unpack(RUF.db.profile.Appearance.Colors.PowerColors[i])
 				end,
@@ -216,10 +236,10 @@ function RUF_Options.Colors()
 	end
 	for i=50,52 do
 		if Powers[i] then
-			Colors.args[Powers[i]] = {
+			Colors.args.powerColors.args[Powers[i]] = {
 				name = Powers[i],
 				type = 'color',
-				order = 10 + ((i)+2)/100,
+				order = 10,
 				get = function(info)
 					return unpack(RUF.db.profile.Appearance.Colors.PowerColors[i])
 				end,
@@ -232,10 +252,10 @@ function RUF_Options.Colors()
 	end
 	for i=75,77 do
 		if Powers[i] then
-			Colors.args[Powers[i]] = {
+			Colors.args.powerColors.args[Powers[i]] = {
 				name = Powers[i],
 				type = 'color',
-				order = 10 + ((i)+2)/100,
+				order = 20,
 				get = function(info)
 					return unpack(RUF.db.profile.Appearance.Colors.PowerColors[i])
 				end,
@@ -248,7 +268,7 @@ function RUF_Options.Colors()
 	end
 	for i=1,#Reactions do
 		if Reactions[i] then
-			Colors.args[Reactions[i]] = {
+			Colors.args.reactionColors.args[Reactions[i]] = {
 				name = Reactions[i],
 				type = 'color',
 				order = 20 + ((i)+2)/100,
@@ -264,7 +284,7 @@ function RUF_Options.Colors()
 	end
 	for i=0,#Difficulties do
 		if Difficulties[i] then
-			Colors.args[Difficulties[i]] = {
+			Colors.args.difficultyColors.args[Difficulties[i]] = {
 				name = Difficulties[i],
 				type = 'color',
 				order = 30 + ((i)+2)/100,

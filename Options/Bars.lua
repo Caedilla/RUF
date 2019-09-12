@@ -56,7 +56,6 @@ function RUF_Options.Bars()
 				},
 				barType = {
 					name = L["Type"],
-					desc = L["Not Yet Implemented."],
 					type = 'select',
 					order = 0.01,
 					hidden = function() return i ~= 4 end,

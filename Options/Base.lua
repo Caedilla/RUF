@@ -15,12 +15,11 @@ function RUF_Options.MainOptions()
 		order = 0,
 		childGroups = 'tab',
 		args = {
-			Appearance = {
-				name = L["Global Appearance Options"],
-				desc = L["These settings affect all frames."],
+			showAlways = {
+				name = '',
 				type = 'group',
-				childGroups = 'tab',
-				order = 1,
+				order = 0,
+				inline = true,
 				args = {
 					FrameLock = {
 						name = '|cff00B2FA'..L["Frame Lock"]..'|r',
@@ -63,20 +62,22 @@ function RUF_Options.MainOptions()
 							RUF:TestMode()
 						end,
 					},
-					Border = {
-						name = L["Border"],
+				},
+			},
+			Appearance = {
+				name = L["Global Appearance Options"],
+				desc = L["These settings affect all frames."],
+				type = 'group',
+				childGroups = 'tab',
+				order = 1,
+				args = {
+					frameBorder = {
+						name = L["Frame Border"],
 						type = 'group',
 						order = 5,
 						args = {
-							Debuff = {
-								name = L["Debuff Highlighting"],
-								desc = L["Not Yet Implemented."],
-								type = 'toggle',
-								disabled = true,
-								order = 0.01,
-							},
-							Texture = {
-								name = L["Border Texture"],
+							texture = {
+								name = L["Texture"],
 								type = 'select',
 								order = 0.02,
 								values = LSM:HashTable('border'),
@@ -89,8 +90,8 @@ function RUF_Options.MainOptions()
 									RUF:OptionsUpdateFrameBorders()
 								end,
 							},
-							Size = {
-								name = L["Border Size"],
+							size = {
+								name = L["Size"],
 								type = 'range',
 								order = 0.03,
 								min = -100,
@@ -107,28 +108,10 @@ function RUF_Options.MainOptions()
 									RUF:OptionsUpdateFrameBorders()
 								end,
 							},
-							Alpha = {
-								name = L["Alpha"],
+							offset = {
+								name = L["Inset from frame edge"],
 								type = 'range',
-								order = 0.03,
-								min = 0,
-								max = 1,
-								softMin = 0,
-								softMax = 1,
-								step = 0.01,
-								bigStep = 0.05,
-								get = function(info)
-									return RUF.db.profile.Appearance.Border.Alpha
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Border.Alpha = value
-									RUF:OptionsUpdateFrameBorders()
-								end,
-							},
-							Offset = {
-								name = L["Offset"],
-								type = 'range',
-								order = 0.03,
+								order = 0.04,
 								min = -100,
 								max = 100,
 								softMin = -30,
@@ -143,10 +126,28 @@ function RUF_Options.MainOptions()
 									RUF:OptionsUpdateFrameBorders()
 								end,
 							},
-							Color = {
-								name = L["Base Color"],
+							alpha = {
+								name = L["Alpha"],
+								type = 'range',
+								order = 0.05,
+								min = 0,
+								max = 1,
+								softMin = 0,
+								softMax = 1,
+								step = 0.01,
+								bigStep = 0.05,
+								get = function(info)
+									return RUF.db.profile.Appearance.Border.Alpha
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.Border.Alpha = value
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
+							color = {
+								name = L["Color"],
 								type = 'color',
-								order = 0.04,
+								order = 0.06,
 								get = function(info)
 									return unpack(RUF.db.profile.Appearance.Border.Color)
 								end,
@@ -160,380 +161,400 @@ function RUF_Options.MainOptions()
 					Bars = {
 						name = L["Bars"],
 						type = 'group',
-						order = 1,
+						order = 2,
 						args = {},
 					},
 					Colors = {
 						name = L["Colors"],
 						type = 'group',
-						order = 0,
+						order = 1,
 						args = {},
 					},
-					Auras = {
+					auras = {
 						name = L["Auras"],
 						type = 'group',
-						order = 3,
+						order = 4,
+						childGroups = 'tab',
 						args = {
-							Highlight = {
-								name = L["Aura Highlighting"],
-								type = 'header',
+							colors = {
+								name = L["Aura Colors"],
+								type = 'group',
 								order = 0,
+								inline = true,
+								args = {
+									buffColorType = {
+										name = L["Color Buffs by Type"],
+										type = 'toggle',
+										order = 0.01,
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.Buff
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.Buff = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									debuffColorType = {
+										name = L["Color Debuffs by Type"],
+										type = 'toggle',
+										order = 0.01,
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.Debuff
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.Debuff = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									onlyDispellableColoring = {
+										name = L["Color only removable"],
+										desc = L["Color auras by type only if you can dispel / purge them."],
+										type = 'toggle',
+										order = 0.01,
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.OnlyDispellable
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.OnlyDispellable = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									buffColor = {
+										name = L["Default Buff Glow"],
+										type = 'color',
+										hasAlpha = true,
+										order = 0.1,
+										get = function(info)
+											return unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultBuff)
+										end,
+										set = function(info, r,g,b,a)
+											RUF.db.profile.Appearance.Colors.Aura.DefaultBuff = {r,g,b,a}
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									debuffColor = {
+										name = L["Default Debuff Glow"],
+										type = 'color',
+										hasAlpha = true,
+										order = 0.1,
+										get = function(info)
+											return unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff)
+										end,
+										set = function(info, r,g,b,a)
+											RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff = {r,g,b,a}
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									colorMagic = {
+										name = L["Magic"],
+										type = 'color',
+										hasAlpha = true,
+										order = 0.3,
+										get = function(info)
+											return unpack(RUF.db.profile.Appearance.Colors.Aura.Magic)
+										end,
+										set = function(info, r,g,b,a)
+											RUF.db.profile.Appearance.Colors.Aura.Magic = {r,g,b,a}
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									colorDisease = {
+										name = L["Disease"],
+										type = 'color',
+										hasAlpha = true,
+										order = 0.3,
+										get = function(info)
+											return unpack(RUF.db.profile.Appearance.Colors.Aura.Disease)
+										end,
+										set = function(info, r,g,b,a)
+											RUF.db.profile.Appearance.Colors.Aura.Disease = {r,g,b,a}
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									colorCurse = {
+										name = L["Curse"],
+										type = 'color',
+										hasAlpha = true,
+										order = 0.3,
+										get = function(info)
+											return unpack(RUF.db.profile.Appearance.Colors.Aura.Curse)
+										end,
+										set = function(info, r,g,b,a)
+											RUF.db.profile.Appearance.Colors.Aura.Curse = {r,g,b,a}
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									colorPoison = {
+										name = L["Poison"],
+										type = 'color',
+										hasAlpha = true,
+										order = 0.3,
+										get = function(info)
+											return unpack(RUF.db.profile.Appearance.Colors.Aura.Poison)
+										end,
+										set = function(info, r,g,b,a)
+											RUF.db.profile.Appearance.Colors.Aura.Poison = {r,g,b,a}
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									colorEnrage = {
+										name = L["Enrage"],
+										type = 'color',
+										hasAlpha = true,
+										order = 0.3,
+										get = function(info)
+											return unpack(RUF.db.profile.Appearance.Colors.Aura.Enrage)
+										end,
+										set = function(info, r,g,b,a)
+											RUF.db.profile.Appearance.Colors.Aura.Enrage = {r,g,b,a}
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+								},
 							},
-							DefaultBuff = {
-								name = L["Default Buff Glow"],
-								type = 'color',
-								hasAlpha = true,
-								order = 0.1,
-								get = function(info)
-									return unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultBuff)
-								end,
-								set = function(info, r,g,b,a)
-									RUF.db.profile.Appearance.Colors.Aura.DefaultBuff = {r,g,b,a}
-									RUF:OptionsUpdateAllAuras()
-								end,
+							highlightBorder = {
+								name = L["Aura Highlight Glow"],
+								type = 'group',
+								order = 1,
+								inline = true,
+								args = {
+									highlightTexture = {
+										name = L["Texture"],
+										type = 'select',
+										order = 1,
+										values = LSM:HashTable('border'),
+										dialogControl = 'LSM30_Border',
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.Border.Style.edgeFile
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.Border.Style.edgeFile = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									highlightSize = {
+										name = L["Size"],
+										desc = L["Thickness of the highlight."],
+										type = 'range',
+										order = 1.1,
+										min = -100,
+										max = 100,
+										softMin = -20,
+										softMax = 20,
+										step = 0.01,
+										bigStep = 0.05,
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.Border.Style.edgeSize
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.Border.Style.edgeSize = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									highlightOffset = {
+										name = L["Size relative to the aura icon"],
+										type = 'range',
+										order = 1.2,
+										min = -100,
+										max = 100,
+										softMin = -30,
+										softMax = 30,
+										step = 1,
+										bigStep = 1,
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.Border.Offset
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.Border.Offset = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+								},
 							},
-							DefaultDebuff = {
-								name = L["Default Debuff Glow"],
-								type = 'color',
-								hasAlpha = true,
-								order = 0.1,
-								get = function(info)
-									return unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff)
-								end,
-								set = function(info, r,g,b,a)
-									RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff = {r,g,b,a}
-									RUF:OptionsUpdateAllAuras()
-								end,
+							pixelBorder = {
+								name = L["Simple Border"],
+								type = 'group',
+								order = 2,
+								inline = true,
+								args = {
+									pixelEnabled = {
+										name = function()
+											if RUF.db.profile.Appearance.Aura.Pixel.Enabled == true then
+												return '|cFF00FF00'..L["Enabled"]..'|r'
+											else
+												return '|cFFFF0000'..L["Enabled"]..'|r'
+											end
+										end,
+										type = 'toggle',
+										order = 15.01,
+										width = 'full',
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.Pixel.Enabled
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.Pixel.Enabled = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									pixelTexture = {
+										name = L["Texture"],
+										type = 'select',
+										order = 15.1,
+										values = LSM:HashTable('border'),
+										dialogControl = 'LSM30_Border',
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									pixelSize = {
+										name = L["Size"],
+										type = 'range',
+										order = 15.2,
+										min = -100,
+										max = 100,
+										softMin = -20,
+										softMax = 20,
+										step = 0.01,
+										bigStep = 0.05,
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									pixelOffset = {
+										name = L["Inset from icon edge"],
+										type = 'range',
+										order = 15.3,
+										min = -100,
+										max = 100,
+										softMin = -30,
+										softMax = 30,
+										step = 1,
+										bigStep = 1,
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.Pixel.Offset
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.Pixel.Offset = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									pixelColor = {
+										name = L["Color"],
+										type = 'color',
+										hasAlpha = true,
+										order = 15.4,
+										get = function(info)
+											return unpack(RUF.db.profile.Appearance.Colors.Aura.Pixel)
+										end,
+										set = function(info, r,g,b,a)
+											RUF.db.profile.Appearance.Colors.Aura.Pixel = {r,g,b,a}
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+								},
 							},
-							DebuffMagic = {
-								name = L["Magic"],
-								type = 'color',
-								hasAlpha = true,
-								order = 0.2,
-								get = function(info)
-									return unpack(RUF.db.profile.Appearance.Colors.Aura.Magic)
-								end,
-								set = function(info, r,g,b,a)
-									RUF.db.profile.Appearance.Colors.Aura.Magic = {r,g,b,a}
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							DebuffDisease = {
-								name = L["Disease"],
-								type = 'color',
-								hasAlpha = true,
-								order = 0.2,
-								get = function(info)
-									return unpack(RUF.db.profile.Appearance.Colors.Aura.Disease)
-								end,
-								set = function(info, r,g,b,a)
-									RUF.db.profile.Appearance.Colors.Aura.Disease = {r,g,b,a}
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							DebuffCurse = {
-								name = L["Curse"],
-								type = 'color',
-								hasAlpha = true,
-								order = 0.2,
-								get = function(info)
-									return unpack(RUF.db.profile.Appearance.Colors.Aura.Curse)
-								end,
-								set = function(info, r,g,b,a)
-									RUF.db.profile.Appearance.Colors.Aura.Curse = {r,g,b,a}
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							DebuffPoison = {
-								name = L["Poison"],
-								type = 'color',
-								hasAlpha = true,
-								order = 0.2,
-								get = function(info)
-									return unpack(RUF.db.profile.Appearance.Colors.Aura.Poison)
-								end,
-								set = function(info, r,g,b,a)
-									RUF.db.profile.Appearance.Colors.Aura.Poison = {r,g,b,a}
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							DebuffEnrage = {
-								name = L["Enrage"],
-								type = 'color',
-								hasAlpha = true,
-								order = 0.2,
-								get = function(info)
-									return unpack(RUF.db.profile.Appearance.Colors.Aura.Enrage)
-								end,
-								set = function(info, r,g,b,a)
-									RUF.db.profile.Appearance.Colors.Aura.Enrage = {r,g,b,a}
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							Buff = {
-								name = L["Color Buffs by Type"],
-								type = 'toggle',
-								order = 10.1,
-								get = function(info)
-									return RUF.db.profile.Appearance.Aura.Buff
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Aura.Buff = value
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							Debuff = {
-								name = L["Color Debuffs by Type"],
-								type = 'toggle',
-								order = 10.1,
-								get = function(info)
-									return RUF.db.profile.Appearance.Aura.Debuff
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Aura.Debuff = value
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							Dispellable = {
-								name = L["Color only removable"],
-								type = 'toggle',
-								order = 10.2,
-								get = function(info)
-									return RUF.db.profile.Appearance.Aura.OnlyDispellable
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Aura.OnlyDispellable = value
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							BorderSpacer = {
-								name = ' ',
-								type = 'description',
-								order = 10.5,
-							},
-							BorderTexture = {
-								name = L["Highlight Texture"],
-								type = 'select',
-								order = 11,
-								values = LSM:HashTable('border'),
-								dialogControl = 'LSM30_Border',
-								get = function(info)
-									return RUF.db.profile.Appearance.Aura.Border.Style.edgeFile
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Aura.Border.Style.edgeFile = value
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							BorderSize = {
-								name = L["Highlight Thickness"],
-								desc = L["Thickness of the highlight."],
-								type = 'range',
-								order = 11.1,
-								min = -100,
-								max = 100,
-								softMin = -20,
-								softMax = 20,
-								step = 0.01,
-								bigStep = 0.05,
-								get = function(info)
-									return RUF.db.profile.Appearance.Aura.Border.Style.edgeSize
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Aura.Border.Style.edgeSize = value
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							BorderOffset = {
-								name = L["Highlight Inset"],
-								desc = L["Size relative to the aura icon."],
-								type = 'range',
-								order = 11.2,
-								min = -100,
-								max = 100,
-								softMin = -30,
-								softMax = 30,
-								step = 1,
-								bigStep = 1,
-								get = function(info)
-									return RUF.db.profile.Appearance.Aura.Border.Offset
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Aura.Border.Offset = value
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							Pixel = {
-								name = L["Border"],
-								type = 'header',
-								order = 15,
-							},
-							Enabled = {
-								name = L["Enabled"],
-								type = 'toggle',
-								order = 15.1,
-								get = function(info)
-									return RUF.db.profile.Appearance.Aura.Pixel.Enabled
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Aura.Pixel.Enabled = value
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							PixelColor = {
-								name = L["Border Color"],
-								type = 'color',
-								hasAlpha = true,
-								order = 16,
-								get = function(info)
-									return unpack(RUF.db.profile.Appearance.Colors.Aura.Pixel)
-								end,
-								set = function(info, r,g,b,a)
-									RUF.db.profile.Appearance.Colors.Aura.Pixel = {r,g,b,a}
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							PixelTexture = {
-								name = L["Border Texture"],
-								type = 'select',
-								order = 16.1,
-								values = LSM:HashTable('border'),
-								dialogControl = 'LSM30_Border',
-								get = function(info)
-									return RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile = value
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							PixelSize = {
-								name = L["Border Size"],
-								type = 'range',
-								order = 16.1,
-								min = -100,
-								max = 100,
-								softMin = -20,
-								softMax = 20,
-								step = 0.01,
-								bigStep = 0.05,
-								get = function(info)
-									return RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize = value
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							PixelOffset = {
-								name = L["Offset"],
-								type = 'range',
-								order = 16.2,
-								min = -100,
-								max = 100,
-								softMin = -30,
-								softMax = 30,
-								step = 1,
-								bigStep = 1,
-								get = function(info)
-									return RUF.db.profile.Appearance.Aura.Pixel.Offset
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Aura.Pixel.Offset = value
-									RUF:OptionsUpdateAllAuras()
-								end,
-							},
-							frameGlowHeader = {
+							frameGlow = {
 								name = L["Frame Highlighting"],
-								type = 'header',
-								order = 100,
-							},
-							frameGlowEnabled = {
-								name = function()
-									if RUF.db.profile.Appearance.Border.Glow.Enabled == true then
-										return '|cFF00FF00'..L["Enabled"]..'|r'
-									else
-										return '|cFFFF0000'..L["Enabled"]..'|r'
-									end
-								end,
-								order = 100.01,
-								type = 'toggle',
-								get = function(info)
-									return RUF.db.profile.Appearance.Border.Glow.Enabled
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Border.Glow.Enabled = value
-									RUF:OptionsUpdateFrameBorders()
-								end,
-							},
-							frameGlowAlpha = {
-								name = L["Alpha"],
-								type = 'range',
-								order = 100.02,
-								min = 0,
-								max = 1,
-								softMin = 0,
-								softMax = 1,
-								step = 0.1,
-								bigStep = 0.1,
-								get = function(info)
-									return RUF.db.profile.Appearance.Border.Glow.Alpha
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Border.Glow.Alpha = value
-									RUF:OptionsUpdateFrameBorders()
-								end,
-							},
-							frameGlowOffset = {
-								name = L["Highlight Inset"],
-								desc = L["How far the glow is inset from the frame edge."],
-								type = 'range',
-								order = 100.03,
-								min = -100,
-								max = 100,
-								softMin = -30,
-								softMax = 30,
-								step = 1,
-								bigStep = 1,
-								get = function(info)
-									return RUF.db.profile.Appearance.Border.Glow.Offset
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Border.Glow.Offset = value
-									RUF:OptionsUpdateFrameBorders()
-								end,
-							},
-							frameGlowTexture = {
-								name = L["Border Texture"],
-								type = 'select',
-								order = 100.03,
-								values = LSM:HashTable('border'),
-								dialogControl = 'LSM30_Border',
-								get = function(info)
-									return RUF.db.profile.Appearance.Border.Glow.Style.edgeFile
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Border.Glow.Style.edgeFile = value
-									RUF:OptionsUpdateFrameBorders()
-								end,
-							},
-							frameGlowSize = {
-								name = L["Border Size"],
-								type = 'range',
-								order = 100.04,
-								min = -100,
-								max = 100,
-								softMin = -20,
-								softMax = 20,
-								step = 0.01,
-								bigStep = 0.05,
-								get = function(info)
-									return RUF.db.profile.Appearance.Border.Glow.Style.edgeSize
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Border.Glow.Style.edgeSize = value
-									RUF:OptionsUpdateFrameBorders()
-								end,
+								type = 'group',
+								order = 3,
+								inline = true,
+								args = {
+									frameGlowEnabled = {
+										name = function()
+											if RUF.db.profile.Appearance.Border.Glow.Enabled == true then
+												return '|cFF00FF00'..L["Enabled"]..'|r'
+											else
+												return '|cFFFF0000'..L["Enabled"]..'|r'
+											end
+										end,
+										type = 'toggle',
+										order = 0.01,
+										width = 'full',
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Glow.Enabled
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Glow.Enabled = value
+											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+									frameGlowTexture = {
+										name = L["Texture"],
+										type = 'select',
+										order = 0.02,
+										values = LSM:HashTable('border'),
+										dialogControl = 'LSM30_Border',
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Glow.Style.edgeFile
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Glow.Style.edgeFile = value
+											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+									frameGlowSize = {
+										name = L["Size"],
+										type = 'range',
+										order = 0.03,
+										min = -100,
+										max = 100,
+										softMin = -20,
+										softMax = 20,
+										step = 0.01,
+										bigStep = 0.05,
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Glow.Style.edgeSize
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Glow.Style.edgeSize = value
+											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+									frameGlowOffset = {
+										name = L["Inset from frame edge"],
+										type = 'range',
+										order = 0.04,
+										min = -100,
+										max = 100,
+										softMin = -30,
+										softMax = 30,
+										step = 1,
+										bigStep = 1,
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Glow.Offset
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Glow.Offset = value
+											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+									frameGlowAlpha = {
+										name = L["Alpha"],
+										type = 'range',
+										order = 0.05,
+										min = 0,
+										max = 1,
+										softMin = 0,
+										softMax = 1,
+										step = 0.1,
+										bigStep = 0.1,
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Glow.Alpha
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Glow.Alpha = value
+											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+								},
 							},
 						},
 					},
