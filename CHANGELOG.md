@@ -1,5 +1,6 @@
-# RUF r192-Beta
+# RUF r193-Alpha
 ### New
+* Added Range Fading
 * Added options for bar coloring by percent to be by class or power type at each stage (i.e you can have class colour at 100%, then the custom color for 50% and 0%)
 * Added aura highlight options for the frame as a whole, so you can make the frame glow when the unit has a dispellable debuff (or buff if enemy). Not available for targettarget, pettarget, focustarget.
 
