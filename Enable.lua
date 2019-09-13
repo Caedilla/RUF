@@ -141,6 +141,11 @@ local function SetupFrames(self, unit)
 	end
 
 	RUF.SetBarLocation(self,unit)
+
+	self.RangeCheck = {
+		insideAlpha = 1,
+		outsideAlpha = 0.5,
+	}
 end
 
 

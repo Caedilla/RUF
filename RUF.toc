@@ -22,6 +22,7 @@ EmbedAlways.xml
 
 Elements\Plugins\Absorb_Plugin.lua
 Elements\Plugins\FakeClassPower_Plugin.lua
+Elements\Plugins\Range_Plugin.lua
 
 Localisation\enUS.lua
 Fonts.xml
