@@ -30,6 +30,7 @@ local classPowerData = {
 	ROGUE = {
 		classPowerID = 4,
 		classPowerType = 'COMBO_POINTS',
+		unitPowerMaxAmount = 6,
 	},
 	WARLOCK = {
 		classPowerID = 7,
