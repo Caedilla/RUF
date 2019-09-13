@@ -40,6 +40,9 @@ local cfg = {
 						Class = false,
 						Disconnected = true,
 						Percentage = true,
+						percentageMaxClass = false,
+						percentage50Class = false,
+						percentage0Class = true,
 						PercentageGradient = {
 							1,0,55/255, -- 0% HP: Magenta
 							35/255,35/255,35/255, -- 50% HP: Grey
@@ -61,9 +64,9 @@ local cfg = {
 					Texture = "RUF 5",
 					Animate = true,
 					Color = {
-						BaseColor = {1, 1, 0},
-						Class = true,
-						Reaction = true,
+						BaseColor = {1, 1, 1},
+						Class = false,
+						Reaction = false,
 						Alpha = 0.25,
 						Multiplier = 1,
 					},
@@ -115,6 +118,12 @@ local cfg = {
 						Class = false,
 						Disconnected = false,
 						Percentage = false,
+						percentageMaxClass = false,
+						percentage50Class = false,
+						percentage0Class = false,
+						percentageMaxPower = true,
+						percentage50Power = true,
+						percentage0Power = false,
 						PercentageGradient = {
 							1,1,1,
 							25/255,25/255,25/255,
@@ -146,15 +155,7 @@ local cfg = {
 					Color = {
 						BaseColor = {1, 204/255, 0},
 						Class = false,
-						Disconnected = false,
-						Percentage = false,
-						PercentageGradient = {
-							1,1,1,
-							25/255,25/255,25/255,
-							25/255,25/255,25/255
-						},
 						Reaction = false,
-						Tapped = false,
 						PowerType = false,
 						Multiplier = 1,
 					},

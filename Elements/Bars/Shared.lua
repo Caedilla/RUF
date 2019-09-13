@@ -6,6 +6,8 @@ local _,uClass = UnitClass('player')
 
 function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 	local pType,uClass,_
+	local profileReference = RUF.db.profile.Appearance.Bars[barType].Color
+	local colorProfile = RUF.db.profile.Appearance.Colors
 	_,uClass = UnitClass(unit)
 	if not barType then return 1,0,1 end -- Return magenta to show I messed up somewhere.
 	if overridePowerType then
@@ -16,8 +18,8 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 		pType,_ = UnitPowerType(unit)
 	end
 	if not uClass then uClass = 'PRIEST' end
-	local r,g,b = unpack(RUF.db.profile.Appearance.Bars[barType].Color.BaseColor)
-	local colorMult = RUF.db.profile.Appearance.Bars[barType].Color.Multiplier
+	local r,g,b = unpack(profileReference.BaseColor)
+	local colorMult = profileReference.Multiplier
 	if colorMult > 1 then colorMult = 1 end -- Because we replaced Class bar multiplier which could be higher.
 	r = r * colorMult
 	g = g * colorMult
@@ -27,53 +29,79 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 	-- Tapped
 	-- Class (if unit is a player unit)
 	-- Reaction
-	-- Percentage
 	-- Power Type
+	-- Percentage
 	-- Base Colour
-
-	if RUF.db.profile.Appearance.Bars[barType].Color.Disconnected and element.disconnected then
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.MiscColors.Disconnected)
+	if profileReference.Disconnected and element.disconnected then
+		r,g,b = unpack(colorProfile.MiscColors.Disconnected)
 		r = r * colorMult
 		g = g * colorMult
 		b = b * colorMult
 		return r,g,b
 	end
-	if RUF.db.profile.Appearance.Bars[barType].Color.Tapped and element.tapped then
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.MiscColors.Tapped)
+	if profileReference.Tapped and element.tapped then
+		r,g,b = unpack(colorProfile.MiscColors.Tapped)
 		r = r * colorMult
 		g = g * colorMult
 		b = b * colorMult
 		return r,g,b
 	end
-	if RUF.db.profile.Appearance.Bars[barType].Color.Class and UnitIsPlayer(unit) then
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.ClassColors[uClass])
+	if profileReference.Class and UnitIsPlayer(unit) then
+		r,g,b = unpack(colorProfile.ClassColors[uClass])
 		r = r * colorMult
 		g = g * colorMult
 		b = b * colorMult
 		return r,g,b
 	end
-	if RUF.db.profile.Appearance.Bars[barType].Color.Reaction then
+	if profileReference.Reaction then
 		if UnitPlayerControlled(unit) and not UnitCanAttack(unit,'player') and not UnitIsPlayer(unit) then  -- If the unit is an allied pet then show as blue.
-			r,g,b = unpack(RUF.db.profile.Appearance.Colors.ReactionColors[10])
+			r,g,b = unpack(colorProfile.ReactionColors[10])
 			r = r * colorMult
 			g = g * colorMult
 			b = b * colorMult
 			return r,g,b
 		elseif UnitReaction(unit,'player') then
-			r,g,b = unpack(RUF.db.profile.Appearance.Colors.ReactionColors[UnitReaction(unit, 'player')])
+			r,g,b = unpack(colorProfile.ReactionColors[UnitReaction(unit, 'player')])
 			r = r * colorMult
 			g = g * colorMult
 			b = b * colorMult
 			return r,g,b
 		elseif UnitInParty(unit) then
-			r,g,b = unpack(RUF.db.profile.Appearance.Colors.ReactionColors[5]) -- So Reaction Works when Party member is in a different zone and UnitReaction returns nil
+			r,g,b = unpack(colorProfile.ReactionColors[5]) -- So Reaction Works when Party member is in a different zone and UnitReaction returns nil
 			r = r * colorMult
 			g = g * colorMult
 			b = b * colorMult
 			return r,g,b
 		end
 	end
-	if RUF.db.profile.Appearance.Bars[barType].Color.Percentage then
+	if profileReference.PowerType and barType ~= 'Health' then
+		r,g,b = unpack(colorProfile.PowerColors[pType])
+		r = r * colorMult
+		g = g * colorMult
+		b = b * colorMult
+		return r,g,b
+	end
+	if profileReference.Percentage then
+		local colorGradient = {unpack(profileReference.PercentageGradient)}
+		-- Priority is by class, by power type, then base colour in keeping with non-percent color priority.
+		if profileReference.percentageMaxPower then
+			colorGradient[7],colorGradient[8],colorGradient[9] = unpack(colorProfile.PowerColors[pType])
+		end
+		if profileReference.percentage50Power then
+			colorGradient[4],colorGradient[5],colorGradient[6] = unpack(colorProfile.PowerColors[pType])
+		end
+		if profileReference.percentage0Power then
+			colorGradient[1],colorGradient[2],colorGradient[3] = unpack(colorProfile.PowerColors[pType])
+		end
+		if profileReference.percentageMaxClass then
+			colorGradient[7],colorGradient[8],colorGradient[9] = unpack(colorProfile.ClassColors[uClass])
+		end
+		if profileReference.percentage50Class then
+			colorGradient[4],colorGradient[5],colorGradient[6] = unpack(colorProfile.ClassColors[uClass])
+		end
+		if profileReference.percentage0Class then
+			colorGradient[1],colorGradient[2],colorGradient[3] = unpack(colorProfile.ClassColors[uClass])
+		end
 		local cur, max = UnitPower(unit,pType), UnitPowerMax(unit,pType)
 		if barType == 'Health' then cur,max = UnitHealth(unit), UnitHealthMax(unit) end
 		if RUF.db.global.TestMode == true then
@@ -82,14 +110,7 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 				max = 100
 			end
 		end
-		r,g,b = RUF:ColorGradient(cur, max, unpack(RUF.db.profile.Appearance.Bars[barType].Color.PercentageGradient))
-		r = r * colorMult
-		g = g * colorMult
-		b = b * colorMult
-		return r,g,b
-	end
-	if RUF.db.profile.Appearance.Bars[barType].Color.PowerType and barType ~= 'Health' then
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[pType])
+		r,g,b = RUF:ColorGradient(cur, max, unpack(colorGradient))
 		r = r * colorMult
 		g = g * colorMult
 		b = b * colorMult
