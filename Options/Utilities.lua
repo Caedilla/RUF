@@ -600,6 +600,16 @@ function RUF:OptionsUpdateFrame(profileName,groupFrame)
 			end
 		end
 
+		if profileReference.Frame.RangeFading.Enabled == true then
+			unitFrame:EnableElement('RangeCheck')
+			unitFrame.RangeCheck = {
+				enabled = profileReference.Frame.RangeFading.Enabled,
+				insideAlpha = 1,
+				outsideAlpha = profileReference.Frame.RangeFading.Alpha or 1,
+			}
+		else
+			unitFrame:DisableElement('RangeCheck')
+		end
 		unitFrame:SetWidth(profileReference.Frame.Size.Width)
 		unitFrame:SetHeight(profileReference.Frame.Size.Height)
 		if i == -1 then

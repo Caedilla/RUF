@@ -143,8 +143,9 @@ local function SetupFrames(self, unit)
 	RUF.SetBarLocation(self,unit)
 
 	self.RangeCheck = {
+		enabled = profileReference.Frame.RangeFading.Enabled,
 		insideAlpha = 1,
-		outsideAlpha = 0.5,
+		outsideAlpha = profileReference.Frame.RangeFading.Alpha or 1,
 	}
 end
 

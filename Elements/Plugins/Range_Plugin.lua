@@ -28,6 +28,7 @@ Offline units are handled as if they are in range.
 local _, ns = ...
 local oUF = ns.oUF
 local libRangeCheck = LibStub("LibRangeCheck-2.0")
+local updateFrequency = 0.25 -- TODO Add Option somewhere
 
 local _FRAMES = {}
 local OnRangeFrame
@@ -42,22 +43,29 @@ local function Update(self, event)
 		element:PreUpdate()
 	end
 
-
-	local minRange, maxRange = libRangeCheck:GetRange(unit,true)
-	local connected = UnitIsConnected(unit)
-	if(connected) then
-		minRange, maxRange = libRangeCheck:GetRange(unit,true)
-		if maxRange >= 40 then
-			self:SetAlpha(element.outsideAlpha)
+	if element.enabled == true then
+		local minRange, maxRange
+		local connected = UnitIsConnected(unit)
+		if(connected) then
+			minRange, maxRange = libRangeCheck:GetRange(unit,true)
+			if maxRange then
+				if maxRange >= 40 then
+					self:SetAlpha(element.outsideAlpha)
+				else
+					self:SetAlpha(element.insideAlpha)
+				end
+			else
+				self:SetAlpha(element.insideAlpha)
+			end
 		else
 			self:SetAlpha(element.insideAlpha)
 		end
+		if(element.PostUpdate) then
+			return element:PostUpdate(self, minRange, maxRange, connected)
+		end
 	else
 		self:SetAlpha(element.insideAlpha)
-	end
-
-	if(element.PostUpdate) then
-		return element:PostUpdate(self, minRange, maxRange, connected)
+		self:DisableElement('RangeCheck')
 	end
 end
 
@@ -76,7 +84,7 @@ local timer = 0
 local function OnRangeUpdate(_, elapsed)
 	timer = timer + elapsed
 
-	if(timer >= .20) then
+	if(timer >= updateFrequency) then
 		for _, object in next, _FRAMES do
 			if(object:IsShown()) then
 				Path(object, 'OnUpdate')
