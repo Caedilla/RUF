@@ -30,6 +30,13 @@ local cfg = {
 				Color = {0,0,0},
 				Alpha = 1,
 			},
+			CombatFader = {
+				Enabled = false,
+				targetOverride = true,
+				targetAlpha = 1,
+				combatAlpha = 1,
+				restAlpha = 0.5,
+			},
 			Bars = {
 				Health = {
 					Texture = "RUF 5",

@@ -8,6 +8,7 @@ local OnRangeFrame
 local function Update(self, event)
 	local element = self.RangeCheck
 	local unit = self.unit
+	local currentAlpha = self.Alpha or 1 -- Work with combat fader
 
 	if(element.PreUpdate) then
 		element:PreUpdate()
@@ -25,21 +26,21 @@ local function Update(self, event)
 			end
 			if maxRange then
 				if (not isEnemy and maxRange > 40) or (isEnemy and maxRange > 30) or (not isEnemy and not isFriend and maxRange >= 28) then
-					self:SetAlpha(element.outsideAlpha)
+					self:SetAlpha(currentAlpha * element.outsideAlpha)
 				else
-					self:SetAlpha(element.insideAlpha)
+					self:SetAlpha(currentAlpha * element.insideAlpha)
 				end
 			else
-				self:SetAlpha(element.insideAlpha)
+				self:SetAlpha(currentAlpha * element.insideAlpha)
 			end
 		else
-			self:SetAlpha(element.insideAlpha)
+			self:SetAlpha(currentAlpha * element.insideAlpha)
 		end
 		if(element.PostUpdate) then
 			return element:PostUpdate(self, minRange, maxRange, connected)
 		end
 	else
-		self:SetAlpha(element.insideAlpha)
+		self:SetAlpha(currentAlpha * element.insideAlpha)
 		self:DisableElement('RangeCheck')
 	end
 end

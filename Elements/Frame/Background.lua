@@ -4,6 +4,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local _,uClass = UnitClass("player")
+local faderState
 
 local DebuffDispel = {-- DISPELLING ALLIES, 10 = Classic since there are no specs in classic.
 	['DEATHKNIGHT'] = {
@@ -271,4 +272,42 @@ function RUF.SetFrameBackground(self, unit)
 	self.Background = Background
 	self.Background.Base = BaseFrame
 	self.Background.Base.Texture = BaseTexture
+end
+
+function RUF.CombatFader(self,event)
+	local profileReference = RUF.db.profile.Appearance.CombatFader
+	if profileReference.Enabled then
+		faderState = true
+		for k, v in next, oUF.objects do
+			if (event == 'PLAYER_TARGET_CHANGED' or event == 'updateOptions') and not InCombatLockdown() then
+				if profileReference.targetOverride == true and UnitExists('target') then
+					v:SetAlpha(profileReference.targetAlpha)
+					v.Alpha = profileReference.targetAlpha
+				else
+					v:SetAlpha(profileReference.restAlpha)
+					v.Alpha = profileReference.restAlpha
+				end
+			elseif event == 'PLAYER_REGEN_DISABLED' then
+				v:SetAlpha(profileReference.combatAlpha)
+				v.Alpha = profileReference.combatAlpha
+			elseif event == 'PLAYER_REGEN_ENABLED' then
+				v:SetAlpha(profileReference.restAlpha)
+				v.Alpha = profileReference.restAlpha
+			elseif event == 'PLAYER_ENTERING_WORLD' then
+				if InCombatLockdown() then
+					v:SetAlpha(profileReference.combatAlpha)
+					v.Alpha = profileReference.combatAlpha
+				else
+					v:SetAlpha(profileReference.restAlpha)
+					v.Alpha = profileReference.restAlpha
+				end
+			end
+		end
+	elseif faderState == true then
+		for k, v in next, oUF.objects do
+			v:SetAlpha(1)
+			v.Alpha = 1
+		end
+		faderState = false
+	end
 end

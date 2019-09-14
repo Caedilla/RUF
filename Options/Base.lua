@@ -71,93 +71,203 @@ function RUF_Options.MainOptions()
 				childGroups = 'tab',
 				order = 1,
 				args = {
-					frameBorder = {
-						name = L["Frame Border"],
+					others = {
+						name = L["Other Global Settings"],
 						type = 'group',
 						order = 5,
 						args = {
-							texture = {
-								name = L["Texture"],
-								type = 'select',
-								order = 0.02,
-								values = LSM:HashTable('border'),
-								dialogControl = 'LSM30_Border',
-								get = function(info)
-									return RUF.db.profile.Appearance.Border.Style.edgeFile
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Border.Style.edgeFile = value
-									RUF:OptionsUpdateFrameBorders()
-								end,
+							frameBorder = {
+								name = L["Frame Border"],
+								type = 'group',
+								order = 0,
+								inline = true,
+								args = {
+									texture = {
+										name = L["Texture"],
+										type = 'select',
+										order = 0.02,
+										values = LSM:HashTable('border'),
+										dialogControl = 'LSM30_Border',
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Style.edgeFile
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Style.edgeFile = value
+											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+									size = {
+										name = L["Size"],
+										type = 'range',
+										order = 0.03,
+										min = -100,
+										max = 100,
+										softMin = -20,
+										softMax = 20,
+										step = 0.01,
+										bigStep = 0.05,
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Style.edgeSize
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Style.edgeSize = value
+											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+									offset = {
+										name = L["Inset from frame edge"],
+										type = 'range',
+										order = 0.04,
+										min = -100,
+										max = 100,
+										softMin = -30,
+										softMax = 30,
+										step = 1,
+										bigStep = 1,
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Offset
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Offset = value
+											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+									alpha = {
+										name = L["Alpha"],
+										type = 'range',
+										order = 0.05,
+										min = 0,
+										max = 1,
+										softMin = 0,
+										softMax = 1,
+										step = 0.01,
+										bigStep = 0.05,
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Alpha
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Alpha = value
+											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+									color = {
+										name = L["Color"],
+										type = 'color',
+										order = 0.06,
+										get = function(info)
+											return unpack(RUF.db.profile.Appearance.Border.Color)
+										end,
+										set = function(info,r,g,b)
+											RUF.db.profile.Appearance.Border.Color = {r,g,b}
+											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+								},
 							},
-							size = {
-								name = L["Size"],
-								type = 'range',
-								order = 0.03,
-								min = -100,
-								max = 100,
-								softMin = -20,
-								softMax = 20,
-								step = 0.01,
-								bigStep = 0.05,
-								get = function(info)
-									return RUF.db.profile.Appearance.Border.Style.edgeSize
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Border.Style.edgeSize = value
-									RUF:OptionsUpdateFrameBorders()
-								end,
-							},
-							offset = {
-								name = L["Inset from frame edge"],
-								type = 'range',
-								order = 0.04,
-								min = -100,
-								max = 100,
-								softMin = -30,
-								softMax = 30,
-								step = 1,
-								bigStep = 1,
-								get = function(info)
-									return RUF.db.profile.Appearance.Border.Offset
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Border.Offset = value
-									RUF:OptionsUpdateFrameBorders()
-								end,
-							},
-							alpha = {
-								name = L["Alpha"],
-								type = 'range',
-								order = 0.05,
-								min = 0,
-								max = 1,
-								softMin = 0,
-								softMax = 1,
-								step = 0.01,
-								bigStep = 0.05,
-								get = function(info)
-									return RUF.db.profile.Appearance.Border.Alpha
-								end,
-								set = function(info, value)
-									RUF.db.profile.Appearance.Border.Alpha = value
-									RUF:OptionsUpdateFrameBorders()
-								end,
-							},
-							color = {
-								name = L["Color"],
-								type = 'color',
-								order = 0.06,
-								get = function(info)
-									return unpack(RUF.db.profile.Appearance.Border.Color)
-								end,
-								set = function(info,r,g,b)
-									RUF.db.profile.Appearance.Border.Color = {r,g,b}
-									RUF:OptionsUpdateFrameBorders()
-								end,
+							combatFading = {
+								name = L["Combat Fading"],
+								type = 'group',
+								order = 1,
+								inline = true,
+								args = {
+									enabled = {
+										name = function()
+											if RUF.db.profile.Appearance.CombatFader.Enabled == true then
+												return '|cFF00FF00'..L["Enabled"]..'|r'
+											else
+												return '|cFFFF0000'..L["Enabled"]..'|r'
+											end
+										end,
+										type = 'toggle',
+										order = 0.1,
+										get = function(info)
+											return RUF.db.profile.Appearance.CombatFader.Enabled
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.CombatFader.Enabled = value
+											RUF.CombatFader(nil,'updateOptions')
+										end,
+									},
+									enabledSpacer = {
+										name = " ",
+										type = 'description',
+										order = 0.11,
+										width = 'full',
+									},
+									combatAlpha = {
+										name = L["In combat alpha"],
+										type = 'range',
+										order = 0.25,
+										min = 0,
+										max = 1,
+										softMin = 0,
+										softMax = 1,
+										step = 0.01,
+										bigStep = 0.01,
+										get = function(info)
+											return RUF.db.profile.Appearance.CombatFader.combatAlpha
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.CombatFader.combatAlpha = value
+											RUF.CombatFader(nil,'updateOptions')
+										end,
+									},
+									restAlpha = {
+										name = L["Out of combat alpha"],
+										type = 'range',
+										order = 0.26,
+										min = 0,
+										max = 1,
+										softMin = 0,
+										softMax = 1,
+										step = 0.01,
+										bigStep = 0.01,
+										get = function(info)
+											return RUF.db.profile.Appearance.CombatFader.restAlpha
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.CombatFader.restAlpha = value
+											RUF.CombatFader(nil,'updateOptions')
+										end,
+									},
+									disableWithTarget = {
+										name = L["Disable when targeting"],
+										desc = L["Set to full visibility when targeting something"],
+										type = 'toggle',
+										order = 0.35,
+										get = function(info)
+											return RUF.db.profile.Appearance.CombatFader.targetOverride
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.CombatFader.targetOverride = value
+											RUF.CombatFader(nil,'updateOptions')
+										end,
+									},
+									targetAlpha = {
+										name = L["Targeting alpha"],
+										desc = L["Alpha of all frames when you are targeting something."],
+										type = 'range',
+										order = 0.36,
+										min = 0,
+										max = 1,
+										softMin = 0,
+										softMax = 1,
+										step = 0.01,
+										bigStep = 0.01,
+										hidden = function() return not RUF.db.profile.Appearance.CombatFader.targetOverride end,
+										get = function(info)
+											return RUF.db.profile.Appearance.CombatFader.targetAlpha
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.CombatFader.targetAlpha = value
+											RUF.CombatFader(nil,'updateOptions')
+										end,
+									},
+								},
 							},
 						},
 					},
+
 					Bars = {
 						name = L["Bars"],
 						type = 'group',

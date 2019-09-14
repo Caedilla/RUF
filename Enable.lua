@@ -136,17 +136,20 @@ local function SetupFrames(self, unit)
 	RUF.SetIndicators(self, unit)
 
 	if unit == 'player' and RUF.Client == 1 then
-		self:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED', RUF.SetBarLocation, unit)
-		self:RegisterEvent('PLAYER_ENTERING_WORLD', RUF.SetBarLocation, unit)
+		self:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED', RUF.SetBarLocation, true)
+		self:RegisterEvent('PLAYER_ENTERING_WORLD', RUF.SetBarLocation, true)
 	end
 
 	RUF.SetBarLocation(self,unit)
 
-	self.RangeCheck = {
-		enabled = profileReference.Frame.RangeFading.Enabled,
-		insideAlpha = 1,
-		outsideAlpha = profileReference.Frame.RangeFading.Alpha or 1,
-	}
+	if unit ~= 'player' then
+		self.RangeCheck = {
+			enabled = profileReference.Frame.RangeFading.Enabled,
+			insideAlpha = 1,
+			outsideAlpha = profileReference.Frame.RangeFading.Alpha or 1,
+		}
+	end
+
 end
 
 
@@ -168,6 +171,14 @@ function RUF:OnEnable()
 		else
 			RUF.db.char.Nickname = ""
 		end
+	end
+
+	-- Register Combat Fader
+	if RUF.db.profile.Appearance.CombatFader == true then
+		self:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader, true)
+		self:RegisterEvent('PLAYER_REGEN_DISABLED', RUF.CombatFader, true)
+		self:RegisterEvent('PLAYER_REGEN_ENABLED', RUF.CombatFader, true)
+		self:RegisterEvent('PLAYER_ENTERING_WORLD', RUF.CombatFader, true)
 	end
 
 	oUF:RegisterStyle('RUF_', SetupFrames)
