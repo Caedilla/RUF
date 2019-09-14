@@ -1,4 +1,4 @@
-# RUF r195-Release
+# RUF r196-Beta
 ### New
 * Added Combat Fading - Options in Global Appearance Options -> Other Global Settings
 
