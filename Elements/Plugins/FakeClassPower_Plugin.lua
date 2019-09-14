@@ -1,55 +1,8 @@
---[[
-# Element: FakeClassPower
-
-Handles the visibility and updating of the player's class resources (like Chi Orbs or Holy Power) and combo points.
-
-## Widget
-
-FakeClassPower - An `table` consisting of as many StatusBars as the theoretical maximum return of [UnitPowerMax](http://wowprogramming.com/docs/api/UnitPowerMax.html).
-
-## Sub-Widgets
-
-.bg - A `Texture` used as a background. It will inherit the color of the main StatusBar.
-
-## Sub-Widget Options
-
-.multiplier - Used to tint the background based on the widget's R, G and B values. Defaults to 1 (number)[0-1]
-
-## Notes
-
-A default texture will be applied if the sub-widgets are StatusBars and don't have a texture set.
-If the sub-widgets are StatusBars, their minimum and maximum values will be set to 0 and 1 respectively.
-
-Supported class powers:
-  - All	 - Combo Points
-  - Mage	- Arcane Charges
-  - Monk	- Chi Orbs
-  - Paladin - Holy Power
-  - Warlock - Soul Shards
-
-## Examples
-
-	local FakeClassPower = {}
-	for index = 1, 10 do
-		local Bar = CreateFrame('StatusBar', nil, self)
-
-		-- Position and size.
-		Bar:SetSize(16, 16)
-		Bar:SetPoint('TOPLEFT', self, 'BOTTOMLEFT', (index - 1) * Bar:GetWidth(), 0)
-
-		FakeClassPower[index] = Bar
-	end
-
-	-- Register with oUF
-	self.FakeClassPower = FakeClassPower
---]]
-
 local _, ns = ...
 local oUF = ns.oUF
 
 local _, PlayerClass = UnitClass('player')
 
--- Holds the class specific stuff.
 local ClassPowerID, ClassPowerType
 local FakeClassPowerEnable, FakeClassPowerDisable
 local RequireSpec, RequirePower
@@ -68,12 +21,6 @@ local function Update(self, event, unit, powerType)
 
 
 	local element = self.FakeClassPower
-
-	--[[ Callback: FakeClassPower:PreUpdate(event)
-	Called before the element has been updated.
-
-	* self  - the FakeClassPower element
-	]]
 	if(element.PreUpdate) then
 		element:PreUpdate()
 	end
@@ -83,29 +30,12 @@ local function Update(self, event, unit, powerType)
 	element:SetMinMaxValues(0, max)
 	element:SetValue(cur)
 
-	--[[ Callback: FakeClassPower:PostUpdate(cur, max, hasMaxChanged, powerType)
-	Called after the element has been updated.
-
-	* self		  - the FakeClassPower element
-	* cur		   - the current amount of power (number)
-	* max		   - the maximum amount of power (number)
-	* hasMaxChanged - indicates whether the maximum amount has changed since the last update (boolean)
-	* powerType	 - the active power type (string)
-	--]]
 	if(element.PostUpdate) then
 		return element:PostUpdate(cur, max, false, powerType)
 	end
 end
 
 local function Path(self, ...)
-	--[[ Override: FakeClassPower.Override(self, event, unit, ...)
-	Used to completely override the internal update function.
-
-	* self  - the parent object
-	* event - the event triggering the update (string)
-	* unit  - the unit accompanying the event (string)
-	* ...   - the arguments accompanying the event
-	--]]
 	return (self.FakeClassPower.Override or Update) (self, ...)
 end
 
@@ -135,12 +65,6 @@ local function Visibility(self, event, unit)
 	local powerType = ClassPowerType
 
 	if(shouldEnable) then
-		--[[ Override: FakeClassPower:UpdateColor(powerType)
-		Used to completely override the internal function for updating the widgets' colors.
-
-		* self	  - the FakeClassPower element
-		* powerType - the active power type (string)
-		--]]
 		(element.UpdateColor or UpdateColor) (element, powerType)
 	end
 
@@ -154,13 +78,6 @@ local function Visibility(self, event, unit)
 end
 
 local function VisibilityPath(self, ...)
-	--[[ Override: FakeClassPower.OverrideVisibility(self, event, unit)
-	Used to completely override the internal visibility function.
-
-	* self  - the parent object
-	* event - the event triggering the update (string)
-	* unit  - the unit accompanying the event (string)
-	--]]
 	return (self.FakeClassPower.OverrideVisibility or Visibility) (self, ...)
 end
 
@@ -204,12 +121,6 @@ do
 	end
 end
 
---[[ Power:SetFrequentUpdates(state)
-Used to toggle frequent updates.
-
-* self  - the Power element
-* state - the desired state of frequent updates (boolean)
---]]
 local function SetFrequentUpdates(element, state)
 	if(element.frequentUpdates ~= state) then
 		element.frequentUpdates = state
