@@ -2,11 +2,8 @@ local _, ns = ...
 local oUF = ns.oUF
 local libRangeCheck = LibStub("LibRangeCheck-2.0")
 local updateFrequency = 0.25 -- TODO Add Option somewhere
-
 local _FRAMES = {}
 local OnRangeFrame
-
-local UnitInRange, UnitIsConnected = UnitInRange, UnitIsConnected
 
 local function Update(self, event)
 	local element = self.RangeCheck
@@ -20,12 +17,14 @@ local function Update(self, event)
 		local minRange, maxRange
 		local connected = UnitIsConnected(unit)
 		if(connected) then
+			local isEnemy = UnitCanAttack('player', unit)
+			local isFriend = UnitCanAssist('player', unit)
 			minRange, maxRange = libRangeCheck:GetRange(unit,true)
 			if minRange and not maxRange then
 				maxRange = minRange
 			end
 			if maxRange then
-				if (UnitCanAssist('player',unit) and maxRange > 40) or maxRange >= 35 then -- TODO Check players's actual enemy/healing range
+				if (not isEnemy and maxRange > 40) or (isEnemy and maxRange > 30) or (not isEnemy and not isFriend and maxRange >= 28) then
 					self:SetAlpha(element.outsideAlpha)
 				else
 					self:SetAlpha(element.insideAlpha)
