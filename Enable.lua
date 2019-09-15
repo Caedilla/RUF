@@ -174,8 +174,12 @@ function RUF:OnEnable()
 	end
 
 	-- Register Combat Fader
-	if RUF.db.profile.Appearance.CombatFader == true then
-		self:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader, true)
+	if RUF.db.profile.Appearance.CombatFader.Enabled == true then
+		if RUF.Client == 1 then
+			self:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader, true)
+		else
+			self:RegisterEvent('UNIT_TARGET', RUF.CombatFader, true)
+		end
 		self:RegisterEvent('PLAYER_REGEN_DISABLED', RUF.CombatFader, true)
 		self:RegisterEvent('PLAYER_REGEN_ENABLED', RUF.CombatFader, true)
 		self:RegisterEvent('PLAYER_ENTERING_WORLD', RUF.CombatFader, true)

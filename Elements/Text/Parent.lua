@@ -62,35 +62,36 @@ end
 
 function RUF.SetTextPoints(self,unit,textName)
 	local name = self:GetName()
+	local profileReference = RUF.db.profile.unit[self.frame].Frame.Text[textName]
 	local anchorFrame = 'Frame'
 	local element = self.Text[textName].String
-	if RUF.db.profile.unit[unit].Frame.Text[textName].Position.AnchorFrame == 'Frame' then
+	if profileReference.Position.AnchorFrame == 'Frame' then
 		anchorFrame = name
 	else
-		anchorFrame = (name ..'.Text.'.. RUF.db.profile.unit[unit].Frame.Text[textName].Position.AnchorFrame .. '.String')
+		anchorFrame = (name ..'.Text.'.. profileReference.Position.AnchorFrame .. '.String')
 		if not _G[anchorFrame] then
 			anchorFrame = name
 		end
 	end
-	local reverseAnchor = RUF.db.profile.unit[unit].Frame.Text[textName].Position.Anchor
-	if RUF.db.profile.unit[unit].Frame.Text[textName].Position.AnchorFrame ~= 'Frame' then
+	local reverseAnchor = profileReference.Position.Anchor
+	if profileReference.Position.AnchorFrame ~= 'Frame' then
 		reverseAnchor = anchorSwaps[reverseAnchor]
 	end
 
 	element:SetPoint(
 		reverseAnchor,
 		anchorFrame,
-		RUF.db.profile.unit[unit].Frame.Text[textName].Position.Anchor,
-		RUF.db.profile.unit[unit].Frame.Text[textName].Position.x,
-		RUF.db.profile.unit[unit].Frame.Text[textName].Position.y
+		profileReference.Position.Anchor,
+		profileReference.Position.x,
+		profileReference.Position.y
 	)
 
 	self.Text[textName]:SetAllPoints(element)
 end
 
 function RUF.CreateTextArea(self, unit, textName)
-
 	local name = self:GetName()
+	local profileReference = RUF.db.profile.unit[self.frame].Frame.Text[textName]
 
 	-- Purely so we can control frame level
 	local stringParent = CreateFrame('Frame', name .. '.Text.' .. textName, self.Text)
@@ -99,18 +100,23 @@ function RUF.CreateTextArea(self, unit, textName)
 
 
 	local Font = ''
-	Font = LSM:Fetch('font', RUF.db.profile.unit[unit].Frame.Text[textName].Font)
+	Font = LSM:Fetch('font', profileReference.Font)
+	local size = profileReference.Size
+	if not size or type(size) ~= 'number' then
+		size = 18
+		profileReference.Size = 18
+	end
 
 	local Text = self.Text[textName]:CreateFontString(name .. '.Text.' .. textName .. '.String' , 'OVERLAY')
-	Text:SetFont(Font, RUF.db.profile.unit[unit].Frame.Text[textName].Size, RUF.db.profile.unit[unit].Frame.Text[textName].Outline)
+	Text:SetFont(Font, profileReference.Size, profileReference.Outline)
 
-	if not RUF.db.profile.unit[unit].Frame.Text[textName].Shadow then RUF.db.profile.unit[unit].Frame.Text[textName].Shadow = 0 end
-	Text:SetShadowColor(0,0,0,RUF.db.profile.unit[unit].Frame.Text[textName].Shadow)
+	if not profileReference.Shadow then profileReference.Shadow = 0 end
+	Text:SetShadowColor(0,0,0,profileReference.Shadow)
 	Text:SetShadowOffset(1, -1)
 	Text:SetTextColor(1, 1, 1, 1)
 	Text.overrideUnit = true
 	Text.frequentUpdates = 0.5
-	local anchorPoint = RUF.db.profile.unit[unit].Frame.Text[textName].Position.Anchor
+	local anchorPoint = profileReference.Position.Anchor
 	if anchorPoint == 'RIGHT' or anchorPoint == 'TOPRIGHT' or anchorPoint == 'BOTTOMRIGHT' then
 		Text:SetJustifyH('RIGHT')
 	elseif anchorPoint == 'LEFT' or anchorPoint == 'TOPLEFT' or anchorPoint == 'BOTTOMLEFT' then
@@ -122,5 +128,5 @@ function RUF.CreateTextArea(self, unit, textName)
 	Text:SetHeight(Text:GetLineHeight()) -- Prevents FontString from collapsing to a 1x1 box when the string is empty, which our tags do to 'hide'
 
 	self.Text[textName].String = Text
-	self:Tag(Text, RUF.db.profile.unit[unit].Frame.Text[textName].Tag)
+	self:Tag(Text, profileReference.Tag)
 end

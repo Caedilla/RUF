@@ -274,12 +274,33 @@ function RUF.SetFrameBackground(self, unit)
 	self.Background.Base.Texture = BaseTexture
 end
 
-function RUF.CombatFader(self,event)
+function RUF.CombatFader(self,event,unit,arg2,arg3)
 	local profileReference = RUF.db.profile.Appearance.CombatFader
+	if event == 'updateOptions' then
+		if profileReference.Enabled then
+			if RUF.Client == 1 then
+				RUF:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader, true)
+			else
+				RUF:RegisterEvent('UNIT_TARGET', RUF.CombatFader, true)
+			end
+			RUF:RegisterEvent('PLAYER_REGEN_DISABLED', RUF.CombatFader, true)
+			RUF:RegisterEvent('PLAYER_REGEN_ENABLED', RUF.CombatFader, true)
+			RUF:RegisterEvent('PLAYER_ENTERING_WORLD', RUF.CombatFader, true)
+		else
+			if RUF.Client == 1 then
+				RUF:UnregisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader)
+			else
+				RUF:UnregisterEvent('UNIT_TARGET', RUF.CombatFader)
+			end
+			RUF:UnregisterEvent('PLAYER_REGEN_DISABLED', RUF.CombatFader)
+			RUF:UnregisterEvent('PLAYER_REGEN_ENABLED', RUF.CombatFader)
+			RUF:UnregisterEvent('PLAYER_ENTERING_WORLD', RUF.CombatFader)
+		end
+	end
 	if profileReference.Enabled then
 		faderState = true
 		for k, v in next, oUF.objects do
-			if (event == 'PLAYER_TARGET_CHANGED' or event == 'updateOptions') and not InCombatLockdown() then
+			if (event == 'PLAYER_TARGET_CHANGED' or event == 'updateOptions' or (event == 'UNIT_TARGET' and unit == 'player')) and not InCombatLockdown() then
 				if profileReference.targetOverride == true and UnitExists('target') then
 					v:SetAlpha(profileReference.targetAlpha)
 					v.Alpha = profileReference.targetAlpha
