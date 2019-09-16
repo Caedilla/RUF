@@ -245,7 +245,7 @@ function RUF.UpdateAuraNotifications(self, event)
 		a = RUF.db.profile.Appearance.Border.Glow.Alpha
 		self.GlowBorder:SetBackdropBorderColor(r,g,b,a)
 		self.GlowBorder:Show()
-		if RUF.db.profile.Appearance.Border.Glow.SoundEnabled then
+		if RUF.db.profile.Appearance.Border.Glow.SoundEnabled and self.frame ~= 'target' then
 			if not self.auraSound then
 				PlaySoundFile(LSM:Fetch("sound", RUF.db.profile.Appearance.Border.Glow.Sound),'Master')
 				self.auraSound = true
@@ -253,7 +253,9 @@ function RUF.UpdateAuraNotifications(self, event)
 		end
 	else
 		self.GlowBorder:Hide()
-		self.auraSound = nil
+		if self.auraSound then
+			self.auraSound = nil
+		end
 	end
 end
 

@@ -684,11 +684,10 @@ function RUF_Options.MainOptions()
 									},
 									frameGlowSoundToggle = {
 										name = L["Play sound on highlight"],
-										desc = L["Plays a sound when a removable aura is found on a unit."],
+										desc = L["Plays a sound when a removable aura is found on a unit. Does not affect target units."],
 										type = 'toggle',
 										order = 0.08,
 										width = 'full',
-										hidden = true,
 										get = function(info)
 											return RUF.db.profile.Appearance.Border.Glow.SoundEnabled
 										end,
@@ -702,8 +701,8 @@ function RUF_Options.MainOptions()
 										order = 0.09,
 										values = LSM:HashTable('sound'),
 										dialogControl = 'LSM30_Sound',
-										hidden = true,
-										--hidden = function() return not RUF.db.profile.Appearance.Border.Glow.SoundEnabled end,
+										--hidden = true,
+										hidden = function() return not RUF.db.profile.Appearance.Border.Glow.SoundEnabled end,
 										get = function(info)
 											return RUF.db.profile.Appearance.Border.Glow.Sound
 										end,

@@ -348,5 +348,5 @@ L["The border on buff or debuff icons that is colored using the colors above."] 
 L["A simple border around the edge of each buff or debuff icon."] = true
 L["The unit frame border that glows when the unit has a dispellable buff or debuff."] = true
 L["Play sound on highlight"] = true
-L["Plays a sound when a removable aura is found on a unit."] = true
+L["Plays a sound when a removable aura is found on a unit. Does not affect target units."] = true
 L["Sound"] = true
