@@ -15,6 +15,7 @@ local cfg = {
 			Border = {
 				Glow = {
 					Enabled = true,
+					SoundEnabled = false,
 					Offset = -1,
 					Alpha = 0.75,
 					Style = {

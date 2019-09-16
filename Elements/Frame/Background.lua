@@ -196,12 +196,12 @@ function RUF.SetGlowBorder(self, unit) -- Aura Highlight Border
 
 	self.GlowBorder = GlowBorder
 	if profileReference.Enabled == true then
-		self:RegisterEvent('UNIT_AURA',RUF.UpdateGlowBorder,true)
-		self:RegisterEvent('UNIT_TARGET',RUF.UpdateGlowBorder,true)
+		self:RegisterEvent('UNIT_AURA',RUF.UpdateAuraNotifications,true)
+		self:RegisterEvent('UNIT_TARGET',RUF.UpdateAuraNotifications,true)
 	end
 end
 
-function RUF.UpdateGlowBorder(self, event)
+function RUF.UpdateAuraNotifications(self, event)
 	local unit = self.unit
 	if event == 'UNIT_TARGET' then
 		self.GlowBorder:Hide() -- Immediately hide until we check the new unit.
@@ -245,10 +245,16 @@ function RUF.UpdateGlowBorder(self, event)
 		a = RUF.db.profile.Appearance.Border.Glow.Alpha
 		self.GlowBorder:SetBackdropBorderColor(r,g,b,a)
 		self.GlowBorder:Show()
+		if RUF.db.profile.Appearance.Border.Glow.SoundEnabled then
+			if not self.auraSound then
+				PlaySoundFile(LSM:Fetch("sound", RUF.db.profile.Appearance.Border.Glow.Sound),'Master')
+				self.auraSound = true
+			end
+		end
 	else
 		self.GlowBorder:Hide()
+		self.auraSound = nil
 	end
-
 end
 
 function RUF.SetFrameBackground(self, unit)

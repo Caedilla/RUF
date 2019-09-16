@@ -231,8 +231,8 @@ function RUF_Options.MainOptions()
 										end,
 									},
 									disableWithTarget = {
-										name = L["Disable when targeting"],
-										desc = L["Set to full visibility when targeting something"],
+										name = L["Enable targeting alpha"],
+										desc = L["Use a different alpha value when you have a target."],
 										type = 'toggle',
 										order = 0.35,
 										get = function(info)
@@ -428,6 +428,12 @@ function RUF_Options.MainOptions()
 								order = 1,
 								inline = true,
 								args = {
+									desc = {
+										name = L["The border on buff or debuff icons that is colored using the colors above."],
+										type = 'description',
+										order = 0,
+										width = 'full',
+									},
 									highlightTexture = {
 										name = L["Texture"],
 										type = 'select',
@@ -487,6 +493,12 @@ function RUF_Options.MainOptions()
 								order = 2,
 								inline = true,
 								args = {
+									desc = {
+										name = L["A simple border around the edge of each buff or debuff icon."],
+										type = 'description',
+										order = 0,
+										width = 'full',
+									},
 									pixelEnabled = {
 										name = function()
 											if RUF.db.profile.Appearance.Aura.Pixel.Enabled == true then
@@ -577,6 +589,12 @@ function RUF_Options.MainOptions()
 								order = 3,
 								inline = true,
 								args = {
+									desc = {
+										name = L["The unit frame border that glows when the unit has a dispellable buff or debuff."],
+										type = 'description',
+										order = 0,
+										width = 'full',
+									},
 									frameGlowEnabled = {
 										name = function()
 											if RUF.db.profile.Appearance.Border.Glow.Enabled == true then
@@ -662,6 +680,35 @@ function RUF_Options.MainOptions()
 										set = function(info, value)
 											RUF.db.profile.Appearance.Border.Glow.Alpha = value
 											RUF:OptionsUpdateFrameBorders()
+										end,
+									},
+									frameGlowSoundToggle = {
+										name = L["Play sound on highlight"],
+										desc = L["Plays a sound when a removable aura is found on a unit."],
+										type = 'toggle',
+										order = 0.08,
+										width = 'full',
+										hidden = true,
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Glow.SoundEnabled
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Glow.SoundEnabled = value
+										end,
+									},
+									frameGlowSound = {
+										name = L["Sound"],
+										type = 'select',
+										order = 0.09,
+										values = LSM:HashTable('sound'),
+										dialogControl = 'LSM30_Sound',
+										hidden = true,
+										--hidden = function() return not RUF.db.profile.Appearance.Border.Glow.SoundEnabled end,
+										get = function(info)
+											return RUF.db.profile.Appearance.Border.Glow.Sound
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Border.Glow.Sound = value
 										end,
 									},
 								},
