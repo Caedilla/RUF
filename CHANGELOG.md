@@ -1,7 +1,8 @@
-# RUF r197-Alpha
+# RUF r198-Alpha
 ### Fixed
-* Combat Fading should properly work in classic now.
+* Combat Fading should be a little more responsive when switching targets with targeting alpha enabled.
+* Test Mode should no longer cause elements to stop updating.
+* Cast Bars should properly show in test mode now.
 
 ### Known Issues
-* Cast Bars don't always appear properly in test mode.
 * There is no preview of frame aura highlighting in test mode.

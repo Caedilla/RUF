@@ -831,9 +831,6 @@ function RUF:SpawnUnits()
 		RegisterAttributeDriver(oUF_RUF_Party,'state-visibility',"show")
 	end
 	for k, v in next, oUF.objects do
-		if v.Castbar then
-			v.Castbar:OnUpdate()
-		end
 		v.oldUnit = v.unit
 		if v.realUnit then v.oldUnit = v.realUnit end
 		v:SetAttribute('unit','player')
@@ -848,7 +845,10 @@ function RUF:SpawnUnits()
 		else
 			v:Hide()
 		end
-
+		if v.Castbar then
+			v.Castbar:Show()
+			v.Castbar:OnUpdate()
+		end
 	end
 	UnitsSpawned = true
 end
@@ -864,6 +864,7 @@ function RUF:RestoreUnits()
 	end
 	for k, v in next, oUF.objects do
 		if v.Castbar then
+			v.Castbar:Show()
 			v.Castbar:OnUpdate()
 		end
 		v.realUnit = v.oldUnit
