@@ -281,6 +281,7 @@ function RUF.CombatFader(self,event,unit,arg2,arg3)
 			if RUF.Client == 1 then
 				RUF:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader, true)
 			else
+				RUF:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader, true)
 				RUF:RegisterEvent('UNIT_TARGET', RUF.CombatFader, true)
 			end
 			RUF:RegisterEvent('PLAYER_REGEN_DISABLED', RUF.CombatFader, true)
@@ -290,6 +291,7 @@ function RUF.CombatFader(self,event,unit,arg2,arg3)
 			if RUF.Client == 1 then
 				RUF:UnregisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader)
 			else
+				RUF:UnregisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader)
 				RUF:UnregisterEvent('UNIT_TARGET', RUF.CombatFader)
 			end
 			RUF:UnregisterEvent('PLAYER_REGEN_DISABLED', RUF.CombatFader)

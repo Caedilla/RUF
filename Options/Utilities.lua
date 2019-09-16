@@ -834,12 +834,11 @@ function RUF:SpawnUnits()
 		if v.Castbar then
 			v.Castbar:OnUpdate()
 		end
-		v:SetAttribute('oldUnit',v.unit)
-		v.oldUnit = v:GetAttribute('oldUnit')
+		v.oldUnit = v.unit
 		if v.realUnit then v.oldUnit = v.realUnit end
 		v:SetAttribute('unit','player')
 		v:Disable()
-		if RUF.db.profile.unit[string.gsub(v.oldUnit,'%d','')].Enabled then
+		if RUF.db.profile.unit[v.frame].Enabled then
 			if RUF.db.global.TestModeShowUnits then
 				v.Text.DisplayName:Show()
 			else
@@ -867,11 +866,12 @@ function RUF:RestoreUnits()
 		if v.Castbar then
 			v.Castbar:OnUpdate()
 		end
-		v:SetAttribute('unit',v.oldUnit)
-		v.unit = v:GetAttribute('unit')
+		v.realUnit = v.oldUnit
+		v.unit = v.oldUnit
+		v:SetAttribute('unit',v.unit)
 		v.Text.DisplayName:Hide()
 		v:Hide()
-		if RUF.db.profile.unit[string.gsub(v.frame,'%d','')].Enabled then
+		if RUF.db.profile.unit[v.frame].Enabled then
 			v:Enable()
 		else
 			v:Disable()
