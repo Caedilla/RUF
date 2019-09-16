@@ -93,13 +93,13 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 		if profileReference.percentage0Power then
 			colorGradient[1],colorGradient[2],colorGradient[3] = unpack(colorProfile.PowerColors[pType])
 		end
-		if profileReference.percentageMaxClass then
+		if profileReference.percentageMaxClass and UnitIsPlayer(unit) then
 			colorGradient[7],colorGradient[8],colorGradient[9] = unpack(colorProfile.ClassColors[uClass])
 		end
-		if profileReference.percentage50Class then
+		if profileReference.percentage50Class and UnitIsPlayer(unit) then
 			colorGradient[4],colorGradient[5],colorGradient[6] = unpack(colorProfile.ClassColors[uClass])
 		end
-		if profileReference.percentage0Class then
+		if profileReference.percentage0Class and UnitIsPlayer(unit) then
 			colorGradient[1],colorGradient[2],colorGradient[3] = unpack(colorProfile.ClassColors[uClass])
 		end
 		local cur, max = UnitPower(unit,pType), UnitPowerMax(unit,pType)
