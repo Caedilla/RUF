@@ -10,7 +10,7 @@
 ## Version: @project-version@
 ## SavedVariables: RUFDB
 ## X-SavedVariables: RUFDB
-## OptionalDeps: oUF, oUF_Smooth, Ace3, LibDualSpec-1.0, LibSharedMedia-3.0, RealMobHealth
+## OptionalDeps: oUF, oUF_Smooth, Ace3, LibDualSpec-1.0, LibRangeCheck-2.0, LibSharedMedia-3.0, NickTag-1.0, RealMobHealth
 ## X-Credits: Icon Font created with IcoMoon.io using icons from Freepik & Plainicon, from www.flaticon.com
 ## X-Curse-Project-ID: 283389
 
