@@ -104,7 +104,7 @@ local function CustomDebuffFilter(element, unit, button, ...)
 
 	if RUF.db.profile.unit[profileUnit].Debuffs.Icons.Enabled == false then
 		button.shoudShow = false
-		frame:DisableElement('Auras')
+		frame:DisableElement('Aura_Plugin')
 		return false
 	end
 
@@ -274,7 +274,7 @@ function RUF.SetDebuffs(self, unit)
 	local Debuffs = CreateFrame('Frame', nil, self)
 	Debuffs:SetPoint(
 		RUF.db.profile.unit[unit].Debuffs.Icons.Position.AnchorFrom,
-		RUF.GetAuraAnchorFrame(self,unit,'Debuffs'),
+		self,
 		RUF.db.profile.unit[unit].Debuffs.Icons.Position.AnchorTo,
 		RUF.db.profile.unit[unit].Debuffs.Icons.Position.x,
 		RUF.db.profile.unit[unit].Debuffs.Icons.Position.y)
@@ -306,5 +306,5 @@ function RUF.SetDebuffs(self, unit)
 	Debuffs.PostUpdateIcon = PostUpdateDebuffIcon
 	Debuffs.Enabled = true
 
-	self.Debuffs = Debuffs
+	self.Debuff = Debuffs
 end

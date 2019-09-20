@@ -1241,25 +1241,6 @@ local function BuffSettings(profileName,groupFrame)
 					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
 				end,
 			},
-			numRows = {
-				name = L["Rows"],
-				type = 'range',
-				hidden = true, -- Why? I don't remember. Check it out.
-				order = 3,
-				min = 1,
-				max = 32,
-				softMin = 1,
-				softMax = 8,
-				step = 1,
-				bigStep = 1,
-				get = function(info)
-					return RUF.db.profile.unit[profileName].Buffs.Icons.Rows
-				end,
-				set = function(info, value)
-					RUF.db.profile.unit[profileName].Buffs.Icons.Rows = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
-				end,
-			},
 			numColumns = {
 				name = L["Columns"],
 				type = 'range',
@@ -1355,7 +1336,7 @@ local function BuffSettings(profileName,groupFrame)
 			sortDirection = {
 				name = L["Direction"],
 				type = 'select',
-				hidden = true, -- Why?
+				hidden = true, -- Why? TODO
 				order = 4,
 				values = {
 					Ascending = L["Ascending"],
@@ -1372,7 +1353,7 @@ local function BuffSettings(profileName,groupFrame)
 			sortType = {
 				type = 'select',
 				name = L["Sort By"],
-				hidden = true, -- Why? NYI? Check it.
+				hidden = true, -- Why? NYI? Check it. TODO
 				order = 4,
 				values = {
 					Alphabetically = L["Alphabetically"],
@@ -1435,7 +1416,6 @@ local function BuffSettings(profileName,groupFrame)
 			anchorFrom = {
 				name = L["Anchor From"],
 				type = 'select',
-				desc = L["Location area of the Indicator to anchor from."],
 				order = 7,
 				values = anchorPoints,
 				get = function(info)
@@ -1446,41 +1426,9 @@ local function BuffSettings(profileName,groupFrame)
 					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
 				end,
 			},
-			anchorFrame = {
-				name = L["Attach To"],
-				type = 'select',
-				desc = L["Choose an element to attach to, either the frame or another indicator."],
-				hidden = true,
-				values = {
-					Frame = L["Frame"],
-					DebuffIcons = L["Debuff Icons"],
-				},
-				order = 8,
-				get = function(info)
-					RUF:UpdateOptions()
-					return RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrame
-				end,
-				set = function(info, value)
-					if value ~= nil and value:match('%S') ~= nil then
-						if value == 'Frame' then
-							RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrame = 'Frame'
-
-						elseif RUF:CanAttach(_G['oUF_RUF_' .. referenceUnit]['Buffs'], _G['oUF_RUF_' .. referenceUnit]['Debuffs']) then
-							RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrame = value
-						else
-							RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrame = 'Frame'
-						end
-					else
-						RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrame = 'Frame'
-					end
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
-					RUF:UpdateOptions()
-				end,
-			},
 			anchorPoint = {
 				name = L["Anchor To"],
 				type = 'select',
-				desc = L["Area on the anchor frame to anchor the indicator to."],
 				order = 7,
 				values = anchorPoints,
 				get = function(info)
@@ -1729,25 +1677,6 @@ local function DebuffSettings(profileName,groupFrame)
 					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
 				end,
 			},
-			numRows = {
-				name = L["Rows"],
-				type = 'range',
-				hidden = true, -- Why? I don't remember. Check it out.
-				order = 3,
-				min = 1,
-				max = 32,
-				softMin = 1,
-				softMax = 8,
-				step = 1,
-				bigStep = 1,
-				get = function(info)
-					return RUF.db.profile.unit[profileName].Debuffs.Icons.Rows
-				end,
-				set = function(info, value)
-					RUF.db.profile.unit[profileName].Debuffs.Icons.Rows = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
-				end,
-			},
 			numColumns = {
 				name = L["Columns"],
 				type = 'range',
@@ -1923,7 +1852,6 @@ local function DebuffSettings(profileName,groupFrame)
 			anchorFrom = {
 				name = L["Anchor From"],
 				type = 'select',
-				desc = L["Location area of the Indicator to anchor from."],
 				order = 7,
 				values = anchorPoints,
 				get = function(info)
@@ -1934,42 +1862,9 @@ local function DebuffSettings(profileName,groupFrame)
 					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
 				end,
 			},
-			anchorFrame = {
-				name = L["Attach To"],
-				type = 'select',
-				desc = L["Choose an element to attach to, either the frame or another indicator."],
-				hidden = true,
-				values = {
-					Frame = L["Frame"],
-					BuffIcons = L["Buff Icons"],
-				},
-				order = 8,
-				get = function(info)
-					RUF:UpdateOptions()
-					return RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorFrame
-				end,
-				set = function(info, value)
-					if value ~= nil and value:match('%S') ~= nil then
-						if value == 'Frame' then
-							RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorFrame = 'Frame'
-
-						elseif RUF:CanAttach(_G['oUF_RUF_' .. referenceUnit]['Debuffs'], _G['oUF_RUF_' .. referenceUnit]['Buffs']) then
-							RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorFrame = value
-						else
-							RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorFrame = 'Frame'
-							-- TODO Pop up to confirm force anchoring Debuffs back to frame, so we can anchor buffs to debuffs.
-						end
-					else
-						RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorFrame = 'Frame'
-					end
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
-					RUF:UpdateOptions()
-				end,
-			},
 			anchorPoint = {
 				name = L["Anchor To"],
 				type = 'select',
-				desc = L["Area on the anchor frame to anchor the indicator to."],
 				order = 7,
 				values = anchorPoints,
 				get = function(info)

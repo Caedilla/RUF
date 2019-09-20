@@ -106,7 +106,7 @@ local function CustomBuffFilter(element, unit, button, ...)
 
 	if RUF.db.profile.unit[profileUnit].Buffs.Icons.Enabled == false then
 		button.shoudShow = false
-		frame:DisableElement('Auras')
+		frame:DisableElement('Aura_Plugin')
 		return false
 	end
 
@@ -275,7 +275,7 @@ function RUF.SetBuffs(self, unit)
 	local Buffs = CreateFrame('Frame', self:GetName()..'.Buffs', self)
 	Buffs:SetPoint(
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.AnchorFrom,
-		RUF.GetAuraAnchorFrame(self,unit,'Buffs'),
+		self,
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.AnchorTo,
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.x,
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.y)
@@ -310,5 +310,5 @@ function RUF.SetBuffs(self, unit)
 	Buffs.Enabled = true
 
 
-	self.Buffs = Buffs
+	self.Buff = Buffs
 end

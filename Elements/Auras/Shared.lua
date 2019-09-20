@@ -13,20 +13,6 @@ if RUF.Client == 1 then
 	TalenMonitor:SetScript("OnEvent",GetCurrentSpec)
 end
 
-function RUF.GetAuraAnchorFrame(self,unit,aura)
-	local AnchorFrame = "Frame"
-	if RUF.db.profile.unit[unit][aura].Icons.Position.AnchorFrame == "Frame" then
-		AnchorFrame = self:GetName()
-	else
-		--AnchorFrame = self:GetName().."."..RUF.db.profile.unit[unit].Frame.Indicators[indicator].Position.AnchorFrame.."Indicator"
-		AnchorFrame = self:GetName()
-		if not _G[AnchorFrame] then
-			AnchorFrame = self:GetName()
-		end
-	end
-	return AnchorFrame
-end
-
 local function UpdateTooltip(self)
 	GameTooltip:SetUnitAura(self:GetParent().__owner.unit, self:GetID(), self.filter)
 end

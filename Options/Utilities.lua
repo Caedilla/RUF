@@ -171,8 +171,8 @@ end
 
 function RUF:OptionsUpdateAllAuras()
 	for k, v in next, oUF.objects do
-		v.Buffs:ForceUpdate()
-		v.Debuffs:ForceUpdate()
+		v.Buff:ForceUpdate()
+		v.Debuff:ForceUpdate()
 	end
 end
 
@@ -191,13 +191,13 @@ function RUF:OptionsUpdateAuras(profileName,groupFrame,auraType)
 			end
 			unitFrame = _G['oUF_RUF_' .. currentUnit]
 		end
-		local currentElement = unitFrame[auraType]
+		local currentElement = unitFrame[auraType:sub(1, -2)]
 		if not currentElement then return end
 		profileReference = RUF.db.profile.unit[string.lower(profileName)][auraType].Icons
 		currentElement:ClearAllPoints()
 		currentElement:SetPoint(
 			profileReference.Position.AnchorFrom,
-			RUF.GetAuraAnchorFrame(unitFrame,string.lower(profileName),'Buffs'),
+			unitFrame,
 			profileReference.Position.AnchorTo,
 			profileReference.Position.x,
 			profileReference.Position.y
@@ -215,10 +215,13 @@ function RUF:OptionsUpdateAuras(profileName,groupFrame,auraType)
 		currentElement:SetSize((profileReference.Width * profileReference.Columns), (profileReference.Height * profileReference.Rows) + 2)
 
 		currentElement.Enabled = profileReference.Enabled
+		currentElement:ForceUpdate()
 		if profileReference.Enabled == true then
-			unitFrame:EnableElement('Auras')
+			unitFrame:EnableElement('Aura_Plugin')
+			currentElement:Show()
 		else
-			unitFrame:DisableElement('Auras')
+			unitFrame:DisableElement('Aura_Plugin')
+			currentElement:Hide()
 		end
 		currentElement:ForceUpdate()
 	end

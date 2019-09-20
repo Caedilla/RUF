@@ -1,13 +1,13 @@
 --[[
-# Element: Auras
+# Element: Aura
 
 Handles creation and updating of aura icons.
 
 ## Widget
 
-Auras   - A Frame to hold `Button`s representing both buffs and debuffs.
-Buffs   - A Frame to hold `Button`s representing buffs.
-Debuffs - A Frame to hold `Button`s representing debuffs.
+Aura   - A Frame to hold `Button`s representing both buffs and debuffs.
+Buff   - A Frame to hold `Button`s representing buffs.
+Debuff - A Frame to hold `Button`s representing debuffs.
 
 ## Notes
 
@@ -64,7 +64,7 @@ button.isPlayer - indicates if the aura caster is the player or their vehicle (b
     Buffs:SetSize(16 * 2, 16 * 16)
 
     -- Register with oUF
-    self.Buffs = Buffs
+    self.Buff = Buffs
 --]]
 
 local _, ns = ...
@@ -149,6 +149,15 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 		timeMod, effect1, effect2, effect3 = UnitAura(unit, index, filter)
 
 	if(name) then
+		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+			if not duration or duration == 0 then
+				if spellID then
+					local newDuration, newExpiration = LibStub("LibClassicDurations",true):GetAuraDurationByUnit(unit, spellID, caster)
+					duration = newDuration or duration
+					expiration = newExpiration or expiration
+				end
+			end
+		end
 		local position = visible + offset + 1
 		local button = element[position]
 		if(not button) then
@@ -225,7 +234,9 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 			if(button.count) then button.count:SetText(count > 1 and count) end
 
 			local size = element.size or 16
-			button:SetSize(size, size)
+			local width = element.width or size
+			local height = element.height or size
+			button:SetSize(width, height)
 
 			button:EnableMouse(not element.disableMouse)
 			button:SetID(index)
@@ -256,8 +267,8 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 end
 
 local function SetPosition(element, from, to)
-	local sizex = (element.size or 16) + (element['spacing-x'] or element.spacing or 0)
-	local sizey = (element.size or 16) + (element['spacing-y'] or element.spacing or 0)
+	local sizex = (element.width or element.size or 16) + (element['spacing-x'] or element.spacing or 0)
+	local sizey = (element.height or element.size or 16) + (element['spacing-y'] or element.spacing or 0)
 	local anchor = element.initialAnchor or 'BOTTOMLEFT'
 	local growthx = (element['growth-x'] == 'LEFT' and -1) or 1
 	local growthy = (element['growth-y'] == 'DOWN' and -1) or 1
@@ -306,7 +317,7 @@ end
 local function UpdateAuras(self, event, unit)
 	if(self.unit ~= unit) then return end
 
-	local auras = self.Auras
+	local auras = self.Aura
 	if(auras) then
 		--[[ Callback: Auras:PreUpdate(unit)
 		Called before the element has been updated.
@@ -354,6 +365,11 @@ local function UpdateAuras(self, event, unit)
 			--]]
 			if(auras.PostUpdateGapIcon) then
 				auras:PostUpdateGapIcon(unit, button, visibleBuffs)
+			end
+			if not auras.Enabled then
+				auras:Hide()
+			else
+				auras:Show()
 			end
 		end
 
@@ -406,7 +422,7 @@ local function UpdateAuras(self, event, unit)
 		if(auras.PostUpdate) then auras:PostUpdate(unit) end
 	end
 
-	local buffs = self.Buffs
+	local buffs = self.Buff
 	if(buffs) then
 		if(buffs.PreUpdate) then buffs:PreUpdate(unit) end
 
@@ -425,9 +441,14 @@ local function UpdateAuras(self, event, unit)
 		end
 
 		if(buffs.PostUpdate) then buffs:PostUpdate(unit) end
+		if not buffs.Enabled then
+			buffs:Hide()
+		else
+			buffs:Show()
+		end
 	end
 
-	local debuffs = self.Debuffs
+	local debuffs = self.Debuff
 	if(debuffs) then
 		if(debuffs.PreUpdate) then debuffs:PreUpdate(unit) end
 
@@ -446,6 +467,11 @@ local function UpdateAuras(self, event, unit)
 		end
 
 		if(debuffs.PostUpdate) then debuffs:PostUpdate(unit) end
+		if not debuffs.Enabled then
+			debuffs:Hide()
+		else
+			debuffs:Show()
+		end
 	end
 end
 
@@ -457,19 +483,31 @@ local function Update(self, event, unit)
 	-- Assume no event means someone wants to re-anchor things. This is usually
 	-- done by UpdateAllElements and :ForceUpdate.
 	if(event == 'ForceUpdate' or not event) then
-		local buffs = self.Buffs
+		local buffs = self.Buff
 		if(buffs) then
-			(buffs.SetPosition or SetPosition) (buffs, 1, buffs.createdIcons)
+			if buffs.Enabled then
+				(buffs.SetPosition or SetPosition) (buffs, 1, buffs.createdIcons)
+			else
+				buffs:Hide()
+			end
 		end
 
-		local debuffs = self.Debuffs
+		local debuffs = self.Debuff
 		if(debuffs) then
-			(debuffs.SetPosition or SetPosition) (debuffs, 1, debuffs.createdIcons)
+			if debuffs.Enabled then
+				(debuffs.SetPosition or SetPosition) (debuffs, 1, debuffs.createdIcons)
+			else
+				debuffs:Hide()
+			end
 		end
 
-		local auras = self.Auras
+		local auras = self.Aura
 		if(auras) then
-			(auras.SetPosition or SetPosition) (auras, 1, auras.createdIcons)
+			if auras.Enabled then
+				(auras.SetPosition or SetPosition) (auras, 1, auras.createdIcons)
+			else
+				auras:Hide()
+			end
 		end
 	end
 end
@@ -479,10 +517,10 @@ local function ForceUpdate(element)
 end
 
 local function Enable(self)
-	if(self.Buffs or self.Debuffs or self.Auras) then
+	if(self.Buff or self.Debuff or self.Aura) then
 		self:RegisterEvent('UNIT_AURA', UpdateAuras)
 
-		local buffs = self.Buffs
+		local buffs = self.Buff
 		if(buffs) then
 			buffs.__owner = self
 			buffs.ForceUpdate = ForceUpdate
@@ -502,7 +540,7 @@ local function Enable(self)
 			buffs:Show()
 		end
 
-		local debuffs = self.Debuffs
+		local debuffs = self.Debuff
 		if(debuffs) then
 			debuffs.__owner = self
 			debuffs.ForceUpdate = ForceUpdate
@@ -522,7 +560,7 @@ local function Enable(self)
 			debuffs:Show()
 		end
 
-		local auras = self.Auras
+		local auras = self.Aura
 		if(auras) then
 			auras.__owner = self
 			auras.ForceUpdate = ForceUpdate
@@ -547,13 +585,31 @@ local function Enable(self)
 end
 
 local function Disable(self)
-	if(self.Buffs or self.Debuffs or self.Auras) then
+	local buff,debuff,aura
+	if self.Buff then
+		buff = true
+		if self.Buff.Enabled == false then
+			buff = false
+			self.Buff:Hide()
+		end
+	end
+	if self.Debuff then
+		debuff = true
+		if self.Debuff.Enabled == false then
+			debuff = false
+			self.Debuff:Hide()
+		end
+	end
+	if self.Aura then
+		aura = true
+		if self.Aura.Enabled == false then
+			aura = false
+			self.Aura:Hide()
+		end
+	end
+	if not buff and not debuff and not aura then
 		self:UnregisterEvent('UNIT_AURA', UpdateAuras)
-
-		if(self.Buffs) then self.Buffs:Hide() end
-		if(self.Debuffs) then self.Debuffs:Hide() end
-		if(self.Auras) then self.Auras:Hide() end
 	end
 end
 
-oUF:AddElement('Auras', Update, Enable, Disable)
+oUF:AddElement('Aura_Plugin', Update, Enable, Disable)

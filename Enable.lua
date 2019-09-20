@@ -124,12 +124,12 @@ local function SetupFrames(self, unit)
 	RUF.SetBuffs(self,unit)
 	RUF.SetDebuffs(self,unit)
 	if RUF.db.profile.unit[self.frame].Buffs.Icons.Enabled == false then
-		self.Buffs.Enabled = false
-		self:DisableElement('Auras')
+		self.Buff.Enabled = false
+		self:DisableElement('Aura_Plugin')
 	end
 	if RUF.db.profile.unit[self.frame].Debuffs.Icons.Enabled == false then
-		self.Debuffs.Enabled = false
-		self:DisableElement('Auras')
+		self.Debuff.Enabled = false
+		self:DisableElement('Aura_Plugin')
 	end
 
 	-- Indicators
