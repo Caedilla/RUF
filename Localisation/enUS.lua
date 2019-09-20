@@ -351,3 +351,6 @@ L["Sound"] = true
 L["Justify"] = true
 L["Custom Width"] = true
 L["Toggle on to force text element to be set to a custom width. If the text is longer than the width, truncation will occur."] = true
+L["Color Not Interruptible"] = true
+L["Enable to force the bar to a specific color if the cast cannot be interrupted."] = true
+L["Not Interruptible Color"] = true

@@ -160,6 +160,10 @@ local cfg = {
 				Cast = {
 					Texture = "RUF 1",
 					Animate = true,
+					ColorInterrupt = {
+						Enabled = true,
+						Color = {200/255, 64/255, 64/255},
+					},
 					Color = {
 						BaseColor = {1, 204/255, 0},
 						Class = false,

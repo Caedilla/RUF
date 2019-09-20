@@ -202,22 +202,26 @@ function RUF.SetCastBar(self, unit)
 	--Bar.Spark = Spark
 	--Bar.Icon = Icon
 	Bar.SafeZone = SafeZone
-	self.Castbar = Bar
+	self.Cast = Bar
 
-	self.Castbar.OnUpdate = onUpdate
-	self.Castbar.PostCastStart = RUF.CastBarUpdate
-	self.Castbar.PostChannelStart = RUF.CastBarUpdate
-	self.Castbar.UpdateOptions = RUF.CastBarUpdateOptions
+	self.Cast.OnUpdate = onUpdate
+	self.Cast.PostCastStart = RUF.CastUpdate
+	self.Cast.PostChannelStart = RUF.ChannelUpdate
+	self.Cast.UpdateOptions = RUF.CastBarUpdateOptions
 
-	r,g,b = RUF:GetBarColor(self.Castbar, unit, "Cast")
+	r,g,b = RUF:GetBarColor(self.Cast, unit, "Cast")
 	Bar:SetStatusBarColor(r,g,b)
 end
 
-function RUF.CastBarUpdate(element, unit, name)
+function RUF.CastUpdate(element, unit, name)
 	local unitFrame = element.__owner
 	local r,g,b,a,bgMult
-
-	r,g,b = RUF:GetBarColor(element, unit, "Cast")
+	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
+	if notInterruptible and RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Enabled then
+		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
+	else
+		r,g,b = RUF:GetBarColor(element, unit, "Cast")
+	end
 	element:SetStatusBarColor(r,g,b)
 	if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
 		local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
@@ -226,7 +230,31 @@ function RUF.CastBarUpdate(element, unit, name)
 	else
 		element.SafeZone:SetColorTexture(0, 0, 0, 0)
 	end
+	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
+		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
+	end
+	bgMult = RUF.db.profile.Appearance.Bars.Cast.Background.Multiplier
+	a = RUF.db.profile.Appearance.Bars.Cast.Background.Alpha
+	element.Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
+end
 
+function RUF.ChannelUpdate(element, unit, name)
+	local unitFrame = element.__owner
+	local r,g,b,a,bgMult
+	local _, _, _, _, _, _, notInterruptible = UnitChannelInfo(unit)
+	if notInterruptible and RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Enabled then
+		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
+	else
+		r,g,b = RUF:GetBarColor(element, unit, "Cast")
+	end
+	element:SetStatusBarColor(r,g,b)
+	if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
+		local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+		local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+		element.SafeZone:SetColorTexture(sr, sg, sb, sa)
+	else
+		element.SafeZone:SetColorTexture(0, 0, 0, 0)
+	end
 	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
 		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
 	end
