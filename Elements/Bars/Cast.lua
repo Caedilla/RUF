@@ -3,9 +3,31 @@ local L = LibStub('AceLocale-3.0'):GetLocale('RUF')
 local LSM = LibStub("LibSharedMedia-3.0")
 local _, ns = ...
 local oUF = ns.oUF
+local UnitCastingInfo = UnitCastingInfo
+local UnitChannelInfo = UnitChannelInfo
+local LibClassicCasterino = LibStub('LibClassicCasterino', true)
+
+
+if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+	UnitCastingInfo = CastingInfo
+	UnitChannelInfo = ChannelInfo
+	if LibClassicCasterino then
+		UnitCastingInfo = function(unit)
+			return LibClassicCasterino:UnitCastingInfo(unit)
+		end
+
+		UnitChannelInfo = function(unit)
+			return LibClassicCasterino:UnitChannelInfo(unit)
+		end
+	end
+end
 
 local function onUpdate(self, elapsed)
-	local add = elapsed or 0
+	self.updateThrottle = self.updateThrottle or 0
+	self.updateThrottle = self.updateThrottle + elapsed
+	if self.updateThrottle < 0.0125 then return end
+	local add = self.updateThrottle
+	self.updateThrottle = 0
 	if RUF.db.profile.unit[self.__owner.frame].Frame.Bars.Cast.Enabled == false then
 		self.__owner:DisableElement('Castbar')
 		self:Hide()
@@ -34,7 +56,11 @@ local function onUpdate(self, elapsed)
 			return
 		end
 
-		if(self.Time) then
+		if(self.Time) then --and RUF.db.profile.unit[self.__owner.frame].Frame.Bars.Cast.Time.Enabled then
+			--local style = RUF.db.profile.unit[self.__owner.frame].Frame.Bars.Cast.Time.Style
+			--if style == 1 then
+			--elseif style == 2 then
+			--end
 			if(self.delay ~= 0) then
 				if(self.CustomDelayText) then
 					self:CustomDelayText(duration)
@@ -131,7 +157,7 @@ function RUF.SetCastBar(self, unit)
 	Bar.colorReaction = profileReference.Color.Reaction
 	Bar.colorTapping = profileReference.Color.Tapped
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
-	Bar.Smooth = profileReference.Animate
+	Bar.Smooth = true --profileReference.Animate
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetFrameLevel(3)
 	Bar:SetFillStyle(unitProfile.Fill)

@@ -235,7 +235,7 @@ function RUF_Options.Bars()
 							name = L["Color Not Interruptible"],
 							desc = L["Enable to force the bar to a specific color if the cast cannot be interrupted."],
 							type = 'toggle',
-							hidden = function() return i ~= 4 end,
+							hidden = function() return i ~= 5 end,
 							order = 0.13,
 							get = function(info)
 								return RUF.db.profile.Appearance.Bars[Bar[i]].ColorInterrupt.Enabled
@@ -249,7 +249,15 @@ function RUF_Options.Bars()
 							name = L["Not Interruptible Color"],
 							type = 'color',
 							order = 0.14,
-							hidden = function() return not RUF.db.profile.Appearance.Bars[Bar[i]].ColorInterrupt.Enabled end,
+							hidden = function()
+								if i ~= 5 then
+									return true
+								elseif not RUF.db.profile.Appearance.Bars[Bar[i]].ColorInterrupt.Enabled then
+									return true
+								else
+									return false
+								end
+							end,
 							get = function(info)
 								return unpack(RUF.db.profile.Appearance.Bars[Bar[i]].ColorInterrupt.Color)
 							end,
