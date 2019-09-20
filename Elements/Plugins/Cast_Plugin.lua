@@ -668,4 +668,4 @@ local function Disable(self)
 	end
 end
 
-oUF:AddElement('Castbar', Update, Enable, Disable)
+oUF:AddElement('Cast', Update, Enable, Disable)
