@@ -190,34 +190,10 @@ function RUF:OnEnable()
 		self:SetActiveStyle('RUF_')
 
 		-- Spawn single unit frames
-		local frames = {}
-		local groupFrames = {}
-		if RUF.Client == 1 then
-			frames = {
-				'Player',
-				'Pet',
-				'PetTarget',
-				'Focus',
-				'FocusTarget',
-				'Target',
-				'TargetTarget',
-			}
-			groupFrames = {
-				'Boss',
-				--'BossTarget',
-				'Arena',
-				--'ArenaTarget',
-			}
-		else
-			frames = {
-				'Player',
-				'Pet',
-				'PetTarget',
-				'Target',
-				'TargetTarget',
-			}
-			-- No Arena or Boss units in vanilla.
-		end
+		local frames = RUF.frameList.frames
+		local groupFrames = RUF.frameList.groupFrames
+		local headers = RUF.frameList.headers
+
 		for i = 1,#frames do
 			local profile = string.lower(frames[i])
 			self:Spawn(profile):SetPoint(
@@ -232,28 +208,56 @@ function RUF:OnEnable()
 			end
 		end
 
-		local AnchorFrom
-		if RUF.db.profile.unit['party'].Frame.Position.growth == 'BOTTOM' then
-			AnchorFrom = 'TOP'
-		elseif RUF.db.profile.unit['party'].Frame.Position.growth == 'TOP' then
-			AnchorFrom = 'BOTTOM'
-		end
 
-		-- Spawn party
-		local party = oUF:SpawnHeader(
-			'oUF_RUF_Party', nil, 'party',
-			'showSolo', false,
-			'showParty', true,
-			'showRaid', false,
-			'showPlayer', false,
-			'yOffset', RUF.db.profile.unit['party'].Frame.Position.offsety,
-			'Point', AnchorFrom
-		):SetPoint(
-			RUF.db.profile.unit['party'].Frame.Position.AnchorFrom,
-			RUF.db.profile.unit['party'].Frame.Position.AnchorFrame,
-			RUF.db.profile.unit['party'].Frame.Position.AnchorTo,
-			RUF.db.profile.unit['party'].Frame.Position.x,
-			RUF.db.profile.unit['party'].Frame.Position.y)
+		-- Spawn Headers
+		for i = 1,#headers do
+			local profile = RUF.db.profile.unit[string.lower(headers[i])]
+			local anchorFrom
+			if profile.Frame.Position.growth == 'BOTTOM' then
+				anchorFrom = 'TOP'
+			elseif profile.Frame.Position.growth == 'TOP' then
+				anchorFrom = 'BOTTOM'
+			end
+			self:SpawnHeader(
+				'oUF_RUF_' .. headers[i], nil, 'party',
+				'showSolo', false,
+				'showParty', true,
+				'showRaid', false,
+				'showPlayer', false,
+				'yOffset', profile.Frame.Position.offsety,
+				'Point', anchorFrom
+			):SetPoint(
+				profile.Frame.Position.AnchorFrom,
+				profile.Frame.Position.AnchorFrame,
+				profile.Frame.Position.AnchorTo,
+				profile.Frame.Position.x,
+				profile.Frame.Position.y)
+
+			local partyNum = GetNumSubgroupMembers()
+			local currentHeader = _G['oUF_RUF_' .. headers[i]]
+			currentHeader.Enabled = profile.Enabled
+			currentHeader:SetAttribute('startingIndex', -3 + partyNum)
+			currentHeader:Show()
+			currentHeader:SetAttribute('startingIndex', 1)
+			currentHeader:SetClampedToScreen(true)
+			RegisterAttributeDriver(currentHeader,'state-visibility',currentHeader.visibility)
+			if profile.Enabled == false then
+				for j = 1,4 do
+					_G[currentHeader .. 'UnitButton' .. j]:Disable()
+				end
+			end
+
+			-- Create Party Holder for dragging.
+			local MoveBG = CreateFrame('Frame',currentHeader:GetName()..'.MoveBG',currentHeader)
+			MoveBG:SetAllPoints(currentHeader)
+			local Background = MoveBG:CreateTexture(currentHeader:GetName()..'.MoveBG.BG','BACKGROUND')
+			Background:SetTexture(LSM:Fetch('background', 'Solid'))
+			Background:SetAllPoints(MoveBG)
+			Background:SetVertexColor(0,0,0,0)
+			MoveBG:SetFrameStrata('HIGH')
+			MoveBG:Hide()
+
+		end
 
 		-- Spawn single frames for Boss and Arena units
 		for i = 1, #groupFrames do
@@ -288,33 +292,6 @@ function RUF:OnEnable()
 			end
 		end
 	end)
-
-
-	-- Spawn full list of party frames immediately
-	-- rather than on-demand, so it's easier to manage test-mode display
-	local PartyNum = GetNumSubgroupMembers()
-	oUF_RUF_Party.Enabled = RUF.db.profile.unit['party'].Enabled
-	oUF_RUF_Party:SetAttribute('startingIndex', -3 + PartyNum)
-	oUF_RUF_Party:Show()
-	oUF_RUF_Party:SetAttribute('startingIndex', 1)
-	oUF_RUF_Party:SetClampedToScreen(true)
-	RegisterAttributeDriver(oUF_RUF_Party,'state-visibility',oUF_RUF_Party.visibility)
-	if RUF.db.profile.unit['party'].Enabled == false then
-		oUF_RUF_PartyUnitButton1:Disable()
-		oUF_RUF_PartyUnitButton2:Disable()
-		oUF_RUF_PartyUnitButton3:Disable()
-		oUF_RUF_PartyUnitButton4:Disable()
-	end
-
-	-- Create Party Holder for dragging.
-	local MoveBG = CreateFrame('Frame',oUF_RUF_Party:GetName()..'.MoveBG',oUF_RUF_Party)
-	MoveBG:SetAllPoints(oUF_RUF_Party)
-	local Background = MoveBG:CreateTexture(oUF_RUF_Party:GetName()..'.MoveBG.BG','BACKGROUND')
-	Background:SetTexture(LSM:Fetch('background', 'Solid'))
-	Background:SetAllPoints(MoveBG)
-	Background:SetVertexColor(0,0,0,0)
-	MoveBG:SetFrameStrata('HIGH')
-	MoveBG:Hide()
 
 
 	if PlayerClass == 'DEATHKNIGHT' then

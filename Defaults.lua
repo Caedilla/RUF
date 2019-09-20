@@ -2512,6 +2512,7 @@ do
 	cfg.profile.unit.partytarget = SmallUnits()
 	cfg.profile.unit.bosstarget = SmallUnits()
 	cfg.profile.unit.arenatarget = SmallUnits()
+	cfg.profile.unit.partypet = SmallUnits()
 
 	cfg.profile.unit.player.Frame.Position = {
 		x = -390,
@@ -2536,8 +2537,6 @@ do
 			Anchor = "LEFT",
 		},
 	}
-
-
 
 	cfg.profile.unit.player.Buffs.Icons.Max = 15
 	cfg.profile.unit.player.Debuffs.Icons.Max = 15
@@ -2694,6 +2693,14 @@ do
 	}
 
 	cfg.profile.unit.partytarget.Frame.Position = {
+		x = 4,
+		y = 0,
+		AnchorFrame = 'oUF_RUF_Party',
+		AnchorTo = "BOTTOMRIGHT",
+		AnchorFrom = 'BOTTOMLEFT',
+	}
+
+	cfg.profile.unit.partypet.Frame.Position = {
 		x = 4,
 		y = 0,
 		AnchorFrame = 'oUF_RUF_Party',

@@ -9,8 +9,10 @@ local _, PlayerClass = UnitClass('player')
 local tagList = {}
 local localisedTags = {}
 local tagInputs = {}
-local frames = {}
-local groupFrames = {}
+local frames = RUF.frameList.frames
+local groupFrames = RUF.frameList.groupFrames
+local headers = RUF.frameList.headers
+
 local anchorPoints = {
 	['TOP'] = L["Top"],
 	['RIGHT'] = L["Right"],
@@ -34,23 +36,39 @@ local anchorSwaps = {
 	['TOPRIGHT'] = 'BOTTOMLEFT',
 }
 
-local function UnitGroup(profileName,groupFrame)
+local function UnitGroup(singleFrame, groupFrame, header)
+	if not singleFrame and not groupFrame and not header then return end
+	if not singleFrame then singleFrame = 'none' end
 	if not groupFrame then groupFrame = 'none' end
+	if not header then header = 'none' end
 	local ord = 99
 	for i=1,#frames do
-		if frames[i] == profileName then
+		if frames[i] == singleFrame then
 			ord = i
 		end
 	end
-	local referenceUnit = profileName
-	if groupFrame == 'Party' then
-		referenceUnit = profileName .. 'UnitButton1'
-	elseif groupFrame ~= 'none' then
-		referenceUnit = profileName .. '1'
+	for i = 1,#groupFrames do
+		if groupFrames[i] == groupFrame then
+			ord = 100 + i
+		end
 	end
-	local passUnit = profileName
-	profileName = string.lower(profileName)
-	groupFrame = string.lower(groupFrame)
+	for i = 1,#headers do
+		if headers[i] == header then
+			ord = 200 + i
+		end
+	end
+	local referenceUnit, profileName
+	if singleFrame ~= 'none' then
+		referenceUnit = singleFrame
+		profileName = string.lower(singleFrame)
+	elseif groupFrame ~= 'none' then
+		referenceUnit = groupFrame .. '1'
+		profileName = string.lower(groupFrame)
+	elseif header ~= 'none' then
+		referenceUnit = header .. 'UnitButton1'
+		profileName = string.lower(header)
+	end
+
 
 	local frameOptions = {
 		name = L[profileName],
@@ -108,13 +126,12 @@ local function UnitGroup(profileName,groupFrame)
 						desc = L["Enable the Unit Frame."],
 						type = 'toggle',
 						order = 0.004,
-						disabled = function() return (profileName == 'Player') end,
 						get = function(info)
 							return RUF.db.profile.unit[profileName].Enabled
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Enabled = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 							RUF:UpdateOptions()
 						end,
 					},
@@ -135,7 +152,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.RangeFading.Enabled = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 					rangeFadingAlpha = {
@@ -155,7 +172,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.RangeFading.Alpha = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 					frameWidth = {
@@ -173,7 +190,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.Size.Width = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 					frameHeight = {
@@ -191,7 +208,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.Size.Height = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 					frameHeightSpacer = {
@@ -222,7 +239,7 @@ local function UnitGroup(profileName,groupFrame)
 								RUF.db.profile.unit[profileName].Frame.Position.AnchorFrame = 'UIParent'
 							end
 							RUF:UpdateOptions()
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 					frameHorizontal = {
@@ -241,7 +258,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.Position.x = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 					frameVertical = {
@@ -260,7 +277,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.Position.y = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 					frameAnchorPoint = {
@@ -274,7 +291,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.Position.AnchorFrom = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 					frameAnchorTo = {
@@ -288,7 +305,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.Position.AnchorTo = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 					frameAnchorToSeparator = {
@@ -321,14 +338,14 @@ local function UnitGroup(profileName,groupFrame)
 							end
 
 							RUF.db.profile.unit[profileName].Frame.Position.growth = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 							RUF:UpdateOptions()
 						end,
 					},
 					partyFrameSortOrder = {
 						type = 'select',
 						name = L["Sort Direction"],
-						hidden = groupFrame ~= 'party',
+						hidden = header ~= 'party' or header ~= 'partypet' or header ~= 'partytarget',
 						order = 0.1,
 						values = {
 							TOP = L["Up"],
@@ -347,7 +364,7 @@ local function UnitGroup(profileName,groupFrame)
 								end
 							end
 							RUF.db.profile.unit[profileName].Frame.Position.growth = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 							RUF:UpdateOptions()
 						end,
 					},
@@ -368,7 +385,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.Position.offsetx = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 					groupFrameVerticalOffset = {
@@ -388,7 +405,7 @@ local function UnitGroup(profileName,groupFrame)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.Position.offsety = value
-							RUF:OptionsUpdateFrame(passUnit,groupFrame)
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 						end,
 					},
 				},
@@ -399,7 +416,7 @@ local function UnitGroup(profileName,groupFrame)
 	return frameOptions
 end
 
-local function BarSettings(profileName,groupFrame)
+local function BarSettings(profileName, groupFrame, header)
 	if not groupFrame then groupFrame = 'none' end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
@@ -584,7 +601,7 @@ local function BarSettings(profileName,groupFrame)
 	return barOptions
 end
 
-local function TextSettings(profileName,groupFrame)
+local function TextSettings(profileName, groupFrame, header)
 	if not groupFrame then groupFrame = 'none' end
 
 	-- Generate list of units we can copy text elements from
@@ -1033,7 +1050,7 @@ local function HideIndicatorOptions(profileName,indicator)
 	end
 end
 
-local function IndicatorSettings(profileName,groupFrame)
+local function IndicatorSettings(profileName,groupFrame, header)
 	if not groupFrame then groupFrame = 'none' end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
@@ -1230,7 +1247,7 @@ local function IndicatorSettings(profileName,groupFrame)
 	return indicatorOptions
 end
 
-local function BuffSettings(profileName,groupFrame)
+local function BuffSettings(profileName,groupFrame, header)
 	if not groupFrame then groupFrame = 'none' end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
@@ -1666,7 +1683,7 @@ local function BuffSettings(profileName,groupFrame)
 	return buffOptions
 end
 
-local function DebuffSettings(profileName,groupFrame)
+local function DebuffSettings(profileName,groupFrame, header)
 	if not groupFrame then groupFrame = 'none' end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
@@ -2102,7 +2119,7 @@ local function DebuffSettings(profileName,groupFrame)
 	return debuffOptions
 end
 
-local function CastBarSettings(profileName, groupFrame)
+local function CastBarSettings(profileName, groupFrame, header)
 	if not groupFrame then groupFrame = 'none' end
 	local referenceUnit = profileName
 	if groupFrame == 'Party' then
@@ -2301,40 +2318,6 @@ function RUF_Options.GenerateUnits()
 		end
 	end
 
-	if RUF.Client == 1 then
-		frames = {
-			'Player',
-			'Pet',
-			'PetTarget',
-			'Focus',
-			'FocusTarget',
-			'Target',
-			'TargetTarget',
-		}
-		groupFrames = {
-			'Boss',
-			--'BossTarget',
-			'Arena',
-			--'ArenaTarget',
-			'Party',
-		}
-	else
-		frames = {
-			'Player',
-			'Pet',
-			'PetTarget',
-			'Target',
-			'TargetTarget',
-		}
-		groupFrames = {
-			--'Boss',
-			--'BossTarget',
-			--'Arena',
-			--'ArenaTarget',
-			'Party',
-		}
-	end
-
 	local Units = {
 		name = L["Unit Options"],
 		type = 'group',
@@ -2354,13 +2337,22 @@ function RUF_Options.GenerateUnits()
 		Units.args[frames[i]].args.castBarOptions = CastBarSettings(frames[i])
 	end
 	for i = 1,#groupFrames do
-		Units.args[groupFrames[i]] = UnitGroup(groupFrames[i],groupFrames[i])
-		Units.args[groupFrames[i]].args.barOptions = BarSettings(groupFrames[i],groupFrames[i])
-		Units.args[groupFrames[i]].args.textOptions = TextSettings(groupFrames[i],groupFrames[i])
-		Units.args[groupFrames[i]].args.indicatorOptions = IndicatorSettings(groupFrames[i],groupFrames[i])
-		Units.args[groupFrames[i]].args.buffOptions = BuffSettings(groupFrames[i],groupFrames[i])
-		Units.args[groupFrames[i]].args.debuffOptions = DebuffSettings(groupFrames[i],groupFrames[i])
-		Units.args[groupFrames[i]].args.castBarOptions = CastBarSettings(groupFrames[i],groupFrames[i])
+		Units.args[groupFrames[i]] = UnitGroup(nil,groupFrames[i])
+		Units.args[groupFrames[i]].args.barOptions = BarSettings(nil,groupFrames[i])
+		Units.args[groupFrames[i]].args.textOptions = TextSettings(nil,groupFrames[i])
+		Units.args[groupFrames[i]].args.indicatorOptions = IndicatorSettings(nil,groupFrames[i])
+		Units.args[groupFrames[i]].args.buffOptions = BuffSettings(nil,groupFrames[i])
+		Units.args[groupFrames[i]].args.debuffOptions = DebuffSettings(nil,groupFrames[i])
+		Units.args[groupFrames[i]].args.castBarOptions = CastBarSettings(nil,groupFrames[i])
+	end
+	for i = 1,#headers do
+		Units.args[headers[i]] = UnitGroup(nil,nil,headers[i])
+		Units.args[headers[i]].args.barOptions = BarSettings(nil,nil,headers[i])
+		Units.args[headers[i]].args.textOptions = TextSettings(nil,nil,headers[i])
+		Units.args[headers[i]].args.indicatorOptions = IndicatorSettings(nil,nil,headers[i])
+		Units.args[headers[i]].args.buffOptions = BuffSettings(nil,nil,headers[i])
+		Units.args[headers[i]].args.debuffOptions = DebuffSettings(nil,nil,headers[i])
+		Units.args[headers[i]].args.castBarOptions = CastBarSettings(nil,nil,headers[i])
 	end
 
 	return Units

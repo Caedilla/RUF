@@ -341,36 +341,10 @@ end
 
 function RUF.ToggleFrameLock(status, unitFrame)
 	local anchorFrom1, anchorFrame1, anchorTo1, x1, y1, anchorFrom2, anchorFrame2, anchorTo2, x2, y2, x3, y3
-	local frames = {}
-	local groupFrames = {}
+	local frames = RUF.frameList.frames
+	local groupFrames = RUF.frameList.groupFrames
+	local headers = RUF.frameList.headers
 	local MoveBG = _G["oUF_RUF_Party.MoveBG"]
-
-	if RUF.Client == 1 then
-		frames = {
-			'Player',
-			'Pet',
-			'PetTarget',
-			'Focus',
-			'FocusTarget',
-			'Target',
-			'TargetTarget',
-		}
-		groupFrames = {
-			'Boss',
-			--'BossTarget',
-			'Arena',
-			--'ArenaTarget',
-		}
-	else
-		frames = {
-			'Player',
-			'Pet',
-			'PetTarget',
-			'Target',
-			'TargetTarget',
-		}
-		-- No Arena or Boss units in vanilla.
-	end
 
 
 	if unitFrame then

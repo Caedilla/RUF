@@ -71,6 +71,50 @@ function RUF:OnInitialize()
 		end
 	end
 
+	local frames = {}
+	local groupFrames = {}
+	local headers = {}
+	if RUF.Client == 1 then
+		frames = {
+			'Player',
+			'Pet',
+			'PetTarget',
+			'Focus',
+			'FocusTarget',
+			'Target',
+			'TargetTarget',
+		}
+		groupFrames = {
+			'Boss',
+			--'BossTarget',
+			'Arena',
+			--'ArenaTarget',
+		}
+		headers = {
+			'Party',
+			--'PartyPet',
+			--'PartyTarget',
+		}
+	else
+		frames = {
+			'Player',
+			'Pet',
+			'PetTarget',
+			'Target',
+			'TargetTarget',
+		}
+		-- No Arena or Boss units in vanilla.
+		headers = {
+			'Party',
+			--'PartyPet',
+			--'PartyTarget',
+		}
+	end
+	RUF.frameList = {}
+	RUF.frameList.frames = frames
+	RUF.frameList.groupFrames = groupFrames
+	RUF.frameList.headers = headers
+
 end
 
 function RUF:ChatCommand(input)
