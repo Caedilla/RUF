@@ -1,12 +1,10 @@
-# RUF r199-Release
+# RUF r200-Beta
 ### New
-* Added Combat Fading, options found in Global Appearance Options -> Other Global Settings.
-* Added option to play a sound when a unit gets a dispellable buff or debuff. Options found in Global Appearance Options -> Auras -> Frame Highlighting. Does not affect target units (target, pettarget, etc)
+* Texts now have their anchor points split so you can anchor from a point on the text to a different point on the attachment element, allowing greater control over text positioning.
 
 ### Fixed
-* Coloring Health by percentage by class will only use class colours for players.
-* Test Mode should no longer cause elements to stop updating.
-* Cast Bars should properly show in test mode now.
+* Buffs and Debuffs can now be toggled on and off independently of one another without causing the other to stop functioning.
 
 ### Known Issues
+* Test mode Auras display only buffs or debuffs the player currently has, rather than creating a bunch of temp icons.
 * There is no preview of frame aura highlighting in test mode.

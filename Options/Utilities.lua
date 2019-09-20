@@ -6,7 +6,7 @@ local _, ns = ...
 local oUF = ns.oUF
 local _, PlayerClass = UnitClass('player')
 local TestModeToggle,UnitsSpawned
-local anchorSwap = {
+local anchorSwaps = {
 	["BOTTOM"] = "TOP",
 	["BOTTOMLEFT"] = "TOPRIGHT",
 	["BOTTOMRIGHT"] = "TOPLEFT",
@@ -506,32 +506,33 @@ function RUF:OptionsUpdateTexts(profileName,groupFrame,text)
 		currentText:SetFont(LSM:Fetch('font',profileReference.Font), profileReference.Size, profileReference.Outline)
 		currentText:SetShadowColor(0,0,0,profileReference.Shadow)
 		currentText:ClearAllPoints()
-
-		local anchorFrame = "Frame"
-		local reverseAnchor = profileReference.Position.Anchor
-		local anchorPoint = profileReference.Position.Anchor
+		local anchorFrame
 		if profileReference.Position.AnchorFrame == "Frame" then
 			anchorFrame = unitFrame
 		else
 			anchorFrame = unitFrame.Text[profileReference.Position.AnchorFrame].String
 		end
-		if profileReference.Position.AnchorFrame ~= "Frame" then
-			reverseAnchor = anchorSwap[reverseAnchor]
+		if not profileReference.Position.AnchorTo then -- Update all existing text elements from before this change so they have the correct anchor points.
+			local reverseAnchor = profileReference.Position.Anchor
+			profileReference.Position.AnchorTo = reverseAnchor
+			if profileReference.Position.AnchorFrame ~= 'Frame' then
+				reverseAnchor = anchorSwaps[reverseAnchor]
+			end
+			profileReference.Position.Anchor = reverseAnchor
+		end
+		if profileReference.CustomWidth then
+			currentText:SetWidth(profileReference.Width)
+			currentText:SetJustifyH(profileReference.Justify)
+		else
+			currentText:SetWidth(0)
 		end
 		currentText:SetPoint(
-			reverseAnchor,
+			profileReference.Position.Anchor,
 			anchorFrame,
-			anchorPoint,
+			profileReference.Position.AnchorTo,
 			profileReference.Position.x,
 			profileReference.Position.y
 		)
-		if anchorPoint == "RIGHT" or anchorPoint == "TOPRIGHT" or anchorPoint == "BOTTOMRIGHT" then
-			currentText:SetJustifyH("RIGHT")
-		elseif anchorPoint == "LEFT" or anchorPoint == "TOPLEFT" or anchorPoint == "BOTTOMLEFT" then
-			currentText:SetJustifyH("LEFT")
-		else
-			currentText:SetJustifyH("CENTER")
-		end
 		if profileReference.Enabled then
 			unitFrame:Tag(currentText,profileReference.Tag)
 			currentText:UpdateTag()

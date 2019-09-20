@@ -15,7 +15,7 @@ local oUF = ns.oUF
 	-- Find all tags registered for a given text by profile data. Register relevant events and update size from that.
 	local pattern = '%[..-%]+'
 
-	local mstring = '[RUF:ManaPerc][RUF:ManaPesrc]'
+	local mstring = '[RUF:ManaPerc][RUF:ManaPerc]'
 
 	for a in mstring:gmatch(pattern) do
 	print(a)
@@ -73,15 +73,19 @@ function RUF.SetTextPoints(self,unit,textName)
 			anchorFrame = name
 		end
 	end
-	local reverseAnchor = profileReference.Position.Anchor
-	if profileReference.Position.AnchorFrame ~= 'Frame' then
-		reverseAnchor = anchorSwaps[reverseAnchor]
-	end
 
+	if not profileReference.Position.AnchorTo then -- Update all existing text elements from before this change so they have the correct anchor points.
+		local reverseAnchor = profileReference.Position.Anchor
+		RUF.db.profile.unit[self.frame].Frame.Text[textName].Position.AnchorTo = reverseAnchor
+		if profileReference.Position.AnchorFrame ~= 'Frame' then
+			reverseAnchor = anchorSwaps[reverseAnchor]
+		end
+		RUF.db.profile.unit[self.frame].Frame.Text[textName].Position.Anchor = reverseAnchor
+	end
 	element:SetPoint(
-		reverseAnchor,
-		anchorFrame,
 		profileReference.Position.Anchor,
+		anchorFrame,
+		profileReference.Position.AnchorTo,
 		profileReference.Position.x,
 		profileReference.Position.y
 	)
@@ -117,12 +121,19 @@ function RUF.CreateTextArea(self, unit, textName)
 	Text.overrideUnit = true
 	Text.frequentUpdates = 0.5
 	local anchorPoint = profileReference.Position.Anchor
-	if anchorPoint == 'RIGHT' or anchorPoint == 'TOPRIGHT' or anchorPoint == 'BOTTOMRIGHT' then
-		Text:SetJustifyH('RIGHT')
-	elseif anchorPoint == 'LEFT' or anchorPoint == 'TOPLEFT' or anchorPoint == 'BOTTOMLEFT' then
-		Text:SetJustifyH('LEFT')
-	else
-		Text:SetJustifyH('CENTER')
+	if profileReference.CustomWidth then
+		if not profileReference.Justify then -- Update existing texts to store this data.
+			if anchorPoint == 'RIGHT' or anchorPoint == 'TOPRIGHT' or anchorPoint == 'BOTTOMRIGHT' then
+				profileReference.Justify = 'RIGHT'
+			elseif anchorPoint == 'LEFT' or anchorPoint == 'TOPLEFT' or anchorPoint == 'BOTTOMLEFT' then
+				profileReference.Justify = 'LEFT'
+			else
+				profileReference.Justify = 'CENTER'
+			end
+		end
+		local width = profileReference.Width or 300
+		Text:SetWidth(width)
+		Text:SetJustifyH(profileReference.Justify)
 	end
 	Text:SetWordWrap(false)
 	Text:SetHeight(Text:GetLineHeight()) -- Prevents FontString from collapsing to a 1x1 box when the string is empty, which our tags do to 'hide'

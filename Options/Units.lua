@@ -22,6 +22,17 @@ local anchorPoints = {
 	['BOTTOMLEFT'] = L["Bottom-left"],
 	['CENTER'] = L["Center"],
 }
+local anchorSwaps = {
+	['BOTTOM'] = 'TOP',
+	['BOTTOMLEFT'] = 'TOPRIGHT',
+	['BOTTOMRIGHT'] = 'TOPLEFT',
+	['CENTER'] = 'CENTER',
+	['LEFT'] = 'RIGHT',
+	['RIGHT'] = 'LEFT',
+	['TOP'] = 'BOTTOM',
+	['TOPLEFT'] = 'BOTTOMRIGHT',
+	['TOPRIGHT'] = 'BOTTOMLEFT',
+}
 
 local function UnitGroup(profileName,groupFrame)
 	if not groupFrame then groupFrame = 'none' end
@@ -642,6 +653,8 @@ local function TextSettings(profileName,groupFrame)
 						Enabled = true,
 						Size = 21,
 						Width = 100,
+						CustomWidth = false,
+						Justify = 'CENTER',
 						Position = {
 							x = 0,
 							y = 0,
@@ -788,26 +801,6 @@ local function TextSettings(profileName,groupFrame)
 						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
 					end,
 				},
-				textWidth = {
-					name = L["Max Width"],
-					type = 'range',
-					desc = L["Limit text width."],
-					type = 'range',order = 0.05,
-					hidden = true,
-					min = 0,
-					max = 750,
-					softMin = 10,
-					softMax = RUF.db.profile.unit[profileName].Frame.Size.Width,
-					step = 1,
-					bigStep = 10,
-					get = function(info)
-						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Width
-					end,
-					set = function(info, value)
-						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Width = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
-					end,
-				},
 				anchorFrame = {
 					name = L["Attach To"],
 					type = 'select',
@@ -835,8 +828,8 @@ local function TextSettings(profileName,groupFrame)
 						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
 					end,
 				},
-				anchorPoint = {
-					name = L["Anchor To"],
+				anchorFrom = {
+					name = L["Anchor From"],
 					type = 'select',
 					order = 0.07,
 					values = anchorPoints,
@@ -845,6 +838,27 @@ local function TextSettings(profileName,groupFrame)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.Anchor = value
+						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+					end,
+				},
+				anchorPoint = {
+					name = L["Anchor To"],
+					type = 'select',
+					order = 0.08,
+					values = anchorPoints,
+					get = function(info)
+						if not RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.AnchorTo then -- Update all existing text elements from before this change so they have the correct anchor points.
+							local reverseAnchor = RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.Anchor
+							RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.AnchorTo = reverseAnchor
+							if RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.AnchorFrame ~= 'Frame' then
+								reverseAnchor = anchorSwaps[reverseAnchor]
+							end
+							RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.Anchor = reverseAnchor
+						end
+						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.AnchorTo
+					end,
+					set = function(info, value)
+						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.AnchorTo = value
 						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
 					end,
 				},
@@ -921,7 +935,59 @@ local function TextSettings(profileName,groupFrame)
 						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
 					end,
 				},
-
+				customWidth = {
+					name = L["Custom Width"],
+					type = 'toggle',
+					desc = L["Toggle on to force text element to be set to a custom width. If the text is longer than the width, truncation will occur."],
+					order = 20,
+					hidden = true,
+					get = function(info)
+						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].CustomWidth
+					end,
+					set = function(info, value)
+						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].CustomWidth = value
+						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+					end,
+				},
+				textWidth = {
+					name = L["Width"],
+					type = 'range',
+					type = 'range',
+					order = 20.05,
+					min = 0,
+					max = 750,
+					softMin = 10,
+					softMax = RUF.db.profile.unit[profileName].Frame.Size.Width,
+					step = 1,
+					bigStep = 10,
+					hidden = function() return not RUF.db.profile.unit[profileName].Frame.Text[textList[i]].CustomWidth end,
+					get = function(info)
+						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Width
+					end,
+					set = function(info, value)
+						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Width = value
+						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+					end,
+				},
+				textJustify = {
+					name = L["Justify"],
+					type = 'select',
+					order = 20.1,
+					values = {
+						['LEFT'] = L["Left"],
+						['RIGHT'] = L["Right"],
+						['CENTER'] = L["Center"],
+					},
+					hidden = function() return not RUF.db.profile.unit[profileName].Frame.Text[textList[i]].CustomWidth end,
+					get = function(info)
+						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Justify
+					end,
+					set = function(info, value)
+						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Justify = value
+						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+					end,
+				},
 			},
 		}
 
