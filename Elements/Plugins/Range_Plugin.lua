@@ -133,12 +133,14 @@ local function IsUnitInRange(unit)
 		end
 		if canAttack then
 			minRange, maxRange = libRangeCheck:GetRange(unit,true)
+			if not maxRange then maxRange = minRange end
 			if maxRange < 30 then
 				return true
 			end
 		end
 		if canHelp then
 			minRange, maxRange = libRangeCheck:GetRange(unit,true)
+			if not maxRange then maxRange = minRange end
 			if maxRange < 40 then
 				return true
 			end
