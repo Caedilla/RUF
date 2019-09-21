@@ -103,13 +103,6 @@ local function CustomBuffFilter(element, unit, button, ...)
 	-- If unit is party1, boss2, arena3 etc. we the group's profile.
 	local profileUnit = string.gsub(frame.frame,'%d+','')
 
-
-	if RUF.db.profile.unit[profileUnit].Buffs.Icons.Enabled == false then
-		button.shoudShow = false
-		frame:DisableElement('Aura_Plugin')
-		return false
-	end
-
 	local name, icon, count, debuffType, duration, expirationTime, source, isStealable,
 	nameplateShowPersonal, spellId, canApplyAura, isBossDebuff, nameplateShowAll, timeMod, value1, value2, value3 = ...
 
@@ -272,7 +265,7 @@ function RUF.SetBuffs(self, unit)
 	else
 		RUF.Specialization = 10
 	end
-	local Buffs = CreateFrame('Frame', self:GetName()..'.Buffs', self)
+	local Buffs = CreateFrame('Frame', nil, self)
 	Buffs:SetPoint(
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.AnchorFrom,
 		self,

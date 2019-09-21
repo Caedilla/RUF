@@ -231,14 +231,6 @@ function RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,auraType)
 
 		currentElement.Enabled = profileReference.Enabled
 		currentElement:ForceUpdate()
-		if profileReference.Enabled == true then
-			unitFrame:EnableElement('Aura_Plugin')
-			currentElement:Show()
-		else
-			unitFrame:DisableElement('Aura_Plugin')
-			currentElement:Hide()
-		end
-		currentElement:ForceUpdate()
 
 	end
 
