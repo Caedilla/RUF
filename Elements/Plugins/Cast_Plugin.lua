@@ -633,6 +633,14 @@ local function Disable(self)
 		element:Hide()
 		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
 			if LibClassicCasterino then
+				self['UNIT_SPELLCAST_START'] = nil
+				self['UNIT_SPELLCAST_DELAYED'] = nil
+				self['UNIT_SPELLCAST_STOP'] = nil
+				self['UNIT_SPELLCAST_FAILED'] = nil
+				self['UNIT_SPELLCAST_INTERRUPTED'] = nil
+				self['UNIT_SPELLCAST_CHANNEL_START'] = nil
+				self['UNIT_SPELLCAST_CHANNEL_UPDATE'] = nil
+				self['UNIT_SPELLCAST_CHANNEL_STOP'] = nil
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_START')
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_DELAYED')
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_STOP')

@@ -88,8 +88,8 @@ end
 function RUF:OptionsUpdateCastbars()
 	-- TODO Castbar Text
 	for k,v in next,oUF.objects do
-		if v.Castbar then
-			local Bar = v.Castbar
+		if v.Cast then
+			local Bar = v.Cast
 			local Border = Bar.Border
 			local Background = Bar.Background
 			local Time = Bar.Time
@@ -141,12 +141,15 @@ function RUF:OptionsUpdateCastbars()
 				Time:SetPoint('RIGHT',Bar,-4,0)
 				Text:SetPoint('LEFT',Bar,4,0)
 			end
-			if unitProfile.Enabled == false then
-				v:DisableElement('Castbar')
-				v.Castbar:Hide()
+
+			v.Cast.Enabled = unitProfile.Enabled
+			if Bar.Enabled == false then
+				v:DisableElement('Cast')
+				v.Cast:Hide()
 			else
-				v:EnableElement('Castbar')
-				v.Castbar:Show()
+				v:EnableElement('Cast')
+				v.Cast:UpdateOptions()
+				v.Cast:Show()
 			end
 		end
 	end
@@ -680,11 +683,12 @@ function RUF:OptionsUpdateAllBars()
 		if _G['oUF_RUF_' .. frames[i]] then
 			RUF:OptionsUpdateBars(frames[i],nil,nil,'Health')
 			RUF:OptionsUpdateBars(frames[i],nil,nil,'Power')
-			if _G['oUF_RUF_' .. frames[i]].Castbar then
-				_G['oUF_RUF_' .. frames[i]].Castbar:UpdateOptions()
-			end
 			if RUF.Client == 1 then
 				RUF:OptionsUpdateBars(frames[i],nil,nil,'Absorb')
+				if i == 1 then
+					RUF:OptionsUpdateBars(frames[i],nil,nil,'Class')
+				end
+			else
 				if i == 1 then
 					RUF:OptionsUpdateBars(frames[i],nil,nil,'Class')
 				end
@@ -705,6 +709,9 @@ function RUF:OptionsUpdateAllBars()
 			RUF:OptionsUpdateBars(nil,nil,headers[i],'Absorb')
 		end
 	end
+
+	RUF:OptionsUpdateCastbars()
+
 end
 
 function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
@@ -729,24 +736,28 @@ function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
 		local originalBar = bar
 		if bar == 'Class' then
-			if PlayerClass == 'DEATHKNIGHT' then
-				bar = 'Runes'
-			elseif PlayerClass == 'PRIEST' or PlayerClass == 'SHAMAN' then
-				bar = 'FakeClassPower'
+			if RUF.Client == 1 then
+				if PlayerClass == 'DEATHKNIGHT' then
+					bar = 'Runes'
+				elseif PlayerClass == 'PRIEST' or PlayerClass == 'SHAMAN' then
+					bar = 'FakeClassPower'
+				else
+					bar = 'ClassPower'
+				end
 			else
-				bar = 'ClassPower'
+				bar = 'ClassicClassPower'
 			end
 		end
 		unitFrame[bar].UpdateOptions(unitFrame[bar])
 		unitFrame[bar]:ForceUpdate()
 		if bar then
 			unitFrame[bar].UpdateOptions(unitFrame[bar])
-			if PlayerClass == 'MONK' then
+			if PlayerClass == 'MONK' and RUF.Client == 1 then
 				if unitFrame['Stagger'] then
 					unitFrame['Stagger'].UpdateOptions(unitFrame['Stagger'])
 				end
 			end
-			if PlayerClass == 'DRUID' then
+			if PlayerClass == 'DRUID' and RUF.Client == 1 then
 				if unitFrame['FakeClassPower'] then
 					unitFrame['FakeClassPower'].UpdateOptions(unitFrame['FakeClassPower'])
 				end
@@ -772,20 +783,20 @@ function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
 				if unitFrame[bar] then
 					unitFrame[bar]:ForceUpdate()
 				end
-				if PlayerClass == 'MONK' then
+				if PlayerClass == 'MONK' and RUF.Client == 1 then
 					unitFrame:EnableElement('Stagger')
 					unitFrame['Stagger']:ForceUpdate()
 				end
-				if PlayerClass == 'DRUID' then
+				if PlayerClass == 'DRUID' and RUF.Client == 1 then
 					unitFrame:EnableElement('FakeClassPower')
 					unitFrame['FakeClassPower']:ForceUpdate()
 				end
 			else
 				unitFrame:DisableElement(bar)
-				if PlayerClass == 'MONK' then
+				if PlayerClass == 'MONK' and RUF.Client == 1 then
 					unitFrame:DisableElement('Stagger')
 				end
-				if PlayerClass == 'DRUID' then
+				if PlayerClass == 'DRUID' and RUF.Client == 1 then
 					unitFrame:DisableElement('FakeClassPower')
 				end
 			end
@@ -846,9 +857,9 @@ function RUF:SpawnUnits()
 		else
 			v:Hide()
 		end
-		if v.Castbar then
-			v.Castbar:Show()
-			v.Castbar:OnUpdate()
+		if v.Cast then
+			v.Cast:Show()
+			v.Cast:OnUpdate()
 		end
 	end
 	UnitsSpawned = true
@@ -871,9 +882,9 @@ function RUF:RestoreUnits()
 	end
 
 	for k,v in next,oUF.objects do
-		if v.Castbar then
-			v.Castbar:Show()
-			v.Castbar:OnUpdate()
+		if v.Cast then
+			v.Cast:Show()
+			v.Cast:OnUpdate()
 		end
 		v.realUnit = v.oldUnit
 		v.unit = v.oldUnit

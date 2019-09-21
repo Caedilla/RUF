@@ -133,7 +133,6 @@ end
 
 function RUF.ClassUpdateColor(element, powerType)
 	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
-	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 	for i = 1, #element do
 		local counter = i
@@ -146,8 +145,15 @@ function RUF.ClassUpdateColor(element, powerType)
 		local ig = (g*((((counter+colorAdd)*6.6667)/100)))
 		local ib = (b*((((counter+colorAdd)*6.6667)/100)))
 		Bar:SetStatusBarColor(ir,ig,ib)
+
+		-- Update background
+		local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
+		if RUF.db.profile.Appearance.Bars.Class.Background.UseBarColor == false then
+			r,g,b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
+		end
 		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 	end
+
 end
 
 function RUF.ClassUpdate(self, event, unit, powerType)

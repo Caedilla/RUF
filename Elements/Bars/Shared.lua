@@ -144,6 +144,13 @@ function RUF.SetBarLocation(self,unit)
 				table.insert(barsAtBottom,'ClassPower')
 			end
 		end
+		if self.ClassicClassPower and profileReference.Class.Enabled == true then
+			if profileReference.Class.Position.Anchor == 'TOP' then
+				table.insert(barsAtTop,'ClassicClassPower')
+			else
+				table.insert(barsAtBottom,'ClassicClassPower')
+			end
+		end
 		if self.FakeClassPower and profileReference.Class.Enabled == true then
 			if profileReference.Class.Position.Anchor == 'TOP' then
 				table.insert(barsAtTop,'FakeClassPower')
@@ -185,6 +192,8 @@ function RUF.SetBarLocation(self,unit)
 			local profileName = 'Class'
 			if barsAtTop[i] == 'ClassPower' then
 				element = self.ClassPower.Holder
+			elseif barsAtTop[i] == 'ClassicClassPower' then
+				element = self.ClassicClassPower.Holder
 			elseif barsAtTop[i] == 'FakeClassPower' then
 				element = self.FakeClassPower
 			elseif barsAtTop[i] == 'Runes' then
@@ -211,6 +220,8 @@ function RUF.SetBarLocation(self,unit)
 			local profileName = 'Class'
 			if barsAtBottom[i] == 'ClassPower' then
 				element = self.ClassPower.Holder
+			elseif barsAtBottom[i] == 'ClassicClassPower' then
+				element = self.ClassicClassPower.Holder
 			elseif barsAtBottom[i] == 'FakeClassPower' then
 				element = self.FakeClassPower
 			elseif barsAtBottom[i] == 'Runes' then

@@ -108,8 +108,14 @@ function RUF.FakeClassUpdate(self, event, unit, powerType)
 	-- Update Statusbar colour
 	local r,g,b = RUF:GetBarColor(element, unit, "Class",fakeClassPower[uClass].classPowerID)
 	element:SetStatusBarColor(r,g,b)
+
+	-- Update background
 	local a = RUF.db.profile.Appearance.Bars.Class.Background.Alpha
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
+	if RUF.db.profile.Appearance.Bars.Class.Background.UseBarColor == false then
+		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
+	end
+	element.Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
 
 	if element.hideAtZero then
 		if cur < 1 then
@@ -123,12 +129,6 @@ function RUF.FakeClassUpdate(self, event, unit, powerType)
 		end
 	end
 
-
-	-- Update background
-	if RUF.db.profile.Appearance.Bars.Class.Background.UseBarColor == false then
-		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
-	end
-	element.Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
 end
 
 function RUF.FakeClassPowerUpdateOptions(self)

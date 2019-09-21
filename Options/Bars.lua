@@ -36,7 +36,7 @@ function RUF_Options.Bars()
 			order = i,
 			hidden = function()
 				if RUF.Client ~= 1 then
-					if i == 3 or i == 4 then return true end
+					if i == 4 then return true end
 				end
 			end,
 			args = {

@@ -25,7 +25,7 @@ function RUF.SetClassicClassBar(self, unit)
 	local classPowerBackground = {}
 	local unitPowerMaxAmount = classPowerData[uClass].unitPowerMaxAmount or UnitPowerMax(unit,classPowerData[uClass].classPowerID)
 
-	local name = self:GetName() .. '.ClassPower'
+	local name = self:GetName() .. '.ClassicClassPower'
 	self.ClassicClassPower = {}
 
 	local Holder = CreateFrame('Frame',name..'.Holder',self)
@@ -113,7 +113,6 @@ end
 
 function RUF.ClassicClassUpdateColor(element, powerType)
 	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
-	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 	for i = 1, #element do
 		local counter = i
@@ -126,8 +125,15 @@ function RUF.ClassicClassUpdateColor(element, powerType)
 		local ig = (g*((((counter+colorAdd)*6.6667)/100)))
 		local ib = (b*((((counter+colorAdd)*6.6667)/100)))
 		Bar:SetStatusBarColor(ir,ig,ib)
+
+		-- Update background
+		local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
+		if RUF.db.profile.Appearance.Bars.Class.Background.UseBarColor == false then
+			r,g,b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
+		end
 		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 	end
+
 end
 
 function RUF.ClassicClassUpdate(self, event, unit, powerType)
@@ -138,7 +144,7 @@ function RUF.ClassicClassUpdate(self, event, unit, powerType)
 
 	local element = self.ClassicClassPower
 	if RUF.db.profile.unit[self.frame].Frame.Bars.Class.Enabled ~= true then
-		self:DisableElement('ClassPower')
+		self:DisableElement('ClassicClassPower')
 		return
 	end
 
@@ -205,8 +211,8 @@ function RUF.ClassicClassUpdateOptions(self)
 	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
-	local element = self.__owner.ClassPower
-	local holder = self.__owner.ClassPower.Holder
+	local element = self.__owner.ClassicClassPower
+	local holder = self.__owner.ClassicClassPower.Holder
 	holder:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
 	holder.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
 
@@ -247,7 +253,7 @@ function RUF.ClassicClassUpdateOptions(self)
 		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 
 		if RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == true then
-			self.__owner:EnableElement('ClassPower')
+			self.__owner:EnableElement('ClassicClassPower')
 			if i > unitPowerMaxAmount then
 				if element[i]:IsVisible() then
 					element[i]:Hide()

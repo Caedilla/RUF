@@ -61,7 +61,7 @@ function RUF_Options.Colors()
 			[1] = _G['RAGE'] or RAGE,
 			[2] = _G['FOCUS'] or FOCUS,
 			[3] = _G['ENERGY'] or ENERGY,
-			[4] = _G['COMBO_POINTS'] or COMBO_POINTS,
+			[14] = _G['COMBO_POINTS'] or COMBO_POINTS,
 		}
 	end
 	local classData = {
@@ -219,6 +219,23 @@ function RUF_Options.Colors()
 		end
 	end
 	for i=0,#Powers do
+		if Powers[i] then
+			Colors.args.powerColors.args[Powers[i]] = {
+				name = Powers[i],
+				type = 'color',
+				order = 0,
+				get = function(info)
+					return unpack(RUF.db.profile.Appearance.Colors.PowerColors[i])
+				end,
+				set = function(info, r,g,b)
+					RUF.db.profile.Appearance.Colors.PowerColors[i] = {r,g,b}
+					RUF:OptionsUpdateAllBars()
+				end,
+			}
+		end
+	end
+	if RUF.Client == 2 then
+		local i = 14
 		if Powers[i] then
 			Colors.args.powerColors.args[Powers[i]] = {
 				name = Powers[i],

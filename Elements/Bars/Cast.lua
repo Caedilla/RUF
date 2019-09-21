@@ -23,16 +23,13 @@ if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
 end
 
 local function onUpdate(self, elapsed)
+	if self.Enabled == false then self:Hide() return end
+	elapsed = elapsed or 0
 	self.updateThrottle = self.updateThrottle or 0
 	self.updateThrottle = self.updateThrottle + elapsed
 	if self.updateThrottle < 0.0125 then return end
 	local add = self.updateThrottle
 	self.updateThrottle = 0
-	if RUF.db.profile.unit[self.__owner.frame].Frame.Bars.Cast.Enabled == false then
-		self.__owner:DisableElement('Castbar')
-		self:Hide()
-		return
-	end
 	if RUF.db.global.TestMode == true and not InCombatLockdown() then
 		local duration = self.testDuration or 0
 		duration = duration + add
@@ -233,13 +230,43 @@ function RUF.SetCastBar(self, unit)
 	self.Cast.OnUpdate = onUpdate
 	self.Cast.PostCastStart = RUF.CastUpdate
 	self.Cast.PostChannelStart = RUF.ChannelUpdate
-	self.Cast.UpdateOptions = RUF.CastBarUpdateOptions
+	self.Cast.PostCastInterrupted = RUF.CastInterrupted
+	self.Cast.PostCastInterruptible = RUF.CastUpdate
+	self.Cast.UpdateOptions = RUF.CastUpdateOptions
+	self.Cast.Enabled = RUF.db.profile.unit[unit].Frame.Bars.Cast.Enabled
 
 	r,g,b = RUF:GetBarColor(self.Cast, unit, "Cast")
 	Bar:SetStatusBarColor(r,g,b)
 end
 
+function RUF.CastInterrupted(element, unit, name)
+	if element.Enabled == false then element:Hide() return end
+	local unitFrame = element.__owner
+	local r,g,b,a,bgMult
+	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
+	if notInterruptible and RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Enabled then
+		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
+	else
+		r,g,b = RUF:GetBarColor(element, unit, "Cast")
+	end
+	element:SetStatusBarColor(r,g,b)
+	if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
+		local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+		local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+		element.SafeZone:SetColorTexture(sr, sg, sb, sa)
+	else
+		element.SafeZone:SetColorTexture(0, 0, 0, 0)
+	end
+	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
+		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
+	end
+	bgMult = RUF.db.profile.Appearance.Bars.Cast.Background.Multiplier
+	a = RUF.db.profile.Appearance.Bars.Cast.Background.Alpha
+	element.Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
+end
+
 function RUF.CastUpdate(element, unit, name)
+	if element.Enabled == false then element:Hide() return end
 	local unitFrame = element.__owner
 	local r,g,b,a,bgMult
 	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
@@ -265,6 +292,7 @@ function RUF.CastUpdate(element, unit, name)
 end
 
 function RUF.ChannelUpdate(element, unit, name)
+	if element.Enabled == false then element:Hide() return end
 	local unitFrame = element.__owner
 	local r,g,b,a,bgMult
 	local _, _, _, _, _, _, notInterruptible = UnitChannelInfo(unit)
@@ -289,7 +317,7 @@ function RUF.ChannelUpdate(element, unit, name)
 	element.Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
 end
 
-function RUF.CastBarUpdateOptions(self)
+function RUF.CastUpdateOptions(self)
 	local unit = self.__owner.frame
 	local Bar = self
 	local Border = self.Border
