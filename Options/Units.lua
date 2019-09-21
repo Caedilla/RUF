@@ -600,8 +600,9 @@ local function BarSettings(singleFrame, groupFrame, header)
 	return barOptions
 end
 
-local function TextSettings(profileName, groupFrame, header)
-	if not groupFrame then groupFrame = 'none' end
+local function TextSettings(singleFrame, groupFrame, header)
+	local ord, referenceUnit, profileName
+	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
 	-- Generate list of units we can copy text elements from
 	local copyList = {}
@@ -619,6 +620,8 @@ local function TextSettings(profileName, groupFrame, header)
 			['Arena'] = L["arena"],
 			--['ArenaTarget'] = L["arenatarget"],
 			['Party'] = L["party"],
+			--['PartyPet'] = L["partypet"],
+			--['PartyTarget'] = L["partytarget"],
 		}
 	else
 		copyList = {
@@ -628,20 +631,15 @@ local function TextSettings(profileName, groupFrame, header)
 			['Target'] = L["target"],
 			['TargetTarget'] = L["targettarget"],
 			['Party'] = L["party"],
+			--['PartyPet'] = L["partypet"],
+			--['PartyTarget'] = L["partytarget"],
 		}
 	end
-	copyList[profileName] = nil
-	copyList[groupFrame] = nil
 
-	local referenceUnit = profileName
-	if groupFrame == 'Party' then
-		referenceUnit = profileName .. 'UnitButton1'
-	elseif groupFrame ~= 'none' then
-		referenceUnit = profileName .. '1'
-	end
-	local passUnit = profileName
-	profileName = string.lower(profileName)
-	groupFrame = string.lower(groupFrame)
+	-- Remove current Unit from list, we can't copy data from ourselves. Well, we can in this case, but it wouldn't do anything.
+	copyList[singleFrame] = nil
+	copyList[groupFrame] = nil
+	copyList[header] = nil
 
 	local textOptions = {
 		name = L["Texts"],
@@ -678,7 +676,7 @@ local function TextSettings(profileName, groupFrame, header)
 							Anchor = 'CENTER',
 						},
 					}
-					RUF:OptionsAddTexts(passUnit,groupFrame,value)
+					RUF:OptionsAddTexts(singleFrame,groupFrame,header,value)
 					RUF:UpdateOptions()
 				end,
 			},
@@ -691,18 +689,18 @@ local function TextSettings(profileName, groupFrame, header)
 					if not RUF.db.profile.unit[profileName].Frame.Text[value] then return end --TODO Error Message
 					if RUF.db.profile.unit[profileName].Frame.Text[value] == '' then return end
 					RUF.db.profile.unit[profileName].Frame.Text[value] = 'DISABLED'
-					RUF:OptionsDisableTexts(passUnit,groupFrame,value)
+					RUF:OptionsDisableTexts(singleFrame,groupFrame,header,value)
 					RUF.db.profile.unit[profileName].Frame.Text[value] = ''
 					RUF:UpdateOptions()
 				end,
 			},
 			copyUnit = {
-				name = 'Copy Settings from:',
+				name = L["Copy Settings from:"],
 				type = 'select',
-				desc = 'Copy and replace all text elements from the selected unit to this unit.',
+				desc = L["Copy and replace all text elements from the selected unit to this unit."],
 				order = 0.2,
 				values = copyList,
-				confirm = function() return 'Are you sure you want to replace these settings? You cannot undo this change?' end,
+				confirm = function() return L["Are you sure you want to replace these settings? You cannot undo this change."] end,
 				set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text = nil
 						RUF.db.profile.unit[profileName].Frame.Text = RUF.db.profile.unit[string.lower(value)].Frame.Text
@@ -756,8 +754,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Enabled = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
-
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				tag = {
@@ -770,7 +767,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Tag = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				tagSpacer = {
@@ -795,7 +792,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.x = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				offsetY = {
@@ -814,7 +811,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.y = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				anchorFrame = {
@@ -824,7 +821,7 @@ local function TextSettings(profileName, groupFrame, header)
 					order = 0.06,
 					values = textAnchors,
 					get = function(info)
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.AnchorFrame
 					end,
 					set = function(info, value)
@@ -841,7 +838,7 @@ local function TextSettings(profileName, groupFrame, header)
 						else
 							RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.AnchorFrame = 'Frame'
 						end
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				anchorFrom = {
@@ -854,7 +851,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.Anchor = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				anchorPoint = {
@@ -875,7 +872,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.AnchorTo = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				font = {
@@ -889,7 +886,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Font = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				fontSize = {
@@ -907,7 +904,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Size = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				fontOutline = {
@@ -927,7 +924,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Outline = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				fontShadow = {
@@ -948,7 +945,7 @@ local function TextSettings(profileName, groupFrame, header)
 						else
 							RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Shadow = 0
 						end
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				customWidth = {
@@ -962,7 +959,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].CustomWidth = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				textWidth = {
@@ -982,7 +979,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Width = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 				textJustify = {
@@ -1000,8 +997,7 @@ local function TextSettings(profileName, groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Justify = value
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
-						RUF:OptionsUpdateTexts(passUnit,groupFrame,textList[i])
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
 			},

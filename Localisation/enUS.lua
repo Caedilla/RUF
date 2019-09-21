@@ -354,3 +354,6 @@ L["Toggle on to force text element to be set to a custom width. If the text is l
 L["Color Not Interruptible"] = true
 L["Enable to force the bar to a specific color if the cast cannot be interrupted."] = true
 L["Not Interruptible Color"] = true
+L["Copy Settings from:"] = true
+L["Copy and replace all text elements from the selected unit to this unit."] = true
+L["Are you sure you want to replace these settings? You cannot undo this change."] = true

@@ -290,19 +290,21 @@ function RUF.ReturnTextColors(self, unit, tag, cur, max, test) -- Get Text Color
 	return r,g,b
 end
 
-function RUF.RefreshTextElements(frame,groupNum)
-	local unitFrame
-	local referenceUnit
-	if groupNum == -1 then
-		unitFrame = _G['oUF_RUF_' .. frame]
-		referenceUnit = frame
-	elseif frame == 'Party' then
-		unitFrame = _G['oUF_RUF_PartyUnitButton' .. groupNum]
-		referenceUnit = 'PartyUnitButton' .. groupNum
+function RUF.RefreshTextElements(singleFrame,groupFrame,header,groupNum)
+	if not singleFrame then singleFrame = 'none' end
+	if not groupFrame then groupFrame = 'none' end
+	if not header then header = 'none' end
+	local currentUnit,unitFrame,profileReference
+
+	if header ~= 'none' then
+		currentUnit = header .. 'UnitButton' .. groupNum
+	elseif groupFrame ~= 'none' then
+		currentUnit = groupFrame .. groupNum
 	else
-		unitFrame = _G['oUF_RUF_' .. frame .. groupNum]
-		referenceUnit = frame .. groupNum
+		currentUnit = singleFrame
 	end
+	unitFrame = _G['oUF_RUF_' .. currentUnit]
+
 	local profileTexts = {}
 	for k,v in pairs(RUF.db.profile.unit[unitFrame.frame].Frame.Text) do
 		if v ~= "" then
@@ -310,13 +312,12 @@ function RUF.RefreshTextElements(frame,groupNum)
 		end
 	end
 
-
 	local existingTexts = { unitFrame.Text:GetChildren() }
 	for old = 1,#existingTexts do
 		local currentText = existingTexts[old]
 		local currentTextName = currentText:GetName()
 		for new = 1,#profileTexts do
-			local newTextName = 'oUF_RUF_'  .. referenceUnit .. '.Text.' .. profileTexts[new]
+			local newTextName = 'oUF_RUF_'  .. currentUnit .. '.Text.' .. profileTexts[new]
 			local exists = false
 			if currentTextName == newTextName then
 				currentText:Show()
@@ -330,7 +331,7 @@ function RUF.RefreshTextElements(frame,groupNum)
 	end
 
 	for new = 1,#profileTexts do
-		local currentTextName = 'oUF_RUF_'  .. referenceUnit .. '.Text.' .. profileTexts[new]
+		local currentTextName = 'oUF_RUF_'  .. currentUnit .. '.Text.' .. profileTexts[new]
 		if not _G[currentTextName] then
 			RUF.CreateTextArea(unitFrame, unitFrame.frame, profileTexts[new])
 			RUF.SetTextPoints(unitFrame, unitFrame.frame, profileTexts[new])
@@ -339,48 +340,24 @@ function RUF.RefreshTextElements(frame,groupNum)
 
 end
 
-function RUF.ToggleFrameLock(status, unitFrame)
+function RUF.ToggleFrameLock(status)
 	local anchorFrom1, anchorFrame1, anchorTo1, x1, y1, anchorFrom2, anchorFrame2, anchorTo2, x2, y2, x3, y3
 	local frames = RUF.frameList.frames
 	local groupFrames = RUF.frameList.groupFrames
 	local headers = RUF.frameList.headers
-	local MoveBG = _G["oUF_RUF_Party.MoveBG"]
 
-
-	if unitFrame then
-		-- if unitFrame == frame from frames or groupFrames then lock or unlock based on status
-	elseif status == false then
-		MoveBG:Show()
-		oUF_RUF_Party:SetMovable(true)
-		MoveBG:SetMovable(true)
-
-
-		MoveBG:SetScript("OnMouseDown", function(MoveBG)
-		oUF_RUF_Party:StartMoving()
-		MoveBG:StartMoving()
-		anchorFrom1, anchorFrame1, anchorTo1, x1, y1 = oUF_RUF_Party:GetPoint() end)
-
-		MoveBG:SetScript("OnMouseUp", function(MoveBG)
-		anchorFrom2, anchorFrame2, anchorTo2, x2, y2 = oUF_RUF_Party:GetPoint()
-		oUF_RUF_Party:StopMovingOrSizing()
-		MoveBG:StopMovingOrSizing()
-		x3 = x2-x1
-		y3 = y2-y1
-		RUF.db.profile.unit["party"].Frame.Position.x = RUF.db.profile.unit["party"].Frame.Position.x + x3
-		RUF.db.profile.unit["party"].Frame.Position.y = RUF.db.profile.unit["party"].Frame.Position.y + y3
-		LibStub("AceConfigRegistry-3.0"):NotifyChange("RUF") end)
-
+	if status == false then
 		for i = 1,#frames do
-			local frameName = 'oUF_RUF_' .. frames[i]
+			local frameName = _G['oUF_RUF_' .. frames[i]]
 			local profile = string.lower(frames[i])
-			_G[frameName]:SetMovable(true)
-			_G[frameName]:SetScript("OnMouseDown", function()
-			_G[frameName]:StartMoving()
-			anchorFrom1, anchorFrame1, anchorTo1, x1, y1 = _G[frameName]:GetPoint() end)
+			frameName:SetMovable(true)
+			frameName:SetScript("OnMouseDown", function()
+			frameName:StartMoving()
+			anchorFrom1, anchorFrame1, anchorTo1, x1, y1 = frameName:GetPoint() end)
 
-			_G[frameName]:SetScript("OnMouseUp", function()
-			anchorFrom2, anchorFrame2, anchorTo2, x2, y2 = _G[frameName]:GetPoint()
-			_G[frameName]:StopMovingOrSizing()
+			frameName:SetScript("OnMouseUp", function()
+			anchorFrom2, anchorFrame2, anchorTo2, x2, y2 = frameName:GetPoint()
+			frameName:StopMovingOrSizing()
 			x3 = x2-x1
 			y3 = y2-y1
 			RUF.db.profile.unit[profile].Frame.Position.x = RUF.db.profile.unit[profile].Frame.Position.x + x3
@@ -388,23 +365,45 @@ function RUF.ToggleFrameLock(status, unitFrame)
 			LibStub("AceConfigRegistry-3.0"):NotifyChange("RUF") end)
 		end
 		for i = 1,#groupFrames do
-			local frameName = 'oUF_RUF_' .. groupFrames[i] .. "1"
+			local frameName = _G['oUF_RUF_' .. groupFrames[i] .. "1"]
 			local profile = string.lower(groupFrames[i])
-			_G[frameName]:SetMovable(true)
-			_G[frameName]:SetScript("OnMouseDown", function()
-			_G[frameName]:StartMoving()
-			anchorFrom1, anchorFrame1, anchorTo1, x1, y1 = _G[frameName]:GetPoint() end)
+			frameName:SetMovable(true)
+			frameName:SetScript("OnMouseDown", function()
+			frameName:StartMoving()
+			anchorFrom1, anchorFrame1, anchorTo1, x1, y1 = frameName:GetPoint() end)
 
-			_G[frameName]:SetScript("OnMouseUp", function()
-			anchorFrom2, anchorFrame2, anchorTo2, x2, y2 = _G[frameName]:GetPoint()
-			_G[frameName]:StopMovingOrSizing()
+			frameName:SetScript("OnMouseUp", function()
+			anchorFrom2, anchorFrame2, anchorTo2, x2, y2 = frameName:GetPoint()
+			frameName:StopMovingOrSizing()
 			x3 = x2-x1
 			y3 = y2-y1
 			RUF.db.profile.unit[profile].Frame.Position.x = RUF.db.profile.unit[profile].Frame.Position.x + x3
 			RUF.db.profile.unit[profile].Frame.Position.y = RUF.db.profile.unit[profile].Frame.Position.y + y3
 			LibStub("AceConfigRegistry-3.0"):NotifyChange("RUF") end)
 		end
+		for i = 1,#headers do
+			local frameName = _G['oUF_RUF_' .. headers[i]]
+			local MoveBG = _G[frameName .. '.MoveBG']
+			local profile = string.lower(headers[i])
+			MoveBG:Show()
+			frameName:SetMovable(true)
+			MoveBG:SetMovable(true)
 
+			MoveBG:SetScript("OnMouseDown", function(MoveBG)
+			frameName:StartMoving()
+			MoveBG:StartMoving()
+			anchorFrom1, anchorFrame1, anchorTo1, x1, y1 = frameName:GetPoint() end)
+
+			MoveBG:SetScript("OnMouseUp", function(MoveBG)
+			anchorFrom2, anchorFrame2, anchorTo2, x2, y2 = frameName:GetPoint()
+			frameName:StopMovingOrSizing()
+			MoveBG:StopMovingOrSizing()
+			x3 = x2-x1
+			y3 = y2-y1
+			RUF.db.profile.unit[profile].Frame.Position.x = RUF.db.profile.unit[profile].Frame.Position.x + x3
+			RUF.db.profile.unit[profile].Frame.Position.y = RUF.db.profile.unit[profile].Frame.Position.y + y3
+			LibStub("AceConfigRegistry-3.0"):NotifyChange("RUF") end)
+		end
 	else -- lock
 		for i = 1,#frames do
 			local frameName = 'oUF_RUF_' .. frames[i]
@@ -413,17 +412,23 @@ function RUF.ToggleFrameLock(status, unitFrame)
 			_G[frameName]:SetScript("OnMouseDown",nil)
 			_G[frameName]:SetScript("OnMouseUp",nil)
 		end
-		for j = 1,#groupFrames do
-			local frameName = 'oUF_RUF_' .. groupFrames[j] .. "1"
-			local profile = string.lower(groupFrames[j])
+		for i = 1,#groupFrames do
+			local frameName = 'oUF_RUF_' .. groupFrames[i] .. "1"
+			local profile = string.lower(groupFrames[i])
 			_G[frameName]:SetMovable(false)
 			_G[frameName]:SetScript("OnMouseDown",nil)
 			_G[frameName]:SetScript("OnMouseUp",nil)
 		end
-		MoveBG:Hide()
-		oUF_RUF_Party:SetMovable(false)
-		MoveBG:SetMovable(false)
-		MoveBG:SetScript("OnMouseDown",nil)
-		MoveBG:SetScript("OnMouseUp",nil)
+		for i = 1,#headers do
+			local frameName = 'oUF_RUF_' .. headers[i]
+			local MoveBG = _G[frameName .. '.MoveBG']
+
+			MoveBG:Hide()
+			MoveBG:SetMovable(false)
+			_G[frameName]:SetMovable(false)
+			MoveBG:SetScript("OnMouseDown",nil)
+			MoveBG:SetScript("OnMouseUp",nil)
+		end
 	end
+
 end
