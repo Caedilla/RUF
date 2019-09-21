@@ -11,12 +11,13 @@ A unitframe layout for oUF
 **RUF** is a configurable Unit Frame addon using oUF. RUF isn't as fully featured as some unit frames, but should also use less resources while playing than most unit frame addons too.
 
 ## Features
-* Supports Player, Pet, Target, Pet's Target, Target's Target, and Party frames.
+* Supports Player, Pet, Target, Pet's Target, Target's Target, Party, and Party Pets.
 * Nickname - Like Details! In fact, this is synced with Details! This will sync to other people using RUF or Details! (or any other addon that supports NickTag-1.0)
 * Unique custom indicator status icons in place of the standard ones. These are icons such as PvP stats, Target Marks etc. These are made through a font file, so they scale much better and retain clarity better than the normal indicator icons.
 * Buff and Debuff icons with optional type and dispellable highlighting and basic filtering. (more advanced filtering coming later)
 * Frame Highlighting for dispellable auras (debuffs on friendly units, or buffs on enemy units)
 * Cast Bars for Player, Target, and Focus frames.
+* Range Fading & Combat Fading
 * Several pre-configured layouts to choose from in the profile section.
 
 ### Live Only Features
@@ -32,7 +33,6 @@ A unitframe layout for oUF
 ## Planned Features
 * Copying settings from one unit to another (Started - already functioning for Text elements)
 * Classification colouring colors (To colour units if they are Elite, Rare, Boss etc.)
-* Range Fading
 * Frame highlighting for mouseover
 * Buff/Debuff whitelisting / blacklisting
 * More tags, and increased options for existing tags
