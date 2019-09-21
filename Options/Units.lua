@@ -1045,17 +1045,9 @@ local function HideIndicatorOptions(profileName,indicator)
 	end
 end
 
-local function IndicatorSettings(profileName,groupFrame, header)
-	if not groupFrame then groupFrame = 'none' end
-	local referenceUnit = profileName
-	if groupFrame == 'Party' then
-		referenceUnit = profileName .. 'UnitButton1'
-	elseif groupFrame ~= 'none' then
-		referenceUnit = profileName .. '1'
-	end
-	local passUnit = profileName
-	profileName = string.lower(profileName)
-	groupFrame = string.lower(groupFrame)
+local function IndicatorSettings(singleFrame,groupFrame,header)
+	local ord, referenceUnit, profileName
+	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
 	local indicators = {
 		[1] = 'Assist',
@@ -1117,7 +1109,7 @@ local function IndicatorSettings(profileName,groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Enabled = value
-						RUF:OptionsUpdateIndicators(passUnit,groupFrame,indicators[i])
+						RUF:OptionsUpdateIndicators(singleFrame,groupFrame,header,indicators[i])
 					end,
 				},
 				enabledSpacer = {
@@ -1141,7 +1133,7 @@ local function IndicatorSettings(profileName,groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Size = value
-						RUF:OptionsUpdateIndicators(passUnit,groupFrame,indicators[i])
+						RUF:OptionsUpdateIndicators(singleFrame,groupFrame,header,indicators[i])
 					end,
 				},
 				offsetX = {
@@ -1160,7 +1152,7 @@ local function IndicatorSettings(profileName,groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Position.x = value
-						RUF:OptionsUpdateIndicators(passUnit,groupFrame,indicators[i])
+						RUF:OptionsUpdateIndicators(singleFrame,groupFrame,header,indicators[i])
 					end,
 				},
 				offsetY = {
@@ -1179,7 +1171,7 @@ local function IndicatorSettings(profileName,groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Position.y = value
-						RUF:OptionsUpdateIndicators(passUnit,groupFrame,indicators[i])
+						RUF:OptionsUpdateIndicators(singleFrame,groupFrame,header,indicators[i])
 					end,
 				},
 				anchorFrom = {
@@ -1193,7 +1185,7 @@ local function IndicatorSettings(profileName,groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Position.AnchorFrom = value
-						RUF:OptionsUpdateIndicators(passUnit,groupFrame,indicators[i])
+						RUF:OptionsUpdateIndicators(singleFrame,groupFrame,header,indicators[i])
 					end,
 				},
 				anchorFrame = {
@@ -1218,7 +1210,7 @@ local function IndicatorSettings(profileName,groupFrame, header)
 						else
 							RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Position.AnchorFrame = 'Frame'
 						end
-						RUF:OptionsUpdateIndicators(passUnit,groupFrame,indicators[i])
+						RUF:OptionsUpdateIndicators(singleFrame,groupFrame,header,indicators[i])
 						RUF:UpdateOptions()
 					end,
 				},
@@ -1233,7 +1225,7 @@ local function IndicatorSettings(profileName,groupFrame, header)
 					end,
 					set = function(info, value)
 						RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Position.AnchorTo = value
-						RUF:OptionsUpdateIndicators(passUnit,groupFrame,indicators[i])
+						RUF:OptionsUpdateIndicators(singleFrame,groupFrame,header,indicators[i])
 					end,
 				},
 			},
@@ -1242,17 +1234,9 @@ local function IndicatorSettings(profileName,groupFrame, header)
 	return indicatorOptions
 end
 
-local function BuffSettings(profileName,groupFrame, header)
-	if not groupFrame then groupFrame = 'none' end
-	local referenceUnit = profileName
-	if groupFrame == 'Party' then
-		referenceUnit = profileName .. 'UnitButton1'
-	elseif groupFrame ~= 'none' then
-		referenceUnit = profileName .. '1'
-	end
-	local passUnit = profileName
-	profileName = string.lower(profileName)
-	groupFrame = string.lower(groupFrame)
+local function BuffSettings(singleFrame,groupFrame,header)
+	local ord, referenceUnit, profileName
+	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
 	local buffOptions = {
 		name = L["Buffs"],
@@ -1274,7 +1258,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Enabled = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			enabledSpacer = {
@@ -1298,7 +1282,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Width = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			buffHeight = {
@@ -1316,7 +1300,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Height = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			numColumns = {
@@ -1334,7 +1318,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Columns = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			horizontalPadding = {
@@ -1352,7 +1336,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Spacing.x = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			verticalPadding = {
@@ -1370,7 +1354,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Spacing.y = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			horizontalGrowthDirection = {
@@ -1386,7 +1370,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Growth.x = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			verticalGrowthDirection = {
@@ -1402,7 +1386,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Growth.y = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			sortingHeader = {
@@ -1425,7 +1409,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Sort.Direction = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			sortType = {
@@ -1445,7 +1429,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Sort.SortBy = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			anchorHeader = {
@@ -1469,7 +1453,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Position.x = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			verticalOffset = {
@@ -1488,7 +1472,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Position.y = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			anchorFrom = {
@@ -1501,7 +1485,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorFrom = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			anchorPoint = {
@@ -1514,7 +1498,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Position.AnchorTo = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			clickThrough = {
@@ -1526,7 +1510,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.ClickThrough = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			filterHeader = {
@@ -1544,7 +1528,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Caster.Player = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			filterCasterByCurrentUnit = {
@@ -1558,7 +1542,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Caster.Unit = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			filterCasterByGroupUnits = {
@@ -1571,7 +1555,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Caster.Group = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			filterCasterByOtherUnits = {
@@ -1584,7 +1568,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Caster.Other = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			filterSpacer = {
@@ -1608,7 +1592,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Time.Min = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			maxDuration = {
@@ -1626,7 +1610,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Time.Max = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			toggleDurationLimit = {
@@ -1638,7 +1622,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Time.Unlimited = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			filterDispellable = {
@@ -1651,7 +1635,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Filter.Dispellable = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 			maxAuras = {
@@ -1669,7 +1653,7 @@ local function BuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Buffs.Icons.Max = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Buffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Buffs')
 				end,
 			},
 		},
@@ -1678,17 +1662,9 @@ local function BuffSettings(profileName,groupFrame, header)
 	return buffOptions
 end
 
-local function DebuffSettings(profileName,groupFrame, header)
-	if not groupFrame then groupFrame = 'none' end
-	local referenceUnit = profileName
-	if groupFrame == 'Party' then
-		referenceUnit = profileName .. 'UnitButton1'
-	elseif groupFrame ~= 'none' then
-		referenceUnit = profileName .. '1'
-	end
-	local passUnit = profileName
-	profileName = string.lower(profileName)
-	groupFrame = string.lower(groupFrame)
+local function DebuffSettings(singleFrame,groupFrame,header)
+	local ord, referenceUnit, profileName
+	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
 	local debuffOptions = {
 		name = L["Debuffs"],
@@ -1710,7 +1686,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Enabled = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			enabledSpacer = {
@@ -1734,7 +1710,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Width = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			debuffHeight = {
@@ -1752,7 +1728,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Height = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			numColumns = {
@@ -1770,7 +1746,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Columns = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			horizontalPadding = {
@@ -1788,7 +1764,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Spacing.x = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			verticalPadding = {
@@ -1806,7 +1782,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Spacing.y = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			horizontalGrowthDirection = {
@@ -1822,7 +1798,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Growth.x = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			verticalGrowthDirection = {
@@ -1838,7 +1814,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Growth.y = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			sortingHeader = {
@@ -1861,7 +1837,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Sort.Direction = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			sortType = {
@@ -1881,7 +1857,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Sort.SortBy = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			anchorHeader = {
@@ -1905,7 +1881,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Position.x = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			verticalOffset = {
@@ -1924,7 +1900,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Position.y = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			anchorFrom = {
@@ -1937,7 +1913,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorFrom = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			anchorPoint = {
@@ -1950,7 +1926,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Position.AnchorTo = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			clickThrough = {
@@ -1962,7 +1938,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.ClickThrough = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			filterHeader = {
@@ -1980,7 +1956,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Caster.Player = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			filterCasterByCurrentUnit = {
@@ -1994,7 +1970,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Caster.Unit = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			filterCasterByGroupUnits = {
@@ -2007,7 +1983,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Caster.Group = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			filterCasterByOtherUnits = {
@@ -2020,7 +1996,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Caster.Other = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			filterSpacer = {
@@ -2044,7 +2020,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Time.Min = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			maxDuration = {
@@ -2062,7 +2038,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Time.Max = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			toggleDurationLimit = {
@@ -2074,7 +2050,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Time.Unlimited = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			filterDispellable = {
@@ -2087,7 +2063,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Filter.Dispellable = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 			maxAuras = {
@@ -2105,7 +2081,7 @@ local function DebuffSettings(profileName,groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Debuffs.Icons.Max = value
-					RUF:OptionsUpdateAuras(passUnit,groupFrame,'Debuffs')
+					RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,'Debuffs')
 				end,
 			},
 		},
@@ -2114,17 +2090,9 @@ local function DebuffSettings(profileName,groupFrame, header)
 	return debuffOptions
 end
 
-local function CastBarSettings(profileName, groupFrame, header)
-	if not groupFrame then groupFrame = 'none' end
-	local referenceUnit = profileName
-	if groupFrame == 'Party' then
-		referenceUnit = profileName .. 'UnitButton1'
-	elseif groupFrame ~= 'none' then
-		referenceUnit = profileName .. '1'
-	end
-	local passUnit = profileName
-	profileName = string.lower(profileName)
-	groupFrame = string.lower(groupFrame)
+local function CastBarSettings(singleFrame, groupFrame, header)
+	local ord, referenceUnit, profileName
+	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
 
 	local castBarOptions = {
@@ -2156,7 +2124,7 @@ local function CastBarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Enabled = value
-					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars()
 				end,
 			},
 			fillStyle = {
@@ -2176,7 +2144,7 @@ local function CastBarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Fill = value
-					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars()
 				end,
 			},
 			width = {
@@ -2194,7 +2162,7 @@ local function CastBarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Width = value
-					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars()
 				end,
 			},
 			height = {
@@ -2212,7 +2180,7 @@ local function CastBarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Height = value
-					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars()
 				end,
 			},
 			frameAnchor = {
@@ -2225,7 +2193,7 @@ local function CastBarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorFrame = value
-					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars()
 				end,
 			},
 			frameHorizontal = {
@@ -2244,7 +2212,7 @@ local function CastBarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.x = value
-					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars()
 				end,
 			},
 			frameVertical = {
@@ -2263,7 +2231,7 @@ local function CastBarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.y = value
-					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars()
 				end,
 			},
 			frameAnchorPoint = {
@@ -2277,7 +2245,7 @@ local function CastBarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorFrom = value
-					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars()
 				end,
 			},
 			frameAnchorTo = {
@@ -2291,14 +2259,13 @@ local function CastBarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorTo = value
-					RUF:OptionsUpdateCastbars(passUnit,groupFrame)
+					RUF:OptionsUpdateCastbars()
 				end,
 			},
 		},
 	}
 
 	return castBarOptions
-
 end
 
 function RUF_Options.GenerateUnits()
