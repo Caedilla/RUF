@@ -36,7 +36,7 @@ local anchorSwaps = {
 	['TOPRIGHT'] = 'BOTTOMLEFT',
 }
 
-local function UnitGroup(singleFrame, groupFrame, header)
+local function ProfileData(singleFrame, groupFrame, header)
 	if not singleFrame and not groupFrame and not header then return end
 	if not singleFrame then singleFrame = 'none' end
 	if not groupFrame then groupFrame = 'none' end
@@ -68,6 +68,13 @@ local function UnitGroup(singleFrame, groupFrame, header)
 		referenceUnit = header .. 'UnitButton1'
 		profileName = string.lower(header)
 	end
+
+	return singleFrame, groupFrame, header, ord, referenceUnit, profileName
+end
+
+local function UnitGroup(singleFrame, groupFrame, header)
+	local ord, referenceUnit, profileName
+	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
 
 	local frameOptions = {
@@ -416,17 +423,9 @@ local function UnitGroup(singleFrame, groupFrame, header)
 	return frameOptions
 end
 
-local function BarSettings(profileName, groupFrame, header)
-	if not groupFrame then groupFrame = 'none' end
-	local referenceUnit = profileName
-	if groupFrame == 'Party' then
-		referenceUnit = profileName .. 'UnitButton1'
-	elseif groupFrame ~= 'none' then
-		referenceUnit = profileName .. '1'
-	end
-	local passUnit = profileName
-	profileName = string.lower(profileName)
-	groupFrame = string.lower(groupFrame)
+local function BarSettings(singleFrame, groupFrame, header)
+	local ord, referenceUnit, profileName
+	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
 	local barOptions = {
 		name = L["Bars"],
@@ -494,7 +493,7 @@ local function BarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].Enabled = value
-					RUF:OptionsUpdateBars(passUnit,groupFrame,barList[i])
+					RUF:OptionsUpdateBars(singleFrame, groupFrame, header, barList[i])
 				end,
 			},
 			classEnabled = {
@@ -513,7 +512,7 @@ local function BarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].Enabled = value
-					RUF:OptionsUpdateBars(passUnit,groupFrame,barList[i])
+					RUF:OptionsUpdateBars(singleFrame, groupFrame, header, barList[i])
 				end,
 			},
 			fillStyle = {
@@ -541,7 +540,7 @@ local function BarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].Fill = value
-					RUF:OptionsUpdateBars(passUnit,groupFrame,barList[i])
+					RUF:OptionsUpdateBars(singleFrame, groupFrame, header, barList[i])
 				end,
 			},
 			barHeight = {
@@ -561,7 +560,7 @@ local function BarSettings(profileName, groupFrame, header)
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].Height = value
-					RUF:OptionsUpdateBars(passUnit,groupFrame,barList[i])
+					RUF:OptionsUpdateBars(singleFrame, groupFrame, header, barList[i])
 				end,
 			},
 			barAnchor = {
@@ -592,7 +591,7 @@ local function BarSettings(profileName, groupFrame, header)
 
 						end
 					end
-					RUF:OptionsUpdateBars(passUnit,groupFrame,barList[i])
+					RUF:OptionsUpdateBars(singleFrame, groupFrame, header, barList[i])
 				end,
 			},
 		}
