@@ -23,6 +23,9 @@ EmbedAlways.xml
 Elements\Plugins\Absorb_Plugin.lua
 Elements\Plugins\Aura_Plugin.lua
 Elements\Plugins\Cast_Plugin.lua
+#@non-retail@
+Elements\Plugins\ClassicClassPower_Plugin.lua
+#@end-non-retail@
 Elements\Plugins\FakeClassPower_Plugin.lua
 Elements\Plugins\Range_Plugin.lua
 
@@ -39,6 +42,7 @@ Elements\Bars\Shared.lua
 Elements\Bars\Absorb.lua
 Elements\Bars\Cast.lua
 Elements\Bars\Class.lua
+Elements\Bars\ClassicClass.lua
 Elements\Bars\FakeClass.lua
 Elements\Bars\Health.lua
 Elements\Bars\Power.lua

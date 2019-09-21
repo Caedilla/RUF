@@ -475,7 +475,7 @@ local function BarSettings(singleFrame, groupFrame, header)
 				name = L["Class"],
 				type = 'group',
 				order = 20,
-				hidden = function() return (profileName ~= 'player') or (RUF.Client ~= 1) end,
+				hidden = function() return (profileName ~= 'player') end,--or (RUF.Client ~= 1) end,
 				args = {
 
 				},

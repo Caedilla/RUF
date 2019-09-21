@@ -91,6 +91,10 @@ local function SetupFrames(self, unit)
 			self:SetAttribute('toggleForVehicle', false)
 		end
 
+	else
+		if unit == 'player' then
+			RUF.SetClassicClassBar(self, unit)
+		end
 	end
 
 
