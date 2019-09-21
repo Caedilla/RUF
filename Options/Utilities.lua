@@ -645,8 +645,19 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 			elseif profileReference.Frame.Position.growth == "TOP" then
 				anchorFrom = "BOTTOM"
 			end
+			local showIn = '[group:party,nogroup:raid] show;hide'
+			if profileReference.showRaid then
+				showIn = '[group:party,nogroup:raid] show;[group:raid] show;hide'
+			end
 			headerFrame:SetAttribute("Point",anchorFrom)
 			headerFrame:SetAttribute('yOffset',profileReference.Frame.Position.offsety)
+			headerFrame.visibility = showIn
+			RegisterAttributeDriver(headerFrame,'state-visibility',headerFrame.visibility)
+			for i = 1, 5 do -- Refresh all anchors after changing yOffset to prevent fuckery.
+				if _G['oUF_RUF_' .. header .. 'UnitButton' .. i] then
+					_G['oUF_RUF_' .. header .. 'UnitButton' .. i]:ClearAllPoints()
+				end
+			end
 			RUF:UpdateFramePosition(headerFrame,singleFrame,groupFrame,header)
 		end
 

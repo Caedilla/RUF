@@ -363,3 +363,4 @@ L["partypet2"] = "Party Pet 2"
 L["partypet3"] = "Party Pet 3"
 L["partypet4"] = "Party Pet 4"
 L["partypet5"] = "Party Pet 5"
+L["Show in Raid"] = true

@@ -2647,6 +2647,7 @@ do
 		AnchorFrom = 'TOP',
 	}
 
+	cfg.profile.unit.party.showRaid = false
 	cfg.profile.unit.party.Frame.Position = {
 		x = 4,
 		y = -40,
@@ -2691,6 +2692,8 @@ do
 		AnchorFrom = 'BOTTOMLEFT',
 	}
 
+	cfg.profile.unit.partytarget.showRaid = false
+	cfg.profile.unit.partytarget.Enabled = false
 	cfg.profile.unit.partytarget.Frame.Position = {
 		x = 4,
 		y = 0,
@@ -2699,6 +2702,8 @@ do
 		AnchorFrom = 'BOTTOMLEFT',
 	}
 
+	cfg.profile.unit.partypet.showRaid = false
+	cfg.profile.unit.partypet.Enabled = false
 	cfg.profile.unit.partypet.Frame.Position = {
 		x = 4,
 		y = 0,

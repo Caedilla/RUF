@@ -1,5 +1,6 @@
-# RUF r202-Alpha
+# RUF r203-Alpha
 ### New
+* Added Show in raid option for Party & Party Pets to enable showing these units in a raid group,
 * Added Party Pets as a supported Unit. Default options need work.
 
 ### Fixed

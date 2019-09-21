@@ -129,12 +129,26 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						end,
 						desc = L["Enable the Unit Frame."],
 						type = 'toggle',
-						order = 0.004,
+						order = 0.003,
 						get = function(info)
 							return RUF.db.profile.unit[profileName].Enabled
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Enabled = value
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
+							RUF:UpdateOptions()
+						end,
+					},
+					showRaid = {
+						name = L["Show in Raid"],
+						type = 'toggle',
+						order = 0.004,
+						hidden = header == 'none',
+						get = function(info)
+							return RUF.db.profile.unit[profileName].showRaid
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].showRaid = value
 							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 							RUF:UpdateOptions()
 						end,
@@ -629,7 +643,7 @@ local function TextSettings(singleFrame, groupFrame, header)
 			['Arena'] = L["arena"],
 			--['ArenaTarget'] = L["arenatarget"],
 			['Party'] = L["party"],
-			--['PartyPet'] = L["partypet"],
+			['PartyPet'] = L["partypet"],
 			--['PartyTarget'] = L["partytarget"],
 		}
 	else
@@ -640,7 +654,7 @@ local function TextSettings(singleFrame, groupFrame, header)
 			['Target'] = L["target"],
 			['TargetTarget'] = L["targettarget"],
 			['Party'] = L["party"],
-			--['PartyPet'] = L["partypet"],
+			['PartyPet'] = L["partypet"],
 			--['PartyTarget'] = L["partytarget"],
 		}
 	end

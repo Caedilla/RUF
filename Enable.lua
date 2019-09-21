@@ -220,8 +220,12 @@ function RUF:OnEnable()
 			elseif profile.Frame.Position.growth == 'TOP' then
 				anchorFrom = 'BOTTOM'
 			end
+			local showIn = 'party'
+			if profile.showRaid then
+				showIn = 'party,raid'
+			end
 			self:SpawnHeader(
-				'oUF_RUF_' .. headers[i], template, 'party',
+				'oUF_RUF_' .. headers[i], template, showIn,
 				'showSolo', false,
 				'showParty', true,
 				'showRaid', false,
@@ -254,7 +258,7 @@ function RUF:OnEnable()
 			RegisterAttributeDriver(currentHeader,'state-visibility',currentHeader.visibility)
 			if profile.Enabled == false then
 				for j = 1,4 do
-					_G[currentHeader .. 'UnitButton' .. j]:Disable()
+					_G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j]:Disable()
 				end
 			end
 
