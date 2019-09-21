@@ -764,7 +764,7 @@ function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
 					unitFrame[bar]:ForceUpdate()
 				end
 		elseif originalBar == 'Class' then
-			if RUF.db.profile.unit[string.lower(profileName)].Frame.Bars.Class.Enabled == true then
+			if profileReference.Enabled == true then
 				unitFrame:EnableElement(bar)
 				if unitFrame[bar] then
 					unitFrame[bar]:ForceUpdate()
@@ -808,15 +808,17 @@ end
 function RUF:SpawnUnits()
 	if UnitsSpawned == true then return end
 	TestModeToggle = true
-	local PartyNum = GetNumGroupMembers() -1
-	if PartyNum == -1 then PartyNum = 0 end
-	if IsInRaid() then
-		PartyNum = GetNumSubgroupMembers()
+
+	local headers = RUF.frameList.headers
+	local partyNum = GetNumSubgroupMembers()
+	for i = 1,#headers do
+		local currentHeader = _G['oUF_RUF_' .. headers[i]]
+		currentHeader:SetAttribute('startingIndex',-3 + partyNum)
+		if currentHeader.Enabled then
+			RegisterAttributeDriver(currentHeader,'state-visibility','show')
+		end
 	end
-	oUF_RUF_Party:SetAttribute('startingIndex',-3 + PartyNum)
-	if oUF_RUF_Party.Enabled then
-		RegisterAttributeDriver(oUF_RUF_Party,'state-visibility',"show")
-	end
+
 	for k,v in next,oUF.objects do
 		v.oldUnit = v.unit
 		if v.realUnit then v.oldUnit = v.realUnit end
@@ -843,12 +845,19 @@ end
 function RUF:RestoreUnits()
 	if UnitsSpawned ~= true then return end
 	TestModeToggle = false
-	oUF_RUF_Party:SetAttribute('startingIndex',1)
-	if oUF_RUF_Party.Enabled then
-		RegisterAttributeDriver(oUF_RUF_Party,'state-visibility',oUF_RUF_Party.visibility)
-	else
-		RegisterAttributeDriver(oUF_RUF_Party,'state-visibility',"hide")
+
+	local headers = RUF.frameList.headers
+	local partyNum = GetNumSubgroupMembers()
+	for i = 1,#headers do
+		local currentHeader = _G['oUF_RUF_' .. headers[i]]
+		currentHeader:SetAttribute('startingIndex',1)
+		if currentHeader.Enabled then
+			RegisterAttributeDriver(currentHeader,'state-visibility',currentHeader.visibility)
+		else
+			RegisterAttributeDriver(currentHeader,'state-visibility',"hide")
+		end
 	end
+
 	for k,v in next,oUF.objects do
 		if v.Castbar then
 			v.Castbar:Show()
