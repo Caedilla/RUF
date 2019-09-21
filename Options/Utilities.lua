@@ -810,8 +810,17 @@ function RUF:SpawnUnits()
 	TestModeToggle = true
 
 	local headers = RUF.frameList.headers
-	local partyNum = GetNumSubgroupMembers()
+	local partyNum,petNum = 0,0
+	if IsInGroup() then
+		partyNum = GetNumSubgroupMembers()
+		for i = 1,partyNum do
+			if UnitExists('partypet' .. i) then
+				petNum = petNum + 1
+			end
+		end
+	end
 	for i = 1,#headers do
+		if headers[i] == 'PartyPet' then partyNum = petNum end
 		local currentHeader = _G['oUF_RUF_' .. headers[i]]
 		currentHeader:SetAttribute('startingIndex',-3 + partyNum)
 		if currentHeader.Enabled then

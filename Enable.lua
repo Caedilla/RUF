@@ -212,6 +212,8 @@ function RUF:OnEnable()
 		-- Spawn Headers
 		for i = 1,#headers do
 			local profile = RUF.db.profile.unit[string.lower(headers[i])]
+			local template = 'SecureGroupHeaderTemplate'
+			if headers[i] == 'PartyPet' then template = 'SecureGroupPetHeaderTemplate' end
 			local anchorFrom
 			if profile.Frame.Position.growth == 'BOTTOM' then
 				anchorFrom = 'TOP'
@@ -219,7 +221,7 @@ function RUF:OnEnable()
 				anchorFrom = 'BOTTOM'
 			end
 			self:SpawnHeader(
-				'oUF_RUF_' .. headers[i], nil, 'party',
+				'oUF_RUF_' .. headers[i], template, 'party',
 				'showSolo', false,
 				'showParty', true,
 				'showRaid', false,
@@ -233,7 +235,16 @@ function RUF:OnEnable()
 				profile.Frame.Position.x,
 				profile.Frame.Position.y)
 
-			local partyNum = GetNumSubgroupMembers()
+			local partyNum,petNum = 0,0
+			if IsInGroup() then
+				partyNum = GetNumSubgroupMembers()
+				for i = 1,partyNum do
+					if UnitExists('partypet' .. i) then
+						petNum = petNum + 1
+					end
+				end
+			end
+			if headers[i] == 'PartyPet' then partyNum = petNum end
 			local currentHeader = _G['oUF_RUF_' .. headers[i]]
 			currentHeader.Enabled = profile.Enabled
 			currentHeader:SetAttribute('startingIndex', -3 + partyNum)

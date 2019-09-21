@@ -2595,7 +2595,6 @@ do
 
 
 
-
 	cfg.profile.unit.player.Frame.Indicators.Honor = {
 		Badge = true,
 		AlwaysShow = false,
@@ -2703,6 +2702,9 @@ do
 	cfg.profile.unit.partypet.Frame.Position = {
 		x = 4,
 		y = 0,
+		offsetx = 0,
+		offsety = -4,
+		growth = "BOTTOM",
 		AnchorFrame = 'oUF_RUF_Party',
 		AnchorTo = "BOTTOMRIGHT",
 		AnchorFrom = 'BOTTOMLEFT',

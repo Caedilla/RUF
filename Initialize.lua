@@ -106,7 +106,7 @@ function RUF:OnInitialize()
 		-- No Arena or Boss units in vanilla.
 		headers = {
 			'Party',
-			--'PartyPet',
+			'PartyPet',
 			--'PartyTarget',
 		}
 	end

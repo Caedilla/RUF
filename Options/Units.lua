@@ -9,9 +9,7 @@ local _, PlayerClass = UnitClass('player')
 local tagList = {}
 local localisedTags = {}
 local tagInputs = {}
-local frames = RUF.frameList.frames
-local groupFrames = RUF.frameList.groupFrames
-local headers = RUF.frameList.headers
+local frames,groupFrames,headers
 
 local anchorPoints = {
 	['TOP'] = L["Top"],
@@ -75,7 +73,6 @@ end
 local function UnitGroup(singleFrame, groupFrame, header)
 	local ord, referenceUnit, profileName
 	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
-
 
 	local frameOptions = {
 		name = L[profileName],
@@ -325,7 +322,7 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						type = 'select',
 						name = L["Growth Direction"],
 						desc = L["Grow up or down."],
-						hidden = groupFrame ~= 'boss' or groupFrame ~= 'arena' or groupFrame ~= 'bosstarget' or groupFrame ~= 'arenatarget',
+						hidden = groupFrame == 'none',
 						order = 0.1,
 						values = {
 							TOP = L["Up"],
@@ -352,7 +349,7 @@ local function UnitGroup(singleFrame, groupFrame, header)
 					partyFrameSortOrder = {
 						type = 'select',
 						name = L["Sort Direction"],
-						hidden = header ~= 'party' or header ~= 'partypet' or header ~= 'partytarget',
+						hidden = header == 'none',
 						order = 0.1,
 						values = {
 							TOP = L["Up"],
@@ -379,7 +376,13 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						type = 'range',
 						name = L["X Spacing"],
 						desc = L["Horizontal Offset from the previous unit in the group."],
-						hidden = groupFrame == 'none',
+						hidden = function()
+							if groupFrame ~= 'none' or header ~= 'none' then
+								return false
+							else
+								return true
+							end
+						end,
 						order = 0.11,
 						min = -5000,
 						max = 5000,
@@ -399,7 +402,13 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						type = 'range',
 						name = L["Y Spacing"],
 						desc = L["Vertical Offset from the previous unit in the group."],
-						hidden = groupFrame == 'none',
+						hidden = function()
+							if groupFrame ~= 'none' or header ~= 'none' then
+								return false
+							else
+								return true
+							end
+						end,
 						order = 0.12,
 						min = -5000,
 						max = 5000,
@@ -2272,6 +2281,10 @@ function RUF_Options.GenerateUnits()
 	wipe(tagList)
 	wipe(localisedTags)
 	wipe(tagInputs)
+	frames = RUF.frameList.frames
+	groupFrames = RUF.frameList.groupFrames
+	headers = RUF.frameList.headers
+
 	for k,v in pairs(RUF.db.profile.Appearance.Text) do
 		if v ~= '' then
 			table.insert(tagList,k)
