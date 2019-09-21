@@ -1,4 +1,7 @@
-# RUF r201-Alpha
+# RUF r202-Alpha
+### New
+* Added Party Pets as a supported Unit. Default options need work.
+
 ### Fixed
 * Range Fading should be far more accurate for assistable, friendly units (i.e party members or friendly NPCs that you can buff or heal).
 
