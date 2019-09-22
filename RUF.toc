@@ -37,6 +37,9 @@ Defaults.lua
 Utilities.lua
 
 Elements\Frame\Background.lua
+Elements\Frame\Border.lua
+Elements\Frame\CombatFader.lua
+Elements\Frame\Portrait.lua
 
 Elements\Bars\Shared.lua
 Elements\Bars\Absorb.lua
