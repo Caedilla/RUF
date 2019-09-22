@@ -92,6 +92,9 @@ function RUF:UpdateOptions()
 end
 
 function RUF_Options:RefreshConfig()
+	if RUF.db.global.TestMode == true then
+		RUF:TestMode()
+	end
 	RUF.db.profile = self.db.profile
 	RUF:UpdateOptions()
 end

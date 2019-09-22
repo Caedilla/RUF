@@ -145,6 +145,9 @@ function RUF:ResetProfile()
 end
 
 function RUF:RefreshConfig()
+	if RUF.db.global.TestMode == true then
+		RUF:TestMode()
+	end
 	RUF.db.profile = self.db.profile
 	RUF:UpdateAllUnitSettings()
 end

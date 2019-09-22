@@ -260,7 +260,6 @@ function RUF:OptionsUpdateAllIndicators()
 
 	for i = 1,#frames do
 		if _G['oUF_RUF_' .. frames[i]] then
-			RUF.RefreshTextElements(frames[i],nil,nil,-1)
 			for k,v in pairs(RUF.db.profile.unit[string.lower(frames[i])].Frame.Indicators) do
 				if v ~= '' then
 					RUF:OptionsUpdateIndicators(frames[i],nil,nil,k)
@@ -270,9 +269,6 @@ function RUF:OptionsUpdateAllIndicators()
 	end
 	for i = 1,#groupFrames do
 		if _G['oUF_RUF_' .. groupFrames[i]] then
-			for groupNum = 1,5 do
-				RUF.RefreshTextElements(nil,groupFrames[i],nil,groupNum)
-			end
 			for k,v in pairs(RUF.db.profile.unit[string.lower(groupFrames[i])].Frame.Indicators) do
 				if v ~= '' then
 					RUF:OptionsUpdateIndicators(nil,groupFrames[i],nil,k)
@@ -282,14 +278,9 @@ function RUF:OptionsUpdateAllIndicators()
 	end
 	for i = 1,#headers do
 		if _G['oUF_RUF_' .. headers[i]] then
-			local headerUnits = { _G['oUF_RUF_' .. headers[i]]:GetChildren() }
-			headerUnits[#headerUnits] = nil -- Remove MoveBG from list
-			for groupNum = 1,#headerUnits do
-				RUF.RefreshTextElements(nil,headers[i],nil,groupNum)
-			end
-			for k,v in pairs(RUF.db.profile.unit[string.lower(groupFrames[i])].Frame.Indicators) do
+			for k,v in pairs(RUF.db.profile.unit[string.lower(headers[i])].Frame.Indicators) do
 				if v ~= '' then
-					RUF:OptionsUpdateIndicators(nil,groupFrames[i],nil,k)
+					RUF:OptionsUpdateIndicators(nil,nil,headers[i],k)
 				end
 			end
 		end
@@ -460,11 +451,11 @@ function RUF:OptionsUpdateAllTexts()
 			local headerUnits = { _G['oUF_RUF_' .. headers[i]]:GetChildren() }
 			headerUnits[#headerUnits] = nil -- Remove MoveBG from list
 			for groupNum = 1,#headerUnits do
-				RUF.RefreshTextElements(nil,headers[i],nil,groupNum)
+				RUF.RefreshTextElements(nil,nil,headers[i],groupNum)
 			end
-			for k,v in pairs(RUF.db.profile.unit[string.lower(groupFrames[i])].Frame.Text) do
+			for k,v in pairs(RUF.db.profile.unit[string.lower(headers[i])].Frame.Text) do
 				if v ~= '' then
-					RUF:OptionsUpdateTexts(nil,groupFrames[i],nil,k)
+					RUF:OptionsUpdateTexts(nil,nil,headers[i],k)
 				end
 			end
 		end
@@ -578,26 +569,6 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 			else
 				unitFrame:Enable()
 			end
-		else
-			local headerFrame = _G['oUF_RUF_' .. header]
-			headerFrame.Enabled = profileReference.Enabled
-			if RUF.db.global.TestMode == true then
-				if profileReference.Enabled == false then
-					RegisterAttributeDriver(headerFrame,'state-visibility',"hide")
-					unitFrame:Hide()
-				else
-					RegisterAttributeDriver(headerFrame,'state-visibility',"show")
-					unitFrame:Show()
-				end
-			else
-				if profileReference.Enabled == false then
-					unitFrame:Disable()
-					RegisterAttributeDriver(headerFrame,'state-visibility',"hide")
-				else
-					unitFrame:Enable()
-					RegisterAttributeDriver(headerFrame,'state-visibility',headerFrame.visibility)
-				end
-			end
 		end
 
 		if profileReference.Frame.RangeFading.Enabled == true then
@@ -640,20 +611,40 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 			elseif profileReference.Frame.Position.growth == "TOP" then
 				anchorFrom = "BOTTOM"
 			end
-			local showIn = '[group:party,nogroup:raid] show;hide'
-			if profileReference.showRaid then
-				showIn = '[group:party,nogroup:raid] show;[group:raid] show;hide'
-			end
+
 			headerFrame:SetAttribute("Point",anchorFrom)
 			headerFrame:SetAttribute('yOffset',profileReference.Frame.Position.offsety)
-			headerFrame.visibility = showIn
-			RegisterAttributeDriver(headerFrame,'state-visibility',headerFrame.visibility)
-			for i = 1, 5 do -- Refresh all anchors after changing yOffset to prevent fuckery.
-				if _G['oUF_RUF_' .. header .. 'UnitButton' .. i] then
-					_G['oUF_RUF_' .. header .. 'UnitButton' .. i]:ClearAllPoints()
+			RUF:UpdateFramePosition(headerFrame,singleFrame,groupFrame,header)
+			headerFrame.Enabled = profileReference.Enabled
+
+			if RUF.db.global.TestMode == true then
+				unitFrame:Disable()
+				if profileReference.Enabled == false then
+					headerFrame.visibility = 'hide'
+					RegisterAttributeDriver(headerFrame,'state-visibility',"hide")
+					unitFrame:Hide()
+				else
+					headerFrame.visibility = 'show'
+					RegisterAttributeDriver(headerFrame,'state-visibility',"show")
+					unitFrame:Show()
+				end
+			else
+				if profileReference.Enabled == false then
+					unitFrame:Disable()
+					headerFrame.visibility = 'hide'
+					RegisterAttributeDriver(headerFrame,'state-visibility',"hide")
+				else
+					unitFrame:Enable()
+					local showIn = '[group:party,nogroup:raid] show;hide'
+					if profileReference.showRaid then
+						showIn = '[group:party,nogroup:raid] show;[group:raid] show;hide'
+					end
+					headerFrame.visibility = showIn
+					RegisterAttributeDriver(headerFrame,'state-visibility',headerFrame.visibility)
 				end
 			end
-			RUF:UpdateFramePosition(headerFrame,singleFrame,groupFrame,header)
+			unitFrame:ClearAllPoints()
+
 		end
 
 	end
@@ -748,6 +739,7 @@ function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
 				bar = 'ClassicClassPower'
 			end
 		end
+		if not unitFrame[bar] then return end
 		unitFrame[bar].UpdateOptions(unitFrame[bar])
 		unitFrame[bar]:ForceUpdate()
 		if bar then

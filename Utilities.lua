@@ -303,6 +303,7 @@ function RUF.RefreshTextElements(singleFrame,groupFrame,header,groupNum)
 	else
 		currentUnit = singleFrame
 	end
+
 	unitFrame = _G['oUF_RUF_' .. currentUnit]
 
 	local profileTexts = {}
