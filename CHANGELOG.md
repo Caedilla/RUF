@@ -3,7 +3,6 @@
 * Combo Points supported in Classic under Class Power options.
 * Added Show in raid option for Party & Party Pets to enable showing these units in a raid group.
 * Added Party Pets as a supported Unit. Default options need work.
-* Added Portraits.
 
 ### Fixed
 * Castbars should properly enable and disable themselves now.

@@ -7,8 +7,8 @@ function RUF.SetFramePortrait(self, unit)
 	-- 3D Portrait
 	-- Position and size
 	local Portrait = CreateFrame('PlayerModel', nil, self)
-	Portrait:SetSize(32, 32)
-	Portrait:SetPoint('RIGHT', self, 'LEFT')
+	--Portrait:SetSize(32, 32)
+	Portrait:SetAllPoints(self)
 
 	-- Register it with oUF
 	self.Portrait = Portrait

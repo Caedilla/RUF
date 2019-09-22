@@ -97,7 +97,8 @@ local function SetupFrames(self,unit)
 		end
 	end
 
-	RUF.SetFramePortrait(self,unit)
+	-- TODO Portrait Options
+	--RUF.SetFramePortrait(self,unit)
 
 
 	if unit == 'player' or unit == 'target' then
