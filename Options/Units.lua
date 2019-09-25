@@ -2291,6 +2291,39 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 	return castBarOptions
 end
 
+local function PortraitSettings(singleFrame, groupFrame, header)
+	local ord, referenceUnit, profileName
+	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
+
+	local portraitOptions = {
+		name = L["Portrait"],
+		type = 'group',
+		order = 15,
+		args = {
+			enabled = {
+				name = function()
+					if RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then
+						return '|cFF00FF00'..L["Enabled"]..'|r'
+					else
+						return '|cFFFF0000'..L["Enabled"]..'|r'
+					end
+				end,
+				type = 'toggle',
+				order = 0,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Portrait.Enabled
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Portrait.Enabled = value
+					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+				end,
+			},
+		},
+	}
+
+	return portraitOptions
+end
+
 function RUF_Options.GenerateUnits()
 	wipe(tagList)
 	wipe(localisedTags)
@@ -2324,6 +2357,7 @@ function RUF_Options.GenerateUnits()
 		Units.args[frames[i]].args.buffOptions = BuffSettings(frames[i])
 		Units.args[frames[i]].args.debuffOptions = DebuffSettings(frames[i])
 		Units.args[frames[i]].args.castBarOptions = CastBarSettings(frames[i])
+		--Units.args[frames[i]].args.portraitOptions = PortraitSettings(frames[i])
 	end
 	for i = 1,#groupFrames do
 		Units.args[groupFrames[i]] = UnitGroup(nil,groupFrames[i])
@@ -2333,6 +2367,7 @@ function RUF_Options.GenerateUnits()
 		Units.args[groupFrames[i]].args.buffOptions = BuffSettings(nil,groupFrames[i])
 		Units.args[groupFrames[i]].args.debuffOptions = DebuffSettings(nil,groupFrames[i])
 		Units.args[groupFrames[i]].args.castBarOptions = CastBarSettings(nil,groupFrames[i])
+		--Units.args[groupFrames[i]].args.portraitOptions = PortraitSettings(nil,groupFrames[i])
 	end
 	for i = 1,#headers do
 		Units.args[headers[i]] = UnitGroup(nil,nil,headers[i])
@@ -2342,6 +2377,7 @@ function RUF_Options.GenerateUnits()
 		Units.args[headers[i]].args.buffOptions = BuffSettings(nil,nil,headers[i])
 		Units.args[headers[i]].args.debuffOptions = DebuffSettings(nil,nil,headers[i])
 		Units.args[headers[i]].args.castBarOptions = CastBarSettings(nil,nil,headers[i])
+		--Units.args[headers[i]].args.portraitOptions = PortraitSettings(nil,nil,headers[i])
 	end
 
 	return Units
