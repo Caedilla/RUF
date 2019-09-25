@@ -734,7 +734,6 @@ local function TextSettings(singleFrame, groupFrame, header)
 		},
 	}
 
-
 	-- Generate list of text elements
 	local textList = {}
 	for k,v in pairs(RUF.db.profile.unit[profileName].Frame.Text) do

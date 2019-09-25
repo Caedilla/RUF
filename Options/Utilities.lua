@@ -49,38 +49,32 @@ function RUF:UpdateFramePosition(unitFrame,singleFrame,groupFrame,header,i,ancho
 		profileReference = RUF.db.profile.unit[string.lower(header)].Frame.Position
 	else
 		if i == -1 then
-			profileReference = RUF.db.profile.unit[string.lower(groupFrame)].Frame.Position
-		else
 			profileReference = RUF.db.profile.unit[string.lower(singleFrame)].Frame.Position
+		else
+			profileReference = RUF.db.profile.unit[string.lower(groupFrame)].Frame.Position
 		end
 	end
-
 
 	anchorFrom = anchorFrom or profileReference.AnchorFrom
 	anchorFrame = anchorFrame or profileReference.AnchorFrame
 	anchorTo = anchorTo or profileReference.AnchorTo
 	offsetX = offsetX or profileReference.x
 	offsetY = offsetY or profileReference.y
-	if not i then
+	if not i or i == -1 or i == 1 then
 		unitFrame:ClearAllPoints()
 		unitFrame:SetPoint(anchorFrom,anchorFrame,anchorTo,offsetX,offsetY)
 	else
-		if i == 1 then
-			unitFrame:ClearAllPoints()
-			unitFrame:SetPoint(anchorFrom,anchorFrame,anchorTo,offsetX,offsetY)
-		else
-			local groupAnchorFrom
-			if profileReference.growth == "BOTTOM" then
-				groupAnchorFrom = "TOP"
-			elseif profileReference.growth == "TOP" then
-				groupAnchorFrom = "BOTTOM"
-			end
-			local spacingX = profileReference.offsetx
-			local spacingY = profileReference.offsety
-			local _,originalAnchorFrame,originalAnchorTo = unitFrame:GetPoint()
-			unitFrame:ClearAllPoints()
-			unitFrame:SetPoint(groupAnchorFrom,originalAnchorFrame,profileReference.growth,spacingX,spacingY)
+		local groupAnchorFrom
+		if profileReference.growth == "BOTTOM" then
+			groupAnchorFrom = "TOP"
+		elseif profileReference.growth == "TOP" then
+			groupAnchorFrom = "BOTTOM"
 		end
+		local spacingX = profileReference.offsetx
+		local spacingY = profileReference.offsety
+		local _,originalAnchorFrame = unitFrame:GetPoint()
+		unitFrame:ClearAllPoints()
+		unitFrame:SetPoint(groupAnchorFrom,originalAnchorFrame,profileReference.growth,spacingX,spacingY)
 	end
 
 end
@@ -435,9 +429,11 @@ function RUF:OptionsUpdateAllTexts()
 		end
 	end
 	for i = 1,#groupFrames do
-		if _G['oUF_RUF_' .. groupFrames[i]] then
+		if _G['oUF_RUF_' .. groupFrames[i] .. '1'] then
 			for groupNum = 1,5 do
-				RUF.RefreshTextElements(nil,groupFrames[i],nil,groupNum)
+				if _G['oUF_RUF_' .. groupFrames[i] .. i] then
+					RUF.RefreshTextElements(nil,groupFrames[i],nil,groupNum)
+				end
 			end
 			for k,v in pairs(RUF.db.profile.unit[string.lower(groupFrames[i])].Frame.Text) do
 				if v ~= '' then
@@ -586,7 +582,7 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 		unitFrame:SetHeight(profileReference.Frame.Size.Height)
 
 		if i == -1 then
-			RUF:UpdateFramePosition(unitFrame,singleFrame)
+			RUF:UpdateFramePosition(unitFrame,singleFrame,groupFrame,header,i)
 		end
 
 		if groupFrame ~= 'none' then

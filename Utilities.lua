@@ -295,13 +295,14 @@ function RUF.RefreshTextElements(singleFrame,groupFrame,header,groupNum)
 	if not groupFrame then groupFrame = 'none' end
 	if not header then header = 'none' end
 	local currentUnit,unitFrame,profileReference
-
 	if header ~= 'none' then
 		currentUnit = header .. 'UnitButton' .. groupNum
 	elseif groupFrame ~= 'none' then
 		currentUnit = groupFrame .. groupNum
-	else
+	elseif singleFrame ~= 'none' then
 		currentUnit = singleFrame
+	else
+		return
 	end
 
 	unitFrame = _G['oUF_RUF_' .. currentUnit]
