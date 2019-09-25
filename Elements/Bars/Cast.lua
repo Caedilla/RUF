@@ -212,10 +212,13 @@ function RUF.SetCastBar(self, unit)
 	--Icon:SetPoint('TOPLEFT', Castbar, 'TOPLEFT')
 
 	-- Safe Zone
-	local SafeZone = Bar:CreateTexture(nil, 'OVERLAY')
-	local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
-	local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
-	SafeZone:SetColorTexture(sr, sg, sb, sa)
+	if unit == 'player' then
+		local SafeZone = Bar:CreateTexture(nil, 'OVERLAY')
+		local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+		local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+		SafeZone:SetColorTexture(sr, sg, sb, sa)
+		Bar.SafeZone = SafeZone
+	end
 
 	-- Register with oUF
 	Bar.Background = Background
@@ -224,7 +227,6 @@ function RUF.SetCastBar(self, unit)
 	Bar.Text = Text
 	--Bar.Spark = Spark
 	--Bar.Icon = Icon
-	Bar.SafeZone = SafeZone
 	self.Cast = Bar
 
 	self.Cast.OnUpdate = onUpdate
@@ -250,12 +252,14 @@ function RUF.CastInterrupted(element, unit, name)
 		r,g,b = RUF:GetBarColor(element, unit, "Cast")
 	end
 	element:SetStatusBarColor(r,g,b)
-	if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
-		local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
-		local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
-		element.SafeZone:SetColorTexture(sr, sg, sb, sa)
-	else
-		element.SafeZone:SetColorTexture(0, 0, 0, 0)
+	if element.SafeZone then
+		if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
+			local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+			local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+			element.SafeZone:SetColorTexture(sr, sg, sb, sa)
+		else
+			element.SafeZone:SetColorTexture(0, 0, 0, 0)
+		end
 	end
 	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
 		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
@@ -276,12 +280,14 @@ function RUF.CastUpdate(element, unit, name)
 		r,g,b = RUF:GetBarColor(element, unit, "Cast")
 	end
 	element:SetStatusBarColor(r,g,b)
-	if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
-		local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
-		local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
-		element.SafeZone:SetColorTexture(sr, sg, sb, sa)
-	else
-		element.SafeZone:SetColorTexture(0, 0, 0, 0)
+	if element.SafeZone then
+		if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
+			local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+			local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+			element.SafeZone:SetColorTexture(sr, sg, sb, sa)
+		else
+			element.SafeZone:SetColorTexture(0, 0, 0, 0)
+		end
 	end
 	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
 		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
@@ -302,12 +308,14 @@ function RUF.ChannelUpdate(element, unit, name)
 		r,g,b = RUF:GetBarColor(element, unit, "Cast")
 	end
 	element:SetStatusBarColor(r,g,b)
-	if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
-		local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
-		local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
-		element.SafeZone:SetColorTexture(sr, sg, sb, sa)
-	else
-		element.SafeZone:SetColorTexture(0, 0, 0, 0)
+	if element.SafeZone then
+		if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
+			local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+			local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+			element.SafeZone:SetColorTexture(sr, sg, sb, sa)
+		else
+			element.SafeZone:SetColorTexture(0, 0, 0, 0)
+		end
 	end
 	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
 		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
