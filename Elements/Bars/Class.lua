@@ -168,17 +168,18 @@ function RUF.ClassUpdate(self, event, unit, powerType)
 		return
 	end
 
-	local cur, max, oldMax
+	local cur, max, oldMax, mod
 	if event ~= 'ClassPowerDisable' then
 		local powerID = unit == 'vehicle' and SPELL_POWER_COMBO_POINTS or classPowerData[uClass].classPowerID
 		cur = UnitPower(unit, powerID, true)
 		max = UnitPowerMax(unit, powerID)
+		mod = UnitPowerDisplayMod(powerID)
+		cur = mod == 0 and 0 or cur / mod
 
 		if(classPowerData[uClass].classPowerType == 'SOUL_SHARDS' and GetSpecialization() ~= SPEC_WARLOCK_DESTRUCTION) then
 			cur = cur - cur % 1
 		end
 
-		local numActive = cur + 0.9
 		local size = (RUF.db.profile.unit[self.frame].Frame.Size.Width + (max-1)) / max
 		if event == 'UNIT_MAXPOWER' or event == 'PLAYER_TALENT_UPDATE' or event == 'ClassPowerEnable' or event == 'ForceUpdate' then
 			for i = 1, #element do
@@ -205,11 +206,13 @@ function RUF.ClassUpdate(self, event, unit, powerType)
 		if RUF.db.global.TestMode == true then
 			cur = math.random(0,max)
 		end
+
+		local numActive = cur + 0.9
 		for i = 1, #element do
-			if cur >= i then
-				element[i]:SetValue(cur)
-			else
+			if(i > numActive) then
 				element[i]:SetValue(0)
+			else
+				element[i]:SetValue(cur - i + 1)
 			end
 		end
 
