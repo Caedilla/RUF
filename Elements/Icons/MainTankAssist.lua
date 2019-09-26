@@ -101,7 +101,7 @@ oUF:AddElement('MainTankAssistIndicator', Path, Enable, Disable)
 
 
 function RUF.Indicators.MainTankAssist(self, unit)
-	if unit == 'pet' or unit == 'boss' or unit == 'arena' then return end
+	if unit == 'pet' or unit == 'partypet' or unit == 'boss' or unit == 'arena' then return end
 
 	local element = self.Indicators:CreateFontString(self:GetName()..'.MainTankAssistIndicator', 'OVERLAY')
 	element:SetPoint(

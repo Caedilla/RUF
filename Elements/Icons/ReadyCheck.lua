@@ -61,6 +61,7 @@ local function Update(self, event)
 			element:SetText(elementStringYes)
 			element:SetWidth(element:GetStringWidth()+2)
 			element:SetTextColor(46/255,255/255,0)
+			element:Show()
 		end
 	else
 		self:DisableElement('ReadyIndicator')
@@ -134,7 +135,7 @@ oUF:AddElement('ReadyIndicator', Path, Enable, Disable)
 
 
 function RUF.Indicators.Ready(self, unit)
-	if unit == 'pet' or unit == 'boss' or unit == 'arena' then return end
+	if unit == 'pet' or unit == 'partypet' or unit == 'boss' or unit == 'arena' then return end
 
 	local element = self.Indicators:CreateFontString(self:GetName()..'.ReadyIndicator', 'OVERLAY')
 	element:SetPoint(

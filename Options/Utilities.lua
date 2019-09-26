@@ -262,7 +262,7 @@ function RUF:OptionsUpdateAllIndicators()
 		end
 	end
 	for i = 1,#groupFrames do
-		if _G['oUF_RUF_' .. groupFrames[i]] then
+		if _G['oUF_RUF_' .. groupFrames[i] .. '1'] then
 			for k,v in pairs(RUF.db.profile.unit[string.lower(groupFrames[i])].Frame.Indicators) do
 				if v ~= '' then
 					RUF:OptionsUpdateIndicators(nil,groupFrames[i],nil,k)

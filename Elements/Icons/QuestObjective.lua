@@ -99,7 +99,7 @@ oUF:AddElement('ObjectiveIndicator', Path, Enable, Disable)
 
 
 function RUF.Indicators.Objective(self, unit)
-	if unit == 'player' or unit == 'party' or unit == 'arena' then return end
+	if unit == 'player' or unit == 'pet' or unit == 'party' or unit == 'partypet' or unit == 'arena' then return end
 
 	local element = self.Indicators:CreateFontString(self:GetName()..'.ObjectiveIndicator', 'OVERLAY')
 	element:SetPoint(

@@ -129,6 +129,8 @@ oUF:AddElement('PvPCombatIndicator', Path, Enable, Disable)
 
 
 function RUF.Indicators.PvPCombat(self, unit)
+	if unit == 'boss' then return end
+
 	local element = self.Indicators:CreateFontString(self:GetName()..'.PvPCombatIndicator', 'OVERLAY')
 	element:SetPoint(
 		RUF.db.profile.unit[unit].Frame.Indicators[elementName].Position.AnchorFrom,

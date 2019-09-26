@@ -1,4 +1,4 @@
-# RUF r205-Alpha
+# RUF r206-Release
 ### New
 * Combo Points supported in Classic under Class Power options.
 * Added Show in raid option for Party & Party Pets to enable showing these units in a raid group.

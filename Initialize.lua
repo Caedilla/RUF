@@ -92,7 +92,7 @@ function RUF:OnInitialize()
 		}
 		headers = {
 			'Party',
-			--'PartyPet',
+			'PartyPet',
 			--'PartyTarget',
 		}
 	else

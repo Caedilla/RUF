@@ -89,7 +89,7 @@ oUF:AddElement('LeadIndicator', Path, Enable, Disable)
 
 
 function RUF.Indicators.Lead(self, unit)
-	if unit == 'pet' or unit == 'boss' or unit == 'arena' then return end
+	if unit == 'pet' or unit == 'boss' or unit == 'arena' or unit == 'partypet' then return end
 
 	local element = self.Indicators:CreateFontString(self:GetName()..'.LeadIndicator', 'OVERLAY')
 	element:SetPoint(

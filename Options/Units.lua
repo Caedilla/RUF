@@ -1050,18 +1050,40 @@ local function HideIndicatorOptions(profileName,indicator)
 			return true
 		end
 	end
-	if profileName == 'pet' then
-		if indicator == 'Objective' or indicator == 'Phased' or indicator == 'Role' or indicator == 'Honor' then
+	if profileName == 'player' then
+		if indicator == 'Objective' or indicator == 'Phased' then
+			return true
+		else
+			return false
+		end
+	elseif profileName == 'party' then
+		if indicator == 'Objective' then
+			return true
+		else
+			return false
+		end
+	elseif profileName == 'arena' then
+		if indicator == 'Assist' or indicator == 'Lead' or indicator == 'MainTankAssist' or indicator == 'Objective' or indicator == 'Ready' then
+			return true
+		else
+			return false
+		end
+	elseif profileName == 'pet' then
+		if indicator == 'TargetMark' or indicator == 'PvPCombat' then
+			return false
+		else
+			return true
+		end
+	elseif profileName == 'partypet' then
+		if indicator == 'TargetMark' or indicator == 'Phased' or indicator == 'PvPCombat' then
+			return false
+		else
 			return true
 		end
 	elseif profileName == 'boss' then
 		if indicator == 'Phased' or indicator == 'Objective' or indicator == 'TargetMark' then
 			return false
 		else
-			return true
-		end
-	elseif profileName == 'arena' then
-		if indicator == 'Assist' or indicator == 'Lead' or indicator == 'MainTankAssist' or indicator == 'Objective' or indicator == 'Ready' then
 			return true
 		end
 	end

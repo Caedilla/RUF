@@ -18,7 +18,6 @@ local oUF = ns.oUF
 	local mstring = '[RUF:ManaPerc][RUF:ManaPerc]'
 
 	for a in mstring:gmatch(pattern) do
-	print(a)
 	end
 
 

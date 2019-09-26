@@ -104,7 +104,7 @@ end
 oUF:AddElement('RoleIndicator', Path, Enable, Disable)
 
 function RUF.Indicators.Role(self, unit)
-	if unit == 'boss' then return end
+	if unit == 'boss' or unit == 'partypet' or unit == 'pet' then return end
 
 	local element = self.Indicators:CreateFontString(self:GetName()..'.RoleIndicator', 'OVERLAY')
 	element:SetPoint(

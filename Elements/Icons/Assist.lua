@@ -90,7 +90,7 @@ oUF:AddElement('AssistIndicator', Path, Enable, Disable)
 
 
 function RUF.Indicators.Assist(self, unit)
-	if unit == 'boss' or unit == 'arena' then return end
+	if unit == 'boss' or unit == 'arena' or unit == 'partypet' or unit == 'pet' then return end
 
 	local element = self.Indicators:CreateFontString(self:GetName()..'.AssistIndicator', 'OVERLAY')
 	element:SetPoint(

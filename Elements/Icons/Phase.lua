@@ -94,7 +94,7 @@ oUF:AddElement('PhasedIndicator', Path, Enable, Disable)
 
 
 function RUF.Indicators.Phased(self, unit)
-	if unit == 'player' then return end
+	if unit == 'player' or unit == 'pet' then return end
 
 	local element = self.Indicators:CreateFontString(self:GetName()..'.PhasedIndicator', 'OVERLAY')
 	element:SetPoint(
