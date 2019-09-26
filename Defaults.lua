@@ -788,7 +788,7 @@ local cfg = {
 								["y"] = 0,
 								["x"] = 1,
 								["AnchorTo"] = "LEFT",
-								["Anchor"] = "LEFT",
+								["Anchor"] = "RIGHT",
 								["AnchorFrame"] = "Power",
 							},
 							["Size"] = 18,
