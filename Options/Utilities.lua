@@ -911,15 +911,22 @@ function RUF:UpdateAllUnitSettings()
 
 	for i = 1,#frames do
 		RUF:OptionsUpdateFrame(frames[i])
+		RUF:OptionsUpdateAuras(frames[i],nil,nil,'Buffs')
+		RUF:OptionsUpdateAuras(frames[i],nil,nil,'Debuffs')
 	end
 	for i = 1,#groupFrames do
 		RUF:OptionsUpdateFrame(nil,groupFrames[i])
+		RUF:OptionsUpdateAuras(nil,groupFrames[i],nil,'Buffs')
+		RUF:OptionsUpdateAuras(nil,groupFrames[i],nil,'Debuffs')
 	end
 	for i = 1,#headers do
 		RUF:OptionsUpdateFrame(nil,nil,headers[i])
+		RUF:OptionsUpdateAuras(nil,nil,headers[i],'Buffs')
+		RUF:OptionsUpdateAuras(nil,nil,headers[i],'Debuffs')
 	end
 
 	RUF:OptionsUpdateAllBars()
 	RUF:OptionsUpdateAllTexts()
 	RUF:OptionsUpdateAllIndicators()
+	RUF:OptionsUpdateAllAuras()
 end

@@ -13322,7 +13322,7 @@ local Raeli = {
 			},
 		},
 		["pettarget"] = {
-			["Enabled"] = true,
+			["Enabled"] = false,
 			["Frame"] = {
 				["Indicators"] = {
 					["Objective"] = {
