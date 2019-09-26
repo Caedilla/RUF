@@ -278,7 +278,7 @@ function RUF:OnEnable()
 			Background:SetVertexColor(0,0,0,0)
 			MoveBG:SetFrameStrata('HIGH')
 			MoveBG:Hide()
-
+			currentHeader.MoveBG = MoveBG
 		end
 
 		-- Spawn single frames for Boss and Arena units
@@ -323,3 +323,15 @@ function RUF:OnEnable()
 		end
 	end
 end
+
+--[[]
+local frame = CreateFrame("Frame")
+frame:RegisterEvent("PLAYER_LOGOUT")
+
+frame:SetScript("OnEvent", function(self, event, arg1)
+	if event == "PLAYER_LOGOUT" then
+		for k,v in pairs(RUFDB.profiles) do
+			RUF:copyTable(RUF.Layout.cfg.profile,RUFDB.profiles[k])
+		end
+	end
+end)]]--

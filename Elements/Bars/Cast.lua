@@ -39,7 +39,7 @@ local function onUpdate(self, elapsed)
 			self:SetMinMaxValues(0,30)
 			self:SetValue(duration)
 			self.Time:SetFormattedText('%.1f', duration)
-			self.Text:SetText(L["Cast Bar"])
+			self.Text:SetText(L["Cast Bar"].." - "..L[self.__owner.frame])
 		else
 			self.testDuration = 0
 		end
