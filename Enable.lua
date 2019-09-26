@@ -324,14 +324,11 @@ function RUF:OnEnable()
 	end
 end
 
---[[]
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGOUT")
 
 frame:SetScript("OnEvent", function(self, event, arg1)
 	if event == "PLAYER_LOGOUT" then
-		for k,v in pairs(RUFDB.profiles) do
-			RUF:copyTable(RUF.Layout.cfg.profile,RUFDB.profiles[k])
-		end
+		RUF:copyTable(RUF.Layout["Alidie's Layout"],RUFDB.profiles["Alidie's Layout"])
 	end
-end)]]--
+end)

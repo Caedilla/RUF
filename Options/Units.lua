@@ -861,6 +861,7 @@ local function TextSettings(singleFrame, groupFrame, header)
 							RUF.db.profile.unit[profileName].Frame.Text[textList[i]].Position.AnchorFrame = 'Frame'
 						end
 						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
+						RUF:UpdateOptions()
 					end,
 				},
 				anchorFrom = {
@@ -1127,7 +1128,7 @@ local function IndicatorSettings(singleFrame,groupFrame,header)
 				if k ~= indicators[i] then
 					local targetIndicator = k..'Indicator'
 					if RUF:CanAttach(_G['oUF_RUF_' .. referenceUnit][currentIndicator],_G['oUF_RUF_' .. referenceUnit][targetIndicator]) then
-						indicatorAnchors[k] = k
+						indicatorAnchors[k] = L[k]
 					end
 				end
 			end
@@ -1239,7 +1240,6 @@ local function IndicatorSettings(singleFrame,groupFrame,header)
 					values = indicatorAnchors,
 					order = 6,
 					get = function(info)
-						RUF:UpdateOptions()
 						return RUF.db.profile.unit[profileName].Frame.Indicators[indicators[i]].Position.AnchorFrame
 					end,
 					set = function(info, value)
