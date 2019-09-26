@@ -6,8 +6,8 @@
 * Added Show in raid option for Party & Party Pets to enable showing these units in a raid group.
 
 ### Changed
+* Interface version updated for 8.2.5
 * Castbar updates are throttled slightly to reduce performance impact further. Shouldn't result in any noticeable difference in smoothness.
-
 * The Default profile, Raeli's Layout, and Alidie's Layout have been updated to better suit all of the recent additions and changes. You may find that some of your settings have changed due to this. Apologies for any inconvenience.
 
 
