@@ -391,7 +391,7 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						name = L["X Spacing"],
 						desc = L["Horizontal Offset from the previous unit in the group."],
 						hidden = function()
-							if groupFrame ~= 'none' or header ~= 'none' then
+							if groupFrame ~= 'none' then
 								return false
 							else
 								return true
