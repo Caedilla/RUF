@@ -45,10 +45,10 @@ function RUF:copyTable(src, dest)
 				-- try to index the key first so that the metatable creates the defaults, if set, and use that table
 				v = RUF:copyTable(v, dest[k])
 			end
-			if dest[k] then
-			else
+			--if dest[k] then
+			--else
 				dest[k] = v
-			end
+			--end
 		end
 	end
 	return dest

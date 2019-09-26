@@ -4955,56 +4955,8 @@ RUF.Layout.cfg = cfg
 
 local Alidie = {
 	["Appearance"] = {
-		["Text"] = {
-			["HPPerc"] = {
-				["Color"] = {
-					["PercentageAtMax"] = false,
-					["PercentageGradient"] = {
-						[3] = 0.215686274509804,
-						[6] = 1,
-						[7] = 1,
-						[9] = 1,
-					},
-				},
-			},
-			["Name"] = {
-				["Color"] = {
-					["Level"] = true,
-				},
-				["Case"] = 0,
-				["CharLimit"] = 12,
-			},
-			["CurHPPerc"] = {
-				["Color"] = {
-					["PercentageAtMax"] = false,
-					["PercentageGradient"] = {
-						[3] = 0.215686274509804,
-						[6] = 1,
-						[7] = 1,
-						[9] = 1,
-					},
-				},
-			},
-			["CurHP"] = {
-				["Color"] = {
-					["PercentageAtMax"] = false,
-					["PercentageGradient"] = {
-						[3] = 0.215686274509804,
-						[6] = 1,
-						[7] = 1,
-						[9] = 1,
-					},
-				},
-			},
-		},
 		["Colors"] = {
-			["PowerColors"] = {
-				[13] = {
-					0.462745098039216, -- [1]
-					0.105882352941176, -- [2]
-					0.823529411764706, -- [3]
-				},
-			},
+			["UseClassColors"] = false,
 			["ReactionColors"] = {
 				nil, -- [1]
 				nil, -- [2]
@@ -5047,90 +4999,107 @@ local Alidie = {
 			},
 			["ClassColors"] = {
 				["DEATHKNIGHT"] = {
-					0.77, -- [1]
-					0.12, -- [2]
-					0.23, -- [3]
+					0.7686257362365723, -- [1]
+					0.117646798491478, -- [2]
+					0.2274504750967026, -- [3]
 				},
 				["WARRIOR"] = {
-					0.78, -- [1]
-					0.61, -- [2]
-					0.43, -- [3]
+					0.7764688730239868, -- [1]
+					0.6078417897224426, -- [2]
+					0.427450031042099, -- [3]
 				},
 				["SHAMAN"] = {
 					nil, -- [1]
-					0.44, -- [2]
-					0.87, -- [3]
+					0.4392147064208984, -- [2]
+					0.8666647672653198, -- [3]
 				},
 				["MAGE"] = {
-					0.25, -- [1]
-					0.78, -- [2]
-					0.92, -- [3]
+					0.2470582872629166, -- [1]
+					0.7764688730239868, -- [2]
+					0.9176450371742249, -- [3]
+				},
+				["PRIEST"] = {
+					0.9999977946281433, -- [1]
+					0.9999977946281433, -- [2]
+					0.9999977946281433, -- [3]
 				},
 				["HUNTER"] = {
-					0.67, -- [1]
-					0.83, -- [2]
-					0.45, -- [3]
+					0.6666651964187622, -- [1]
+					0.8274491429328918, -- [2]
+					0.447057843208313, -- [3]
 				},
 				["WARLOCK"] = {
-					0.53, -- [1]
-					0.53, -- [2]
-					0.93, -- [3]
+					0.5294106006622314, -- [1]
+					0.5294106006622314, -- [2]
+					0.9294097423553467, -- [3]
 				},
 				["DEMONHUNTER"] = {
-					0.64, -- [1]
-					0.19, -- [2]
-					0.79, -- [3]
+					0.639214277267456, -- [1]
+					0.188234880566597, -- [2]
+					0.7882335782051086, -- [3]
 				},
 				["ROGUE"] = {
-					nil, -- [1]
-					0.96, -- [2]
-					0.41, -- [3]
+					0.9999977946281433, -- [1]
+					0.9568606615066528, -- [2]
+					0.4078422486782074, -- [3]
 				},
 				["DRUID"] = {
-					nil, -- [1]
-					0.49, -- [2]
-					0.04, -- [3]
+					0.9999977946281433, -- [1]
+					0.4862734377384186, -- [2]
+					0.03921560198068619, -- [3]
 				},
 				["MONK"] = {
 					nil, -- [1]
-					nil, -- [2]
-					0.59, -- [3]
+					0.9999977946281433, -- [2]
+					0.588234007358551, -- [3]
 				},
 				["PALADIN"] = {
-					0.96, -- [1]
-					0.55, -- [2]
-					0.73, -- [3]
+					0.9568606615066528, -- [1]
+					0.549018383026123, -- [2]
+					0.7294101715087891, -- [3]
 				},
 			},
-			["UseClassColors"] = false,
+			["PowerColors"] = {
+				[13] = {
+					0.462745098039216, -- [1]
+					0.105882352941176, -- [2]
+					0.823529411764706, -- [3]
+				},
+			},
 		},
 		["Bars"] = {
-			["Absorb"] = {
-				["Color"] = {
-					["Reaction"] = false,
-					["Multiplier"] = 0.5,
-					["Class"] = false,
-					["Alpha"] = 0.5,
-					["BaseColor"] = {
-						nil, -- [1]
-						nil, -- [2]
-						1, -- [3]
-					},
-				},
-			},
-			["Class"] = {
-				["Color"] = {
-					["Multiplier"] = 0,
-				},
-				["Background"] = {
+			["Cast"] = {
+				["SafeZone"] = {
 					["Alpha"] = 0.75,
 				},
-				["Texture"] = "RUF 5",
-			},
-			["Health"] = {
+				["ColorInterrupt"] = {
+					["Color"] = {
+						0.5019607843137255, -- [1]
+						0.5019607843137255, -- [2]
+						0.5019607843137255, -- [3]
+					},
+				},
 				["Color"] = {
 					["Reaction"] = true,
 					["Class"] = true,
+				},
+				["Texture"] = "RUF 2",
+			},
+			["Absorb"] = {
+				["Color"] = {
+					["Reaction"] = false,
+					["Alpha"] = 0.5,
+					["Class"] = false,
+					["Multiplier"] = 0.5,
+					["BaseColor"] = {
+						[3] = 1,
+					},
+				},
+			},
+			["Health"] = {
+				["Color"] = {
+					["Class"] = true,
+					["Reaction"] = true,
 					["Percentage"] = false,
 				},
 				["Background"] = {
@@ -5143,6 +5112,57 @@ local Alidie = {
 					["Alpha"] = 0.75,
 				},
 				["Texture"] = "RUF 5",
+			},
+			["Class"] = {
+				["Color"] = {
+					["Multiplier"] = 0,
+				},
+				["Background"] = {
+					["Alpha"] = 0.75,
+				},
+				["Texture"] = "RUF 5",
+			},
+		},
+		["Text"] = {
+			["HPPerc"] = {
+				["Color"] = {
+					["PercentageAtMax"] = false,
+					["PercentageGradient"] = {
+						[3] = 0.215686274509804,
+						[6] = 1,
+						[7] = 1,
+						[9] = 1,
+					},
+				},
+			},
+			["Name"] = {
+				["Color"] = {
+					["Level"] = true,
+				},
+				["CharLimit"] = 12,
+				["Case"] = 0,
+			},
+			["CurHPPerc"] = {
+				["Color"] = {
+					["PercentageAtMax"] = false,
+					["PercentageGradient"] = {
+						[3] = 0.215686274509804,
+						[6] = 1,
+						[7] = 1,
+						[9] = 1,
+					},
+				},
+			},
+			["CurHP"] = {
+				["Color"] = {
+					["PercentageAtMax"] = false,
+					["PercentageGradient"] = {
+						[3] = 0.215686274509804,
+						[6] = 1,
+						[7] = 1,
+						[9] = 1,
+					},
+				},
 			},
 		},
 	},
@@ -5164,7 +5184,7 @@ local Alidie = {
 						},
 					},
 					["Honor"] = {
-						["Enabled"] = false,
+						["Badge"] = false,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
@@ -5172,8 +5192,8 @@ local Alidie = {
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "PvPCombat",
 						},
-						["Badge"] = false,
 						["AlwaysShow"] = false,
+						["Enabled"] = false,
 						["Size"] = 26,
 					},
 					["LootMaster"] = {
@@ -5434,19 +5454,22 @@ local Alidie = {
 						["x"] = "RIGHT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -5465,10 +5488,7 @@ local Alidie = {
 						["AnchorFrom"] = "BOTTOMLEFT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -5484,19 +5504,22 @@ local Alidie = {
 						["x"] = "RIGHT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = -1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -5515,10 +5538,7 @@ local Alidie = {
 						["AnchorFrom"] = "TOPLEFT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = -1,
-					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -5541,7 +5561,7 @@ local Alidie = {
 						},
 					},
 					["Honor"] = {
-						["Enabled"] = false,
+						["Badge"] = false,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
@@ -5549,8 +5569,8 @@ local Alidie = {
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "PvPCombat",
 						},
-						["Badge"] = false,
 						["AlwaysShow"] = false,
+						["Enabled"] = false,
 						["Size"] = 26,
 					},
 					["LootMaster"] = {
@@ -5811,19 +5831,22 @@ local Alidie = {
 						["x"] = "RIGHT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -5842,10 +5865,7 @@ local Alidie = {
 						["AnchorFrom"] = "BOTTOMLEFT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -5861,19 +5881,22 @@ local Alidie = {
 						["x"] = "RIGHT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = -1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -5892,10 +5915,7 @@ local Alidie = {
 						["AnchorFrom"] = "TOPLEFT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = -1,
-					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -5925,8 +5945,8 @@ local Alidie = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -5954,56 +5974,6 @@ local Alidie = {
 				},
 			},
 			["showRaid"] = false,
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 12,
-					["Rows"] = 2,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = true,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = true,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 0,
-						["AnchorTo"] = "TOPLEFT",
-						["AnchorFrom"] = "BOTTOMLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 2,
-						["x"] = -1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
 			["Frame"] = {
 				["Indicators"] = {
 					["Objective"] = {
@@ -6019,7 +5989,7 @@ local Alidie = {
 						},
 					},
 					["Honor"] = {
-						["Enabled"] = false,
+						["Badge"] = false,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
@@ -6027,8 +5997,8 @@ local Alidie = {
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "PvPCombat",
 						},
-						["Badge"] = false,
 						["AlwaysShow"] = false,
+						["Enabled"] = false,
 						["Size"] = 18,
 					},
 					["LootMaster"] = {
@@ -6155,7 +6125,7 @@ local Alidie = {
 				["Position"] = {
 					["y"] = 0,
 					["x"] = 4,
-					["offsety"] = -34,
+					["offsety"] = -19,
 					["AnchorTo"] = "TOPRIGHT",
 					["growth"] = "BOTTOM",
 					["offsetx"] = 0,
@@ -6281,6 +6251,56 @@ local Alidie = {
 					["Width"] = 125,
 				},
 			},
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 12,
+					["Rows"] = 2,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 28,
+					["Height"] = 28,
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["ClickThrough"] = true,
+					["CooldownSpiral"] = true,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = true,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Position"] = {
+						["y"] = 0,
+						["x"] = 0,
+						["AnchorTo"] = "TOPLEFT",
+						["AnchorFrom"] = "BOTTOMLEFT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Spacing"] = {
+						["y"] = 2,
+						["x"] = -1,
+					},
+				},
+				["Bars"] = {
+				},
+			},
 		},
 		["pettarget"] = {
 			["Enabled"] = false,
@@ -6299,7 +6319,7 @@ local Alidie = {
 						},
 					},
 					["Honor"] = {
-						["Enabled"] = false,
+						["Badge"] = false,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
@@ -6307,8 +6327,8 @@ local Alidie = {
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "PvPCombat",
 						},
-						["Badge"] = false,
 						["AlwaysShow"] = false,
+						["Enabled"] = false,
 						["Size"] = 18,
 					},
 					["LootMaster"] = {
@@ -6569,19 +6589,22 @@ local Alidie = {
 						["x"] = "RIGHT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = true,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 2,
+						["x"] = -1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -6600,10 +6623,7 @@ local Alidie = {
 						["AnchorFrom"] = "BOTTOMRIGHT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = 2,
-						["x"] = -1,
-					},
+					["ClickThrough"] = true,
 				},
 				["Bars"] = {
 				},
@@ -6619,19 +6639,22 @@ local Alidie = {
 						["x"] = "RIGHT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = true,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 2,
+						["x"] = -1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -6650,10 +6673,7 @@ local Alidie = {
 						["AnchorFrom"] = "BOTTOMLEFT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = 2,
-						["x"] = -1,
-					},
+					["ClickThrough"] = true,
 				},
 				["Bars"] = {
 				},
@@ -6671,31 +6691,7 @@ local Alidie = {
 						["y"] = "DOWN",
 						["x"] = "RIGHT",
 					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
+					["Width"] = 32,
 					["Position"] = {
 						["y"] = 0,
 						["x"] = 1,
@@ -6703,10 +6699,34 @@ local Alidie = {
 						["AnchorFrom"] = "BOTTOMLEFT",
 						["AnchorFrame"] = "Frame",
 					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = true,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Height"] = 22,
+					["CooldownSpiral"] = true,
 					["Spacing"] = {
 						["y"] = -1,
 						["x"] = 1,
 					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -6726,17 +6746,18 @@ local Alidie = {
 							["AnchorFrame"] = "Frame",
 						},
 					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
+					["Honor"] = {
+						["Badge"] = false,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "CENTER",
+							["AnchorTo"] = "RIGHT",
 							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "InCombat",
+							["AnchorFrame"] = "Frame",
 						},
+						["AlwaysShow"] = false,
+						["Enabled"] = false,
+						["Size"] = 32,
 					},
 					["InCombat"] = {
 						["Enabled"] = true,
@@ -6762,18 +6783,17 @@ local Alidie = {
 							["AnchorFrame"] = "Frame",
 						},
 					},
-					["Honor"] = {
-						["Enabled"] = false,
+					["TargetMark"] = {
+						["Enabled"] = true,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
+							["AnchorTo"] = "TOP",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 32,
+						["Style"] = "RUF",
+						["Size"] = 16,
 					},
 					["Lead"] = {
 						["Enabled"] = true,
@@ -6789,15 +6809,15 @@ local Alidie = {
 					},
 					["Phased"] = {
 						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 50,
-							["AnchorTo"] = "CENTER",
+							["x"] = 1,
+							["AnchorTo"] = "TOPLEFT",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
+						["Style"] = "RUF",
+						["Size"] = 16,
 					},
 					["Role"] = {
 						["Enabled"] = true,
@@ -6805,10 +6825,10 @@ local Alidie = {
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 0,
+							["x"] = 50,
 							["AnchorTo"] = "CENTER",
 							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "InCombat",
+							["AnchorFrame"] = "Frame",
 						},
 					},
 					["MainTankAssist"] = {
@@ -6915,21 +6935,6 @@ local Alidie = {
 						["Shadow"] = 0,
 						["Tag"] = "[RUF:CurHP]",
 					},
-					["Health Percent"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 0,
-							["Anchor"] = "TOP",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 28,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:HPPerc]",
-					},
 					["Power"] = {
 						["Outline"] = "OUTLINE",
 						["Font"] = "RUF",
@@ -6937,7 +6942,7 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 3,
 							["x"] = 0,
-							["AnchorTo"] = "BOTTOMRIGHT",
+							["AnchorTo"] = "BOTTOM",
 							["Anchor"] = "BOTTOM",
 							["AnchorFrame"] = "Frame",
 						},
@@ -6945,6 +6950,22 @@ local Alidie = {
 						["Shadow"] = 0,
 						["Tag"] = "[RUF:CurPowerPerc]",
 						["Size"] = 16,
+					},
+					["Health Percent"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -2,
+							["x"] = 0,
+							["AnchorTo"] = "TOP",
+							["Anchor"] = "TOP",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 28,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:HPPerc]",
 					},
 					["Level"] = {
 						["Outline"] = "OUTLINE",
@@ -7054,20 +7075,13 @@ local Alidie = {
 						["y"] = "UP",
 						["x"] = "RIGHT",
 					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Width"] = 32,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -7079,6 +7093,12 @@ local Alidie = {
 						["Lists"] = {
 						},
 					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["ClickThrough"] = false,
+					["Height"] = 22,
 					["Position"] = {
 						["y"] = 0,
 						["x"] = 1,
@@ -7086,6 +7106,7 @@ local Alidie = {
 						["AnchorFrom"] = "TOPLEFT",
 						["AnchorFrame"] = "Frame",
 					},
+					["CooldownSpiral"] = true,
 					["Spacing"] = {
 						["y"] = 1,
 						["x"] = 1,
@@ -7112,7 +7133,7 @@ local Alidie = {
 						},
 					},
 					["Honor"] = {
-						["Enabled"] = false,
+						["Badge"] = false,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
@@ -7120,8 +7141,8 @@ local Alidie = {
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "PvPCombat",
 						},
-						["Badge"] = false,
 						["AlwaysShow"] = false,
+						["Enabled"] = false,
 						["Size"] = 26,
 					},
 					["LootMaster"] = {
@@ -7382,19 +7403,22 @@ local Alidie = {
 						["x"] = "LEFT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -7413,10 +7437,7 @@ local Alidie = {
 						["AnchorFrom"] = "BOTTOMRIGHT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -7432,19 +7453,22 @@ local Alidie = {
 						["x"] = "LEFT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -7463,10 +7487,7 @@ local Alidie = {
 						["AnchorFrom"] = "TOPRIGHT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -7482,35 +7503,24 @@ local Alidie = {
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 0,
+							["x"] = -2,
 							["AnchorTo"] = "RIGHT",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
 					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
+					["Honor"] = {
+						["Badge"] = false,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "InCombat",
-						},
-					},
-					["InCombat"] = {
-						["Enabled"] = true,
-						["Size"] = 20,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
+							["AnchorTo"] = "RIGHT",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
+						["AlwaysShow"] = false,
+						["Enabled"] = false,
+						["Size"] = 32,
 					},
 					["LootMaster"] = {
 						["Enabled"] = true,
@@ -7524,18 +7534,17 @@ local Alidie = {
 							["AnchorFrame"] = "Frame",
 						},
 					},
-					["Honor"] = {
-						["Enabled"] = false,
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
+							["AnchorTo"] = "TOP",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 32,
 					},
 					["Lead"] = {
 						["Enabled"] = true,
@@ -7551,8 +7560,6 @@ local Alidie = {
 					},
 					["Phased"] = {
 						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
@@ -7560,18 +7567,20 @@ local Alidie = {
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
+						["Style"] = "RUF",
+						["Size"] = 16,
 					},
 					["Role"] = {
 						["Enabled"] = true,
+						["Size"] = 18,
+						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 30,
 							["AnchorTo"] = "CENTER",
 							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "InCombat",
+							["AnchorFrame"] = "Frame",
 						},
-						["Style"] = "RUF",
-						["Size"] = 18,
 					},
 					["MainTankAssist"] = {
 						["Enabled"] = true,
@@ -7609,30 +7618,6 @@ local Alidie = {
 							["AnchorFrame"] = "Lead",
 						},
 					},
-					["PetHappiness"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = -2,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Rest"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "BOTTOMLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
 					["Ready"] = {
 						["Enabled"] = true,
 						["Size"] = 36,
@@ -7640,8 +7625,8 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
 							["AnchorFrame"] = "Frame",
 						},
 					},
@@ -7656,50 +7641,6 @@ local Alidie = {
 				["RangeFading"] = {
 					["Enabled"] = true,
 					["Alpha"] = 0.5,
-				},
-				["Bars"] = {
-					["Cast"] = {
-						["Enabled"] = true,
-						["Position"] = {
-							["y"] = -38,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOM",
-							["AnchorFrom"] = "TOP",
-							["AnchorFrame"] = true,
-						},
-						["Height"] = 26,
-						["Fill"] = "STANDARD",
-						["Width"] = 300,
-					},
-					["Absorb"] = {
-						["Enabled"] = 1,
-						["Fill"] = "STANDARD",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 1,
-						},
-					},
-					["Health"] = {
-						["Fill"] = "STANDARD",
-					},
-					["Power"] = {
-						["Enabled"] = 1,
-						["Fill"] = "STANDARD",
-						["Height"] = 6,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 0,
-						},
-					},
-					["Class"] = {
-						["Enabled"] = true,
-						["Fill"] = "STANDARD",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "TOP",
-						},
-					},
 				},
 				["Text"] = {
 					["Health"] = {
@@ -7718,21 +7659,6 @@ local Alidie = {
 						["Shadow"] = 0,
 						["Tag"] = "[RUF:CurHP]",
 					},
-					["Health Percent"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["Anchor"] = "RIGHT",
-							["AnchorFrame"] = "Name",
-						},
-						["Size"] = 21,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:HPPerc]",
-					},
 					["Power"] = {
 						["Outline"] = "OUTLINE",
 						["Font"] = "RUF",
@@ -7740,7 +7666,7 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 3,
 							["x"] = 0,
-							["AnchorTo"] = "BOTTOMRIGHT",
+							["AnchorTo"] = "BOTTOM",
 							["Anchor"] = "BOTTOM",
 							["AnchorFrame"] = "Frame",
 						},
@@ -7748,6 +7674,22 @@ local Alidie = {
 						["Shadow"] = 0,
 						["Tag"] = "[RUF:CurPowerPerc]",
 						["Size"] = 16,
+					},
+					["Health Percent"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "LEFT",
+							["AnchorFrame"] = "AFKDND",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:HPPerc]",
 					},
 					["Level"] = {
 						["Outline"] = "OUTLINE",
@@ -7798,59 +7740,53 @@ local Alidie = {
 						["Width"] = 100,
 					},
 				},
+				["Bars"] = {
+					["Cast"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -38,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = true,
+						},
+						["Height"] = 26,
+						["Fill"] = "STANDARD",
+						["Width"] = 200,
+					},
+					["Absorb"] = {
+						["Enabled"] = 1,
+						["Fill"] = "STANDARD",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 1,
+						},
+					},
+					["Health"] = {
+						["Fill"] = "STANDARD",
+					},
+					["Power"] = {
+						["Enabled"] = 1,
+						["Fill"] = "STANDARD",
+						["Height"] = 6,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 0,
+						},
+					},
+					["Class"] = {
+						["Enabled"] = true,
+						["Fill"] = "STANDARD",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "TOP",
+						},
+					},
+				},
 				["Size"] = {
 					["Height"] = 45,
 					["Width"] = 200,
-				},
-			},
-			["Debuffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "DOWN",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 1,
-						["AnchorTo"] = "BOTTOMRIGHT",
-						["AnchorFrom"] = "BOTTOMLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
-				},
-				["Bars"] = {
 				},
 			},
 			["Buffs"] = {
@@ -7863,20 +7799,13 @@ local Alidie = {
 						["y"] = "UP",
 						["x"] = "RIGHT",
 					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Width"] = 32,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -7888,6 +7817,12 @@ local Alidie = {
 						["Lists"] = {
 						},
 					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["ClickThrough"] = false,
+					["Height"] = 22,
 					["Position"] = {
 						["y"] = 0,
 						["x"] = 1,
@@ -7895,8 +7830,59 @@ local Alidie = {
 						["AnchorFrom"] = "TOPLEFT",
 						["AnchorFrame"] = "Frame",
 					},
+					["CooldownSpiral"] = true,
 					["Spacing"] = {
 						["y"] = 1,
+						["x"] = 1,
+					},
+				},
+				["Bars"] = {
+				},
+			},
+			["Debuffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "DOWN",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 32,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["ClickThrough"] = false,
+					["Height"] = 22,
+					["Position"] = {
+						["y"] = 0,
+						["x"] = 1,
+						["AnchorTo"] = "BOTTOMRIGHT",
+						["AnchorFrom"] = "BOTTOMLEFT",
+						["AnchorFrame"] = "Frame",
+					},
+					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = -1,
 						["x"] = 1,
 					},
 				},
@@ -7913,24 +7899,25 @@ local Alidie = {
 						["Size"] = 26,
 						["Style"] = "RUF",
 						["Position"] = {
-							["y"] = 4,
+							["y"] = 0,
 							["x"] = -2,
 							["AnchorTo"] = "LEFT",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
 					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
+					["Honor"] = {
+						["Badge"] = false,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
 							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Phased",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
 						},
+						["AlwaysShow"] = false,
+						["Enabled"] = false,
+						["Size"] = 32,
 					},
 					["LootMaster"] = {
 						["Enabled"] = true,
@@ -7944,18 +7931,17 @@ local Alidie = {
 							["AnchorFrame"] = "Frame",
 						},
 					},
-					["Honor"] = {
-						["Enabled"] = false,
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "LEFT",
+							["AnchorTo"] = "TOP",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 32,
 					},
 					["Lead"] = {
 						["Enabled"] = true,
@@ -7971,27 +7957,27 @@ local Alidie = {
 					},
 					["Phased"] = {
 						["Enabled"] = true,
-						["Size"] = 26,
+						["Size"] = 16,
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
+							["x"] = 1,
+							["AnchorTo"] = "TOPRIGHT",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
 					},
 					["Role"] = {
 						["Enabled"] = true,
+						["Size"] = 18,
+						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
 							["x"] = -30,
 							["AnchorTo"] = "CENTER",
 							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Phased",
+							["AnchorFrame"] = "Frame",
 						},
-						["Style"] = "RUF",
-						["Size"] = 18,
 					},
 					["MainTankAssist"] = {
 						["Enabled"] = true,
@@ -8060,8 +8046,8 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
 							["AnchorFrame"] = "Frame",
 						},
 					},
@@ -8094,22 +8080,6 @@ local Alidie = {
 						["Shadow"] = 0,
 						["Tag"] = "[RUF:CurHP]",
 					},
-					["Power"] = {
-						["Enabled"] = true,
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 3,
-							["x"] = 4,
-							["AnchorTo"] = "BOTTOMLEFT",
-							["Anchor"] = "BOTTOMLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Shadow"] = 0,
-						["Outline"] = "OUTLINE",
-						["Tag"] = "[RUF:CurPowerPerc]",
-					},
 					["Health Percent"] = {
 						["Outline"] = "OUTLINE",
 						["Font"] = "RUF",
@@ -8117,13 +8087,30 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["Anchor"] = "LEFT",
-							["AnchorFrame"] = "Name",
+							["AnchorTo"] = "LEFT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "AFKDND",
 						},
 						["Size"] = 21,
 						["Enabled"] = true,
 						["Shadow"] = 0,
 						["Tag"] = "[RUF:HPPerc]",
+					},
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 6,
+							["x"] = -4,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Name]",
 					},
 					["Level"] = {
 						["Outline"] = "OUTLINE",
@@ -8141,21 +8128,21 @@ local Alidie = {
 						["Tag"] = "[RUF:Level]",
 						["Size"] = 14,
 					},
-					["Name"] = {
+					["Power"] = {
 						["Outline"] = "OUTLINE",
 						["Font"] = "RUF",
 						["Width"] = 100,
 						["Position"] = {
-							["y"] = 6,
-							["x"] = -4,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "RIGHT",
+							["y"] = 3,
+							["x"] = 4,
+							["AnchorTo"] = "BOTTOM",
+							["Anchor"] = "BOTTOM",
 							["AnchorFrame"] = "Frame",
 						},
-						["Size"] = 21,
+						["Size"] = 18,
 						["Enabled"] = true,
 						["Shadow"] = 0,
-						["Tag"] = "[RUF:Name]",
+						["Tag"] = "[RUF:CurPowerPerc]",
 					},
 					["AFKDND"] = {
 						["Enabled"] = true,
@@ -8186,7 +8173,7 @@ local Alidie = {
 						},
 						["Height"] = 26,
 						["Fill"] = "REVERSE",
-						["Width"] = 300,
+						["Width"] = 200,
 					},
 					["Absorb"] = {
 						["Enabled"] = 1,
@@ -8234,19 +8221,22 @@ local Alidie = {
 						["x"] = "RIGHT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = true,
 						},
 						["Caster"] = {
@@ -8265,10 +8255,7 @@ local Alidie = {
 						["AnchorFrom"] = "BOTTOMLEFT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -8284,19 +8271,22 @@ local Alidie = {
 						["x"] = "LEFT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -8315,10 +8305,7 @@ local Alidie = {
 						["AnchorFrom"] = "BOTTOMRIGHT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -8340,17 +8327,18 @@ local Alidie = {
 							["AnchorFrame"] = "Frame",
 						},
 					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
+					["Honor"] = {
+						["Badge"] = false,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
 							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Phased",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
 						},
+						["AlwaysShow"] = false,
+						["Enabled"] = false,
+						["Size"] = 32,
 					},
 					["LootMaster"] = {
 						["Enabled"] = true,
@@ -8364,18 +8352,17 @@ local Alidie = {
 							["AnchorFrame"] = "Frame",
 						},
 					},
-					["Honor"] = {
-						["Enabled"] = false,
+					["TargetMark"] = {
+						["Enabled"] = true,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "LEFT",
+							["AnchorTo"] = "TOP",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 32,
+						["Style"] = "RUF",
+						["Size"] = 16,
 					},
 					["Lead"] = {
 						["Enabled"] = true,
@@ -8391,27 +8378,27 @@ local Alidie = {
 					},
 					["Phased"] = {
 						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 0,
+							["x"] = 1,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 16,
+					},
+					["Role"] = {
+						["Enabled"] = true,
+						["Size"] = 18,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 4,
+							["x"] = -30,
 							["AnchorTo"] = "CENTER",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
-					},
-					["Role"] = {
-						["Enabled"] = true,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = -30,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Phased",
-						},
-						["Style"] = "RUF",
-						["Size"] = 18,
 					},
 					["MainTankAssist"] = {
 						["Enabled"] = true,
@@ -8524,7 +8511,7 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 3,
 							["x"] = 0,
-							["AnchorTo"] = "BOTTOMLEFT",
+							["AnchorTo"] = "BOTTOM",
 							["Anchor"] = "BOTTOM",
 							["AnchorFrame"] = "Frame",
 						},
@@ -8631,6 +8618,56 @@ local Alidie = {
 					["Width"] = 200,
 				},
 			},
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "LEFT",
+					},
+					["Width"] = 28,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["ClickThrough"] = false,
+					["Height"] = 16,
+					["Position"] = {
+						["y"] = 0,
+						["x"] = -1,
+						["AnchorTo"] = "TOPLEFT",
+						["AnchorFrom"] = "TOPRIGHT",
+						["AnchorFrame"] = "Frame",
+					},
+					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+				},
+				["Bars"] = {
+				},
+			},
 			["Debuffs"] = {
 				["Icons"] = {
 					["Enabled"] = true,
@@ -8641,7 +8678,7 @@ local Alidie = {
 						["y"] = "DOWN",
 						["x"] = "LEFT",
 					},
-					["Width"] = 28,
+					["Width"] = 32,
 					["Height"] = 28,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
@@ -8653,8 +8690,8 @@ local Alidie = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -8681,56 +8718,6 @@ local Alidie = {
 				["Bars"] = {
 				},
 			},
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "LEFT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = -1,
-						["AnchorTo"] = "TOPLEFT",
-						["AnchorFrom"] = "TOPRIGHT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
 		},
 		["player"] = {
 			["Enabled"] = true,
@@ -8749,7 +8736,7 @@ local Alidie = {
 						},
 					},
 					["Honor"] = {
-						["AlwaysShow"] = false,
+						["Enabled"] = true,
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
@@ -8757,17 +8744,17 @@ local Alidie = {
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
-						["Enabled"] = true,
 						["Badge"] = true,
+						["AlwaysShow"] = false,
 						["Size"] = 32,
 					},
-					["Ready"] = {
+					["InCombat"] = {
 						["Enabled"] = true,
-						["Size"] = 36,
+						["Size"] = 20,
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 2,
+							["x"] = 35,
 							["AnchorTo"] = "LEFT",
 							["AnchorFrom"] = "LEFT",
 							["AnchorFrame"] = "Frame",
@@ -8792,9 +8779,9 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "InCombat",
+							["AnchorTo"] = "TOP",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
 						},
 					},
 					["Lead"] = {
@@ -8823,14 +8810,14 @@ local Alidie = {
 					},
 					["Role"] = {
 						["Enabled"] = true,
-						["Size"] = 26,
+						["Size"] = 16,
 						["Style"] = "RUF",
 						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "InCombat",
+							["y"] = -4,
+							["x"] = 2,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "TOPLEFT",
+							["AnchorFrame"] = "Frame",
 						},
 					},
 					["MainTankAssist"] = {
@@ -8893,15 +8880,15 @@ local Alidie = {
 							["AnchorFrame"] = "Frame",
 						},
 					},
-					["InCombat"] = {
+					["Ready"] = {
 						["Enabled"] = true,
-						["Size"] = 20,
+						["Size"] = 36,
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
 							["AnchorFrame"] = "Frame",
 						},
 					},
@@ -8917,6 +8904,120 @@ local Alidie = {
 					["Enabled"] = true,
 					["Alpha"] = 0.5,
 				},
+				["Text"] = {
+					["Health Percent"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 36,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:HPPerc]",
+					},
+					["Health"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 150,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -4,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 28,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurHP]",
+					},
+					["Power"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 3,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["Anchor"] = "BOTTOM",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Shadow"] = 0,
+						["Enabled"] = false,
+						["Tag"] = "[RUF:PowerPerc]",
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 3,
+							["x"] = 4,
+							["AnchorTo"] = "BOTTOMLEFT",
+							["Anchor"] = "BOTTOMLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+						["Size"] = 16,
+					},
+					["Mana"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 3,
+							["x"] = 4,
+							["AnchorTo"] = "BOTTOMLEFT",
+							["Anchor"] = "BOTTOMLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 16,
+						["Shadow"] = 0,
+						["Enabled"] = false,
+						["Tag"] = "[RUF:CurManaPerc]",
+					},
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPLEFT",
+							["Anchor"] = "BOTTOMLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Shadow"] = 0,
+						["Enabled"] = false,
+						["Tag"] = "[RUF:Name]",
+					},
+					["AFKDND"] = {
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:AFKDND]",
+						["Position"] = {
+							["y"] = 1,
+							["x"] = -2,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "LEFT",
+							["AnchorFrame"] = "Name",
+						},
+						["Size"] = 21,
+						["Font"] = "RUF",
+						["Outline"] = "OUTLINE",
+						["Width"] = 100,
+					},
+				},
 				["Bars"] = {
 					["Cast"] = {
 						["Enabled"] = true,
@@ -8929,7 +9030,7 @@ local Alidie = {
 						},
 						["Height"] = 26,
 						["Fill"] = "STANDARD",
-						["Width"] = 300,
+						["Width"] = 200,
 					},
 					["Absorb"] = {
 						["Enabled"] = 1,
@@ -8961,119 +9062,6 @@ local Alidie = {
 						},
 					},
 				},
-				["Text"] = {
-					["Power"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 3,
-							["x"] = 4,
-							["AnchorTo"] = "BOTTOMRIGHT",
-							["Anchor"] = "BOTTOMLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:PowerPerc]",
-					},
-					["Health"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 150,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = -4,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 28,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurHP]",
-					},
-					["Health Percent"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 36,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:HPPerc]",
-					},
-					["Name"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 20,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "TOP",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Shadow"] = 0,
-						["Enabled"] = true,
-						["Tag"] = "[RUF:Name]",
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 44,
-							["AnchorTo"] = "BOTTOMLEFT",
-							["Anchor"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
-						["Size"] = 16,
-					},
-					["Mana"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = -3,
-							["x"] = 4,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "TOPLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:ManaPerc]",
-					},
-					["AFKDND"] = {
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:AFKDND]",
-						["Position"] = {
-							["y"] = 1,
-							["x"] = -2,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "LEFT",
-							["AnchorFrame"] = "Name",
-						},
-						["Size"] = 21,
-						["Font"] = "RUF",
-						["Outline"] = "OUTLINE",
-						["Width"] = 100,
-					},
-				},
 				["Size"] = {
 					["Height"] = 45,
 					["Width"] = 200,
@@ -9090,19 +9078,22 @@ local Alidie = {
 						["x"] = "LEFT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = true,
 						},
 						["Caster"] = {
@@ -9121,10 +9112,7 @@ local Alidie = {
 						["AnchorFrom"] = "BOTTOMRIGHT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -9140,19 +9128,22 @@ local Alidie = {
 						["x"] = "RIGHT",
 					},
 					["Width"] = 28,
-					["Height"] = 28,
+					["CooldownSpiral"] = true,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
 					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+					["Height"] = 28,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -9171,10 +9162,7 @@ local Alidie = {
 						["AnchorFrom"] = "BOTTOMLEFT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
+					["ClickThrough"] = false,
 				},
 				["Bars"] = {
 				},
@@ -9196,31 +9184,6 @@ local Alidie = {
 							["AnchorFrame"] = "Frame",
 						},
 					},
-					["Honor"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 32,
-					},
-					["LootMaster"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
 					["TargetMark"] = {
 						["Enabled"] = true,
 						["Size"] = 26,
@@ -9228,116 +9191,20 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Phased",
-						},
-					},
-					["Lead"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
+							["AnchorTo"] = "CENTER",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
 					},
 					["Phased"] = {
 						["Enabled"] = true,
-						["Size"] = 26,
 						["Style"] = "RUF",
+						["Size"] = 16,
 						["Position"] = {
 							["y"] = 2,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
+							["x"] = 1,
+							["AnchorTo"] = "TOPLEFT",
 							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Role"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Phased",
-						},
-					},
-					["MainTankAssist"] = {
-						["Enabled"] = true,
-						["Size"] = 12,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PvPCombat"] = {
-						["Enabled"] = true,
-						["Size"] = 28,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Assist"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PetHappiness"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 2,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Rest"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Ready"] = {
-						["Enabled"] = true,
-						["Size"] = 36,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = -10,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
 							["AnchorFrame"] = "Frame",
 						},
 					},
@@ -9380,7 +9247,7 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 3,
 							["x"] = 4,
-							["AnchorTo"] = "BOTTOMLEFT",
+							["AnchorTo"] = "BOTTOM",
 							["Anchor"] = "BOTTOM",
 							["AnchorFrame"] = "Frame",
 						},
@@ -9428,7 +9295,8 @@ local Alidie = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["Anchor"] = "RIGHT",
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "LEFT",
 							["AnchorFrame"] = "Name",
 						},
 						["Enabled"] = false,
@@ -9502,6 +9370,56 @@ local Alidie = {
 					["Width"] = 200,
 				},
 			},
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "LEFT",
+					},
+					["Width"] = 32,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["ClickThrough"] = false,
+					["Height"] = 16,
+					["Position"] = {
+						["y"] = 0,
+						["x"] = -1,
+						["AnchorTo"] = "TOPLEFT",
+						["AnchorFrom"] = "TOPRIGHT",
+						["AnchorFrame"] = "Frame",
+					},
+					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+				},
+				["Bars"] = {
+				},
+			},
 			["Debuffs"] = {
 				["Icons"] = {
 					["Enabled"] = true,
@@ -9512,7 +9430,7 @@ local Alidie = {
 						["y"] = "DOWN",
 						["x"] = "LEFT",
 					},
-					["Width"] = 28,
+					["Width"] = 32,
 					["Height"] = 28,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
@@ -9524,8 +9442,8 @@ local Alidie = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -9552,56 +9470,6 @@ local Alidie = {
 				["Bars"] = {
 				},
 			},
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "LEFT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = -1,
-						["AnchorTo"] = "TOPLEFT",
-						["AnchorFrom"] = "TOPRIGHT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
 		},
 	},
 }
@@ -9610,33 +9478,7 @@ RUF.Layout["Alidie's Layout"] = Alidie
 local Raeli = {
 	["Appearance"] = {
 		["Colors"] = {
-			["DifficultyColors"] = {
-				{
-					nil, -- [1]
-					0.501960784313726, -- [2]
-					0.0980392156862745, -- [3]
-				}, -- [1]
-				{
-					nil, -- [1]
-					0.745098039215686, -- [2]
-					0.0980392156862745, -- [3]
-				}, -- [2]
-				{
-					0.250980392156863, -- [1]
-					0.784313725490196, -- [2]
-					0.250980392156863, -- [3]
-				}, -- [3]
-				{
-					0.305882352941177, -- [1]
-					0.501960784313726, -- [2]
-					0.643137254901961, -- [3]
-				}, -- [4]
-				[0] = {
-					nil, -- [1]
-					0.196078431372549, -- [2]
-					0.0980392156862745, -- [3]
-				},
-			},
+			["UseClassColors"] = false,
 			["ReactionColors"] = {
 				{
 					0.780392156862745, -- [1]
@@ -9760,6 +9602,33 @@ local Raeli = {
 					[3] = 0.00392156862745098,
 				},
 			},
+			["DifficultyColors"] = {
+				{
+					nil, -- [1]
+					0.501960784313726, -- [2]
+					0.0980392156862745, -- [3]
+				}, -- [1]
+				{
+					nil, -- [1]
+					0.745098039215686, -- [2]
+					0.0980392156862745, -- [3]
+				}, -- [2]
+				{
+					0.250980392156863, -- [1]
+					0.784313725490196, -- [2]
+					0.250980392156863, -- [3]
+				}, -- [3]
+				{
+					0.305882352941177, -- [1]
+					0.501960784313726, -- [2]
+					0.643137254901961, -- [3]
+				}, -- [4]
+				[0] = {
+					nil, -- [1]
+					0.196078431372549, -- [2]
+					0.0980392156862745, -- [3]
+				},
+			},
 		},
 		["Text"] = {
 			["AFKDND"] = {
@@ -9771,7 +9640,11 @@ local Raeli = {
 					},
 				},
 			},
+			["Name"] = {
+				["CharLimit"] = 20,
+			},
 			["CurHPPerc"] = {
+				["ShowPercAtMax"] = false,
 				["Color"] = {
 					["Reaction"] = true,
 					["Class"] = true,
@@ -9783,15 +9656,35 @@ local Raeli = {
 			},
 		},
 		["Bars"] = {
-			["Class"] = {
-				["Background"] = {
-					["Multiplier"] = 0.2,
-					["Alpha"] = 0.75,
+			["Cast"] = {
+				["SafeZone"] = {
+					["Color"] = {
+						0, -- [1]
+						0, -- [2]
+						0, -- [3]
+					},
+					["Alpha"] = 0.5,
 				},
-				["Texture"] = "Cabaret 2",
+				["Color"] = {
+					["BaseColor"] = {
+						0, -- [1]
+						0.7607843137254902, -- [2]
+						1, -- [3]
+					},
+				},
+				["Texture"] = "RUF 2",
+			},
+			["Absorb"] = {
+				["Color"] = {
+					["Alpha"] = 0.4,
+					["Class"] = true,
+					["Multiplier"] = 0.8,
+				},
+				["Texture"] = "Solid",
 			},
 			["Health"] = {
 				["Color"] = {
+					["Multiplier"] = 0.8,
 					["PercentageGradient"] = {
 						nil, -- [1]
 						nil, -- [2]
@@ -9807,6 +9700,7 @@ local Raeli = {
 				["Background"] = {
 					["Alpha"] = 0.75,
 				},
+				["Texture"] = "Solid",
 			},
 			["Power"] = {
 				["Background"] = {
@@ -9815,1157 +9709,29 @@ local Raeli = {
 				},
 				["Texture"] = "Armory",
 			},
+			["Class"] = {
+				["Background"] = {
+					["Multiplier"] = 0.2,
+					["Alpha"] = 0.75,
+				},
+				["Texture"] = "Cabaret 2",
+			},
 		},
 	},
 	["unit"] = {
-		["focustarget"] = {
+		["boss"] = {
 			["Enabled"] = true,
 			["Frame"] = {
 				["Indicators"] = {
 					["Objective"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOMRIGHT",
-							["AnchorFrom"] = "BOTTOM",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Honor"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "PvPCombat",
-						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 26,
-					},
-					["LootMaster"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Lead"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Phased"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Role"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 50,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["MainTankAssist"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PvPCombat"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOMRIGHT",
-							["AnchorFrom"] = "BOTTOM",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Assist"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PetHappiness"] = {
 						["Enabled"] = true,
 						["Size"] = 26,
 						["Style"] = "RUF",
 						["Position"] = {
-							["y"] = 0,
-							["x"] = -2,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Ready"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = -50,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-				},
-				["Position"] = {
-					["y"] = -4,
-					["x"] = 0,
-					["AnchorTo"] = "BOTTOMLEFT",
-					["AnchorFrom"] = "TOPLEFT",
-					["AnchorFrame"] = "oUF_RUF_Focus",
-				},
-				["Text"] = {
-					["Health"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 150,
-						["Position"] = {
-							["y"] = -1,
-							["x"] = -4,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurHPPerc]",
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
-					},
-					["Name"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = -1,
-							["x"] = 4,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Name]",
-					},
-					["Power"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurPowerPerc]",
-					},
-				},
-				["Bars"] = {
-					["Cast"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = -38,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOM",
-							["AnchorFrom"] = "TOP",
-							["AnchorFrame"] = true,
-						},
-						["Height"] = 26,
-						["Fill"] = "STANDARD",
-						["Width"] = 300,
-					},
-					["Absorb"] = {
-						["Enabled"] = 1,
-						["Fill"] = "STANDARD",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 1,
-						},
-					},
-					["Health"] = {
-						["Fill"] = "STANDARD",
-					},
-					["Power"] = {
-						["Enabled"] = 1,
-						["Fill"] = "STANDARD",
-						["Height"] = 4,
-						["Position"] = {
-							["Anchor"] = "TOP",
-							["Order"] = 0,
-						},
-					},
-					["Class"] = {
-						["Enabled"] = false,
-						["Fill"] = "STANDARD",
-						["Height"] = 4,
-						["Position"] = {
-							["Anchor"] = "TOP",
-						},
-					},
-				},
-				["RangeFading"] = {
-					["Enabled"] = true,
-					["Alpha"] = 0.5,
-				},
-				["Size"] = {
-					["Height"] = 30,
-					["Width"] = 300,
-				},
-			},
-			["Debuffs"] = {
-				["Icons"] = {
-					["Enabled"] = false,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "DOWN",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 1,
-						["AnchorTo"] = "BOTTOMRIGHT",
-						["AnchorFrom"] = "BOTTOMLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = false,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 1,
-						["AnchorTo"] = "TOPRIGHT",
-						["AnchorFrom"] = "TOPLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = -1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-		},
-		["pet"] = {
-			["Enabled"] = true,
-			["Frame"] = {
-				["Indicators"] = {
-					["Objective"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOMRIGHT",
-							["AnchorFrom"] = "BOTTOM",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Honor"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "PvPCombat",
-						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 26,
-					},
-					["LootMaster"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Lead"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Phased"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Role"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 50,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["MainTankAssist"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PvPCombat"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOMRIGHT",
-							["AnchorFrom"] = "BOTTOM",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Assist"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PetHappiness"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = -2,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Ready"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = -50,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-				},
-				["Position"] = {
-					["y"] = -4,
-					["x"] = 0,
-					["AnchorTo"] = "BOTTOMLEFT",
-					["AnchorFrom"] = "TOPLEFT",
-					["AnchorFrame"] = "oUF_RUF_Player",
-				},
-				["RangeFading"] = {
-					["Enabled"] = true,
-					["Alpha"] = 0.5,
-				},
-				["Text"] = {
-					["Health"] = {
-						["Enabled"] = true,
-						["Font"] = "RUF",
-						["Width"] = 150,
-						["Position"] = {
-							["y"] = 1,
-							["x"] = -4,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Shadow"] = 0,
-						["Outline"] = "OUTLINE",
-						["Tag"] = "[RUF:CurHPPerc]",
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
-					},
-					["Name"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = -1,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Name]",
-						["Size"] = 18,
-					},
-					["Power"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurPowerPerc]",
-					},
-				},
-				["Bars"] = {
-					["Cast"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = -38,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOM",
-							["AnchorFrom"] = "TOP",
-							["AnchorFrame"] = true,
-						},
-						["Height"] = 26,
-						["Fill"] = "STANDARD",
-						["Width"] = 300,
-					},
-					["Absorb"] = {
-						["Enabled"] = 1,
-						["Fill"] = "STANDARD",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 1,
-						},
-					},
-					["Health"] = {
-						["Fill"] = "STANDARD",
-					},
-					["Power"] = {
-						["Enabled"] = 1,
-						["Fill"] = "STANDARD",
-						["Height"] = 4,
-						["Position"] = {
-							["Anchor"] = "TOP",
-							["Order"] = 0,
-						},
-					},
-					["Class"] = {
-						["Enabled"] = false,
-						["Fill"] = "STANDARD",
-						["Height"] = 4,
-						["Position"] = {
-							["Anchor"] = "TOP",
-						},
-					},
-				},
-				["Size"] = {
-					["Height"] = 30,
-					["Width"] = 148,
-				},
-			},
-			["Debuffs"] = {
-				["Icons"] = {
-					["Enabled"] = false,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "DOWN",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 1,
-						["AnchorTo"] = "BOTTOMRIGHT",
-						["AnchorFrom"] = "BOTTOMLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = false,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 1,
-						["AnchorTo"] = "TOPRIGHT",
-						["AnchorFrom"] = "TOPLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = -1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-		},
-		["partypet"] = {
-			["Enabled"] = false,
-			["Debuffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 12,
-					["Rows"] = 2,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = true,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = true,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 0,
-						["AnchorTo"] = "TOPRIGHT",
-						["AnchorFrom"] = "BOTTOMRIGHT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 2,
-						["x"] = -1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-			["showRaid"] = false,
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 12,
-					["Rows"] = 2,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = true,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = true,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 0,
-						["AnchorTo"] = "TOPLEFT",
-						["AnchorFrom"] = "BOTTOMLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 2,
-						["x"] = -1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-			["Frame"] = {
-				["Indicators"] = {
-					["Objective"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "TargetMark",
-						},
-					},
-					["Honor"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "PvPCombat",
-						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 18,
-					},
-					["LootMaster"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Lead"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Phased"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -1,
+							["y"] = 4,
 							["x"] = -2,
 							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Role"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
 							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["MainTankAssist"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PvPCombat"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Assist"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PetHappiness"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -1,
-							["x"] = 2,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Ready"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Phased",
-						},
-					},
-				},
-				["Position"] = {
-					["y"] = 0,
-					["x"] = 4,
-					["offsety"] = -34,
-					["AnchorTo"] = "TOPRIGHT",
-					["growth"] = "BOTTOM",
-					["offsetx"] = 0,
-					["AnchorFrom"] = "TOPLEFT",
-					["AnchorFrame"] = "oUF_RUF_Party",
-				},
-				["Text"] = {
-					["Name"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 1,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Name]",
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 1,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
-					},
-					["Health"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 1,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurHPPerc]",
-					},
-					["Power"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 1,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurPowerPerc]",
-					},
-				},
-				["RangeFading"] = {
-					["Enabled"] = true,
-					["Alpha"] = 0.5,
-				},
-				["Bars"] = {
-					["Cast"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = -38,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOM",
-							["AnchorFrom"] = "TOP",
-							["AnchorFrame"] = true,
-						},
-						["Height"] = 26,
-						["Fill"] = "STANDARD",
-						["Width"] = 300,
-					},
-					["Absorb"] = {
-						["Enabled"] = 1,
-						["Fill"] = "STANDARD",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 1,
-						},
-					},
-					["Health"] = {
-						["Fill"] = "STANDARD",
-					},
-					["Power"] = {
-						["Enabled"] = 1,
-						["Fill"] = "STANDARD",
-						["Height"] = 4,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 0,
-						},
-					},
-					["Class"] = {
-						["Enabled"] = false,
-						["Fill"] = "STANDARD",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "TOP",
-						},
-					},
-				},
-				["Size"] = {
-					["Height"] = 30,
-					["Width"] = 125,
-				},
-			},
-		},
-		["targettarget"] = {
-			["Enabled"] = true,
-			["Frame"] = {
-				["Indicators"] = {
-					["Objective"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOMLEFT",
-							["AnchorFrom"] = "BOTTOM",
 							["AnchorFrame"] = "Frame",
 						},
 					},
@@ -10974,403 +9740,14 @@ local Raeli = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "CENTER",
+							["AnchorTo"] = "RIGHT",
 							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "PvPCombat",
+							["AnchorFrame"] = "Frame",
 						},
 						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 26,
-					},
-					["LootMaster"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Lead"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Phased"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Role"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = -50,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["MainTankAssist"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PvPCombat"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOMLEFT",
-							["AnchorFrom"] = "BOTTOM",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Assist"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PetHappiness"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 2,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Ready"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 50,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-				},
-				["Position"] = {
-					["y"] = -4,
-					["x"] = 0,
-					["AnchorTo"] = "BOTTOM",
-					["AnchorFrom"] = "TOP",
-					["AnchorFrame"] = "oUF_RUF_Target",
-				},
-				["Text"] = {
-					["Health"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 150,
-						["Position"] = {
-							["y"] = -1,
-							["x"] = 4,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurHPPerc]",
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
-					},
-					["Name"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = -1,
-							["x"] = -4,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Name]",
-					},
-					["Power"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurPowerPerc]",
-					},
-				},
-				["Bars"] = {
-					["Cast"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = -38,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOM",
-							["AnchorFrom"] = "TOP",
-							["AnchorFrame"] = true,
-						},
-						["Height"] = 26,
-						["Fill"] = "REVERSE",
-						["Width"] = 300,
-					},
-					["Absorb"] = {
-						["Enabled"] = 1,
-						["Fill"] = "REVERSE",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 1,
-						},
-					},
-					["Health"] = {
-						["Fill"] = "REVERSE",
-					},
-					["Power"] = {
-						["Enabled"] = 1,
-						["Fill"] = "REVERSE",
-						["Height"] = 4,
-						["Position"] = {
-							["Anchor"] = "TOP",
-							["Order"] = 0,
-						},
-					},
-					["Class"] = {
-						["Enabled"] = false,
-						["Fill"] = "REVERSE",
-						["Height"] = 4,
-						["Position"] = {
-							["Anchor"] = "TOP",
-						},
-					},
-				},
-				["RangeFading"] = {
-					["Enabled"] = true,
-					["Alpha"] = 0.5,
-				},
-				["Size"] = {
-					["Height"] = 30,
-					["Width"] = 300,
-				},
-			},
-			["Debuffs"] = {
-				["Icons"] = {
-					["Enabled"] = false,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "DOWN",
-						["x"] = "LEFT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = -1,
-						["AnchorTo"] = "BOTTOMLEFT",
-						["AnchorFrom"] = "BOTTOMRIGHT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = false,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "LEFT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = -1,
-						["AnchorTo"] = "TOPLEFT",
-						["AnchorFrom"] = "TOPRIGHT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-		},
-		["player"] = {
-			["Enabled"] = true,
-			["Frame"] = {
-				["Indicators"] = {
-					["Objective"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Honor"] = {
-						["Enabled"] = true,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Badge"] = true,
 						["AlwaysShow"] = false,
 						["Size"] = 32,
 					},
-					["InCombat"] = {
-						["Enabled"] = true,
-						["Size"] = 20,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
 					["LootMaster"] = {
 						["Enabled"] = true,
 						["Size"] = 14,
@@ -11378,7 +9755,7 @@ local Raeli = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
+							["AnchorTo"] = "TOPRIGHT",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
@@ -11390,9 +9767,9 @@ local Raeli = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "InCombat",
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
 						},
 					},
 					["Lead"] = {
@@ -11409,15 +9786,15 @@ local Raeli = {
 					},
 					["Phased"] = {
 						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 0,
+							["x"] = -40,
 							["AnchorTo"] = "CENTER",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
+						["Style"] = "RUF",
+						["Size"] = 16,
 					},
 					["Role"] = {
 						["Enabled"] = true,
@@ -11425,10 +9802,10 @@ local Raeli = {
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 50,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "InCombat",
+							["x"] = -50,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Phased",
 						},
 					},
 					["MainTankAssist"] = {
@@ -11473,21 +9850,21 @@ local Raeli = {
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = -2,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
+							["x"] = 2,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
 							["AnchorFrame"] = "Frame",
 						},
 					},
 					["Rest"] = {
-						["Enabled"] = true,
+						["Enabled"] = false,
 						["Size"] = 26,
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "BOTTOMLEFT",
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
 					},
@@ -11497,19 +9874,26 @@ local Raeli = {
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 10,
-							["AnchorTo"] = "RIGHT",
+							["x"] = 75,
+							["AnchorTo"] = "LEFT",
 							["AnchorFrom"] = "LEFT",
 							["AnchorFrame"] = "Frame",
 						},
 					},
 				},
 				["Position"] = {
-					["y"] = -266,
-					["x"] = -224,
-					["AnchorTo"] = "CENTER",
-					["AnchorFrom"] = "RIGHT",
-					["AnchorFrame"] = "UIParent",
+					["y"] = -34,
+					["x"] = 0,
+					["offsety"] = -4,
+					["AnchorTo"] = "BOTTOMLEFT",
+					["growth"] = "BOTTOM",
+					["offsetx"] = 0,
+					["AnchorFrom"] = "TOPLEFT",
+					["AnchorFrame"] = "oUF_RUF_FocusTarget",
+				},
+				["RangeFading"] = {
+					["Enabled"] = true,
+					["Alpha"] = 0.5,
 				},
 				["Text"] = {
 					["Health"] = {
@@ -11517,7 +9901,7 @@ local Raeli = {
 						["Font"] = "RUF",
 						["Width"] = 150,
 						["Position"] = {
-							["y"] = 4,
+							["y"] = 1,
 							["x"] = -4,
 							["AnchorTo"] = "RIGHT",
 							["Anchor"] = "RIGHT",
@@ -11533,6 +9917,1176 @@ local Raeli = {
 						["Font"] = "RUF",
 						["Width"] = 100,
 						["Position"] = {
+							["y"] = 4,
+							["x"] = 4,
+							["AnchorTo"] = "BOTTOMLEFT",
+							["Anchor"] = "BOTTOMLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurPowerPerc]",
+						["Size"] = 16,
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "LEFT",
+							["AnchorFrame"] = "Name",
+						},
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+						["Size"] = 19,
+					},
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -4,
+							["x"] = 4,
+							["AnchorTo"] = "TOPLEFT",
+							["Anchor"] = "TOPLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Name]",
+					},
+					["AFKDND"] = "",
+				},
+				["Bars"] = {
+					["Cast"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -38,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = true,
+						},
+						["Height"] = 26,
+						["Fill"] = "REVERSE",
+						["Width"] = 300,
+					},
+					["Absorb"] = {
+						["Enabled"] = 1,
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 1,
+						},
+						["Fill"] = "STANDARD",
+					},
+					["Health"] = {
+						["Fill"] = "STANDARD",
+					},
+					["Power"] = {
+						["Height"] = 6,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 0,
+						},
+						["Enabled"] = 1,
+						["Fill"] = "STANDARD",
+					},
+					["Class"] = {
+						["Enabled"] = true,
+						["Fill"] = "REVERSE",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "TOP",
+						},
+					},
+				},
+				["Size"] = {
+					["Height"] = 45,
+					["Width"] = 300,
+				},
+			},
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 28,
+					["Height"] = 28,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = true,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = false,
+					["Position"] = {
+						["y"] = 0,
+						["x"] = 1,
+						["AnchorTo"] = "TOPRIGHT",
+						["AnchorFrom"] = "TOPLEFT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Size"] = 45,
+				},
+				["Bars"] = {
+				},
+			},
+			["Debuffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "DOWN",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 28,
+					["Height"] = 28,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = true,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = false,
+					["Position"] = {
+						["y"] = 0,
+						["x"] = 1,
+						["AnchorTo"] = "BOTTOMRIGHT",
+						["AnchorFrom"] = "BOTTOMLEFT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Size"] = 45,
+				},
+				["Bars"] = {
+				},
+			},
+		},
+		["target"] = {
+			["Enabled"] = true,
+			["Frame"] = {
+				["Indicators"] = {
+					["Objective"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -2,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 40,
+					},
+					["LootMaster"] = {
+						["Enabled"] = true,
+						["Size"] = 14,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Honor"] = {
+						["Badge"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["AlwaysShow"] = false,
+						["Enabled"] = true,
+						["Size"] = 32,
+					},
+					["Lead"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "TOPLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Phased"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "MainTankAssist",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Role"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["MainTankAssist"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 10,
+					},
+					["PvPCombat"] = {
+						["Enabled"] = true,
+						["Size"] = 28,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Assist"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["PetHappiness"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 2,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Rest"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Ready"] = {
+						["Enabled"] = true,
+						["Size"] = 36,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -10,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+				},
+				["Position"] = {
+					["y"] = -266,
+					["x"] = 400,
+					["AnchorTo"] = "CENTER",
+					["AnchorFrom"] = "LEFT",
+					["AnchorFrame"] = "UIParent",
+				},
+				["RangeFading"] = {
+					["Enabled"] = true,
+					["Alpha"] = 0.5,
+				},
+				["Text"] = {
+					["Health"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 150,
+						["Position"] = {
+							["y"] = 4,
+							["x"] = 4,
+							["AnchorTo"] = "LEFT",
+							["Anchor"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 28,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurHPPerc]",
+					},
+					["Power"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 2,
+							["x"] = 4,
+							["AnchorTo"] = "BOTTOMLEFT",
+							["Anchor"] = "BOTTOMLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurPowerPerc]",
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 2,
+							["x"] = -4,
+							["AnchorTo"] = "BOTTOMRIGHT",
+							["Anchor"] = "BOTTOMRIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+					},
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 4,
+							["x"] = -4,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Name]",
+					},
+					["AFKDND"] = {
+						["Outline"] = "OUTLINE",
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:AFKDND]",
+						["Position"] = {
+							["y"] = 1,
+							["x"] = 2,
+							["AnchorTo"] = "LEFT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Name",
+						},
+						["Enabled"] = true,
+						["Size"] = 21,
+						["Font"] = "RUF",
+						["Width"] = 100,
+					},
+				},
+				["Bars"] = {
+					["Cast"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -38,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = true,
+						},
+						["Height"] = 26,
+						["Fill"] = "REVERSE",
+						["Width"] = 300,
+					},
+					["Absorb"] = {
+						["Enabled"] = 1,
+						["Fill"] = "REVERSE",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 1,
+						},
+					},
+					["Health"] = {
+						["Fill"] = "REVERSE",
+					},
+					["Power"] = {
+						["Enabled"] = 1,
+						["Fill"] = "REVERSE",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 0,
+						},
+					},
+					["Class"] = {
+						["Enabled"] = true,
+						["Fill"] = "REVERSE",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "TOP",
+						},
+					},
+				},
+				["Size"] = {
+					["Height"] = 60,
+					["Width"] = 300,
+				},
+			},
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 15,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "LEFT",
+					},
+					["Width"] = 32,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["ClickThrough"] = false,
+					["Height"] = 26,
+					["Position"] = {
+						["y"] = 1,
+						["x"] = 0,
+						["AnchorTo"] = "TOPRIGHT",
+						["AnchorFrom"] = "BOTTOMRIGHT",
+						["AnchorFrame"] = "Frame",
+					},
+					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+				},
+				["Bars"] = {
+				},
+			},
+			["Debuffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 15,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 32,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = true,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["ClickThrough"] = false,
+					["Height"] = 26,
+					["Position"] = {
+						["y"] = 1,
+						["x"] = 0,
+						["AnchorTo"] = "TOPLEFT",
+						["AnchorFrom"] = "BOTTOMLEFT",
+						["AnchorFrame"] = "Frame",
+					},
+					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+				},
+				["Bars"] = {
+				},
+			},
+		},
+		["pet"] = {
+			["Enabled"] = true,
+			["Frame"] = {
+				["Indicators"] = {
+					["Objective"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOMRIGHT",
+							["AnchorFrom"] = "BOTTOM",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Honor"] = {
+						["Badge"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "PvPCombat",
+						},
+						["AlwaysShow"] = false,
+						["Enabled"] = false,
+						["Size"] = 26,
+					},
+					["LootMaster"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Lead"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Phased"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = -2,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Role"] = {
+						["Enabled"] = false,
+						["Size"] = 18,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = -2,
+							["x"] = 50,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["MainTankAssist"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Lead",
+						},
+					},
+					["PvPCombat"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["Assist"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Lead",
+						},
+					},
+					["PetHappiness"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -2,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["Ready"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = -2,
+							["x"] = -50,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+				},
+				["Position"] = {
+					["y"] = -4,
+					["x"] = 0,
+					["AnchorTo"] = "BOTTOMLEFT",
+					["AnchorFrom"] = "TOPLEFT",
+					["AnchorFrame"] = "oUF_RUF_Player",
+				},
+				["Bars"] = {
+					["Cast"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = -38,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = true,
+						},
+						["Height"] = 26,
+						["Fill"] = "STANDARD",
+						["Width"] = 300,
+					},
+					["Absorb"] = {
+						["Enabled"] = 1,
+						["Fill"] = "STANDARD",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 1,
+						},
+					},
+					["Health"] = {
+						["Fill"] = "STANDARD",
+					},
+					["Power"] = {
+						["Enabled"] = 1,
+						["Fill"] = "STANDARD",
+						["Height"] = 4,
+						["Position"] = {
+							["Anchor"] = "TOP",
+							["Order"] = 0,
+						},
+					},
+					["Class"] = {
+						["Enabled"] = false,
+						["Fill"] = "STANDARD",
+						["Height"] = 4,
+						["Position"] = {
+							["Anchor"] = "TOP",
+						},
+					},
+				},
+				["Text"] = {
+					["Health"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 150,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = -4,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurHPPerc]",
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "LEFT",
+							["AnchorFrame"] = "Name",
+						},
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+						["Size"] = 17,
+					},
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Name]",
+					},
+					["Power"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurPowerPerc]",
+					},
+				},
+				["RangeFading"] = {
+					["Enabled"] = true,
+					["Alpha"] = 0.5,
+				},
+				["Size"] = {
+					["Height"] = 30,
+					["Width"] = 148,
+				},
+			},
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = false,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "DOWN",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 30,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["Height"] = 22,
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = false,
+					["Position"] = {
+						["y"] = -1,
+						["x"] = 0,
+						["AnchorTo"] = "BOTTOMLEFT",
+						["AnchorFrom"] = "TOPLEFT",
+						["AnchorFrame"] = "Frame",
+					},
+				},
+				["Bars"] = {
+				},
+			},
+			["Debuffs"] = {
+				["Icons"] = {
+					["Enabled"] = false,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "DOWN",
+						["x"] = "LEFT",
+					},
+					["Width"] = 30,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = -1,
+					},
+					["Height"] = 22,
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = false,
+					["Position"] = {
+						["y"] = -1,
+						["x"] = 0,
+						["AnchorTo"] = "BOTTOMRIGHT",
+						["AnchorFrom"] = "TOPRIGHT",
+						["AnchorFrame"] = "Frame",
+					},
+				},
+				["Bars"] = {
+				},
+			},
+		},
+		["player"] = {
+			["Enabled"] = true,
+			["Frame"] = {
+				["Indicators"] = {
+					["Objective"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 40,
+					},
+					["Ready"] = {
+						["Enabled"] = true,
+						["Size"] = 36,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 10,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["LootMaster"] = {
+						["Enabled"] = true,
+						["Size"] = 14,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Honor"] = {
+						["Badge"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["AlwaysShow"] = false,
+						["Enabled"] = true,
+						["Size"] = 32,
+					},
+					["Lead"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "TOPRIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Phased"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Role"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -4,
+							["x"] = 50,
+							["AnchorTo"] = "TOP",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 15,
+					},
+					["MainTankAssist"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 10,
+					},
+					["PvPCombat"] = {
+						["Enabled"] = true,
+						["Size"] = 28,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Assist"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["PetHappiness"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -2,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Rest"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "BOTTOMLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 30,
+					},
+					["InCombat"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 21,
+					},
+				},
+				["Position"] = {
+					["y"] = -266,
+					["x"] = -400,
+					["AnchorTo"] = "CENTER",
+					["AnchorFrom"] = "RIGHT",
+					["AnchorFrame"] = "UIParent",
+				},
+				["RangeFading"] = {
+					["Enabled"] = true,
+					["Alpha"] = 0.5,
+				},
+				["Text"] = {
+					["Power"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
 							["y"] = 3,
 							["x"] = -4,
 							["AnchorTo"] = "BOTTOMRIGHT",
@@ -11543,38 +11097,6 @@ local Raeli = {
 						["Enabled"] = true,
 						["Shadow"] = 0,
 						["Tag"] = "[RUF:CurPowerPerc]",
-					},
-					["Mana"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 1,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "LEFT",
-							["AnchorFrame"] = "Power",
-						},
-						["Size"] = 18,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurMana]",
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 3,
-							["x"] = 4,
-							["AnchorTo"] = "BOTTOMLEFT",
-							["Anchor"] = "BOTTOMLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
 					},
 					["Name"] = {
 						["Outline"] = "OUTLINE",
@@ -11592,6 +11114,56 @@ local Raeli = {
 						["Shadow"] = 0,
 						["Tag"] = "[RUF:Name]",
 					},
+					["Health"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 150,
+						["Position"] = {
+							["y"] = 4,
+							["x"] = -4,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 28,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurHPPerc]",
+					},
+					["Test2"] = "",
+					["Test"] = "",
+					["Mana"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 1,
+							["AnchorTo"] = "LEFT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Power",
+						},
+						["Size"] = 18,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurManaPerc]",
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 3,
+							["x"] = 4,
+							["AnchorTo"] = "BOTTOMLEFT",
+							["Anchor"] = "BOTTOMLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+					},
 					["AFKDND"] = {
 						["Outline"] = "OUTLINE",
 						["Shadow"] = 0,
@@ -11608,10 +11180,6 @@ local Raeli = {
 						["Font"] = "RUF",
 						["Width"] = 100,
 					},
-				},
-				["RangeFading"] = {
-					["Enabled"] = true,
-					["Alpha"] = 0.5,
 				},
 				["Bars"] = {
 					["Cast"] = {
@@ -11662,6 +11230,56 @@ local Raeli = {
 					["Width"] = 300,
 				},
 			},
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 15,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 32,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = true,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["ClickThrough"] = false,
+					["Height"] = 26,
+					["Position"] = {
+						["y"] = 1,
+						["x"] = 0,
+						["AnchorTo"] = "TOPLEFT",
+						["AnchorFrom"] = "BOTTOMLEFT",
+						["AnchorFrame"] = "Frame",
+					},
+					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+				},
+				["Bars"] = {
+				},
+			},
 			["Debuffs"] = {
 				["Icons"] = {
 					["Enabled"] = true,
@@ -11672,20 +11290,13 @@ local Raeli = {
 						["y"] = "UP",
 						["x"] = "LEFT",
 					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
+					["Width"] = 32,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = true,
 						},
 						["Caster"] = {
@@ -11697,6 +11308,12 @@ local Raeli = {
 						["Lists"] = {
 						},
 					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["ClickThrough"] = false,
+					["Height"] = 26,
 					["Position"] = {
 						["y"] = 1,
 						["x"] = 0,
@@ -11704,6 +11321,7 @@ local Raeli = {
 						["AnchorFrom"] = "BOTTOMRIGHT",
 						["AnchorFrame"] = "Frame",
 					},
+					["CooldownSpiral"] = true,
 					["Spacing"] = {
 						["y"] = -1,
 						["x"] = 1,
@@ -11712,435 +11330,8 @@ local Raeli = {
 				["Bars"] = {
 				},
 			},
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 15,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = true,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 1,
-						["x"] = 0,
-						["AnchorTo"] = "TOPLEFT",
-						["AnchorFrom"] = "BOTTOMLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
 		},
-		["pettarget"] = {
-			["Enabled"] = true,
-			["Frame"] = {
-				["Indicators"] = {
-					["Objective"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "TargetMark",
-						},
-					},
-					["Honor"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "PvPCombat",
-						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 18,
-					},
-					["LootMaster"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Lead"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Phased"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -1,
-							["x"] = -2,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Role"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["MainTankAssist"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PvPCombat"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -2,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Assist"] = {
-						["Enabled"] = false,
-						["Size"] = 18,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PetHappiness"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = -1,
-							["x"] = 2,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Ready"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Phased",
-						},
-					},
-				},
-				["Position"] = {
-					["y"] = 0,
-					["x"] = 4,
-					["AnchorTo"] = "BOTTOMRIGHT",
-					["AnchorFrom"] = "BOTTOMLEFT",
-					["AnchorFrame"] = "oUF_RUF_Pet",
-				},
-				["RangeFading"] = {
-					["Enabled"] = true,
-					["Alpha"] = 0.5,
-				},
-				["Text"] = {
-					["Health"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = -1,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurHPPerc]",
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 1,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
-					},
-					["Name"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = -1,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Name]",
-						["Size"] = 18,
-					},
-					["Power"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 1,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["Anchor"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = false,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurPowerPerc]",
-					},
-				},
-				["Bars"] = {
-					["Cast"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = -38,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOM",
-							["AnchorFrom"] = "TOP",
-							["AnchorFrame"] = true,
-						},
-						["Height"] = 26,
-						["Fill"] = "STANDARD",
-						["Width"] = 300,
-					},
-					["Absorb"] = {
-						["Enabled"] = 1,
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 1,
-						},
-						["Fill"] = "REVERSE",
-					},
-					["Health"] = {
-						["Fill"] = "REVERSE",
-					},
-					["Power"] = {
-						["Enabled"] = 1,
-						["Height"] = 4,
-						["Fill"] = "REVERSE",
-						["Position"] = {
-							["Anchor"] = "TOP",
-							["Order"] = 0,
-						},
-					},
-					["Class"] = {
-						["Enabled"] = false,
-						["Fill"] = "STANDARD",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "TOP",
-						},
-					},
-				},
-				["Size"] = {
-					["Height"] = 30,
-					["Width"] = 148,
-				},
-			},
-			["Debuffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 12,
-					["Rows"] = 2,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = true,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = true,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 0,
-						["AnchorTo"] = "TOPRIGHT",
-						["AnchorFrom"] = "BOTTOMRIGHT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 2,
-						["x"] = -1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 12,
-					["Rows"] = 2,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = true,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = true,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 0,
-						["AnchorTo"] = "TOPLEFT",
-						["AnchorFrom"] = "BOTTOMLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 2,
-						["x"] = -1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-		},
-		["focus"] = {
+		["arena"] = {
 			["Enabled"] = true,
 			["Frame"] = {
 				["Indicators"] = {
@@ -12169,18 +11360,6 @@ local Raeli = {
 						["AlwaysShow"] = false,
 						["Size"] = 32,
 					},
-					["InCombat"] = {
-						["Enabled"] = true,
-						["Size"] = 20,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
 					["LootMaster"] = {
 						["Enabled"] = true,
 						["Size"] = 14,
@@ -12188,7 +11367,7 @@ local Raeli = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
+							["AnchorTo"] = "TOPRIGHT",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
@@ -12200,9 +11379,9 @@ local Raeli = {
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "InCombat",
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
 						},
 					},
 					["Lead"] = {
@@ -12219,27 +11398,27 @@ local Raeli = {
 					},
 					["Phased"] = {
 						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 0,
+							["x"] = 40,
 							["AnchorTo"] = "CENTER",
 							["AnchorFrom"] = "CENTER",
 							["AnchorFrame"] = "Frame",
 						},
+						["Style"] = "RUF",
+						["Size"] = 16,
 					},
 					["Role"] = {
 						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "InCombat",
+							["x"] = -40,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
 						},
+						["Style"] = "RUF",
+						["Size"] = 16,
 					},
 					["MainTankAssist"] = {
 						["Enabled"] = true,
@@ -12283,6 +11462,1213 @@ local Raeli = {
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
+							["x"] = 2,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Rest"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Ready"] = {
+						["Enabled"] = true,
+						["Size"] = 36,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 75,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+				},
+				["Position"] = {
+					["y"] = -34,
+					["x"] = 0,
+					["offsety"] = -4,
+					["AnchorTo"] = "BOTTOMLEFT",
+					["AnchorFrom"] = "TOPLEFT",
+					["offsetx"] = 0,
+					["growth"] = "BOTTOM",
+					["AnchorFrame"] = "oUF_RUF_FocusTarget",
+				},
+				["RangeFading"] = {
+					["Enabled"] = true,
+					["Alpha"] = 0.5,
+				},
+				["Text"] = {
+					["Health"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 150,
+						["Position"] = {
+							["y"] = 1,
+							["x"] = -4,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 28,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurHPPerc]",
+					},
+					["Power"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 4,
+							["x"] = 4,
+							["AnchorTo"] = "BOTTOMLEFT",
+							["Anchor"] = "BOTTOMLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurPowerPerc]",
+						["Size"] = 16,
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "LEFT",
+							["AnchorFrame"] = "Name",
+						},
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+						["Enabled"] = true,
+						["Size"] = 19,
+					},
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -4,
+							["x"] = 4,
+							["AnchorTo"] = "TOPLEFT",
+							["Anchor"] = "TOPLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Name]",
+					},
+					["AFKDND"] = "",
+				},
+				["Bars"] = {
+					["Cast"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -38,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = true,
+						},
+						["Height"] = 26,
+						["Fill"] = "REVERSE",
+						["Width"] = 300,
+					},
+					["Absorb"] = {
+						["Enabled"] = 1,
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 1,
+						},
+						["Fill"] = "STANDARD",
+					},
+					["Health"] = {
+						["Fill"] = "STANDARD",
+					},
+					["Power"] = {
+						["Height"] = 6,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 0,
+						},
+						["Enabled"] = 1,
+						["Fill"] = "STANDARD",
+					},
+					["Class"] = {
+						["Enabled"] = true,
+						["Fill"] = "REVERSE",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "TOP",
+						},
+					},
+				},
+				["Size"] = {
+					["Height"] = 45,
+					["Width"] = 300,
+				},
+			},
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 28,
+					["Height"] = 28,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Min"] = 0,
+							["Max"] = 30,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = false,
+					["Position"] = {
+						["y"] = 0,
+						["x"] = -1,
+						["AnchorTo"] = "TOPRIGHT",
+						["AnchorFrom"] = "TOPLEFT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Size"] = 20,
+				},
+				["Bars"] = {
+				},
+			},
+			["Debuffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 10,
+					["Max"] = 10,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "DOWN",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 28,
+					["Height"] = 28,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = true,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = false,
+					["Position"] = {
+						["y"] = 0,
+						["x"] = 1,
+						["AnchorTo"] = "BOTTOMRIGHT",
+						["AnchorFrom"] = "BOTTOMLEFT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Size"] = 26,
+				},
+				["Bars"] = {
+				},
+			},
+		},
+		["targettarget"] = {
+			["Enabled"] = true,
+			["Frame"] = {
+				["Indicators"] = {
+					["Objective"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["LootMaster"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Lead"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = -2,
+							["x"] = -3,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Phased"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 40,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Role"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -40,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 14,
+					},
+					["MainTankAssist"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -2,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 10,
+					},
+					["PvPCombat"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["Assist"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["PetHappiness"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 2,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Honor"] = {
+						["Badge"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "PvPCombat",
+						},
+						["AlwaysShow"] = false,
+						["Enabled"] = false,
+						["Size"] = 26,
+					},
+					["Ready"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -10,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+				},
+				["Position"] = {
+					["y"] = -4,
+					["x"] = 0,
+					["AnchorTo"] = "BOTTOM",
+					["AnchorFrom"] = "TOP",
+					["AnchorFrame"] = "oUF_RUF_Target",
+				},
+				["Bars"] = {
+					["Cast"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = -38,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = true,
+						},
+						["Height"] = 26,
+						["Fill"] = "REVERSE",
+						["Width"] = 300,
+					},
+					["Absorb"] = {
+						["Enabled"] = 1,
+						["Fill"] = "REVERSE",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 1,
+						},
+					},
+					["Health"] = {
+						["Fill"] = "REVERSE",
+					},
+					["Power"] = {
+						["Enabled"] = 1,
+						["Fill"] = "REVERSE",
+						["Height"] = 4,
+						["Position"] = {
+							["Anchor"] = "TOP",
+							["Order"] = 0,
+						},
+					},
+					["Class"] = {
+						["Enabled"] = false,
+						["Fill"] = "REVERSE",
+						["Height"] = 4,
+						["Position"] = {
+							["Anchor"] = "TOP",
+						},
+					},
+				},
+				["Text"] = {
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = -4,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Name]",
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+					},
+					["Health"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 150,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 4,
+							["AnchorTo"] = "LEFT",
+							["Anchor"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurHPPerc]",
+					},
+					["Power"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurPowerPerc]",
+					},
+				},
+				["RangeFading"] = {
+					["Enabled"] = true,
+					["Alpha"] = 0.5,
+				},
+				["Size"] = {
+					["Height"] = 30,
+					["Width"] = 300,
+				},
+			},
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = false,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "DOWN",
+						["x"] = "LEFT",
+					},
+					["Width"] = 30,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = -1,
+					},
+					["Height"] = 22,
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = false,
+					["Position"] = {
+						["y"] = -1,
+						["x"] = 0,
+						["AnchorTo"] = "BOTTOMRIGHT",
+						["AnchorFrom"] = "TOPRIGHT",
+						["AnchorFrame"] = "Frame",
+					},
+				},
+				["Bars"] = {
+				},
+			},
+			["Debuffs"] = {
+				["Icons"] = {
+					["Enabled"] = false,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "DOWN",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 30,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Position"] = {
+						["y"] = -1,
+						["x"] = 0,
+						["AnchorTo"] = "BOTTOMLEFT",
+						["AnchorFrom"] = "TOPLEFT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Height"] = 22,
+					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["ClickThrough"] = false,
+				},
+				["Bars"] = {
+				},
+			},
+		},
+		["party"] = {
+			["Enabled"] = true,
+			["Debuffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "DOWN",
+						["x"] = "LEFT",
+					},
+					["Width"] = 32,
+					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Position"] = {
+						["y"] = 0,
+						["x"] = -1,
+						["AnchorTo"] = "BOTTOMLEFT",
+						["AnchorFrom"] = "BOTTOMRIGHT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Height"] = 22,
+					["ClickThrough"] = false,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Other"] = true,
+							["Player"] = true,
+							["Group"] = true,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Size"] = 45,
+				},
+				["Bars"] = {
+				},
+			},
+			["showRaid"] = false,
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 1,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "LEFT",
+					},
+					["Width"] = 32,
+					["CooldownSpiral"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Position"] = {
+						["y"] = 0,
+						["x"] = -1,
+						["AnchorTo"] = "TOPLEFT",
+						["AnchorFrom"] = "TOPRIGHT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Height"] = 22,
+					["ClickThrough"] = false,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = false,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Size"] = 45,
+				},
+				["Bars"] = {
+				},
+			},
+			["Frame"] = {
+				["Indicators"] = {
+					["Objective"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Honor"] = {
+						["Badge"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["AlwaysShow"] = false,
+						["Enabled"] = true,
+						["Size"] = 32,
+					},
+					["InCombat"] = {
+						["Enabled"] = true,
+						["Size"] = 20,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["LootMaster"] = {
+						["Enabled"] = true,
+						["Size"] = 14,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "TOP",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 16,
+					},
+					["Lead"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -2,
+							["x"] = -3,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Phased"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "MainTankAssist",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Role"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 50,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 16,
+					},
+					["MainTankAssist"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -2,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 10,
+					},
+					["PvPCombat"] = {
+						["Enabled"] = true,
+						["Size"] = 28,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Assist"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["PetHappiness"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -2,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Rest"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "BOTTOMLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Ready"] = {
+						["Enabled"] = true,
+						["Size"] = 36,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -10,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+				},
+				["Position"] = {
+					["y"] = -38,
+					["x"] = -4,
+					["offsety"] = -4,
+					["AnchorTo"] = "RIGHT",
+					["growth"] = "BOTTOM",
+					["offsetx"] = 0,
+					["AnchorFrom"] = "TOPRIGHT",
+					["AnchorFrame"] = "UIParent",
+				},
+				["RangeFading"] = {
+					["Enabled"] = true,
+					["Alpha"] = 0.5,
+				},
+				["Text"] = {
+					["Health"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 150,
+						["Position"] = {
+							["y"] = 1,
+							["x"] = 4,
+							["AnchorTo"] = "LEFT",
+							["Anchor"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 28,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurHPPerc]",
+					},
+					["Power"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 4,
+							["x"] = -4,
+							["AnchorTo"] = "BOTTOMRIGHT",
+							["Anchor"] = "BOTTOMRIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurPowerPerc]",
+						["Size"] = 16,
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "AFKDND",
+						},
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+						["Size"] = 19,
+					},
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -4,
+							["x"] = -4,
+							["AnchorTo"] = "TOPRIGHT",
+							["Anchor"] = "TOPRIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Name]",
+					},
+					["AFKDND"] = {
+						["Outline"] = "OUTLINE",
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:AFKDND]",
+						["Position"] = {
+							["y"] = 1,
+							["x"] = 2,
+							["AnchorTo"] = "LEFT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Name",
+						},
+						["Enabled"] = true,
+						["Size"] = 21,
+						["Font"] = "RUF",
+						["Width"] = 100,
+					},
+				},
+				["Bars"] = {
+					["Cast"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -38,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = true,
+						},
+						["Height"] = 26,
+						["Fill"] = "STANDARD",
+						["Width"] = 300,
+					},
+					["Absorb"] = {
+						["Enabled"] = 1,
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 1,
+						},
+						["Fill"] = "REVERSE",
+					},
+					["Health"] = {
+						["Fill"] = "REVERSE",
+					},
+					["Power"] = {
+						["Enabled"] = 2,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 0,
+						},
+						["Height"] = 6,
+						["Fill"] = "REVERSE",
+					},
+					["Class"] = {
+						["Enabled"] = true,
+						["Fill"] = "STANDARD",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "TOP",
+						},
+					},
+				},
+				["Size"] = {
+					["Height"] = 45,
+					["Width"] = 300,
+				},
+			},
+		},
+		["focus"] = {
+			["Enabled"] = true,
+			["Frame"] = {
+				["Indicators"] = {
+					["Objective"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -2,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 36,
+					},
+					["InCombat"] = {
+						["Enabled"] = true,
+						["Size"] = 20,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["LootMaster"] = {
+						["Enabled"] = true,
+						["Size"] = 14,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Honor"] = {
+						["Badge"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["AlwaysShow"] = false,
+						["Enabled"] = false,
+						["Size"] = 32,
+					},
+					["Lead"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "TOPRIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Phased"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -2,
+							["x"] = 2,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "TOPLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Role"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "InCombat",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["MainTankAssist"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 10,
+					},
+					["PvPCombat"] = {
+						["Enabled"] = true,
+						["Size"] = 28,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Assist"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["PetHappiness"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
 							["x"] = -2,
 							["AnchorTo"] = "LEFT",
 							["AnchorFrom"] = "RIGHT",
@@ -12315,7 +12701,7 @@ local Raeli = {
 					},
 				},
 				["Position"] = {
-					["y"] = 302,
+					["y"] = 200,
 					["x"] = 4,
 					["AnchorTo"] = "LEFT",
 					["AnchorFrom"] = "LEFT",
@@ -12456,57 +12842,6 @@ local Raeli = {
 					["Width"] = 300,
 				},
 			},
-			["Debuffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 10,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "DOWN",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Position"] = {
-						["y"] = 0,
-						["x"] = 1,
-						["AnchorTo"] = "BOTTOMRIGHT",
-						["AnchorFrom"] = "BOTTOMLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Max"] = 0,
-							["Min"] = 0,
-							["Unlimited"] = true,
-						},
-						["Caster"] = {
-							["Other"] = true,
-							["Player"] = true,
-							["Group"] = true,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["CooldownSpiral"] = true,
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
-					["ClickThrough"] = false,
-					["Size"] = 60,
-				},
-				["Bars"] = {
-				},
-			},
 			["Buffs"] = {
 				["Icons"] = {
 					["Enabled"] = true,
@@ -12517,7 +12852,7 @@ local Raeli = {
 						["y"] = "UP",
 						["x"] = "RIGHT",
 					},
-					["Width"] = 28,
+					["Width"] = 32,
 					["Height"] = 28,
 					["Sort"] = {
 						["SortBy"] = "Remaining",
@@ -12529,8 +12864,8 @@ local Raeli = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -12555,704 +12890,6 @@ local Raeli = {
 					},
 				},
 				["Bars"] = {
-				},
-			},
-		},
-		["target"] = {
-			["Enabled"] = true,
-			["Frame"] = {
-				["Indicators"] = {
-					["Objective"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 4,
-							["x"] = -2,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Phased",
-						},
-					},
-					["LootMaster"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Honor"] = {
-						["Enabled"] = true,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["AlwaysShow"] = false,
-						["Badge"] = true,
-						["Size"] = 32,
-					},
-					["Lead"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Phased"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Role"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Phased",
-						},
-					},
-					["MainTankAssist"] = {
-						["Enabled"] = true,
-						["Size"] = 12,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PvPCombat"] = {
-						["Enabled"] = true,
-						["Size"] = 28,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Assist"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PetHappiness"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 2,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Rest"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Ready"] = {
-						["Enabled"] = true,
-						["Size"] = 36,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = -10,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-				},
-				["Position"] = {
-					["y"] = -266,
-					["x"] = 224,
-					["AnchorTo"] = "CENTER",
-					["AnchorFrom"] = "LEFT",
-					["AnchorFrame"] = "UIParent",
-				},
-				["RangeFading"] = {
-					["Enabled"] = true,
-					["Alpha"] = 0.5,
-				},
-				["Text"] = {
-					["Health"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 150,
-						["Position"] = {
-							["y"] = 4,
-							["x"] = 4,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 28,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurHPPerc]",
-					},
-					["Power"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 2,
-							["x"] = 4,
-							["AnchorTo"] = "BOTTOMLEFT",
-							["Anchor"] = "BOTTOMLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurPowerPerc]",
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 2,
-							["x"] = -4,
-							["AnchorTo"] = "BOTTOMRIGHT",
-							["Anchor"] = "BOTTOMRIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 18,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
-					},
-					["Name"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 4,
-							["x"] = -4,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Name]",
-					},
-					["AFKDND"] = {
-						["Outline"] = "OUTLINE",
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:AFKDND]",
-						["Position"] = {
-							["y"] = 1,
-							["x"] = 2,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "RIGHT",
-							["AnchorFrame"] = "Name",
-						},
-						["Enabled"] = true,
-						["Size"] = 21,
-						["Font"] = "RUF",
-						["Width"] = 100,
-					},
-				},
-				["Bars"] = {
-					["Cast"] = {
-						["Enabled"] = true,
-						["Position"] = {
-							["y"] = -38,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOM",
-							["AnchorFrom"] = "TOP",
-							["AnchorFrame"] = true,
-						},
-						["Height"] = 26,
-						["Fill"] = "REVERSE",
-						["Width"] = 300,
-					},
-					["Absorb"] = {
-						["Enabled"] = 1,
-						["Fill"] = "REVERSE",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 1,
-						},
-					},
-					["Health"] = {
-						["Fill"] = "REVERSE",
-					},
-					["Power"] = {
-						["Enabled"] = 1,
-						["Fill"] = "REVERSE",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 0,
-						},
-					},
-					["Class"] = {
-						["Enabled"] = true,
-						["Fill"] = "REVERSE",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "TOP",
-						},
-					},
-				},
-				["Size"] = {
-					["Height"] = 60,
-					["Width"] = 300,
-				},
-			},
-			["Debuffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 15,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = true,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 1,
-						["x"] = 0,
-						["AnchorTo"] = "TOPLEFT",
-						["AnchorFrom"] = "BOTTOMLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 15,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "LEFT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["ClickThrough"] = false,
-					["CooldownSpiral"] = true,
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["Position"] = {
-						["y"] = 1,
-						["x"] = 0,
-						["AnchorTo"] = "TOPRIGHT",
-						["AnchorFrom"] = "BOTTOMRIGHT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
-				},
-				["Bars"] = {
-				},
-			},
-		},
-		["arena"] = {
-			["Enabled"] = true,
-			["Frame"] = {
-				["Indicators"] = {
-					["Objective"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Honor"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 32,
-					},
-					["LootMaster"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Phased",
-						},
-					},
-					["Lead"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Phased"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Role"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = -50,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Phased",
-						},
-					},
-					["MainTankAssist"] = {
-						["Enabled"] = true,
-						["Size"] = 12,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PvPCombat"] = {
-						["Enabled"] = true,
-						["Size"] = 28,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Assist"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PetHappiness"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 2,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Rest"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Ready"] = {
-						["Enabled"] = true,
-						["Size"] = 36,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 75,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-				},
-				["Position"] = {
-					["y"] = -34,
-					["x"] = 0,
-					["offsety"] = -4,
-					["AnchorTo"] = "BOTTOMLEFT",
-					["growth"] = "BOTTOM",
-					["offsetx"] = 0,
-					["AnchorFrom"] = "TOPLEFT",
-					["AnchorFrame"] = "oUF_RUF_FocusTarget",
-				},
-				["RangeFading"] = {
-					["Enabled"] = true,
-					["Alpha"] = 0.5,
-				},
-				["Text"] = {
-					["Health"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 150,
-						["Position"] = {
-							["y"] = 1,
-							["x"] = 4,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 28,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurHPPerc]",
-					},
-					["Power"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 4,
-							["x"] = 4,
-							["AnchorTo"] = "BOTTOMLEFT",
-							["Anchor"] = "BOTTOMLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurPowerPerc]",
-						["Size"] = 16,
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 4,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOMRIGHT",
-							["Anchor"] = "BOTTOM",
-							["AnchorFrame"] = "Frame",
-						},
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
-						["Size"] = 16,
-					},
-					["Name"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 6,
-							["x"] = -4,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Name]",
-					},
-					["AFKDND"] = "",
-				},
-				["Bars"] = {
-					["Cast"] = {
-						["Enabled"] = true,
-						["Position"] = {
-							["y"] = -38,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOM",
-							["AnchorFrom"] = "TOP",
-							["AnchorFrame"] = true,
-						},
-						["Height"] = 26,
-						["Fill"] = "REVERSE",
-						["Width"] = 300,
-					},
-					["Absorb"] = {
-						["Enabled"] = 1,
-						["Fill"] = "REVERSE",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 1,
-						},
-					},
-					["Health"] = {
-						["Fill"] = "REVERSE",
-					},
-					["Power"] = {
-						["Enabled"] = 1,
-						["Fill"] = "REVERSE",
-						["Height"] = 6,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 0,
-						},
-					},
-					["Class"] = {
-						["Enabled"] = true,
-						["Fill"] = "REVERSE",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "TOP",
-						},
-					},
-				},
-				["Size"] = {
-					["Height"] = 45,
-					["Width"] = 300,
 				},
 			},
 			["Debuffs"] = {
@@ -13265,35 +12902,7 @@ local Raeli = {
 						["y"] = "DOWN",
 						["x"] = "RIGHT",
 					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 0,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = true,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
-					["CooldownSpiral"] = true,
-					["ClickThrough"] = false,
+					["Width"] = 40,
 					["Position"] = {
 						["y"] = 0,
 						["x"] = 1,
@@ -13301,81 +12910,7 @@ local Raeli = {
 						["AnchorFrom"] = "BOTTOMLEFT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Size"] = 26,
-				},
-				["Bars"] = {
-				},
-			},
-			["Buffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "RIGHT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
-					["Filter"] = {
-						["BlackOrWhite"] = "Black",
-						["Dispellable"] = false,
-						["Time"] = {
-							["Min"] = 0,
-							["Max"] = 30,
-							["Unlimited"] = false,
-						},
-						["Caster"] = {
-							["Group"] = false,
-							["Player"] = true,
-							["Other"] = false,
-							["Unit"] = true,
-						},
-						["Lists"] = {
-						},
-					},
 					["CooldownSpiral"] = true,
-					["ClickThrough"] = false,
-					["Position"] = {
-						["y"] = 0,
-						["x"] = -1,
-						["AnchorTo"] = "TOPRIGHT",
-						["AnchorFrom"] = "TOPLEFT",
-						["AnchorFrame"] = "Frame",
-					},
-					["Size"] = 20,
-				},
-				["Bars"] = {
-				},
-			},
-		},
-		["party"] = {
-			["Enabled"] = true,
-			["Debuffs"] = {
-				["Icons"] = {
-					["Enabled"] = true,
-					["Columns"] = 5,
-					["Max"] = 5,
-					["Rows"] = 1,
-					["Growth"] = {
-						["y"] = "DOWN",
-						["x"] = "LEFT",
-					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
 					["Sort"] = {
 						["SortBy"] = "Remaining",
 						["Direction"] = "Descending",
@@ -13384,9 +12919,9 @@ local Raeli = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
-							["Unlimited"] = false,
+							["Min"] = 0,
+							["Unlimited"] = true,
 						},
 						["Caster"] = {
 							["Other"] = true,
@@ -13397,47 +12932,311 @@ local Raeli = {
 						["Lists"] = {
 						},
 					},
-					["CooldownSpiral"] = true,
-					["ClickThrough"] = false,
-					["Position"] = {
-						["y"] = 0,
-						["x"] = -1,
-						["AnchorTo"] = "BOTTOMLEFT",
-						["AnchorFrom"] = "BOTTOMRIGHT",
-						["AnchorFrame"] = "Frame",
+					["Height"] = 60,
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
 					},
-					["Size"] = 45,
+					["ClickThrough"] = false,
+					["Size"] = 60,
 				},
 				["Bars"] = {
 				},
 			},
-			["showRaid"] = false,
+		},
+		["focustarget"] = {
+			["Enabled"] = true,
+			["Frame"] = {
+				["Indicators"] = {
+					["Objective"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -2,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["LootMaster"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Lead"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = -2,
+							["x"] = 5,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Phased"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -40,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Role"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 40,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 14,
+					},
+					["MainTankAssist"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 10,
+					},
+					["PvPCombat"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["Assist"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["PetHappiness"] = {
+						["Enabled"] = true,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -2,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Honor"] = {
+						["Badge"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "PvPCombat",
+						},
+						["AlwaysShow"] = false,
+						["Enabled"] = false,
+						["Size"] = 26,
+					},
+					["Ready"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 10,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+				},
+				["Position"] = {
+					["y"] = -4,
+					["x"] = 0,
+					["AnchorTo"] = "BOTTOMLEFT",
+					["AnchorFrom"] = "TOPLEFT",
+					["AnchorFrame"] = "oUF_RUF_Focus",
+				},
+				["Bars"] = {
+					["Cast"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = -38,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = true,
+						},
+						["Height"] = 26,
+						["Fill"] = "STANDARD",
+						["Width"] = 300,
+					},
+					["Absorb"] = {
+						["Enabled"] = 1,
+						["Fill"] = "STANDARD",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 1,
+						},
+					},
+					["Health"] = {
+						["Fill"] = "STANDARD",
+					},
+					["Power"] = {
+						["Enabled"] = 1,
+						["Fill"] = "STANDARD",
+						["Height"] = 4,
+						["Position"] = {
+							["Anchor"] = "TOP",
+							["Order"] = 0,
+						},
+					},
+					["Class"] = {
+						["Enabled"] = false,
+						["Fill"] = "STANDARD",
+						["Height"] = 4,
+						["Position"] = {
+							["Anchor"] = "TOP",
+						},
+					},
+				},
+				["Text"] = {
+					["Health"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 150,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = -4,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurHPPerc]",
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "LEFT",
+							["AnchorFrame"] = "Name",
+						},
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+						["Enabled"] = true,
+						["Size"] = 17,
+					},
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 4,
+							["AnchorTo"] = "LEFT",
+							["Anchor"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Name]",
+					},
+					["Power"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurPowerPerc]",
+					},
+				},
+				["RangeFading"] = {
+					["Enabled"] = true,
+					["Alpha"] = 0.5,
+				},
+				["Size"] = {
+					["Height"] = 30,
+					["Width"] = 300,
+				},
+			},
 			["Buffs"] = {
 				["Icons"] = {
-					["Enabled"] = true,
+					["Enabled"] = false,
 					["Columns"] = 5,
 					["Max"] = 5,
 					["Rows"] = 1,
 					["Growth"] = {
-						["y"] = "UP",
-						["x"] = "LEFT",
+						["y"] = "DOWN",
+						["x"] = "RIGHT",
 					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
+					["Width"] = 30,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
-							["Min"] = 0,
 							["Max"] = 0,
+							["Min"] = 0,
 							["Unlimited"] = false,
 						},
 						["Caster"] = {
@@ -13449,657 +13248,46 @@ local Raeli = {
 						["Lists"] = {
 						},
 					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = 1,
+					},
+					["Height"] = 22,
 					["CooldownSpiral"] = true,
 					["ClickThrough"] = false,
 					["Position"] = {
-						["y"] = 0,
-						["x"] = -1,
-						["AnchorTo"] = "TOPLEFT",
-						["AnchorFrom"] = "TOPRIGHT",
+						["y"] = -1,
+						["x"] = 0,
+						["AnchorTo"] = "BOTTOMLEFT",
+						["AnchorFrom"] = "TOPLEFT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Size"] = 45,
 				},
 				["Bars"] = {
-				},
-			},
-			["Frame"] = {
-				["Indicators"] = {
-					["Objective"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "InCombat",
-						},
-					},
-					["InCombat"] = {
-						["Enabled"] = true,
-						["Size"] = 20,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["LootMaster"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Honor"] = {
-						["Enabled"] = true,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["AlwaysShow"] = false,
-						["Badge"] = true,
-						["Size"] = 32,
-					},
-					["Lead"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Phased"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Role"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 50,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "InCombat",
-						},
-					},
-					["MainTankAssist"] = {
-						["Enabled"] = true,
-						["Size"] = 12,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PvPCombat"] = {
-						["Enabled"] = true,
-						["Size"] = 28,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Assist"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PetHappiness"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = -2,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Rest"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "BOTTOMLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Ready"] = {
-						["Enabled"] = true,
-						["Size"] = 36,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = -75,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-				},
-				["Position"] = {
-					["y"] = 210,
-					["x"] = -4,
-					["offsety"] = -4,
-					["AnchorTo"] = "BOTTOMRIGHT",
-					["growth"] = "BOTTOM",
-					["offsetx"] = 0,
-					["AnchorFrom"] = "BOTTOMRIGHT",
-					["AnchorFrame"] = "UIParent",
-				},
-				["RangeFading"] = {
-					["Enabled"] = true,
-					["Alpha"] = 0.5,
-				},
-				["Text"] = {
-					["Health"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 150,
-						["Position"] = {
-							["y"] = 1,
-							["x"] = 4,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 28,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurHPPerc]",
-					},
-					["Power"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 4,
-							["x"] = -4,
-							["AnchorTo"] = "BOTTOMRIGHT",
-							["Anchor"] = "BOTTOMRIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurPowerPerc]",
-						["Size"] = 16,
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 4,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOMLEFT",
-							["Anchor"] = "BOTTOM",
-							["AnchorFrame"] = "Frame",
-						},
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
-						["Size"] = 16,
-					},
-					["Name"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = -4,
-							["x"] = -4,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "TOPRIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Name]",
-					},
-					["AFKDND"] = {
-						["Outline"] = "OUTLINE",
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:AFKDND]",
-						["Position"] = {
-							["y"] = 1,
-							["x"] = 2,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "LEFT",
-							["AnchorFrame"] = "Name",
-						},
-						["Enabled"] = true,
-						["Size"] = 21,
-						["Font"] = "RUF",
-						["Width"] = 100,
-					},
-				},
-				["Bars"] = {
-					["Cast"] = {
-						["Enabled"] = true,
-						["Position"] = {
-							["y"] = -38,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOM",
-							["AnchorFrom"] = "TOP",
-							["AnchorFrame"] = true,
-						},
-						["Height"] = 26,
-						["Fill"] = "STANDARD",
-						["Width"] = 300,
-					},
-					["Absorb"] = {
-						["Enabled"] = 1,
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 1,
-						},
-						["Fill"] = "REVERSE",
-					},
-					["Health"] = {
-						["Fill"] = "REVERSE",
-					},
-					["Power"] = {
-						["Enabled"] = 2,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 0,
-						},
-						["Height"] = 6,
-						["Fill"] = "REVERSE",
-					},
-					["Class"] = {
-						["Enabled"] = true,
-						["Fill"] = "STANDARD",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "TOP",
-						},
-					},
-				},
-				["Size"] = {
-					["Height"] = 45,
-					["Width"] = 300,
-				},
-			},
-		},
-		["boss"] = {
-			["Enabled"] = true,
-			["Frame"] = {
-				["Indicators"] = {
-					["Objective"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 4,
-							["x"] = -2,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Honor"] = {
-						["Enabled"] = false,
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-						["Badge"] = false,
-						["AlwaysShow"] = false,
-						["Size"] = 32,
-					},
-					["LootMaster"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["TargetMark"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Phased",
-						},
-					},
-					["Lead"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Phased"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Role"] = {
-						["Enabled"] = true,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = -50,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Phased",
-						},
-					},
-					["MainTankAssist"] = {
-						["Enabled"] = true,
-						["Size"] = 12,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "RIGHT",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PvPCombat"] = {
-						["Enabled"] = true,
-						["Size"] = 28,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Assist"] = {
-						["Enabled"] = true,
-						["Size"] = 14,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Lead",
-						},
-					},
-					["PetHappiness"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 2,
-							["AnchorTo"] = "RIGHT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Rest"] = {
-						["Enabled"] = false,
-						["Size"] = 26,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "CENTER",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-					["Ready"] = {
-						["Enabled"] = true,
-						["Size"] = 36,
-						["Style"] = "RUF",
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 75,
-							["AnchorTo"] = "LEFT",
-							["AnchorFrom"] = "LEFT",
-							["AnchorFrame"] = "Frame",
-						},
-					},
-				},
-				["Position"] = {
-					["y"] = -34,
-					["x"] = 0,
-					["offsety"] = -4,
-					["AnchorTo"] = "BOTTOMLEFT",
-					["growth"] = "BOTTOM",
-					["offsetx"] = 0,
-					["AnchorFrom"] = "TOPLEFT",
-					["AnchorFrame"] = "oUF_RUF_FocusTarget",
-				},
-				["RangeFading"] = {
-					["Enabled"] = true,
-					["Alpha"] = 0.5,
-				},
-				["Text"] = {
-					["Health"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 150,
-						["Position"] = {
-							["y"] = 1,
-							["x"] = -4,
-							["AnchorTo"] = "LEFT",
-							["Anchor"] = "RIGHT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 28,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurHPPerc]",
-					},
-					["Power"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 4,
-							["x"] = 4,
-							["AnchorTo"] = "BOTTOMLEFT",
-							["Anchor"] = "BOTTOMLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:CurPowerPerc]",
-						["Size"] = 16,
-					},
-					["Level"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = 4,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOMRIGHT",
-							["Anchor"] = "BOTTOM",
-							["AnchorFrame"] = "Frame",
-						},
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Level]",
-						["Size"] = 16,
-					},
-					["Name"] = {
-						["Outline"] = "OUTLINE",
-						["Font"] = "RUF",
-						["Width"] = 100,
-						["Position"] = {
-							["y"] = -4,
-							["x"] = 4,
-							["AnchorTo"] = "RIGHT",
-							["Anchor"] = "TOPLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["Size"] = 21,
-						["Enabled"] = true,
-						["Shadow"] = 0,
-						["Tag"] = "[RUF:Name]",
-					},
-					["AFKDND"] = "",
-				},
-				["Bars"] = {
-					["Cast"] = {
-						["Enabled"] = true,
-						["Position"] = {
-							["y"] = -38,
-							["x"] = 0,
-							["AnchorTo"] = "BOTTOM",
-							["AnchorFrom"] = "TOP",
-							["AnchorFrame"] = true,
-						},
-						["Height"] = 26,
-						["Fill"] = "REVERSE",
-						["Width"] = 300,
-					},
-					["Absorb"] = {
-						["Enabled"] = 1,
-						["Fill"] = "REVERSE",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 1,
-						},
-					},
-					["Health"] = {
-						["Fill"] = "REVERSE",
-					},
-					["Power"] = {
-						["Enabled"] = 1,
-						["Fill"] = "REVERSE",
-						["Height"] = 6,
-						["Position"] = {
-							["Anchor"] = "BOTTOM",
-							["Order"] = 0,
-						},
-					},
-					["Class"] = {
-						["Enabled"] = true,
-						["Fill"] = "REVERSE",
-						["Height"] = 8,
-						["Position"] = {
-							["Anchor"] = "TOP",
-						},
-					},
-				},
-				["Size"] = {
-					["Height"] = 45,
-					["Width"] = 300,
 				},
 			},
 			["Debuffs"] = {
 				["Icons"] = {
-					["Enabled"] = true,
+					["Enabled"] = false,
 					["Columns"] = 5,
 					["Max"] = 5,
 					["Rows"] = 1,
 					["Growth"] = {
 						["y"] = "DOWN",
-						["x"] = "RIGHT",
+						["x"] = "LEFT",
 					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Spacing"] = {
-						["y"] = -1,
-						["x"] = 1,
-					},
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
+					["Width"] = 30,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
 							["Max"] = 0,
 							["Min"] = 0,
-							["Unlimited"] = true,
+							["Unlimited"] = false,
 						},
 						["Caster"] = {
 							["Group"] = false,
@@ -14110,18 +13298,303 @@ local Raeli = {
 						["Lists"] = {
 						},
 					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Spacing"] = {
+						["y"] = -1,
+						["x"] = -1,
+					},
+					["Height"] = 22,
 					["CooldownSpiral"] = true,
 					["ClickThrough"] = false,
 					["Position"] = {
-						["y"] = 0,
-						["x"] = 1,
+						["y"] = -1,
+						["x"] = 0,
 						["AnchorTo"] = "BOTTOMRIGHT",
-						["AnchorFrom"] = "BOTTOMLEFT",
+						["AnchorFrom"] = "TOPRIGHT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Size"] = 45,
 				},
 				["Bars"] = {
+				},
+			},
+		},
+		["pettarget"] = {
+			["Enabled"] = true,
+			["Frame"] = {
+				["Indicators"] = {
+					["Objective"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = -2,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 2,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["LootMaster"] = {
+						["Enabled"] = false,
+						["Size"] = 18,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Lead"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Phased"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "TargetMark",
+						},
+						["Style"] = "RUF",
+						["Size"] = 14,
+					},
+					["Role"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "MainTankAssist",
+						},
+						["Style"] = "RUF",
+						["Size"] = 14,
+					},
+					["MainTankAssist"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 10,
+					},
+					["PvPCombat"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["Assist"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Lead",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["PetHappiness"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Honor"] = {
+						["Badge"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "PvPCombat",
+						},
+						["AlwaysShow"] = false,
+						["Enabled"] = false,
+						["Size"] = 18,
+					},
+					["Ready"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 10,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+				},
+				["Position"] = {
+					["y"] = 0,
+					["x"] = 4,
+					["AnchorTo"] = "BOTTOMRIGHT",
+					["AnchorFrom"] = "BOTTOMLEFT",
+					["AnchorFrame"] = "oUF_RUF_Pet",
+				},
+				["RangeFading"] = {
+					["Enabled"] = true,
+					["Alpha"] = 0.5,
+				},
+				["Text"] = {
+					["Health"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurHPPerc]",
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = -2,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+					},
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Name]",
+						["Size"] = 18,
+					},
+					["Power"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = -1,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurPowerPerc]",
+					},
+				},
+				["Bars"] = {
+					["Cast"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = -38,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = true,
+						},
+						["Height"] = 26,
+						["Fill"] = "STANDARD",
+						["Width"] = 300,
+					},
+					["Absorb"] = {
+						["Enabled"] = 1,
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 1,
+						},
+						["Fill"] = "REVERSE",
+					},
+					["Health"] = {
+						["Fill"] = "REVERSE",
+					},
+					["Power"] = {
+						["Enabled"] = 1,
+						["Height"] = 4,
+						["Position"] = {
+							["Anchor"] = "TOP",
+							["Order"] = 0,
+						},
+						["Fill"] = "REVERSE",
+					},
+					["Class"] = {
+						["Enabled"] = false,
+						["Fill"] = "STANDARD",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "TOP",
+						},
+					},
+				},
+				["Size"] = {
+					["Height"] = 30,
+					["Width"] = 148,
 				},
 			},
 			["Buffs"] = {
@@ -14129,50 +13602,480 @@ local Raeli = {
 					["Enabled"] = true,
 					["Columns"] = 5,
 					["Max"] = 5,
-					["Rows"] = 1,
+					["Rows"] = 2,
 					["Growth"] = {
 						["y"] = "UP",
 						["x"] = "RIGHT",
 					},
-					["Width"] = 28,
-					["Height"] = 28,
-					["Spacing"] = {
-						["y"] = 1,
-						["x"] = 1,
-					},
-					["Sort"] = {
-						["SortBy"] = "Remaining",
-						["Direction"] = "Descending",
-					},
+					["Width"] = 32,
 					["Filter"] = {
 						["BlackOrWhite"] = "Black",
 						["Dispellable"] = false,
 						["Time"] = {
 							["Max"] = 0,
 							["Min"] = 0,
-							["Unlimited"] = true,
+							["Unlimited"] = false,
 						},
 						["Caster"] = {
 							["Group"] = false,
 							["Player"] = true,
-							["Other"] = false,
+							["Other"] = true,
 							["Unit"] = true,
 						},
 						["Lists"] = {
 						},
 					},
-					["CooldownSpiral"] = true,
-					["ClickThrough"] = false,
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
 					["Position"] = {
 						["y"] = 0,
 						["x"] = 1,
-						["AnchorTo"] = "TOPRIGHT",
-						["AnchorFrom"] = "TOPLEFT",
+						["AnchorTo"] = "RIGHT",
+						["AnchorFrom"] = "LEFT",
 						["AnchorFrame"] = "Frame",
 					},
-					["Size"] = 45,
+					["Height"] = 30,
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = true,
+					["Spacing"] = {
+						["y"] = 2,
+						["x"] = 1,
+					},
 				},
 				["Bars"] = {
+				},
+			},
+			["Debuffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 2,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "RIGHT",
+					},
+					["Width"] = 32,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = true,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Position"] = {
+						["y"] = 0,
+						["x"] = 1,
+						["AnchorTo"] = "RIGHT",
+						["AnchorFrom"] = "LEFT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Height"] = 30,
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = true,
+					["Spacing"] = {
+						["y"] = 2,
+						["x"] = 1,
+					},
+				},
+				["Bars"] = {
+				},
+			},
+		},
+		["partypet"] = {
+			["Enabled"] = false,
+			["Debuffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 2,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "LEFT",
+					},
+					["Width"] = 30,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = true,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Position"] = {
+						["y"] = 0,
+						["x"] = -1,
+						["AnchorTo"] = "LEFT",
+						["AnchorFrom"] = "RIGHT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Height"] = 30,
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+				},
+				["Bars"] = {
+				},
+			},
+			["showRaid"] = false,
+			["Buffs"] = {
+				["Icons"] = {
+					["Enabled"] = true,
+					["Columns"] = 5,
+					["Max"] = 5,
+					["Rows"] = 2,
+					["Growth"] = {
+						["y"] = "UP",
+						["x"] = "LEFT",
+					},
+					["Width"] = 30,
+					["Filter"] = {
+						["BlackOrWhite"] = "Black",
+						["Dispellable"] = false,
+						["Time"] = {
+							["Max"] = 0,
+							["Min"] = 0,
+							["Unlimited"] = false,
+						},
+						["Caster"] = {
+							["Group"] = false,
+							["Player"] = true,
+							["Other"] = true,
+							["Unit"] = true,
+						},
+						["Lists"] = {
+						},
+					},
+					["Sort"] = {
+						["SortBy"] = "Remaining",
+						["Direction"] = "Descending",
+					},
+					["Position"] = {
+						["y"] = 0,
+						["x"] = -1,
+						["AnchorTo"] = "LEFT",
+						["AnchorFrom"] = "RIGHT",
+						["AnchorFrame"] = "Frame",
+					},
+					["Height"] = 30,
+					["CooldownSpiral"] = true,
+					["ClickThrough"] = true,
+					["Spacing"] = {
+						["y"] = 1,
+						["x"] = 1,
+					},
+				},
+				["Bars"] = {
+				},
+			},
+			["Frame"] = {
+				["Indicators"] = {
+					["Objective"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "TargetMark",
+						},
+					},
+					["Honor"] = {
+						["Badge"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "PvPCombat",
+						},
+						["AlwaysShow"] = false,
+						["Enabled"] = false,
+						["Size"] = 18,
+					},
+					["LootMaster"] = {
+						["Enabled"] = false,
+						["Size"] = 18,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Lead"] = {
+						["Enabled"] = false,
+						["Size"] = 18,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["Phased"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 12,
+					},
+					["Role"] = {
+						["Enabled"] = false,
+						["Size"] = 18,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = -2,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["MainTankAssist"] = {
+						["Enabled"] = false,
+						["Size"] = 18,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Lead",
+						},
+					},
+					["PvPCombat"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["Assist"] = {
+						["Enabled"] = false,
+						["Size"] = 18,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Lead",
+						},
+					},
+					["PetHappiness"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["AnchorFrom"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+					},
+					["TargetMark"] = {
+						["Enabled"] = true,
+						["Position"] = {
+							["y"] = 1,
+							["x"] = 2,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Style"] = "RUF",
+						["Size"] = 20,
+					},
+					["Ready"] = {
+						["Enabled"] = false,
+						["Size"] = 26,
+						["Style"] = "RUF",
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "Phased",
+						},
+					},
+				},
+				["Position"] = {
+					["y"] = 0,
+					["x"] = -4,
+					["offsety"] = -19,
+					["AnchorTo"] = "TOPLEFT",
+					["growth"] = "BOTTOM",
+					["offsetx"] = 0,
+					["AnchorFrom"] = "TOPRIGHT",
+					["AnchorFrame"] = "oUF_RUF_Party",
+				},
+				["Bars"] = {
+					["Cast"] = {
+						["Enabled"] = false,
+						["Position"] = {
+							["y"] = -38,
+							["x"] = 0,
+							["AnchorTo"] = "BOTTOM",
+							["AnchorFrom"] = "TOP",
+							["AnchorFrame"] = true,
+						},
+						["Height"] = 26,
+						["Fill"] = "STANDARD",
+						["Width"] = 300,
+					},
+					["Absorb"] = {
+						["Enabled"] = 1,
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 1,
+						},
+						["Fill"] = "REVERSE",
+					},
+					["Health"] = {
+						["Fill"] = "REVERSE",
+					},
+					["Power"] = {
+						["Enabled"] = 1,
+						["Height"] = 4,
+						["Position"] = {
+							["Anchor"] = "BOTTOM",
+							["Order"] = 0,
+						},
+						["Fill"] = "REVERSE",
+					},
+					["Class"] = {
+						["Enabled"] = false,
+						["Fill"] = "STANDARD",
+						["Height"] = 8,
+						["Position"] = {
+							["Anchor"] = "TOP",
+						},
+					},
+				},
+				["Text"] = {
+					["Name"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 1,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = true,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Name]",
+					},
+					["Level"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 1,
+							["x"] = 0,
+							["AnchorTo"] = "RIGHT",
+							["Anchor"] = "RIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:Level]",
+						["Size"] = 13,
+					},
+					["Health"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 1,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 21,
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurHPPerc]",
+					},
+					["Power"] = {
+						["Outline"] = "OUTLINE",
+						["Font"] = "RUF",
+						["Width"] = 100,
+						["Position"] = {
+							["y"] = 1,
+							["x"] = 0,
+							["AnchorTo"] = "CENTER",
+							["Anchor"] = "CENTER",
+							["AnchorFrame"] = "Frame",
+						},
+						["Size"] = 18,
+						["Enabled"] = false,
+						["Shadow"] = 0,
+						["Tag"] = "[RUF:CurPowerPerc]",
+					},
+				},
+				["RangeFading"] = {
+					["Enabled"] = true,
+					["Alpha"] = 0.5,
+				},
+				["Size"] = {
+					["Height"] = 30,
+					["Width"] = 125,
 				},
 			},
 		},

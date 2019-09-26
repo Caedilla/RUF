@@ -142,7 +142,7 @@ local function SetupFrames(self,unit)
 	-- Indicators
 	RUF.SetIndicators(self,unit)
 
-	if unit == 'player' and RUF.Client == 1 then
+	if RUF.Client == 1 then
 		self:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED',RUF.SetBarLocation,true)
 		self:RegisterEvent('PLAYER_ENTERING_WORLD',RUF.SetBarLocation,true)
 	end
@@ -324,11 +324,11 @@ function RUF:OnEnable()
 	end
 end
 
-local frame = CreateFrame("Frame")
+--[[local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGOUT")
 
 frame:SetScript("OnEvent", function(self, event, arg1)
 	if event == "PLAYER_LOGOUT" then
-		RUF:copyTable(RUF.Layout["Alidie's Layout"],RUFDB.profiles["Alidie's Layout"])
+		RUF:copyTable(RUF.Layout["Raeli's Layout"],RUFDB.profiles["Raeli's Layout"])
 	end
-end)
+end)]]--

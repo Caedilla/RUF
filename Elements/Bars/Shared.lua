@@ -127,7 +127,7 @@ function RUF.SetBarLocation(self,unit)
 	local profileReference = RUF.db.profile.unit[profileUnit].Frame.Bars
 	local barsAtTop = {}
 	local barsAtBottom = {}
-	if unit == 'player' then
+	if profileUnit == 'player' then
 		local _,pType = UnitPowerType(unit)
 		local visibleTopBars = false
 		local visibleBottomBars = false
@@ -172,11 +172,21 @@ function RUF.SetBarLocation(self,unit)
 				table.insert(barsAtBottom,'Stagger')
 			end
 		end
+
 		if profileReference.Power.Enabled == 1 then
-			if ((pType == "INSANITY" or pType == "MAELSTROM" or pType == "LUNAR_POWER") and UnitPower(unit,0) > 0) or UnitPower(unit) > 0 then
+			if RUF.db.global.TestMode == true then
 				powerShouldShow = true
 			end
-		elseif profileReference.Power.Enabled == 2 then
+			if pType == "INSANITY" or pType == "MAELSTROM" or pType == "LUNAR_POWER" then
+				if UnitPower(unit,0) > 0 then
+					powerShouldShow = true
+				end
+			end
+			if UnitPower(unit) > 0 then
+				powerShouldShow = true
+			end
+		end
+		if profileReference.Power.Enabled == 2 then
 			powerShouldShow = true
 		end
 		if powerShouldShow == true then
@@ -250,7 +260,19 @@ function RUF.SetBarLocation(self,unit)
 			self.Background.Base:SetPoint('BOTTOMRIGHT',self,0,0)
 		end
 	else
-		if profileReference.Power.Enabled == 2 or (profileReference.Power.Enabled == 1 and UnitPower(unit) > 0) then
+		local powerShouldShow = false
+		if profileReference.Power.Enabled == 2 then
+			powerShouldShow = true
+		end
+		if profileReference.Power.Enabled == 1 then
+			if RUF.db.global.TestMode == true then
+				powerShouldShow = true
+			end
+			if UnitPower(profileUnit) > 0 then
+				powerShouldShow = true
+			end
+		end
+		if powerShouldShow then
 			if profileReference.Power.Position.Anchor == 'TOP' then
 				table.insert(barsAtTop,'Power')
 			else
@@ -262,6 +284,7 @@ function RUF.SetBarLocation(self,unit)
 			local element
 			local profileName = barsAtTop[i]
 			if barsAtTop[i] == 'Power' then
+				profileName = 'Power'
 				element = self.Power
 			end
 			element:ClearAllPoints()
@@ -277,6 +300,7 @@ function RUF.SetBarLocation(self,unit)
 			local element
 			local profileName = barsAtBottom[i]
 			if barsAtBottom[i] == 'Power' then
+				profileName = 'Power'
 				element = self.Power
 			end
 			element:ClearAllPoints()

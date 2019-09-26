@@ -74,14 +74,6 @@ function RUF.SetTextPoints(self,unit,textName)
 		end
 	end
 
-	if not profileReference.Position.AnchorTo then -- Update all existing text elements from before this change so they have the correct anchor points.
-		local reverseAnchor = profileReference.Position.Anchor
-		RUF.db.profile.unit[self.frame].Frame.Text[textName].Position.AnchorTo = reverseAnchor
-		if profileReference.Position.AnchorFrame ~= 'Frame' then
-			reverseAnchor = anchorSwaps[reverseAnchor]
-		end
-		RUF.db.profile.unit[self.frame].Frame.Text[textName].Position.Anchor = reverseAnchor
-	end
 	element:SetPoint(
 		profileReference.Position.Anchor,
 		anchorFrame,
