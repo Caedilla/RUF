@@ -10144,14 +10144,14 @@ local Raeli = {
 					},
 					["LootMaster"] = {
 						["Enabled"] = true,
-						["Size"] = 14,
+						["Size"] = 10,
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "MainTankAssist",
 						},
 					},
 					["Honor"] = {
@@ -10759,12 +10759,12 @@ local Raeli = {
 						["Width"] = 100,
 						["Position"] = {
 							["y"] = -1,
-							["x"] = 0,
+							["x"] = 4,
 							["AnchorTo"] = "LEFT",
-							["Anchor"] = "CENTER",
+							["Anchor"] = "LEFT",
 							["AnchorFrame"] = "Frame",
 						},
-						["Size"] = 18,
+						["Size"] = 21,
 						["Enabled"] = true,
 						["Shadow"] = 0,
 						["Tag"] = "[RUF:Name]",
@@ -10792,7 +10792,7 @@ local Raeli = {
 				},
 				["Size"] = {
 					["Height"] = 30,
-					["Width"] = 148,
+					["Width"] = 300,
 				},
 			},
 			["Buffs"] = {
@@ -10938,14 +10938,14 @@ local Raeli = {
 					},
 					["LootMaster"] = {
 						["Enabled"] = true,
-						["Size"] = 14,
+						["Size"] = 10,
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
+							["AnchorTo"] = "LEFT",
+							["AnchorFrom"] = "RIGHT",
+							["AnchorFrame"] = "MainTankAssist",
 						},
 					},
 					["Honor"] = {
@@ -12249,14 +12249,14 @@ local Raeli = {
 					},
 					["LootMaster"] = {
 						["Enabled"] = true,
-						["Size"] = 14,
+						["Size"] = 10,
 						["Style"] = "RUF",
 						["Position"] = {
 							["y"] = 0,
 							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "CENTER",
-							["AnchorFrame"] = "Frame",
+							["AnchorTo"] = "RIGHT",
+							["AnchorFrom"] = "LEFT",
+							["AnchorFrame"] = "MainTankAssist",
 						},
 					},
 					["TargetMark"] = {

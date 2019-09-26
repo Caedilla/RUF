@@ -73,7 +73,9 @@ function RUF.SetTextPoints(self,unit,textName)
 			anchorFrame = name
 		end
 	end
-
+	if not profileReference.Position.AnchorTo then
+		RUF.db.profile.unit[self.frame].Frame.Text[textName] = profileReference.Position.Anchor
+	end
 	element:SetPoint(
 		profileReference.Position.Anchor,
 		anchorFrame,

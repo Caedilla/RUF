@@ -471,12 +471,21 @@ function RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,text)
 		if header ~= 'none' then
 			currentUnit = header .. 'UnitButton' .. i
 			profileReference = RUF.db.profile.unit[string.lower(header)].Frame.Text[text]
+			if not profileReference.Position.AnchorTo then
+				RUF.db.profile.unit[string.lower(header)].Frame.Text[text].Position.AnchorTo = profileReference.Position.Anchor
+			end
 		elseif groupFrame ~= 'none' then
 			currentUnit = groupFrame .. i
 			profileReference = RUF.db.profile.unit[string.lower(groupFrame)].Frame.Text[text]
+			if not profileReference.Position.AnchorTo then
+				RUF.db.profile.unit[string.lower(groupFrame)].Frame.Text[text].Position.AnchorTo = profileReference.Position.Anchor
+			end
 		else
 			currentUnit = singleFrame
 			profileReference = RUF.db.profile.unit[string.lower(singleFrame)].Frame.Text[text]
+			if not profileReference.Position.AnchorTo then
+				RUF.db.profile.unit[string.lower(singleFrame)].Frame.Text[text].Position.AnchorTo = profileReference.Position.Anchor
+			end
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
 
@@ -490,14 +499,6 @@ function RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,text)
 			anchorFrame = unitFrame
 		else
 			anchorFrame = unitFrame.Text[profileReference.Position.AnchorFrame].String
-		end
-		if not profileReference.Position.AnchorTo then -- Update all existing text elements from before this change so they have the correct anchor points.
-			local reverseAnchor = profileReference.Position.Anchor
-			profileReference.Position.AnchorTo = reverseAnchor
-			if profileReference.Position.AnchorFrame ~= 'Frame' then
-				reverseAnchor = anchorSwaps[reverseAnchor]
-			end
-			profileReference.Position.Anchor = reverseAnchor
 		end
 		if profileReference.CustomWidth then
 			currentText:SetWidth(profileReference.Width)
