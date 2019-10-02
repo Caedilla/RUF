@@ -38,6 +38,21 @@ function RUF.SetFramePortrait(self, unit)
 	end
 
 	Portrait:SetAlpha(profileReference.Alpha)
+	Portrait:SetPaused(true) -- Whether to animate or not.
+
+	-- In Radians. 0 is a facing of about 45 degrees.
+	-- Degrees x math.pi / 180 = radian
+
+	-- math.pi * 2 = default position
+
+	-- https://en.wikipedia.org/wiki/Radian
+
+
+	-- TODO: Make a list of cam positions and rotations for each main character race, and a default "good enough" for non-player units to make them face left or right since
+	-- (-math.pi / 4) aka 45 degrees is not the same on every unit as every races's default facing is slightly different.
+
+
+	Portrait:SetFacing(/run oUF_RUF_Player.Portrait:SetFacing(-math.pi/2))
 	--Portrait:SetFrameStrata(profileReference.Strata)
 	--Portrait:SetFrameLevel(profileReference.Level)
 
