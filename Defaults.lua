@@ -569,6 +569,32 @@ local cfg = {
 			["player"] = {
 				["Enabled"] = true,
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 1,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = true,
@@ -1002,6 +1028,32 @@ local cfg = {
 			["target"] = {
 				["Enabled"] = true,
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 0,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = true,
@@ -1407,6 +1459,32 @@ local cfg = {
 			["focus"] = {
 				["Enabled"] = true,
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 0,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = true,
@@ -1824,6 +1902,32 @@ local cfg = {
 			["pet"] = {
 				["Enabled"] = true,
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 0,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = false,
@@ -2201,6 +2305,32 @@ local cfg = {
 			["targettarget"] = {
 				["Enabled"] = true,
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 0,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = false,
@@ -2578,6 +2708,32 @@ local cfg = {
 			["focustarget"] = {
 				["Enabled"] = true,
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 0,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = false,
@@ -2955,6 +3111,32 @@ local cfg = {
 			["pettarget"] = {
 				["Enabled"] = false,
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 0,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = false,
@@ -3331,108 +3513,33 @@ local cfg = {
 			},
 			["party"] = {
 				["Enabled"] = true,
-				["Debuffs"] = {
-					["Icons"] = {
-						["Enabled"] = true,
-						["Columns"] = 5,
-						["Max"] = 5,
-						["Rows"] = 1,
-						["Growth"] = {
-							["y"] = "DOWN",
-							["x"] = "RIGHT",
-						},
-						["Width"] = 28,
-						["CooldownSpiral"] = true,
-						["Sort"] = {
-							["SortBy"] = "Remaining",
-							["Direction"] = "Descending",
-						},
-						["Spacing"] = {
-							["y"] = -1,
-							["x"] = 1,
-						},
-						["Height"] = 28,
-						["Filter"] = {
-							["BlackOrWhite"] = "Black",
-							["Dispellable"] = false,
-							["Time"] = {
-								["Max"] = 0,
-								["Min"] = 0,
-								["Unlimited"] = false,
-							},
-							["Caster"] = {
-								["Group"] = false,
-								["Player"] = true,
-								["Other"] = false,
-								["Unit"] = true,
-							},
-							["Lists"] = {
-							},
-						},
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 1,
-							["AnchorTo"] = "BOTTOMRIGHT",
-							["AnchorFrom"] = "BOTTOMLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["ClickThrough"] = false,
-					},
-					["Bars"] = {
-					},
-				},
-				["showRaid"] = false,
-				["Buffs"] = {
-					["Icons"] = {
-						["Enabled"] = true,
-						["Columns"] = 5,
-						["Max"] = 5,
-						["Rows"] = 1,
-						["Growth"] = {
-							["y"] = "UP",
-							["x"] = "RIGHT",
-						},
-						["Width"] = 28,
-						["CooldownSpiral"] = true,
-						["Sort"] = {
-							["SortBy"] = "Remaining",
-							["Direction"] = "Descending",
-						},
-						["Spacing"] = {
-							["y"] = 1,
-							["x"] = 1,
-						},
-						["Height"] = 28,
-						["Filter"] = {
-							["BlackOrWhite"] = "Black",
-							["Dispellable"] = false,
-							["Time"] = {
-								["Max"] = 0,
-								["Min"] = 0,
-								["Unlimited"] = false,
-							},
-							["Caster"] = {
-								["Group"] = false,
-								["Player"] = true,
-								["Other"] = false,
-								["Unit"] = true,
-							},
-							["Lists"] = {
-							},
-						},
-						["Position"] = {
-							["y"] = 0,
-							["x"] = 1,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "TOPLEFT",
-							["AnchorFrame"] = "Frame",
-						},
-						["ClickThrough"] = false,
-					},
-					["Bars"] = {
-					},
-				},
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 0,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = true,
@@ -3749,17 +3856,14 @@ local cfg = {
 						["Width"] = 300,
 					},
 				},
-			},
-			["partypet"] = {
-				["Enabled"] = false,
 				["Debuffs"] = {
 					["Icons"] = {
 						["Enabled"] = true,
 						["Columns"] = 5,
-						["Max"] = 12,
-						["Rows"] = 2,
+						["Max"] = 5,
+						["Rows"] = 1,
 						["Growth"] = {
-							["y"] = "UP",
+							["y"] = "DOWN",
 							["x"] = "RIGHT",
 						},
 						["Width"] = 28,
@@ -3769,8 +3873,8 @@ local cfg = {
 							["Direction"] = "Descending",
 						},
 						["Spacing"] = {
-							["y"] = 2,
-							["x"] = -1,
+							["y"] = -1,
+							["x"] = 1,
 						},
 						["Height"] = 28,
 						["Filter"] = {
@@ -3784,7 +3888,7 @@ local cfg = {
 							["Caster"] = {
 								["Group"] = false,
 								["Player"] = true,
-								["Other"] = true,
+								["Other"] = false,
 								["Unit"] = true,
 							},
 							["Lists"] = {
@@ -3792,12 +3896,12 @@ local cfg = {
 						},
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPRIGHT",
-							["AnchorFrom"] = "BOTTOMRIGHT",
+							["x"] = 1,
+							["AnchorTo"] = "BOTTOMRIGHT",
+							["AnchorFrom"] = "BOTTOMLEFT",
 							["AnchorFrame"] = "Frame",
 						},
-						["ClickThrough"] = true,
+						["ClickThrough"] = false,
 					},
 					["Bars"] = {
 					},
@@ -3807,8 +3911,8 @@ local cfg = {
 					["Icons"] = {
 						["Enabled"] = true,
 						["Columns"] = 5,
-						["Max"] = 12,
-						["Rows"] = 2,
+						["Max"] = 5,
+						["Rows"] = 1,
 						["Growth"] = {
 							["y"] = "UP",
 							["x"] = "RIGHT",
@@ -3820,8 +3924,8 @@ local cfg = {
 							["Direction"] = "Descending",
 						},
 						["Spacing"] = {
-							["y"] = 2,
-							["x"] = -1,
+							["y"] = 1,
+							["x"] = 1,
 						},
 						["Height"] = 28,
 						["Filter"] = {
@@ -3835,7 +3939,7 @@ local cfg = {
 							["Caster"] = {
 								["Group"] = false,
 								["Player"] = true,
-								["Other"] = true,
+								["Other"] = false,
 								["Unit"] = true,
 							},
 							["Lists"] = {
@@ -3843,17 +3947,46 @@ local cfg = {
 						},
 						["Position"] = {
 							["y"] = 0,
-							["x"] = 0,
-							["AnchorTo"] = "TOPLEFT",
-							["AnchorFrom"] = "BOTTOMLEFT",
+							["x"] = 1,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "TOPLEFT",
 							["AnchorFrame"] = "Frame",
 						},
-						["ClickThrough"] = true,
+						["ClickThrough"] = false,
 					},
 					["Bars"] = {
 					},
 				},
+			},
+			["partypet"] = {
+				["Enabled"] = false,
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 0,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = false,
@@ -4130,10 +4263,137 @@ local cfg = {
 						["Width"] = 125,
 					},
 				},
+				["Debuffs"] = {
+					["Icons"] = {
+						["Enabled"] = true,
+						["Columns"] = 5,
+						["Max"] = 12,
+						["Rows"] = 2,
+						["Growth"] = {
+							["y"] = "UP",
+							["x"] = "RIGHT",
+						},
+						["Width"] = 28,
+						["CooldownSpiral"] = true,
+						["Sort"] = {
+							["SortBy"] = "Remaining",
+							["Direction"] = "Descending",
+						},
+						["Spacing"] = {
+							["y"] = 2,
+							["x"] = -1,
+						},
+						["Height"] = 28,
+						["Filter"] = {
+							["BlackOrWhite"] = "Black",
+							["Dispellable"] = false,
+							["Time"] = {
+								["Max"] = 0,
+								["Min"] = 0,
+								["Unlimited"] = false,
+							},
+							["Caster"] = {
+								["Group"] = false,
+								["Player"] = true,
+								["Other"] = true,
+								["Unit"] = true,
+							},
+							["Lists"] = {
+							},
+						},
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPRIGHT",
+							["AnchorFrom"] = "BOTTOMRIGHT",
+							["AnchorFrame"] = "Frame",
+						},
+						["ClickThrough"] = true,
+					},
+					["Bars"] = {
+					},
+				},
+				["showRaid"] = false,
+				["Buffs"] = {
+					["Icons"] = {
+						["Enabled"] = true,
+						["Columns"] = 5,
+						["Max"] = 12,
+						["Rows"] = 2,
+						["Growth"] = {
+							["y"] = "UP",
+							["x"] = "RIGHT",
+						},
+						["Width"] = 28,
+						["CooldownSpiral"] = true,
+						["Sort"] = {
+							["SortBy"] = "Remaining",
+							["Direction"] = "Descending",
+						},
+						["Spacing"] = {
+							["y"] = 2,
+							["x"] = -1,
+						},
+						["Height"] = 28,
+						["Filter"] = {
+							["BlackOrWhite"] = "Black",
+							["Dispellable"] = false,
+							["Time"] = {
+								["Max"] = 0,
+								["Min"] = 0,
+								["Unlimited"] = false,
+							},
+							["Caster"] = {
+								["Group"] = false,
+								["Player"] = true,
+								["Other"] = true,
+								["Unit"] = true,
+							},
+							["Lists"] = {
+							},
+						},
+						["Position"] = {
+							["y"] = 0,
+							["x"] = 0,
+							["AnchorTo"] = "TOPLEFT",
+							["AnchorFrom"] = "BOTTOMLEFT",
+							["AnchorFrame"] = "Frame",
+						},
+						["ClickThrough"] = true,
+					},
+					["Bars"] = {
+					},
+				},
 			},
 			["arena"] = {
 				["Enabled"] = true,
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 0,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = true,
@@ -4542,6 +4802,32 @@ local cfg = {
 			["boss"] = {
 				["Enabled"] = true,
 				["Frame"] = {
+					["Portrait"] = {
+						["Enabled"] = false,
+						["Style"] = 1,
+						["Width"] = 60,
+						["Height"] = 60,
+						["Alpha"] = 0.75,
+						["Position"] = {
+							["AnchorFrom"] = 'TOPRIGHT',
+							["AnchorTo"] = 'TOPLEFT',
+							["x"] = 0,
+							["y"] = 0,
+						},
+						["Border"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 1,
+							["Offset"] = 0,
+							["Style"] = {
+								["edgeFile"] = "RUF Pixel",
+								["edgeSize"] = 1,
+							},
+						},
+						["Background"] = {
+							["Color"] = {0,0,0},
+							["Alpha"] = 0.75,
+						},
+					},
 					["Indicators"] = {
 						["Objective"] = {
 							["Enabled"] = true,

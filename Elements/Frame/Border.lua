@@ -169,7 +169,7 @@ function RUF.SetFrameBorder(self, unit)
 	self.Border = Border
 end
 
-local function UpdateGlowBorder(self, event)
+function RUF.UpdateGlowBorder(self, event)
 	local unit = self.unit
 	if event == 'UNIT_TARGET' then
 		self.GlowBorder:Hide() -- Immediately hide until we check the new unit.
@@ -243,7 +243,7 @@ function RUF.SetGlowBorder(self, unit) -- Aura Highlight Border
 
 	self.GlowBorder = GlowBorder
 	if profileReference.Enabled == true then
-		self:RegisterEvent('UNIT_AURA',UpdateGlowBorder,true)
-		self:RegisterEvent('UNIT_TARGET',UpdateGlowBorder,true)
+		self:RegisterEvent('UNIT_AURA',RUF.UpdateGlowBorder,true)
+		self:RegisterEvent('UNIT_TARGET',RUF.UpdateGlowBorder,true)
 	end
 end

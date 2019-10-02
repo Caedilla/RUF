@@ -267,7 +267,6 @@ function RUF_Options.MainOptions()
 							},
 						},
 					},
-
 					Bars = {
 						name = L["Bars"],
 						type = 'group',

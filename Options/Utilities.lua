@@ -163,11 +163,11 @@ function RUF:OptionsUpdateFrameBorders()
 			local GlowBorder = v.GlowBorder
 			local glowProfile = RUF.db.profile.Appearance.Border.Glow
 			if glowProfile.Enabled ~= true then
-				v:UnregisterEvent('UNIT_AURA',RUF.UpdateAuraNotifications)
-				v:UnregisterEvent('UNIT_TARGET',RUF.UpdateAuraNotifications)
+				v:UnregisterEvent('UNIT_AURA',RUF.UpdateGlowBorder)
+				v:UnregisterEvent('UNIT_TARGET',RUF.UpdateGlowBorder)
 			else
-				v:RegisterEvent('UNIT_AURA',RUF.UpdateAuraNotifications,true)
-				v:RegisterEvent('UNIT_TARGET',RUF.UpdateAuraNotifications,true)
+				v:RegisterEvent('UNIT_AURA',RUF.UpdateGlowBorder,true)
+				v:RegisterEvent('UNIT_TARGET',RUF.UpdateGlowBorder,true)
 				GlowBorder:SetPoint('TOPLEFT',v,'TOPLEFT',-glowProfile.Offset,glowProfile.Offset)
 				GlowBorder:SetPoint('BOTTOMRIGHT',v,'BOTTOMRIGHT',glowProfile.Offset,-glowProfile.Offset)
 				GlowBorder:SetBackdrop({edgeFile = LSM:Fetch('border',glowProfile.Style.edgeFile),edgeSize = glowProfile.Style.edgeSize})
@@ -538,6 +538,10 @@ function RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,text)
 		UpdateText(singleFrame,groupFrame,header,text,-1)
 	end
 
+end
+
+function RUF:OptionsUpdatePortraits(singleFrame,groupFrame,header)
+	-- TODO
 end
 
 function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
