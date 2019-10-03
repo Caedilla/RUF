@@ -2349,11 +2349,33 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					[1] = L["Unitframe Overlay"],
 					[2] = L["Free floating"],
 				},
+				disabled = function()
+					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
+					return false
+				end,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Frame.Portrait.Style
 				end,
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Portrait.Style = value
+					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+				end,
+			},
+			anchorToHealth = {
+				name = L["Health Cutaway"],
+				desc = L["Makes the portrait disappear with the health bar as it lowers."],
+				type = 'toggle',
+				order = 0.2,
+				disabled = function()
+					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
+					if RUF.db.profile.unit[profileName].Frame.Portrait.Style == 2 then return true end
+					return false
+				end,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Portrait.Cutaway
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Portrait.Cutaway = value
 					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
 				end,
 			},

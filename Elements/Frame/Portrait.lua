@@ -101,10 +101,16 @@ function RUF.SetFramePortrait(self, unit)
 
 
 	if profileReference.Style == 1 then
-		Portrait:SetAllPoints(self)
 		Background:Hide()
 		Border:Hide()
 		Portrait:SetAlpha(profileReference.Alpha)
+		if profileReference.Cutaway == true then
+			Portrait:ClearAllPoints()
+			Portrait:SetAllPoints(self.__owner.Health:GetStatusBarTexture())
+		else
+			Portrait:ClearAllPoints()
+			Portrait:SetAllPoints(self.__owner)
+		end
 	elseif profileReference.Style == 2 then
 		Portrait:SetAlpha(1)
 		Portrait:SetSize(profileReference.Width,profileReference.Height)
@@ -131,18 +137,25 @@ function RUF.PortraitUpdateOptions(self)
 	local profileReference = RUF.db.profile.unit[unit].Frame.Portrait
 
 	if profileReference.Style == 1 then
+
 		Background:Hide()
 		Border:Hide()
-		Portrait:ClearAllPoints()
-		Portrait:SetAllPoints(self)
+
 		Portrait:SetAlpha(profileReference.Alpha)
+		if profileReference.Cutaway == true then
+			Portrait:ClearAllPoints()
+			Portrait:SetAllPoints(self.__owner.Health:GetStatusBarTexture())
+		else
+			Portrait:ClearAllPoints()
+			Portrait:SetAllPoints(self.__owner)
+		end
 	elseif profileReference.Style == 2 then
 		Background:Show()
 		Border:Show()
 		Portrait:SetAlpha(1)
 		Portrait:ClearAllPoints()
 		Portrait:SetSize(profileReference.Width,profileReference.Height)
-		Portrait:SetPoint(profileReference.Position.AnchorFrom,self,profileReference.Position.AnchorTo,profileReference.Position.x,profileReference.Position.y)
+		Portrait:SetPoint(profileReference.Position.AnchorFrom,self.__owner,profileReference.Position.AnchorTo,profileReference.Position.x,profileReference.Position.y)
 
 		-- Border
 		local offset = profileReference.Border.Offset
