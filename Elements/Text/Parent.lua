@@ -90,6 +90,7 @@ end
 function RUF.CreateTextArea(self, unit, textName)
 	local name = self:GetName()
 	local profileReference = RUF.db.profile.unit[self.frame].Frame.Text[textName]
+	if type(profileReference) ~= 'table' then return end
 
 	-- Purely so we can control frame level
 	local stringParent = CreateFrame('Frame', name .. '.Text.' .. textName, self.Text)
@@ -99,17 +100,13 @@ function RUF.CreateTextArea(self, unit, textName)
 
 	local Font = ''
 	Font = LSM:Fetch('font', profileReference.Font)
-	local size = profileReference.Size
-	if not size or type(size) ~= 'number' then
-		size = 18
-		profileReference.Size = 18
-	end
+	local size = profileReference.Size or 18
 
 	local Text = self.Text[textName]:CreateFontString(name .. '.Text.' .. textName .. '.String' , 'OVERLAY')
 	Text:SetFont(Font, profileReference.Size, profileReference.Outline)
 
 	if not profileReference.Shadow then profileReference.Shadow = 0 end
-	Text:SetShadowColor(0,0,0,profileReference.Shadow)
+	Text:SetShadowColor(0,0,0,profileReference.Shadow or 1)
 	Text:SetShadowOffset(1, -1)
 	Text:SetTextColor(1, 1, 1, 1)
 	Text.overrideUnit = true

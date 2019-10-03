@@ -541,7 +541,43 @@ function RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,text)
 end
 
 function RUF:OptionsUpdatePortraits(singleFrame,groupFrame,header)
-	-- TODO
+	if not singleFrame then singleFrame = 'none' end
+	if not groupFrame then groupFrame = 'none' end
+	if not header then header = 'none' end
+
+
+
+	local function UpdatePortrait(singleFrame,groupFrame,header,i)
+		local currentUnit,unitFrame,profileReference
+
+		if header ~= 'none' then
+			currentUnit = header .. 'UnitButton' .. i
+			profileReference = RUF.db.profile.unit[string.lower(header)]
+		elseif groupFrame ~= 'none' then
+			currentUnit = groupFrame .. i
+			profileReference = RUF.db.profile.unit[string.lower(groupFrame)]
+		else
+			currentUnit = singleFrame
+			profileReference = RUF.db.profile.unit[string.lower(singleFrame)]
+		end
+		unitFrame = _G['oUF_RUF_' .. currentUnit]
+
+		unitFrame.Portrait:ForceUpdate()
+	end
+
+	if header ~= 'none' then
+		local headerUnits = { _G['oUF_RUF_' .. header]:GetChildren() }
+		headerUnits[#headerUnits] = nil -- Remove moveBG entry
+		for i = 1,#headerUnits do
+			UpdatePortrait(singleFrame,groupFrame,header,i)
+		end
+	elseif groupFrame ~= 'none' then
+		for i = 1,5 do
+			UpdatePortrait(singleFrame,groupFrame,header,i)
+		end
+	elseif singleFrame ~= 'none' then
+		UpdatePortrait(singleFrame,groupFrame,header,-1)
+	end
 end
 
 function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
