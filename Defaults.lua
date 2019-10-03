@@ -578,9 +578,13 @@ local cfg = {
 						["Model"] = {
 							["Rotation"] = 0,
 							["CameraDistance"] = 0,
+							["PortraitZoom"] = 0.8,
 							["x"] = 0,
 							["y"] = 0,
 							["z"] = 0,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
@@ -1043,10 +1047,14 @@ local cfg = {
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
-							["CameraDistance"] = 0,
+							["CameraDistance"] = 2.5,
+							["PortraitZoom"] = 1.08,
 							["x"] = 0,
-							["y"] = 0,
-							["z"] = 0,
+							["y"] = -0.35,
+							["z"] = -0.25,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
@@ -1481,10 +1489,14 @@ local cfg = {
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
-							["CameraDistance"] = 0,
+							["CameraDistance"] = 2.5,
+							["PortraitZoom"] = 1.08,
 							["x"] = 0,
-							["y"] = 0,
-							["z"] = 0,
+							["y"] = -0.35,
+							["z"] = -0.25,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
@@ -1931,10 +1943,14 @@ local cfg = {
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
-							["CameraDistance"] = 0,
+							["CameraDistance"] = 2.5,
+							["PortraitZoom"] = 1.08,
 							["x"] = 0,
-							["y"] = 0,
-							["z"] = 0,
+							["y"] = -0.35,
+							["z"] = -0.25,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
@@ -2341,10 +2357,14 @@ local cfg = {
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
-							["CameraDistance"] = 0,
+							["CameraDistance"] = 2.5,
+							["PortraitZoom"] = 1.08,
 							["x"] = 0,
-							["y"] = 0,
-							["z"] = 0,
+							["y"] = -0.35,
+							["z"] = -0.25,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
@@ -2751,10 +2771,14 @@ local cfg = {
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
-							["CameraDistance"] = 0,
+							["CameraDistance"] = 2.5,
+							["PortraitZoom"] = 1.08,
 							["x"] = 0,
-							["y"] = 0,
-							["z"] = 0,
+							["y"] = -0.35,
+							["z"] = -0.25,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
@@ -3161,10 +3185,14 @@ local cfg = {
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
-							["CameraDistance"] = 0,
+							["CameraDistance"] = 2.5,
+							["PortraitZoom"] = 1.08,
 							["x"] = 0,
-							["y"] = 0,
-							["z"] = 0,
+							["y"] = -0.35,
+							["z"] = -0.25,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
@@ -3571,10 +3599,14 @@ local cfg = {
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
-							["CameraDistance"] = 0,
+							["CameraDistance"] = 2.5,
+							["PortraitZoom"] = 1.08,
 							["x"] = 0,
-							["y"] = 0,
-							["z"] = 0,
+							["y"] = -0.35,
+							["z"] = -0.25,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
@@ -4025,10 +4057,14 @@ local cfg = {
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
-							["CameraDistance"] = 0,
+							["CameraDistance"] = 2.5,
+							["PortraitZoom"] = 1.08,
 							["x"] = 0,
-							["y"] = 0,
-							["z"] = 0,
+							["y"] = -0.35,
+							["z"] = -0.25,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
@@ -4439,10 +4475,14 @@ local cfg = {
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
-							["CameraDistance"] = 0,
+							["CameraDistance"] = 2.5,
+							["PortraitZoom"] = 1.08,
 							["x"] = 0,
-							["y"] = 0,
-							["z"] = 0,
+							["y"] = -0.35,
+							["z"] = -0.25,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
@@ -4880,10 +4920,14 @@ local cfg = {
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
-							["CameraDistance"] = 0,
+							["CameraDistance"] = 2.5,
+							["PortraitZoom"] = 1.08,
 							["x"] = 0,
-							["y"] = 0,
-							["z"] = 0,
+							["y"] = -0.35,
+							["z"] = -0.25,
+							["Animation"] = {
+								["Paused"] = true,
+							},
 						},
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',

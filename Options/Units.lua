@@ -2316,6 +2316,8 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 	local ord, referenceUnit, profileName
 	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
+
+
 	local portraitOptions = {
 		name = L["Portrait"],
 		type = 'group',
@@ -2339,46 +2341,10 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
 				end,
 			},
-			width = {
-				name = L["Width"],
-				type = 'range',
-				order = 0.1,
-				min = 4,
-				max = 600,
-				softMin = 20,
-				softMax = 300,
-				step = 1,
-				bigStep = 1,
-				get = function(info)
-					return RUF.db.profile.unit[profileName].Frame.Portrait.Width
-				end,
-				set = function(info, value)
-					RUF.db.profile.unit[profileName].Frame.Portrait.Width = value
-					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
-				end,
-			},
-			height = {
-				name = L["Height"],
-				type = 'range',
-				order = 0.2,
-				min = 4,
-				max = 600,
-				softMin = 20,
-				softMax = 150,
-				step = 1,
-				bigStep = 1,
-				get = function(info)
-					return RUF.db.profile.unit[profileName].Frame.Portrait.Height
-				end,
-				set = function(info, value)
-					RUF.db.profile.unit[profileName].Frame.Portrait.Height = value
-					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
-				end,
-			},
 			displayStyle = {
 				name = L["Display Style"],
 				type = 'select',
-				order = 0.3,
+				order = 0.1,
 				values = {
 					[1] = L["Unitframe Overlay"],
 					[2] = L["Free floating"],
@@ -2391,67 +2357,26 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
 				end,
 			},
-			anchorPoint = {
-				type = 'select',
-				name = L["Anchor From"],
-				order = 1.1,
-				values = anchorPoints,
-				get = function(info)
-					return RUF.db.profile.unit[profileName].Frame.Portrait.Position.AnchorFrom
-				end,
-				set = function(info, value)
-					RUF.db.profile.unit[profileName].Frame.Portrait.Position.AnchorFrom = value
-					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
-				end,
-			},
-			anchorTo = {
-				type = 'select',
-				name = L["Anchor To"],
-				order = 1.11,
-				values = anchorPoints,
-				get = function(info)
-					return RUF.db.profile.unit[profileName].Frame.Portrait.Position.AnchorTo
-				end,
-				set = function(info, value)
-					RUF.db.profile.unit[profileName].Frame.Portrait.Position.AnchorTo = value
-					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
-				end,
-			},
-			horizontalOffset = {
+			alpha = {
+				name = L["Alpha"],
 				type = 'range',
-				name = L["X Offset"],
-				desc = L["Horizontal Offset from the Frame Anchor."],
-				order = 1.12,
-				min = -5000,
-				max = 5000,
-				softMin = -1000,
-				softMax = 1000,
-				step = 0.5,
-				bigStep = 1,
-				get = function(info)
-					return RUF.db.profile.unit[profileName].Frame.Portrait.Position.x
-				end,
-				set = function(info, value)
-					RUF.db.profile.unit[profileName].Frame.Portrait.Position.x = value
-					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
-				end,
-			},
-			verticalOffset = {
-				type = 'range',
-				name = L["Y Offset"],
-				desc = L["Vertical Offset from the Frame Anchor."],
 				order = 1.13,
-				min = -5000,
-				max = 5000,
-				softMin = -1000,
-				softMax = 1000,
-				step = 0.5,
-				bigStep = 1,
+				min = 0,
+				max = 1,
+				softMin = 0,
+				softMax = 1,
+				step = 0.01,
+				bigStep = 0.05,
+				disabled = function()
+					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
+					if RUF.db.profile.unit[profileName].Frame.Portrait.Style == 2 then return true end
+					return false
+				end,
 				get = function(info)
-					return RUF.db.profile.unit[profileName].Frame.Portrait.Position.y
+					return RUF.db.profile.unit[profileName].Frame.Portrait.Alpha
 				end,
 				set = function(info, value)
-					RUF.db.profile.unit[profileName].Frame.Portrait.Position.y = value
+					RUF.db.profile.unit[profileName].Frame.Portrait.Alpha = value
 					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
 				end,
 			},
@@ -2488,10 +2413,25 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
 						end,
 					},
+					portraitZoom = {
+						name = L["Portrait Zoom"],
+						type = 'range',
+						order = 5.2,
+						min = 0.01,
+						max = 5,
+						step = 0.01,
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Model.PortraitZoom
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Model.PortraitZoom = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
 					cameraDistance = {
 						name = L["Camera Distance"],
 						type = 'range',
-						order = 5.2,
+						order = 5.25,
 						min = 0.01,
 						max = 5,
 						step = 0.01,
@@ -2550,10 +2490,123 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					},
 				},
 			},
+			positioning = {
+				name = L["Position"],
+				type = 'group',
+				order = 10,
+				inline = true,
+				disabled = function()
+					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
+					if RUF.db.profile.unit[profileName].Frame.Portrait.Style == 1 then return true end
+					return false
+				end,
+				args = {
+					width = {
+						name = L["Width"],
+						type = 'range',
+						order = 0.2,
+						min = 4,
+						max = 600,
+						softMin = 20,
+						softMax = 300,
+						step = 1,
+						bigStep = 1,
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Width
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Width = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
+					height = {
+						name = L["Height"],
+						type = 'range',
+						order = 0.21,
+						min = 4,
+						max = 600,
+						softMin = 20,
+						softMax = 150,
+						step = 1,
+						bigStep = 1,
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Height
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Height = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
+					anchorPoint = {
+						type = 'select',
+						name = L["Anchor From"],
+						order = 1.1,
+						values = anchorPoints,
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Position.AnchorFrom
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Position.AnchorFrom = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
+					anchorTo = {
+						type = 'select',
+						name = L["Anchor To"],
+						order = 1.11,
+						values = anchorPoints,
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Position.AnchorTo
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Position.AnchorTo = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
+					horizontalOffset = {
+						type = 'range',
+						name = L["X Offset"],
+						desc = L["Horizontal Offset from the Frame Anchor."],
+						order = 1.12,
+						min = -5000,
+						max = 5000,
+						softMin = -1000,
+						softMax = 1000,
+						step = 0.5,
+						bigStep = 1,
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Position.x
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Position.x = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
+					verticalOffset = {
+						type = 'range',
+						name = L["Y Offset"],
+						desc = L["Vertical Offset from the Frame Anchor."],
+						order = 1.13,
+						min = -5000,
+						max = 5000,
+						softMin = -1000,
+						softMax = 1000,
+						step = 0.5,
+						bigStep = 1,
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Position.y
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Position.y = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
+				},
+			},
 			border = {
 				name = L["Border"],
 				type = 'group',
-				order = 10,
+				order = 11,
 				inline = true,
 				disabled = function()
 					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
@@ -2611,24 +2664,24 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
 						end,
 					},
-					alpha = {
-						name = L["Alpha"],
-						type = 'range',
-						order = 0.05,
-						min = 0,
-						max = 1,
-						softMin = 0,
-						softMax = 1,
-						step = 0.01,
-						bigStep = 0.05,
-						get = function(info)
-							return RUF.db.profile.unit[profileName].Frame.Portrait.Border.Alpha
-						end,
-						set = function(info, value)
-							RUF.db.profile.unit[profileName].Frame.Portrait.Border.Alpha = value
-							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
-						end,
-					},
+						alpha = {
+							name = L["Alpha"],
+							type = 'range',
+							order = 0.05,
+							min = 0,
+							max = 1,
+							softMin = 0,
+							softMax = 1,
+							step = 0.01,
+							bigStep = 0.05,
+							get = function(info)
+								return RUF.db.profile.unit[profileName].Frame.Portrait.Border.Alpha
+							end,
+							set = function(info, value)
+								RUF.db.profile.unit[profileName].Frame.Portrait.Border.Alpha = value
+								RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+							end,
+						},
 					color = {
 						name = L["Color"],
 						type = 'color',
@@ -2646,7 +2699,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 			background = {
 				name = L["Background"],
 				type = 'group',
-				order = 11,
+				order = 12,
 				inline = true,
 				disabled = function()
 					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end

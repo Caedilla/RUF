@@ -373,3 +373,5 @@ L["Freeze Animation"] = true
 L["Rotation"] = true
 L["Camera Distance"] = true
 L["Z Offset"] = true
+L["Portrait Zoom"] = true
+L["Position"] = true

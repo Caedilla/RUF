@@ -29,7 +29,7 @@ local function Update(self, event, unit)
 				element:ClearModel()
 				element:SetModel([[Interface\Buttons\TalkToMeQuestionMark.m2]])
 			else
-				element:SetPortraitZoom(1)
+				element:SetPortraitZoom(profileReference.Model.PortraitZoom)
 				element:SetCamDistanceScale(profileReference.Model.CameraDistance)
 				element:SetPosition(profileReference.Model.z/10,profileReference.Model.x/10,-profileReference.Model.y/10)
 				element:ClearModel()
@@ -67,7 +67,21 @@ function RUF.SetFramePortrait(self, unit)
 	local r,g,b
 
 	-- Set Lighting
-	Portrait:SetLight(true,false,-10,0,3,0.35,1,1,1,0.75,1,1,1)
+	-- Portrait:SetLight(true,false,-10,0,3,0.35,1,1,1,0.75,1,1,1)
+	local dirX,dirY,dirZ,ambStr,ambR,ambG,ambB,dirStr,dirR,dirG,dirB
+	dirX = -10
+	dirY = 0
+	dirZ = 3
+	ambStr = 0.35
+	ambR = 1
+	ambG = 1
+	ambB = 1
+	dirStr = 0.75
+	dirR = 1
+	dirG = 1
+	dirB = 1
+
+	Portrait:SetLight(true,false,dirX,dirY,dirZ,ambStr,ambR,ambG,ambB,dirStr,dirR,dirG,dirB)
 
 	-- Border
 	local offset = profileReference.Border.Offset
@@ -90,10 +104,11 @@ function RUF.SetFramePortrait(self, unit)
 		Portrait:SetAllPoints(self)
 		Background:Hide()
 		Border:Hide()
+		Portrait:SetAlpha(profileReference.Alpha)
 	elseif profileReference.Style == 2 then
+		Portrait:SetAlpha(1)
 		Portrait:SetSize(profileReference.Width,profileReference.Height)
 		Portrait:SetPoint(profileReference.Position.AnchorFrom,self,profileReference.Position.AnchorTo,profileReference.Position.x,profileReference.Position.y)
-		Portrait:SetAlpha(profileReference.Alpha)
 	end
 
 	-- Register with oUF
@@ -118,8 +133,31 @@ function RUF.PortraitUpdateOptions(self)
 	if profileReference.Style == 1 then
 		Background:Hide()
 		Border:Hide()
+		Portrait:ClearAllPoints()
+		Portrait:SetAllPoints(self)
+		Portrait:SetAlpha(profileReference.Alpha)
 	elseif profileReference.Style == 2 then
 		Background:Show()
 		Border:Show()
+		Portrait:SetAlpha(1)
+		Portrait:ClearAllPoints()
+		Portrait:SetSize(profileReference.Width,profileReference.Height)
+		Portrait:SetPoint(profileReference.Position.AnchorFrom,self,profileReference.Position.AnchorTo,profileReference.Position.x,profileReference.Position.y)
+
+		-- Border
+		local offset = profileReference.Border.Offset
+		Border:SetPoint('TOPLEFT',Portrait,'TOPLEFT',-offset,offset)
+		Border:SetPoint('BOTTOMRIGHT',Portrait,'BOTTOMRIGHT',offset,-offset)
+		Border:SetFrameLevel(7)
+		Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
+		local r,g,b = unpack(profileReference.Border.Color)
+		Border:SetBackdropBorderColor(r,g,b,profileReference.Border.Alpha)
+
+
+		-- Background
+		r,g,b = unpack(profileReference.Background.Color)
+		Background:SetTexture(LSM:Fetch("background", "Solid"))
+		Background:SetVertexColor(r,g,b,profileReference.Background.Alpha)
+		Background:SetAllPoints(Portrait)
 	end
 end

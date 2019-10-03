@@ -562,6 +562,7 @@ function RUF:OptionsUpdatePortraits(singleFrame,groupFrame,header)
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
 
+		unitFrame.Portrait:UpdateOptions()
 		unitFrame.Portrait:ForceUpdate()
 	end
 
