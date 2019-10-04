@@ -127,11 +127,11 @@ function RUF.SetHealthBar(self, unit)
 	Bar:SetAllPoints(self)
 	Bar:SetFrameLevel(2)
 	Bar:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill)
+	Bar.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 
 
 	-- Register with oUF
 	self.Health = Bar
-
 	self.Health.UpdateOptions = RUF.HealthUpdateOptions
 end
 
@@ -153,7 +153,7 @@ function RUF.HealthUpdateOptions(self)
 	Bar:SetAllPoints(self.__owner)
 	Bar:SetFrameLevel(2)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Health.Fill)
+	Bar.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 
 	self:ForceUpdate()
-
 end

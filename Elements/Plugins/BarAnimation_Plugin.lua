@@ -1,7 +1,6 @@
 local _, ns = ...
 local oUF = ns.oUF
 
-
 local smoothing = {}
 local function Smooth(self, value)
 	local _, max = self:GetMinMaxValues()
@@ -14,9 +13,17 @@ local function Smooth(self, value)
 	self._max = max
 end
 
+local function UnSmooth(self)
+	smoothing[self] = nil
+	self.SetValue = self.SetValue_
+	self.SetValue_ = nil
+	self.Smooth = nil
+end
+
 local function SmoothBar(self, bar)
 	bar.SetValue_ = bar.SetValue
 	bar.SetValue = Smooth
+	bar.UnSmooth = UnSmooth
 end
 
 local function hook(frame)
@@ -29,36 +36,39 @@ local function hook(frame)
 	end
 end
 
-
 for i, frame in ipairs(oUF.objects) do hook(frame) end
 oUF:RegisterInitCallback(hook)
 
 
-local f, min, max = CreateFrame('Frame'), math.min, math.max
+local f, min, max, abs = CreateFrame('Frame'), math.min, math.max, math.abs
 f:SetScript('OnUpdate', function()
 	local limit = 30/GetFramerate()
 	for bar, value in pairs(smoothing) do
-		local cur = bar:GetValue()
-		local new = cur + min((value-cur)/3, max(value-cur, limit))
+		local minVal,maxVal = bar:GetMinMaxValues()
+		local curVal = bar:GetValue()
+		local new = curVal + min((value-curVal)/5, max(value-curVal, limit))
 		if new ~= new then
 			new = value
 		end
 		bar:SetValue_(new)
-		if cur == value or abs(new - value) < 2 then
+		local pVal = new
+		if curVal == value or abs(new - value) < 2 then
 			bar:SetValue_(value)
+			pVal = value
 			smoothing[bar] = nil
+		end
+		if bar == bar.__owner.Health and bar.__owner.Portrait and bar.__owner.Portrait.Cutaway then
+			local Portrait = bar.__owner.Portrait
+			local frameWidth = bar.__owner:GetWidth()
+			local width = frameWidth * (pVal/maxVal)
+			local fillStyle = bar.FillStyle
+			if fillStyle == 'REVERSE' then
+				Portrait:SetViewInsets((-frameWidth)+width,0,0,0) -- Right
+			elseif fillStyle == 'CENTER' then
+				Portrait:SetViewInsets(((-frameWidth)+width)/2,((-frameWidth)+width)/2,0,0)
+			else
+				Portrait:SetViewInsets(0,(-frameWidth)+width,0,0) -- Left
+			end
 		end
 	end
 end)
-
-
---[[
-if self.__owner.Portrait then
-	local Portrait = self.__owner.Portrait
-	local cur, max = UnitHealth(unit), UnitHealthMax(unit)
-	--local curWidth = Portrait:GetWidth()
-	local frameWidth = self:GetWidth()
-	local width = frameWidth * (cur/max)
-	--Portrait:SetViewInsets((-frameWidth)+curWidth,0,0,0)
-	Portrait:SetViewInsets((-frameWidth)+width,0,0,0)
-end]]--

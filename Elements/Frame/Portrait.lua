@@ -3,6 +3,25 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 
+function RUF.PortraitHealthUpdate(self)
+	local frame = self.__owner
+	local profileReference = RUF.db.profile.unit[frame.frame].Frame.Portrait
+	if profileReference.Cutaway and not frame.Health.Smooth then
+		local element = frame.Portrait
+		local cur, max = UnitHealth(frame.unit), UnitHealthMax(frame.unit)
+		local frameWidth = frame:GetWidth()
+		local width = frameWidth * (cur/max)
+		local fillStyle = frame.Health.FillStyle
+		if fillStyle == 'REVERSE' then
+			element:SetViewInsets((-frameWidth)+width,0,0,0) -- Right
+		elseif fillStyle == 'CENTER' then
+			element:SetViewInsets(((-frameWidth)+width)/2,((-frameWidth)+width)/2,0,0)
+		else
+			element:SetViewInsets(0,(-frameWidth)+width,0,0) -- Left
+		end
+	end
+end
+
 local function Update(self, event, unit)
 	if(not unit or not UnitIsUnit(self.unit, unit)) then return end
 
@@ -16,11 +35,11 @@ local function Update(self, event, unit)
 	--]]
 	if(element.PreUpdate) then element:PreUpdate(unit) end
 
+
+
 	local guid = UnitGUID(unit)
 	local isAvailable = UnitIsConnected(unit) and UnitIsVisible(unit)
 	if(event ~= 'OnUpdate' or element.guid ~= guid or element.state ~= isAvailable) then
-		local profileReference = RUF.db.profile.unit[self.frame].Frame.Portrait
-
 		if(element:IsObjectType('PlayerModel')) then
 			if(not isAvailable) then
 				element:SetCamDistanceScale(0.25)
@@ -29,6 +48,7 @@ local function Update(self, event, unit)
 				element:ClearModel()
 				element:SetModel([[Interface\Buttons\TalkToMeQuestionMark.m2]])
 			else
+				local profileReference = RUF.db.profile.unit[self.frame].Frame.Portrait
 				element:SetPortraitZoom(profileReference.Model.PortraitZoom)
 				element:SetCamDistanceScale(profileReference.Model.CameraDistance)
 				element:SetPosition(profileReference.Model.z/10,profileReference.Model.x/10,-profileReference.Model.y/10)
@@ -37,13 +57,6 @@ local function Update(self, event, unit)
 				element:SetPaused(profileReference.Model.Animation.Paused)
 				element:MakeCurrentCameraCustom()
 				element:SetCameraFacing(math.rad(-profileReference.Model.Rotation))
-				--/run oUF_RUF_Target.Portrait:SetViewInsets(0,-0,0,0)
-				--/run oUF_RUF_Target.Portrait:SetViewTranslation(200,0)
-
-				--local curWidth = element:GetWidth()
-				--local frameWidth = element.__owner:GetWidth()
-
-				--element:SetViewInsets((-frameWidth)+curWidth,0,0,0)
 			end
 		else
 			SetPortraitTexture(element, unit)
@@ -114,6 +127,7 @@ function RUF.SetFramePortrait(self, unit)
 		if profileReference.Cutaway == true then
 			Portrait:ClearAllPoints()
 			Portrait:SetAllPoints(self.Health:GetStatusBarTexture())
+			Portrait.Cutaway = true
 		else
 			Portrait:ClearAllPoints()
 			Portrait:SetAllPoints(self)
@@ -130,9 +144,12 @@ function RUF.SetFramePortrait(self, unit)
 	self.Portrait.Background = Background
 	self.Portrait.Override = Update
 	self.Portrait.UpdateOptions = RUF.PortraitUpdateOptions
+	self.Portrait.Enabled = true
+	self.Health.PreUpdate = RUF.PortraitHealthUpdate
 
 	if profileReference.Enabled ~= true then
 		self:DisableElement('Portrait')
+		self.Portrait.Enabled = false
 	end
 end
 
