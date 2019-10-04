@@ -1,6 +1,6 @@
 local _, ns = ...
-local oUF = ns.oUF or oUF
-assert(oUF, "<name> was unable to locate oUF install.")
+local oUF = ns.oUF
+
 
 local smoothing = {}
 local function Smooth(self, value)
@@ -34,14 +34,13 @@ for i, frame in ipairs(oUF.objects) do hook(frame) end
 oUF:RegisterInitCallback(hook)
 
 
-local f, min, max = CreateFrame('Frame'), math.min, math.max 
+local f, min, max = CreateFrame('Frame'), math.min, math.max
 f:SetScript('OnUpdate', function()
 	local limit = 30/GetFramerate()
 	for bar, value in pairs(smoothing) do
 		local cur = bar:GetValue()
 		local new = cur + min((value-cur)/3, max(value-cur, limit))
 		if new ~= new then
-			-- Mad hax to prevent QNAN.
 			new = value
 		end
 		bar:SetValue_(new)
@@ -51,3 +50,15 @@ f:SetScript('OnUpdate', function()
 		end
 	end
 end)
+
+
+--[[
+if self.__owner.Portrait then
+	local Portrait = self.__owner.Portrait
+	local cur, max = UnitHealth(unit), UnitHealthMax(unit)
+	--local curWidth = Portrait:GetWidth()
+	local frameWidth = self:GetWidth()
+	local width = frameWidth * (cur/max)
+	--Portrait:SetViewInsets((-frameWidth)+curWidth,0,0,0)
+	Portrait:SetViewInsets((-frameWidth)+width,0,0,0)
+end]]--

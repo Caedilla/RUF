@@ -37,6 +37,13 @@ local function Update(self, event, unit)
 				element:SetPaused(profileReference.Model.Animation.Paused)
 				element:MakeCurrentCameraCustom()
 				element:SetCameraFacing(math.rad(-profileReference.Model.Rotation))
+				--/run oUF_RUF_Target.Portrait:SetViewInsets(0,-0,0,0)
+				--/run oUF_RUF_Target.Portrait:SetViewTranslation(200,0)
+
+				--local curWidth = element:GetWidth()
+				--local frameWidth = element.__owner:GetWidth()
+
+				--element:SetViewInsets((-frameWidth)+curWidth,0,0,0)
 			end
 		else
 			SetPortraitTexture(element, unit)
@@ -106,10 +113,10 @@ function RUF.SetFramePortrait(self, unit)
 		Portrait:SetAlpha(profileReference.Alpha)
 		if profileReference.Cutaway == true then
 			Portrait:ClearAllPoints()
-			Portrait:SetAllPoints(self.__owner.Health:GetStatusBarTexture())
+			Portrait:SetAllPoints(self.Health:GetStatusBarTexture())
 		else
 			Portrait:ClearAllPoints()
-			Portrait:SetAllPoints(self.__owner)
+			Portrait:SetAllPoints(self)
 		end
 	elseif profileReference.Style == 2 then
 		Portrait:SetAlpha(1)

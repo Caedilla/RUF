@@ -22,6 +22,7 @@ EmbedAlways.xml
 
 Elements\Plugins\Absorb_Plugin.lua
 Elements\Plugins\Aura_Plugin.lua
+Elements\Plugins\BarAnimation_Plugin.lua
 Elements\Plugins\Cast_Plugin.lua
 #@non-retail@
 Elements\Plugins\ClassicClassPower_Plugin.lua
