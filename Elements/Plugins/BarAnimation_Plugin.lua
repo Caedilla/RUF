@@ -57,17 +57,19 @@ f:SetScript('OnUpdate', function()
 			pVal = value
 			smoothing[bar] = nil
 		end
-		if bar == bar.__owner.Health and bar.__owner.Portrait and bar.__owner.Portrait.Cutaway then
-			local Portrait = bar.__owner.Portrait
-			local frameWidth = bar.__owner:GetWidth()
-			local width = frameWidth * (pVal/maxVal)
-			local fillStyle = bar.FillStyle
-			if fillStyle == 'REVERSE' then
-				Portrait:SetViewInsets((-frameWidth)+width,0,0,0) -- Right
-			elseif fillStyle == 'CENTER' then
-				Portrait:SetViewInsets(((-frameWidth)+width)/2,((-frameWidth)+width)/2,0,0)
-			else
-				Portrait:SetViewInsets(0,(-frameWidth)+width,0,0) -- Left
+		if bar == bar.__owner.Health and bar.__owner.Portrait then
+			if bar.__owner.Portrait.Enabled == true and bar.__owner.Portrait.Cutaway == true then
+				local Portrait = bar.__owner.Portrait
+				local frameWidth = bar.__owner:GetWidth()
+				local width = frameWidth * (pVal/maxVal)
+				local fillStyle = bar.FillStyle
+				if fillStyle == 'REVERSE' then
+					Portrait:SetViewInsets((-frameWidth)+width,0,0,0) -- Right
+				elseif fillStyle == 'CENTER' then
+					Portrait:SetViewInsets(((-frameWidth)+width)/2,((-frameWidth)+width)/2,0,0)
+				else
+					Portrait:SetViewInsets(0,(-frameWidth)+width,0,0) -- Left
+				end
 			end
 		end
 	end

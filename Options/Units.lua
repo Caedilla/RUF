@@ -538,6 +538,19 @@ local function BarSettings(singleFrame, groupFrame, header)
 					RUF:OptionsUpdateBars(singleFrame, groupFrame, header, barList[i])
 				end,
 			},
+			smoothlyAnimate = {
+				name = L["Animate"],
+				desc = L["Smoothly animate bar changes. Does not affect class resources that are split into chunks such as Combo Points, or Holy Power."],
+				type = 'toggle',
+				order = 0.5,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].Animate
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].Animate = value
+					RUF:OptionsUpdateBars(singleFrame, groupFrame, header, barList[i])
+				end,
+			},
 			fillStyle = {
 				name = L["Fill Type"],
 				type = 'select',

@@ -6,6 +6,10 @@ local oUF = ns.oUF
 function RUF.PortraitHealthUpdate(self)
 	local frame = self.__owner
 	local profileReference = RUF.db.profile.unit[frame.frame].Frame.Portrait
+	if profileReference.Enabled ~= true then
+		frame:DisableElement('Portrait')
+		frame.Portrait:Hide()
+		return end
 	if profileReference.Cutaway and not frame.Health.Smooth then
 		local element = frame.Portrait
 		local cur, max = UnitHealth(frame.unit), UnitHealthMax(frame.unit)
@@ -153,48 +157,58 @@ function RUF.SetFramePortrait(self, unit)
 	end
 end
 
+
+-- TODO Update BarAnimation plugin to check enabled state as well as health preupdate
 function RUF.PortraitUpdateOptions(self)
 	local unit = self.__owner.frame
 	local Portrait = self
 	local Background = self.Background
 	local Border = self.Border
 	local profileReference = RUF.db.profile.unit[unit].Frame.Portrait
-
-	if profileReference.Style == 1 then
-
-		Background:Hide()
-		Border:Hide()
-
-		Portrait:SetAlpha(profileReference.Alpha)
-		if profileReference.Cutaway == true then
+	if profileReference.Enabled == true then
+		Portrait.Enabled = true
+		self.__owner:EnableElement('Portrait')
+		Portrait:Show()
+		if profileReference.Style == 1 then
+			Background:Hide()
+			Border:Hide()
+			Portrait.Cutaway = profileReference.Cutaway
+			Portrait:SetAlpha(profileReference.Alpha)
+			if profileReference.Cutaway == true then
+				Portrait:ClearAllPoints()
+				Portrait:SetAllPoints(self.__owner.Health:GetStatusBarTexture())
+			else
+				Portrait:ClearAllPoints()
+				Portrait:SetAllPoints(self.__owner)
+			end
+		elseif profileReference.Style == 2 then
+			Background:Show()
+			Border:Show()
+			Portrait:SetAlpha(1)
 			Portrait:ClearAllPoints()
-			Portrait:SetAllPoints(self.__owner.Health:GetStatusBarTexture())
-		else
-			Portrait:ClearAllPoints()
-			Portrait:SetAllPoints(self.__owner)
+			Portrait:SetSize(profileReference.Width,profileReference.Height)
+			Portrait:SetPoint(profileReference.Position.AnchorFrom,self.__owner,profileReference.Position.AnchorTo,profileReference.Position.x,profileReference.Position.y)
+
+			-- Border
+			local offset = profileReference.Border.Offset
+			Border:SetPoint('TOPLEFT',Portrait,'TOPLEFT',-offset,offset)
+			Border:SetPoint('BOTTOMRIGHT',Portrait,'BOTTOMRIGHT',offset,-offset)
+			Border:SetFrameLevel(7)
+			Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
+			local r,g,b = unpack(profileReference.Border.Color)
+			Border:SetBackdropBorderColor(r,g,b,profileReference.Border.Alpha)
+
+			-- Background
+			r,g,b = unpack(profileReference.Background.Color)
+			Background:SetTexture(LSM:Fetch("background", "Solid"))
+			Background:SetVertexColor(r,g,b,profileReference.Background.Alpha)
+			Background:SetAllPoints(Portrait)
+
+			Portrait.Cutaway = false
 		end
-	elseif profileReference.Style == 2 then
-		Background:Show()
-		Border:Show()
-		Portrait:SetAlpha(1)
-		Portrait:ClearAllPoints()
-		Portrait:SetSize(profileReference.Width,profileReference.Height)
-		Portrait:SetPoint(profileReference.Position.AnchorFrom,self.__owner,profileReference.Position.AnchorTo,profileReference.Position.x,profileReference.Position.y)
-
-		-- Border
-		local offset = profileReference.Border.Offset
-		Border:SetPoint('TOPLEFT',Portrait,'TOPLEFT',-offset,offset)
-		Border:SetPoint('BOTTOMRIGHT',Portrait,'BOTTOMRIGHT',offset,-offset)
-		Border:SetFrameLevel(7)
-		Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
-		local r,g,b = unpack(profileReference.Border.Color)
-		Border:SetBackdropBorderColor(r,g,b,profileReference.Border.Alpha)
-
-
-		-- Background
-		r,g,b = unpack(profileReference.Background.Color)
-		Background:SetTexture(LSM:Fetch("background", "Solid"))
-		Background:SetVertexColor(r,g,b,profileReference.Background.Alpha)
-		Background:SetAllPoints(Portrait)
+	else
+		Portrait.Enabled = false
+		self.__owner:DisableElement('Portrait')
+		Portrait:Hide()
 	end
 end

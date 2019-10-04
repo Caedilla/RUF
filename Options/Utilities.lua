@@ -545,22 +545,23 @@ function RUF:OptionsUpdatePortraits(singleFrame,groupFrame,header)
 	if not groupFrame then groupFrame = 'none' end
 	if not header then header = 'none' end
 
-
-
 	local function UpdatePortrait(singleFrame,groupFrame,header,i)
 		local currentUnit,unitFrame,profileReference
 
 		if header ~= 'none' then
 			currentUnit = header .. 'UnitButton' .. i
-			profileReference = RUF.db.profile.unit[string.lower(header)]
+			profileReference = RUF.db.profile.unit[string.lower(header)].Frame.Portrait
 		elseif groupFrame ~= 'none' then
 			currentUnit = groupFrame .. i
-			profileReference = RUF.db.profile.unit[string.lower(groupFrame)]
+			profileReference = RUF.db.profile.unit[string.lower(groupFrame)].Frame.Portrait
 		else
 			currentUnit = singleFrame
-			profileReference = RUF.db.profile.unit[string.lower(singleFrame)]
+			profileReference = RUF.db.profile.unit[string.lower(singleFrame)].Frame.Portrait
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
+
+		unitFrame.Portrait.Enabled = profileReference.Enabled
+		unitFrame.Portrait.Cutaway = profileReference.Cutaway
 
 		unitFrame.Portrait:UpdateOptions()
 		unitFrame.Portrait:ForceUpdate()
