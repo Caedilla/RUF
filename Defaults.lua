@@ -599,7 +599,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {
@@ -1043,14 +1043,14 @@ local cfg = {
 						["Enabled"] = false,
 						["Style"] = 1,
 						["Cutaway"] = true,
-						["Width"] = 60,
+						["Width"] = 100,
 						["Height"] = 60,
 						["Alpha"] = 0.75,
 						["Model"] = {
-							["Rotation"] = 0,
+							["Rotation"] = 315,
 							["CameraDistance"] = 2.5,
 							["PortraitZoom"] = 1.08,
-							["x"] = 0,
+							["x"] = -0.35,
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
@@ -1058,9 +1058,9 @@ local cfg = {
 							},
 						},
 						["Position"] = {
-							["AnchorFrom"] = 'TOPRIGHT',
-							["AnchorTo"] = 'TOPLEFT',
-							["x"] = 0,
+							["AnchorFrom"] = 'TOPLEFT',
+							["AnchorTo"] = 'TOPRIGHT',
+							["x"] = -1,
 							["y"] = 0,
 						},
 						["Border"] = {
@@ -1074,7 +1074,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {
@@ -1490,14 +1490,14 @@ local cfg = {
 						["Enabled"] = false,
 						["Style"] = 1,
 						["Cutaway"] = true,
-						["Width"] = 60,
+						["Width"] = 100,
 						["Height"] = 60,
 						["Alpha"] = 0.75,
 						["Model"] = {
-							["Rotation"] = 0,
+							["Rotation"] = 315,
 							["CameraDistance"] = 2.5,
 							["PortraitZoom"] = 1.08,
-							["x"] = 0,
+							["x"] = -0.35,
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
@@ -1505,9 +1505,9 @@ local cfg = {
 							},
 						},
 						["Position"] = {
-							["AnchorFrom"] = 'TOPRIGHT',
-							["AnchorTo"] = 'TOPLEFT',
-							["x"] = 0,
+							["AnchorFrom"] = 'TOPLEFT',
+							["AnchorTo"] = 'TOPRIGHT',
+							["x"] = -1,
 							["y"] = 0,
 						},
 						["Border"] = {
@@ -1521,7 +1521,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {
@@ -1950,13 +1950,13 @@ local cfg = {
 						["Style"] = 1,
 						["Cutaway"] = true,
 						["Width"] = 60,
-						["Height"] = 60,
+						["Height"] = 30,
 						["Alpha"] = 0.75,
 						["Model"] = {
-							["Rotation"] = 0,
+							["Rotation"] = 40,
 							["CameraDistance"] = 2.5,
 							["PortraitZoom"] = 1.08,
-							["x"] = 0,
+							["x"] = 0.35,
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
@@ -1966,7 +1966,7 @@ local cfg = {
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
 							["AnchorTo"] = 'TOPLEFT',
-							["x"] = 0,
+							["x"] = 1,
 							["y"] = 0,
 						},
 						["Border"] = {
@@ -1980,7 +1980,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {
@@ -2369,13 +2369,13 @@ local cfg = {
 						["Style"] = 1,
 						["Cutaway"] = true,
 						["Width"] = 60,
-						["Height"] = 60,
+						["Height"] = 30,
 						["Alpha"] = 0.75,
 						["Model"] = {
-							["Rotation"] = 0,
+							["Rotation"] = 315,
 							["CameraDistance"] = 2.5,
 							["PortraitZoom"] = 1.08,
-							["x"] = 0,
+							["x"] = -0.35,
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
@@ -2383,9 +2383,9 @@ local cfg = {
 							},
 						},
 						["Position"] = {
-							["AnchorFrom"] = 'TOPRIGHT',
-							["AnchorTo"] = 'TOPLEFT',
-							["x"] = 0,
+							["AnchorFrom"] = 'TOPLEFT',
+							["AnchorTo"] = 'TOPRIGHT',
+							["x"] = -1,
 							["y"] = 0,
 						},
 						["Border"] = {
@@ -2399,7 +2399,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {
@@ -2788,13 +2788,13 @@ local cfg = {
 						["Style"] = 1,
 						["Cutaway"] = true,
 						["Width"] = 60,
-						["Height"] = 60,
+						["Height"] = 30,
 						["Alpha"] = 0.75,
 						["Model"] = {
-							["Rotation"] = 0,
+							["Rotation"] = 315,
 							["CameraDistance"] = 2.5,
 							["PortraitZoom"] = 1.08,
-							["x"] = 0,
+							["x"] = -0.35,
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
@@ -2802,9 +2802,9 @@ local cfg = {
 							},
 						},
 						["Position"] = {
-							["AnchorFrom"] = 'TOPRIGHT',
-							["AnchorTo"] = 'TOPLEFT',
-							["x"] = 0,
+							["AnchorFrom"] = 'TOPLEFT',
+							["AnchorTo"] = 'TOPRIGHT',
+							["x"] = -1,
 							["y"] = 0,
 						},
 						["Border"] = {
@@ -2818,7 +2818,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {
@@ -3207,13 +3207,13 @@ local cfg = {
 						["Style"] = 1,
 						["Cutaway"] = true,
 						["Width"] = 60,
-						["Height"] = 60,
+						["Height"] = 30,
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
 							["CameraDistance"] = 2.5,
 							["PortraitZoom"] = 1.08,
-							["x"] = 0,
+							["x"] = -0.35,
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
@@ -3221,9 +3221,9 @@ local cfg = {
 							},
 						},
 						["Position"] = {
-							["AnchorFrom"] = 'TOPRIGHT',
-							["AnchorTo"] = 'TOPLEFT',
-							["x"] = 0,
+							["AnchorFrom"] = 'TOPLEFT',
+							["AnchorTo"] = 'TOPRIGHT',
+							["x"] = -1,
 							["y"] = 0,
 						},
 						["Border"] = {
@@ -3237,7 +3237,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {
@@ -3629,10 +3629,10 @@ local cfg = {
 						["Height"] = 60,
 						["Alpha"] = 0.75,
 						["Model"] = {
-							["Rotation"] = 0,
+							["Rotation"] = 40,
 							["CameraDistance"] = 2.5,
 							["PortraitZoom"] = 1.08,
-							["x"] = 0,
+							["x"] = 00.35,
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
@@ -3640,9 +3640,9 @@ local cfg = {
 							},
 						},
 						["Position"] = {
-							["AnchorFrom"] = 'TOPRIGHT',
-							["AnchorTo"] = 'TOPLEFT',
-							["x"] = 0,
+							["AnchorFrom"] = 'TOPLEFT',
+							["AnchorTo"] = 'TOPRIGHT',
+							["x"] = -1,
 							["y"] = 0,
 						},
 						["Border"] = {
@@ -3656,7 +3656,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {
@@ -4089,13 +4089,13 @@ local cfg = {
 						["Style"] = 1,
 						["Cutaway"] = true,
 						["Width"] = 60,
-						["Height"] = 60,
+						["Height"] = 30,
 						["Alpha"] = 0.75,
 						["Model"] = {
 							["Rotation"] = 0,
 							["CameraDistance"] = 2.5,
 							["PortraitZoom"] = 1.08,
-							["x"] = 0,
+							["x"] = -0.35,
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
@@ -4103,9 +4103,9 @@ local cfg = {
 							},
 						},
 						["Position"] = {
-							["AnchorFrom"] = 'TOPRIGHT',
-							["AnchorTo"] = 'TOPLEFT',
-							["x"] = 0,
+							["AnchorFrom"] = 'TOPLEFT',
+							["AnchorTo"] = 'TOPRIGHT',
+							["x"] = -1,
 							["y"] = 0,
 						},
 						["Border"] = {
@@ -4119,7 +4119,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {
@@ -4518,7 +4518,7 @@ local cfg = {
 							["Rotation"] = 0,
 							["CameraDistance"] = 2.5,
 							["PortraitZoom"] = 1.08,
-							["x"] = 0,
+							["x"] = -0.35,
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
@@ -4528,7 +4528,7 @@ local cfg = {
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
 							["AnchorTo"] = 'TOPLEFT',
-							["x"] = 0,
+							["x"] = 1,
 							["y"] = 0,
 						},
 						["Border"] = {
@@ -4542,7 +4542,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {
@@ -4968,7 +4968,7 @@ local cfg = {
 							["Rotation"] = 0,
 							["CameraDistance"] = 2.5,
 							["PortraitZoom"] = 1.08,
-							["x"] = 0,
+							["x"] = -0.35,
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
@@ -4978,7 +4978,7 @@ local cfg = {
 						["Position"] = {
 							["AnchorFrom"] = 'TOPRIGHT',
 							["AnchorTo"] = 'TOPLEFT',
-							["x"] = 0,
+							["x"] = 1,
 							["y"] = 0,
 						},
 						["Border"] = {
@@ -4992,7 +4992,7 @@ local cfg = {
 						},
 						["Background"] = {
 							["Color"] = {0,0,0},
-							["Alpha"] = 0.75,
+							["Alpha"] = 0.5,
 						},
 					},
 					["Indicators"] = {

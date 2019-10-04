@@ -10,9 +10,12 @@ function RUF.PortraitHealthUpdate(self)
 		frame:DisableElement('Portrait')
 		frame.Portrait:Hide()
 		return end
-	if profileReference.Cutaway and not frame.Health.Smooth then
+	if profileReference.Cutaway and (not frame.Health.Smooth or RUF.db.global.TestMode == true) then
 		local element = frame.Portrait
 		local cur, max = UnitHealth(frame.unit), UnitHealthMax(frame.unit)
+		if RUF.db.global.TestMode == true then
+			cur = frame.Health:GetValue()
+		end
 		local frameWidth = frame:GetWidth()
 		local width = frameWidth * (cur/max)
 		local fillStyle = frame.Health.FillStyle
@@ -181,12 +184,14 @@ function RUF.PortraitUpdateOptions(self)
 			else
 				Portrait:ClearAllPoints()
 				Portrait:SetAllPoints(self.__owner)
+				Portrait:SetViewInsets(0,0,0,0)
 			end
 		elseif profileReference.Style == 2 then
 			Background:Show()
 			Border:Show()
 			Portrait:SetAlpha(1)
 			Portrait:ClearAllPoints()
+			Portrait:SetViewInsets(0,0,0,0)
 			Portrait:SetSize(profileReference.Width,profileReference.Height)
 			Portrait:SetPoint(profileReference.Position.AnchorFrom,self.__owner,profileReference.Position.AnchorTo,profileReference.Position.x,profileReference.Position.y)
 

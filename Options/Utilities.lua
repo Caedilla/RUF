@@ -562,7 +562,6 @@ function RUF:OptionsUpdatePortraits(singleFrame,groupFrame,header)
 
 		unitFrame.Portrait.Enabled = profileReference.Enabled
 		unitFrame.Portrait.Cutaway = profileReference.Cutaway
-		unitFrame.Portrait:SetViewInsets(0,0,0,0)
 
 		unitFrame.Portrait:UpdateOptions()
 		unitFrame.Portrait:ForceUpdate()

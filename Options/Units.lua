@@ -2421,22 +2421,10 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 				type = 'group',
 				inline = true,
 				args = {
-					pauseAnimation = {
-						name = L["Freeze Animation"],
-						order = 5.01,
-						type = 'toggle',
-						get = function(info)
-							return RUF.db.profile.unit[profileName].Frame.Portrait.Model.Animation.Paused
-						end,
-						set = function(info, value)
-							RUF.db.profile.unit[profileName].Frame.Portrait.Model.Animation.Paused = value
-							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
-						end,
-					},
 					rotation = {
 						name = L["Rotation"],
 						type = 'range',
-						order = 5.1,
+						order = 5.11,
 						min = 0,
 						max = 360,
 						step = 1,
@@ -2451,7 +2439,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					portraitZoom = {
 						name = L["Portrait Zoom"],
 						type = 'range',
-						order = 5.2,
+						order = 5.12,
 						min = 0.01,
 						max = 5,
 						step = 0.01,
@@ -2466,7 +2454,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					cameraDistance = {
 						name = L["Camera Distance"],
 						type = 'range',
-						order = 5.25,
+						order = 5.13,
 						min = 0.01,
 						max = 5,
 						step = 0.01,
@@ -2481,7 +2469,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					offsetX = {
 						name = L["X Offset"],
 						type = 'range',
-						order = 5.3,
+						order = 5.31,
 						min = -10,
 						max = 10,
 						step = 0.01,
@@ -2496,7 +2484,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					offsetY = {
 						name = L["Y Offset"],
 						type = 'range',
-						order = 5.3,
+						order = 5.32,
 						min = -10,
 						max = 10,
 						step = 0.01,
@@ -2511,7 +2499,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					offsetZ = {
 						name = L["Z Offset"],
 						type = 'range',
-						order = 5.4,
+						order = 5.33,
 						min = -10,
 						max = 10,
 						step = 0.01,
@@ -2520,6 +2508,18 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].Frame.Portrait.Model.z = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
+					pauseAnimation = {
+						name = L["Freeze Animation"],
+						order = 5.4,
+						type = 'toggle',
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Model.Animation.Paused
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Model.Animation.Paused = value
 							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
 						end,
 					},
