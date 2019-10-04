@@ -13,23 +13,38 @@ local function Smooth(self, value)
 	self._max = max
 end
 
-local function UnSmooth(self)
+local function UnSmoothBar(self, bar)
 	smoothing[self] = nil
-	self.SetValue = self.SetValue_
-	self.SetValue_ = nil
-	self.Smooth = nil
+	if bar.SetValue_ then
+		bar.SetValue = bar.SetValue_
+		bar.SetValue_ = nil
+	end
+	if bar.Smooth then
+		bar.Smooth = nil
+	end
 end
 
 local function SmoothBar(self, bar)
-	bar.SetValue_ = bar.SetValue
-	bar.SetValue = Smooth
-	bar.UnSmooth = UnSmooth
+	if not bar.SetValue_ then
+		bar.SetValue_ = bar.SetValue
+		bar.SetValue = Smooth
+	end
 end
 
 local function hook(frame)
 	frame.SmoothBar = SmoothBar
+	frame.UnSmoothBar = UnSmoothBar
 	if frame.Health and frame.Health.Smooth then
 		frame:SmoothBar(frame.Health)
+	end
+	if frame.FakeClassPower and frame.FakeClassPower.Smooth then
+		frame:SmoothBar(frame.FakeClassPower)
+	end
+	if frame.Stagger and frame.Stagger.Smooth then
+		frame:SmoothBar(frame.Stagger)
+	end
+	if frame.Absorb and frame.Absorb.Smooth then
+		frame:SmoothBar(frame.Absorb)
 	end
 	if frame.Power and frame.Power.Smooth then
 		frame:SmoothBar(frame.Power)

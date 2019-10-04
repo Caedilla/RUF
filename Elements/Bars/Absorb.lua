@@ -18,7 +18,7 @@ function RUF.SetAbsorbBar(self, unit)
 	Bar.colorReaction = RUF.db.profile.Appearance.Bars.Absorb.Color.Reaction
 	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Absorb.Color.Tapped
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
-	Bar.Smooth = RUF.db.profile.Appearance.Bars.Absorb.Animate
+	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Absorb.Animate
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Absorb.Enabled == 1
 	Bar:SetStatusBarTexture(Texture)
 	Bar:SetFrameLevel(3)
@@ -114,11 +114,17 @@ function RUF.AbsorbUpdateOptions(self)
 	Bar.colorReaction = RUF.db.profile.Appearance.Bars.Absorb.Color.Reaction
 	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Absorb.Color.Tapped
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
-	Bar.Smooth = RUF.db.profile.Appearance.Bars.Absorb.Animate
+	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Absorb.Animate
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Absorb.Enabled == 1
 	Bar:SetStatusBarTexture(Texture)
 	Bar:SetFrameLevel(3)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Absorb.Fill)
+
+	if Bar.Smooth == true then
+		self.__owner:SmoothBar(Bar)
+	else
+		self.__owner:UnSmoothBar(Bar)
+	end
 
 	self:ForceUpdate()
 	if (RUF.db.profile.Appearance.Bars.Absorb.Type == 0) or (RUF.db.profile.unit[unit].Frame.Bars.Absorb.Enabled == 0) then

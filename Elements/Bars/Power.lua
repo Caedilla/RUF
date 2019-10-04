@@ -24,7 +24,7 @@ function RUF.SetPowerBar(self, unit) -- Mana, Rage, Insanity, Maelstrom etc.
 		Bar.anchorTo = 'BOTTOM'
 	end
 
-	Bar.Smooth = RUF.db.profile.Appearance.Bars.Power.Animate
+	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Power.Animate
 	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Power.Height
@@ -127,7 +127,7 @@ function RUF.PowerUpdateOptions(self)
 	local Border = self.Border
 
 	local Texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Power.Texture)
-	Bar.Smooth = RUF.db.profile.Appearance.Bars.Power.Animate
+	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Power.Animate
 	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Power.Height
@@ -142,6 +142,12 @@ function RUF.PowerUpdateOptions(self)
 	Border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeSize})
 	local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Power.Border.Color)
 	Border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Power.Border.Alpha)
+
+	if Bar.Smooth == true then
+		self.__owner:SmoothBar(Bar)
+	else
+		self.__owner:UnSmoothBar(Bar)
+	end
 
 	self:ForceUpdate() -- Runs Update function for everything else.
 	if RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled == 0 then

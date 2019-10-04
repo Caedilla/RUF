@@ -455,21 +455,6 @@ function RUF_Options.Bars()
 								RUF:OptionsUpdateAllBars()
 							end,
 						},
-						smoothAnimations = {
-							name = L["Animate"],
-							desc = L["Animate bar changes."],
-							type = 'toggle',
-							hidden = true,
-							order = 2,
-							desc = '',
-							get = function(info)
-								return RUF.db.profile.Appearance.Bars[Bar[i]].Animate
-							end,
-							set = function(info, value)
-								RUF.db.profile.Appearance.Bars[Bar[i]].Animate = value
-								RUF:OptionsUpdateAllBars()
-							end,
-						},
 					},
 				},
 				backgroundStyle = {

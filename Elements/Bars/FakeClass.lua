@@ -41,7 +41,7 @@ function RUF.SetFakeClassBar(self, unit)
 	Bar.colorReaction = RUF.db.profile.Appearance.Bars.Class.Color.Reaction
 	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Class.Color.Tapped
 	Bar.colorPower = RUF.db.profile.Appearance.Bars.Class.Color.PowerType
-	Bar.Smooth = RUF.db.profile.Appearance.Bars.Class.Animate
+	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Class.Animate
 	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
@@ -146,7 +146,7 @@ function RUF.FakeClassPowerUpdateOptions(self)
 	Bar.colorReaction = RUF.db.profile.Appearance.Bars.Class.Color.Reaction
 	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Class.Color.Tapped
 	Bar.colorPower = RUF.db.profile.Appearance.Bars.Class.Color.PowerType
-	Bar.Smooth = RUF.db.profile.Appearance.Bars.Class.Animate
+	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Class.Animate
 	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
@@ -168,6 +168,12 @@ function RUF.FakeClassPowerUpdateOptions(self)
 	Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 	Background:SetAllPoints(Bar)
 	Background.colorSmooth = false
+
+	if Bar.Smooth == true then
+		self.__owner:SmoothBar(Bar)
+	else
+		self.__owner:UnSmoothBar(Bar)
+	end
 
 	self:ForceUpdate()
 	if RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled ~= true then

@@ -45,7 +45,6 @@ local cfg = {
 			Bars = {
 				Health = {
 					Texture = "RUF 5",
-					Animate = true,
 					Color = {
 						BaseColor = {25/255, 25/255, 25/255},
 						--colorHealth -- Set in Core to true automatically
@@ -74,7 +73,6 @@ local cfg = {
 				Absorb = {
 					Type = 1, -- 1 Health Overlay = 0, 2 Bar If 1 then use Frame.Bars.Absorb.Alpha If 2 then use Unit.Player.Bars.Absorb.Position and Order and Alpha
 					Texture = "RUF 5",
-					Animate = true,
 					Color = {
 						BaseColor = {1, 1, 1},
 						Class = false,
@@ -99,7 +97,6 @@ local cfg = {
 				},
 				Class = {
 					Texture = "RUF 1",
-					Animate = true,
 					Color = {
 						BaseColor = {100/255, 100/255, 100/255},
 						Class = false,
@@ -124,7 +121,6 @@ local cfg = {
 				},
 				Power = {
 					Texture = "RUF 1",
-					Animate = true,
 					Color = {
 						BaseColor = {50/255, 50/255, 50/255},
 						Class = false,
@@ -163,7 +159,6 @@ local cfg = {
 				},
 				Cast = {
 					Texture = "RUF 1",
-					Animate = true,
 					ColorInterrupt = {
 						Enabled = true,
 						Color = {200/255, 64/255, 64/255},
@@ -902,6 +897,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -911,9 +907,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "STANDARD",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -923,6 +921,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = true,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -1345,6 +1344,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "REVERSE",
 							["Height"] = 8,
@@ -1354,9 +1354,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "REVERSE",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "REVERSE",
 							["Height"] = 8,
@@ -1366,6 +1368,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = true,
 							["Fill"] = "REVERSE",
 							["Height"] = 8,
@@ -1800,6 +1803,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -1809,9 +1813,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "STANDARD",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -1821,6 +1827,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = true,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -2215,6 +2222,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -2224,9 +2232,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "STANDARD",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 4,
@@ -2236,6 +2246,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = false,
 							["Fill"] = "STANDARD",
 							["Height"] = 4,
@@ -2630,6 +2641,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "REVERSE",
 							["Height"] = 8,
@@ -2639,9 +2651,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "REVERSE",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "REVERSE",
 							["Height"] = 4,
@@ -2651,6 +2665,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = false,
 							["Fill"] = "REVERSE",
 							["Height"] = 4,
@@ -3045,6 +3060,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -3054,9 +3070,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "STANDARD",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 4,
@@ -3066,6 +3084,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = false,
 							["Fill"] = "STANDARD",
 							["Height"] = 4,
@@ -3460,6 +3479,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -3469,9 +3489,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "STANDARD",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 4,
@@ -3481,6 +3503,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = false,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -3918,6 +3941,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -3927,9 +3951,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "STANDARD",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -3939,6 +3965,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = true,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -4337,6 +4364,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -4346,9 +4374,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "STANDARD",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "STANDARD",
 							["Height"] = 4,
@@ -4358,6 +4388,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = false,
 							["Fill"] = "STANDARD",
 							["Height"] = 8,
@@ -4784,6 +4815,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "REVERSE",
 							["Height"] = 8,
@@ -4793,9 +4825,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "REVERSE",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "REVERSE",
 							["Height"] = 8,
@@ -4805,6 +4839,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = true,
 							["Fill"] = "REVERSE",
 							["Height"] = 8,
@@ -5230,6 +5265,7 @@ local cfg = {
 							["Width"] = 300,
 						},
 						["Absorb"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "REVERSE",
 							["Height"] = 8,
@@ -5239,9 +5275,11 @@ local cfg = {
 							},
 						},
 						["Health"] = {
+							["Animate"] = true,
 							["Fill"] = "REVERSE",
 						},
 						["Power"] = {
+							["Animate"] = true,
 							["Enabled"] = 1,
 							["Fill"] = "REVERSE",
 							["Height"] = 8,
@@ -5251,6 +5289,7 @@ local cfg = {
 							},
 						},
 						["Class"] = {
+							["Animate"] = true,
 							["Enabled"] = true,
 							["Fill"] = "REVERSE",
 							["Height"] = 8,

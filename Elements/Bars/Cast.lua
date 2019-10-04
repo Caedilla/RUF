@@ -154,7 +154,6 @@ function RUF.SetCastBar(self, unit)
 	Bar.colorReaction = profileReference.Color.Reaction
 	Bar.colorTapping = profileReference.Color.Tapped
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
-	Bar.Smooth = true --profileReference.Animate
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetFrameLevel(3)
 	Bar:SetFillStyle(unitProfile.Fill)
