@@ -121,7 +121,7 @@ function RUF.SetHealthBar(self, unit)
 	Bar.colorReaction = RUF.db.profile.Appearance.Bars.Health.Color.Reaction
 	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Health.Color.Tapped
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
-	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health
+	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health.Animate
 	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetAllPoints(self)
@@ -147,7 +147,7 @@ function RUF.HealthUpdateOptions(self)
 	Bar.colorReaction = RUF.db.profile.Appearance.Bars.Health.Color.Reaction
 	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Health.Color.Tapped
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
-	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health
+	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health.Animate
 	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetAllPoints(self.__owner)

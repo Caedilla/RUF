@@ -14,14 +14,12 @@ local function Smooth(self, value)
 end
 
 local function UnSmoothBar(self, bar)
-	smoothing[self] = nil
+	smoothing[bar] = nil
 	if bar.SetValue_ then
 		bar.SetValue = bar.SetValue_
 		bar.SetValue_ = nil
 	end
-	if bar.Smooth then
-		bar.Smooth = nil
-	end
+	bar.Smooth = nil
 end
 
 local function SmoothBar(self, bar)

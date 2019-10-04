@@ -177,6 +177,7 @@ function RUF.PortraitUpdateOptions(self)
 			if profileReference.Cutaway == true then
 				Portrait:ClearAllPoints()
 				Portrait:SetAllPoints(self.__owner.Health:GetStatusBarTexture())
+				RUF.PortraitHealthUpdate(Portrait)
 			else
 				Portrait:ClearAllPoints()
 				Portrait:SetAllPoints(self.__owner)

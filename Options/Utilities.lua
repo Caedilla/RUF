@@ -956,20 +956,25 @@ function RUF:UpdateAllUnitSettings()
 		RUF:OptionsUpdateFrame(frames[i])
 		RUF:OptionsUpdateAuras(frames[i],nil,nil,'Buffs')
 		RUF:OptionsUpdateAuras(frames[i],nil,nil,'Debuffs')
+		RUF:OptionsUpdatePortraits(frames[i])
 	end
 	for i = 1,#groupFrames do
 		RUF:OptionsUpdateFrame(nil,groupFrames[i])
 		RUF:OptionsUpdateAuras(nil,groupFrames[i],nil,'Buffs')
 		RUF:OptionsUpdateAuras(nil,groupFrames[i],nil,'Debuffs')
+		RUF:OptionsUpdatePortraits(nil,groupFrames[i])
 	end
 	for i = 1,#headers do
 		RUF:OptionsUpdateFrame(nil,nil,headers[i])
 		RUF:OptionsUpdateAuras(nil,nil,headers[i],'Buffs')
 		RUF:OptionsUpdateAuras(nil,nil,headers[i],'Debuffs')
+		RUF:OptionsUpdatePortraits(nil,nil,headers[i])
 	end
 
 	RUF:OptionsUpdateAllBars()
 	RUF:OptionsUpdateAllTexts()
 	RUF:OptionsUpdateAllIndicators()
 	RUF:OptionsUpdateAllAuras()
+	RUF:OptionsUpdateFrameBorders()
+	RUF:OptionsUpdateCastbars()
 end
