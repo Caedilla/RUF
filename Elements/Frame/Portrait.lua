@@ -62,6 +62,7 @@ local function Update(self, event, unit)
 				element:ClearModel()
 				element:SetUnit(unit)
 				element:SetPaused(profileReference.Model.Animation.Paused)
+				element:SetViewInsets(0,0,0,0)
 				element:MakeCurrentCameraCustom()
 				element:SetCameraFacing(math.rad(-profileReference.Model.Rotation))
 			end

@@ -2329,8 +2329,6 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 	local ord, referenceUnit, profileName
 	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
-
-
 	local portraitOptions = {
 		name = L["Portrait"],
 		type = 'group',
@@ -2808,7 +2806,7 @@ function RUF_Options.GenerateUnits()
 
 	for i = 1,#frames do
 		Units.args[frames[i]] = UnitGroup(frames[i])
-		Units.args[frames[i]].args.barOptions = BarSettings(frames[i])
+		Units.args[frames[i]].args.frameSettings.args.barOptions = BarSettings(frames[i])
 		Units.args[frames[i]].args.textOptions = TextSettings(frames[i])
 		Units.args[frames[i]].args.indicatorOptions = IndicatorSettings(frames[i])
 		Units.args[frames[i]].args.buffOptions = BuffSettings(frames[i])
@@ -2818,7 +2816,7 @@ function RUF_Options.GenerateUnits()
 	end
 	for i = 1,#groupFrames do
 		Units.args[groupFrames[i]] = UnitGroup(nil,groupFrames[i])
-		Units.args[groupFrames[i]].args.barOptions = BarSettings(nil,groupFrames[i])
+		Units.args[groupFrames[i]].args.frameSettings.args.barOptions = BarSettings(nil,groupFrames[i])
 		Units.args[groupFrames[i]].args.textOptions = TextSettings(nil,groupFrames[i])
 		Units.args[groupFrames[i]].args.indicatorOptions = IndicatorSettings(nil,groupFrames[i])
 		Units.args[groupFrames[i]].args.buffOptions = BuffSettings(nil,groupFrames[i])
@@ -2828,7 +2826,7 @@ function RUF_Options.GenerateUnits()
 	end
 	for i = 1,#headers do
 		Units.args[headers[i]] = UnitGroup(nil,nil,headers[i])
-		Units.args[headers[i]].args.barOptions = BarSettings(nil,nil,headers[i])
+		Units.args[headers[i]].args.frameSettings.args.barOptions = BarSettings(nil,nil,headers[i])
 		Units.args[headers[i]].args.textOptions = TextSettings(nil,nil,headers[i])
 		Units.args[headers[i]].args.indicatorOptions = IndicatorSettings(nil,nil,headers[i])
 		Units.args[headers[i]].args.buffOptions = BuffSettings(nil,nil,headers[i])
