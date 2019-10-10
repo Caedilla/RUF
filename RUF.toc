@@ -26,6 +26,7 @@ Elements\Plugins\BarAnimation_Plugin.lua
 Elements\Plugins\Cast_Plugin.lua
 #@non-retail@
 Elements\Plugins\ClassicClassPower_Plugin.lua
+Elements\Plugins\HealPrediction_Plugin.lua
 #@end-non-retail@
 Elements\Plugins\FakeClassPower_Plugin.lua
 Elements\Plugins\Range_Plugin.lua

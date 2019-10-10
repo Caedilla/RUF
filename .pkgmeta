@@ -24,6 +24,7 @@ externals:
  Libs/LibClassicDurations: https://repos.curseforge.com/wow/libclassicdurations
  Libs/LibRangeCheck-2.0: https://repos.wowace.com/wow/librangecheck-2-0/trunk/LibRangeCheck-2.0
  Libs/NickTag-1.0: https://github.com/Tercioo/NickTag-1.0
+ Libs/LibClassicHealComm-1.0: https://github.com/Aviana/LibClassicHealComm-1.0
 
 ignore:
  - Release

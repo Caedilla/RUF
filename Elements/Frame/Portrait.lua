@@ -18,10 +18,9 @@ function RUF.PortraitHealthUpdate(self)
 		end
 		local frameWidth = frame:GetWidth()
 		local width = frameWidth * (cur/max)
-		local fillStyle = frame.Health.FillStyle
-		if fillStyle == 'REVERSE' then
+		if frame.Health.FillStyle == 'REVERSE' then
 			element:SetViewInsets((-frameWidth)+width,0,0,0) -- Right
-		elseif fillStyle == 'CENTER' then
+		elseif frame.Health.FillStyle == 'CENTER' then
 			element:SetViewInsets(((-frameWidth)+width)/2,((-frameWidth)+width)/2,0,0)
 		else
 			element:SetViewInsets(0,(-frameWidth)+width,0,0) -- Left

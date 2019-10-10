@@ -21,5 +21,6 @@
 <!--@non-retail@
 <Include file="Libs\LibClassicCasterino\LibClassicCasterino.lua"/>
 <Include file="Libs\LibClassicDurations\LibClassicDurations.xml"/>
+<Include file="Libs\LibClassicHealComm-1.0\LibClassicHealComm-1.0.lua"/>
 @end-non-retail@-->
 </Ui>

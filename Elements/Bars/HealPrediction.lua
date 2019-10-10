@@ -101,7 +101,7 @@ function RUF.HealthPostUpdate(element, unit, cur, max)
 
 end
 
-function RUF.SetHealthBar(self, unit)
+function RUF.SetHealPrediction(self, unit)
 	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Health.Texture)
 	local Bar = CreateFrame("StatusBar",nil,self)
 
@@ -126,6 +126,40 @@ function RUF.SetHealthBar(self, unit)
 	-- Register with oUF
 	self.Health = Bar
 	self.Health.UpdateOptions = RUF.HealthUpdateOptions
+
+	local PlayerHeals,OtherHeals
+	local Health = self.Health
+
+	PlayerHeals = CreateFrame('StatusBar', nil, Health)
+	OtherHeals = CreateFrame('StatusBar', nil, Health)
+	local anchorFrom, anchorTo
+	if Health.FillStyle == 'REVERSE' then -- Right
+		anchorFrom = 'RIGHT'
+		anchorTo = 'LEFT'
+	--elseif Health.FillStyle == 'CENTER' then
+		-- TODO: Create a bar on either side of the health bar and split value in two to make it grow outwards.
+	else -- Left
+		anchorFrom = 'LEFT'
+		anchorTo = 'RIGHT'
+	end
+
+	PlayerHeals:SetPoint('TOP')
+	PlayerHeals:SetPoint('BOTTOM')
+	PlayerHeals:SetPoint(anchorFrom, self.Health:GetStatusBarTexture(), anchorTo)
+
+	OtherHeals:SetPoint('TOP')
+	OtherHeals:SetPoint('BOTTOM')
+	OtherHeals:SetPoint(anchorFrom, PlayerHeals:GetStatusBarTexture(), anchorTo)
+
+
+	-- Register with oUF
+	self.HealPrediction = {
+		myBar = PlayerHeals,
+		otherBar = OtherHeals,
+		maxOverflow = 1, -- TODO Option
+		frequentUpdates = true,
+	}
+
 end
 
 function RUF.HealthUpdateOptions(self)
