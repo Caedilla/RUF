@@ -99,13 +99,27 @@ local function Update(self, event, unit)
 		element:PreUpdate(unit)
 	end
 
-	local myIncomingHeal = UnitGetIncomingHeals(unit, 'player') or 0
-	local allIncomingHeal = UnitGetIncomingHeals(unit) or 0
-	local absorb = UnitGetTotalAbsorbs(unit) or 0
-	local healAbsorb = UnitGetTotalHealAbsorbs(unit) or 0
-	local health, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
-	local otherIncomingHeal = 0
-	local hasOverHealAbsorb = false
+	local myIncomingHeal, allIncomingHeal, absorb, healAbsorb, health, maxHealth,otherIncomingHeal,hasOverHealAbsorb
+
+	if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
+		myIncomingHeal = UnitGetIncomingHeals(unit, 'player') or 0
+		allIncomingHeal = UnitGetIncomingHeals(unit) or 0
+		absorb = UnitGetTotalAbsorbs(unit) or 0
+		healAbsorb = UnitGetTotalHealAbsorbs(unit) or 0
+		health, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
+		otherIncomingHeal = 0
+		hasOverHealAbsorb = false
+	else
+		local HealComm = LibStub("LibClassicHealComm-1.0")
+		local unitGUID = UnitGUID(unit)
+		myIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + 5, UnitGUID('player')) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0 -- TODO 5 is duration, give an option.
+		allIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + 5) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0 -- TODO 5 is duration, give an option.
+		absorb = 0
+		healAbsorb = 0
+		health, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
+		otherIncomingHeal = 0
+		hasOverHealAbsorb = false
+	end
 
 	if(healAbsorb > allIncomingHeal) then
 		healAbsorb = healAbsorb - allIncomingHeal
@@ -225,9 +239,14 @@ local function Enable(self)
 		end
 
 		self:RegisterEvent('UNIT_MAXHEALTH', Path)
-		self:RegisterEvent('UNIT_HEAL_PREDICTION', Path)
-		self:RegisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
-		self:RegisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
+		if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
+			self:RegisterEvent('UNIT_HEAL_PREDICTION', Path)
+			self:RegisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
+			self:RegisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
+		else
+		end
+
+
 
 		if(not element.maxOverflow) then
 			element.maxOverflow = 1.05
