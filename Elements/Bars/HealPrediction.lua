@@ -3,39 +3,7 @@ local LSM = LibStub("LibSharedMedia-3.0")
 local _, ns = ...
 local oUF = ns.oUF
 
-function RUF.HealthUpdateColor(element, unit, cur, max)
-	local r,g,b = RUF:GetBarColor(element, unit, "Health","Health",cur)
-	element:SetStatusBarColor(r,g,b)
-
-
-	-- Update background
-	local bgMult = RUF.db.profile.Appearance.Bars.Health.Background.Multiplier
-	local a = RUF.db.profile.Appearance.Bars.Health.Background.Alpha
-	if RUF.db.profile.Appearance.Bars.Health.Background.UseBarColor == false then
-		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Health.Background.CustomColor)
-	end
-	element.__owner.Background.Base.Texture:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
-
-	local Background = {}
-	if element.__owner.frame == 'player' then
-		Background = {
-			element.__owner.Background.Base.Texture,
-		}
-	else
-		Background = {
-			element.__owner.Background.Base.Texture,
-		}
-	end
-
-	for i = 1,#Background do
-		if Background[i] then
-			--Background[i]:SetTexture(LSM:Fetch('background', 'Solid'))
-			Background[i]:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Health.Background.Alpha)
-		end
-	end
-end
-
-function RUF.HealthUpdate(self, event, unit)
+function RUF.HealPredictionUpdate(self, event, unit)
 	if(not unit or self.unit ~= unit) then return end
 	local element = self.Health
 
@@ -91,41 +59,8 @@ function RUF.HealthUpdate(self, event, unit)
 	end
 end
 
-function RUF.HealthPostUpdate(element, unit, cur, max)
- -- Update bar background colour if bar background should use foreground colour
- -- Update bar background colour if we colour by reaction to ensure allied pets get coloured as we desire
-
- -- Add self.Health.PostUpdate = RUF.HealthPostUpdate only to frames that require either of these updates if possible.
- --So if neither of these options are enabled, this doesn't get added to a frame, saving time.
-
-
-end
-
 function RUF.SetHealPrediction(self, unit)
 	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Health.Texture)
-	local Bar = CreateFrame("StatusBar",nil,self)
-
-
-	-- Bar
-	Bar.colorClass = RUF.db.profile.Appearance.Bars.Health.Color.Class
-	Bar.colorDisconnected = RUF.db.profile.Appearance.Bars.Health.Color.Disconnected
-	Bar.colorSmooth = RUF.db.profile.Appearance.Bars.Health.Color.Percentage
-	Bar.smoothGradient = RUF.db.profile.Appearance.Bars.Health.Color.PercentageGradient
-	Bar.colorReaction = RUF.db.profile.Appearance.Bars.Health.Color.Reaction
-	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Health.Color.Tapped
-	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
-	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health.Animate
-	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
-	Bar:SetStatusBarTexture(texture)
-	Bar:SetAllPoints(self)
-	Bar:SetFrameLevel(2)
-	Bar:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill)
-	Bar.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
-
-
-	-- Register with oUF
-	self.Health = Bar
-	self.Health.UpdateOptions = RUF.HealthUpdateOptions
 
 	local PlayerHeals,OtherHeals
 	local Health = self.Health
@@ -136,6 +71,7 @@ function RUF.SetHealPrediction(self, unit)
 	if Health.FillStyle == 'REVERSE' then -- Right
 		anchorFrom = 'RIGHT'
 		anchorTo = 'LEFT'
+
 	--elseif Health.FillStyle == 'CENTER' then
 		-- TODO: Create a bar on either side of the health bar and split value in two to make it grow outwards.
 	else -- Left
@@ -146,10 +82,20 @@ function RUF.SetHealPrediction(self, unit)
 	PlayerHeals:SetPoint('TOP')
 	PlayerHeals:SetPoint('BOTTOM')
 	PlayerHeals:SetPoint(anchorFrom, self.Health:GetStatusBarTexture(), anchorTo)
+	PlayerHeals:SetStatusBarTexture(texture)
+	PlayerHeals:SetStatusBarColor(0,1,0,1)
+	PlayerHeals:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill)
+	PlayerHeals:SetWidth(self:GetWidth())
+	PlayerHeals.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 
 	OtherHeals:SetPoint('TOP')
 	OtherHeals:SetPoint('BOTTOM')
 	OtherHeals:SetPoint(anchorFrom, PlayerHeals:GetStatusBarTexture(), anchorTo)
+	OtherHeals:SetStatusBarTexture(texture)
+	OtherHeals:SetStatusBarColor(0,1,1,1)
+	OtherHeals:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill)
+	OtherHeals:SetWidth(self:GetWidth())
+	OtherHeals.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 
 
 	-- Register with oUF
@@ -157,36 +103,34 @@ function RUF.SetHealPrediction(self, unit)
 		myBar = PlayerHeals,
 		otherBar = OtherHeals,
 		maxOverflow = 1, -- TODO Option
-		frequentUpdates = true,
+		frequentUpdates = true, -- TODO Option
 	}
-
+	self.HealPrediction.UpdateOptions = RUF.PowerUpdateOptions
 end
 
-function RUF.HealthUpdateOptions(self)
+function RUF.HealPredictionUpdateOptions(self)
 	local unit = self.__owner.frame
 	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Health.Texture)
-	local Bar = self
+	local Bar = {
+		[1] = self.myBar,
+		[2] = self.otherBar,
+	}
 
-	Bar.colorClass = RUF.db.profile.Appearance.Bars.Health.Color.Class
-	Bar.colorDisconnected = RUF.db.profile.Appearance.Bars.Health.Color.Disconnected
-	Bar.colorSmooth = RUF.db.profile.Appearance.Bars.Health.Color.Percentage
-	Bar.smoothGradient = RUF.db.profile.Appearance.Bars.Health.Color.PercentageGradient
-	Bar.colorReaction = RUF.db.profile.Appearance.Bars.Health.Color.Reaction
-	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Health.Color.Tapped
-	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
-	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health.Animate
-	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
-	Bar:SetStatusBarTexture(texture)
-	Bar:SetAllPoints(self.__owner)
-	Bar:SetFrameLevel(2)
-	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Health.Fill)
-	Bar.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
+	self.frequentUpdates = true -- TODO Option
 
-	if Bar.Smooth == true then
-		self.__owner:SmoothBar(Bar)
-	else
-		self.__owner:UnSmoothBar(Bar)
+	for i = 1,#Bar do
+		Bar[i]:SetStatusBarTexture(texture)
+		Bar[i]:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Health.Fill)
+		Bar[i].FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 	end
+
+	-- TODO Add Smoothing support
+	-- This should already work, just need to update initial hook so it gets set at login too.
+	--[[if Bar[i].Smooth == true then
+		self.__owner:SmoothBar(Bar[i])
+	else
+		self.__owner:UnSmoothBar(Bar[i])
+	end]]--
 
 	self:ForceUpdate()
 end
