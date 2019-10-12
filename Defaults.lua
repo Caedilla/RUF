@@ -197,13 +197,13 @@ local cfg = {
 						Enabled = true,
 						Color = {
 							Alpha = 0.75,
-							BaseColor = {25/255, 25/255, 25/255},
+							BaseColor = {50/255, 169/255, 64/255},
 							--colorHealth -- Set in Core to true automatically
 							Class = false,
-							Percentage = true,
+							Percentage = false,
 							percentageMaxClass = false,
 							percentage50Class = false,
-							percentage0Class = true,
+							percentage0Class = false,
 							PercentageGradient = {
 								1,0,55/255, -- 0% HP: Magenta
 								35/255,35/255,35/255, -- 50% HP: Grey
@@ -218,13 +218,13 @@ local cfg = {
 						Enabled = true,
 						Color = {
 							Alpha = 0.75,
-							BaseColor = {25/255, 25/255, 25/255},
+							BaseColor = {218/255, 197/255, 92/255},
 							--colorHealth -- Set in Core to true automatically
 							Class = false,
-							Percentage = true,
+							Percentage = false,
 							percentageMaxClass = false,
 							percentage50Class = false,
-							percentage0Class = true,
+							percentage0Class = false,
 							PercentageGradient = {
 								1,0,55/255, -- 0% HP: Magenta
 								35/255,35/255,35/255, -- 50% HP: Grey
