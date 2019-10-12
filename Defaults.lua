@@ -190,6 +190,52 @@ local cfg = {
 						Alpha = 1,
 					},
 				},
+				HealPrediction = {
+					Overflow = 0,
+					Player = {
+						Texture = "RUF 5",
+						Enabled = true,
+						Color = {
+							Alpha = 0.75,
+							BaseColor = {25/255, 25/255, 25/255},
+							--colorHealth -- Set in Core to true automatically
+							Class = false,
+							Percentage = true,
+							percentageMaxClass = false,
+							percentage50Class = false,
+							percentage0Class = true,
+							PercentageGradient = {
+								1,0,55/255, -- 0% HP: Magenta
+								35/255,35/255,35/255, -- 50% HP: Grey
+								35/255,35/255,35/255 -- 100% HP: Grey
+							},
+							Reaction = false,
+							Multiplier = 1,
+						},
+					},
+					Others = {
+						Texture = "RUF 5",
+						Enabled = true,
+						Color = {
+							Alpha = 0.75,
+							BaseColor = {25/255, 25/255, 25/255},
+							--colorHealth -- Set in Core to true automatically
+							Class = false,
+							Percentage = true,
+							percentageMaxClass = false,
+							percentage50Class = false,
+							percentage0Class = true,
+							PercentageGradient = {
+								1,0,55/255, -- 0% HP: Magenta
+								35/255,35/255,35/255, -- 50% HP: Grey
+								35/255,35/255,35/255 -- 100% HP: Grey
+							},
+							Reaction = false,
+							Multiplier = 1,
+						},
+					},
+				}
+
 			},
 			Aura = {
 				Buff = true,

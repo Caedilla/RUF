@@ -73,6 +73,7 @@ local function SetupFrames(self,unit)
 	self.Health.UpdateColor = RUF.HealthUpdateColor
 
 	RUF.SetHealPrediction(self,unit)
+	self.HealPrediction.PostUpdate = RUF.HealPredictionUpdateColor
 
 	RUF.SetPowerBar(self,unit)
 	self.Power.Override = RUF.PowerUpdate

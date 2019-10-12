@@ -12,7 +12,7 @@ function RUF_Options.Bars()
 		[2] = L["Power"],
 		[3] = L["Class"],
 		[4] = L["Absorb"],
-		[5] = L["Cast Bar"]
+		[5] = L["Cast Bar"],
 	}
 	local Bar = {
 		[1] = 'Health',
@@ -669,5 +669,548 @@ function RUF_Options.Bars()
 			},
 		}
 	end
+
+	Bars.args.HealPrediction = {
+		name = L["Heal Prediction"],
+		type = 'group',
+		order = 50,
+		args = {
+			overflow = {
+				name = L["Bar Overflow Amount"],
+				desc = L["Allows incoming healing bars to overflow out of the frame by this amount. The value is a percentage of the frame's width. Set to 0 to disallow overflowing."],
+				type = 'range',
+				order = 0,
+				min = 0,
+				max = 1,
+				softMin = 0,
+				softMax = 1,
+				step = 0.01,
+				bigStep = 0.05,
+				get = function(info)
+					return RUF.db.profile.Appearance.Bars.HealPrediction.Overflow
+				end,
+				set = function(info, value)
+					RUF.db.profile.Appearance.Bars.HealPrediction.Overflow = value
+					RUF:OptionsUpdateAllBars()
+				end,
+			},
+			playerStyle = {
+				name = L["Player Heals"],
+				type = 'group',
+				order = 10,
+				inline = true,
+				args = {
+					enabled = {
+						name = function()
+							if RUF.db.profile.Appearance.Bars.HealPrediction.Player.Enabled == true then
+								return '|cFF00FF00'..L["Enabled"]..'|r'
+							else
+								return '|cFFFF0000'..L["Enabled"]..'|r'
+							end
+						end,
+						type = 'toggle',
+						order = 0.0,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Enabled
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Enabled = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					baseColor = {
+						name = L["Base Color"],
+						desc = L["Color used if none of the other options are checked."],
+						type = 'color',
+						order = 0.01,
+						get = function(info)
+							return unpack(RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.BaseColor)
+						end,
+						set = function(info,r,g,b)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.BaseColor = {r,g,b}
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					barTexture = {
+						name = L["Texture"],
+						type = 'select',
+						order = 0.02,
+						values = LSM:HashTable('statusbar'),
+						dialogControl = 'LSM30_Statusbar',
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Texture
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Texture = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					brightnessMult = {
+						name = L["Brightness Multiplier"],
+						desc = L["Reduce Bar color's brightness by this percentage."],
+						type = 'range',
+						order = 0.03,
+						min = 0,
+						max = 1,
+						softMin = 0,
+						softMax = 1,
+						step = 0.01,
+						bigStep = 0.05,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Multiplier
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Multiplier = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					alpha = {
+						name = L["Alpha"],
+						type = 'range',
+						order = 0.04,
+						min = 0,
+						max = 1,
+						softMin = 0,
+						softMax = 1,
+						step = 0.01,
+						bigStep = 0.05,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Alpha
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Alpha = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					spacerTypeColor = {
+						name = " ",
+						type = 'description',
+						order = 0.055,
+						width = 'full',
+					},
+					descColorPriority = {
+						name = L["The colour options below are listed in order of precedence left to right, with the first being the highest priority."],
+						type = 'description',
+						order = 0.06,
+						width = 'full',
+					},
+					class = {
+						name = L["Color Class"],
+						desc = L["Color player units by class color."],
+						type = 'toggle',
+						order = 0.1,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Class
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Class = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					reaction = {
+						name = L["Color Reaction"],
+						desc = L["Color unit by reaction toward the player."],
+						type = 'toggle',
+						order = 0.11,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Reaction
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Reaction = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					spacerPercentage = {
+						name = " ",
+						type = 'description',
+						order = 1,
+						width = 'full',
+					},
+					percentage = {
+						name = L["Color Percentage"],
+						desc = L["Color Bar by percentage colors."],
+						type = 'toggle',
+						order = 1.2,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Percentage
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Percentage = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percentMaxSpacer = {
+						name = " ",
+						type = 'description',
+						order = 1.25,
+						width = 'full',
+					},
+					percent100 = {
+						name = L["100%"],
+						desc = L["Color at 100%"],
+						type = 'color',
+						order = 1.3,
+						disabled = function() return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.percentageMaxClass end,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[7],RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[8],RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[9]
+						end,
+						set = function(info,r,g,b)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[7] = r
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[8] = g
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[9] = b
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percentageMaxClass = {
+						name = L["Color 100% by Class"],
+						desc = L["Colour bar by class color when at 100%."],
+						type = 'toggle',
+						order = 1.31,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.percentageMaxClass
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.percentageMaxClass = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percent50Spacer = {
+						name = " ",
+						type = 'description',
+						order = 1.35,
+						width = 'full',
+					},
+					percent50 = {
+						name = L["50%"],
+						desc = L["Color at 50%"],
+						type = 'color',
+						order = 1.4,
+						disabled = function() return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.percentage50Class end,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[4],RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[5],RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[6]
+						end,
+						set = function(info,r,g,b)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[4] = r
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[5] = g
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[6] = b
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percentage50Class = {
+						name = L["Color 50% by Class"],
+						desc = L["Colour bar by class color when at 50%."],
+						type = 'toggle',
+						order = 1.41,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.percentage50Class
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.percentage50Class = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percent0Spacer = {
+						name = " ",
+						type = 'description',
+						order = 1.45,
+						width = 'full',
+					},
+					percent0 = {
+						name = L["0%"],
+						desc = L["Color at 0%"],
+						type = 'color',
+						order = 1.5,
+						disabled = function() return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.percentage0Class end,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[1],RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[2],RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[3]
+						end,
+						set = function(info,r,g,b)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[1] = r
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[2] = g
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.PercentageGradient[3] = b
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percentage0Class = {
+						name = L["Color 0% by Class"],
+						desc = L["Colour bar by class color when at 0%."],
+						type = 'toggle',
+						order = 1.51,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.percentage0Class
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color.percentage0Class = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+				},
+			},
+			otherStyle = {
+				name = L["Other's Heals"],
+				type = 'group',
+				order = 11,
+				inline = true,
+				args = {
+					enabled = {
+						name = function()
+							if RUF.db.profile.Appearance.Bars.HealPrediction.Others.Enabled == true then
+								return '|cFF00FF00'..L["Enabled"]..'|r'
+							else
+								return '|cFFFF0000'..L["Enabled"]..'|r'
+							end
+						end,
+						type = 'toggle',
+						order = 0.0,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Enabled
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Enabled = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					baseColor = {
+						name = L["Base Color"],
+						desc = L["Color used if none of the other options are checked."],
+						type = 'color',
+						order = 0.01,
+						get = function(info)
+							return unpack(RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.BaseColor)
+						end,
+						set = function(info,r,g,b)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.BaseColor = {r,g,b}
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					barTexture = {
+						name = L["Texture"],
+						type = 'select',
+						order = 0.02,
+						values = LSM:HashTable('statusbar'),
+						dialogControl = 'LSM30_Statusbar',
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Texture
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Texture = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					brightnessMult = {
+						name = L["Brightness Multiplier"],
+						desc = L["Reduce Bar color's brightness by this percentage."],
+						type = 'range',
+						order = 0.03,
+						min = 0,
+						max = 1,
+						softMin = 0,
+						softMax = 1,
+						step = 0.01,
+						bigStep = 0.05,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Multiplier
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Multiplier = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					alpha = {
+						name = L["Alpha"],
+						type = 'range',
+						order = 0.04,
+						min = 0,
+						max = 1,
+						softMin = 0,
+						softMax = 1,
+						step = 0.01,
+						bigStep = 0.05,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Alpha
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Alpha = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					spacerTypeColor = {
+						name = " ",
+						type = 'description',
+						order = 0.055,
+						width = 'full',
+					},
+					descColorPriority = {
+						name = L["The colour options below are listed in order of precedence left to right, with the first being the highest priority."],
+						type = 'description',
+						order = 0.06,
+						width = 'full',
+					},
+					class = {
+						name = L["Color Class"],
+						desc = L["Color player units by class color."],
+						type = 'toggle',
+						order = 0.1,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Class
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Class = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					reaction = {
+						name = L["Color Reaction"],
+						desc = L["Color unit by reaction toward the player."],
+						type = 'toggle',
+						order = 0.11,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Reaction
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Reaction = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					spacerPercentage = {
+						name = " ",
+						type = 'description',
+						order = 1,
+						width = 'full',
+					},
+					percentage = {
+						name = L["Color Percentage"],
+						desc = L["Color Bar by percentage colors."],
+						type = 'toggle',
+						order = 1.2,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Percentage
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Percentage = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percentMaxSpacer = {
+						name = " ",
+						type = 'description',
+						order = 1.25,
+						width = 'full',
+					},
+					percent100 = {
+						name = L["100%"],
+						desc = L["Color at 100%"],
+						type = 'color',
+						order = 1.3,
+						disabled = function() return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.percentageMaxClass end,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[7],RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[8],RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[9]
+						end,
+						set = function(info,r,g,b)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[7] = r
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[8] = g
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[9] = b
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percentageMaxClass = {
+						name = L["Color 100% by Class"],
+						desc = L["Colour bar by class color when at 100%."],
+						type = 'toggle',
+						order = 1.31,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.percentageMaxClass
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.percentageMaxClass = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percent50Spacer = {
+						name = " ",
+						type = 'description',
+						order = 1.35,
+						width = 'full',
+					},
+					percent50 = {
+						name = L["50%"],
+						desc = L["Color at 50%"],
+						type = 'color',
+						order = 1.4,
+						disabled = function() return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.percentage50Class end,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[4],RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[5],RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[6]
+						end,
+						set = function(info,r,g,b)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[4] = r
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[5] = g
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[6] = b
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percentage50Class = {
+						name = L["Color 50% by Class"],
+						desc = L["Colour bar by class color when at 50%."],
+						type = 'toggle',
+						order = 1.41,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.percentage50Class
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.percentage50Class = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percent0Spacer = {
+						name = " ",
+						type = 'description',
+						order = 1.45,
+						width = 'full',
+					},
+					percent0 = {
+						name = L["0%"],
+						desc = L["Color at 0%"],
+						type = 'color',
+						order = 1.5,
+						disabled = function() return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.percentage0Class end,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[1],RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[2],RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[3]
+						end,
+						set = function(info,r,g,b)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[1] = r
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[2] = g
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.PercentageGradient[3] = b
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+					percentage0Class = {
+						name = L["Color 0% by Class"],
+						desc = L["Colour bar by class color when at 0%."],
+						type = 'toggle',
+						order = 1.51,
+						hidden = function() return not RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Percentage end,
+						get = function(info)
+							return RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.percentage0Class
+						end,
+						set = function(info, value)
+							RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.percentage0Class = value
+							RUF:OptionsUpdateAllBars()
+						end,
+					},
+				},
+			},
+		},
+	}
 	return Bars
 end

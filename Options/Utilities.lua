@@ -713,6 +713,7 @@ function RUF:OptionsUpdateAllBars()
 		if _G['oUF_RUF_' .. frames[i]] then
 			RUF:OptionsUpdateBars(frames[i],nil,nil,'Health')
 			RUF:OptionsUpdateBars(frames[i],nil,nil,'Power')
+			RUF:OptionsUpdateBars(frames[i],nil,nil,'HealPrediction')
 			if RUF.Client == 1 then
 				RUF:OptionsUpdateBars(frames[i],nil,nil,'Absorb')
 				if i == 1 then
@@ -728,6 +729,7 @@ function RUF:OptionsUpdateAllBars()
 	for i = 1,#groupFrames do
 		RUF:OptionsUpdateBars(nil,groupFrames[i],nil,'Health')
 		RUF:OptionsUpdateBars(nil,groupFrames[i],nil,'Power')
+		RUF:OptionsUpdateBars(nil,groupFrames[i],nil,'HealPrediction')
 		if RUF.Client == 1 then
 			RUF:OptionsUpdateBars(nil,groupFrames[i],nil,'Absorb')
 		end
@@ -735,6 +737,7 @@ function RUF:OptionsUpdateAllBars()
 	for i = 1,#headers do
 		RUF:OptionsUpdateBars(nil,nil,headers[i],'Health')
 		RUF:OptionsUpdateBars(nil,nil,headers[i],'Power')
+		RUF:OptionsUpdateBars(nil,nil,headers[i],'HealPrediction')
 		if RUF.Client == 1 then
 			RUF:OptionsUpdateBars(nil,nil,headers[i],'Absorb')
 		end

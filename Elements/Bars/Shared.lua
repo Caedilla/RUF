@@ -6,17 +6,27 @@ local _,uClass = UnitClass('player')
 
 function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 	local pType,uClass,_
-	local profileReference = RUF.db.profile.Appearance.Bars[barType].Color
+	local profileReference
+	if overridePowerType then
+		if barType == 'HealPrediction' then
+			if overridePowerType == 'Player' then
+				profileReference = RUF.db.profile.Appearance.Bars.HealPrediction.Player.Color
+			else
+				profileReference = RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color
+			end
+		else
+			profileReference = RUF.db.profile.Appearance.Bars[barType].Color
+			if overridePowerType ~= 'Health' then
+				pType = overridePowerType
+			end
+		end
+	else
+		profileReference = RUF.db.profile.Appearance.Bars[barType].Color
+		pType,_ = UnitPowerType(unit)
+	end
 	local colorProfile = RUF.db.profile.Appearance.Colors
 	_,uClass = UnitClass(unit)
 	if not barType then return 1,0,1 end -- Return magenta to show I messed up somewhere.
-	if overridePowerType then
-		if overridePowerType ~= 'Health' then
-			pType = overridePowerType
-		end
-	else
-		pType,_ = UnitPowerType(unit)
-	end
 	if not uClass then uClass = 'PRIEST' end
 	local r,g,b = unpack(profileReference.BaseColor)
 	local colorMult = profileReference.Multiplier
