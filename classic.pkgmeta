@@ -28,5 +28,6 @@ externals:
 
 ignore:
  - Release
- - .pkgmeta
+ - live.pkgmeta
+ - classic.pkgmeta
  - README.md
