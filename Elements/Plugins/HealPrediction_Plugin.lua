@@ -222,6 +222,14 @@ local function Path(self, ...)
 	return (self.HealPrediction.Override or Update) (self, ...)
 end
 
+local function HealCommUpdate(self,event,casterGUID,spellID,type,endTime,...)
+	for i=1, select('#',...) do
+		if select(i, ...) == UnitGUID(self.unit) then
+			Path(self,event,self.unit)
+		end
+	end
+end
+
 local function ForceUpdate(element)
 	return Path(element.__owner, 'ForceUpdate', element.__owner.unit)
 end
@@ -244,9 +252,13 @@ local function Enable(self)
 			self:RegisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
 			self:RegisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
 		else
+			local HealComm = LibStub("LibClassicHealComm-1.0")
+			self.HealCommUpdate = HealCommUpdate
+			HealComm.RegisterCallback(self, 'HealComm_HealStarted', 'HealCommUpdate')
+			HealComm.RegisterCallback(self, 'HealComm_HealUpdated', 'HealCommUpdate')
+			HealComm.RegisterCallback(self, 'HealComm_HealDelayed', 'HealCommUpdate')
+			HealComm.RegisterCallback(self, 'HealComm_HealStopped', 'HealCommUpdate')
 		end
-
-
 
 		if(not element.maxOverflow) then
 			element.maxOverflow = 1.05
@@ -324,9 +336,17 @@ local function Disable(self)
 		self:UnregisterEvent('UNIT_HEALTH', Path)
 		self:UnregisterEvent('UNIT_MAXHEALTH', Path)
 		self:UnregisterEvent('UNIT_HEALTH_FREQUENT', Path)
-		self:UnregisterEvent('UNIT_HEAL_PREDICTION', Path)
-		self:UnregisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
-		self:UnregisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
+		if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
+			self:UnregisterEvent('UNIT_HEAL_PREDICTION', Path)
+			self:UnregisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
+			self:UnregisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
+		else
+			local HealComm = LibStub("LibClassicHealComm-1.0")
+			HealComm.UnregisterCallback(self, 'HealComm_HealStarted')
+			HealComm.UnregisterCallback(self, 'HealComm_HealUpdated')
+			HealComm.UnregisterCallback(self, 'HealComm_HealDelayed')
+			HealComm.UnregisterCallback(self, 'HealComm_HealStopped')
+		end
 	end
 end
 
