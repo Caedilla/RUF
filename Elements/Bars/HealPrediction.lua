@@ -21,6 +21,7 @@ function RUF.HealPredictionUpdateColor(element, unit, myIncomingHeal, otherIncom
 		local unitGUID = UnitGUID(unit)
 		local lookAhead = element.lookAhead or 5
 		local healTime, healFrom, healAmount = HealComm:GetNextHealAmount(unitGUID, HealComm.CASTED_HEALS, GetTime() + lookAhead)
+		if not healTime then return end
 		local nextHealer
 		local anchorFrom, anchorTo, anchorTexture
 		if element.__owner.Health.FillStyle == 'REVERSE' then -- Right
@@ -32,30 +33,30 @@ function RUF.HealPredictionUpdateColor(element, unit, myIncomingHeal, otherIncom
 			anchorFrom = 'LEFT'
 			anchorTo = 'RIGHT'
 		end
-		if healFrom == UnitGUID('player') then
-			element.myBar:SetPoint('TOP')
-			element.myBar:SetPoint('BOTTOM')
-			element.myBar:SetPoint(anchorFrom, element.__owner.Health:GetStatusBarTexture(), anchorTo)
-			if element.myBar.Enabled then
-				anchorTexture = element.myBar:GetStatusBarTexture()
-			else
-				anchorTexture = element.__owner.Health:GetStatusBarTexture()
-			end
-			element.otherBar:SetPoint('TOP')
-			element.otherBar:SetPoint('BOTTOM')
-			element.otherBar:SetPoint(anchorFrom, anchorTexture, anchorTo)
-		else
-			element.otherBar:SetPoint('TOP')
-			element.otherBar:SetPoint('BOTTOM')
+
+		element.myBar:ClearAllPoints()
+		element.otherBar:ClearAllPoints()
+		element.myBar:SetPoint('TOP')
+		element.myBar:SetPoint('BOTTOM')
+		element.otherBar:SetPoint('TOP')
+		element.otherBar:SetPoint('BOTTOM')
+
+		if healFrom ~= UnitGUID('player') then
 			element.otherBar:SetPoint(anchorFrom, element.__owner.Health:GetStatusBarTexture(), anchorTo)
 			if element.otherBar.Enabled then
 				anchorTexture = element.otherBar:GetStatusBarTexture()
 			else
 				anchorTexture = element.__owner.Health:GetStatusBarTexture()
 			end
-			element.myBar:SetPoint('TOP')
-			element.myBar:SetPoint('BOTTOM')
 			element.myBar:SetPoint(anchorFrom, anchorTexture, anchorTo)
+		else
+			element.myBar:SetPoint(anchorFrom, element.__owner.Health:GetStatusBarTexture(), anchorTo)
+			if element.myBar.Enabled then
+				anchorTexture = element.myBar:GetStatusBarTexture()
+			else
+				anchorTexture = element.__owner.Health:GetStatusBarTexture()
+			end
+			element.otherBar:SetPoint(anchorFrom, anchorTexture, anchorTo)
 		end
 	end
 end
@@ -134,6 +135,7 @@ function RUF.HealPredictionUpdateOptions(self)
 	end
 
 	local texture = LSM:Fetch("statusbar", profileReference.Player.Texture)
+	PlayerHeals:ClearAllPoints()
 	PlayerHeals:SetPoint('TOP')
 	PlayerHeals:SetPoint('BOTTOM')
 	PlayerHeals:SetPoint(anchorFrom, self.__owner.Health:GetStatusBarTexture(), anchorTo)
@@ -149,6 +151,8 @@ function RUF.HealPredictionUpdateOptions(self)
 		anchorTexture = self.__owner.Health:GetStatusBarTexture()
 	end
 	texture = LSM:Fetch("statusbar", profileReference.Others.Texture)
+
+	OtherHeals:ClearAllPoints()
 	OtherHeals:SetPoint('TOP')
 	OtherHeals:SetPoint('BOTTOM')
 	OtherHeals:SetPoint(anchorFrom, anchorTexture, anchorTo)

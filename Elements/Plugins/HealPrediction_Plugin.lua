@@ -86,6 +86,7 @@ A default texture will be applied to the Texture widgets if they don't have a te
 local _, ns = ...
 local oUF = ns.oUF
 
+
 local function Update(self, event, unit)
 	if(self.unit ~= unit) then return end
 	local element = self.HealPrediction
@@ -143,7 +144,8 @@ local function Update(self, event, unit)
 		local unitGUID = UnitGUID(unit)
 		local lookAhead = element.lookAhead or 5
 		myIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + lookAhead, UnitGUID('player')) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0
-		otherIncomingHeal = 500 --(HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + lookAhead) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0
+		otherIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + lookAhead) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0
+		otherIncomingHeal = otherIncomingHeal - myIncomingHeal
 		absorb = 0
 		healAbsorb = 0
 		health, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
@@ -152,34 +154,36 @@ local function Update(self, event, unit)
 
 		local overflow = maxHealth * element.maxOverflow
 		if health + allIncomingHeal > overflow then
-			local healTime, healFrom, healAmount = HealComm:GetNextHealAmount(unitGUID, HealComm.CASTED_HEALS, GetTime() + lookAhead)
+			local healTime, healFrom, healAmount = HealComm:GetNextHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + lookAhead)
 			local toClip = health + allIncomingHeal - overflow
 			local primary,secondary
-			if healFrom == UnitGUID('player') then
-				primary = myIncomingHeal
-				secondary = otherIncomingHeal
-			else
-				primary = otherIncomingHeal
-				secondary = myIncomingHeal
-			end
-			if toClip > allIncomingHeal then
-				myIncomingHeal = 0
-				otherIncomingHeal = 0
-				toClip = 0
-			end
-			if toClip > secondary then
-				toClip = toClip - secondary
-				secondary = 0
-				primary = primary - toClip
-			else
-				secondary = secondary - toClip
-			end
-			if healFrom == UnitGUID('player') then
-				myIncomingHeal = primary
-				otherIncomingHeal = secondary
-			else
-				myIncomingHeal = secondary
-				otherIncomingHeal = primary
+			if healTime then
+				if healFrom ~= UnitGUID('player') then
+					primary = otherIncomingHeal
+					secondary = myIncomingHeal
+				else
+					primary = myIncomingHeal
+					secondary = otherIncomingHeal
+				end
+				if toClip > allIncomingHeal then
+					myIncomingHeal = 0
+					otherIncomingHeal = 0
+					toClip = 0
+				end
+				if toClip > secondary then
+					toClip = toClip - secondary
+					secondary = 0
+					primary = primary - toClip
+				else
+					secondary = secondary - toClip
+				end
+				if healFrom ~= UnitGUID('player') then
+					myIncomingHeal = secondary
+					otherIncomingHeal = primary
+				else
+					myIncomingHeal = primary
+					otherIncomingHeal = secondary
+				end
 			end
 		end
 	end

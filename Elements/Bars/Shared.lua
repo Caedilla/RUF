@@ -113,7 +113,9 @@ function RUF:GetBarColor(element,unit,barType,overridePowerType,testCurrent)
 			colorGradient[1],colorGradient[2],colorGradient[3] = unpack(colorProfile.ClassColors[uClass])
 		end
 		local cur, max = UnitPower(unit,pType), UnitPowerMax(unit,pType)
-		if barType == 'Health' then cur,max = UnitHealth(unit), UnitHealthMax(unit) end
+		if barType == 'Health' or barType == 'HealPrediction' then
+			cur,max = UnitHealth(unit), UnitHealthMax(unit)
+		end
 		if RUF.db.global.TestMode == true then
 			cur = testCurrent or math.random(25,75)
 			if barType == 'Power' then

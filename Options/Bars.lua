@@ -681,7 +681,7 @@ function RUF_Options.Bars()
 				type = 'range',
 				order = 0,
 				min = 0,
-				max = 1,
+				max = 5,
 				softMin = 0,
 				softMax = 1,
 				step = 0.01,
