@@ -18,6 +18,8 @@ A unitframe layout for oUF
 * Frame Highlighting for dispellable auras (debuffs on friendly units, or buffs on enemy units)
 * Cast Bars for Player, Target, and Focus frames.
 * Range Fading & Combat Fading
+* Heal Prediction (using LibClassicHealComm in Classic, and the default WoW API in BFA)
+* 3D animated portraits that can be overlaid over the Health Bar or displayed separately along side the health bar. When overlaid on the health bar, the portrait can be cut away at as your health decreases, so the health bar's functionality is not impacted. It also looks cool.
 * Several pre-configured layouts to choose from in the profile section.
 
 ### Live Only Features
