@@ -6,7 +6,6 @@ local oUF = ns.oUF
 local _,PlayerClass = UnitClass('player')
 local UnitSettingsDone
 
-
 local function SetClassColors()
 	local function customClassColors()
 		if(CUSTOM_CLASS_COLORS) and RUF.db.profile.Appearance.Colors.UseClassColors then
@@ -162,8 +161,49 @@ local function SetupFrames(self,unit)
 
 end
 
+local function VariantWarning()
+	local variantString,clientString
+	if RUF.variant == WOW_PROJECT_CLASSIC then
+		variantString = L["Classic"]
+	else
+		variantString = L["Retail"]
+	end
+	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+		clientString = L["Classic"]
+	else
+		clientString = L["Retail"]
+	end
+	local message = L["You have the %s version of RUF installed, but you are playing %s. Please install a compatible version."]:format(variantString,clientString)
+	local messagePrefix = "|c5500DBBDRaeli's Unit Frames|r: "
+	C_Timer.After(10,function() ChatFrame1:AddMessage(messagePrefix .. message) end)
+	local window = CreateFrame('Frame', 'RUF_VariantWarning', UIParent)
+	window:SetWidth(500)
+	window:SetHeight(250)
+	window:SetPoint('CENTER')
+	local text = window:CreateFontString(nil, 'OVERLAY', 'Raeli')
+	local font = LSM:Fetch('font', 'RUF')
+	text:SetFont('Interface\\Addons\\RUF\\Media\\TGL.ttf',28,'OUTLINE')
+	text:SetText(messagePrefix .. message)
+	text:SetAllPoints(window)
+	local windowAnimation = window:CreateAnimationGroup()
+	local alphaAnimation = windowAnimation:CreateAnimation("Alpha")
+	alphaAnimation:SetFromAlpha(1)
+	alphaAnimation:SetToAlpha(0)
+	alphaAnimation:SetDuration(3)
+	alphaAnimation:SetStartDelay(20)
+	alphaAnimation:SetSmoothing("OUT")
+	window.windowAnimation = windowAnimation
+	window.alphaAnimation = alphaAnimation
+	window:RegisterEvent('PLAYER_ENTERING_WORLD')
+	window:SetScript("OnEvent", function() window.windowAnimation:Play() end)
+	windowAnimation:SetScript("OnFinished",function() window:Hide() end)
+end
 
 function RUF:OnEnable()
+	if RUF.Variant ~= WOW_PROJECT_ID then
+		VariantWarning()
+		return
+	end
 	if RUF.FirstRun then
 		local function FirstRunReload()
 			C_UI.Reload()

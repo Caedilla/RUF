@@ -16,8 +16,8 @@ function RUF.HealPredictionUpdateColor(element, unit, myIncomingHeal, otherIncom
 		element.otherBar:SetStatusBarColor(r,g,b,a)
 	end
 
-	if RUF.Client ~= 1 then
-		local HealComm = LibStub('LibClassicHealComm-1.0')
+	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+		local HealComm = LibStub('LibClassicHealComm-1.0', true)
 		local unitGUID = UnitGUID(unit)
 		local lookAhead = element.lookAhead or 5
 		local healTime, healFrom, healAmount = HealComm:GetNextHealAmount(unitGUID, HealComm.CASTED_HEALS, GetTime() + lookAhead)

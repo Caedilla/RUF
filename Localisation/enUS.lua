@@ -382,3 +382,6 @@ L["Player Heals"] = true
 L["Other's Heals"] = true
 L["Bar Overflow Amount"] = true
 L["Allows incoming healing bars to overflow out of the frame by this amount. The value is a percentage of the frame's width. Set to 0 to disallow overflowing."] = true
+L["You have the %s version of RUF installed, but you are playing %s. Please install a compatible version."] = true
+L["Retail"] = true
+L["Classic"] = true

@@ -5,10 +5,9 @@ local _, ns = ...
 local oUF = ns.oUF
 local UnitCastingInfo = UnitCastingInfo
 local UnitChannelInfo = UnitChannelInfo
-local LibClassicCasterino = LibStub('LibClassicCasterino', true)
-
 
 if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+	local LibClassicCasterino = LibStub('LibClassicCasterino', true)
 	UnitCastingInfo = CastingInfo
 	UnitChannelInfo = ChannelInfo
 	if LibClassicCasterino then
