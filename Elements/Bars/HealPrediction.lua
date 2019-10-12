@@ -15,6 +15,49 @@ function RUF.HealPredictionUpdateColor(element, unit, myIncomingHeal, otherIncom
 		local a = RUF.db.profile.Appearance.Bars.HealPrediction.Others.Color.Alpha
 		element.otherBar:SetStatusBarColor(r,g,b,a)
 	end
+
+	if RUF.Client ~= 1 then
+		local HealComm = LibStub('LibClassicHealComm-1.0')
+		local unitGUID = UnitGUID(unit)
+		local lookAhead = element.lookAhead or 5
+		local healTime, healFrom, healAmount = HealComm:GetNextHealAmount(unitGUID, HealComm.CASTED_HEALS, GetTime() + lookAhead)
+		local nextHealer
+		local anchorFrom, anchorTo, anchorTexture
+		if element.__owner.Health.FillStyle == 'REVERSE' then -- Right
+			anchorFrom = 'RIGHT'
+			anchorTo = 'LEFT'
+		--elseif Health.FillStyle == 'CENTER' then
+			-- TODO: Create a bar on either side of the health bar and split value in two to make it grow outwards.
+		else -- Left
+			anchorFrom = 'LEFT'
+			anchorTo = 'RIGHT'
+		end
+		if healFrom == UnitGUID('player') then
+			element.myBar:SetPoint('TOP')
+			element.myBar:SetPoint('BOTTOM')
+			element.myBar:SetPoint(anchorFrom, element.__owner.Health:GetStatusBarTexture(), anchorTo)
+			if element.myBar.Enabled then
+				anchorTexture = element.myBar:GetStatusBarTexture()
+			else
+				anchorTexture = element.__owner.Health:GetStatusBarTexture()
+			end
+			element.otherBar:SetPoint('TOP')
+			element.otherBar:SetPoint('BOTTOM')
+			element.otherBar:SetPoint(anchorFrom, anchorTexture, anchorTo)
+		else
+			element.otherBar:SetPoint('TOP')
+			element.otherBar:SetPoint('BOTTOM')
+			element.otherBar:SetPoint(anchorFrom, element.__owner.Health:GetStatusBarTexture(), anchorTo)
+			if element.otherBar.Enabled then
+				anchorTexture = element.otherBar:GetStatusBarTexture()
+			else
+				anchorTexture = element.__owner.Health:GetStatusBarTexture()
+			end
+			element.myBar:SetPoint('TOP')
+			element.myBar:SetPoint('BOTTOM')
+			element.myBar:SetPoint(anchorFrom, anchorTexture, anchorTo)
+		end
+	end
 end
 
 function RUF.SetHealPrediction(self, unit)

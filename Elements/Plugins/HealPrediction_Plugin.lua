@@ -27,6 +27,8 @@ A default texture will be applied to the Texture widgets if they don't have a te
 				   Defaults to 1.05 (number)
 .frequentUpdates - Indicates whether to use UNIT_HEALTH_FREQUENT instead of UNIT_HEALTH. Use this if .frequentUpdates is
 				   also set on the Health element (boolean)
+.lookAhead		 - Classic only, the duration in seconds into the future to look for incoming healing.
+				   Defaults to 5 (number)
 
 ## Examples
 
@@ -98,7 +100,7 @@ local function Update(self, event, unit)
 		element:PreUpdate(unit)
 	end
 
-	local myIncomingHeal, allIncomingHeal, absorb, healAbsorb, health, maxHealth,otherIncomingHeal,hasOverHealAbsorb
+	local myIncomingHeal, allIncomingHeal, absorb, healAbsorb, health, maxHealth, otherIncomingHeal, hasOverHealAbsorb, hasOverAbsorb
 
 	if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
 		myIncomingHeal = UnitGetIncomingHeals(unit, 'player') or 0
@@ -113,7 +115,6 @@ local function Update(self, event, unit)
 			healAbsorb = healAbsorb - allIncomingHeal
 			allIncomingHeal = 0
 			myIncomingHeal = 0
-
 			if(health < healAbsorb) then
 				hasOverHealAbsorb = true
 				healAbsorb = health
@@ -121,57 +122,66 @@ local function Update(self, event, unit)
 		else
 			allIncomingHeal = allIncomingHeal - healAbsorb
 			healAbsorb = 0
-
 			if(health + allIncomingHeal > maxHealth * element.maxOverflow) then
 				allIncomingHeal = maxHealth * element.maxOverflow - health
 			end
-
 			if(allIncomingHeal < myIncomingHeal) then
 				myIncomingHeal = allIncomingHeal
 			else
 				otherIncomingHeal = allIncomingHeal - myIncomingHeal
 			end
 		end
-
-
+		hasOverAbsorb = false
+		if(health + allIncomingHeal + absorb >= maxHealth) then
+			if(absorb > 0) then
+				hasOverAbsorb = true
+			end
+			absorb = math.max(0, maxHealth - health - allIncomingHeal)
+		end
 	else
 		local HealComm = LibStub('LibClassicHealComm-1.0')
 		local unitGUID = UnitGUID(unit)
-		myIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + 5, UnitGUID('player')) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0 -- TODO 5 is duration, give an option.
-		otherIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + 5) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0 -- TODO 5 is duration, give an option.
+		local lookAhead = element.lookAhead or 5
+		myIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + lookAhead, UnitGUID('player')) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0
+		otherIncomingHeal = 500 --(HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + lookAhead) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0
 		absorb = 0
 		healAbsorb = 0
 		health, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
 		allIncomingHeal = myIncomingHeal + otherIncomingHeal
 		hasOverHealAbsorb = false
 
-
-		if health + allIncomingHeal > maxHealth * element.maxOverflow then
-			allIncomingHeal = maxHealth * element.maxOverflow - health
-
-
+		local overflow = maxHealth * element.maxOverflow
+		if health + allIncomingHeal > overflow then
+			local healTime, healFrom, healAmount = HealComm:GetNextHealAmount(unitGUID, HealComm.CASTED_HEALS, GetTime() + lookAhead)
+			local toClip = health + allIncomingHeal - overflow
+			local primary,secondary
+			if healFrom == UnitGUID('player') then
+				primary = myIncomingHeal
+				secondary = otherIncomingHeal
+			else
+				primary = otherIncomingHeal
+				secondary = myIncomingHeal
+			end
+			if toClip > allIncomingHeal then
+				myIncomingHeal = 0
+				otherIncomingHeal = 0
+				toClip = 0
+			end
+			if toClip > secondary then
+				toClip = toClip - secondary
+				secondary = 0
+				primary = primary - toClip
+			else
+				secondary = secondary - toClip
+			end
+			if healFrom == UnitGUID('player') then
+				myIncomingHeal = primary
+				otherIncomingHeal = secondary
+			else
+				myIncomingHeal = secondary
+				otherIncomingHeal = primary
+			end
 		end
-
-		if otherIncomingHeal > 0 and myIncomingHeal + otherIncomingHeal > allIncomingHeal then
-
-		end
-
-
-
-
-	end
-
-
-
-
-
-	local hasOverAbsorb = false
-	if(health + allIncomingHeal + absorb >= maxHealth) then
-		if(absorb > 0) then
-			hasOverAbsorb = true
-		end
-
-		absorb = math.max(0, maxHealth - health - allIncomingHeal)
 	end
 
 	if(element.myBar) then
@@ -248,10 +258,10 @@ local function Path(self, ...)
 	return (self.HealPrediction.Override or Update) (self, ...)
 end
 
-local function HealCommUpdate(self,event,casterGUID,spellID,type,endTime,...)
-	for i=1, select('#',...) do
+local function HealCommUpdate(self, event, casterGUID, spellID, type, endTime, ...)
+	for i=1, select('#', ...) do
 		if select(i, ...) == UnitGUID(self.unit) then
-			Path(self,event,self.unit)
+			Path(self, event, self.unit)
 		end
 	end
 end
@@ -288,6 +298,10 @@ local function Enable(self)
 
 		if(not element.maxOverflow) then
 			element.maxOverflow = 1.05
+		end
+
+		if(not element.lookAhead) then
+			element.lookAhead = 5
 		end
 
 		if(element.myBar) then
