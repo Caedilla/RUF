@@ -2521,6 +2521,18 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
 						end,
 					},
+					desaturate = {
+						name = L["Desaturate"],
+						order = 5.4,
+						type = 'toggle',
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Model.Desaturate
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Model.Desaturate = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
 				},
 			},
 			positioning = {

@@ -1,6 +1,7 @@
 # RUF r210-Alpha
 ### New
 * Addded an option to the Level tag to toggle if the Classification text is shown before or after the level text.
+* Added an option to desaturate unit Portraits.
 
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.

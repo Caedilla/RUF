@@ -55,6 +55,10 @@ local function Update(self, event, unit)
 				element:SetModel([[Interface\Buttons\TalkToMeQuestionMark.m2]])
 			else
 				local profileReference = RUF.db.profile.unit[self.frame].Frame.Portrait
+				local desaturate = 0
+				if profileReference.Model.Desaturate == true then
+					desaturate = 1
+				end
 				element:SetPortraitZoom(profileReference.Model.PortraitZoom)
 				element:SetCamDistanceScale(profileReference.Model.CameraDistance)
 				element:SetPosition(profileReference.Model.z/10,profileReference.Model.x/10,-profileReference.Model.y/10)
@@ -64,6 +68,7 @@ local function Update(self, event, unit)
 				element:SetViewInsets(0,0,0,0)
 				element:MakeCurrentCameraCustom()
 				element:SetCameraFacing(math.rad(-profileReference.Model.Rotation))
+				element:SetDesaturation(desaturate)
 			end
 		else
 			SetPortraitTexture(element, unit)
