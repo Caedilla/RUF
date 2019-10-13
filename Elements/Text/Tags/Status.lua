@@ -37,34 +37,11 @@ tags['RUF:Level'] = function(unit)
 	if profileReference.ShowClassification == false then
 		elite = ''
 	end
-	return string.format('|cff%02x%02x%02x%s%s|r',r*255,g*255,b*255,elite,level)
-
-
-
-
-	--[[
-
-	Same level:
-		Nothing
-		Level
-		Classification
-		Level + Classification
-	Other level:
-		Nothing
-		Level
-		Classification
-		Level + Classification
-
-
-	Show Classification
-	Show Level
-	HideSameLevel
-
-
-
-
-]]--
-
+	if profileReference.ClassificationBeforeLevel == true then
+		return string.format('|cff%02x%02x%02x%s%s|r',r*255,g*255,b*255,elite,level)
+	else
+		return string.format('|cff%02x%02x%02x%s%s|r',r*255,g*255,b*255,level,elite)
+	end
 end
 events['RUF:Level'] = 'UNIT_LEVEL PLAYER_LEVEL_UP UNIT_CLASSIFICATION_CHANGED'
 

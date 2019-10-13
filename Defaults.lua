@@ -572,6 +572,7 @@ local cfg = {
 					HideSameLevel = true,
 					ShowLevel = true,
 					ShowClassification = true,
+					ClassificationBeforeLevel = true,
 					Color = {
 						BaseColor = {1,1,1},
 						Class = false,

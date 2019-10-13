@@ -223,6 +223,19 @@ function RUF_Options.Texts()
 						RUF.db.profile.Appearance.Text[TagList[i]].ShowClassification = value
 					end,
 				},
+				ClassificationBeforeLevel = {
+					name = L["Show Classification before Level"],
+					type = 'toggle',
+					width = 'full',
+					hidden = function() return TagList[i] ~= 'Level' end,
+					order = 10.02,
+					get = function(info)
+						return RUF.db.profile.Appearance.Text[TagList[i]].ClassificationBeforeLevel
+					end,
+					set = function(info, value)
+						RUF.db.profile.Appearance.Text[TagList[i]].ClassificationBeforeLevel = value
+					end,
+				},
 				HideWhenPrimaryIsMana = {
 					name = L["Hide if Primary Power is Mana."],
 					desc = L["Sets this to hidden if your primary resource is mana, so it only shows if you have a class resource, such as Maelstrom."],
