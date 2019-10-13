@@ -385,3 +385,8 @@ L["Allows incoming healing bars to overflow out of the frame by this amount. The
 L["You have the %s version of RUF installed, but you are playing %s. Please install a compatible version."] = true
 L["Retail"] = true
 L["Classic"] = true
+L["Desaturate"] = true
+L["Copy and replace settings from the selected unit to this unit."] = true
+L["Show Classification before Level"] = true
+L["%s, %s, and class specific resources for other classes."] = true
+L["%s and class specific resources for other classes."] = true

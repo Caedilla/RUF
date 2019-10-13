@@ -4,7 +4,7 @@ local RUF_Options = RUF:GetModule('Options')
 local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
-local _, PlayerClass = UnitClass('player')
+local _, uClass = UnitClass('player')
 
 function RUF_Options.Bars()
 	local LocalisedBar = {
@@ -14,6 +14,41 @@ function RUF_Options.Bars()
 		[4] = L["Absorb"],
 		[5] = L["Cast Bar"],
 	}
+
+	local Powers = {}
+	local PowerDesc = {}
+	if RUF.Client == 1 then
+		Powers = {
+			["ROGUE"] = _G['COMBO_POINTS'] or COMBO_POINTS,
+			["DEATHKNIGHT"] = _G['RUNES'] or RUNES,
+			["WARLOCK"] = _G['SOUL_SHARDS'] or SOUL_SHARDS,
+			["PALADIN"] = _G['HOLY_POWER'] or HOLY_POWER,
+			["SHAMAN"] = _G['MAELSTROM'] or MAELSTROM,
+			["PRIEST"] = _G['INSANITY'] or INSANITY,
+			["MAGE"] = _G['ARCANE_CHARGES'] or ARCANE_CHARGES,
+		}
+		PowerDesc = {
+			["DRUID"] = {
+				_G['COMBO_POINTS'] or COMBO_POINTS,
+				_G['LUNAR_POWER'] or LUNAR_POWER,
+			},
+			["MONK"] = {
+				_G['CHI'] or CHI,
+				_G["STAGGER"] or STAGGER,
+			},
+		}
+	else
+		Powers = {
+			["DRUID"] = _G['COMBO_POINTS'] or COMBO_POINTS,
+			["ROGUE"] = _G['COMBO_POINTS'] or COMBO_POINTS,
+		}
+	end
+
+	if Powers[uClass] then
+		LocalisedBar[3] = Powers[uClass]
+	end
+
+
 	local Bar = {
 		[1] = 'Health',
 		[2] = 'Power',
@@ -37,6 +72,15 @@ function RUF_Options.Bars()
 			hidden = function()
 				if RUF.Client ~= 1 then
 					if i == 4 then return true end
+				end
+			end,
+			desc = function()
+				if i == 3 then
+					if PowerDesc[uClass] then
+						return L["%s, %s, and class specific resources for other classes."]:format(PowerDesc[uClass][1],PowerDesc[uClass][2])
+					elseif Powers[uClass] then
+						return L["%s and class specific resources for other classes."]:format(Powers[uClass])
+					end
 				end
 			end,
 			args = {

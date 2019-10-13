@@ -2,6 +2,10 @@
 ### New
 * Addded an option to the Level tag to toggle if the Classification text is shown before or after the level text.
 * Added an option to desaturate unit Portraits.
+* Added option to Unit Buff, Debuff and Portrait settings to copy settings from another unit.
+
+### Changed
+* Class settings are titled by the resource type. For example, they show up as Combo Points if you are playing a rogue.
 
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.

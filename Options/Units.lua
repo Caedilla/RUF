@@ -4,7 +4,7 @@ local RUF_Options = RUF:GetModule('Options')
 local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
-local _, PlayerClass = UnitClass('player')
+local _, uClass = UnitClass('player')
 
 local tagList = {}
 local localisedTags = {}
@@ -33,6 +33,75 @@ local anchorSwaps = {
 	['TOPLEFT'] = 'BOTTOMRIGHT',
 	['TOPRIGHT'] = 'BOTTOMLEFT',
 }
+
+local function CopyList(singleFrame, groupFrame, header, section)
+	-- Generate list of units we can copy text elements from
+	local copyList = {}
+	if RUF.Client == 1 then
+		copyList = {
+			['Player'] = L["player"],
+			['Pet'] = L["pet"],
+			['PetTarget'] = L["pettarget"],
+			['Focus'] = L["focus"],
+			['FocusTarget'] = L["focustarget"],
+			['Target'] = L["target"],
+			['TargetTarget'] = L["targettarget"],
+			['Boss'] = L["boss"],
+			--['BossTarget'] = L["bosstarget"],
+			['Arena'] = L["arena"],
+			--['ArenaTarget'] = L["arenatarget"],
+			['Party'] = L["party"],
+			['PartyPet'] = L["partypet"],
+			--['PartyTarget'] = L["partytarget"],
+		}
+	else
+		copyList = {
+			['Player'] = L["player"],
+			['Pet'] = L["pet"],
+			['PetTarget'] = L["pettarget"],
+			['Target'] = L["target"],
+			['TargetTarget'] = L["targettarget"],
+			['Party'] = L["party"],
+			['PartyPet'] = L["partypet"],
+			--['PartyTarget'] = L["partytarget"],
+		}
+	end
+
+	if section then
+		if section == 'Cast' then
+			copyList = nil
+			copyList = {}
+			if RUF.Client == 1 then
+				copyList = {
+					['Player'] = L["player"],
+					--['Pet'] = L["pet"],
+					['Focus'] = L["focus"],
+					['Target'] = L["target"],
+					--['Boss'] = L["boss"],
+					--['Arena'] = L["arena"],
+					--['Party'] = L["party"],
+					--['PartyPet'] = L["partypet"],
+				}
+			else
+				copyList = {
+					['Player'] = L["player"],
+					--['Pet'] = L["pet"],
+					['Target'] = L["target"],
+					--['Party'] = L["party"],
+					--['PartyPet'] = L["partypet"],
+					--['PartyTarget'] = L["partytarget"],
+				}
+			end
+		end
+	end
+
+	-- Remove current Unit from list, we can't copy data from ourselves. Well, we can in this case, but it wouldn't do anything.
+	copyList[singleFrame] = nil
+	copyList[groupFrame] = nil
+	copyList[header] = nil
+
+	return copyList
+end
 
 local function ProfileData(singleFrame, groupFrame, header)
 	if not singleFrame and not groupFrame and not header then return end
@@ -450,6 +519,36 @@ local function BarSettings(singleFrame, groupFrame, header)
 	local ord, referenceUnit, profileName
 	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
+	local Powers = {}
+	local PowerDesc = {}
+
+	if RUF.Client == 1 then
+		Powers = {
+			["ROGUE"] = _G['COMBO_POINTS'] or COMBO_POINTS,
+			["DEATHKNIGHT"] = _G['RUNES'] or RUNES,
+			["WARLOCK"] = _G['SOUL_SHARDS'] or SOUL_SHARDS,
+			["PALADIN"] = _G['HOLY_POWER'] or HOLY_POWER,
+			["SHAMAN"] = _G['MAELSTROM'] or MAELSTROM,
+			["PRIEST"] = _G['INSANITY'] or INSANITY,
+			["MAGE"] = _G['ARCANE_CHARGES'] or ARCANE_CHARGES,
+		}
+		PowerDesc = {
+			["DRUID"] = {
+				_G['COMBO_POINTS'] or COMBO_POINTS,
+				_G['LUNAR_POWER'] or LUNAR_POWER,
+			},
+			["MONK"] = {
+				_G['CHI'] or CHI,
+				_G["STAGGER"] or STAGGER,
+			},
+		}
+	else
+		Powers = {
+			["DRUID"] = _G['COMBO_POINTS'] or COMBO_POINTS,
+			["ROGUE"] = _G['COMBO_POINTS'] or COMBO_POINTS,
+		}
+	end
+
 	local barOptions = {
 		name = L["Bars"],
 		type = 'group',
@@ -460,34 +559,40 @@ local function BarSettings(singleFrame, groupFrame, header)
 				name = L["Health"],
 				type = 'group',
 				order = 10,
-				args = {
-				},
+				args = {},
 			},
 			Power = {
 				name = L["Power"],
 				type = 'group',
 				order = 15,
-				args = {
-
-				},
+				args = {},
 			},
 			Class = {
-				name = L["Class"],
+				name = function()
+					if Powers[uClass] then
+						return Powers[uClass]
+					else
+						return L["Class"]
+					end
+				end,
+				desc = function()
+					if PowerDesc[uClass] then
+						return L["%s, %s, and class specific resources for other classes."]:format(PowerDesc[uClass][1],PowerDesc[uClass][2])
+					elseif Powers[uClass] then
+						return L["%s and class specific resources for other classes."]:format(Powers[uClass])
+					end
+				end,
 				type = 'group',
 				order = 20,
 				hidden = function() return (profileName ~= 'player') end,
-				args = {
-
-				},
+				args = {},
 			},
 			Absorb = {
 				name = L["Absorb"],
 				type = 'group',
 				order = 25,
 				hidden = RUF.Client ~= 1,
-				args = {
-
-				},
+				args = {},
 			},
 		},
 	}
@@ -640,42 +745,7 @@ local function TextSettings(singleFrame, groupFrame, header)
 	local ord, referenceUnit, profileName
 	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
-	-- Generate list of units we can copy text elements from
-	local copyList = {}
-	if RUF.Client == 1 then
-		copyList = {
-			['Player'] = L["player"],
-			['Pet'] = L["pet"],
-			['PetTarget'] = L["pettarget"],
-			['Focus'] = L["focus"],
-			['FocusTarget'] = L["focustarget"],
-			['Target'] = L["target"],
-			['TargetTarget'] = L["targettarget"],
-			['Boss'] = L["boss"],
-			--['BossTarget'] = L["bosstarget"],
-			['Arena'] = L["arena"],
-			--['ArenaTarget'] = L["arenatarget"],
-			['Party'] = L["party"],
-			['PartyPet'] = L["partypet"],
-			--['PartyTarget'] = L["partytarget"],
-		}
-	else
-		copyList = {
-			['Player'] = L["player"],
-			['Pet'] = L["pet"],
-			['PetTarget'] = L["pettarget"],
-			['Target'] = L["target"],
-			['TargetTarget'] = L["targettarget"],
-			['Party'] = L["party"],
-			['PartyPet'] = L["partypet"],
-			--['PartyTarget'] = L["partytarget"],
-		}
-	end
-
-	-- Remove current Unit from list, we can't copy data from ourselves. Well, we can in this case, but it wouldn't do anything.
-	copyList[singleFrame] = nil
-	copyList[groupFrame] = nil
-	copyList[header] = nil
+	local copyList = CopyList(singleFrame, groupFrame, header)
 
 	local textOptions = {
 		name = L["Texts"],
@@ -731,17 +801,19 @@ local function TextSettings(singleFrame, groupFrame, header)
 				end,
 			},
 			copyUnit = {
-				name = L["Copy Settings from:"],
+				name = '|cff00B2FA' .. L["Copy Settings from:"] .. '|r',
 				type = 'select',
 				desc = L["Copy and replace all text elements from the selected unit to this unit."],
 				order = 0.2,
 				values = copyList,
 				confirm = function() return L["Are you sure you want to replace these settings? You cannot undo this change."] end,
 				set = function(info, value)
-						RUF.db.profile.unit[profileName].Frame.Text = nil
-						RUF.db.profile.unit[profileName].Frame.Text = RUF.db.profile.unit[string.lower(value)].Frame.Text
-						RUF:UpdateAllUnitSettings()
-						RUF:UpdateOptions()
+					local target = {}
+					RUF:copyTable(RUF.db.profile.unit[string.lower(value)].Frame.Text, target)
+					RUF.db.profile.unit[profileName].Frame.Text = nil
+					RUF.db.profile.unit[profileName].Frame.Text = target
+					RUF:UpdateAllUnitSettings()
+					RUF:UpdateOptions()
 				end,
 			},
 		},
@@ -1295,11 +1367,29 @@ local function BuffSettings(singleFrame,groupFrame,header)
 	local ord, referenceUnit, profileName
 	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
+	local copyList = CopyList(singleFrame, groupFrame, header)
+
 	local buffOptions = {
 		name = L["Buffs"],
 		type = 'group',
 		order = 40,
 		args = {
+			copyUnit = {
+				name = '|cff00B2FA' .. L["Copy Settings from:"] .. '|r',
+				type = 'select',
+				desc = L["Copy and replace settings from the selected unit to this unit."],
+				order = 0,
+				values = copyList,
+				confirm = function() return L["Are you sure you want to replace these settings? You cannot undo this change."] end,
+				set = function(info, value)
+					local target = {}
+					RUF:copyTable(RUF.db.profile.unit[string.lower(value)].Buffs, target)
+					RUF.db.profile.unit[profileName].Buffs = nil
+					RUF.db.profile.unit[profileName].Buffs = target
+					RUF:UpdateAllUnitSettings()
+					RUF:UpdateOptions()
+				end,
+			},
 			enabled = {
 				name = function()
 					if RUF.db.profile.unit[profileName].Buffs.Icons.Enabled == true then
@@ -1309,7 +1399,7 @@ local function BuffSettings(singleFrame,groupFrame,header)
 					end
 				end,
 				type = 'toggle',
-				order = 0,
+				order = 0.01,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Buffs.Icons.Enabled
 				end,
@@ -1723,11 +1813,29 @@ local function DebuffSettings(singleFrame,groupFrame,header)
 	local ord, referenceUnit, profileName
 	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
+	local copyList = CopyList(singleFrame, groupFrame, header)
+
 	local debuffOptions = {
 		name = L["Debuffs"],
 		type = 'group',
 		order = 40,
 		args = {
+			copyUnit = {
+				name = '|cff00B2FA' .. L["Copy Settings from:"] .. '|r',
+				type = 'select',
+				desc = L["Copy and replace settings from the selected unit to this unit."],
+				order = 0,
+				values = copyList,
+				confirm = function() return L["Are you sure you want to replace these settings? You cannot undo this change."] end,
+				set = function(info, value)
+					local target = {}
+					RUF:copyTable(RUF.db.profile.unit[string.lower(value)].Debuffs, target)
+					RUF.db.profile.unit[profileName].Debuffs = nil
+					RUF.db.profile.unit[profileName].Debuffs = target
+					RUF:UpdateAllUnitSettings()
+					RUF:UpdateOptions()
+				end,
+			},
 			enabled = {
 				name = function()
 					if RUF.db.profile.unit[profileName].Debuffs.Icons.Enabled == true then
@@ -1737,7 +1845,7 @@ local function DebuffSettings(singleFrame,groupFrame,header)
 					end
 				end,
 				type = 'toggle',
-				order = 0,
+				order = 0.01,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Debuffs.Icons.Enabled
 				end,
@@ -2151,6 +2259,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 	local ord, referenceUnit, profileName
 	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
+	local copyList = CopyList(singleFrame, groupFrame, header, 'Cast')
 
 	local castBarOptions = {
 		name = L["Cast Bar"],
@@ -2166,6 +2275,22 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 			end
 		end,
 		args = {
+			copyUnit = {
+				name = '|cff00B2FA' .. L["Copy Settings from:"] .. '|r',
+				type = 'select',
+				desc = L["Copy and replace settings from the selected unit to this unit."],
+				order = 0,
+				values = copyList,
+				confirm = function() return L["Are you sure you want to replace these settings? You cannot undo this change."] end,
+				set = function(info, value)
+					local target = {}
+					RUF:copyTable(RUF.db.profile.unit[string.lower(value)].Frame.Bars.Cast, target)
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast = nil
+					RUF.db.profile.unit[profileName].Frame.Bars.Cast = target
+					RUF:UpdateAllUnitSettings()
+					RUF:UpdateOptions()
+				end,
+			},
 			enabled = {
 				name = function()
 					if RUF.db.profile.unit[profileName].Frame.Bars.Cast.Enabled == true then
@@ -2175,7 +2300,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 					end
 				end,
 				type = 'toggle',
-				order = 0,
+				order = 0.01,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Enabled
 				end,
@@ -2184,10 +2309,16 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 					RUF:OptionsUpdateCastbars()
 				end,
 			},
+			enabledSpacer = {
+				name = ' ',
+				type = 'description',
+				order = 0.05,
+				width = 'full',
+			},
 			fillStyle = {
 				name = L["Fill Type"],
 				type = 'select',
-				order = 0.01,
+				order = 1.01,
 				values = function()
 					local table = {
 						['STANDARD'] = L["Standard"],
@@ -2207,7 +2338,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 			width = {
 				name = L["Width"],
 				type = 'range',
-				order = 0.03,
+				order = 1.03,
 				min = 50,
 				max = 750,
 				softMin = 100,
@@ -2225,7 +2356,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 			height = {
 				name = L["Height"],
 				type = 'range',
-				order = 0.04,
+				order = 1.04,
 				min = 2,
 				max = 100,
 				softMin = 6,
@@ -2244,7 +2375,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 				type = 'toggle',
 				name = L["Anchor to Unit Frame"],
 				desc = L["Attach to the unit frame or allow free placement."],
-				order = 0.06,
+				order = 1.06,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorFrame
 				end,
@@ -2257,7 +2388,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 				type = 'range',
 				name = L["X Offset"],
 				desc = L["Horizontal Offset from the Frame Anchor."],
-				order = 0.07,
+				order = 1.07,
 				min = -5000,
 				max = 5000,
 				softMin = -1000,
@@ -2276,7 +2407,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 				type = 'range',
 				name = L["Y Offset"],
 				desc = L["Vertical Offset from the Frame Anchor."],
-				order = 0.08,
+				order = 1.08,
 				min = -5000,
 				max = 5000,
 				softMin = -1000,
@@ -2295,7 +2426,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 				type = 'select',
 				name = L["Anchor From"],
 				desc = L["Location area of the Unitframe to anchor from."],
-				order = 0.09,
+				order = 1.09,
 				values = anchorPoints,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorFrom
@@ -2309,7 +2440,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 				type = 'select',
 				name = L["Anchor To"],
 				desc = L["Area on the anchor frame to anchor the unitframe to."],
-				order = 0.09,
+				order = 1.09,
 				values = anchorPoints,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorTo
@@ -2329,11 +2460,29 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 	local ord, referenceUnit, profileName
 	singleFrame, groupFrame, header, ord, referenceUnit, profileName = ProfileData(singleFrame, groupFrame, header)
 
+	local copyList = CopyList(singleFrame, groupFrame, header)
+
 	local portraitOptions = {
 		name = L["Portrait"],
 		type = 'group',
 		order = 15,
 		args = {
+			copyUnit = {
+				name = '|cff00B2FA' .. L["Copy Settings from:"] .. '|r',
+				type = 'select',
+				desc = L["Copy and replace settings from the selected unit to this unit."],
+				order = 0,
+				values = copyList,
+				confirm = function() return L["Are you sure you want to replace these settings? You cannot undo this change."] end,
+				set = function(info, value)
+					local target = {}
+					RUF:copyTable(RUF.db.profile.unit[string.lower(value)].Frame.Portrait, target)
+					RUF.db.profile.unit[profileName].Frame.Portrait = nil
+					RUF.db.profile.unit[profileName].Frame.Portrait = target
+					RUF:UpdateAllUnitSettings()
+					RUF:UpdateOptions()
+				end,
+			},
 			enabled = {
 				name = function()
 					if RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then
@@ -2343,7 +2492,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					end
 				end,
 				type = 'toggle',
-				order = 0,
+				order = 0.01,
 				get = function(info)
 					return RUF.db.profile.unit[profileName].Frame.Portrait.Enabled
 				end,
@@ -2351,6 +2500,12 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					RUF.db.profile.unit[profileName].Frame.Portrait.Enabled = value
 					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
 				end,
+			},
+			enabledSpacer = {
+				name = ' ',
+				type = 'description',
+				order = 0.05,
+				width = 'full',
 			},
 			displayStyle = {
 				name = L["Display Style"],
