@@ -1,6 +1,8 @@
 package-as: RUF
 
-manual-changelog: CHANGELOG.md
+manual-changelog:
+ filename: CHANGELOG.md
+ markup-type: markdown
 
 enable-nolib-creation: yes
 
