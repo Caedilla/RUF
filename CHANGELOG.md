@@ -1,4 +1,4 @@
-# RUF r208-Alpha
+# RUF r209-Release
 ### New
 * It's taken almost two weeks to get this to a state I'm almost happy with but 3D Portraits are now available! You can thank Alex(Plad)#5855 on discord for the long way, and delay with adding other new features such as HealComm support!
     * Portraits can be freely anchored, or layered over the health bar. You can also set them to cut away or clip with the health bar so that the health bar is not obscured by the model. The cutaway effect looks best with the Freeze Animations option selected, and the health bar smoothing disabled.
