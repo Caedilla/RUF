@@ -17,11 +17,11 @@ local DebuffDispel = {-- DISPELLING ALLIES, 10 = Classic since there are no spec
 		[10] = {'None'},
 	},
 	['DRUID'] = {
-		[1] = {'Curse','Poison'},
-		[2] = {'Curse','Poison'},
-		[3] = {'Curse','Poison'},
-		[4] = {'Curse','Magic','Poison'},
-		[10] = {'Curse','Poison'}
+		[1] = {'Curse', 'Poison'},
+		[2] = {'Curse', 'Poison'},
+		[3] = {'Curse', 'Poison'},
+		[4] = {'Curse', 'Magic', 'Poison'},
+		[10] = {'Curse', 'Poison'}
 	},
 	['HUNTER'] = {
 		[1] = {'None'},
@@ -36,22 +36,22 @@ local DebuffDispel = {-- DISPELLING ALLIES, 10 = Classic since there are no spec
 		[10] = {'Curse'},
 	},
 	['MONK'] = {
-		[1] = {'Disease','Poison'},
-		[2] = {'Disease','Magic','Poison'},
-		[3] = {'Disease','Poison'},
+		[1] = {'Disease', 'Poison'},
+		[2] = {'Disease', 'Magic', 'Poison'},
+		[3] = {'Disease', 'Poison'},
 		[10] = {'None'},
 	},
 	['PALADIN'] = {
-		[1] = {'Disease','Magic','Poison'},
-		[2] = {'Disease','Poison'},
-		[3] = {'Disease','Poison'},
-		[10] = {'Disease','Magic','Poison'},
+		[1] = {'Disease', 'Magic', 'Poison'},
+		[2] = {'Disease', 'Poison'},
+		[3] = {'Disease', 'Poison'},
+		[10] = {'Disease', 'Magic', 'Poison'},
 	},
 	['PRIEST'] = {
-		[1] = {'Disease','Magic'},
-		[2] = {'Disease','Magic'},
+		[1] = {'Disease', 'Magic'},
+		[2] = {'Disease', 'Magic'},
 		[3] = {'Disease'},
-		[10] = {'Disease','Magic'},
+		[10] = {'Disease', 'Magic'},
 	},
 	['ROGUE'] = {
 		[1] = {'None'},
@@ -62,8 +62,8 @@ local DebuffDispel = {-- DISPELLING ALLIES, 10 = Classic since there are no spec
 	['SHAMAN'] = {
 		[1] = {'Curse'},
 		[2] = {'Curse'},
-		[3] = {'Curse','Magic'},
-		[10] = {'Disease','Poison'},
+		[3] = {'Curse', 'Magic'},
+		[10] = {'Disease', 'Poison'},
 	},
 	['WARLOCK'] = {
 		[1] = {'Magic'},
@@ -80,19 +80,6 @@ local DebuffDispel = {-- DISPELLING ALLIES, 10 = Classic since there are no spec
 }
 
 local function CustomDebuffFilter(element, unit, button, ...)
-	--[[ Override: Auras:CustomFilter(unit, button, ...)
-	Defines a custom filter that controls if the aura button should be shown.
-
-	* self   - the widget holding the aura buttons
-	* unit   - the unit on which the aura is cast (string)
-	* button - the button displaying the aura (Button)
-	* ...	- the return values from [UnitAura](http://wowprogramming.com/docs/api/UnitAura.html)
-
-	## Returns
-
-	* show - indicates whether the aura button should be shown (boolean)
-	--]]
-
 	-- If the unit is in a vehicle etc.
 	local frame = element:GetParent()
 	if frame.realUnit then
@@ -100,13 +87,13 @@ local function CustomDebuffFilter(element, unit, button, ...)
 	end
 
 	-- If unit is party1, boss2, arena3 etc. we the group's profile.
-	local profileUnit = string.gsub(frame.frame,'%d+','')
+	local profileUnit = string.gsub(frame.frame, '%d+', '')
 
 	local name, icon, count, debuffType, duration, expirationTime, source, isStealable,
 	nameplateShowPersonal, spellId, canApplyAura, isBossDebuff, nameplateShowAll, timeMod, value1, value2, value3 = ...
 
 	local BuffTypes
-	if UnitIsFriend('player',unit) then
+	if UnitIsFriend('player', unit) then
 		BuffTypes = DebuffDispel[PlayerClass][RUF.Specialization]
 	else
 		BuffTypes = 'None' -- Can't dispel a debuff from an enemy.
@@ -115,7 +102,7 @@ local function CustomDebuffFilter(element, unit, button, ...)
 	if BuffTypes == 'None' then
 		removable = false
 	else
-		for k,v in pairs(BuffTypes) do
+		for k, v in pairs(BuffTypes) do
 			if v == debuffType then
 				removable = true
 			end
@@ -180,24 +167,11 @@ local function CustomDebuffFilter(element, unit, button, ...)
 	return false
 end
 
-local function PostUpdateDebuffIcon(self,unit,button,index,position,duration,expiration,debuffType,isStealable)
-	--[[ Callback: Auras:PostUpdateIcon(unit, button, index, position)
-	Called after the aura button has been updated.
-
-	* self		- the widget holding the aura buttons
-	* unit		- the unit on which the aura is cast (string)
-	* button	  - the updated aura button (Button)
-	* index	   - the index of the aura (number)
-	* position	- the actual position of the aura button (number)
-	* duration	- the aura duration in seconds (number?)
-	* expiration  - the point in time when the aura will expire. Comparable to GetTime() (number)
-	* debuffType  - the debuff type of the aura (string?)['Curse', 'Disease', 'Magic', 'Poison']
-	* isStealable - whether the aura can be stolen or purged (boolean)
-	--]]
+local function PostUpdateDebuffIcon(self, unit, button, index, position, duration, expiration, debuffType, isStealable)
 	if button.shoudShow and button.shoudShow == false then return end
 
 	local BuffTypes
-	if UnitIsFriend('player',unit) then
+	if UnitIsFriend('player', unit) then
 		BuffTypes = DebuffDispel[PlayerClass][RUF.Specialization]
 	else
 		BuffTypes = 'None' -- Can't dispel a debuff from an enemy.
@@ -206,40 +180,40 @@ local function PostUpdateDebuffIcon(self,unit,button,index,position,duration,exp
 	if BuffTypes == 'None' then
 		removable = false
 	else
-		for k,v in pairs(BuffTypes) do
+		for k, v in pairs(BuffTypes) do
 			if v == debuffType then
 				removable = true
 			end
 		end
 	end
 
-	local r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff)
+	local r, g, b, a = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultDebuff)
 	if ((RUF.db.profile.Appearance.Aura.OnlyDispellable == true and removable == true) or RUF.db.profile.Appearance.Aura.OnlyDispellable == false) and debuffType then
 		if RUF.db.profile.Appearance.Aura.Debuff == true then
-			r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura[debuffType])
+			r, g, b, a = unpack(RUF.db.profile.Appearance.Colors.Aura[debuffType])
 		end
 	end
 
 	if self[position] then
 		local icon = self[position].icon
 		local profileReference = RUF.db.profile.unit[self.__owner.frame].Debuffs.Icons
-		local left,right,top,bottom = RUF:IconTextureTrim(true,profileReference.Width,profileReference.Height)
-		icon:SetTexCoord(left,right,top,bottom)
+		local left, right, top, bottom = RUF:IconTextureTrim(true, profileReference.Width, profileReference.Height)
+		icon:SetTexCoord(left, right, top, bottom)
 		local border = self[position].border
-		border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Aura.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Border.Style.edgeSize})
-		border:SetBackdropBorderColor(r,g,b,a)
+		border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Aura.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Border.Style.edgeSize})
+		border:SetBackdropBorderColor(r, g, b, a)
 		local borderOffset = RUF.db.profile.Appearance.Aura.Border.Offset
 		if borderOffset == 0 then
-			border:SetPoint("TOPLEFT",button,"TOPLEFT",0,0)
-			border:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",0,0)
+			border:SetPoint('TOPLEFT', button, 'TOPLEFT', 0, 0)
+			border:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 0, 0)
 		else
-			border:SetPoint("TOPLEFT",button,"TOPLEFT",-borderOffset,borderOffset)
-			border:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",borderOffset,-borderOffset)
+			border:SetPoint('TOPLEFT', button, 'TOPLEFT', -borderOffset, borderOffset)
+			border:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', borderOffset, -borderOffset)
 		end
 		local pixel = self[position].pixel
-		pixel:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize})
-		local pixelr,pixelg,pixelb,pixela = unpack(RUF.db.profile.Appearance.Colors.Aura.Pixel)
-		pixel:SetBackdropBorderColor(pixelr,pixelg,pixelb,pixela)
+		pixel:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize})
+		local pixelr, pixelg, pixelb, pixela = unpack(RUF.db.profile.Appearance.Colors.Aura.Pixel)
+		pixel:SetBackdropBorderColor(pixelr, pixelg, pixelb, pixela)
 		if RUF.db.profile.Appearance.Aura.Pixel.Enabled == true then
 			pixel:Show()
 		else
@@ -247,11 +221,11 @@ local function PostUpdateDebuffIcon(self,unit,button,index,position,duration,exp
 		end
 		local PixelOffset = RUF.db.profile.Appearance.Aura.Pixel.Offset
 		if PixelOffset == 0 then
-			pixel:SetPoint("TOPLEFT",button,"TOPLEFT",0,0)
-			pixel:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",0,0)
+			pixel:SetPoint('TOPLEFT', button, 'TOPLEFT', 0, 0)
+			pixel:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 0, 0)
 		else
-			pixel:SetPoint("TOPLEFT",button,"TOPLEFT",-PixelOffset,PixelOffset)
-			pixel:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",PixelOffset,-PixelOffset)
+			pixel:SetPoint('TOPLEFT', button, 'TOPLEFT', -PixelOffset, PixelOffset)
+			pixel:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', PixelOffset, -PixelOffset)
 		end
 	end
 
@@ -273,7 +247,7 @@ function RUF.SetDebuffs(self, unit)
 		RUF.db.profile.unit[unit].Debuffs.Icons.Position.x,
 		RUF.db.profile.unit[unit].Debuffs.Icons.Position.y)
 
-	Debuffs:SetSize((RUF.db.profile.unit[unit].Debuffs.Icons.Width * RUF.db.profile.unit[unit].Debuffs.Icons.Columns), (RUF.db.profile.unit[unit].Debuffs.Icons.Height * RUF.db.profile.unit[unit].Debuffs.Icons.Rows) + 2) -- x,y size of buff holder frame
+	Debuffs:SetSize((RUF.db.profile.unit[unit].Debuffs.Icons.Width*RUF.db.profile.unit[unit].Debuffs.Icons.Columns), (RUF.db.profile.unit[unit].Debuffs.Icons.Height*RUF.db.profile.unit[unit].Debuffs.Icons.Rows) + 2)
 	Debuffs.size = RUF.db.profile.unit[unit].Debuffs.Icons.Width
 	Debuffs.width = RUF.db.profile.unit[unit].Debuffs.Icons.Width
 	Debuffs.height = RUF.db.profile.unit[unit].Debuffs.Icons.Height

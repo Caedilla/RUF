@@ -1,20 +1,19 @@
-local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
-local LSM = LibStub("LibSharedMedia-3.0")
+local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
+local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 
 function RUF.HealthUpdateColor(element, unit, cur, max)
-	local r,g,b = RUF:GetBarColor(element, unit, "Health","Health",cur)
-	element:SetStatusBarColor(r,g,b)
-
+	local r, g, b = RUF:GetBarColor(element, unit, 'Health', 'Health', cur)
+	element:SetStatusBarColor(r, g, b)
 
 	-- Update background
 	local bgMult = RUF.db.profile.Appearance.Bars.Health.Background.Multiplier
 	local a = RUF.db.profile.Appearance.Bars.Health.Background.Alpha
 	if RUF.db.profile.Appearance.Bars.Health.Background.UseBarColor == false then
-		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Health.Background.CustomColor)
+		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Health.Background.CustomColor)
 	end
-	element.__owner.Background.Base.Texture:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
+	element.__owner.Background.Base.Texture:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 
 	local Background = {}
 	if element.__owner.frame == 'player' then
@@ -27,10 +26,9 @@ function RUF.HealthUpdateColor(element, unit, cur, max)
 		}
 	end
 
-	for i = 1,#Background do
+	for i = 1, #Background do
 		if Background[i] then
-			--Background[i]:SetTexture(LSM:Fetch('background', 'Solid'))
-			Background[i]:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Health.Background.Alpha)
+			Background[i]:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Health.Background.Alpha)
 		end
 	end
 end
@@ -39,12 +37,6 @@ function RUF.HealthUpdate(self, event, unit)
 	if(not unit or self.unit ~= unit) then return end
 	local element = self.Health
 
-	--[[ Callback: Health:PreUpdate(unit)
-	Called before the element has been updated.
-
-	* self - the Health element
-	* unit - the unit for which the update has been triggered (string)
-	--]]
 	if(element.PreUpdate) then
 		element:PreUpdate(unit)
 	end
@@ -68,43 +60,16 @@ function RUF.HealthUpdate(self, event, unit)
 		element:SetValue(cur)
 	end
 
-	--[[ Override: Health:UpdateColor(unit, cur, max)
-	Used to completely override the internal function for updating the widgets' colors.
-
-	* self - the Health element
-	* unit - the unit for which the update has been triggered (string)
-	* cur  - the unit's current health value (number)
-	* max  - the unit's maximum possible health value (number)
-	--]]
 	element:UpdateColor(unit, cur, max)
 
-	--[[ Callback: Health:PostUpdate(unit, cur, max)
-	Called after the element has been updated.
-
-	* self - the Health element
-	* unit - the unit for which the update has been triggered (string)
-	* cur  - the unit's current health value (number)
-	* max  - the unit's maximum possible health value (number)
-	--]]
 	if(element.PostUpdate) then
 		return element:PostUpdate(unit, cur, max)
 	end
 end
 
-function RUF.HealthPostUpdate(element, unit, cur, max)
- -- Update bar background colour if bar background should use foreground colour
- -- Update bar background colour if we colour by reaction to ensure allied pets get coloured as we desire
-
- -- Add self.Health.PostUpdate = RUF.HealthPostUpdate only to frames that require either of these updates if possible.
- --So if neither of these options are enabled, this doesn't get added to a frame, saving time.
-
-
-end
-
 function RUF.SetHealthBar(self, unit)
-	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Health.Texture)
-	local Bar = CreateFrame("StatusBar",nil,self)
-
+	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Health.Texture)
+	local Bar = CreateFrame('StatusBar', nil, self)
 
 	-- Bar
 	Bar.colorClass = RUF.db.profile.Appearance.Bars.Health.Color.Class
@@ -122,7 +87,6 @@ function RUF.SetHealthBar(self, unit)
 	Bar:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill)
 	Bar.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 
-
 	-- Register with oUF
 	self.Health = Bar
 	self.Health.UpdateOptions = RUF.HealthUpdateOptions
@@ -130,7 +94,7 @@ end
 
 function RUF.HealthUpdateOptions(self)
 	local unit = self.__owner.frame
-	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Health.Texture)
+	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Health.Texture)
 	local Bar = self
 
 	Bar.colorClass = RUF.db.profile.Appearance.Bars.Health.Color.Class

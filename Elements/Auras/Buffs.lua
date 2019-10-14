@@ -80,20 +80,6 @@ local BuffDispel = {-- PURGES
 }
 
 local function CustomBuffFilter(element, unit, button, ...)
-	--[[ Override: Auras:CustomFilter(unit, button, ...)
-	Defines a custom filter that controls if the aura button should be shown.
-
-	* self   - the widget holding the aura buttons
-	* unit   - the unit on which the aura is cast (string)
-	* button - the button displaying the aura (Button)
-	* ...	- the return values from [UnitAura](http://wowprogramming.com/docs/api/UnitAura.html)
-
-	## Returns
-
-	* show - indicates whether the aura button should be shown (boolean)
-	--]]
-
-
 	-- If the unit is in a vehicle etc.
 	local frame = element:GetParent()
 	if frame.realUnit then
@@ -101,13 +87,13 @@ local function CustomBuffFilter(element, unit, button, ...)
 	end
 
 	-- If unit is party1, boss2, arena3 etc. we the group's profile.
-	local profileUnit = string.gsub(frame.frame,'%d+','')
+	local profileUnit = string.gsub(frame.frame, '%d+', '')
 
 	local name, icon, count, debuffType, duration, expirationTime, source, isStealable,
 	nameplateShowPersonal, spellId, canApplyAura, isBossDebuff, nameplateShowAll, timeMod, value1, value2, value3 = ...
 
 	local BuffTypes
-	if UnitIsFriend('player',unit) then
+	if UnitIsFriend('player', unit) then
 		BuffTypes = 'None' -- Cannot dispel friendly buffs
 	else
 		BuffTypes = BuffDispel[PlayerClass][RUF.Specialization]
@@ -116,7 +102,7 @@ local function CustomBuffFilter(element, unit, button, ...)
 	if BuffTypes == 'None' then
 		removable = false
 	else
-		for k,v in pairs(BuffTypes) do
+		for k, v in pairs(BuffTypes) do
 			if v == debuffType then
 				removable = true
 			end
@@ -130,7 +116,6 @@ local function CustomBuffFilter(element, unit, button, ...)
 	elseif IsInRaid() and UnitInRaid(source) then affiliation = 'group'
 	else affiliation = 'other'
 	end
-
 
 	if duration == 0 and RUF.db.profile.unit[profileUnit].Buffs.Icons.Filter.Time.Unlimited == false then
 		-- Unlimited
@@ -180,24 +165,11 @@ local function CustomBuffFilter(element, unit, button, ...)
 	return false
 end
 
-local function PostUpdateBuffIcon(self,unit,button,index,position,duration,expiration,debuffType,isStealable)
-	--[[ Callback: Auras:PostUpdateIcon(unit, button, index, position)
-	Called after the aura button has been updated.
-
-	* self		- the widget holding the aura buttons
-	* unit		- the unit on which the aura is cast (string)
-	* button	  - the updated aura button (Button)
-	* index	   - the index of the aura (number)
-	* position	- the actual position of the aura button (number)
-	* duration	- the aura duration in seconds (number?)
-	* expiration  - the point in time when the aura will expire. Comparable to GetTime() (number)
-	* debuffType  - the debuff type of the aura (string?)['Curse', 'Disease', 'Magic', 'Poison']
-	* isStealable - whether the aura can be stolen or purged (boolean)
-	--]]
+local function PostUpdateBuffIcon(self, unit, button, index, position, duration, expiration, debuffType, isStealable)
 	if button.shoudShow and button.shoudShow == false then return end
 
 	local BuffTypes
-	if UnitIsFriend('player',unit) then
+	if UnitIsFriend('player', unit) then
 		BuffTypes = 'None' -- Cannot dispel friendly buffs
 	else
 		BuffTypes = BuffDispel[PlayerClass][RUF.Specialization]
@@ -206,40 +178,40 @@ local function PostUpdateBuffIcon(self,unit,button,index,position,duration,expir
 	if BuffTypes == 'None' then
 		removable = false
 	else
-		for k,v in pairs(BuffTypes) do
+		for k, v in pairs(BuffTypes) do
 			if v == debuffType then
 				removable = true
 			end
 		end
 	end
 
-	local r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultBuff)
+	local r, g, b, a = unpack(RUF.db.profile.Appearance.Colors.Aura.DefaultBuff)
 	if ((RUF.db.profile.Appearance.Aura.OnlyDispellable == true and removable == true) or RUF.db.profile.Appearance.Aura.OnlyDispellable == false) and debuffType then
 		if RUF.db.profile.Appearance.Aura.Buff == true then
-			r,g,b,a = unpack(RUF.db.profile.Appearance.Colors.Aura[debuffType])
+			r, g, b, a = unpack(RUF.db.profile.Appearance.Colors.Aura[debuffType])
 		end
 	end
 
 	if self[position] then
 		local icon = self[position].icon
 		local profileReference = RUF.db.profile.unit[self.__owner.frame].Buffs.Icons
-		local left,right,top,bottom = RUF:IconTextureTrim(true,profileReference.Width,profileReference.Height)
-		icon:SetTexCoord(left,right,top,bottom)
+		local left, right, top, bottom = RUF:IconTextureTrim(true, profileReference.Width, profileReference.Height)
+		icon:SetTexCoord(left, right, top, bottom)
 		local border = self[position].border
-		border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Aura.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Border.Style.edgeSize})
-		border:SetBackdropBorderColor(r,g,b,a)
+		border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Aura.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Border.Style.edgeSize})
+		border:SetBackdropBorderColor(r, g, b, a)
 		local borderOffset = RUF.db.profile.Appearance.Aura.Border.Offset
 		if borderOffset == 0 then
-			border:SetPoint("TOPLEFT",button,"TOPLEFT",0,0)
-			border:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",0,0)
+			border:SetPoint('TOPLEFT', button, 'TOPLEFT', 0, 0)
+			border:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 0, 0)
 		else
-			border:SetPoint("TOPLEFT",button,"TOPLEFT",-borderOffset,borderOffset)
-			border:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",borderOffset,-borderOffset)
+			border:SetPoint('TOPLEFT', button, 'TOPLEFT', -borderOffset, borderOffset)
+			border:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', borderOffset, -borderOffset)
 		end
 		local pixel = self[position].pixel
-		pixel:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize})
-		local pixelr,pixelg,pixelb,pixela = unpack(RUF.db.profile.Appearance.Colors.Aura.Pixel)
-		pixel:SetBackdropBorderColor(pixelr,pixelg,pixelb,pixela)
+		pixel:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize})
+		local pixelr, pixelg, pixelb, pixela = unpack(RUF.db.profile.Appearance.Colors.Aura.Pixel)
+		pixel:SetBackdropBorderColor(pixelr, pixelg, pixelb, pixela)
 		if RUF.db.profile.Appearance.Aura.Pixel.Enabled == true then
 			pixel:Show()
 		else
@@ -247,11 +219,11 @@ local function PostUpdateBuffIcon(self,unit,button,index,position,duration,expir
 		end
 		local PixelOffset = RUF.db.profile.Appearance.Aura.Pixel.Offset
 		if PixelOffset == 0 then
-			pixel:SetPoint("TOPLEFT",button,"TOPLEFT",0,0)
-			pixel:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",0,0)
+			pixel:SetPoint('TOPLEFT', button, 'TOPLEFT', 0, 0)
+			pixel:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 0, 0)
 		else
-			pixel:SetPoint("TOPLEFT",button,"TOPLEFT",-PixelOffset,PixelOffset)
-			pixel:SetPoint("BOTTOMRIGHT",button,"BOTTOMRIGHT",PixelOffset,-PixelOffset)
+			pixel:SetPoint('TOPLEFT', button, 'TOPLEFT', -PixelOffset, PixelOffset)
+			pixel:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', PixelOffset, -PixelOffset)
 		end
 	end
 
@@ -273,7 +245,7 @@ function RUF.SetBuffs(self, unit)
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.x,
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.y)
 
-	Buffs:SetSize((RUF.db.profile.unit[unit].Buffs.Icons.Width * RUF.db.profile.unit[unit].Buffs.Icons.Columns), (RUF.db.profile.unit[unit].Buffs.Icons.Height * RUF.db.profile.unit[unit].Buffs.Icons.Rows) + 2) -- x,y size of buff holder frame
+	Buffs:SetSize((RUF.db.profile.unit[unit].Buffs.Icons.Width*RUF.db.profile.unit[unit].Buffs.Icons.Columns), (RUF.db.profile.unit[unit].Buffs.Icons.Height*RUF.db.profile.unit[unit].Buffs.Icons.Rows) + 2)
 	Buffs.size = RUF.db.profile.unit[unit].Buffs.Icons.Width
 	Buffs.width = RUF.db.profile.unit[unit].Buffs.Icons.Width
 	Buffs.height = RUF.db.profile.unit[unit].Buffs.Icons.Height
@@ -301,7 +273,6 @@ function RUF.SetBuffs(self, unit)
 	Buffs.CreateIcon = RUF.CreateAuraIcon
 	Buffs.PostUpdateIcon = PostUpdateBuffIcon
 	Buffs.Enabled = true
-
 
 	self.Buff = Buffs
 end

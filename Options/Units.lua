@@ -1073,7 +1073,6 @@ local function TextSettings(singleFrame, groupFrame, header)
 				textWidth = {
 					name = L["Width"],
 					type = 'range',
-					type = 'range',
 					order = 20.05,
 					min = 0,
 					max = 750,

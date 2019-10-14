@@ -122,7 +122,6 @@ function RUF.HealPredictionUpdateOptions(self)
 	local PlayerHeals = self.myBar
 	local OtherHeals = self.otherBar
 
-
 	local anchorFrom, anchorTo, anchorTexture
 	if self.__owner.Health.FillStyle == 'REVERSE' then -- Right
 		anchorFrom = 'RIGHT'

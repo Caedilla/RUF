@@ -1,6 +1,6 @@
-local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
+local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
 local L = LibStub('AceLocale-3.0'):GetLocale('RUF')
-local LSM = LibStub("LibSharedMedia-3.0")
+local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local UnitCastingInfo = UnitCastingInfo
@@ -35,10 +35,10 @@ local function onUpdate(self, elapsed)
 		self.testDuration = duration
 		self:Show()
 		if duration < 30.05 then
-			self:SetMinMaxValues(0,30)
+			self:SetMinMaxValues(0, 30)
 			self:SetValue(duration)
 			self.Time:SetFormattedText('%.1f', duration)
-			self.Text:SetText(L["Cast Bar"].." - "..L[self.__owner.frame])
+			self.Text:SetText(L['Cast Bar'] .. ' - ' .. L[self.__owner.frame])
 		else
 			self.testDuration = 0
 		end
@@ -79,7 +79,7 @@ local function onUpdate(self, elapsed)
 			local horiz = self.horizontal
 			local size = self[horiz and 'GetWidth' or 'GetHeight'](self)
 
-			local offset = (duration / self.max) * size
+			local offset = (duration/self.max)*size
 			if(self:GetReverseFill()) then
 				offset = size - offset
 			end
@@ -119,7 +119,7 @@ local function onUpdate(self, elapsed)
 			local horiz = self.horizontal
 			local size = self[horiz and 'GetWidth' or 'GetHeight'](self)
 
-			local offset = (duration / self.max) * size
+			local offset = (duration/self.max)*size
 			if(self:GetReverseFill()) then
 				offset = size - offset
 			end
@@ -140,10 +140,10 @@ end
 function RUF.SetCastBar(self, unit)
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
 	local unitProfile = RUF.db.profile.unit[unit].Frame.Bars.Cast
-	local texture = LSM:Fetch("statusbar", profileReference.Texture)
-	local Bar = CreateFrame("StatusBar",nil,self)
-	local Border = CreateFrame("Frame",nil,Bar)
-	local Background = Bar:CreateTexture(nil,"BACKGROUND")
+	local texture = LSM:Fetch('statusbar', profileReference.Texture)
+	local Bar = CreateFrame('StatusBar', nil, self)
+	local Border = CreateFrame('Frame', nil, Bar)
+	local Background = Bar:CreateTexture(nil, 'BACKGROUND')
 
 	-- Bar
 	Bar.colorClass = profileReference.Color.Class
@@ -176,22 +176,22 @@ function RUF.SetCastBar(self, unit)
 	-- Border
 	Border:SetAllPoints(Bar)
 	Border:SetFrameLevel(7)
-	Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
-	local borderr,borderg,borderb = unpack(profileReference.Border.Color)
-	Border:SetBackdropBorderColor(borderr,borderg,borderb, profileReference.Border.Alpha)
+	Border:SetBackdrop({edgeFile = LSM:Fetch('border', profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
+	local borderr, borderg, borderb = unpack(profileReference.Border.Color)
+	Border:SetBackdropBorderColor(borderr, borderg, borderb, profileReference.Border.Alpha)
 
 	-- Background
-	local r,g,b = unpack(profileReference.Background.CustomColor)
+	local r, g, b = unpack(profileReference.Background.CustomColor)
 	local Multiplier = profileReference.Background.Multiplier
-	Background:SetTexture(LSM:Fetch("background", "Solid"))
-	Background:SetVertexColor(r*Multiplier,g*Multiplier,b*Multiplier,profileReference.Background.Alpha)
+	Background:SetTexture(LSM:Fetch('background', 'Solid'))
+	Background:SetVertexColor(r*Multiplier, g*Multiplier, b*Multiplier, profileReference.Background.Alpha)
 	Background:SetAllPoints(Bar)
 	Background.colorSmooth = false
 
 	-- Text
 	local Time = Bar:CreateFontString(nil, 'OVERLAY', 'Raeli')
 	local Text = Bar:CreateFontString(nil, 'OVERLAY', 'Raeli')
-	if unitProfile.Fill == "REVERSE" then
+	if unitProfile.Fill == 'REVERSE' then
 		Time:SetPoint('LEFT', Bar, 4, 0)
 		Text:SetPoint('RIGHT', Bar, -4, 0)
 	else
@@ -201,7 +201,7 @@ function RUF.SetCastBar(self, unit)
 
 	-- Spark
 	--local Spark = Bar:CreateTexture(nil, 'OVERLAY')
-	--Spark:SetSize(10, unitProfile.Height *1.5)
+	--Spark:SetSize(10, unitProfile.Height*1.5)
 	--Spark:SetBlendMode('ADD')
 
 	-- Icon
@@ -212,7 +212,7 @@ function RUF.SetCastBar(self, unit)
 	-- Safe Zone
 	if unit == 'player' then
 		local SafeZone = Bar:CreateTexture(nil, 'OVERLAY')
-		local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+		local sr, sg, sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
 		local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
 		SafeZone:SetColorTexture(sr, sg, sb, sa)
 		Bar.SafeZone = SafeZone
@@ -235,24 +235,24 @@ function RUF.SetCastBar(self, unit)
 	self.Cast.UpdateOptions = RUF.CastUpdateOptions
 	self.Cast.Enabled = RUF.db.profile.unit[unit].Frame.Bars.Cast.Enabled
 
-	r,g,b = RUF:GetBarColor(self.Cast, unit, "Cast")
-	Bar:SetStatusBarColor(r,g,b)
+	r, g, b = RUF:GetBarColor(self.Cast, unit, 'Cast')
+	Bar:SetStatusBarColor(r, g, b)
 end
 
 function RUF.CastInterrupted(element, unit, name)
 	if element.Enabled == false then element:Hide() return end
 	local unitFrame = element.__owner
-	local r,g,b,a,bgMult
+	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
 	if notInterruptible and RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Enabled then
-		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
+		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
 	else
-		r,g,b = RUF:GetBarColor(element, unit, "Cast")
+		r, g, b = RUF:GetBarColor(element, unit, 'Cast')
 	end
-	element:SetStatusBarColor(r,g,b)
+	element:SetStatusBarColor(r, g, b)
 	if element.SafeZone then
 		if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
-			local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+			local sr, sg, sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
 			local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
 			element.SafeZone:SetColorTexture(sr, sg, sb, sa)
 		else
@@ -260,27 +260,27 @@ function RUF.CastInterrupted(element, unit, name)
 		end
 	end
 	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
-		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
+		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
 	end
 	bgMult = RUF.db.profile.Appearance.Bars.Cast.Background.Multiplier
 	a = RUF.db.profile.Appearance.Bars.Cast.Background.Alpha
-	element.Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
+	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 end
 
 function RUF.CastUpdate(element, unit, name)
 	if element.Enabled == false then element:Hide() return end
 	local unitFrame = element.__owner
-	local r,g,b,a,bgMult
+	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
 	if notInterruptible and RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Enabled then
-		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
+		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
 	else
-		r,g,b = RUF:GetBarColor(element, unit, "Cast")
+		r, g, b = RUF:GetBarColor(element, unit, 'Cast')
 	end
-	element:SetStatusBarColor(r,g,b)
+	element:SetStatusBarColor(r, g, b)
 	if element.SafeZone then
 		if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
-			local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+			local sr, sg, sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
 			local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
 			element.SafeZone:SetColorTexture(sr, sg, sb, sa)
 		else
@@ -288,27 +288,27 @@ function RUF.CastUpdate(element, unit, name)
 		end
 	end
 	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
-		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
+		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
 	end
 	bgMult = RUF.db.profile.Appearance.Bars.Cast.Background.Multiplier
 	a = RUF.db.profile.Appearance.Bars.Cast.Background.Alpha
-	element.Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
+	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 end
 
 function RUF.ChannelUpdate(element, unit, name)
 	if element.Enabled == false then element:Hide() return end
 	local unitFrame = element.__owner
-	local r,g,b,a,bgMult
+	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, notInterruptible = UnitChannelInfo(unit)
 	if notInterruptible and RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Enabled then
-		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
+		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
 	else
-		r,g,b = RUF:GetBarColor(element, unit, "Cast")
+		r, g, b = RUF:GetBarColor(element, unit, 'Cast')
 	end
-	element:SetStatusBarColor(r,g,b)
+	element:SetStatusBarColor(r, g, b)
 	if element.SafeZone then
 		if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
-			local sr,sg,sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
+			local sr, sg, sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
 			local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
 			element.SafeZone:SetColorTexture(sr, sg, sb, sa)
 		else
@@ -316,11 +316,11 @@ function RUF.ChannelUpdate(element, unit, name)
 		end
 	end
 	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
-		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
+		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
 	end
 	bgMult = RUF.db.profile.Appearance.Bars.Cast.Background.Multiplier
 	a = RUF.db.profile.Appearance.Bars.Cast.Background.Alpha
-	element.Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
+	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 end
 
 function RUF.CastUpdateOptions(self)
@@ -332,11 +332,11 @@ function RUF.CastUpdateOptions(self)
 	-- Border
 	Border:SetAllPoints(Bar)
 	Border:SetFrameLevel(7)
-	Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
-	local borderr,borderg,borderb = unpack(profileReference.Border.Color)
-	Border:SetBackdropBorderColor(borderr,borderg,borderb, profileReference.Border.Alpha)
+	Border:SetBackdrop({edgeFile = LSM:Fetch('border', profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
+	local borderr, borderg, borderb = unpack(profileReference.Border.Color)
+	Border:SetBackdropBorderColor(borderr, borderg, borderb, profileReference.Border.Alpha)
 
-	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Cast.Texture)
+	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Cast.Texture)
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetFrameLevel(5)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Cast.Fill)

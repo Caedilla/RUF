@@ -3,7 +3,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 
-local _,uClass = UnitClass('player')
+local _, uClass = UnitClass('player')
 
 local classPowerData = {
 	DEATHKNIGHT = {
@@ -17,46 +17,46 @@ function RUF.SetRunes(self, unit)
 	local classPowerBar = {}
 	local classPowerBorder = {}
 	local classPowerBackground = {}
-	local unitPowerMaxAmount = classPowerData[uClass].unitPowerMaxAmount or UnitPowerMax(unit,classPowerData[uClass].classPowerID)
+	local unitPowerMaxAmount = classPowerData[uClass].unitPowerMaxAmount or UnitPowerMax(unit, classPowerData[uClass].classPowerID)
 	local name = self:GetName() .. '.Runes'
 	self.Runes = {}
 
-	local Holder = CreateFrame('Frame',name..'.Holder',self)
+	local Holder = CreateFrame('Frame', name .. '.Holder', self)
 	Holder.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
 	if RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == 'TOP' then
-		Holder:SetPoint('TOP',0,0)
-		Holder:SetPoint('LEFT',0,0)
-		Holder:SetPoint('RIGHT',0,0)
+		Holder:SetPoint('TOP', 0, 0)
+		Holder:SetPoint('LEFT', 0, 0)
+		Holder:SetPoint('RIGHT', 0, 0)
 		Holder:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
-		Holder.anchorTo = "TOP"
+		Holder.anchorTo = 'TOP'
 	elseif RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == 'BOTTOM' then
-		Holder:SetPoint('BOTTOM',0,0)
-		Holder:SetPoint('LEFT',0,0)
-		Holder:SetPoint('RIGHT',0,0)
+		Holder:SetPoint('BOTTOM', 0, 0)
+		Holder:SetPoint('LEFT', 0, 0)
+		Holder:SetPoint('RIGHT', 0, 0)
 		Holder:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
-		Holder.anchorTo = "BOTTOM"
+		Holder.anchorTo = 'BOTTOM'
 	end
 
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
-	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+	local r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local spec = GetSpecialization() or 0
-	if spec == 1 then --Blood
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[50])
+	if spec == 1 then -- Blood
+		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[50])
 	elseif spec == 2 then -- Frost
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[51])
+		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[51])
 	elseif spec == 3 then -- Unholy
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[52])
+		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[52])
 	else -- no value returned yet?
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	end
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
-	for i = 1,unitPowerMaxAmount do
-		local Bar = CreateFrame('StatusBar',name..i,Holder)
-		local Border = CreateFrame('Frame',name..i..'.Border',Bar)
-		local Background = Bar:CreateTexture(name..i..'.Background','BACKGROUND')
-		local size = (RUF.db.profile.unit[unit].Frame.Size.Width + (unitPowerMaxAmount-1)) / unitPowerMaxAmount
+	for i = 1, unitPowerMaxAmount do
+		local Bar = CreateFrame('StatusBar', name .. i, Holder)
+		local Border = CreateFrame('Frame', name .. i .. '.Border', Bar)
+		local Background = Bar:CreateTexture(name .. i .. '.Background', 'BACKGROUND')
+		local size = (RUF.db.profile.unit[unit].Frame.Size.Width + (unitPowerMaxAmount-1))/unitPowerMaxAmount
 		local counter = i
 		if unitPowerMaxAmount == 4 then
 			counter = i +1
@@ -66,11 +66,11 @@ function RUF.SetRunes(self, unit)
 		Bar:SetWidth(size)
 		Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
 		if i == 1 then
-			Bar:SetPoint('TOPLEFT',Holder,'TOPLEFT',0,0)
+			Bar:SetPoint('TOPLEFT', Holder, 'TOPLEFT', 0, 0)
 		else
-			Bar:SetPoint('TOPLEFT',classPowerBar[i-1],'TOPRIGHT',-1,0)
+			Bar:SetPoint('TOPLEFT', classPowerBar[i-1], 'TOPRIGHT', -1, 0)
 		end
-		--Bar:SetPoint('TOPLEFT', self, 'TOPLEFT', ((i - 1) * size - ((i - 1 ) * 1)), 0)
+		-- Bar:SetPoint('TOPLEFT', self, 'TOPLEFT', ((i - 1)*size - ((i - 1 )*1)), 0)
 		Bar:SetFrameLevel(5)
 
 		-- Set Status Bar
@@ -80,19 +80,19 @@ function RUF.SetRunes(self, unit)
 		local ir = (r*((((counter+colorAdd)*6.6667)/100)))
 		local ig = (g*((((counter+colorAdd)*6.6667)/100)))
 		local ib = (b*((((counter+colorAdd)*6.6667)/100)))
-		Bar:SetStatusBarColor(ir,ig,ib)
+		Bar:SetStatusBarColor(ir, ig, ib)
 
 		-- Set Border
 		Border:SetAllPoints(Bar)
 		Border:SetFrameLevel(7)
 		Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
-		local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
-		Border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
+		local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
+		Border:SetBackdropBorderColor(borderr, borderg, borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
 
 		-- Set Background
 		Background:SetAllPoints(Bar)
 		Background:SetTexture(LSM:Fetch('background', 'Solid'))
-		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+		Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 
 		classPowerBar[i] = Bar
 		classPowerBorder[i] = Border
@@ -107,7 +107,6 @@ function RUF.SetRunes(self, unit)
 	self.Runes.Override = RUF.RunesUpdate
 	self.Runes.Holder = Holder
 	self.Runes.Holder.__owner = self
-
 	self.Runes.UpdateOptions = RUF.RunesUpdateOptions
 end
 
@@ -186,46 +185,39 @@ function RUF.RunesUpdate(self, event)
 		end
 	end
 
-	--[[ Callback: Runes:PostUpdate(runemap)
-	Called after the element has been updated.
-
-	* self    - the Runes element
-	* runemap - the ordered list of runes' indices (table)
-	--]]
 	if(element.PostUpdate) then
 		return element:PostUpdate(runemap)
 	end
 end
 
 function RUF.RunesUpdateColor(element, runeID)
-	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+	local r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local spec = GetSpecialization() or 0
-	if spec == 1 then --Blood
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[50])
+	if spec == 1 then -- Blood
+		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[50])
 	elseif spec == 2 then -- Frost
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[51])
+		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[51])
 	elseif spec == 3 then -- Unholy
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[52])
+		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[52])
 	else -- no value returned yet?
-		r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	end
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
-
 	local ir = (r*((((runeID+colorAdd)*6.6667)/100)))
 	local ig = (g*((((runeID+colorAdd)*6.6667)/100)))
 	local ib = (b*((((runeID+colorAdd)*6.6667)/100)))
-	element[runeID]:SetStatusBarColor(ir,ig,ib)
-	element[runeID].Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+	element[runeID]:SetStatusBarColor(ir, ig, ib)
+	element[runeID].Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 end
 
 function RUF.RunesUpdateOptions(self)
 	if uClass ~= 'DEATHKNIGHT' then return end
 	local unit = self.__owner.frame
-	local unitPowerMaxAmount = classPowerData[uClass].unitPowerMaxAmount or UnitPowerMax(unit,classPowerData[uClass].classPowerID)
+	local unitPowerMaxAmount = classPowerData[uClass].unitPowerMaxAmount or UnitPowerMax(unit, classPowerData[uClass].classPowerID)
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
-	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+	local r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
@@ -233,12 +225,11 @@ function RUF.RunesUpdateOptions(self)
 	holder:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
 	holder.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
 
-
-	for i = 1,unitPowerMaxAmount do
+	for i = 1, unitPowerMaxAmount do
 		local Bar = self[i]
 		local Background = self[i].Background
 		local Border = self[i].Border
-		local size = (RUF.db.profile.unit[unit].Frame.Size.Width + (unitPowerMaxAmount-1)) / unitPowerMaxAmount
+		local size = (RUF.db.profile.unit[unit].Frame.Size.Width + (unitPowerMaxAmount-1))/unitPowerMaxAmount
 		local counter = i
 		if unitPowerMaxAmount == 4 then
 			counter = i +1
@@ -256,19 +247,19 @@ function RUF.RunesUpdateOptions(self)
 		local ir = (r*((((counter+colorAdd)*6.6667)/100)))
 		local ig = (g*((((counter+colorAdd)*6.6667)/100)))
 		local ib = (b*((((counter+colorAdd)*6.6667)/100)))
-		Bar:SetStatusBarColor(ir,ig,ib)
+		Bar:SetStatusBarColor(ir, ig, ib)
 
 		-- Set Border
 		Border:SetAllPoints(Bar)
 		Border:SetFrameLevel(7)
 		Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
-		local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
-		Border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
+		local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
+		Border:SetBackdropBorderColor(borderr, borderg, borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
 
 		-- Set Background
 		Background:SetAllPoints(Bar)
 		Background:SetTexture(LSM:Fetch('background', 'Solid'))
-		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+		Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 
 		self:UpdateColor(i)
 	end

@@ -1,17 +1,15 @@
-local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
-local LSM = LibStub("LibSharedMedia-3.0")
+local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
+local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
-
-local _,uClass = UnitClass("player")
-
+local _, uClass = UnitClass('player')
 
 function RUF.SetStagger(self, unit)
-	if uClass ~= "MONK" then return end
-	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Class.Texture)
-	local Bar = CreateFrame("StatusBar",nil,self)
-	local Border = CreateFrame("Frame",nil,Bar)
-	local Background = Bar:CreateTexture(nil,"BACKGROUND")
+	if uClass ~= 'MONK' then return end
+	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
+	local Bar = CreateFrame('StatusBar', nil, self)
+	local Border = CreateFrame('Frame', nil, Bar)
+	local Background = Bar:CreateTexture(nil, 'BACKGROUND')
 
 	-- Bar
 	Bar.colorClass = RUF.db.profile.Appearance.Bars.Class.Color.Class
@@ -31,16 +29,16 @@ function RUF.SetStagger(self, unit)
 
 	-- Bar Position
 	if RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == 'TOP' then
-		Bar:SetPoint('TOP',0,0)
-		Bar:SetPoint('LEFT',0,0)
-		Bar:SetPoint('RIGHT',0,0)
+		Bar:SetPoint('TOP', 0, 0)
+		Bar:SetPoint('LEFT', 0, 0)
+		Bar:SetPoint('RIGHT', 0, 0)
 		Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
 		Bar.anchorTo = 'TOP'
 	else
 		Bar:ClearAllPoints()
-		Bar:SetPoint('BOTTOM',0,0)
-		Bar:SetPoint('LEFT',0,0)
-		Bar:SetPoint('RIGHT',0,0)
+		Bar:SetPoint('BOTTOM', 0, 0)
+		Bar:SetPoint('LEFT', 0, 0)
+		Bar:SetPoint('RIGHT', 0, 0)
 		Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
 		Bar.anchorTo = 'BOTTOM'
 	end
@@ -48,15 +46,15 @@ function RUF.SetStagger(self, unit)
 	-- Border
 	Border:SetAllPoints(Bar)
 	Border:SetFrameLevel(7)
-	Border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
-	local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
-	Border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
+	Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
+	local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
+	Border:SetBackdropBorderColor(borderr, borderg, borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
 
 	-- Background
-	local r,g,b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
+	local r, g, b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
 	local Multiplier = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
-	Background:SetTexture(LSM:Fetch("background", "Solid"))
-	Background:SetVertexColor(r*Multiplier,g*Multiplier,b*Multiplier,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+	Background:SetTexture(LSM:Fetch('background', 'Solid'))
+	Background:SetVertexColor(r*Multiplier, g*Multiplier, b*Multiplier, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 	Background:SetAllPoints(Bar)
 	Background.colorSmooth = false
 
@@ -77,7 +75,7 @@ function RUF.StaggerUpdate(self, event, unit)
 	end
 
 	-- Set Values
-	local cur,max = UnitStagger('player') or 0, UnitHealthMax('player')
+	local cur, max = UnitStagger('player') or 0, UnitHealthMax('player')
 	element:SetMinMaxValues(0, max)
 	element:SetValue(cur)
 
@@ -85,37 +83,35 @@ function RUF.StaggerUpdate(self, event, unit)
 	local stagger_low = RUF.db.profile.Appearance.Colors.PowerColors[75]
 	local stagger_medium = RUF.db.profile.Appearance.Colors.PowerColors[76]
 	local stagger_high = RUF.db.profile.Appearance.Colors.PowerColors[77]
-	local r,g,b = RUF:GetBarColor(element, "player", "Class")
+	local r, g, b = RUF:GetBarColor(element, 'player', 'Class')
 	local a = RUF.db.profile.Appearance.Bars.Class.Background.Alpha
-	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Class.Texture)
+	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
-	local perc = cur / max
+	local perc = cur/max
 
 	if perc >= 0.6 then
-		r,g,b = unpack(stagger_high)
+		r, g, b = unpack(stagger_high)
 	elseif perc > 0.3 then
-		r,g,b = unpack(stagger_medium)
+		r, g, b = unpack(stagger_medium)
 	else
-		r,g,b = unpack(stagger_low)
+		r, g, b = unpack(stagger_low)
 	end
 	element:SetStatusBarColor(r, g, b)
 
-
-
 	-- Update background
 	if RUF.db.profile.Appearance.Bars.Class.Background.UseBarColor == false then
-		r,g,b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
+		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
 	end
-	element.Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,a)
+	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 end
 
 function RUF.StaggerUpdateOptions(self)
-	if uClass ~= "MONK" then return end
+	if uClass ~= 'MONK' then return end
 	local unit = self.__owner.frame
 	local Bar = self
 	local Border = self.Border
 	local Background = self.Background
-	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Class.Texture)
+	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
 
 	-- Bar
 	Bar.colorClass = RUF.db.profile.Appearance.Bars.Class.Color.Class
@@ -136,15 +132,15 @@ function RUF.StaggerUpdateOptions(self)
 	-- Border
 	Border:SetAllPoints(Bar)
 	Border:SetFrameLevel(7)
-	Border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
-	local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
-	Border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
+	Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
+	local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
+	Border:SetBackdropBorderColor(borderr, borderg, borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
 
 	-- Background
-	local r,g,b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
+	local r, g, b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
 	local Multiplier = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
-	Background:SetTexture(LSM:Fetch("background", "Solid"))
-	Background:SetVertexColor(r*Multiplier,g*Multiplier,b*Multiplier,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+	Background:SetTexture(LSM:Fetch('background', 'Solid'))
+	Background:SetVertexColor(r*Multiplier, g*Multiplier, b*Multiplier, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 	Background:SetAllPoints(Bar)
 	Background.colorSmooth = false
 

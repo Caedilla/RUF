@@ -1,14 +1,13 @@
-local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
-local LSM = LibStub("LibSharedMedia-3.0")
+local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
+local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 
 function RUF.SetAbsorbBar(self, unit)
-
-	local Texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Absorb.Texture)
-	local Bar = CreateFrame("StatusBar",nil,self)
-	local Border = CreateFrame("Frame",nil,Bar)
-	local Background = Bar:CreateTexture(nil,"BACKGROUND")
+	local Texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Absorb.Texture)
+	local Bar = CreateFrame('StatusBar', nil, self)
+	local Border = CreateFrame('Frame', nil, Bar)
+	local Background = Bar:CreateTexture(nil, 'BACKGROUND')
 
 	-- Bar
 	Bar.colorClass = RUF.db.profile.Appearance.Bars.Absorb.Color.Class
@@ -32,7 +31,6 @@ function RUF.SetAbsorbBar(self, unit)
 		Background:Hide()
 	end
 
-
 	-- Register with oUF
 	self.Absorb = Bar
 	self.Absorb.Border = Border
@@ -50,12 +48,6 @@ function RUF.AbsorbUpdate(self, event, unit)
 
 	local element = self.Absorb
 
-	--[[ Callback: Absorb:PreUpdate(unit)
-	Called before the element has been updated.
-
-	* self - the Absorb element
-	* unit - the unit for which the update has been triggered (string)
-	--]]
 	if(element.PreUpdate) then
 		element:PreUpdate(unit)
 	end
@@ -64,19 +56,19 @@ function RUF.AbsorbUpdate(self, event, unit)
 	local health, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
 
 	if RUF.db.global.TestMode == true then
-		absorb = math.random(25,75)
+		absorb = math.random(25, 75)
 		maxHealth = 100
 	end
 
 	element:SetMinMaxValues(0, maxHealth)
 	element:SetValue(absorb)
-	local r,g,b = RUF:GetBarColor(element, unit, "Absorb")
+	local r, g, b = RUF:GetBarColor(element, unit, 'Absorb')
 	local a = RUF.db.profile.Appearance.Bars.Absorb.Color.Alpha
 	local barMult = RUF.db.profile.Appearance.Bars.Absorb.Color.Multiplier
 	if RUF.db.profile.Appearance.Bars.Absorb.Type == 1 then
 		element:SetAlpha(a)
 	end
-	element:SetStatusBarColor(r*barMult,g*barMult,b*barMult)
+	element:SetStatusBarColor(r*barMult, g*barMult, b*barMult)
 
 	if element.hideAtZero == true then
 		if absorb < 1 then
@@ -90,13 +82,6 @@ function RUF.AbsorbUpdate(self, event, unit)
 		end
 	end
 
-	--[[ Callback: Absorb:PostUpdate(unit, absorb)
-	Called after the element has been updated.
-
-	* self			  - the Absorb element
-	* unit			  - the unit for which the update has been triggered (string)
-	* absorb			- the amount of damage the unit can absorb without losing health (number)
-	--]]
 	if(element.PostUpdate) then
 		return element:PostUpdate(unit, absorb)
 	end
@@ -106,7 +91,7 @@ function RUF.AbsorbUpdateOptions(self)
 	local unit = self.__owner.frame
 	local Bar = self
 
-	local Texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Absorb.Texture)
+	local Texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Absorb.Texture)
 	Bar.colorClass = RUF.db.profile.Appearance.Bars.Absorb.Color.Class
 	Bar.colorDisconnected = RUF.db.profile.Appearance.Bars.Absorb.Color.Disconnected
 	Bar.colorSmooth = RUF.db.profile.Appearance.Bars.Absorb.Color.Percentage

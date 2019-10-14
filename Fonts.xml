@@ -16,6 +16,4 @@
 			<Font font='Interface\Addons\RUF\Media\TGL.ttf' height='18' outline='NORMAL'/>
 		</Member>
 	</FontFamily>
-	<Font name='RaeliLeft' inherits='Raeli' justifyH='LEFT' virtual='true'/>
-	<Font name='RaeliRight' inherits='Raeli' justifyH='RIGHT' virtual='true'/>
 </Ui>

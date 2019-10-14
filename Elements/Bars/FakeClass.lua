@@ -23,9 +23,6 @@ local fakeClassPower = {
 	},
 }
 
-
-
-
 function RUF.SetFakeClassBar(self, unit)
 	if not fakeClassPower[uClass] then return end
 	local texture = LSM:Fetch("statusbar", RUF.db.profile.Appearance.Bars.Class.Texture)
@@ -99,11 +96,9 @@ function RUF.FakeClassUpdate(self, event, unit, powerType)
 		return
 	end
 
-
 	local cur, max = UnitPower(unit,fakeClassPower[uClass].classPowerID), UnitPowerMax(unit,fakeClassPower[uClass].classPowerID)
 	element:SetMinMaxValues(0, max)
 	element:SetValue(cur)
-
 
 	-- Update Statusbar colour
 	local r,g,b = RUF:GetBarColor(element, unit, "Class",fakeClassPower[uClass].classPowerID)
@@ -128,7 +123,6 @@ function RUF.FakeClassUpdate(self, event, unit, powerType)
 			end
 		end
 	end
-
 end
 
 function RUF.FakeClassPowerUpdateOptions(self)

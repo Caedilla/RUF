@@ -3,7 +3,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 
-local _,uClass = UnitClass('player')
+local _, uClass = UnitClass('player')
 
 local classPowerData = {
 	DRUID = {
@@ -23,38 +23,38 @@ function RUF.SetClassicClassBar(self, unit)
 	local classPowerBar = {}
 	local classPowerBorder = {}
 	local classPowerBackground = {}
-	local unitPowerMaxAmount = classPowerData[uClass].unitPowerMaxAmount or UnitPowerMax(unit,classPowerData[uClass].classPowerID)
+	local unitPowerMaxAmount = classPowerData[uClass].unitPowerMaxAmount or UnitPowerMax(unit, classPowerData[uClass].classPowerID)
 
 	local name = self:GetName() .. '.ClassicClassPower'
 	self.ClassicClassPower = {}
 
-	local Holder = CreateFrame('Frame',name..'.Holder',self)
+	local Holder = CreateFrame('Frame', name .. '.Holder', self)
 	Holder.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
 
 	if RUF.db.profile.unit[unit].Frame.Bars.Class.Position.Anchor == 'TOP' then
-		Holder:SetPoint('TOP',0,0)
-		Holder:SetPoint('LEFT',0,0)
-		Holder:SetPoint('RIGHT',0,0)
+		Holder:SetPoint('TOP', 0, 0)
+		Holder:SetPoint('LEFT', 0, 0)
+		Holder:SetPoint('RIGHT', 0, 0)
 		Holder:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
 		Holder.anchorTo = 'TOP'
 	else
 		Holder:ClearAllPoints()
-		Holder:SetPoint('BOTTOM',0,0)
-		Holder:SetPoint('LEFT',0,0)
-		Holder:SetPoint('RIGHT',0,0)
+		Holder:SetPoint('BOTTOM', 0, 0)
+		Holder:SetPoint('LEFT', 0, 0)
+		Holder:SetPoint('RIGHT', 0, 0)
 		Holder:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
 		Holder.anchorTo = 'BOTTOM'
 	end
 
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
-	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+	local r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
-	for i = 1,unitPowerMaxAmount do
-		local Bar = CreateFrame('StatusBar',name..i,Holder)
-		local Border = CreateFrame('Frame',name..i..'.Border',Bar)
-		local Background = Bar:CreateTexture(name..i..'.Background','BACKGROUND')
+	for i = 1, unitPowerMaxAmount do
+		local Bar = CreateFrame('StatusBar', name .. i, Holder)
+		local Border = CreateFrame('Frame', name .. i .. '.Border', Bar)
+		local Background = Bar:CreateTexture(name .. i .. '.Background', 'BACKGROUND')
 		local size = (RUF.db.profile.unit[unit].Frame.Size.Width + (unitPowerMaxAmount-1)) / unitPowerMaxAmount
 		local counter = i
 		if unitPowerMaxAmount == 4 then
@@ -65,9 +65,9 @@ function RUF.SetClassicClassBar(self, unit)
 		Bar:SetWidth(size)
 		Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
 		if i == 1 then
-			Bar:SetPoint('TOPLEFT',Holder,'TOPLEFT',0,0)
+			Bar:SetPoint('TOPLEFT', Holder, 'TOPLEFT', 0, 0)
 		else
-			Bar:SetPoint('TOPLEFT',classPowerBar[i-1],'TOPRIGHT',-1,0)
+			Bar:SetPoint('TOPLEFT', classPowerBar[i-1], 'TOPRIGHT', -1, 0)
 		end
 		Bar:SetFrameLevel(5)
 
@@ -78,19 +78,19 @@ function RUF.SetClassicClassBar(self, unit)
 		local ir = (r*((((counter+colorAdd)*6.6667)/100)))
 		local ig = (g*((((counter+colorAdd)*6.6667)/100)))
 		local ib = (b*((((counter+colorAdd)*6.6667)/100)))
-		Bar:SetStatusBarColor(ir,ig,ib)
+		Bar:SetStatusBarColor(ir, ig, ib)
 
 		-- Set Border
 		Border:SetAllPoints(Bar)
 		Border:SetFrameLevel(7)
 		Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
-		local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
-		Border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
+		local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
+		Border:SetBackdropBorderColor(borderr, borderg, borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
 
 		-- Set Background
 		Background:SetAllPoints(Bar)
 		Background:SetTexture(LSM:Fetch('background', 'Solid'))
-		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+		Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 
 		classPowerBar[i] = Bar
 		classPowerBorder[i] = Border
@@ -108,11 +108,11 @@ function RUF.SetClassicClassBar(self, unit)
 	self.ClassicClassPower.UpdateOptions = RUF.ClassicClassUpdateOptions
 
 	-- Force an update to make sure we are showing the correct number of bars for classes with talents that add additional points.
-	RUF.ClassicClassUpdate(self, "PLAYER_TALENT_UPDATE", unit, classPowerData[uClass].classPowerType)
+	RUF.ClassicClassUpdate(self, 'PLAYER_TALENT_UPDATE', unit, classPowerData[uClass].classPowerType)
 end
 
 function RUF.ClassicClassUpdateColor(element, powerType)
-	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+	local r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 	for i = 1, #element do
 		local counter = i
@@ -124,14 +124,14 @@ function RUF.ClassicClassUpdateColor(element, powerType)
 		local ir = (r*((((counter+colorAdd)*6.6667)/100)))
 		local ig = (g*((((counter+colorAdd)*6.6667)/100)))
 		local ib = (b*((((counter+colorAdd)*6.6667)/100)))
-		Bar:SetStatusBarColor(ir,ig,ib)
+		Bar:SetStatusBarColor(ir, ig, ib)
 
 		-- Update background
 		local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 		if RUF.db.profile.Appearance.Bars.Class.Background.UseBarColor == false then
-			r,g,b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
+			r, g, b = unpack(RUF.db.profile.Appearance.Bars.Class.Background.CustomColor)
 		end
-		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+		Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 	end
 
 end
@@ -140,7 +140,7 @@ function RUF.ClassicClassUpdate(self, event, unit, powerType)
 
 	-- Override function of oUF's ClassPower Update function.
 	if not unit then return end
-	if not UnitIsUnit(unit,'player') and (powerType == classPowerData[uClass].classPowerType or (unit == 'vehicle' and powerType == 'COMBO_POINTS')) then return end
+	if not UnitIsUnit(unit, 'player') and (powerType == classPowerData[uClass].classPowerType or (unit == 'vehicle' and powerType == 'COMBO_POINTS')) then return end
 
 	local element = self.ClassicClassPower
 	if RUF.db.profile.unit[self.frame].Frame.Bars.Class.Enabled ~= true then
@@ -162,14 +162,14 @@ function RUF.ClassicClassUpdate(self, event, unit, powerType)
 					if element[i]:IsVisible() then
 						element[i]:Hide()
 						element[i]:SetValue(0)
-						for j = 1,#element do
+						for j = 1, #element do
 							element[j]:SetWidth(size)
 						end
 					end
 				else
 					if not element[i]:IsVisible() then
 						element[i]:Show()
-						for j = 1,#element do
+						for j = 1, #element do
 							element[j]:SetWidth(size)
 						end
 					end
@@ -177,9 +177,8 @@ function RUF.ClassicClassUpdate(self, event, unit, powerType)
 			end
 		end
 
-
 		if RUF.db.global.TestMode == true then
-			cur = math.random(0,max)
+			cur = math.random(0, max)
 		end
 		for i = 1, #element do
 			if cur >= i then
@@ -206,9 +205,9 @@ end
 function RUF.ClassicClassUpdateOptions(self)
 	if not classPowerData[uClass] then return end
 	local unit = self.__owner.frame
-	local unitPowerMaxAmount = classPowerData[uClass].unitPowerMaxAmount or UnitPowerMax(unit,classPowerData[uClass].classPowerID)
+	local unitPowerMaxAmount = classPowerData[uClass].unitPowerMaxAmount or UnitPowerMax(unit, classPowerData[uClass].classPowerID)
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
-	local r,g,b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+	local r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 	local element = self.__owner.ClassicClassPower
@@ -216,7 +215,7 @@ function RUF.ClassicClassUpdateOptions(self)
 	holder:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
 	holder.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
 
-	for i = 1,unitPowerMaxAmount do
+	for i = 1, unitPowerMaxAmount do
 		local Bar = self[i]
 		local Background = self[i].Background
 		local Border = self[i].Border
@@ -238,19 +237,19 @@ function RUF.ClassicClassUpdateOptions(self)
 		local ir = (r*((((counter+colorAdd)*6.6667)/100)))
 		local ig = (g*((((counter+colorAdd)*6.6667)/100)))
 		local ib = (b*((((counter+colorAdd)*6.6667)/100)))
-		Bar:SetStatusBarColor(ir,ig,ib)
+		Bar:SetStatusBarColor(ir, ig, ib)
 
 		-- Set Border
 		Border:SetAllPoints(Bar)
 		Border:SetFrameLevel(7)
 		Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
-		local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
-		Border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
+		local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
+		Border:SetBackdropBorderColor(borderr, borderg, borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
 
 		-- Set Background
 		Background:SetAllPoints(Bar)
 		Background:SetTexture(LSM:Fetch('background', 'Solid'))
-		Background:SetVertexColor(r*bgMult,g*bgMult,b*bgMult,RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+		Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 
 		if RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == true then
 			self.__owner:EnableElement('ClassicClassPower')
@@ -258,23 +257,22 @@ function RUF.ClassicClassUpdateOptions(self)
 				if element[i]:IsVisible() then
 					element[i]:Hide()
 					element[i]:SetValue(0)
-					for j = 1,#element do
+					for j = 1, #element do
 						element[j]:SetWidth(size)
 					end
 				end
 			else
 				if not element[i]:IsVisible() then
 					element[i]:Show()
-					for j = 1,#element do
+					for j = 1, #element do
 						element[j]:SetWidth(size)
 					end
 				end
 			end
 		end
 
-
 	end
 
-	RUF.SetBarLocation(self.__owner,unit)
+	RUF.SetBarLocation(self.__owner, unit)
 	self:ForceUpdate()
 end
