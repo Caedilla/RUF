@@ -58,7 +58,6 @@ local function SetupFrames(self,unit)
 
 	-- Aura Highlight Border
 	if not unit:match('%w+target') then
-	--if unit ~= 'targettarget' and unit ~= 'pettarget' and unit ~= 'focustarget' then
 		RUF.SetGlowBorder(self,unit)
 	end
 
@@ -173,18 +172,23 @@ local function VariantWarning()
 	else
 		clientString = L["Retail"]
 	end
+
 	local message = L["You have the %s version of RUF installed, but you are playing %s. Please install a compatible version."]:format(variantString,clientString)
 	local messagePrefix = "|c5500DBBDRaeli's Unit Frames|r: "
+
 	C_Timer.After(10,function() ChatFrame1:AddMessage(messagePrefix .. message) end)
+
 	local window = CreateFrame('Frame', 'RUF_VariantWarning', UIParent)
 	window:SetWidth(500)
 	window:SetHeight(250)
 	window:SetPoint('CENTER')
+
 	local text = window:CreateFontString(nil, 'OVERLAY', 'Raeli')
 	local font = LSM:Fetch('font', 'RUF')
 	text:SetFont('Interface\\Addons\\RUF\\Media\\TGL.ttf',28,'OUTLINE')
 	text:SetText(messagePrefix .. message)
 	text:SetAllPoints(window)
+
 	local windowAnimation = window:CreateAnimationGroup()
 	local alphaAnimation = windowAnimation:CreateAnimation("Alpha")
 	alphaAnimation:SetFromAlpha(1)
@@ -192,6 +196,7 @@ local function VariantWarning()
 	alphaAnimation:SetDuration(3)
 	alphaAnimation:SetStartDelay(20)
 	alphaAnimation:SetSmoothing("OUT")
+
 	window.windowAnimation = windowAnimation
 	window.alphaAnimation = alphaAnimation
 	window:RegisterEvent('PLAYER_ENTERING_WORLD')
@@ -246,6 +251,11 @@ function RUF:OnEnable()
 
 		for i = 1,#frames do
 			local profile = string.lower(frames[i])
+			if _G['oUF_RUF_' .. frames[i]] then
+				if _G['oUF_RUF_' .. frames[i]]:GetObjectType() ~= 'Button' then
+					_G['oUF_RUF_' .. frames[i]] = nil
+				end
+			end
 			self:Spawn(profile):SetPoint(
 				RUF.db.profile.unit[profile].Frame.Position.AnchorFrom,
 				RUF.db.profile.unit[profile].Frame.Position.AnchorFrame,
@@ -254,13 +264,20 @@ function RUF:OnEnable()
 				RUF.db.profile.unit[profile].Frame.Position.y)
 
 			if RUF.db.profile.unit[profile].Enabled == false then
-				_G['oUF_RUF_'..frames[i]]:Disable()
+				_G['oUF_RUF_' .. frames[i]]:Disable()
 			end
 		end
 
 
 		-- Spawn Headers
 		for i = 1,#headers do
+			for j = 4,1 do
+				if _G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j] then
+					if _G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j]:GetObjectType() ~= 'Button' then
+						_G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j] = nil
+					end
+				end
+			end
 			local profile = RUF.db.profile.unit[string.lower(headers[i])]
 			local template = 'SecureGroupHeaderTemplate'
 			if headers[i] == 'PartyPet' then template = 'SecureGroupPetHeaderTemplate' end
@@ -292,7 +309,7 @@ function RUF:OnEnable()
 			local partyNum,petNum = 0,0
 			if IsInGroup() then
 				partyNum = GetNumSubgroupMembers()
-				for i = 1,partyNum do
+				for j = 1,partyNum do
 					if UnitExists('partypet'..i) then
 						petNum = petNum + 1
 					end
@@ -336,6 +353,11 @@ function RUF:OnEnable()
 			end
 			for u = 1,5 do
 				local frame = self:Spawn(profile..u)
+				if _G['oUF_RUF_' .. groupFrames[i]] then
+					if _G['oUF_RUF_' .. groupFrames[i]]:GetObjectType() ~= 'Button' then
+						_G['oUF_RUF_' .. groupFrames[i]] = nil
+					end
+				end
 				if(u == 1) then
 					frame:SetPoint(
 						RUF.db.profile.unit[profile].Frame.Position.AnchorFrom,
