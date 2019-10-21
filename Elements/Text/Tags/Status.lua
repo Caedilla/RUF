@@ -10,6 +10,9 @@ local events = oUF.TagEvents or oUF.Tags.Events
 tags['RUF:Level'] = function(unit)
 	local profileReference = RUF.db.profile.Appearance.Text.Level
 	local level = UnitLevel(unit)
+	if UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit) then
+		level = UnitBattlePetLevel(unit)
+	end
 	local elite = UnitClassification(unit) -- worldboss, rareelite, elite, rare, normal, trivial, or minus
 	if elite == 'rareelite' then
 		elite = '++'
