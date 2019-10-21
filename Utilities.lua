@@ -243,9 +243,9 @@ function RUF.GetLevelColor(self, level, unit)
 	if unit then
 		if UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit) then
 			local petLevel = UnitBattlePetLevel(unit)
-			if petLevel < 6 then
+			if petLevel < 9 then
 				index = 4
-			elseif petLevel < 16 then
+			elseif petLevel < 17 then
 				index = 3
 			elseif petLevel < 21 then
 				index = 2
