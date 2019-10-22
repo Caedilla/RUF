@@ -1,10 +1,11 @@
-# RUF r211-Alpha
+# RUF r212-Alpha
 ### New
 * Addded an option to the Level tag to toggle if the Classification text is shown before or after the level text.
 * Added an option to desaturate unit Portraits.
 * Added option to Unit Buff, Debuff and Portrait settings to copy settings from another unit.
 
 ### Changed
+* Switched to LibHealComm-4.0 from LibClassicHealComm-1.0 due to licence conflict.
 * Class settings are titled by the resource type. For example, they show up as Combo Points if you are playing a rogue.
 * The Level tag for Battle Pets now show's the Battle Pet level.
 
