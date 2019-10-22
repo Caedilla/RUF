@@ -141,7 +141,7 @@ local function Update(self, event, unit)
 		end
 	end
 	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
-		local HealComm = LibStub('LibClassicHealComm-1.0', true)
+		local HealComm = LibStub('LibHealComm-4.0', true)
 		local unitGUID = UnitGUID(unit)
 		local lookAhead = element.lookAhead or 5
 		myIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + lookAhead, UnitGUID('player')) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0
@@ -294,7 +294,7 @@ local function Enable(self)
 			self:RegisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
 		end
 		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
-			local HealComm = LibStub('LibClassicHealComm-1.0', true)
+			local HealComm = LibStub('LibHealComm-4.0', true)
 			self.HealCommUpdate = HealCommUpdate
 			HealComm.RegisterCallback(self, 'HealComm_HealStarted', 'HealCommUpdate')
 			HealComm.RegisterCallback(self, 'HealComm_HealUpdated', 'HealCommUpdate')
@@ -388,7 +388,7 @@ local function Disable(self)
 			self:UnregisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
 		end
 		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
-			local HealComm = LibStub('LibClassicHealComm-1.0', true)
+			local HealComm = LibStub('LibHealComm-4.0', true)
 			HealComm.UnregisterCallback(self, 'HealComm_HealStarted')
 			HealComm.UnregisterCallback(self, 'HealComm_HealUpdated')
 			HealComm.UnregisterCallback(self, 'HealComm_HealDelayed')
