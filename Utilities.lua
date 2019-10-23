@@ -75,7 +75,7 @@ function RUF:Short(value, format)
 			fmt = "%.1fK"
 			value = value / 1000
 		elseif value >= 1000 or value <= -1000 then
-			gsub = string.gsub(value, "^(-?%d+)(%d%d%d)", '%1, %2')
+			gsub = string.gsub(value, "^(-?%d+)(%d%d%d)", '%1,%2')
 		else
 			fmt = "%d"
 			value = math.floor(value + 0.5)
@@ -110,7 +110,7 @@ function RUF:Short(value, format)
 				a = a / 1000
 			elseif a >= 1000 or a <= -1000 then
 				fmt_a = "%s"
-				a = string.gsub(a, "^(-?%d+)(%d%d%d)", '%1, %2')
+				a = string.gsub(a, "^(-?%d+)(%d%d%d)", '%1,%2')
 			end
 			if b >= 1000000000 or b <= -1000000000 then
 				fmt_b = "%.1fB"
@@ -129,7 +129,7 @@ function RUF:Short(value, format)
 				b = b / 1000
 			elseif b >= 1000 or b <= -1000 then
 				fmt_b = "%s"
-				b = string.gsub(b, "^(-?%d+)(%d%d%d)", '%1, %2')
+				b = string.gsub(b, "^(-?%d+)(%d%d%d)", '%1,%2')
 			end
 			local fmt = ("%s/%s"):format(fmt_a, fmt_b)
 			if format then
