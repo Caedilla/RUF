@@ -213,7 +213,10 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						desc = L["Enable to replace this unit frame with the vehicle frame when in a vehicle. If disabled, the pet frame will become the vehicle frame instead."],
 						type = 'toggle',
 						order = 0.004,
-						hidden = singleFrame ~= 'player',
+						hidden = function()
+							if RUF.Client ~= 1 then return true end
+							if profileName ~= 'player' then return true end
+						end,
 						get = function(info)
 							return RUF.db.profile.unit[profileName].toggleForVehicle
 						end,
