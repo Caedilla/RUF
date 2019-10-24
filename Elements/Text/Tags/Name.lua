@@ -85,7 +85,7 @@ tags['RUF:Name'] = function(unit, realUnit)
 			end
 		elseif style == 3 then -- Initialism everything
 			for word in name:gmatch('%w+') do
-				name = name:gsub(word,word:sub(1,1),1):gsub('%s','')
+				name = name:gsub(word,word:sub(1,1),1):gsub('%s',''):gsub('%W+','')
 			end
 			name = name:sub(1,charLimit)
 		else -- Trim
