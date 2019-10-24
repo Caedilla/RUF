@@ -251,7 +251,7 @@ function RUF_Options.Texts()
 						RUF.db.profile.Appearance.Text[TagList[i]].HideWhenPrimaryIsMana = value
 					end,
 				},
-				Name_Limit = {
+				characterLimit = {
 					name = L["Character Limit"],
 					desc = L["Abbreviate Character Names longer than this. Set 0 for no limit."],
 					type = 'range',
@@ -268,6 +268,25 @@ function RUF_Options.Texts()
 					end,
 					set = function(info, value)
 						RUF.db.profile.Appearance.Text.Name.CharLimit = value
+					end,
+				},
+				abbreviateAboveCharacterLimit = {
+					name = L["Abbreviate Style"],
+					desc = L["Trim simply removes any letters above the limit.\nElipsis adds an elipsis to the end of the trimmed name to signify it has been cut short.\nAbbreviate turns any words that would be trimmed into an initial.\nInitialism turns the entire name into initials if it would be trimmed."],
+					type = 'select',
+					order = 10.031,
+					hidden = function() return TagList[i] ~= 'Name' end,
+					values = {
+						[0] = L["Trim"],
+						[1] = L["Elipsis"],
+						[2] = L["Abbreviate"],
+						[3] = L["Initialism"],
+					},
+					get = function(info)
+						return RUF.db.profile.Appearance.Text.Name.CharLimitStyle
+					end,
+					set = function(info, value)
+						RUF.db.profile.Appearance.Text.Name.CharLimitStyle = value
 					end,
 				},
 				CurManaPerc_Enabled = {
