@@ -610,6 +610,15 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 			end
 		end
 
+		if singleFrame == 'Player' then
+			if profileReference.toggleForVehicle == true then
+				unitFrame:SetAttribute('toggleForVehicle', profileReference.toggleForVehicle or false)
+				if _G['oUF_RUF_Pet'] then
+					_G['oUF_RUF_Pet']:SetAttribute('toggleForVehicle', profileReference.toggleForVehicle or false)
+				end
+			end
+		end
+
 		if profileReference.Frame.RangeFading.Enabled == true then
 			unitFrame:EnableElement('RangeCheck')
 			unitFrame.RangeCheck = {

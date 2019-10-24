@@ -84,14 +84,14 @@ local function SetupFrames(self,unit)
 		self.Absorb.Override = RUF.AbsorbUpdate
 
 		if unit == 'player' then
-			self:SetAttribute('toggleForVehicle',false) -- TODO Implement option for this
+			self:SetAttribute('toggleForVehicle',profileReference.toggleForVehicle or false) -- TODO Implement option for this
 			RUF.SetClassBar(self,unit) -- Normal Class Power bar
 			RUF.SetFakeClassBar(self,unit) -- Fake Clone Bar for Insanity/Maelstrom/Lunar Power
 			RUF.SetRunes(self,unit)
 			RUF.SetStagger(self,unit)
 		end
 		if unit == 'pet' then
-			self:SetAttribute('toggleForVehicle',false)
+			self:SetAttribute('toggleForVehicle',RUF.db.profile.unit['player'].toggleForVehicle or false)
 		end
 
 	else

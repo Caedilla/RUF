@@ -208,6 +208,21 @@ local function UnitGroup(singleFrame, groupFrame, header)
 							RUF:UpdateOptions()
 						end,
 					},
+					toggleForVehicle = {
+						name = L["Replace frame with Vehicle"],
+						desc = L["Enable to replace this unit frame with the vehicle frame when in a vehicle. If disabled, the pet frame will become the vehicle frame instead."],
+						type = 'toggle',
+						order = 0.004,
+						hidden = singleFrame ~= 'player',
+						get = function(info)
+							return RUF.db.profile.unit[profileName].toggleForVehicle
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].toggleForVehicle = value
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
+							RUF:UpdateOptions()
+						end,
+					},
 					showRaid = {
 						name = L["Show in Raid"],
 						type = 'toggle',
