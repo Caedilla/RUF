@@ -114,12 +114,13 @@ function RUF.SetFramePortrait(self, unit)
 	dirB = 1
 
 	Portrait:SetLight(true,false,dirX,dirY,dirZ,ambStr,ambR,ambG,ambB,dirStr,dirR,dirG,dirB)
+	Portrait:SetFrameLevel(11)
 
 	-- Border
 	local offset = profileReference.Border.Offset
 	Border:SetPoint('TOPLEFT',Portrait,'TOPLEFT',-offset,offset)
 	Border:SetPoint('BOTTOMRIGHT',Portrait,'BOTTOMRIGHT',offset,-offset)
-	Border:SetFrameLevel(7)
+	Border:SetFrameLevel(12)
 	Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
 	r,g,b = unpack(profileReference.Border.Color)
 	Border:SetBackdropBorderColor(r,g,b,profileReference.Border.Alpha)
@@ -204,7 +205,7 @@ function RUF.PortraitUpdateOptions(self)
 			local offset = profileReference.Border.Offset
 			Border:SetPoint('TOPLEFT',Portrait,'TOPLEFT',-offset,offset)
 			Border:SetPoint('BOTTOMRIGHT',Portrait,'BOTTOMRIGHT',offset,-offset)
-			Border:SetFrameLevel(7)
+			Border:SetFrameLevel(17)
 			Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
 			local r,g,b = unpack(profileReference.Border.Color)
 			Border:SetBackdropBorderColor(r,g,b,profileReference.Border.Alpha)

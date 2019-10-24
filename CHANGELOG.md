@@ -1,13 +1,6 @@
-# RUF r214-Release
-### New
-* Addded an option to the Level tag to toggle if the Classification text is shown before or after the level text.
-* Added an option to desaturate unit Portraits.
-* Added option to Unit Buff, Debuff and Portrait settings to copy settings from another unit.
-
+# RUF r215-alpha
 ### Changed
-* Switched to LibHealComm-4.0 from LibClassicHealComm-1.0 due to licence conflict.
-* Class settings are titled by the resource type. For example, they show up as Combo Points if you are playing a rogue.
-* The Level tag for Battle Pets now show's the Battle Pet level.
+* Frame level has been increased for all elements and the unit frame as a whole, so you should be able to anchor other frames behind the unit frames more easily now if you desire. Anything with a Frame Strata of LOW and Frame Level under 5 should end up behind all of the unit frames, with no part of the frame being on the BACKGROUND frame strata any longer, so a Frame Strata of BACKGROUND should also be enough alone to be below the frame.
 
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.

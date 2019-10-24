@@ -89,11 +89,11 @@ function RUF.SetClassBar(self, unit)
 		else
 			Bar:SetPoint('TOPLEFT', classPowerBar[i-1], 'TOPRIGHT', -1, 0)
 		end
-		Bar:SetFrameLevel(5)
+		Bar:SetFrameLevel(15)
 
 		-- Set Status Bar
 		Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Class.Fill)
-		Bar:SetFrameLevel(6)
+		Bar:SetFrameLevel(16)
 		Bar:SetStatusBarTexture(texture)
 		local ir = (r*((((counter+colorAdd)*6.6667)/100)))
 		local ig = (g*((((counter+colorAdd)*6.6667)/100)))
@@ -102,7 +102,7 @@ function RUF.SetClassBar(self, unit)
 
 		-- Set Border
 		Border:SetAllPoints(Bar)
-		Border:SetFrameLevel(7)
+		Border:SetFrameLevel(17)
 		Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
 		local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
 		Border:SetBackdropBorderColor(borderr, borderg, borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
@@ -253,11 +253,11 @@ function RUF.ClassUpdateOptions(self)
 		-- Set Bar Parent Size
 		Bar:SetWidth(size)
 		Bar:SetHeight(RUF.db.profile.unit[unit].Frame.Bars.Class.Height)
-		Bar:SetFrameLevel(5)
+		Bar:SetFrameLevel(15)
 
 		-- Set Status Bar
 		Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Class.Fill)
-		Bar:SetFrameLevel(6)
+		Bar:SetFrameLevel(16)
 		Bar:SetStatusBarTexture(texture)
 		local ir = (r*((((counter+colorAdd)*6.6667)/100)))
 		local ig = (g*((((counter+colorAdd)*6.6667)/100)))
@@ -266,7 +266,7 @@ function RUF.ClassUpdateOptions(self)
 
 		-- Set Border
 		Border:SetAllPoints(Bar)
-		Border:SetFrameLevel(7)
+		Border:SetFrameLevel(17)
 		Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
 		local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
 		Border:SetBackdropBorderColor(borderr, borderg, borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)

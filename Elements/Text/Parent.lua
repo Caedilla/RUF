@@ -41,7 +41,7 @@ local anchorSwaps = {
 function RUF.SetTextParent(self,unit)
 	local name = self:GetName()
 	local TextParent = CreateFrame('Frame', name .. '.Text', self)
-	TextParent:SetFrameLevel(20)
+	TextParent:SetFrameLevel(50)
 	TextParent:SetAllPoints(self)
 
 	local testModeDisplayName = CreateFrame('Frame', name .. '.Text.DisplayName',TextParent)
@@ -94,7 +94,7 @@ function RUF.CreateTextArea(self, unit, textName)
 
 	-- Purely so we can control frame level
 	local stringParent = CreateFrame('Frame', name .. '.Text.' .. textName, self.Text)
-	stringParent:SetFrameLevel(20)
+	stringParent:SetFrameLevel(50)
 	self.Text[textName] = stringParent
 
 

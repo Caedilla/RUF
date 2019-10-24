@@ -29,12 +29,12 @@ function RUF.SetPowerBar(self, unit) -- Mana, Rage, Insanity, Maelstrom etc.
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Power.Height
 	Bar:SetStatusBarTexture(Texture)
-	Bar:SetFrameLevel(5)
+	Bar:SetFrameLevel(15)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Power.Fill)
 
 	-- Border
 	Border:SetAllPoints(Bar)
-	Border:SetFrameLevel(7)
+	Border:SetFrameLevel(17)
 	Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeSize})
 	local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Power.Border.Color)
 	Border:SetBackdropBorderColor(borderr, borderg, borderb, RUF.db.profile.Appearance.Bars.Power.Border.Alpha)
@@ -130,13 +130,13 @@ function RUF.PowerUpdateOptions(self)
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Power.Height
 	Bar:SetStatusBarTexture(Texture)
-	Bar:SetFrameLevel(5)
+	Bar:SetFrameLevel(15)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Power.Fill)
 	RUF.SetBarLocation(self.__owner, unit)
 
 	-- Border
 	Border:SetAllPoints(Bar)
-	Border:SetFrameLevel(7)
+	Border:SetFrameLevel(17)
 	Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeSize})
 	local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Power.Border.Color)
 	Border:SetBackdropBorderColor(borderr, borderg, borderb, RUF.db.profile.Appearance.Bars.Power.Border.Alpha)

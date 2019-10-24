@@ -39,6 +39,8 @@ local function SetupFrames(self,unit)
 	self.frame = unit
 	local profileReference = RUF.db.profile.unit[unit]
 
+	self:SetFrameLevel(5)
+
 	-- Set Colors
 	if RUF.Client == 1 then
 		SetClassColors()

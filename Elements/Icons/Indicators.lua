@@ -43,7 +43,7 @@ function RUF.SetIndicators(self, unit)
 	local Indicators = CreateFrame('Frame', nil, self)
 
 	Indicators:SetAllPoints(self)
-	Indicators:SetFrameLevel(15)
+	Indicators:SetFrameLevel(40)
 
 	self.Indicators = Indicators
 

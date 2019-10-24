@@ -8,7 +8,7 @@ function RUF.SetFrameBackground(self, unit)
 	local Background = CreateFrame('Frame',name..'.Background',self)
 
 	Background:SetAllPoints(self)
-	Background:SetFrameStrata('BACKGROUND')
+	Background:SetFrameLevel(4)
 
 	local r,g,b = unpack(RUF.db.profile.Appearance.Bars.Health.Background.CustomColor)
 	local bgMult = RUF.db.profile.Appearance.Bars.Health.Background.Multiplier

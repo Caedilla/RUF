@@ -43,7 +43,7 @@ function RUF.SetFakeClassBar(self, unit)
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
 	Bar:SetStatusBarTexture(texture)
-	Bar:SetFrameLevel(5)
+	Bar:SetFrameLevel(15)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Class.Fill)
 
 	-- Bar Position
@@ -64,7 +64,7 @@ function RUF.SetFakeClassBar(self, unit)
 
 	-- Border
 	Border:SetAllPoints(Bar)
-	Border:SetFrameLevel(7)
+	Border:SetFrameLevel(17)
 	Border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
 	local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
 	Border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)
@@ -145,12 +145,12 @@ function RUF.FakeClassPowerUpdateOptions(self)
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
 	Bar:SetStatusBarTexture(texture)
-	Bar:SetFrameLevel(5)
+	Bar:SetFrameLevel(15)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Class.Fill)
 
 	-- Border
 	Border:SetAllPoints(Bar)
-	Border:SetFrameLevel(7)
+	Border:SetFrameLevel(17)
 	Border:SetBackdrop({edgeFile = LSM:Fetch("border", RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
 	local borderr,borderg,borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
 	Border:SetBackdropBorderColor(borderr,borderg,borderb, RUF.db.profile.Appearance.Bars.Class.Border.Alpha)

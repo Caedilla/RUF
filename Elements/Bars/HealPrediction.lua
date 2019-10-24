@@ -87,6 +87,7 @@ function RUF.SetHealPrediction(self, unit)
 	PlayerHeals:SetStatusBarColor(0,1,0,1)
 	PlayerHeals:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill)
 	PlayerHeals:SetWidth(self:GetWidth())
+	PlayerHeals:SetFrameLevel(11)
 	PlayerHeals:Hide()
 	PlayerHeals.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 	PlayerHeals.Enabled = profileReference.Player.Enabled
@@ -99,6 +100,7 @@ function RUF.SetHealPrediction(self, unit)
 	OtherHeals:SetStatusBarColor(0,1,1,1)
 	OtherHeals:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill)
 	OtherHeals:SetWidth(self:GetWidth())
+	OtherHeals:SetFrameLevel(11)
 	OtherHeals:Hide()
 	OtherHeals.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 	OtherHeals.Enabled = profileReference.Others.Enabled
@@ -141,6 +143,7 @@ function RUF.HealPredictionUpdateOptions(self)
 	PlayerHeals:SetStatusBarTexture(texture)
 	PlayerHeals:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Health.Fill)
 	PlayerHeals:SetWidth(self.__owner:GetWidth())
+	PlayerHeals:SetFrameLevel(11)
 	PlayerHeals.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 	PlayerHeals.Enabled = profileReference.Player.Enabled
 
@@ -158,6 +161,7 @@ function RUF.HealPredictionUpdateOptions(self)
 	OtherHeals:SetStatusBarTexture(texture)
 	OtherHeals:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Health.Fill)
 	OtherHeals:SetWidth(self.__owner:GetWidth())
+	OtherHeals:SetFrameLevel(11)
 	OtherHeals.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 	OtherHeals.Enabled = profileReference.Others.Enabled
 

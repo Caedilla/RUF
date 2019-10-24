@@ -83,7 +83,7 @@ function RUF.SetHealthBar(self, unit)
 	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetAllPoints(self)
-	Bar:SetFrameLevel(2)
+	Bar:SetFrameLevel(11)
 	Bar:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill)
 	Bar.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 
@@ -108,7 +108,7 @@ function RUF.HealthUpdateOptions(self)
 	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetAllPoints(self.__owner)
-	Bar:SetFrameLevel(2)
+	Bar:SetFrameLevel(10)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Health.Fill)
 	Bar.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
 

@@ -154,7 +154,7 @@ function RUF.SetCastBar(self, unit)
 	Bar.colorTapping = profileReference.Color.Tapped
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
 	Bar:SetStatusBarTexture(texture)
-	Bar:SetFrameLevel(3)
+	Bar:SetFrameLevel(200)
 	Bar:SetFillStyle(unitProfile.Fill)
 	Bar:SetWidth(unitProfile.Width)
 	Bar:SetHeight(unitProfile.Height)
@@ -175,7 +175,7 @@ function RUF.SetCastBar(self, unit)
 
 	-- Border
 	Border:SetAllPoints(Bar)
-	Border:SetFrameLevel(7)
+	Border:SetFrameLevel(201)
 	Border:SetBackdrop({edgeFile = LSM:Fetch('border', profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
 	local borderr, borderg, borderb = unpack(profileReference.Border.Color)
 	Border:SetBackdropBorderColor(borderr, borderg, borderb, profileReference.Border.Alpha)
@@ -331,14 +331,14 @@ function RUF.CastUpdateOptions(self)
 
 	-- Border
 	Border:SetAllPoints(Bar)
-	Border:SetFrameLevel(7)
+	Border:SetFrameLevel(17)
 	Border:SetBackdrop({edgeFile = LSM:Fetch('border', profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
 	local borderr, borderg, borderb = unpack(profileReference.Border.Color)
 	Border:SetBackdropBorderColor(borderr, borderg, borderb, profileReference.Border.Alpha)
 
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Cast.Texture)
 	Bar:SetStatusBarTexture(texture)
-	Bar:SetFrameLevel(5)
+	Bar:SetFrameLevel(15)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Cast.Fill)
 	Bar:PostCastStart(unit)
 	Bar:OnUpdate()

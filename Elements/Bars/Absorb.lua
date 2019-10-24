@@ -20,7 +20,7 @@ function RUF.SetAbsorbBar(self, unit)
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Absorb.Animate
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Absorb.Enabled == 1
 	Bar:SetStatusBarTexture(Texture)
-	Bar:SetFrameLevel(3)
+	Bar:SetFrameLevel(12)
 	Bar:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Absorb.Fill)
 
 	if RUF.db.profile.Appearance.Bars.Absorb.Type == 1 then
@@ -102,7 +102,7 @@ function RUF.AbsorbUpdateOptions(self)
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Absorb.Animate
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Absorb.Enabled == 1
 	Bar:SetStatusBarTexture(Texture)
-	Bar:SetFrameLevel(3)
+	Bar:SetFrameLevel(12)
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Absorb.Fill)
 
 	if Bar.Smooth == true then
