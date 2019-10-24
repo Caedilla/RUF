@@ -1,4 +1,7 @@
 # RUF r215-alpha
+### New
+* Added an option to set how names are trimmed or abbreviated a name is longer than the character limit setting.
+
 ### Changed
 * Frame level has been increased for all elements and the unit frame as a whole, so you should be able to anchor other frames behind the unit frames more easily now if you desire. Anything with a Frame Strata of LOW and Frame Level under 5 should end up behind all of the unit frames, with no part of the frame being on the BACKGROUND frame strata any longer, so a Frame Strata of BACKGROUND should also be enough alone to be below the frame.
 
