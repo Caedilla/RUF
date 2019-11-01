@@ -313,7 +313,7 @@ function RUF.CastInterrupted(element, unit, name)
 	a = profileReference.Background.Alpha
 	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 	if element.Text then
-		if profileReference.Time.Text.Enabled == true then
+		if profileReference.Text.Enabled == true then
 			element.Text:SetText(name)
 		else
 			element.Text:SetText('')
@@ -350,7 +350,7 @@ function RUF.CastUpdate(element, unit, name)
 	a = profileReference.Background.Alpha
 	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 	if element.Text then
-		if profileReference.Time.Text.Enabled == true then
+		if profileReference.Text.Enabled == true then
 			element.Text:SetText(name)
 		else
 			element.Text:SetText('')
@@ -387,7 +387,7 @@ function RUF.ChannelUpdate(element, unit, name)
 	a = profileReference.Background.Alpha
 	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 	if element.Text then
-		if profileReference.Time.Text.Enabled == true then
+		if profileReference.Text.Enabled == true then
 			element.Text:SetText(name)
 		else
 			element.Text:SetText('')
