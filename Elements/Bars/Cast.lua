@@ -26,9 +26,12 @@ local function onUpdate(self, elapsed)
 	elapsed = elapsed or 0
 	self.updateThrottle = self.updateThrottle or 0
 	self.updateThrottle = self.updateThrottle + elapsed
-	if self.updateThrottle < 0.0125 then return end
+	local limit = 1.75/GetFramerate() -- limit onUpdate rate for slightly better performance. 0.0125
+	if self.updateThrottle < limit then return end
 	local add = self.updateThrottle
 	self.updateThrottle = 0
+
+	local profileReference = RUF.db.profile.Appearance.Bars.Cast
 	if RUF.db.global.TestMode == true and not InCombatLockdown() then
 		local duration = self.testDuration or 0
 		duration = duration + add
@@ -42,6 +45,7 @@ local function onUpdate(self, elapsed)
 		else
 			self.testDuration = 0
 		end
+
 	elseif(self.casting) then
 		local duration = self.duration + add
 		if(duration >= self.max) then
@@ -52,22 +56,26 @@ local function onUpdate(self, elapsed)
 			return
 		end
 
-		if(self.Time) then --and RUF.db.profile.unit[self.__owner.frame].Frame.Bars.Cast.Time.Enabled then
-			--local style = RUF.db.profile.unit[self.__owner.frame].Frame.Bars.Cast.Time.Style
-			--if style == 1 then
-			--elseif style == 2 then
-			--end
-			if(self.delay ~= 0) then
-				if(self.CustomDelayText) then
-					self:CustomDelayText(duration)
-				else
+		if(self.Time) and profileReference.Time.Enabled then
+			local textStyle = profileReference.Time.Style or 1
+			if textStyle == 1 then
+				if self.delay ~= 0 then
 					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r', duration, self.delay)
-				end
-			else
-				if(self.CustomTimeText) then
-					self:CustomTimeText(duration)
 				else
 					self.Time:SetFormattedText('%.1f', duration)
+				end
+			elseif textStyle == 2 then
+				local remaining = self.max - duration
+				if self.delay ~= 0 then
+					self.Time:SetFormattedText('%.1f|cffff0000+%.1f|r', remaining, self.delay)
+				else
+					self.Time:SetFormattedText('%.1f', remaining)
+				end
+			elseif textStyle == 3 then
+				if self.delay ~= 0 then
+					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r/%.1f', duration, self.delay, self.max)
+				else
+					self.Time:SetFormattedText('%.1f/%.1f', duration, self.max)
 				end
 			end
 		end
@@ -86,6 +94,7 @@ local function onUpdate(self, elapsed)
 
 			self.Spark:SetPoint('CENTER', self, horiz and 'LEFT' or 'BOTTOM', horiz and offset or 0, horiz and 0 or offset)
 		end
+
 	elseif(self.channeling) then
 		local duration = self.duration - add
 
@@ -97,18 +106,27 @@ local function onUpdate(self, elapsed)
 			return
 		end
 
-		if(self.Time) then
-			if(self.delay ~= 0) then
-				if(self.CustomDelayText) then
-					self:CustomDelayText(duration)
+		if(self.Time) and profileReference.Time.Enabled then
+			local textStyle = profileReference.Time.Style or 1
+			if textStyle == 1 then
+				local remaining = self.max - duration
+				if self.delay ~= 0 then
+					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r', remaining, self.delay)
 				else
-					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r', duration, self.delay)
+					self.Time:SetFormattedText('%.1f', remaining)
 				end
-			else
-				if(self.CustomTimeText) then
-					self:CustomTimeText(duration)
+			elseif textStyle == 2 then
+				if self.delay ~= 0 then
+					self.Time:SetFormattedText('%.1f|cffff0000+%.1f|r', duration, self.delay)
 				else
 					self.Time:SetFormattedText('%.1f', duration)
+				end
+			elseif textStyle == 3 then
+				local remaining = self.max - duration
+				if self.delay ~= 0 then
+					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r/%.1f', remaining, self.delay, self.max)
+				else
+					self.Time:SetFormattedText('%.1f/%.1f', remaining, self.max)
 				end
 			end
 		end
@@ -191,6 +209,7 @@ function RUF.SetCastBar(self, unit)
 	-- Text
 	local Time = Bar:CreateFontString(nil, 'OVERLAY', 'Raeli')
 	local Text = Bar:CreateFontString(nil, 'OVERLAY', 'Raeli')
+
 	if unitProfile.Fill == 'REVERSE' then
 		Time:SetPoint('LEFT', Bar, 4, 0)
 		Text:SetPoint('RIGHT', Bar, -4, 0)
@@ -198,6 +217,18 @@ function RUF.SetCastBar(self, unit)
 		Time:SetPoint('RIGHT', Bar, -4, 0)
 		Text:SetPoint('LEFT', Bar, 4, 0)
 	end
+
+	-- Time
+	local font = LSM:Fetch('font', profileReference.Time.Font or 'RUF')
+	local size = profileReference.Time.Size or 18
+	local outline = profileReference.Time.Outline or 'OUTLINE'
+	Time:SetFont(font, size, outline)
+
+	-- Cast Text
+	font = LSM:Fetch('font', profileReference.Text.Font or 'RUF')
+	size = profileReference.Text.Size or 18
+	outline = profileReference.Text.Outline or 'OUTLINE'
+	Text:SetFont(font, size, outline)
 
 	-- Spark
 	--local Spark = Bar:CreateTexture(nil, 'OVERLAY')
@@ -327,7 +358,10 @@ function RUF.CastUpdateOptions(self)
 	local unit = self.__owner.frame
 	local Bar = self
 	local Border = self.Border
+	local Time = self.Time
+	local Text = self.Text
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
+	local unitProfile = RUF.db.profile.unit[unit].Frame.Bars.Cast
 
 	-- Border
 	Border:SetAllPoints(Bar)
@@ -339,7 +373,29 @@ function RUF.CastUpdateOptions(self)
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Cast.Texture)
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetFrameLevel(15)
-	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Cast.Fill)
+	Bar:SetFillStyle(unitProfile.Fill)
 	Bar:PostCastStart(unit)
 	Bar:OnUpdate()
+
+	-- Text Position
+	if unitProfile.Fill == 'REVERSE' then
+		Time:SetPoint('LEFT', Bar, 4, 0)
+		Text:SetPoint('RIGHT', Bar, -4, 0)
+	else
+		Time:SetPoint('RIGHT', Bar, -4, 0)
+		Text:SetPoint('LEFT', Bar, 4, 0)
+	end
+
+	-- Time
+	local font = LSM:Fetch('font', profileReference.Time.Font or 'RUF')
+	local size = profileReference.Time.Size or 18
+	local outline = profileReference.Time.Outline or 'OUTLINE'
+	Time:SetFont(font, size, outline)
+
+	-- Cast Text
+	font = LSM:Fetch('font', profileReference.Text.Font or 'RUF')
+	size = profileReference.Text.Size or 18
+	outline = profileReference.Text.Outline or 'OUTLINE'
+	Text:SetFont(font, size, outline)
+
 end

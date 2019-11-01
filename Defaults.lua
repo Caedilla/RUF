@@ -189,6 +189,20 @@ local cfg = {
 						Color = {0, 194/255, 1},
 						Alpha = 1,
 					},
+					["Time"] = {
+						["Enabled"] = true,
+						["Font"] = "RUF",
+						["Size"] = 18,
+						["Outline"] = "Outline",
+						["Style"] = 2,
+					},
+					["Text"] = {
+						["Enabled"] = true,
+						["Font"] = "RUF",
+						["Size"] = 18,
+						["Outline"] = "Outline",
+						["Style"] = 2,
+					},
 				},
 				HealPrediction = {
 					Overflow = 0,

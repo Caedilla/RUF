@@ -103,7 +103,7 @@ function RUF.CreateTextArea(self, unit, textName)
 	local size = profileReference.Size or 18
 
 	local Text = self.Text[textName]:CreateFontString(name .. '.Text.' .. textName .. '.String' , 'OVERLAY')
-	Text:SetFont(Font, profileReference.Size, profileReference.Outline)
+	Text:SetFont(Font, size, profileReference.Outline)
 
 	if not profileReference.Shadow then profileReference.Shadow = 0 end
 	Text:SetShadowColor(0,0,0,profileReference.Shadow or 1)
