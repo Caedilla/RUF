@@ -7,6 +7,9 @@ A unitframe layout for oUF
 # About
 **RUF** is a configurable Unit Frame addon using oUF. RUF isn't as fully featured as some unit frames, but should also use less resources while playing than most unit frame addons too.
 
+# Examples
+![Some more recent examples](https://media.forgecdn.net/attachments/267/448/curseforge-preview.png "Some more recent examples")
+
 # Features
 * Supports Player, Pet, Target, Pet's Target, Target's Target, Party, and Party Pets.
 * Nickname - Like Details! In fact, this is synced with Details! This will sync to other people using RUF or Details! (or any other addon that supports NickTag-1.0)
