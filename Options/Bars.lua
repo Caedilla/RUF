@@ -89,6 +89,7 @@ function RUF_Options.Bars()
 					type = 'group',
 					order = 0,
 					inline = true,
+					childGroups = 'tab',
 					args = {
 						baseColor = {
 							name = L["Base Color"],
@@ -310,6 +311,233 @@ function RUF_Options.Bars()
 								RUF:OptionsUpdateAllBars()
 							end,
 						},
+						timeText = {
+							name = L["Time Text"],
+							type = 'group',
+							order = 10,
+							hidden = i ~= 5,
+							args = {
+								enabled = {
+									name = function()
+										if RUF.db.profile.Appearance.Bars[Bar[i]].Time.Enabled == true then
+											return '|cFF00FF00'..L["Enabled"]..'|r'
+										else
+											return '|cFFFF0000'..L["Enabled"]..'|r'
+										end
+									end,
+									type = 'toggle',
+									order = 0.0,
+									get = function(info)
+										return RUF.db.profile.Appearance.Bars[Bar[i]].Time.Enabled
+									end,
+									set = function(info, value)
+										RUF.db.profile.Appearance.Bars[Bar[i]].Time.Enabled = value
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+								enabledSpacer = {
+									name = '',
+									type = 'description',
+									order = 1,
+									width = 'full',
+								},
+								style = {
+									name = L["Style"],
+									type = 'select',
+									order = 2,
+									values = {
+										[1] = L["Duration"],
+										[2] = L["Remaining"],
+										[3] = L["Duration/Max"],
+									},
+									get = function(info)
+										return RUF.db.profile.Appearance.Bars[Bar[i]].Time.Style
+									end,
+									set = function(info, value)
+										RUF.db.profile.Appearance.Bars[Bar[i]].Time.Style = value
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+								font = {
+									name = L["Font"],
+									type = 'select',
+									order = 10,
+									values = LSM:HashTable('font'),
+									dialogControl = 'LSM30_Font',
+									get = function(info)
+										return RUF.db.profile.Appearance.Bars[Bar[i]].Time.Font
+									end,
+									set = function(info, value)
+										RUF.db.profile.Appearance.Bars[Bar[i]].Time.Font = value
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+								fontSize = {
+									name = L["Font Size"],
+									type = 'range',
+									order = 10,
+									min = 4,
+									max = 256,
+									softMin = 8,
+									softMax = 48,
+									step = 1,
+									bigStep = 1,
+									get = function(info)
+										return RUF.db.profile.Appearance.Bars[Bar[i]].Time.Size
+									end,
+									set = function(info, value)
+										RUF.db.profile.Appearance.Bars[Bar[i]].Time.Size = value
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+								fontOutline = {
+									name = L["Outline"],
+									type = 'select',
+									order = 10,
+									values = {
+										[''] = L["None"],
+										['OUTLINE'] = L["Outline"],
+										['THICKOUTLINE'] = L["Thick Outline"],
+										['MONOCHROME'] = L["Monochrome"],
+										['MONOCHROME,OUTLINE'] = L["Monochrome Outline"],
+										['MONOCHROME,THICKOUTLINE'] = L["Monochrome Thick Outline"],
+									},
+									get = function(info)
+										return RUF.db.profile.Appearance.Bars[Bar[i]].Time.Outline
+									end,
+									set = function(info, value)
+										RUF.db.profile.Appearance.Bars[Bar[i]].Time.Outline = value
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+								fontShadow = {
+									name = L["Shadow"],
+									type = 'toggle',
+									desc = L["Enable Text Shadow"],
+									order = 10,
+									get = function(info)
+										if RUF.db.profile.Appearance.Bars[Bar[i]].Time.Shadow == 1 then
+											return true
+										else
+											return false
+										end
+									end,
+									set = function(info, value)
+										if value == true then
+											RUF.db.profile.Appearance.Bars[Bar[i]].Time.Shadow = 1
+										else
+											RUF.db.profile.Appearance.Bars[Bar[i]].Time.Shadow = 0
+										end
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+							},
+						},
+						castText = {
+							name = L["Cast Text"],
+							type = 'group',
+							order = 10,
+							hidden = i ~= 5,
+							args = {
+								enabled = {
+									name = function()
+										if RUF.db.profile.Appearance.Bars[Bar[i]].Text.Enabled == true then
+											return '|cFF00FF00'..L["Enabled"]..'|r'
+										else
+											return '|cFFFF0000'..L["Enabled"]..'|r'
+										end
+									end,
+									type = 'toggle',
+									order = 0.0,
+									get = function(info)
+										return RUF.db.profile.Appearance.Bars[Bar[i]].Text.Enabled
+									end,
+									set = function(info, value)
+										RUF.db.profile.Appearance.Bars[Bar[i]].Text.Enabled = value
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+								enabledSpacer = {
+									name = '',
+									type = 'description',
+									order = 1,
+									width = 'full',
+								},
+								font = {
+									name = L["Font"],
+									type = 'select',
+									order = 10,
+									values = LSM:HashTable('font'),
+									dialogControl = 'LSM30_Font',
+									get = function(info)
+										return RUF.db.profile.Appearance.Bars[Bar[i]].Text.Font
+									end,
+									set = function(info, value)
+										RUF.db.profile.Appearance.Bars[Bar[i]].Text.Font = value
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+								fontSize = {
+									name = L["Font Size"],
+									type = 'range',
+									order = 10,
+									min = 4,
+									max = 256,
+									softMin = 8,
+									softMax = 48,
+									step = 1,
+									bigStep = 1,
+									get = function(info)
+										return RUF.db.profile.Appearance.Bars[Bar[i]].Text.Size
+									end,
+									set = function(info, value)
+										RUF.db.profile.Appearance.Bars[Bar[i]].Text.Size = value
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+								fontOutline = {
+									name = L["Outline"],
+									type = 'select',
+									order = 10,
+									values = {
+										[''] = L["None"],
+										['OUTLINE'] = L["Outline"],
+										['THICKOUTLINE'] = L["Thick Outline"],
+										['MONOCHROME'] = L["Monochrome"],
+										['MONOCHROME,OUTLINE'] = L["Monochrome Outline"],
+										['MONOCHROME,THICKOUTLINE'] = L["Monochrome Thick Outline"],
+									},
+									get = function(info)
+										return RUF.db.profile.Appearance.Bars[Bar[i]].Text.Outline
+									end,
+									set = function(info, value)
+										RUF.db.profile.Appearance.Bars[Bar[i]].Text.Outline = value
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+								fontShadow = {
+									name = L["Shadow"],
+									type = 'toggle',
+									desc = L["Enable Text Shadow"],
+									order = 10,
+									get = function(info)
+										if RUF.db.profile.Appearance.Bars[Bar[i]].Text.Shadow == 1 then
+											return true
+										else
+											return false
+										end
+									end,
+									set = function(info, value)
+										if value == true then
+											RUF.db.profile.Appearance.Bars[Bar[i]].Text.Shadow = 1
+										else
+											RUF.db.profile.Appearance.Bars[Bar[i]].Text.Shadow = 0
+										end
+										RUF:OptionsUpdateAllBars()
+									end,
+								},
+							},
+						},
 						spacerPercentage = {
 							name = " ",
 							type = 'description',
@@ -336,6 +564,7 @@ function RUF_Options.Bars()
 							type = 'description',
 							order = 1.25,
 							width = 'full',
+							hidden = function() return (i >= 3) end,
 						},
 						percent100 = {
 							name = L["100%"],
@@ -392,6 +621,7 @@ function RUF_Options.Bars()
 							type = 'description',
 							order = 1.35,
 							width = 'full',
+							hidden = function() return not RUF.db.profile.Appearance.Bars[Bar[i]].Color.Percentage end,
 						},
 						percent50 = {
 							name = L["50%"],
@@ -448,6 +678,7 @@ function RUF_Options.Bars()
 							type = 'description',
 							order = 1.45,
 							width = 'full',
+							hidden = function() return not RUF.db.profile.Appearance.Bars[Bar[i]].Color.Percentage end,
 						},
 						percent0 = {
 							name = L["0%"],
@@ -1020,6 +1251,7 @@ function RUF_Options.Bars()
 							RUF:OptionsUpdateAllBars()
 						end,
 					},
+
 					baseColor = {
 						name = L["Base Color"],
 						desc = L["Color used if none of the other options are checked."],

@@ -56,27 +56,31 @@ local function onUpdate(self, elapsed)
 			return
 		end
 
-		if(self.Time) and profileReference.Time.Enabled then
-			local textStyle = profileReference.Time.Style or 1
-			if textStyle == 1 then
-				if self.delay ~= 0 then
-					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r', duration, self.delay)
-				else
-					self.Time:SetFormattedText('%.1f', duration)
+		if(self.Time) then
+			if profileReference.Time.Enabled then
+				local textStyle = profileReference.Time.Style or 1
+				if textStyle == 1 then
+					if self.delay ~= 0 then
+						self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r', duration, self.delay)
+					else
+						self.Time:SetFormattedText('%.1f', duration)
+					end
+				elseif textStyle == 2 then
+					local remaining = self.max - duration
+					if self.delay ~= 0 then
+						self.Time:SetFormattedText('%.1f|cffff0000+%.1f|r', remaining, self.delay)
+					else
+						self.Time:SetFormattedText('%.1f', remaining)
+					end
+				elseif textStyle == 3 then
+					if self.delay ~= 0 then
+						self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r/%.1f', duration, self.delay, self.max)
+					else
+						self.Time:SetFormattedText('%.1f/%.1f', duration, self.max)
+					end
 				end
-			elseif textStyle == 2 then
-				local remaining = self.max - duration
-				if self.delay ~= 0 then
-					self.Time:SetFormattedText('%.1f|cffff0000+%.1f|r', remaining, self.delay)
-				else
-					self.Time:SetFormattedText('%.1f', remaining)
-				end
-			elseif textStyle == 3 then
-				if self.delay ~= 0 then
-					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r/%.1f', duration, self.delay, self.max)
-				else
-					self.Time:SetFormattedText('%.1f/%.1f', duration, self.max)
-				end
+			else
+				self.Time:SetText('')
 			end
 		end
 
@@ -106,28 +110,32 @@ local function onUpdate(self, elapsed)
 			return
 		end
 
-		if(self.Time) and profileReference.Time.Enabled then
-			local textStyle = profileReference.Time.Style or 1
-			if textStyle == 1 then
-				local remaining = self.max - duration
-				if self.delay ~= 0 then
-					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r', remaining, self.delay)
-				else
-					self.Time:SetFormattedText('%.1f', remaining)
+		if(self.Time) then
+			if profileReference.Time.Enabled then
+				local textStyle = profileReference.Time.Style or 1
+				if textStyle == 1 then
+					local remaining = self.max - duration
+					if self.delay ~= 0 then
+						self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r', remaining, self.delay)
+					else
+						self.Time:SetFormattedText('%.1f', remaining)
+					end
+				elseif textStyle == 2 then
+					if self.delay ~= 0 then
+						self.Time:SetFormattedText('%.1f|cffff0000+%.1f|r', duration, self.delay)
+					else
+						self.Time:SetFormattedText('%.1f', duration)
+					end
+				elseif textStyle == 3 then
+					local remaining = self.max - duration
+					if self.delay ~= 0 then
+						self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r/%.1f', remaining, self.delay, self.max)
+					else
+						self.Time:SetFormattedText('%.1f/%.1f', remaining, self.max)
+					end
 				end
-			elseif textStyle == 2 then
-				if self.delay ~= 0 then
-					self.Time:SetFormattedText('%.1f|cffff0000+%.1f|r', duration, self.delay)
-				else
-					self.Time:SetFormattedText('%.1f', duration)
-				end
-			elseif textStyle == 3 then
-				local remaining = self.max - duration
-				if self.delay ~= 0 then
-					self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r/%.1f', remaining, self.delay, self.max)
-				else
-					self.Time:SetFormattedText('%.1f/%.1f', remaining, self.max)
-				end
+			else
+				self.Time:SetText('')
 			end
 		end
 
@@ -222,12 +230,18 @@ function RUF.SetCastBar(self, unit)
 	local font = LSM:Fetch('font', profileReference.Time.Font or 'RUF')
 	local size = profileReference.Time.Size or 18
 	local outline = profileReference.Time.Outline or 'OUTLINE'
+	local shadow = profileReference.Time.Shadow or 1
+	Time:SetShadowColor(0, 0, 0, shadow)
+	Time:SetShadowOffset(1, -1)
 	Time:SetFont(font, size, outline)
 
 	-- Cast Text
 	font = LSM:Fetch('font', profileReference.Text.Font or 'RUF')
 	size = profileReference.Text.Size or 18
 	outline = profileReference.Text.Outline or 'OUTLINE'
+	shadow = profileReference.Text.Shadow or 1
+	Text:SetShadowColor(0, 0, 0, shadow)
+	Text:SetShadowOffset(1, -1)
 	Text:SetFont(font, size, outline)
 
 	-- Spark
@@ -275,27 +289,36 @@ function RUF.CastInterrupted(element, unit, name)
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
-	if notInterruptible and RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Enabled then
-		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
+	local profileReference = RUF.db.profile.Appearance.Bars.Cast
+
+	if notInterruptible and profileReference.ColorInterrupt.Enabled then
+		r, g, b = unpack(profileReference.ColorInterrupt.Color)
 	else
 		r, g, b = RUF:GetBarColor(element, unit, 'Cast')
 	end
 	element:SetStatusBarColor(r, g, b)
 	if element.SafeZone then
-		if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
-			local sr, sg, sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
-			local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+		if profileReference.SafeZone.Enabled == true then
+			local sr, sg, sb = unpack(profileReference.SafeZone.Color)
+			local sa = profileReference.SafeZone.Alpha
 			element.SafeZone:SetColorTexture(sr, sg, sb, sa)
 		else
 			element.SafeZone:SetColorTexture(0, 0, 0, 0)
 		end
 	end
-	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
-		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
+	if profileReference.Background.UseBarColor == false then
+		r, g, b = unpack(profileReference.Background.CustomColor)
 	end
-	bgMult = RUF.db.profile.Appearance.Bars.Cast.Background.Multiplier
-	a = RUF.db.profile.Appearance.Bars.Cast.Background.Alpha
+	bgMult = profileReference.Background.Multiplier
+	a = profileReference.Background.Alpha
 	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
+	if element.Text then
+		if profileReference.Time.Text.Enabled == true then
+			element.Text:SetText(name)
+		else
+			element.Text:SetText('')
+		end
+	end
 end
 
 function RUF.CastUpdate(element, unit, name)
@@ -303,27 +326,36 @@ function RUF.CastUpdate(element, unit, name)
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
-	if notInterruptible and RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Enabled then
-		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
+	local profileReference = RUF.db.profile.Appearance.Bars.Cast
+
+	if notInterruptible and profileReference.ColorInterrupt.Enabled then
+		r, g, b = unpack(profileReference.ColorInterrupt.Color)
 	else
 		r, g, b = RUF:GetBarColor(element, unit, 'Cast')
 	end
 	element:SetStatusBarColor(r, g, b)
 	if element.SafeZone then
-		if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
-			local sr, sg, sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
-			local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+		if profileReference.SafeZone.Enabled == true then
+			local sr, sg, sb = unpack(profileReference.SafeZone.Color)
+			local sa = profileReference.SafeZone.Alpha
 			element.SafeZone:SetColorTexture(sr, sg, sb, sa)
 		else
 			element.SafeZone:SetColorTexture(0, 0, 0, 0)
 		end
 	end
-	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
-		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
+	if profileReference.Background.UseBarColor == false then
+		r, g, b = unpack(profileReference.Background.CustomColor)
 	end
-	bgMult = RUF.db.profile.Appearance.Bars.Cast.Background.Multiplier
-	a = RUF.db.profile.Appearance.Bars.Cast.Background.Alpha
+	bgMult = profileReference.Background.Multiplier
+	a = profileReference.Background.Alpha
 	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
+	if element.Text then
+		if profileReference.Time.Text.Enabled == true then
+			element.Text:SetText(name)
+		else
+			element.Text:SetText('')
+		end
+	end
 end
 
 function RUF.ChannelUpdate(element, unit, name)
@@ -331,27 +363,36 @@ function RUF.ChannelUpdate(element, unit, name)
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, notInterruptible = UnitChannelInfo(unit)
-	if notInterruptible and RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Enabled then
-		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.ColorInterrupt.Color)
+	local profileReference = RUF.db.profile.Appearance.Bars.Cast
+
+	if notInterruptible and profileReference.ColorInterrupt.Enabled then
+		r, g, b = unpack(profileReference.ColorInterrupt.Color)
 	else
 		r, g, b = RUF:GetBarColor(element, unit, 'Cast')
 	end
 	element:SetStatusBarColor(r, g, b)
 	if element.SafeZone then
-		if RUF.db.profile.Appearance.Bars.Cast.SafeZone.Enabled == true then
-			local sr, sg, sb = unpack(RUF.db.profile.Appearance.Bars.Cast.SafeZone.Color)
-			local sa = RUF.db.profile.Appearance.Bars.Cast.SafeZone.Alpha
+		if profileReference.SafeZone.Enabled == true then
+			local sr, sg, sb = unpack(profileReference.SafeZone.Color)
+			local sa = profileReference.SafeZone.Alpha
 			element.SafeZone:SetColorTexture(sr, sg, sb, sa)
 		else
 			element.SafeZone:SetColorTexture(0, 0, 0, 0)
 		end
 	end
-	if RUF.db.profile.Appearance.Bars.Cast.Background.UseBarColor == false then
-		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Cast.Background.CustomColor)
+	if profileReference.Background.UseBarColor == false then
+		r, g, b = unpack(profileReference.Background.CustomColor)
 	end
-	bgMult = RUF.db.profile.Appearance.Bars.Cast.Background.Multiplier
-	a = RUF.db.profile.Appearance.Bars.Cast.Background.Alpha
+	bgMult = profileReference.Background.Multiplier
+	a = profileReference.Background.Alpha
 	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
+	if element.Text then
+		if profileReference.Time.Text.Enabled == true then
+			element.Text:SetText(name)
+		else
+			element.Text:SetText('')
+		end
+	end
 end
 
 function RUF.CastUpdateOptions(self)
@@ -390,12 +431,18 @@ function RUF.CastUpdateOptions(self)
 	local font = LSM:Fetch('font', profileReference.Time.Font or 'RUF')
 	local size = profileReference.Time.Size or 18
 	local outline = profileReference.Time.Outline or 'OUTLINE'
+	local shadow = profileReference.Time.Shadow or 1
+	Time:SetShadowColor(0, 0, 0, shadow)
+	Time:SetShadowOffset(1, -1)
 	Time:SetFont(font, size, outline)
 
 	-- Cast Text
 	font = LSM:Fetch('font', profileReference.Text.Font or 'RUF')
 	size = profileReference.Text.Size or 18
 	outline = profileReference.Text.Outline or 'OUTLINE'
+	shadow = profileReference.Text.Shadow or 1
+	Text:SetShadowColor(0, 0, 0, shadow)
+	Text:SetShadowOffset(1, -1)
 	Text:SetFont(font, size, outline)
 
 end
