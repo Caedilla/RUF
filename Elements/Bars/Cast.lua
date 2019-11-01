@@ -42,8 +42,16 @@ local function onUpdate(self, elapsed)
 		if duration < 30.05 then
 			self:SetMinMaxValues(0, 30)
 			self:SetValue(duration)
-			self.Time:SetFormattedText('%.1f', duration)
-			self.Text:SetText(L['Cast Bar'] .. ' - ' .. L[self.__owner.frame])
+			if unitProfile.Time.Enabled then
+				self.Time:SetFormattedText('%.1f', duration)
+			else
+				self.Time:SetText('')
+			end
+			if unitProfile.Text.Enabled then
+				self.Text:SetText(L['Cast Bar'] .. ' - ' .. L[self.__owner.frame])
+			else
+				self.Text:SetText('')
+			end
 		else
 			self.testDuration = 0
 		end
