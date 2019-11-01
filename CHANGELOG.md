@@ -1,10 +1,6 @@
-# RUF r216-release
+# RUF r217-alpha
 ### New
-* Added an option to set how names are trimmed or abbreviated a name is longer than the character limit setting.
-* Added an option to the Player frame settings to set if the player frame is replaced with the vehicle unit or not when entering a vehicle.
-
-### Changed
-* Frame level has been increased for all elements and the unit frame as a whole, so you should be able to anchor other frames behind the unit frames more easily now if you desire. Anything with a Frame Strata of LOW and Frame Level under 5 should end up behind all of the unit frames, with no part of the frame being on the BACKGROUND frame strata any longer, so a Frame Strata of BACKGROUND should also be enough alone to be below the frame.
+* Added options to control appearance of the castbar text and time. Available under each unit's castbar settings.
 
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.

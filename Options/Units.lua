@@ -2510,7 +2510,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 								values = {
 									[1] = L["Duration"],
 									[2] = L["Remaining"],
-									[3] = L["%s/%s"]:format(L["Duration"],L["Max"]),
+									[3] = ("%s/%s"):format(L["Duration"],L["Max"]),
 								},
 								get = function(info)
 									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Style
