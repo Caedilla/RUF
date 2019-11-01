@@ -2282,6 +2282,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 		name = L["Cast Bar"],
 		type = 'group',
 		order = 15,
+		childGroups = 'tab',
 		hidden = function()
 			if profileName == 'player' or profileName == 'target' then
 				return false
@@ -2466,6 +2467,239 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 					RUF.db.profile.unit[profileName].Frame.Bars.Cast.Position.AnchorTo = value
 					RUF:OptionsUpdateCastbars()
 				end,
+			},
+			text = {
+				name = L["Text"],
+				type = 'group',
+				order = 100,
+				childGroups = 'tab',
+				args = {
+					timeText = {
+						name = L["Time"],
+						type = 'group',
+						order = 0,
+						args = {
+							enabled = {
+								name = function()
+									if RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Enabled == true then
+										return '|cFF00FF00'..L["Enabled"]..'|r'
+									else
+										return '|cFFFF0000'..L["Enabled"]..'|r'
+									end
+								end,
+								type = 'toggle',
+								order = 0.0,
+								get = function(info)
+									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Enabled
+								end,
+								set = function(info, value)
+									RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Enabled = value
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+							enabledSpacer = {
+								name = '',
+								type = 'description',
+								order = 1,
+								width = 'full',
+							},
+							style = {
+								name = L["Style"],
+								type = 'select',
+								order = 2,
+								values = {
+									[1] = L["Duration"],
+									[2] = L["Remaining"],
+									[3] = L["Duration/Max"],
+								},
+								get = function(info)
+									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Style
+								end,
+								set = function(info, value)
+									RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Style = value
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+							font = {
+								name = L["Font"],
+								type = 'select',
+								order = 10,
+								values = LSM:HashTable('font'),
+								dialogControl = 'LSM30_Font',
+								get = function(info)
+									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Font
+								end,
+								set = function(info, value)
+									RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Font = value
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+							fontSize = {
+								name = L["Font Size"],
+								type = 'range',
+								order = 10,
+								min = 4,
+								max = 256,
+								softMin = 8,
+								softMax = 48,
+								step = 1,
+								bigStep = 1,
+								get = function(info)
+									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Size
+								end,
+								set = function(info, value)
+									RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Size = value
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+							fontOutline = {
+								name = L["Outline"],
+								type = 'select',
+								order = 10,
+								values = {
+									[''] = L["None"],
+									['OUTLINE'] = L["Outline"],
+									['THICKOUTLINE'] = L["Thick Outline"],
+									['MONOCHROME'] = L["Monochrome"],
+									['MONOCHROME,OUTLINE'] = L["Monochrome Outline"],
+									['MONOCHROME,THICKOUTLINE'] = L["Monochrome Thick Outline"],
+								},
+								get = function(info)
+									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Outline
+								end,
+								set = function(info, value)
+									RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Outline = value
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+							fontShadow = {
+								name = L["Shadow"],
+								type = 'toggle',
+								desc = L["Enable Text Shadow"],
+								order = 10,
+								get = function(info)
+									if RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Shadow == 1 then
+										return true
+									else
+										return false
+									end
+								end,
+								set = function(info, value)
+									if value == true then
+										RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Shadow = 1
+									else
+										RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Shadow = 0
+									end
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+						},
+					},
+					castText = {
+						name = L["Cast"],
+						type = 'group',
+						order = 0,
+						args = {
+							enabled = {
+								name = function()
+									if RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Enabled == true then
+										return '|cFF00FF00'..L["Enabled"]..'|r'
+									else
+										return '|cFFFF0000'..L["Enabled"]..'|r'
+									end
+								end,
+								type = 'toggle',
+								order = 0.0,
+								get = function(info)
+									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Enabled
+								end,
+								set = function(info, value)
+									RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Enabled = value
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+							enabledSpacer = {
+								name = '',
+								type = 'description',
+								order = 1,
+								width = 'full',
+							},
+							font = {
+								name = L["Font"],
+								type = 'select',
+								order = 10,
+								values = LSM:HashTable('font'),
+								dialogControl = 'LSM30_Font',
+								get = function(info)
+									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Font
+								end,
+								set = function(info, value)
+									RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Font = value
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+							fontSize = {
+								name = L["Font Size"],
+								type = 'range',
+								order = 10,
+								min = 4,
+								max = 256,
+								softMin = 8,
+								softMax = 48,
+								step = 1,
+								bigStep = 1,
+								get = function(info)
+									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Size
+								end,
+								set = function(info, value)
+									RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Size = value
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+							fontOutline = {
+								name = L["Outline"],
+								type = 'select',
+								order = 10,
+								values = {
+									[''] = L["None"],
+									['OUTLINE'] = L["Outline"],
+									['THICKOUTLINE'] = L["Thick Outline"],
+									['MONOCHROME'] = L["Monochrome"],
+									['MONOCHROME,OUTLINE'] = L["Monochrome Outline"],
+									['MONOCHROME,THICKOUTLINE'] = L["Monochrome Thick Outline"],
+								},
+								get = function(info)
+									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Outline
+								end,
+								set = function(info, value)
+									RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Outline = value
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+							fontShadow = {
+								name = L["Shadow"],
+								type = 'toggle',
+								desc = L["Enable Text Shadow"],
+								order = 10,
+								get = function(info)
+									if RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Shadow == 1 then
+										return true
+									else
+										return false
+									end
+								end,
+								set = function(info, value)
+									if value == true then
+										RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Shadow = 1
+									else
+										RUF.db.profile.unit[profileName].Frame.Bars.Cast.Text.Shadow = 0
+									end
+									RUF:OptionsUpdateAllBars()
+								end,
+							},
+						},
+					},
+				},
 			},
 		},
 	}

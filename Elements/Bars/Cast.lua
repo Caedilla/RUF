@@ -32,6 +32,8 @@ local function onUpdate(self, elapsed)
 	self.updateThrottle = 0
 
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
+	local unitProfile = RUF.db.profile.unit[self.__owner.frame].Frame.Bars.Cast
+
 	if RUF.db.global.TestMode == true and not InCombatLockdown() then
 		local duration = self.testDuration or 0
 		duration = duration + add
@@ -57,8 +59,8 @@ local function onUpdate(self, elapsed)
 		end
 
 		if(self.Time) then
-			if profileReference.Time.Enabled then
-				local textStyle = profileReference.Time.Style or 1
+			if unitProfile.Time.Enabled then
+				local textStyle = unitProfile.Time.Style or 1
 				if textStyle == 1 then
 					if self.delay ~= 0 then
 						self.Time:SetFormattedText('%.1f|cffff0000-%.1f|r', duration, self.delay)
@@ -111,8 +113,8 @@ local function onUpdate(self, elapsed)
 		end
 
 		if(self.Time) then
-			if profileReference.Time.Enabled then
-				local textStyle = profileReference.Time.Style or 1
+			if unitProfile.Time.Enabled then
+				local textStyle = unitProfile.Time.Style or 1
 				if textStyle == 1 then
 					local remaining = self.max - duration
 					if self.delay ~= 0 then
@@ -227,19 +229,19 @@ function RUF.SetCastBar(self, unit)
 	end
 
 	-- Time
-	local font = LSM:Fetch('font', profileReference.Time.Font or 'RUF')
-	local size = profileReference.Time.Size or 18
-	local outline = profileReference.Time.Outline or 'OUTLINE'
-	local shadow = profileReference.Time.Shadow or 1
+	local font = LSM:Fetch('font', unitProfile.Time.Font or 'RUF')
+	local size = unitProfile.Time.Size or 18
+	local outline = unitProfile.Time.Outline or 'OUTLINE'
+	local shadow = unitProfile.Time.Shadow or 1
 	Time:SetShadowColor(0, 0, 0, shadow)
 	Time:SetShadowOffset(1, -1)
 	Time:SetFont(font, size, outline)
 
 	-- Cast Text
-	font = LSM:Fetch('font', profileReference.Text.Font or 'RUF')
-	size = profileReference.Text.Size or 18
-	outline = profileReference.Text.Outline or 'OUTLINE'
-	shadow = profileReference.Text.Shadow or 1
+	font = LSM:Fetch('font', unitProfile.Text.Font or 'RUF')
+	size = unitProfile.Text.Size or 18
+	outline = unitProfile.Text.Outline or 'OUTLINE'
+	shadow = unitProfile.Text.Shadow or 1
 	Text:SetShadowColor(0, 0, 0, shadow)
 	Text:SetShadowOffset(1, -1)
 	Text:SetFont(font, size, outline)
@@ -290,6 +292,7 @@ function RUF.CastInterrupted(element, unit, name)
 	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
+	local unitProfile = RUF.db.profile.unit[unit].Frame.Bars.Cast
 
 	if notInterruptible and profileReference.ColorInterrupt.Enabled then
 		r, g, b = unpack(profileReference.ColorInterrupt.Color)
@@ -313,7 +316,7 @@ function RUF.CastInterrupted(element, unit, name)
 	a = profileReference.Background.Alpha
 	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 	if element.Text then
-		if profileReference.Text.Enabled == true then
+		if unitProfile.Text.Enabled == true then
 			element.Text:SetText(name)
 		else
 			element.Text:SetText('')
@@ -327,6 +330,7 @@ function RUF.CastUpdate(element, unit, name)
 	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
+	local unitProfile = RUF.db.profile.unit[unit].Frame.Bars.Cast
 
 	if notInterruptible and profileReference.ColorInterrupt.Enabled then
 		r, g, b = unpack(profileReference.ColorInterrupt.Color)
@@ -350,7 +354,7 @@ function RUF.CastUpdate(element, unit, name)
 	a = profileReference.Background.Alpha
 	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 	if element.Text then
-		if profileReference.Text.Enabled == true then
+		if unitProfile.Text.Enabled == true then
 			element.Text:SetText(name)
 		else
 			element.Text:SetText('')
@@ -364,6 +368,7 @@ function RUF.ChannelUpdate(element, unit, name)
 	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, notInterruptible = UnitChannelInfo(unit)
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
+	local unitProfile = RUF.db.profile.unit[unit].Frame.Bars.Cast
 
 	if notInterruptible and profileReference.ColorInterrupt.Enabled then
 		r, g, b = unpack(profileReference.ColorInterrupt.Color)
@@ -387,7 +392,7 @@ function RUF.ChannelUpdate(element, unit, name)
 	a = profileReference.Background.Alpha
 	element.Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
 	if element.Text then
-		if profileReference.Text.Enabled == true then
+		if unitProfile.Text.Enabled == true then
 			element.Text:SetText(name)
 		else
 			element.Text:SetText('')
@@ -428,19 +433,19 @@ function RUF.CastUpdateOptions(self)
 	end
 
 	-- Time
-	local font = LSM:Fetch('font', profileReference.Time.Font or 'RUF')
-	local size = profileReference.Time.Size or 18
-	local outline = profileReference.Time.Outline or 'OUTLINE'
-	local shadow = profileReference.Time.Shadow or 1
+	local font = LSM:Fetch('font', unitProfile.Time.Font or 'RUF')
+	local size = unitProfile.Time.Size or 18
+	local outline = unitProfile.Time.Outline or 'OUTLINE'
+	local shadow = unitProfile.Time.Shadow or 1
 	Time:SetShadowColor(0, 0, 0, shadow)
 	Time:SetShadowOffset(1, -1)
 	Time:SetFont(font, size, outline)
 
 	-- Cast Text
-	font = LSM:Fetch('font', profileReference.Text.Font or 'RUF')
-	size = profileReference.Text.Size or 18
-	outline = profileReference.Text.Outline or 'OUTLINE'
-	shadow = profileReference.Text.Shadow or 1
+	font = LSM:Fetch('font', unitProfile.Text.Font or 'RUF')
+	size = unitProfile.Text.Size or 18
+	outline = unitProfile.Text.Outline or 'OUTLINE'
+	shadow = unitProfile.Text.Shadow or 1
 	Text:SetShadowColor(0, 0, 0, shadow)
 	Text:SetShadowOffset(1, -1)
 	Text:SetFont(font, size, outline)
