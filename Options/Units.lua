@@ -2504,13 +2504,13 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 								width = 'full',
 							},
 							style = {
-								name = L["Style"],
+								name = L["Display Style"],
 								type = 'select',
 								order = 2,
 								values = {
 									[1] = L["Duration"],
 									[2] = L["Remaining"],
-									[3] = L["Duration/Max"],
+									[3] = L["%s/%s"]:format(L["Duration"],L["Max"]),
 								},
 								get = function(info)
 									return RUF.db.profile.unit[profileName].Frame.Bars.Cast.Time.Style
@@ -2596,7 +2596,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 						},
 					},
 					castText = {
-						name = L["Cast"],
+						name = L["Spell Name"],
 						type = 'group',
 						order = 0,
 						args = {

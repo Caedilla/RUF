@@ -398,3 +398,7 @@ L["Abbreviate"] = true
 L["Initialism"] = true
 L["Replace frame with Vehicle"] = true
 L["Enable to replace this unit frame with the vehicle frame when in a vehicle. If disabled, the pet frame will become the vehicle frame instead."] = true
+L["Spell Name"] = true
+L["Time"] = true
+L["Max"] = true
+L["Remaining"] = true
