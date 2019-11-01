@@ -43,7 +43,15 @@ local function onUpdate(self, elapsed)
 			self:SetMinMaxValues(0, 30)
 			self:SetValue(duration)
 			if unitProfile.Time.Enabled then
-				self.Time:SetFormattedText('%.1f', duration)
+				local textStyle = unitProfile.Time.Style or 1
+				if textStyle == 1 then
+					self.Time:SetFormattedText('%.1f', duration)
+				elseif textStyle == 2 then
+					local remaining = 30 - duration
+					self.Time:SetFormattedText('%.1f', remaining)
+				elseif textStyle == 3 then
+					self.Time:SetFormattedText('%.1f/%.1f', duration, 30)
+				end
 			else
 				self.Time:SetText('')
 			end

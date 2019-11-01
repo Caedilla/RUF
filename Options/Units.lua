@@ -2469,7 +2469,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 				end,
 			},
 			text = {
-				name = L["Text"],
+				name = L["Texts"],
 				type = 'group',
 				order = 100,
 				childGroups = 'tab',
