@@ -140,7 +140,7 @@ function RUF.SetFramePortrait(self, unit)
 		if profileReference.Cutaway == true then
 			Portrait:ClearAllPoints()
 			local healthBar = self.Health:GetStatusBarTexture()
-			local offset = -0.5
+			local offset = -0.15
 			Portrait:SetPoint('TOPLEFT',healthBar,'TOPLEFT',-offset,offset)
 			Portrait:SetPoint('BOTTOMRIGHT',healthBar,'BOTTOMRIGHT',offset,-offset)
 			Portrait.Cutaway = true
@@ -186,8 +186,8 @@ function RUF.PortraitUpdateOptions(self)
 			Portrait:SetAlpha(profileReference.Alpha)
 			if profileReference.Cutaway == true then
 				Portrait:ClearAllPoints()
-				local healthBar = self.Health:GetStatusBarTexture()
-				local offset = -0.5
+				local healthBar = self.__owner.Health:GetStatusBarTexture()
+				local offset = -0.15
 				Portrait:SetPoint('TOPLEFT',healthBar,'TOPLEFT',-offset,offset)
 				Portrait:SetPoint('BOTTOMRIGHT',healthBar,'BOTTOMRIGHT',offset,-offset)
 				RUF.PortraitHealthUpdate(Portrait)
