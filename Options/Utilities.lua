@@ -197,7 +197,11 @@ function RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,auraType)
 			currentUnit = header .. 'UnitButton' .. i
 			profileReference = RUF.db.profile.unit[string.lower(header)][auraType].Icons
 		elseif groupFrame ~= 'none' then
-			currentUnit = groupFrame .. i
+			if groupFrame:match('Target') then
+				currentUnit = groupFrame:gsub('Target','') .. i .. 'Target'
+			else
+				currentUnit = groupFrame .. i
+			end
 			profileReference = RUF.db.profile.unit[string.lower(groupFrame)][auraType].Icons
 		else
 			currentUnit = singleFrame
@@ -295,7 +299,11 @@ function RUF:OptionsUpdateIndicators(singleFrame,groupFrame,header,indicator)
 			currentUnit = header .. 'UnitButton' .. i
 			profileReference = RUF.db.profile.unit[string.lower(header)].Frame.Indicators[indicator]
 		elseif groupFrame ~= 'none' then
-			currentUnit = groupFrame .. i
+			if groupFrame:match('Target') then
+				currentUnit = groupFrame:gsub('Target','') .. i .. 'Target'
+			else
+				currentUnit = groupFrame .. i
+			end
 			profileReference = RUF.db.profile.unit[string.lower(groupFrame)].Frame.Indicators[indicator]
 		else
 			currentUnit = singleFrame
@@ -347,7 +355,11 @@ function RUF:OptionsAddTexts(singleFrame,groupFrame,header,textName)
 		if header ~= 'none' then
 			currentUnit = header .. 'UnitButton' .. i
 		elseif groupFrame ~= 'none' then
-			currentUnit = groupFrame .. i
+			if groupFrame:match('Target') then
+				currentUnit = groupFrame:gsub('Target','') .. i .. 'Target'
+			else
+				currentUnit = groupFrame .. i
+			end
 		else
 			currentUnit = singleFrame
 		end
@@ -382,7 +394,11 @@ function RUF:OptionsDisableTexts(singleFrame,groupFrame,header,textName)
 			currentUnit = header .. 'UnitButton' .. i
 			profileReference = RUF.db.profile.unit[string.lower(header)].Frame.Text[textName]
 		elseif groupFrame ~= 'none' then
-			currentUnit = groupFrame .. i
+			if groupFrame:match('Target') then
+				currentUnit = groupFrame:gsub('Target','') .. i .. 'Target'
+			else
+				currentUnit = groupFrame .. i
+			end
 			profileReference = RUF.db.profile.unit[string.lower(groupFrame)].Frame.Text[textName]
 		else
 			currentUnit = singleFrame
@@ -475,7 +491,11 @@ function RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,text)
 				RUF.db.profile.unit[string.lower(header)].Frame.Text[text].Position.AnchorTo = profileReference.Position.Anchor
 			end
 		elseif groupFrame ~= 'none' then
-			currentUnit = groupFrame .. i
+			if groupFrame:match('Target') then
+				currentUnit = groupFrame:gsub('Target','') .. i .. 'Target'
+			else
+				currentUnit = groupFrame .. i
+			end
 			profileReference = RUF.db.profile.unit[string.lower(groupFrame)].Frame.Text[text]
 			if not profileReference.Position.AnchorTo then
 				RUF.db.profile.unit[string.lower(groupFrame)].Frame.Text[text].Position.AnchorTo = profileReference.Position.Anchor
@@ -552,7 +572,11 @@ function RUF:OptionsUpdatePortraits(singleFrame,groupFrame,header)
 			currentUnit = header .. 'UnitButton' .. i
 			profileReference = RUF.db.profile.unit[string.lower(header)].Frame.Portrait
 		elseif groupFrame ~= 'none' then
-			currentUnit = groupFrame .. i
+			if groupFrame:match('Target') then
+				currentUnit = groupFrame:gsub('Target','') .. i .. 'Target'
+			else
+				currentUnit = groupFrame .. i
+			end
 			profileReference = RUF.db.profile.unit[string.lower(groupFrame)].Frame.Portrait
 		else
 			currentUnit = singleFrame
@@ -594,7 +618,11 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 			currentUnit = header .. 'UnitButton' .. i
 			profileReference = RUF.db.profile.unit[string.lower(header)]
 		elseif groupFrame ~= 'none' then
-			currentUnit = groupFrame .. i
+			if groupFrame:match('Target') then
+				currentUnit = groupFrame:gsub('Target','') .. i .. 'Target'
+			else
+				currentUnit = groupFrame .. i
+			end
 			profileReference = RUF.db.profile.unit[string.lower(groupFrame)]
 		else
 			currentUnit = singleFrame
@@ -769,7 +797,11 @@ function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
 			currentUnit = header .. 'UnitButton' .. i
 			profileReference = RUF.db.profile.unit[string.lower(header)].Frame.Bars[bar]
 		elseif groupFrame ~= 'none' then
-			currentUnit = groupFrame .. i
+			if groupFrame:match('Target') then
+				currentUnit = groupFrame:gsub('Target','') .. i .. 'Target'
+			else
+				currentUnit = groupFrame .. i
+			end
 			profileReference = RUF.db.profile.unit[string.lower(groupFrame)].Frame.Bars[bar]
 		else
 			currentUnit = singleFrame

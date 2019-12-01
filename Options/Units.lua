@@ -129,7 +129,11 @@ local function ProfileData(singleFrame, groupFrame, header)
 		referenceUnit = singleFrame
 		profileName = string.lower(singleFrame)
 	elseif groupFrame ~= 'none' then
-		referenceUnit = groupFrame .. '1'
+		if groupFrame:match('Target') then
+			referenceUnit = groupFrame:gsub('Target','') .. '1' .. 'Target'
+		else
+			referenceUnit = groupFrame .. '1'
+		end
 		profileName = string.lower(groupFrame)
 	elseif header ~= 'none' then
 		referenceUnit = header .. 'UnitButton1'

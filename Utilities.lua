@@ -1,5 +1,5 @@
-local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
-local LSM = LibStub("LibSharedMedia-3.0")
+local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
+local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 
@@ -38,10 +38,10 @@ function RUF:IconTextureTrim(trim, w, h)
 end
 
 function RUF:copyTable(src, dest)
-	if type(dest) ~= "table" then dest = {} end
-	if type(src) == "table" then
+	if type(dest) ~= 'table' then dest = {} end
+	if type(src) == 'table' then
 		for k, v in pairs(src) do
-			if type(v) == "table" then
+			if type(v) == 'table' then
 				-- try to index the key first so that the metatable creates the defaults, if set, and use that table
 				v = RUF:copyTable(v, dest[k])
 			end
@@ -56,28 +56,28 @@ end
 
 
 function RUF:Short(value, format)
-	if type(value) == "number" then
+	if type(value) == 'number' then
 		local fmt
 		local gsub
 		if value >= 1000000000 or value <= -1000000000 then
-			fmt = "%.1fB"
+			fmt = '%.1fB'
 			value = value / 1000000000
 		elseif value >= 10000000 or value <= -10000000 then
-			fmt = "%.1fM"
+			fmt = '%.1fM'
 			value = value / 1000000
 		elseif value >= 1000000 or value <= -1000000 then
-			fmt = "%.2fM"
+			fmt = '%.2fM'
 			value = value / 1000000
 		elseif value >= 100000 or value <= -100000 then
-			fmt = "%.0fK"
+			fmt = '%.0fK'
 			value = value / 1000
 		elseif value >= 10000 or value <= -10000 then
-			fmt = "%.1fK"
+			fmt = '%.1fK'
 			value = value / 1000
 		elseif value >= 1000 or value <= -1000 then
-			gsub = string.gsub(value, "^(-?%d+)(%d%d%d)", '%1,%2')
+			gsub = string.gsub(value, '^(-?%d+)(%d%d%d)', '%1,%2')
 		else
-			fmt = "%d"
+			fmt = '%d'
 			value = math.floor(value + 0.5)
 		end
 		if format then
@@ -90,48 +90,48 @@ function RUF:Short(value, format)
 		return fmt, value
 	else
 		local fmt_a, fmt_b
-		local a, b = value:match("^(%d+)/(%d+)$")
+		local a, b = value:match('^(%d+)/(%d+)$')
 		if a then
 			a, b = tonumber(a), tonumber(b)
 			if a >= 1000000000 or a <= -1000000000 then
-				fmt_a = "%.1fB"
+				fmt_a = '%.1fB'
 				a = a / 1000000000
 			elseif a >= 10000000 or a <= -10000000 then
-				fmt_a = "%.1fM"
+				fmt_a = '%.1fM'
 				a = a / 1000000
 			elseif a >= 1000000 or a <= -1000000 then
-				fmt_a = "%.2fM"
+				fmt_a = '%.2fM'
 				a = a / 1000000
 			elseif a >= 100000 or a <= -100000 then
-				fmt_a = "%.0fK"
+				fmt_a = '%.0fK'
 				a = a / 1000
 			elseif a >= 10000 or a <= -10000 then
-				fmt_a = "%.1fK"
+				fmt_a = '%.1fK'
 				a = a / 1000
 			elseif a >= 1000 or a <= -1000 then
-				fmt_a = "%s"
-				a = string.gsub(a, "^(-?%d+)(%d%d%d)", '%1,%2')
+				fmt_a = '%s'
+				a = string.gsub(a, '^(-?%d+)(%d%d%d)', '%1,%2')
 			end
 			if b >= 1000000000 or b <= -1000000000 then
-				fmt_b = "%.1fB"
+				fmt_b = '%.1fB'
 				b = b / 1000000000
 			elseif b >= 10000000 or b <= -10000000 then
-				fmt_b = "%.1fM"
+				fmt_b = '%.1fM'
 				b = b / 1000000
 			elseif b >= 1000000 or b <= -1000000 then
-				fmt_b = "%.2fM"
+				fmt_b = '%.2fM'
 				b = b / 1000000
 			elseif b >= 100000 or b <= -100000 then
-				fmt_b = "%.0fK"
+				fmt_b = '%.0fK'
 				b = b / 1000
 			elseif b >= 10000 or b <= -10000 then
-				fmt_b = "%.1fK"
+				fmt_b = '%.1fK'
 				b = b / 1000
 			elseif b >= 1000 or b <= -1000 then
-				fmt_b = "%s"
-				b = string.gsub(b, "^(-?%d+)(%d%d%d)", '%1,%2')
+				fmt_b = '%s'
+				b = string.gsub(b, '^(-?%d+)(%d%d%d)', '%1,%2')
 			end
-			local fmt = ("%s/%s"):format(fmt_a, fmt_b)
+			local fmt = ('%s/%s'):format(fmt_a, fmt_b)
 			if format then
 				return fmt:format(a, b)
 			end
@@ -211,11 +211,11 @@ end
 function RUF.GetIndicatorAnchorFrame(self, unit, indicator)
 	-- TODO: Anchor to element (health, power)
 
-	local AnchorFrame = "Frame"
-	if RUF.db.profile.unit[unit].Frame.Indicators[indicator].Position.AnchorFrame == "Frame" then
+	local AnchorFrame = 'Frame'
+	if RUF.db.profile.unit[unit].Frame.Indicators[indicator].Position.AnchorFrame == 'Frame' then
 		AnchorFrame = self:GetName()
 	else
-		AnchorFrame = self:GetName() .. "." .. RUF.db.profile.unit[unit].Frame.Indicators[indicator].Position.AnchorFrame .. "Indicator"
+		AnchorFrame = self:GetName() .. '.' .. RUF.db.profile.unit[unit].Frame.Indicators[indicator].Position.AnchorFrame .. 'Indicator'
 		if not _G[AnchorFrame] then
 			AnchorFrame = self:GetName()
 		end
@@ -228,18 +228,17 @@ function RUF.GetLevelColor(self, level, unit)
 	local color = GetQuestDifficultyColor(level)
 	local index = 4
 
-	if color.font == "QuestDifficulty_Impossible" then
+	if color.font == 'QuestDifficulty_Impossible' then
 		index = 0
-	elseif color.font == "QuestDifficulty_VeryDifficult" then
+	elseif color.font == 'QuestDifficulty_VeryDifficult' then
 		index = 1
-	elseif color.font == "QuestDifficulty_Difficult" then
+	elseif color.font == 'QuestDifficulty_Difficult' then
 		index = 2
-	elseif color.font == "QuestDifficulty_Standard" then
+	elseif color.font == 'QuestDifficulty_Standard' then
 		index = 3
-	elseif color.font == "QuestDifficulty_Trivial" then
+	elseif color.font == 'QuestDifficulty_Trivial' then
 		index = 4
 	end
-
 
 	if RUF.Client == 1 and unit then
 		if UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit) then
@@ -265,13 +264,8 @@ end
 function RUF.ReturnTextColors(self, unit, tag, cur, max, test) -- Get Text Colors
 	local r, g, b = unpack(RUF.db.profile.Appearance.Text[tag].Color.BaseColor)
 	local _, class = UnitClass(unit)
-	--[[if RUF.db.global.TestMode == true then
-		if not test then
-			test = math.random(RUF.db.char.GuildNum)
-		end
-		class = RUF.db.char.Guild[test].Class
-	end]]--
-	if not class then class = "PRIEST" end
+
+	if not class then class = 'PRIEST' end
 	if not cur then
 		cur = UnitHealth(unit)
 	end
@@ -285,7 +279,7 @@ function RUF.ReturnTextColors(self, unit, tag, cur, max, test) -- Get Text Color
 	elseif RUF.db.profile.Appearance.Text[tag].Color.Class and UnitIsPlayer(unit) then -- If we want to show class colors.
 		r, g, b = unpack(RUF.db.profile.Appearance.Colors.ClassColors[class])
 	elseif RUF.db.profile.Appearance.Text[tag].Color.Reaction then -- If we want to show unit reaction colors
-		if UnitPlayerControlled(unit) and not UnitCanAttack(unit, "player") and not UnitIsPlayer(unit) then  -- If the unit is an allied pet then show as blue.
+		if UnitPlayerControlled(unit) and not UnitCanAttack(unit, 'player') and not UnitIsPlayer(unit) then  -- If the unit is an allied pet then show as blue.
 			r, g, b = unpack(RUF.db.profile.Appearance.Colors.ReactionColors[10])
 		elseif UnitReaction(unit, 'player') then -- If the unit is an offline party member, possibly others too?
 			r, g, b = unpack(RUF.db.profile.Appearance.Colors.ReactionColors[UnitReaction(unit, 'player')])
@@ -299,7 +293,7 @@ function RUF.ReturnTextColors(self, unit, tag, cur, max, test) -- Get Text Color
 		if level <= 0 then level = 500 end
 		r, g, b = RUF:GetLevelColor(level, unit)
 	elseif RUF.db.profile.Appearance.Text[tag].Color.PowerType then -- Color by UnitPower (Mana, Rage, etc.)
-		if tag == "CurMana" or tag == "ManaPerc" or tag == "CurManaPerc" then
+		if tag == 'CurMana' or tag == 'ManaPerc' or tag == 'CurManaPerc' then
 			r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[0])
 		else
 			local pType, pToken, altr, altg, altb = UnitPowerType(unit)
@@ -330,7 +324,7 @@ function RUF.RefreshTextElements(singleFrame, groupFrame, header, groupNum)
 
 	local profileTexts = {}
 	for k, v in pairs(RUF.db.profile.unit[unitFrame.frame].Frame.Text) do
-		if v ~= "" then
+		if v ~= '' then
 			table.insert(profileTexts, k)
 		end
 	end
@@ -374,11 +368,11 @@ function RUF.ToggleFrameLock(status)
 			local frameName = _G['oUF_RUF_' .. frames[i]]
 			local profile = string.lower(frames[i])
 			frameName:SetMovable(true)
-			frameName:SetScript("OnMouseDown", function()
+			frameName:SetScript('OnMouseDown', function()
 			frameName:StartMoving()
 			anchorFrom1, anchorFrame1, anchorTo1, x1, y1 = frameName:GetPoint() end)
 
-			frameName:SetScript("OnMouseUp", function()
+			frameName:SetScript('OnMouseUp', function()
 			anchorFrom2, anchorFrame2, anchorTo2, x2, y2 = frameName:GetPoint()
 			frameName:StopMovingOrSizing()
 			x3 = x2-x1
@@ -392,18 +386,21 @@ function RUF.ToggleFrameLock(status)
 				RUF.db.profile.unit[profile].Frame.Position.AnchorTo,
 				RUF.db.profile.unit[profile].Frame.Position.x,
 				RUF.db.profile.unit[profile].Frame.Position.y)
-			LibStub("AceConfigRegistry-3.0"):NotifyChange("RUF") end)
+			LibStub('AceConfigRegistry-3.0'):NotifyChange('RUF') end)
 		end
 		for i = 1, #groupFrames do
 			local anchorFrom1, anchorFrame1, anchorTo1, x1, y1, anchorFrom2, anchorFrame2, anchorTo2, x2, y2, x3, y3
-			local frameName = _G['oUF_RUF_' .. groupFrames[i] .. "1"]
+			local frameName = _G['oUF_RUF_' .. groupFrames[i] .. '1']
+			if groupFrames[i]:match('Target') then
+				frameName = _G['oUF_RUF_' .. groupFrames[i]:gsub('Target','') .. '1' .. 'Target']
+			end
 			local profile = string.lower(groupFrames[i])
 			frameName:SetMovable(true)
-			frameName:SetScript("OnMouseDown", function()
+			frameName:SetScript('OnMouseDown', function()
 			frameName:StartMoving()
 			anchorFrom1, anchorFrame1, anchorTo1, x1, y1 = frameName:GetPoint() end)
 
-			frameName:SetScript("OnMouseUp", function()
+			frameName:SetScript('OnMouseUp', function()
 			anchorFrom2, anchorFrame2, anchorTo2, x2, y2 = frameName:GetPoint()
 			frameName:StopMovingOrSizing()
 			x3 = x2-x1
@@ -417,7 +414,7 @@ function RUF.ToggleFrameLock(status)
 				RUF.db.profile.unit[profile].Frame.Position.AnchorTo,
 				RUF.db.profile.unit[profile].Frame.Position.x,
 				RUF.db.profile.unit[profile].Frame.Position.y)
-			LibStub("AceConfigRegistry-3.0"):NotifyChange("RUF") end)
+			LibStub('AceConfigRegistry-3.0'):NotifyChange('RUF') end)
 		end
 		for i = 1, #headers do
 			local anchorFrom1, anchorFrame1, anchorTo1, x1, y1, anchorFrom2, anchorFrame2, anchorTo2, x2, y2, x3, y3
@@ -428,12 +425,12 @@ function RUF.ToggleFrameLock(status)
 			frameName:SetMovable(true)
 			MoveBG:SetMovable(true)
 
-			MoveBG:SetScript("OnMouseDown", function(MoveBG)
+			MoveBG:SetScript('OnMouseDown', function(MoveBG)
 			frameName:StartMoving()
 			MoveBG:StartMoving()
 			anchorFrom1, anchorFrame1, anchorTo1, x1, y1 = frameName:GetPoint() end)
 
-			MoveBG:SetScript("OnMouseUp", function(MoveBG)
+			MoveBG:SetScript('OnMouseUp', function(MoveBG)
 			anchorFrom2, anchorFrame2, anchorTo2, x2, y2 = frameName:GetPoint()
 			frameName:StopMovingOrSizing()
 			MoveBG:StopMovingOrSizing()
@@ -448,22 +445,25 @@ function RUF.ToggleFrameLock(status)
 				RUF.db.profile.unit[profile].Frame.Position.AnchorTo,
 				RUF.db.profile.unit[profile].Frame.Position.x,
 				RUF.db.profile.unit[profile].Frame.Position.y)
-			LibStub("AceConfigRegistry-3.0"):NotifyChange("RUF") end)
+			LibStub('AceConfigRegistry-3.0'):NotifyChange('RUF') end)
 		end
 	else -- lock
 		for i = 1, #frames do
 			local frameName = 'oUF_RUF_' .. frames[i]
 			local profile = string.lower(frames[i])
 			_G[frameName]:SetMovable(false)
-			_G[frameName]:SetScript("OnMouseDown", nil)
-			_G[frameName]:SetScript("OnMouseUp", nil)
+			_G[frameName]:SetScript('OnMouseDown', nil)
+			_G[frameName]:SetScript('OnMouseUp', nil)
 		end
 		for i = 1, #groupFrames do
-			local frameName = 'oUF_RUF_' .. groupFrames[i] .. "1"
+			local frameName = 'oUF_RUF_' .. groupFrames[i] .. '1'
+			if groupFrames[i]:match('Target') then
+				frameName = _G['oUF_RUF_' .. groupFrames[i]:gsub('Target','') .. '1' .. 'Target']
+			end
 			local profile = string.lower(groupFrames[i])
 			_G[frameName]:SetMovable(false)
-			_G[frameName]:SetScript("OnMouseDown", nil)
-			_G[frameName]:SetScript("OnMouseUp", nil)
+			_G[frameName]:SetScript('OnMouseDown', nil)
+			_G[frameName]:SetScript('OnMouseUp', nil)
 		end
 		for i = 1, #headers do
 			local frameName = 'oUF_RUF_' .. headers[i]
@@ -472,8 +472,8 @@ function RUF.ToggleFrameLock(status)
 			MoveBG:Hide()
 			MoveBG:SetMovable(false)
 			_G[frameName]:SetMovable(false)
-			MoveBG:SetScript("OnMouseDown", nil)
-			MoveBG:SetScript("OnMouseUp", nil)
+			MoveBG:SetScript('OnMouseDown', nil)
+			MoveBG:SetScript('OnMouseUp', nil)
 		end
 	end
 

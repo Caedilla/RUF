@@ -98,14 +98,14 @@ function RUF:OnInitialize()
 		}
 		groupFrames = {
 			'Boss',
-			--'BossTarget',
+			'BossTarget',
 			'Arena',
-			--'ArenaTarget',
+			'ArenaTarget',
+			'PartyTarget',
 		}
 		headers = {
 			'Party',
 			'PartyPet',
-			--'PartyTarget',
 		}
 	else
 		frames = {
@@ -115,11 +115,12 @@ function RUF:OnInitialize()
 			'Target',
 			'TargetTarget',
 		}
-		-- No Arena or Boss units in vanilla.
+		groupFrames = {
+			'PartyTarget',
+		}
 		headers = {
 			'Party',
 			'PartyPet',
-			--'PartyTarget',
 		}
 	end
 	RUF.frameList = {}
