@@ -33,7 +33,9 @@ function RUF.SetPowerBar(self, unit) -- Mana, Rage, Insanity, Maelstrom etc.
 	Bar:SetFillStyle(RUF.db.profile.unit[unit].Frame.Bars.Power.Fill)
 
 	-- Border
-	Border:SetAllPoints(Bar)
+	local offset = RUF.db.profile.Appearance.Bars.Power.Border.Offset or 0
+	Border:SetPoint('TOPLEFT',Bar,'TOPLEFT',-offset,offset)
+	Border:SetPoint('BOTTOMRIGHT',Bar,'BOTTOMRIGHT',offset,-offset)
 	Border:SetFrameLevel(17)
 	Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeSize})
 	local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Power.Border.Color)
@@ -135,7 +137,9 @@ function RUF.PowerUpdateOptions(self)
 	RUF.SetBarLocation(self.__owner, unit)
 
 	-- Border
-	Border:SetAllPoints(Bar)
+	local offset = RUF.db.profile.Appearance.Bars.Power.Border.Offset or 0
+	Border:SetPoint('TOPLEFT',Bar,'TOPLEFT',-offset,offset)
+	Border:SetPoint('BOTTOMRIGHT',Bar,'BOTTOMRIGHT',offset,-offset)
 	Border:SetFrameLevel(17)
 	Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Power.Border.Style.edgeSize})
 	local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Power.Border.Color)

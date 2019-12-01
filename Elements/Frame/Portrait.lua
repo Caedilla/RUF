@@ -139,7 +139,10 @@ function RUF.SetFramePortrait(self, unit)
 		Portrait:SetAlpha(profileReference.Alpha)
 		if profileReference.Cutaway == true then
 			Portrait:ClearAllPoints()
-			Portrait:SetAllPoints(self.Health:GetStatusBarTexture())
+			local healthBar = self.Health:GetStatusBarTexture()
+			local offset = -0.5
+			Portrait:SetPoint('TOPLEFT',healthBar,'TOPLEFT',-offset,offset)
+			Portrait:SetPoint('BOTTOMRIGHT',healthBar,'BOTTOMRIGHT',offset,-offset)
 			Portrait.Cutaway = true
 		else
 			Portrait:ClearAllPoints()
@@ -166,8 +169,6 @@ function RUF.SetFramePortrait(self, unit)
 	end
 end
 
-
--- TODO Update BarAnimation plugin to check enabled state as well as health preupdate
 function RUF.PortraitUpdateOptions(self)
 	local unit = self.__owner.frame
 	local Portrait = self
@@ -185,7 +186,10 @@ function RUF.PortraitUpdateOptions(self)
 			Portrait:SetAlpha(profileReference.Alpha)
 			if profileReference.Cutaway == true then
 				Portrait:ClearAllPoints()
-				Portrait:SetAllPoints(self.__owner.Health:GetStatusBarTexture())
+				local healthBar = self.Health:GetStatusBarTexture()
+				local offset = -0.5
+				Portrait:SetPoint('TOPLEFT',healthBar,'TOPLEFT',-offset,offset)
+				Portrait:SetPoint('BOTTOMRIGHT',healthBar,'BOTTOMRIGHT',offset,-offset)
 				RUF.PortraitHealthUpdate(Portrait)
 			else
 				Portrait:ClearAllPoints()

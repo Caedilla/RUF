@@ -218,7 +218,9 @@ function RUF.SetCastBar(self, unit)
 	)
 
 	-- Border
-	Border:SetAllPoints(Bar)
+	local offset = RUF.db.profile.Appearance.Bars.Cast.Border.Offset or 0
+	Border:SetPoint('TOPLEFT',Bar,'TOPLEFT',-offset,offset)
+	Border:SetPoint('BOTTOMRIGHT',Bar,'BOTTOMRIGHT',offset,-offset)
 	Border:SetFrameLevel(201)
 	Border:SetBackdrop({edgeFile = LSM:Fetch('border', profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
 	local borderr, borderg, borderb = unpack(profileReference.Border.Color)
@@ -426,7 +428,9 @@ function RUF.CastUpdateOptions(self)
 	local unitProfile = RUF.db.profile.unit[unit].Frame.Bars.Cast
 
 	-- Border
-	Border:SetAllPoints(Bar)
+	local offset = RUF.db.profile.Appearance.Bars.Cast.Border.Offset or 0
+	Border:SetPoint('TOPLEFT',Bar,'TOPLEFT',-offset,offset)
+	Border:SetPoint('BOTTOMRIGHT',Bar,'BOTTOMRIGHT',offset,-offset)
 	Border:SetFrameLevel(17)
 	Border:SetBackdrop({edgeFile = LSM:Fetch('border', profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
 	local borderr, borderg, borderb = unpack(profileReference.Border.Color)

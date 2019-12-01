@@ -623,11 +623,29 @@ function RUF_Options.Bars()
 								RUF:OptionsUpdateAllBars()
 							end,
 						},
+						borderInset = {
+							name = L["Inset from bar edge"],
+							type = 'range',
+							order = 20.04,
+							min = -100,
+							max = 100,
+							softMin = -30,
+							softMax = 30,
+							step = 1,
+							bigStep = 1,
+							get = function(info)
+								return RUF.db.profile.Appearance.Bars[Bar[i]].Border.Offset or 0
+							end,
+							set = function(info, value)
+								RUF.db.profile.Appearance.Bars[Bar[i]].Border.Offset = value
+								RUF:OptionsUpdateAllBars()
+							end,
+						},
 						borderAlpha = {
 							name = L["Alpha"],
 							desc = L["Overlay Alpha"],
 							type = 'range',
-							order = 20.04,
+							order = 20.05,
 							hidden = i==1 or i==4,
 							min = 0,
 							max = 1,

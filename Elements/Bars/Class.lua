@@ -101,7 +101,9 @@ function RUF.SetClassBar(self, unit)
 		Bar:SetStatusBarColor(ir, ig, ib)
 
 		-- Set Border
-		Border:SetAllPoints(Bar)
+		local offset = RUF.db.profile.Appearance.Bars.Class.Border.Offset or 0
+		Border:SetPoint('TOPLEFT',Bar,'TOPLEFT',-offset,offset)
+		Border:SetPoint('BOTTOMRIGHT',Bar,'BOTTOMRIGHT',offset,-offset)
 		Border:SetFrameLevel(17)
 		Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
 		local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)
@@ -265,7 +267,9 @@ function RUF.ClassUpdateOptions(self)
 		Bar:SetStatusBarColor(ir, ig, ib)
 
 		-- Set Border
-		Border:SetAllPoints(Bar)
+		local offset = RUF.db.profile.Appearance.Bars.Class.Border.Offset or 0
+		Border:SetPoint('TOPLEFT',Bar,'TOPLEFT',-offset,offset)
+		Border:SetPoint('BOTTOMRIGHT',Bar,'BOTTOMRIGHT',offset,-offset)
 		Border:SetFrameLevel(17)
 		Border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Bars.Class.Border.Style.edgeSize})
 		local borderr, borderg, borderb = unpack(RUF.db.profile.Appearance.Bars.Class.Border.Color)

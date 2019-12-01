@@ -402,3 +402,4 @@ L["Spell Name"] = true
 L["Time"] = true
 L["Max"] = true
 L["Remaining"] = true
+L["Inset from bar edge"] = true
