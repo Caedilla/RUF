@@ -144,8 +144,8 @@ local function Update(self, event, unit)
 		local HealComm = LibStub('LibHealComm-4.0', true)
 		local unitGUID = UnitGUID(unit)
 		local lookAhead = element.lookAhead or 5
-		myIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.CASTED_HEALS, GetTime() + lookAhead, UnitGUID('player')) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0
-		otherIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.CASTED_HEALS, GetTime() + lookAhead) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0
+		myIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + lookAhead, UnitGUID('player')) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0
+		otherIncomingHeal = (HealComm:GetHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + lookAhead) or 0) * (HealComm:GetHealModifier(unitGUID) or 1) or 0
 		otherIncomingHeal = otherIncomingHeal - myIncomingHeal
 		absorb = 0
 		healAbsorb = 0
@@ -155,7 +155,7 @@ local function Update(self, event, unit)
 
 		local overflow = maxHealth * element.maxOverflow
 		if health + allIncomingHeal > overflow then
-			local healTime, healFrom, healAmount = HealComm:GetNextHealAmount(unitGUID, HealComm.CASTED_HEALS, GetTime() + lookAhead)
+			local healTime, healFrom, healAmount = HealComm:GetNextHealAmount(unitGUID, HealComm.ALL_HEALS, GetTime() + lookAhead)
 			local toClip = health + allIncomingHeal - overflow
 			local primary,secondary
 			if healTime then
