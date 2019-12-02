@@ -1,6 +1,6 @@
 # RUF r218-beta
 ### New
-* Added Party Targets - defaults still need adjustment, especially for alternate layouts.
+* Added Party, Boss, and Arena Targets - defaults still need adjustment, especially for alternate layouts.
 * Added options to control appearance of the castbar text and time. Available under each unit's castbar settings.
 * Added options to control border insets for resource bars.
 
