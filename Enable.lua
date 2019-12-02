@@ -64,6 +64,16 @@ local function SetupFrames(self, unit)
 		RUF.SetGlowBorder(self, unit)
 	end
 
+	-- Toggle Party Targets in raid
+	if unit:match('partytarget') then
+		if not RUF.PartyTargetMonitor then
+			RUF.PartyTargetMonitor = CreateFrame('Frame')
+			RUF.PartyTargetMonitor:RegisterEvent('GROUP_ROSTER_UPDATE')
+			RUF.PartyTargetMonitor:RegisterEvent('PLAYER_ENTERING_WORLD')
+			RUF.PartyTargetMonitor:SetScript('OnEvent',RUF.TogglePartyTargets)
+		end
+	end
+
 	-- Frame Background
 	RUF.SetFrameBackground(self, unit)
 
@@ -345,7 +355,7 @@ function RUF:OnEnable()
 			currentHeader.MoveBG = MoveBG
 		end
 
-		-- Spawn single frames for Boss and Arena units
+		-- Spawn single frames for Boss, Arena, and Party Targets
 		for i = 1, #groupFrames do
 			local frameName = 'oUF_RUF_' .. groupFrames[i]
 			local profile = string.lower(groupFrames[i])
@@ -359,6 +369,7 @@ function RUF:OnEnable()
 				local unitName = groupFrames[i] .. u
 				if groupFrames[i]:match('Target') then
 					unitName = groupFrames[i]:gsub('Target', '') .. u .. 'Target'
+					if unitName == 'Party5Target' then return end
 				end
 				local frame = self:Spawn(unitName)
 				local unitFrame = _G['oUF_RUF_' .. unitName]
@@ -387,9 +398,6 @@ function RUF:OnEnable()
 						RUF.db.profile.unit[profile].Frame.Position.offsety)
 				end
 				if RUF.db.profile.unit[profile].Enabled == false then
-					unitFrame:Disable()
-				end
-				if unitName == 'Party5Target' then --TODO link this to amount of party units.
 					unitFrame:Disable()
 				end
 			end

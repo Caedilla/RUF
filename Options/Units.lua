@@ -234,13 +234,18 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						name = L["Show in Raid"],
 						type = 'toggle',
 						order = 0.004,
-						hidden = header == 'none',
+						hidden = function()
+							if profileName == 'partytarget' then return false end
+							if header ~= 'none' then return false end
+							return true
+						end,
 						get = function(info)
 							return RUF.db.profile.unit[profileName].showRaid
 						end,
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].showRaid = value
 							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
+							RUF.TogglePartyTargets()
 							RUF:UpdateOptions()
 						end,
 					},

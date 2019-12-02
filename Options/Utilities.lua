@@ -629,6 +629,7 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 			profileReference = RUF.db.profile.unit[string.lower(singleFrame)]
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
+		if not unitFrame then return end
 
 		if header == 'none' then
 			if profileReference.Enabled == false then
@@ -986,6 +987,7 @@ function RUF:TestMode()
 	else
 		if TestModeToggle == true and not InCombatLockdown() then
 			RUF:RestoreUnits()
+			RUF.TogglePartyTargets()
 		end
 	end
 end

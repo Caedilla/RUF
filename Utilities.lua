@@ -305,6 +305,32 @@ function RUF.ReturnTextColors(self, unit, tag, cur, max, test) -- Get Text Color
 	return r, g, b
 end
 
+function RUF.TogglePartyTargets() -- TODO: Implement this better.
+	for i = 1,4 do
+		local unitFrame = _G['oUF_RUF_Party' .. i .. 'Target']
+		local profileName = unitFrame.frame
+		local showRaid = RUF.db.profile.unit[profileName].showRaid or false
+		local enable = RUF.db.profile.unit[profileName].Enabled or false
+		if IsInRaid() then
+			if showRaid and enable then
+				if not unitFrame:IsEnabled() then
+					unitFrame:Enable()
+				end
+			else
+				unitFrame:Disable()
+			end
+		else
+			if enable then
+				if not unitFrame:IsEnabled() then
+					unitFrame:Enable()
+				end
+			else
+				unitFrame:Disable()
+			end
+		end
+	end
+end
+
 function RUF.RefreshTextElements(singleFrame, groupFrame, header, groupNum)
 	if not singleFrame then singleFrame = 'none' end
 	if not groupFrame then groupFrame = 'none' end
