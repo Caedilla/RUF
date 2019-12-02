@@ -208,6 +208,7 @@ function RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,auraType)
 			profileReference = RUF.db.profile.unit[string.lower(singleFrame)][auraType].Icons
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
+		if not unitFrame then return end
 		local currentElement = unitFrame[auraType:sub(1,-2)]
 		if not currentElement then return end
 		currentElement:ClearAllPoints()
