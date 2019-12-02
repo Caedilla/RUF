@@ -32,6 +32,8 @@ Elements\Plugins\HealPrediction_Plugin.lua
 Elements\Plugins\Range_Plugin.lua
 
 Localisation\enUS.lua
+Localisation\deDE.lua
+Localisation\koKR.lua
 Fonts.xml
 Load.lua
 Initialize.lua
