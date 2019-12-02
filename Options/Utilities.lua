@@ -209,8 +209,10 @@ function RUF:OptionsUpdateAuras(singleFrame,groupFrame,header,auraType)
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
 		if not unitFrame then return end
+
 		local currentElement = unitFrame[auraType:sub(1,-2)]
 		if not currentElement then return end
+
 		currentElement:ClearAllPoints()
 		currentElement:SetPoint(
 			profileReference.Position.AnchorFrom,
@@ -311,6 +313,7 @@ function RUF:OptionsUpdateIndicators(singleFrame,groupFrame,header,indicator)
 			profileReference = RUF.db.profile.unit[string.lower(singleFrame)].Frame.Indicators[indicator]
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
+		if not unitFrame then return end
 
 		local currentIndicator = unitFrame[indicator .. 'Indicator']
 		if not currentIndicator then return end -- When refresh profile,ensure we don't try to update indicators that don't exist.
@@ -365,6 +368,7 @@ function RUF:OptionsAddTexts(singleFrame,groupFrame,header,textName)
 			currentUnit = singleFrame
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
+		if not unitFrame then return end
 
 		RUF.CreateTextArea(unitFrame,unitFrame.frame,textName) -- Args: self,unit,textName
 		RUF.SetTextPoints(unitFrame,unitFrame.frame,textName)
@@ -406,6 +410,7 @@ function RUF:OptionsDisableTexts(singleFrame,groupFrame,header,textName)
 			profileReference = RUF.db.profile.unit[string.lower(singleFrame)].Frame.Text[textName]
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
+		if not unitFrame then return end
 
 		if profileReference == 'DISABLED' then
 			unitFrame.Text[textName]:Hide()
@@ -509,9 +514,11 @@ function RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,text)
 			end
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
+		if not unitFrame then return end
 
 		local currentText = unitFrame.Text[text].String
 		if not currentText then return end -- When refresh profile,ensure we don't try to update indicators that don't exist.
+
 		currentText:SetFont(LSM:Fetch('font',profileReference.Font),profileReference.Size,profileReference.Outline)
 		currentText:SetShadowColor(0,0,0,profileReference.Shadow)
 		currentText:ClearAllPoints()
@@ -584,6 +591,7 @@ function RUF:OptionsUpdatePortraits(singleFrame,groupFrame,header)
 			profileReference = RUF.db.profile.unit[string.lower(singleFrame)].Frame.Portrait
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
+		if not unitFrame then return end
 
 		unitFrame.Portrait.Enabled = profileReference.Enabled
 		unitFrame.Portrait.Cutaway = profileReference.Cutaway
@@ -810,6 +818,8 @@ function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
 			profileReference = RUF.db.profile.unit[string.lower(singleFrame)].Frame.Bars[bar]
 		end
 		unitFrame = _G['oUF_RUF_' .. currentUnit]
+		if not unitFrame then return end
+
 		local originalBar = bar
 		if bar == 'Class' then
 			if RUF.Client == 1 then
