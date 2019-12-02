@@ -306,6 +306,7 @@ function RUF.ReturnTextColors(self, unit, tag, cur, max, test) -- Get Text Color
 end
 
 function RUF.TogglePartyTargets() -- TODO: Implement this better.
+	if InCombatLockdown() then return end
 	for i = 1,4 do
 		local unitFrame = _G['oUF_RUF_Party' .. i .. 'Target']
 		local profileName = unitFrame.frame
