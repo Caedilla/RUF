@@ -125,7 +125,7 @@ local function SetupFrames(self, unit)
 	RUF.SetTextParent(self, unit)
 	local texts = {}
 	for k, v in pairs(profileReference.Frame.Text) do
-		if v ~= '' then
+		if type(v) == 'table' then
 			table.insert(texts, k)
 		end
 	end

@@ -849,7 +849,7 @@ local function TextSettings(singleFrame, groupFrame, header)
 	-- Generate list of text elements
 	local textList = {}
 	for k,v in pairs(RUF.db.profile.unit[profileName].Frame.Text) do
-		if v ~= '' then
+		if type(v) == 'table' then
 			table.insert(textList,k)
 		end
 	end
@@ -859,10 +859,14 @@ local function TextSettings(singleFrame, groupFrame, header)
 		local textAnchors = {}
 		textAnchors['Frame'] = 'Frame'
 		for k,v in pairs(RUF.db.profile.unit[profileName].Frame.Text) do
-			if v ~= '' then
+			if type(v) == 'table' then
 				if k ~= textList[i] then
-					if RUF:CanAttach(_G['oUF_RUF_' .. referenceUnit].Text[textList[i]].String,_G['oUF_RUF_' .. referenceUnit].Text[k].String) then
-						textAnchors[k] = k
+					local frameA = _G['oUF_RUF_' .. referenceUnit].Text[textList[i]].String
+					local frameB = _G['oUF_RUF_' .. referenceUnit].Text[k].String
+					if frameA and frameB then
+						if RUF:CanAttach(frameA, frameB) then
+							textAnchors[k] = k
+						end
 					end
 				end
 			end
