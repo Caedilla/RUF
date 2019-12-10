@@ -127,6 +127,8 @@ local function SetupFrames(self, unit)
 	for k, v in pairs(profileReference.Frame.Text) do
 		if type(v) == 'table' then
 			table.insert(texts, k)
+		elseif type(v) == 'string' and v ~= '' then
+			profileReference.Frame.Text[v] = nil
 		end
 	end
 	for i = 1, #texts do

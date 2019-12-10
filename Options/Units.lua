@@ -807,6 +807,7 @@ local function TextSettings(singleFrame, groupFrame, header)
 							y = 0,
 							AnchorFrame = 'Frame',
 							Anchor = 'CENTER',
+							AnchorTo = 'CENTER',
 						},
 					}
 					RUF:OptionsAddTexts(singleFrame,groupFrame,header,value)
