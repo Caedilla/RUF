@@ -413,7 +413,9 @@ function RUF:OptionsDisableTexts(singleFrame,groupFrame,header,textName)
 		if not unitFrame then return end
 
 		if profileReference == 'DISABLED' then
-			unitFrame.Text[textName]:Hide()
+			if unitFrame.Text[textName] then
+				unitFrame.Text[textName]:Hide()
+			end
 			unitFrame:Untag(unitFrame.Text[textName])
 		end
 

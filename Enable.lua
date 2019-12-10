@@ -127,8 +127,10 @@ local function SetupFrames(self, unit)
 	for k, v in pairs(profileReference.Frame.Text) do
 		if type(v) == 'table' then
 			table.insert(texts, k)
-		elseif type(v) == 'string' and v ~= '' then
-			profileReference.Frame.Text[v] = nil
+		elseif type(v) == 'string' then
+			 if v ~= '' then
+				RUF.db.profile.unit[unit].Frame.Text[k] = ''
+			 end
 		end
 	end
 	for i = 1, #texts do
