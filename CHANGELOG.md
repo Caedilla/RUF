@@ -1,10 +1,12 @@
-# RUF r220-Release
+# RUF r221-Release
 ### New
 * Added Party, Boss, and Arena Targets - defaults still need adjustment, especially for alternate layouts.
 * Added options to control appearance of the castbar text and time. Available under each unit's castbar settings.
 * Added options to control border insets for resource bars.
+* Added Simplified Chinese & Korean localisations.
 
 ### Changed
+* Updated classic interface version.
 * Portrait in Unitframe overlay style is now inset by 0.15px from the frame edge to prevent the portrait from being drawn over the edge of the frame in some situations.
 
 ### Known Issues

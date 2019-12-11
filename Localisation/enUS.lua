@@ -1,4 +1,5 @@
 local L = LibStub("AceLocale-3.0"):NewLocale("RUF", "enUS", true)
+L = L or {}
 L["%s and class specific resources for other classes."] = "%s and class specific resources for other classes."
 L["%s, %s, and class specific resources for other classes."] = "%s, %s, and class specific resources for other classes."
 L["0%"] = "0%"
