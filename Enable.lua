@@ -343,7 +343,10 @@ function RUF:OnEnable()
 			if profile.Enabled == false then
 				currentHeader:SetAttribute('showParty', false)
 				for j = 1, 4 do
-					_G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j]:Disable()
+					local disableFrame = _G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j]
+					if disableFrame then
+						_G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j]:Disable()
+					end
 				end
 			end
 
