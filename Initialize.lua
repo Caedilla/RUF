@@ -95,6 +95,7 @@ function RUF:OnInitialize()
 			'FocusTarget',
 			'Target',
 			'TargetTarget',
+			'TargetTargetTarget',
 		}
 		groupFrames = {
 			'Boss',
@@ -114,6 +115,7 @@ function RUF:OnInitialize()
 			'PetTarget',
 			'Target',
 			'TargetTarget',
+			'TargetTargetTarget',
 		}
 		groupFrames = {
 			'PartyTarget',

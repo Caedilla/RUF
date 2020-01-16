@@ -46,13 +46,14 @@ local function CopyList(singleFrame, groupFrame, header, section)
 			['FocusTarget'] = L["focustarget"],
 			['Target'] = L["target"],
 			['TargetTarget'] = L["targettarget"],
+			['TargetTargetTarget'] = L["targettargettarget"],
 			['Boss'] = L["boss"],
-			--['BossTarget'] = L["bosstarget"],
+			['BossTarget'] = L["bosstarget"],
 			['Arena'] = L["arena"],
-			--['ArenaTarget'] = L["arenatarget"],
+			['ArenaTarget'] = L["arenatarget"],
 			['Party'] = L["party"],
 			['PartyPet'] = L["partypet"],
-			--['PartyTarget'] = L["partytarget"],
+			['PartyTarget'] = L["partytarget"],
 		}
 	else
 		copyList = {
@@ -61,9 +62,10 @@ local function CopyList(singleFrame, groupFrame, header, section)
 			['PetTarget'] = L["pettarget"],
 			['Target'] = L["target"],
 			['TargetTarget'] = L["targettarget"],
+			['TargetTargetTarget'] = L["targettargettarget"],
 			['Party'] = L["party"],
 			['PartyPet'] = L["partypet"],
-			--['PartyTarget'] = L["partytarget"],
+			['PartyTarget'] = L["partytarget"],
 		}
 	end
 
