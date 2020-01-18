@@ -11,7 +11,7 @@ A unitframe layout for oUF
 ![Some more recent examples](https://i.imgur.com/XW5C31d.png "Some more recent examples")
 
 # Features
-* Supports Player, Pet, Target, Pet's Target, Target's Target, Party, and Party Pets.
+* Supports Player, Pet, Target, Pet's Target, Target's Target, Target's Target's Target, Party, Party Targets, and Party Pets.
 * Nickname - Like Details! In fact, this is synced with Details! This will sync to other people using RUF or Details! (or any other addon that supports NickTag-1.0)
 * Custom indicator status icons in place of the standard ones. These are icons such as PvP stats, Target Marks etc.
 * Buff and Debuff icons with optional type and dispellable highlighting and basic filtering. (more advanced filtering coming later)
@@ -24,7 +24,7 @@ A unitframe layout for oUF
 * Several pre-configured layouts to choose from in the profile section.
 
 ### Live Only Features
-* Supports Focus, Focus's Target, Boss, and Arena frames (In addition to the ones mentioned above)
+* Supports Focus, Focus's Target, Boss, Boss Targets, Arena, Arena Targets (In addition to the ones mentioned above)
 * Absorb Bar - a semi-transparent bar layered on top of the health bar showing your current absorbs as a percentage of max health.
 
 ### Classic Only Features
@@ -40,7 +40,8 @@ A unitframe layout for oUF
 * More tags, and increased options for existing tags
 
 ## Future Possibilities
-* Raid unit support as well as non-standard units such as target's target's target.
+* Raid unit support.
+* Layout designer to quickly setup multiple units.
 
 # Classic Support
 ### oUF
