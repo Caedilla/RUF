@@ -274,9 +274,13 @@ function RUF:OnEnable()
 					_G['oUF_RUF_' .. frames[i]] = nil
 				end
 			end
+			local anchorFrame = RUF.db.profile.unit[profile].Frame.Position.AnchorFrame
+			if not _G[RUF.db.profile.unit[profile].Frame.Position.AnchorFrame] then
+				anchorFrame = 'UIParent'
+			end
 			self:Spawn(profile):SetPoint(
 				RUF.db.profile.unit[profile].Frame.Position.AnchorFrom,
-				RUF.db.profile.unit[profile].Frame.Position.AnchorFrame,
+				anchorFrame,
 				RUF.db.profile.unit[profile].Frame.Position.AnchorTo,
 				RUF.db.profile.unit[profile].Frame.Position.x,
 				RUF.db.profile.unit[profile].Frame.Position.y)
@@ -418,4 +422,6 @@ function RUF:OnEnable()
 			oUF_RUF_Player:DisableElement('Runes')
 		end
 	end
+
+	RUF:UpdateAllUnitSettings()
 end
