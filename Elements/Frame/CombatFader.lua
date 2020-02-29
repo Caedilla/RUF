@@ -26,11 +26,10 @@ local faderState
 
 local function DamagedPlayerTrigger(self, event, unit, v)
 	local profileReference = RUF.db.profile.Appearance.CombatFader
+	if v ~= oUF_RUF_Player then return false end
 	if profileReference.damagedOverride ~= true then return false end
 	if InCombatLockdown() then return false end
-	if v ~= oUF_RUF_Player then return false end
-	if unit ~= 'player' then return false end
-	if profileReference.targetOverride == true and UnitExists('target') then return false end
+	if (unit ~= 'player' and unit ~= nil) then return false end
 	local playerPercentHealth = RUF:Percent(UnitHealth('player'), UnitHealthMax('player'))
 	if playerPercentHealth > profileReference.damagedPercent then return false end
 	return true
@@ -38,7 +37,6 @@ end
 
 
 function RUF.CombatFader(self, event, unit)
-	print(event)
 	local profileReference = RUF.db.profile.Appearance.CombatFader
 	if event == 'updateOptions' then
 		if profileReference.Enabled then
@@ -72,20 +70,14 @@ function RUF.CombatFader(self, event, unit)
 		local playerPercentHealth = RUF:Percent(UnitHealth('player'), UnitHealthMax('player'))
 		for k, v in next, oUF.objects do
 			if (event == 'PLAYER_TARGET_CHANGED' or event == 'updateOptions' or (event == 'UNIT_TARGET' and unit == 'player')) and not InCombatLockdown() then
-				if profileReference.targetOverride == true then
-					if UnitExists('target') then
-						v:SetAlpha(profileReference.targetAlpha or 1)
-						v.Alpha = profileReference.targetAlpha or 1
-					else
-						v:SetAlpha(profileReference.restAlpha or 0.5)
-						v.Alpha = profileReference.restAlpha or 0.5
-					end
+				if profileReference.targetOverride == true and UnitExists('target') then
+					v:SetAlpha(profileReference.targetAlpha or 1)
+					v.Alpha = profileReference.targetAlpha or 1
 				else
 					v:SetAlpha(profileReference.restAlpha or 0.5)
 					v.Alpha = profileReference.restAlpha or 0.5
 				end
 				if DamagedPlayerTrigger(self, event, unit, v) == true then
-					print('target trigger')
 					oUF_RUF_Player:SetAlpha(profileReference.damagedAlpha or 1)
 					oUF_RUF_Player.Alpha = profileReference.damagedAlpha or 1
 				end
@@ -94,7 +86,6 @@ function RUF.CombatFader(self, event, unit)
 				v.Alpha = profileReference.combatAlpha or 1
 			elseif event == 'PLAYER_REGEN_ENABLED' then
 				if DamagedPlayerTrigger(self, event, unit, v) == true then
-					print('regen trigger')
 					oUF_RUF_Player:SetAlpha(profileReference.damagedAlpha or 1)
 					oUF_RUF_Player.Alpha = profileReference.damagedAlpha or 1
 				else
@@ -110,7 +101,6 @@ function RUF.CombatFader(self, event, unit)
 					v.Alpha = profileReference.restAlpha or 0.5
 				end
 			elseif DamagedPlayerTrigger(self, event, unit, v) == true then
-				print('other trigger')
 				oUF_RUF_Player:SetAlpha(profileReference.damagedAlpha or 1)
 				oUF_RUF_Player.Alpha = profileReference.damagedAlpha or 1
 			end

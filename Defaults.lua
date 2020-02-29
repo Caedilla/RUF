@@ -41,6 +41,9 @@ local cfg = {
 				targetAlpha = 1,
 				combatAlpha = 1,
 				restAlpha = 0.5,
+				damagedOverride = false,
+				damagedPercent = 75,
+				damagedAlpha = 1,
 			},
 			Bars = {
 				Health = {
