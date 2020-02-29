@@ -256,6 +256,8 @@ function RUF:OnEnable()
 		self:RegisterEvent('PLAYER_REGEN_DISABLED', RUF.CombatFader, true)
 		self:RegisterEvent('PLAYER_REGEN_ENABLED', RUF.CombatFader, true)
 		self:RegisterEvent('PLAYER_ENTERING_WORLD', RUF.CombatFader, true)
+		self:RegisterEvent('UNIT_HEALTH', RUF.CombatFader, true)
+		self:RegisterEvent('UNIT_MAXHEALTH', RUF.CombatFader, true)
 	end
 
 	oUF:RegisterStyle('RUF_', SetupFrames)

@@ -230,6 +230,12 @@ function RUF_Options.MainOptions()
 											RUF.CombatFader(nil,'updateOptions')
 										end,
 									},
+									restSpacer = {
+										name = " ",
+										type = 'description',
+										order = 0.3,
+										width = 'full',
+									},
 									disableWithTarget = {
 										name = L["Enable targeting alpha"],
 										desc = L["Use a different alpha value when you have a target."],
@@ -254,12 +260,71 @@ function RUF_Options.MainOptions()
 										softMax = 1,
 										step = 0.01,
 										bigStep = 0.01,
-										hidden = function() return not RUF.db.profile.Appearance.CombatFader.targetOverride end,
+										disabled = function() return not RUF.db.profile.Appearance.CombatFader.targetOverride end,
 										get = function(info)
 											return RUF.db.profile.Appearance.CombatFader.targetAlpha
 										end,
 										set = function(info, value)
 											RUF.db.profile.Appearance.CombatFader.targetAlpha = value
+											RUF.CombatFader(nil,'updateOptions')
+										end,
+									},
+									targetSpacer = {
+										name = " ",
+										type = 'description',
+										order = 0.4,
+										width = 'full',
+									},
+									damagedAlphaToggle = {
+										name = L["Enable player damaged alpha"],
+										desc = L["Use a different alpha value for the player frame when you are under max health."],
+										type = 'toggle',
+										order = 0.45,
+										get = function(info)
+											return RUF.db.profile.Appearance.CombatFader.damagedOverride
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.CombatFader.damagedOverride = value
+											RUF.CombatFader(nil,'updateOptions')
+										end,
+									},
+									damagedPercentTrigger = {
+										name = L["Trigger at"],
+										desc = L["The damaged alpha will only be used when you are below this percentage of health."],
+										type = 'range',
+										order = 0.46,
+										min = 0,
+										max = 100,
+										softMin = 0,
+										softMax = 100,
+										step = 0.1,
+										bigStep = 1,
+										disabled = function() return not RUF.db.profile.Appearance.CombatFader.damagedOverride end,
+										get = function(info)
+											return RUF.db.profile.Appearance.CombatFader.damagedPercent
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.CombatFader.damagedPercent = value
+											RUF.CombatFader(nil,'updateOptions')
+										end,
+									},
+									damagedAlpha = {
+										name = L["Damaged alpha"],
+										desc = L["Alpha of the player frame when you are under max health."],
+										type = 'range',
+										order = 0.47,
+										min = 0,
+										max = 1,
+										softMin = 0,
+										softMax = 1,
+										step = 0.01,
+										bigStep = 0.01,
+										disabled = function() return not RUF.db.profile.Appearance.CombatFader.damagedOverride end,
+										get = function(info)
+											return RUF.db.profile.Appearance.CombatFader.damagedAlpha
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.CombatFader.damagedAlpha = value
 											RUF.CombatFader(nil,'updateOptions')
 										end,
 									},
