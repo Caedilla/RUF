@@ -660,12 +660,15 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 		end
 
 		if profileReference.Frame.RangeFading.Enabled == true then
-			unitFrame:EnableElement('RangeCheck')
-			unitFrame.RangeCheck = {
-				enabled = profileReference.Frame.RangeFading.Enabled,
-				insideAlpha = 1,
-				outsideAlpha = profileReference.Frame.RangeFading.Alpha or 1,
-			}
+			if singleFrame ~= 'Player' then
+				unitFrame:EnableElement('RangeCheck')
+				if not unitFrame.RangeCheck then
+					unitFrame.RangeCheck = {}
+				end
+				unitFrame.RangeCheck.enabled = profileReference.Frame.RangeFading.Enabled
+				unitFrame.RangeCheck.insideAlpha = 1
+				unitFrame.RangeCheck.outsideAlpha = profileReference.Frame.RangeFading.Alpha or 0.55
+			end
 		else
 			unitFrame:DisableElement('RangeCheck')
 		end

@@ -106,7 +106,6 @@ HarmSpells["WARLOCK"] = {
 }
 
 
-
 local function IsUnitInRange(unit)
 	local canAttack = UnitCanAttack('player', unit)
 	local canHelp = UnitCanAssist('player', unit)
@@ -154,7 +153,12 @@ end
 local function Update(self, event)
 	local element = self.RangeCheck
 	local unit = self.unit
-	local currentAlpha = self.Alpha.current or 1 -- Work with combat fader
+	if not self.Alpha then
+		self.Alpha = {}
+	end
+	local currentAlpha = self.Alpha.target or 1 -- Work with combat fader
+	local insideAlpha = currentAlpha * element.insideAlpha
+	local outsideAlpha = currentAlpha * element.outsideAlpha
 
 	if(element.PreUpdate) then
 		element:PreUpdate()
@@ -162,33 +166,31 @@ local function Update(self, event)
 
 	if element.enabled == true then
 		if IsUnitInRange(unit) then
-			if element.animationFunc then
-				element.animationFunc(self, currentAlpha * element.insideAlpha, 1)
-			else
-				--self:SetAlpha(currentAlpha * element.insideAlpha)
-			end
+			--self:SetAlpha(insideAlpha)
+			self.Alpha.range = insideAlpha
+			self.Alpha.inRange = true
 		else
-			if element.animationFunc then
-				element.animationFunc(self, currentAlpha * element.outsideAlpha, 1)
-			else
-				--self:SetAlpha(currentAlpha * element.outsideAlpha)
-			end
+			--self:SetAlpha(outsideAlpha)
+			self.Alpha.range = outsideAlpha
+			self.Alpha.inRange = false
 		end
 		if(element.PostUpdate) then
 			return element:PostUpdate(self, unit)
 		end
 	else
-		if element.animationFunc then
-			element.animationFunc(self, currentAlpha * element.insideAlpha, 1)
-		else
-			--self:SetAlpha(currentAlpha * element.insideAlpha)
-		end
+		--self:SetAlpha(1)
+		self.Alpha.range = 1
+		self.Alpha.inRange = true
 		self:DisableElement('RangeCheck')
 	end
 end
 
 local function Path(self, ...)
 	return (self.RangeCheck.Override or Update) (self, ...)
+end
+
+local function ForceUpdate(element)
+	return Path(element.__owner, 'ForceUpdate')
 end
 
 -- Internal updating method
@@ -211,6 +213,7 @@ local function Enable(self)
 	local element = self.RangeCheck
 	if(element) then
 		element.__owner = self
+		element.ForceUpdate = ForceUpdate
 		element.insideAlpha = element.insideAlpha or 1
 		element.outsideAlpha = element.outsideAlpha or 0.55
 
@@ -243,4 +246,4 @@ local function Disable(self)
 	end
 end
 
-oUF:AddElement('RangeCheck', nil, Enable, Disable)
+oUF:AddElement('RangeCheck', Path, Enable, Disable)

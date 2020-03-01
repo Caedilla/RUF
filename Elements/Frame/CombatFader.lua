@@ -8,7 +8,29 @@ local function ChangeAlpha(self, to, duration)
 		RUF.AnimateAlpha(self, to, duration)
 	else
 		self:SetAlpha(to)
-		self.Alpha.current = to
+		self.Alpha.target = to
+	end
+
+	if self.RangeCheck then
+		if self.RangeCheck.enabled and self.RangeCheck.ForceUpdate then
+			self.RangeCheck:ForceUpdate()
+		end
+	end
+end
+
+function RUF:RangeCheckPostUpdate(frame, unit)
+	if not frame.Animator then
+		frame:SetAlpha(frame.Alpha.range)
+		return
+	end
+	if frame.Animator:IsPlaying() then
+		if frame.Alpha.inRange == false then
+			frame.Animator:Stop()
+			frame:SetAlpha(frame.Alpha.range)
+			frame.Alpha.current = frame.Alpha.range
+		end
+	else
+		frame:SetAlpha(frame.Alpha.range)
 	end
 end
 
@@ -16,6 +38,7 @@ local function Reset(fast)
 	if fast then
 		for k, v in next, oUF.objects do
 			v:SetAlpha(1)
+			v.Alpha.target = 1
 			v.Alpha.current = 1
 		end
 	else
@@ -43,6 +66,7 @@ function RUF.CombatFaderUpdate()
 					ChangeAlpha(v, profileReference.restAlpha or 0.5, profileReference.animationDuration or 0.5)
 				else
 					v:SetAlpha(profileReference.restAlpha)
+					v.Alpha.target = profileReference.restAlpha
 					v.Alpha.current = profileReference.restAlpha
 				end
 			end

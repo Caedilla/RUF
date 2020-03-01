@@ -168,17 +168,17 @@ local function SetupFrames(self, unit)
 	RUF.SetBarLocation(self, unit)
 
 	if unit ~= 'player' then
-		self.RangeCheck = {
-			enabled = profileReference.Frame.RangeFading.Enabled,
-			insideAlpha = 1,
-			outsideAlpha = profileReference.Frame.RangeFading.Alpha or 0.55,
-			animationFunc = RUF.AnimateAlpha
-		}
+		if not self.RangeCheck then
+			self.RangeCheck = {}
+		end
+		self.RangeCheck.enabled = profileReference.Frame.RangeFading.Enabled
+		self.RangeCheck.insideAlpha = 1
+		self.RangeCheck.outsideAlpha = profileReference.Frame.RangeFading.Alpha or 0.55
+		self.RangeCheck.PostUpdate = RUF.RangeCheckPostUpdate
 	end
 
-	self.Alpha = {
-		current = 1,
-	}
+	self.Alpha = {}
+	self.Alpha.current = 1
 
 end
 

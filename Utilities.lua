@@ -181,13 +181,21 @@ function RUF:ColorGradient(...)
 end
 
 local function AlphaAnimationDataUpdate(self)
-	self:GetParent().Alpha.current = self:GetParent():GetAlpha()
+	local parent = self:GetParent()
+
+	self:GetParent().Alpha.current = parent:GetAlpha()
+
+
+	--if parent.Alpha.outsideRange == true then
+	--	local animation = self.animation
+	--	animation:SetFromAlpha(parent.Alpha)
+	--	animation:SetToAlpha(parent.RangeCheck.outsideAlpha)
+	--end
 end
 
 function RUF.AnimateAlpha(self, to, duration)
 	self.Alpha.current = self:GetAlpha()
-	self.Alpha.to = to or 1
-	self.Alpha.duration = duration or 0.5
+	self.Alpha.target = to or 1
 
 	if not self.Animator then
 		local animationGroup = self:CreateAnimationGroup()
@@ -201,8 +209,8 @@ function RUF.AnimateAlpha(self, to, duration)
 
 	if animationGroup:IsPlaying() then animationGroup:Stop() end
 	animation:SetFromAlpha(self.Alpha.current)
-	animation:SetToAlpha(self.Alpha.to)
-	animation:SetDuration(self.Alpha.duration)
+	animation:SetToAlpha(self.Alpha.target)
+	animation:SetDuration(duration)
 	animationGroup:Play()
 	animationGroup:SetToFinalAlpha(true)
 	animationGroup:SetScript('OnUpdate', AlphaAnimationDataUpdate)
