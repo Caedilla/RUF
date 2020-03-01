@@ -1,6 +1,7 @@
-# RUF r225-alpha
+# RUF r226-alpha
 ### New
 * Added options to the Combat Fader to allow the player frame to have a different alpha setting if you are below max health.
+* Added options ot the Combat Fader to smoothly animate alpha changes.
 
 ### Known Issues
 * Portraits in free-floating mode ignore mouse clicks and cannot be used to select units.
