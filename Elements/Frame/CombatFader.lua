@@ -39,7 +39,12 @@ function RUF.CombatFaderUpdate()
 			end
 		else
 			for k, v in next, oUF.objects do
-				ChangeAlpha(v, profileReference.restAlpha or 0.5, profileReference.animationDuration or 0.5)
+				if UnitExists(v.unit) then
+					ChangeAlpha(v, profileReference.restAlpha or 0.5, profileReference.animationDuration or 0.5)
+				else
+					v:SetAlpha(profileReference.restAlpha)
+					v.Alpha.current = profileReference.restAlpha
+				end
 			end
 			if profileReference.damagedOverride == true then
 				local playerPercentHealth = RUF:Percent(UnitHealth('player'), UnitHealthMax('player'))

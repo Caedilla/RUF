@@ -165,13 +165,13 @@ local function Update(self, event)
 			if element.animationFunc then
 				element.animationFunc(self, currentAlpha * element.insideAlpha, 1)
 			else
-				self:SetAlpha(currentAlpha * element.insideAlpha)
+				--self:SetAlpha(currentAlpha * element.insideAlpha)
 			end
 		else
 			if element.animationFunc then
 				element.animationFunc(self, currentAlpha * element.outsideAlpha, 1)
 			else
-				self:SetAlpha(currentAlpha * element.outsideAlpha)
+				--self:SetAlpha(currentAlpha * element.outsideAlpha)
 			end
 		end
 		if(element.PostUpdate) then
@@ -181,7 +181,7 @@ local function Update(self, event)
 		if element.animationFunc then
 			element.animationFunc(self, currentAlpha * element.insideAlpha, 1)
 		else
-			self:SetAlpha(currentAlpha * element.insideAlpha)
+			--self:SetAlpha(currentAlpha * element.insideAlpha)
 		end
 		self:DisableElement('RangeCheck')
 	end

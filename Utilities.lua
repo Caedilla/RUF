@@ -189,10 +189,17 @@ function RUF.AnimateAlpha(self, to, duration)
 	self.Alpha.to = to or 1
 	self.Alpha.duration = duration or 0.5
 
-	local animationGroup = self:CreateAnimationGroup()
-	self.Animator = animationGroup
+	if not self.Animator then
+		local animationGroup = self:CreateAnimationGroup()
+		self.Animator = animationGroup
+		local animation = animationGroup:CreateAnimation('Alpha')
+		self.Animator.animation = animation
+	end
 
-	local animation = animationGroup:CreateAnimation('Alpha')
+	local animationGroup = self.Animator
+	local animation = self.Animator.animation
+
+	if animationGroup:IsPlaying() then animationGroup:Stop() end
 	animation:SetFromAlpha(self.Alpha.current)
 	animation:SetToAlpha(self.Alpha.to)
 	animation:SetDuration(self.Alpha.duration)
