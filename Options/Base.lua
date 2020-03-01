@@ -198,6 +198,7 @@ function RUF_Options.MainOptions()
 										end,
 										set = function(info, value)
 											RUF.db.profile.Appearance.CombatFader.animate = value
+											RUF.CombatFaderUpdate()
 										end,
 									},
 									animationDuration = {
@@ -209,8 +210,8 @@ function RUF_Options.MainOptions()
 										max = 10,
 										softMin = 0,
 										softMax = 3,
-										step = 0.01,
-										bigStep = 0.1,
+										step = 0.001,
+										bigStep = 0.01,
 										get = function(info)
 											return RUF.db.profile.Appearance.CombatFader.animationDuration
 										end,

@@ -182,15 +182,7 @@ end
 
 local function AlphaAnimationDataUpdate(self)
 	local parent = self:GetParent()
-
 	self:GetParent().Alpha.current = parent:GetAlpha()
-
-
-	--if parent.Alpha.outsideRange == true then
-	--	local animation = self.animation
-	--	animation:SetFromAlpha(parent.Alpha)
-	--	animation:SetToAlpha(parent.RangeCheck.outsideAlpha)
-	--end
 end
 
 function RUF.AnimateAlpha(self, to, duration)

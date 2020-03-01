@@ -7,6 +7,11 @@ local function ChangeAlpha(self, to, duration)
 	if profileReference.animate then
 		RUF.AnimateAlpha(self, to, duration)
 	else
+		if self.Animator then
+			if self.Animator:IsPlaying() then
+				self.Animator:Stop()
+			end
+		end
 		self:SetAlpha(to)
 		self.Alpha.target = to
 	end
@@ -16,7 +21,15 @@ local function ChangeAlpha(self, to, duration)
 			self.RangeCheck:ForceUpdate()
 		end
 	end
+
 end
+
+
+-- TODO
+--[[
+	Move range check update
+	create range check override so we have a "clean" plugin that's not so intertwined with the combat fader.
+]]
 
 function RUF:RangeCheckPostUpdate(frame, unit)
 	if not frame.Animator then
@@ -37,9 +50,14 @@ end
 local function Reset(fast)
 	if fast then
 		for k, v in next, oUF.objects do
-			v:SetAlpha(1)
+			if v.Animator then
+				if v.Animator:IsPlaying() then
+					v.Animator:Stop()
+				end
+			end
 			v.Alpha.target = 1
 			v.Alpha.current = 1
+			v:SetAlpha(1)
 		end
 	else
 		local profileReference = RUF.db.profile.Appearance.CombatFader
@@ -47,6 +65,7 @@ local function Reset(fast)
 			ChangeAlpha(v, 1, profileReference.animationDuration)
 		end
 	end
+
 end
 
 function RUF.CombatFaderUpdate()
@@ -81,14 +100,6 @@ function RUF.CombatFaderUpdate()
 	end
 end
 
-local function PLAYER_REGEN_DISABLED(self, event)
-	if event ~= 'PLAYER_REGEN_DISABLED' then return end
-	local profileReference = RUF.db.profile.Appearance.CombatFader
-	if profileReference.Enabled == true then
-		Reset(true)
-	end
-end
-
 local function PLAYER_REGEN_ENABLED(self, event)
 	if event ~= 'PLAYER_REGEN_ENABLED' then return end
 	local profileReference = RUF.db.profile.Appearance.CombatFader
@@ -107,6 +118,18 @@ local function UNIT_HEALTH(self, event)
 	local profileReference = RUF.db.profile.Appearance.CombatFader
 	if profileReference.Enabled == true then
 		RUF.CombatFaderUpdate()
+	end
+end
+
+local function PLAYER_REGEN_DISABLED(self, event)
+	if event ~= 'PLAYER_REGEN_DISABLED' then return end
+	RUF:UnregisterEvent('UNIT_TARGET', RUF.CombatFaderUpdate)
+	RUF:UnregisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH)
+	RUF:UnregisterEvent('UNIT_MAXHEALTH', UNIT_HEALTH)
+	RUF:UnregisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFaderUpdate)
+	local profileReference = RUF.db.profile.Appearance.CombatFader
+	if profileReference.Enabled == true then
+		Reset(true)
 	end
 end
 
