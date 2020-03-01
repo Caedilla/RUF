@@ -6,7 +6,6 @@ local _FRAMES = {}
 local OnRangeFrame
 local _,uClass = UnitClass('player')
 
-
 local FriendSpells = {}
 local HarmSpells = {}
 
@@ -116,6 +115,7 @@ local function IsUnitInRange(unit)
 	local rangeSpells, minRange, maxRange
 	local connected = UnitIsConnected(unit)
 	if not connected then return true end
+
 	if isVisible then
 		if canAttack then
 			rangeSpells = HarmSpells[uClass]
@@ -154,7 +154,7 @@ end
 local function Update(self, event)
 	local element = self.RangeCheck
 	local unit = self.unit
-	local currentAlpha = self.Alpha or 1 -- Work with combat fader
+	local currentAlpha = self.Alpha.current or 1 -- Work with combat fader
 
 	if(element.PreUpdate) then
 		element:PreUpdate()
@@ -162,15 +162,27 @@ local function Update(self, event)
 
 	if element.enabled == true then
 		if IsUnitInRange(unit) then
-			self:SetAlpha(currentAlpha * element.insideAlpha)
+			if element.animationFunc then
+				element.animationFunc(self, currentAlpha * element.insideAlpha, 1)
+			else
+				self:SetAlpha(currentAlpha * element.insideAlpha)
+			end
 		else
-			self:SetAlpha(currentAlpha * element.outsideAlpha)
+			if element.animationFunc then
+				element.animationFunc(self, currentAlpha * element.outsideAlpha, 1)
+			else
+				self:SetAlpha(currentAlpha * element.outsideAlpha)
+			end
 		end
 		if(element.PostUpdate) then
 			return element:PostUpdate(self, unit)
 		end
 	else
-		self:SetAlpha(currentAlpha * element.insideAlpha)
+		if element.animationFunc then
+			element.animationFunc(self, currentAlpha * element.insideAlpha, 1)
+		else
+			self:SetAlpha(currentAlpha * element.insideAlpha)
+		end
 		self:DisableElement('RangeCheck')
 	end
 end

@@ -1,115 +1,111 @@
 local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
 local _, ns = ...
 local oUF = ns.oUF
-local faderState
 
-
-
-
-
---[[
-
-		local AnimationGroup = element:CreateAnimationGroup()
-		AnimationGroup:HookScript('OnFinished', OnFinished)
-		element.Animation = AnimationGroup
-
-		local Animation = AnimationGroup:CreateAnimation('Alpha')
-		Animation:SetFromAlpha(1)
-		Animation:SetToAlpha(0)
-		Animation:SetDuration(element.fadeTime or 1.5)
-		Animation:SetStartDelay(element.finishedTime or 10)
-
-
-		element.Animation:Play()
-
-]]--
-
-local function DamagedPlayerTrigger(self, event, unit, v)
+local function ChangeAlpha(self, to, duration)
 	local profileReference = RUF.db.profile.Appearance.CombatFader
-	if v ~= oUF_RUF_Player then return false end
-	if profileReference.damagedOverride ~= true then return false end
-	if InCombatLockdown() then return false end
-	if (unit ~= 'player' and unit ~= nil) then return false end
-	local playerPercentHealth = RUF:Percent(UnitHealth('player'), UnitHealthMax('player'))
-	if playerPercentHealth > profileReference.damagedPercent then return false end
-	return true
+	if profileReference.animate then
+		RUF.AnimateAlpha(self, to, duration)
+	else
+		self:SetAlpha(to)
+		self.Alpha.current = to
+	end
 end
 
-
-function RUF.CombatFader(self, event, unit)
-	local profileReference = RUF.db.profile.Appearance.CombatFader
-	if event == 'updateOptions' then
-		if profileReference.Enabled then
-			if RUF.Client == 1 then
-				RUF:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader, true)
-			else
-				RUF:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader, true)
-				RUF:RegisterEvent('UNIT_TARGET', RUF.CombatFader, true)
-			end
-			RUF:RegisterEvent('PLAYER_REGEN_DISABLED', RUF.CombatFader, true)
-			RUF:RegisterEvent('PLAYER_REGEN_ENABLED', RUF.CombatFader, true)
-			RUF:RegisterEvent('PLAYER_ENTERING_WORLD', RUF.CombatFader, true)
-			RUF:RegisterEvent('UNIT_HEALTH', RUF.CombatFader, true)
-			RUF:RegisterEvent('UNIT_MAXHEALTH', RUF.CombatFader, true)
-		else
-			if RUF.Client == 1 then
-				RUF:UnregisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader)
-			else
-				RUF:UnregisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader)
-				RUF:UnregisterEvent('UNIT_TARGET', RUF.CombatFader)
-			end
-			RUF:UnregisterEvent('PLAYER_REGEN_DISABLED', RUF.CombatFader)
-			RUF:UnregisterEvent('PLAYER_REGEN_ENABLED', RUF.CombatFader)
-			RUF:UnregisterEvent('PLAYER_ENTERING_WORLD', RUF.CombatFader)
-			RUF:UnregisterEvent('UNIT_HEALTH', RUF.CombatFader)
-			RUF:UnregisterEvent('UNIT_MAXHEALTH', RUF.CombatFader)
-		end
-	end
-	if profileReference.Enabled then
-		faderState = true
-		local playerPercentHealth = RUF:Percent(UnitHealth('player'), UnitHealthMax('player'))
-		for k, v in next, oUF.objects do
-			if (event == 'PLAYER_TARGET_CHANGED' or event == 'updateOptions' or (event == 'UNIT_TARGET' and unit == 'player')) and not InCombatLockdown() then
-				if profileReference.targetOverride == true and UnitExists('target') then
-					v:SetAlpha(profileReference.targetAlpha or 1)
-					v.Alpha = profileReference.targetAlpha or 1
-				else
-					v:SetAlpha(profileReference.restAlpha or 0.5)
-					v.Alpha = profileReference.restAlpha or 0.5
-				end
-				if DamagedPlayerTrigger(self, event, unit, v) == true then
-					oUF_RUF_Player:SetAlpha(profileReference.damagedAlpha or 1)
-					oUF_RUF_Player.Alpha = profileReference.damagedAlpha or 1
-				end
-			elseif event == 'PLAYER_REGEN_DISABLED' then
-				v:SetAlpha(profileReference.combatAlpha or 1)
-				v.Alpha = profileReference.combatAlpha or 1
-			elseif event == 'PLAYER_REGEN_ENABLED' then
-				if DamagedPlayerTrigger(self, event, unit, v) == true then
-					oUF_RUF_Player:SetAlpha(profileReference.damagedAlpha or 1)
-					oUF_RUF_Player.Alpha = profileReference.damagedAlpha or 1
-				else
-					v:SetAlpha(profileReference.restAlpha or 0.5)
-					v.Alpha = profileReference.restAlpha or 0.5
-				end
-			elseif event == 'PLAYER_ENTERING_WORLD' then
-				if InCombatLockdown() then
-					v:SetAlpha(profileReference.combatAlpha or 1)
-					v.Alpha = profileReference.combatAlpha or 0.5
-				else
-					v:SetAlpha(profileReference.restAlpha or 1)
-					v.Alpha = profileReference.restAlpha or 0.5
-				end
-			elseif DamagedPlayerTrigger(self, event, unit, v) == true then
-				oUF_RUF_Player:SetAlpha(profileReference.damagedAlpha or 1)
-				oUF_RUF_Player.Alpha = profileReference.damagedAlpha or 1
-			end
-		end
-	elseif faderState == true then
+local function Reset(fast)
+	if fast then
 		for k, v in next, oUF.objects do
 			v:SetAlpha(1)
-			v.Alpha = 1
+			v.Alpha.current = 1
 		end
-		faderState = false
+	else
+		local profileReference = RUF.db.profile.Appearance.CombatFader
+		for k, v in next, oUF.objects do
+			ChangeAlpha(v, 1, profileReference.animationDuration)
+		end
+	end
+end
+
+function RUF.CombatFaderUpdate()
+	local profileReference = RUF.db.profile.Appearance.CombatFader
+	if not InCombatLockdown() then
+		if profileReference.Enabled ~= true then
+			Reset()
+			return
+		end
+		if UnitExists('target') and profileReference.targetOverride == true then
+			for k, v in next, oUF.objects do
+				ChangeAlpha(v, profileReference.targetAlpha or 1, profileReference.animationDuration or 0.5)
+			end
+		else
+			for k, v in next, oUF.objects do
+				ChangeAlpha(v, profileReference.restAlpha or 0.5, profileReference.animationDuration or 0.5)
+			end
+			if profileReference.damagedOverride == true then
+				local playerPercentHealth = RUF:Percent(UnitHealth('player'), UnitHealthMax('player'))
+				if playerPercentHealth < (profileReference.damagedPercent or 100) then
+					if not oUF_RUF_Player then return end
+					ChangeAlpha(oUF_RUF_Player, profileReference.damagedAlpha or 1, profileReference.animationDuration or 0.5)
+				end
+			end
+		end
+	end
+end
+
+local function PLAYER_REGEN_DISABLED(self, event)
+	if event ~= 'PLAYER_REGEN_DISABLED' then return end
+	local profileReference = RUF.db.profile.Appearance.CombatFader
+	if profileReference.Enabled == true then
+		Reset(true)
+	end
+end
+
+local function PLAYER_REGEN_ENABLED(self, event)
+	if event ~= 'PLAYER_REGEN_ENABLED' then return end
+	local profileReference = RUF.db.profile.Appearance.CombatFader
+	if profileReference.Enabled == true then
+		RUF.CombatFaderRegister()
+	end
+end
+
+local function PLAYER_ENTERING_WORLD(self, event)
+	if event ~= 'PLAYER_ENTERING_WORLD' then return end
+	RUF.CombatFaderRegister()
+end
+
+local function UNIT_HEALTH(self, event)
+	if event ~= 'UNIT_HEALTH_FREQUENT' and event ~= 'UNIT_MAXHEALTH' then return end
+	local profileReference = RUF.db.profile.Appearance.CombatFader
+	if profileReference.Enabled == true then
+		RUF.CombatFaderUpdate()
+	end
+end
+
+function RUF.CombatFaderRegister()
+	local profileReference = RUF.db.profile.Appearance.CombatFader
+	if profileReference.Enabled == true then
+		if profileReference.targetOverride == true then
+			if RUF.Client == 2 then
+				RUF:RegisterEvent('UNIT_TARGET', RUF.CombatFaderUpdate, true)
+			end
+		end
+		if profileReference.damagedOverride == true then
+			RUF:RegisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH, true)
+			RUF:RegisterEvent('UNIT_MAXHEALTH', UNIT_HEALTH, true)
+		end
+		RUF:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFaderUpdate, true)
+		RUF:RegisterEvent('PLAYER_REGEN_DISABLED', PLAYER_REGEN_DISABLED, true)
+		RUF:RegisterEvent('PLAYER_REGEN_ENABLED', PLAYER_REGEN_ENABLED, true)
+		RUF:RegisterEvent('PLAYER_ENTERING_WORLD', PLAYER_ENTERING_WORLD, true)
+		RUF.CombatFaderUpdate()
+	else
+		RUF:UnregisterEvent('UNIT_TARGET', RUF.CombatFaderUpdate)
+		RUF:UnregisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH)
+		RUF:UnregisterEvent('UNIT_MAXHEALTH', UNIT_HEALTH)
+		RUF:UnregisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFaderUpdate)
+		RUF:UnregisterEvent('PLAYER_REGEN_DISABLED', PLAYER_REGEN_DISABLED)
+		RUF:UnregisterEvent('PLAYER_REGEN_ENABLED', PLAYER_REGEN_ENABLED)
+		RUF:UnregisterEvent('PLAYER_ENTERING_WORLD', PLAYER_ENTERING_WORLD)
+		Reset()
 	end
 end

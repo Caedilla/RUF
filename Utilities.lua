@@ -180,6 +180,27 @@ function RUF:ColorGradient(...)
 	end
 end
 
+local function AlphaAnimationDataUpdate(self)
+	self:GetParent().Alpha.current = self:GetParent():GetAlpha()
+end
+
+function RUF.AnimateAlpha(self, to, duration)
+	self.Alpha.current = self:GetAlpha()
+	self.Alpha.to = to or 1
+	self.Alpha.duration = duration or 0.5
+
+	local animationGroup = self:CreateAnimationGroup()
+	self.Animator = animationGroup
+
+	local animation = animationGroup:CreateAnimation('Alpha')
+	animation:SetFromAlpha(self.Alpha.current)
+	animation:SetToAlpha(self.Alpha.to)
+	animation:SetDuration(self.Alpha.duration)
+	animationGroup:Play()
+	animationGroup:SetToFinalAlpha(true)
+	animationGroup:SetScript('OnUpdate', AlphaAnimationDataUpdate)
+end
+
 function RUF:FrameIsDependentOnFrame(frame, otherFrame)
 	if (frame and otherFrame) then
 		if frame == otherFrame then

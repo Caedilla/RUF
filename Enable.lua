@@ -171,9 +171,14 @@ local function SetupFrames(self, unit)
 		self.RangeCheck = {
 			enabled = profileReference.Frame.RangeFading.Enabled,
 			insideAlpha = 1,
-			outsideAlpha = profileReference.Frame.RangeFading.Alpha or 1,
+			outsideAlpha = profileReference.Frame.RangeFading.Alpha or 0.55,
+			animationFunc = RUF.AnimateAlpha
 		}
 	end
+
+	self.Alpha = {
+		current = 1,
+	}
 
 end
 
@@ -247,18 +252,7 @@ function RUF:OnEnable()
 	end
 
 	-- Register Combat Fader
-	if RUF.db.profile.Appearance.CombatFader.Enabled == true then
-		if RUF.Client == 1 then
-			self:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFader, true)
-		else
-			self:RegisterEvent('UNIT_TARGET', RUF.CombatFader, true)
-		end
-		self:RegisterEvent('PLAYER_REGEN_DISABLED', RUF.CombatFader, true)
-		self:RegisterEvent('PLAYER_REGEN_ENABLED', RUF.CombatFader, true)
-		self:RegisterEvent('PLAYER_ENTERING_WORLD', RUF.CombatFader, true)
-		self:RegisterEvent('UNIT_HEALTH', RUF.CombatFader, true)
-		self:RegisterEvent('UNIT_MAXHEALTH', RUF.CombatFader, true)
-	end
+	RUF.CombatFaderRegister()
 
 	oUF:RegisterStyle('RUF_', SetupFrames)
 	oUF:Factory(function(self)

@@ -428,7 +428,11 @@ L["You have the %s version of RUF installed, but you are playing %s. Please inst
 L["Z Offset"] = "Z Offset"
 L["Enable player damaged alpha"] = true
 L["Use a different alpha value for the player frame when you are under max health."] = true
-L["Trigger at"] = true
+L["Trigger below this percent"] = true
 L["The damaged alpha will only be used when you are below this percentage of health."] = true
 L["Damaged alpha"] = true
 L["Alpha of the player frame when you are under max health."] = true
+L["Smooth transitions"] = true
+L["Enable to smoothly transition between different alpha values."] = true
+L["Transition duration"] = true
+L["How long the frames take to smoothly transition between different alpha values."] = true

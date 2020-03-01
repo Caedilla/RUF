@@ -1121,7 +1121,7 @@ local cfg = {
 							["y"] = -0.35,
 							["z"] = -0.25,
 							["Animation"] = {
-								["Paused"] = true,
+								["Paused"] = false,
 							},
 						},
 						["Position"] = {

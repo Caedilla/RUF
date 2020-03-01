@@ -185,13 +185,43 @@ function RUF_Options.MainOptions()
 										end,
 										set = function(info, value)
 											RUF.db.profile.Appearance.CombatFader.Enabled = value
-											RUF.CombatFader(nil,'updateOptions')
+											RUF.CombatFaderRegister()
+										end,
+									},
+									animate = {
+										name = L["Smooth transitions"],
+										desc = L["Enable to smoothly transition between different alpha values."],
+										type = 'toggle',
+										order = 0.121,
+										get = function(info)
+											return RUF.db.profile.Appearance.CombatFader.animate
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.CombatFader.animate = value
+										end,
+									},
+									animationDuration = {
+										name = L["Transition duration"],
+										desc = L["How long the frames take to smoothly transition between different alpha values."],
+										type = 'range',
+										order = 0.122,
+										min = 0,
+										max = 10,
+										softMin = 0,
+										softMax = 3,
+										step = 0.01,
+										bigStep = 0.1,
+										get = function(info)
+											return RUF.db.profile.Appearance.CombatFader.animationDuration
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.CombatFader.animationDuration = value
 										end,
 									},
 									enabledSpacer = {
 										name = " ",
 										type = 'description',
-										order = 0.11,
+										order = 0.15,
 										width = 'full',
 									},
 									combatAlpha = {
@@ -209,7 +239,7 @@ function RUF_Options.MainOptions()
 										end,
 										set = function(info, value)
 											RUF.db.profile.Appearance.CombatFader.combatAlpha = value
-											RUF.CombatFader(nil,'updateOptions')
+											RUF.CombatFaderUpdate()
 										end,
 									},
 									restAlpha = {
@@ -227,7 +257,7 @@ function RUF_Options.MainOptions()
 										end,
 										set = function(info, value)
 											RUF.db.profile.Appearance.CombatFader.restAlpha = value
-											RUF.CombatFader(nil,'updateOptions')
+											RUF.CombatFaderUpdate()
 										end,
 									},
 									restSpacer = {
@@ -246,7 +276,7 @@ function RUF_Options.MainOptions()
 										end,
 										set = function(info, value)
 											RUF.db.profile.Appearance.CombatFader.targetOverride = value
-											RUF.CombatFader(nil,'updateOptions')
+											RUF.CombatFaderRegister()
 										end,
 									},
 									targetAlpha = {
@@ -266,7 +296,7 @@ function RUF_Options.MainOptions()
 										end,
 										set = function(info, value)
 											RUF.db.profile.Appearance.CombatFader.targetAlpha = value
-											RUF.CombatFader(nil,'updateOptions')
+											RUF.CombatFaderUpdate()
 										end,
 									},
 									targetSpacer = {
@@ -285,18 +315,18 @@ function RUF_Options.MainOptions()
 										end,
 										set = function(info, value)
 											RUF.db.profile.Appearance.CombatFader.damagedOverride = value
-											RUF.CombatFader(nil,'updateOptions')
+											RUF.CombatFaderRegister()
 										end,
 									},
 									damagedPercentTrigger = {
-										name = L["Trigger at"],
+										name = L["Trigger below this percent"],
 										desc = L["The damaged alpha will only be used when you are below this percentage of health."],
 										type = 'range',
 										order = 0.46,
 										min = 1,
-										max = 99,
-										softMin = 10,
-										softMax = 90,
+										max = 100,
+										softMin = 1,
+										softMax = 100,
 										step = 0.1,
 										bigStep = 1,
 										disabled = function() return not RUF.db.profile.Appearance.CombatFader.damagedOverride end,
@@ -305,7 +335,7 @@ function RUF_Options.MainOptions()
 										end,
 										set = function(info, value)
 											RUF.db.profile.Appearance.CombatFader.damagedPercent = value
-											RUF.CombatFader(nil,'updateOptions')
+											RUF.CombatFaderUpdate()
 										end,
 									},
 									damagedAlpha = {
@@ -325,7 +355,7 @@ function RUF_Options.MainOptions()
 										end,
 										set = function(info, value)
 											RUF.db.profile.Appearance.CombatFader.damagedAlpha = value
-											RUF.CombatFader(nil,'updateOptions')
+											RUF.CombatFaderUpdate()
 										end,
 									},
 								},
