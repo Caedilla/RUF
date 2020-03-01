@@ -1038,4 +1038,6 @@ function RUF:UpdateAllUnitSettings()
 	RUF:OptionsUpdateAllAuras()
 	RUF:OptionsUpdateFrameBorders()
 	RUF:OptionsUpdateCastbars()
+
+	RUF.CombatFaderRegister()
 end

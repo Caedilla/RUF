@@ -32,6 +32,7 @@ end
 ]]
 
 function RUF:RangeCheckPostUpdate(frame, unit)
+	if not frame.RangeCheck.enabled then return end
 	if not frame.Animator then
 		frame:SetAlpha(frame.Alpha.range)
 		return
