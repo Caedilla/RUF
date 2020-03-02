@@ -189,6 +189,7 @@ function RUF_Options.MainOptions()
 										end,
 									},
 									animate = {
+										hidden = true,
 										name = L["Smooth transitions"],
 										desc = L["Enable to smoothly transition between different alpha values."],
 										type = 'toggle',
@@ -202,6 +203,7 @@ function RUF_Options.MainOptions()
 										end,
 									},
 									animationDuration = {
+										hidden = true,
 										name = L["Transition duration"],
 										desc = L["How long the frames take to smoothly transition between different alpha values."],
 										type = 'range',

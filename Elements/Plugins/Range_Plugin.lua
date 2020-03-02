@@ -107,6 +107,7 @@ HarmSpells["WARLOCK"] = {
 
 
 local function IsUnitInRange(unit)
+	if not unit then return end
 	local canAttack = UnitCanAttack('player', unit)
 	local canHelp = UnitCanAssist('player', unit)
 	local isFriend = UnitIsFriend('player', unit)
@@ -150,43 +151,34 @@ local function IsUnitInRange(unit)
 	return false
 end
 
-local function Update(self, event)
+local function Update(self, isInRange, event)
 	local element = self.RangeCheck
 	local unit = self.unit
-	if not self.Alpha then
-		self.Alpha = {}
-	end
-	local currentAlpha = self.Alpha.target or 1 -- Work with combat fader
-	local insideAlpha = currentAlpha * element.insideAlpha
-	local outsideAlpha = currentAlpha * element.outsideAlpha
+
+	local insideAlpha = element.insideAlpha or 1
+	local outsideAlpha = element.outsideAlpha or 0.55
 
 	if(element.PreUpdate) then
 		element:PreUpdate()
 	end
 
 	if element.enabled == true then
-		if IsUnitInRange(unit) then
-			--self:SetAlpha(insideAlpha)
-			self.Alpha.range = insideAlpha
-			self.Alpha.inRange = true
+		if isInRange then
+			self:SetAlpha(insideAlpha)
 		else
-			--self:SetAlpha(outsideAlpha)
-			self.Alpha.range = outsideAlpha
-			self.Alpha.inRange = false
+			self:SetAlpha(outsideAlpha)
 		end
 		if(element.PostUpdate) then
 			return element:PostUpdate(self, unit)
 		end
 	else
-		--self:SetAlpha(1)
-		self.Alpha.range = 1
-		self.Alpha.inRange = true
+		self:SetAlpha(1)
 		self:DisableElement('RangeCheck')
 	end
 end
 
 local function Path(self, ...)
-	return (self.RangeCheck.Override or Update) (self, ...)
+	return (self.RangeCheck.Override or Update) (self, IsUnitInRange(self.unit), ...)
 end
 
 local function ForceUpdate(element)

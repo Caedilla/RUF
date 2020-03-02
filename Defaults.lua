@@ -44,7 +44,7 @@ local cfg = {
 				damagedOverride = true,
 				damagedPercent = 95,
 				damagedAlpha = 1,
-				animate = true,
+				animate = false,
 				animationDuration = 0.25,
 			},
 			Bars = {
