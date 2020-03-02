@@ -275,13 +275,14 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						name = L["Alpha"],
 						desc = L["Out of Range transparency"],
 						type = 'range',
+						isPercent = true,
 						order = 0.02,
 						min = 0,
 						max = 1,
 						softMin = 0,
 						softMax = 1,
 						step = 0.01,
-						bigStep = 0.01,
+						bigStep = 0.05,
 						hidden = function() return (profileName == 'player') end,
 						get = function(info)
 							return RUF.db.profile.unit[profileName].Frame.RangeFading.Alpha
@@ -2815,6 +2816,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 			alpha = {
 				name = L["Alpha"],
 				type = 'range',
+				isPercent = true,
 				order = 1.13,
 				min = 0,
 				max = 1,
@@ -3134,6 +3136,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 						alpha = {
 							name = L["Alpha"],
 							type = 'range',
+							isPercent = true,
 							order = 0.05,
 							min = 0,
 							max = 1,
@@ -3190,6 +3193,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 						name = L["Alpha"],
 						desc = L["Background Alpha"],
 						type = 'range',
+						isPercent = true,
 						order = 10.04,
 						min = 0,
 						max = 1,

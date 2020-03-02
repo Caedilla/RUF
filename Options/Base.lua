@@ -135,6 +135,7 @@ function RUF_Options.MainOptions()
 									alpha = {
 										name = L["Alpha"],
 										type = 'range',
+										isPercent = true,
 										order = 0.05,
 										min = 0,
 										max = 1,
@@ -230,13 +231,14 @@ function RUF_Options.MainOptions()
 									combatAlpha = {
 										name = L["In combat alpha"],
 										type = 'range',
+										isPercent = true,
 										order = 0.25,
 										min = 0,
 										max = 1,
 										softMin = 0,
 										softMax = 1,
 										step = 0.01,
-										bigStep = 0.01,
+										bigStep = 0.05,
 										get = function(info)
 											return RUF.db.profile.Appearance.CombatFader.combatAlpha
 										end,
@@ -248,6 +250,7 @@ function RUF_Options.MainOptions()
 									restAlpha = {
 										name = L["Out of combat alpha"],
 										type = 'range',
+										isPercent = true,
 										order = 0.26,
 										min = 0,
 										max = 1,
@@ -286,6 +289,7 @@ function RUF_Options.MainOptions()
 										name = L["Targeting alpha"],
 										desc = L["Alpha of all frames when you are targeting something."],
 										type = 'range',
+										isPercent = true,
 										order = 0.36,
 										min = 0,
 										max = 1,
@@ -325,19 +329,20 @@ function RUF_Options.MainOptions()
 										name = L["Trigger below this percent"],
 										desc = L["The damaged alpha will only be used when you are below this percentage of health."],
 										type = 'range',
+										isPercent = true,
 										order = 0.46,
-										min = 1,
-										max = 100,
-										softMin = 1,
-										softMax = 100,
-										step = 0.1,
-										bigStep = 1,
+										min = 0.01,
+										max = 1,
+										softMin = 0.01,
+										softMax = 1,
+										step = 0.001,
+										bigStep = 0.01,
 										disabled = function() return not RUF.db.profile.Appearance.CombatFader.damagedOverride end,
 										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.damagedPercent
+											return RUF.db.profile.Appearance.CombatFader.damagedPercent / 100
 										end,
 										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.damagedPercent = value
+											RUF.db.profile.Appearance.CombatFader.damagedPercent = value * 100
 											RUF.CombatFaderUpdate()
 										end,
 									},
@@ -345,6 +350,7 @@ function RUF_Options.MainOptions()
 										name = L["Damaged alpha"],
 										desc = L["Alpha of the player frame when you are under max health."],
 										type = 'range',
+										isPercent = true,
 										order = 0.47,
 										min = 0,
 										max = 1,
@@ -764,6 +770,7 @@ function RUF_Options.MainOptions()
 									frameGlowAlpha = {
 										name = L["Alpha"],
 										type = 'range',
+										isPercent = true,
 										order = 0.05,
 										min = 0,
 										max = 1,

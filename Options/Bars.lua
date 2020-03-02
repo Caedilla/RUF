@@ -140,6 +140,7 @@ function RUF_Options.Bars()
 							name = L["Alpha"],
 							desc = L["Overlay Alpha"],
 							type = 'range',
+							isPercent = true,
 							order = 0.03,
 							hidden = i ~= 4,
 							min = 0,
@@ -564,6 +565,7 @@ function RUF_Options.Bars()
 							name = L["Alpha"],
 							desc = L["Background Alpha"],
 							type = 'range',
+							isPercent = true,
 							order = 10.04,
 							min = 0,
 							max = 1,
@@ -645,6 +647,7 @@ function RUF_Options.Bars()
 							name = L["Alpha"],
 							desc = L["Overlay Alpha"],
 							type = 'range',
+							isPercent = true,
 							order = 20.05,
 							hidden = i==1 or i==4,
 							min = 0,
@@ -714,6 +717,7 @@ function RUF_Options.Bars()
 						safeZoneAlpha = {
 							name = L["Alpha"],
 							type = 'range',
+							isPercent = true,
 							order = 5.03,
 							hidden = i ~= 5,
 							min = 0,
@@ -833,6 +837,7 @@ function RUF_Options.Bars()
 					alpha = {
 						name = L["Alpha"],
 						type = 'range',
+						isPercent = true,
 						order = 0.04,
 						min = 0,
 						max = 1,
@@ -1092,6 +1097,7 @@ function RUF_Options.Bars()
 					alpha = {
 						name = L["Alpha"],
 						type = 'range',
+						isPercent = true,
 						order = 0.04,
 						min = 0,
 						max = 1,
