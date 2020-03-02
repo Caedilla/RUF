@@ -175,6 +175,7 @@ local function SetupFrames(self, unit)
 		self.RangeCheck.insideAlpha = 1
 		self.RangeCheck.outsideAlpha = profileReference.Frame.RangeFading.Alpha or 0.55
 		self.RangeCheck.PostUpdate = RUF.RangeCheckPostUpdate
+		self.RangeCheck.Override = RUF.RangeCheckUpdate
 	end
 
 	self.Alpha = {}
