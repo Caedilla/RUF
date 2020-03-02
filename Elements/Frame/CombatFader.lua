@@ -26,13 +26,6 @@ local function ChangeAlpha(self, to, duration)
 
 end
 
-
--- TODO
---[[
-	Move range check update
-	create range check override so we have a "clean" plugin that's not so intertwined with the combat fader.
-]]
-
 local function Reset(fast)
 	if fast then
 		for k, v in next, oUF.objects do
