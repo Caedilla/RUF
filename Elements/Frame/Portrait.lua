@@ -2,6 +2,7 @@ local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
 local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
+local offsetFix = 0.3
 
 function RUF.PortraitHealthUpdate(self)
 	local frame = self.__owner
@@ -19,11 +20,11 @@ function RUF.PortraitHealthUpdate(self)
 		local frameWidth = frame:GetWidth()
 		local width = frameWidth * (cur/max)
 		if frame.Health.FillStyle == 'REVERSE' then
-			element:SetViewInsets((-frameWidth)+width,0,0,0) -- Right
+			element:SetViewInsets((-frameWidth)+width, 0, 0, 0) -- Right
 		elseif frame.Health.FillStyle == 'CENTER' then
-			element:SetViewInsets(((-frameWidth)+width)/2,((-frameWidth)+width)/2,0,0)
+			element:SetViewInsets(((-frameWidth)+width)/2, ((-frameWidth)+width)/2, 0, 0)
 		else
-			element:SetViewInsets(0,(-frameWidth)+width,0,0) -- Left
+			element:SetViewInsets(0, (-frameWidth)+width, 0, 0) -- Left
 		end
 	end
 end
@@ -61,11 +62,11 @@ local function Update(self, event, unit)
 				end
 				element:SetPortraitZoom(profileReference.Model.PortraitZoom)
 				element:SetCamDistanceScale(profileReference.Model.CameraDistance)
-				element:SetPosition(profileReference.Model.z/10,profileReference.Model.x/10,-profileReference.Model.y/10)
+				element:SetPosition(profileReference.Model.z/10, profileReference.Model.x/10, -profileReference.Model.y/10)
 				element:ClearModel()
 				element:SetUnit(unit)
 				element:SetPaused(profileReference.Model.Animation.Paused)
-				element:SetViewInsets(0,0,0,0)
+				element:SetViewInsets(0, 0, 0, 0)
 				element:MakeCurrentCameraCustom()
 				element:SetCameraFacing(math.rad(-profileReference.Model.Rotation))
 				element:SetDesaturation(desaturate)
@@ -94,13 +95,13 @@ function RUF.SetFramePortrait(self, unit)
 	if not profileReference then return end
 
 	local Portrait = CreateFrame('PlayerModel', nil, self)
-	local Border = CreateFrame("Frame",nil,Portrait)
-	local Background = Portrait:CreateTexture(nil,"BACKGROUND")
-	local r,g,b
+	local Border = CreateFrame("Frame", nil, Portrait)
+	local Background = Portrait:CreateTexture(nil, "BACKGROUND")
+	local r, g, b
 
 	-- Set Lighting
-	-- Portrait:SetLight(true,false,-10,0,3,0.35,1,1,1,0.75,1,1,1)
-	local dirX,dirY,dirZ,ambStr,ambR,ambG,ambB,dirStr,dirR,dirG,dirB
+	-- Portrait:SetLight(true, false, -10, 0, 3, 0.35, 1, 1, 1, 0.75, 1, 1, 1)
+	local dirX, dirY, dirZ, ambStr, ambR, ambG, ambB, dirStr, dirR, dirG, dirB
 	dirX = -10
 	dirY = 0
 	dirZ = 3
@@ -113,24 +114,25 @@ function RUF.SetFramePortrait(self, unit)
 	dirG = 1
 	dirB = 1
 
-	Portrait:SetLight(true,false,dirX,dirY,dirZ,ambStr,ambR,ambG,ambB,dirStr,dirR,dirG,dirB)
+	Portrait:SetLight(true, false, dirX, dirY, dirZ, ambStr, ambR, ambG, ambB, dirStr, dirR, dirG, dirB)
 	Portrait:SetFrameLevel(11)
 
 	-- Border
 	local offset = profileReference.Border.Offset
-	Border:SetPoint('TOPLEFT',Portrait,'TOPLEFT',-offset,offset)
-	Border:SetPoint('BOTTOMRIGHT',Portrait,'BOTTOMRIGHT',offset,-offset)
+	Border:SetPoint('TOPLEFT', Portrait, 'TOPLEFT', -(offset + offsetFix), offset + offsetFix)
+	Border:SetPoint('BOTTOMRIGHT', Portrait, 'BOTTOMRIGHT', offset + offsetFix, -(offset + offsetFix))
 	Border:SetFrameLevel(12)
 	Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
-	r,g,b = unpack(profileReference.Border.Color)
-	Border:SetBackdropBorderColor(r,g,b,profileReference.Border.Alpha)
+	r, g, b = unpack(profileReference.Border.Color)
+	Border:SetBackdropBorderColor(r, g, b, profileReference.Border.Alpha)
 
 
 	-- Background
-	r,g,b = unpack(profileReference.Background.Color)
+	r, g, b = unpack(profileReference.Background.Color)
 	Background:SetTexture(LSM:Fetch("background", "Solid"))
-	Background:SetVertexColor(r,g,b,profileReference.Background.Alpha)
-	Background:SetAllPoints(Portrait)
+	Background:SetVertexColor(r, g, b, profileReference.Background.Alpha)
+	Background:SetPoint("TOPLEFT", Portrait ,"TOPLEFT", -offsetFix, offsetFix)
+	Background:SetPoint("BOTTOMRIGHT", Portrait ,"BOTTOMRIGHT", offsetFix, -offsetFix)
 
 
 	if profileReference.Style == 1 then
@@ -141,8 +143,8 @@ function RUF.SetFramePortrait(self, unit)
 			Portrait:ClearAllPoints()
 			local healthBar = self.Health:GetStatusBarTexture()
 			local offset = -0.15
-			Portrait:SetPoint('TOPLEFT',healthBar,'TOPLEFT',-offset,offset)
-			Portrait:SetPoint('BOTTOMRIGHT',healthBar,'BOTTOMRIGHT',offset,-offset)
+			Portrait:SetPoint('TOPLEFT', healthBar, 'TOPLEFT', -offset, offset)
+			Portrait:SetPoint('BOTTOMRIGHT', healthBar, 'BOTTOMRIGHT', offset, -offset)
 			Portrait.Cutaway = true
 		else
 			Portrait:ClearAllPoints()
@@ -150,8 +152,8 @@ function RUF.SetFramePortrait(self, unit)
 		end
 	elseif profileReference.Style == 2 then
 		Portrait:SetAlpha(1)
-		Portrait:SetSize(profileReference.Width,profileReference.Height)
-		Portrait:SetPoint(profileReference.Position.AnchorFrom,self,profileReference.Position.AnchorTo,profileReference.Position.x,profileReference.Position.y)
+		Portrait:SetSize(profileReference.Width, profileReference.Height)
+		Portrait:SetPoint(profileReference.Position.AnchorFrom, self, profileReference.Position.AnchorTo, profileReference.Position.x - offsetFix, profileReference.Position.y - offsetFix)
 	end
 
 	-- Register with oUF
@@ -188,37 +190,38 @@ function RUF.PortraitUpdateOptions(self)
 				Portrait:ClearAllPoints()
 				local healthBar = self.__owner.Health:GetStatusBarTexture()
 				local offset = -0.15
-				Portrait:SetPoint('TOPLEFT',healthBar,'TOPLEFT',-offset,offset)
-				Portrait:SetPoint('BOTTOMRIGHT',healthBar,'BOTTOMRIGHT',offset,-offset)
+				Portrait:SetPoint('TOPLEFT', healthBar, 'TOPLEFT', -offset, offset)
+				Portrait:SetPoint('BOTTOMRIGHT', healthBar, 'BOTTOMRIGHT', offset, -offset)
 				RUF.PortraitHealthUpdate(Portrait)
 			else
 				Portrait:ClearAllPoints()
 				Portrait:SetAllPoints(self.__owner)
-				Portrait:SetViewInsets(0,0,0,0)
+				Portrait:SetViewInsets(0, 0, 0, 0)
 			end
 		elseif profileReference.Style == 2 then
 			Background:Show()
 			Border:Show()
 			Portrait:SetAlpha(1)
 			Portrait:ClearAllPoints()
-			Portrait:SetViewInsets(0,0,0,0)
-			Portrait:SetSize(profileReference.Width,profileReference.Height)
-			Portrait:SetPoint(profileReference.Position.AnchorFrom,self.__owner,profileReference.Position.AnchorTo,profileReference.Position.x,profileReference.Position.y)
+			Portrait:SetViewInsets(0, 0, 0, 0)
+			Portrait:SetSize(profileReference.Width, profileReference.Height)
+			Portrait:SetPoint(profileReference.Position.AnchorFrom, self.__owner, profileReference.Position.AnchorTo, profileReference.Position.x - offsetFix, profileReference.Position.y - offsetFix)
 
 			-- Border
 			local offset = profileReference.Border.Offset
-			Border:SetPoint('TOPLEFT',Portrait,'TOPLEFT',-offset,offset)
-			Border:SetPoint('BOTTOMRIGHT',Portrait,'BOTTOMRIGHT',offset,-offset)
+			Border:SetPoint('TOPLEFT', Portrait, 'TOPLEFT', -(offset + offsetFix), offset + offsetFix)
+			Border:SetPoint('BOTTOMRIGHT', Portrait, 'BOTTOMRIGHT', offset + offsetFix, -(offset + offsetFix))
 			Border:SetFrameLevel(17)
 			Border:SetBackdrop({edgeFile = LSM:Fetch("border", profileReference.Border.Style.edgeFile), edgeSize = profileReference.Border.Style.edgeSize})
-			local r,g,b = unpack(profileReference.Border.Color)
-			Border:SetBackdropBorderColor(r,g,b,profileReference.Border.Alpha)
+			local r, g, b = unpack(profileReference.Border.Color)
+			Border:SetBackdropBorderColor(r, g, b, profileReference.Border.Alpha)
 
 			-- Background
-			r,g,b = unpack(profileReference.Background.Color)
+			r, g, b = unpack(profileReference.Background.Color)
 			Background:SetTexture(LSM:Fetch("background", "Solid"))
-			Background:SetVertexColor(r,g,b,profileReference.Background.Alpha)
-			Background:SetAllPoints(Portrait)
+			Background:SetVertexColor(r, g, b, profileReference.Background.Alpha)
+			Background:SetPoint("TOPLEFT", Portrait ,"TOPLEFT", -offsetFix, offsetFix)
+			Background:SetPoint("BOTTOMRIGHT", Portrait ,"BOTTOMRIGHT", offsetFix, -offsetFix)
 
 			Portrait.Cutaway = false
 		end
