@@ -835,7 +835,7 @@ function RUF_Options.MainOptions()
 											RUF:OptionsUpdateAllAuras()
 										end,
 									},
-									enabled = {
+									reverse = {
 										name = L["Reverse Spiral"],
 										desc = L["Starts the cooldown spirals as empty, filling up as the aura runs out."],
 										type = 'toggle',

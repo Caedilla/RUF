@@ -227,8 +227,10 @@ local function PostUpdateBuffIcon(self, unit, button, index, position, duration,
 		end
 		local spiral = RUF.db.profile.Appearance.Aura.spiral
 		if spiral.enabled ~= true then
-			self[position].cd:Hide()
-			self[position].cd = nil
+			if self[position].cd then
+				self[position].cd:Hide()
+				self[position].cd = nil
+			end
 		else
 			local cd
 			if not self[position].cd then
