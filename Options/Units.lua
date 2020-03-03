@@ -459,11 +459,40 @@ local function UnitGroup(singleFrame, groupFrame, header)
 							RUF:UpdateOptions()
 						end,
 					},
-					partyFrameSortOrder = {
+					partyFrameGrowthDirection = {
 						type = 'select',
-						name = L["Sort Direction"],
+						name = L["Growth Direction"],
+						desc = L["Vertical stacking or horizontal stacking."],
 						hidden = header == 'none',
 						order = 0.1,
+						values = {
+							VERTICAL = L["Vertical"],
+							HORIZONTAL = L["Horizonal"],
+						},
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Position.growthDirection
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Position.growthDirection = value
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
+							RUF:UpdateOptions()
+						end,
+					},
+					partyFrameSortOrderVert = {
+						type = 'select',
+						name = L["Sort Direction"],
+						hidden = function()
+							if header ~= 'none' then
+								if RUF.db.profile.unit[profileName].Frame.Position.growthDirection == 'HORIZONTAL' then
+									return true
+								else
+									return false
+								end
+							else
+								return true
+							end
+						end,
+						order = 0.101,
 						values = {
 							TOP = L["Up"],
 							BOTTOM = L["Down"],
@@ -485,15 +514,52 @@ local function UnitGroup(singleFrame, groupFrame, header)
 							RUF:UpdateOptions()
 						end,
 					},
+					partyFrameSortOrderHoriz = {
+						type = 'select',
+						name = L["Sort Direction"],
+						hidden = function()
+							if header ~= 'none' then
+								if RUF.db.profile.unit[profileName].Frame.Position.growthDirection == 'VERTICAL' then
+									return true
+								else
+									return false
+								end
+							else
+								return true
+							end
+						end,
+						order = 0.101,
+						values = {
+							LEFT = L["Right"],
+							RIGHT = L["Left"],
+						},
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Position.growthHoriz
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Position.growthHoriz = value
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
+							RUF:UpdateOptions()
+						end,
+					},
 					groupFrameHorizontalOffset = {
 						type = 'range',
 						name = L["X Spacing"],
 						desc = L["Horizontal Offset from the previous unit in the group."],
 						hidden = function()
-							if groupFrame ~= 'none' then
+							if groupFrame ~= 'none' or header ~= 'none' then
 								return false
 							else
 								return true
+							end
+						end,
+						disabled = function()
+							if header ~= 'none' then
+								if RUF.db.profile.unit[profileName].Frame.Position.growthDirection == 'HORIZONTAL' then
+									return false
+								else
+									return true
+								end
 							end
 						end,
 						order = 0.11,
@@ -520,6 +586,15 @@ local function UnitGroup(singleFrame, groupFrame, header)
 								return false
 							else
 								return true
+							end
+						end,
+						disabled = function()
+							if header ~= 'none' then
+								if RUF.db.profile.unit[profileName].Frame.Position.growthDirection == 'VERTICAL' then
+									return false
+								else
+									return true
+								end
 							end
 						end,
 						order = 0.12,

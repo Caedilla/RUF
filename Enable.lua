@@ -305,6 +305,16 @@ function RUF:OnEnable()
 			elseif profile.Frame.Position.growth == 'TOP' then
 				anchorFrom = 'BOTTOM'
 			end
+
+			local growthDirection
+			if profile.Frame.Position.growthDirection then
+				if profile.Frame.Position.growthDirection == 'VERTICAL' then
+					growthDirection = 5
+				elseif profile.Frame.Position.growthDirection == 'HORIZONTAL' then
+					growthDirection = 1
+				end
+			end
+
 			local showIn = 'party'
 			if profile.showRaid then
 				showIn = 'party, raid'
@@ -316,6 +326,10 @@ function RUF:OnEnable()
 				'showRaid', false,
 				'showPlayer', false,
 				'yOffset', profile.Frame.Position.offsety,
+				'unitsPerColumn', growthDirection,
+				'maxColumns', 5,
+				'columnSpacing', profile.Frame.Position.offsetx,
+				'columnAnchorPoint', profile.Frame.Position.growthHoriz,
 				'Point', anchorFrom
 			):SetPoint(
 				profile.Frame.Position.AnchorFrom,
@@ -415,6 +429,7 @@ function RUF:OnEnable()
 
 	if PlayerClass == 'DEATHKNIGHT' then
 		-- Cannot disable elements before the unit is actually spawned?
+		-- TODO Check other elements and make sure we do this properly for them too.
 		if RUF.db.profile.unit['player'].Frame.Bars.Class.Enabled == false then
 			oUF_RUF_Player:DisableElement('Runes')
 		end

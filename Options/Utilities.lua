@@ -703,6 +703,20 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 				anchorFrom = "BOTTOM"
 			end
 
+			local growthDirection
+			if profileReference.Frame.Position.growthDirection then
+				if profileReference.Frame.Position.growthDirection == 'VERTICAL' then
+					growthDirection = 5
+				elseif profileReference.Frame.Position.growthDirection == 'HORIZONTAL' then
+					growthDirection = 1
+				end
+			end
+
+
+			headerFrame:SetAttribute('unitsPerColumn', growthDirection)
+			headerFrame:SetAttribute('columnSpacing', profileReference.Frame.Position.offsetx)
+			headerFrame:SetAttribute('columnAnchorPoint', profileReference.Frame.Position.growthHoriz)
+
 			headerFrame:SetAttribute("Point",anchorFrom)
 			headerFrame:SetAttribute('yOffset',profileReference.Frame.Position.offsety)
 			RUF:UpdateFramePosition(headerFrame,singleFrame,groupFrame,header)

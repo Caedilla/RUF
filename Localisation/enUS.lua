@@ -436,3 +436,6 @@ L["Smooth transitions"] = true
 L["Enable to smoothly transition between different alpha values."] = true
 L["Transition duration"] = true
 L["How long the frames take to smoothly transition between different alpha values."] = true
+L["Vertical stacking or horizontal stacking."] = true
+L["Horizonal"] = true
+L["Vertical"] = true
