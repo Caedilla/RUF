@@ -65,311 +65,16 @@ function RUF_Options.MainOptions()
 				},
 			},
 			Appearance = {
-				name = L["Global Appearance Options"],
+				name = L["General"],
 				desc = L["These settings affect all frames."],
 				type = 'group',
 				childGroups = 'tab',
 				order = 1,
 				args = {
-					others = {
-						name = L["Other Global Settings"],
-						type = 'group',
-						order = 5,
-						args = {
-							frameBorder = {
-								name = L["Frame Border"],
-								type = 'group',
-								order = 0,
-								inline = true,
-								args = {
-									texture = {
-										name = L["Texture"],
-										type = 'select',
-										order = 0.02,
-										values = LSM:HashTable('border'),
-										dialogControl = 'LSM30_Border',
-										get = function(info)
-											return RUF.db.profile.Appearance.Border.Style.edgeFile
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.Border.Style.edgeFile = value
-											RUF:OptionsUpdateFrameBorders()
-										end,
-									},
-									size = {
-										name = L["Size"],
-										type = 'range',
-										order = 0.03,
-										min = -100,
-										max = 100,
-										softMin = -20,
-										softMax = 20,
-										step = 0.01,
-										bigStep = 0.05,
-										get = function(info)
-											return RUF.db.profile.Appearance.Border.Style.edgeSize
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.Border.Style.edgeSize = value
-											RUF:OptionsUpdateFrameBorders()
-										end,
-									},
-									offset = {
-										name = L["Inset from frame edge"],
-										type = 'range',
-										order = 0.04,
-										min = -100,
-										max = 100,
-										softMin = -30,
-										softMax = 30,
-										step = 1,
-										bigStep = 1,
-										get = function(info)
-											return RUF.db.profile.Appearance.Border.Offset
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.Border.Offset = value
-											RUF:OptionsUpdateFrameBorders()
-										end,
-									},
-									alpha = {
-										name = L["Alpha"],
-										type = 'range',
-										isPercent = true,
-										order = 0.05,
-										min = 0,
-										max = 1,
-										softMin = 0,
-										softMax = 1,
-										step = 0.01,
-										bigStep = 0.05,
-										get = function(info)
-											return RUF.db.profile.Appearance.Border.Alpha
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.Border.Alpha = value
-											RUF:OptionsUpdateFrameBorders()
-										end,
-									},
-									color = {
-										name = L["Color"],
-										type = 'color',
-										order = 0.06,
-										get = function(info)
-											return unpack(RUF.db.profile.Appearance.Border.Color)
-										end,
-										set = function(info,r,g,b)
-											RUF.db.profile.Appearance.Border.Color = {r,g,b}
-											RUF:OptionsUpdateFrameBorders()
-										end,
-									},
-								},
-							},
-							combatFading = {
-								name = L["Combat Fading"],
-								type = 'group',
-								order = 1,
-								inline = true,
-								args = {
-									enabled = {
-										name = function()
-											if RUF.db.profile.Appearance.CombatFader.Enabled == true then
-												return '|cFF00FF00'..L["Enabled"]..'|r'
-											else
-												return '|cFFFF0000'..L["Enabled"]..'|r'
-											end
-										end,
-										type = 'toggle',
-										order = 0.1,
-										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.Enabled
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.Enabled = value
-											RUF.CombatFaderRegister()
-										end,
-									},
-									animate = {
-										hidden = true,
-										name = L["Smooth transitions"],
-										desc = L["Enable to smoothly transition between different alpha values."],
-										type = 'toggle',
-										order = 0.121,
-										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.animate
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.animate = value
-											RUF.CombatFaderUpdate()
-										end,
-									},
-									animationDuration = {
-										hidden = true,
-										name = L["Transition duration"],
-										desc = L["How long the frames take to smoothly transition between different alpha values."],
-										type = 'range',
-										order = 0.122,
-										min = 0,
-										max = 10,
-										softMin = 0,
-										softMax = 3,
-										step = 0.001,
-										bigStep = 0.01,
-										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.animationDuration
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.animationDuration = value
-										end,
-									},
-									enabledSpacer = {
-										name = " ",
-										type = 'description',
-										order = 0.15,
-										width = 'full',
-									},
-									combatAlpha = {
-										name = L["In combat alpha"],
-										type = 'range',
-										isPercent = true,
-										order = 0.25,
-										min = 0,
-										max = 1,
-										softMin = 0,
-										softMax = 1,
-										step = 0.01,
-										bigStep = 0.05,
-										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.combatAlpha
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.combatAlpha = value
-											RUF.CombatFaderUpdate()
-										end,
-									},
-									restAlpha = {
-										name = L["Out of combat alpha"],
-										type = 'range',
-										isPercent = true,
-										order = 0.26,
-										min = 0,
-										max = 1,
-										softMin = 0,
-										softMax = 1,
-										step = 0.01,
-										bigStep = 0.01,
-										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.restAlpha
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.restAlpha = value
-											RUF.CombatFaderUpdate()
-										end,
-									},
-									restSpacer = {
-										name = " ",
-										type = 'description',
-										order = 0.3,
-										width = 'full',
-									},
-									disableWithTarget = {
-										name = L["Enable targeting alpha"],
-										desc = L["Use a different alpha value when you have a target."],
-										type = 'toggle',
-										order = 0.35,
-										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.targetOverride
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.targetOverride = value
-											RUF.CombatFaderRegister()
-										end,
-									},
-									targetAlpha = {
-										name = L["Targeting alpha"],
-										desc = L["Alpha of all frames when you are targeting something."],
-										type = 'range',
-										isPercent = true,
-										order = 0.36,
-										min = 0,
-										max = 1,
-										softMin = 0,
-										softMax = 1,
-										step = 0.01,
-										bigStep = 0.01,
-										disabled = function() return not RUF.db.profile.Appearance.CombatFader.targetOverride end,
-										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.targetAlpha
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.targetAlpha = value
-											RUF.CombatFaderUpdate()
-										end,
-									},
-									targetSpacer = {
-										name = " ",
-										type = 'description',
-										order = 0.4,
-										width = 'full',
-									},
-									damagedAlphaToggle = {
-										name = L["Enable player damaged alpha"],
-										desc = L["Use a different alpha value for the player frame when you are under max health."],
-										type = 'toggle',
-										order = 0.45,
-										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.damagedOverride
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.damagedOverride = value
-											RUF.CombatFaderRegister()
-										end,
-									},
-									damagedPercentTrigger = {
-										name = L["Trigger below this percent"],
-										desc = L["The damaged alpha will only be used when you are below this percentage of health."],
-										type = 'range',
-										isPercent = true,
-										order = 0.46,
-										min = 0.01,
-										max = 1,
-										softMin = 0.01,
-										softMax = 1,
-										step = 0.001,
-										bigStep = 0.01,
-										disabled = function() return not RUF.db.profile.Appearance.CombatFader.damagedOverride end,
-										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.damagedPercent / 100
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.damagedPercent = value * 100
-											RUF.CombatFaderUpdate()
-										end,
-									},
-									damagedAlpha = {
-										name = L["Damaged alpha"],
-										desc = L["Alpha of the player frame when you are under max health."],
-										type = 'range',
-										isPercent = true,
-										order = 0.47,
-										min = 0,
-										max = 1,
-										softMin = 0,
-										softMax = 1,
-										step = 0.01,
-										bigStep = 0.01,
-										disabled = function() return not RUF.db.profile.Appearance.CombatFader.damagedOverride end,
-										get = function(info)
-											return RUF.db.profile.Appearance.CombatFader.damagedAlpha
-										end,
-										set = function(info, value)
-											RUF.db.profile.Appearance.CombatFader.damagedAlpha = value
-											RUF.CombatFaderUpdate()
-										end,
-									},
-								},
-							},
-						},
+					globalDesc = {
+						name = L["These settings affect all frames."],
+						type = 'description',
+						order = 0,
 					},
 					Bars = {
 						name = L["Bars"],
@@ -849,6 +554,297 @@ function RUF_Options.MainOptions()
 										end,
 									},
 								},
+							},
+						},
+					},
+					frameBorder = {
+						name = L["Frame Border"],
+						type = 'group',
+						order = 5,
+						args = {
+							texture = {
+								name = L["Texture"],
+								type = 'select',
+								order = 0.02,
+								values = LSM:HashTable('border'),
+								dialogControl = 'LSM30_Border',
+								get = function(info)
+									return RUF.db.profile.Appearance.Border.Style.edgeFile
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.Border.Style.edgeFile = value
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
+							size = {
+								name = L["Size"],
+								type = 'range',
+								order = 0.03,
+								min = -100,
+								max = 100,
+								softMin = -20,
+								softMax = 20,
+								step = 0.01,
+								bigStep = 0.05,
+								get = function(info)
+									return RUF.db.profile.Appearance.Border.Style.edgeSize
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.Border.Style.edgeSize = value
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
+							offset = {
+								name = L["Inset from frame edge"],
+								type = 'range',
+								order = 0.04,
+								min = -100,
+								max = 100,
+								softMin = -30,
+								softMax = 30,
+								step = 1,
+								bigStep = 1,
+								get = function(info)
+									return RUF.db.profile.Appearance.Border.Offset
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.Border.Offset = value
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
+							alpha = {
+								name = L["Alpha"],
+								type = 'range',
+								isPercent = true,
+								order = 0.05,
+								min = 0,
+								max = 1,
+								softMin = 0,
+								softMax = 1,
+								step = 0.01,
+								bigStep = 0.05,
+								get = function(info)
+									return RUF.db.profile.Appearance.Border.Alpha
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.Border.Alpha = value
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
+							color = {
+								name = L["Color"],
+								type = 'color',
+								order = 0.06,
+								get = function(info)
+									return unpack(RUF.db.profile.Appearance.Border.Color)
+								end,
+								set = function(info,r,g,b)
+									RUF.db.profile.Appearance.Border.Color = {r,g,b}
+									RUF:OptionsUpdateFrameBorders()
+								end,
+							},
+						},
+					},
+					combatFading = {
+						name = L["Combat Fading"],
+						type = 'group',
+						order = 6,
+						args = {
+							enabled = {
+								name = function()
+									if RUF.db.profile.Appearance.CombatFader.Enabled == true then
+										return '|cFF00FF00'..L["Enabled"]..'|r'
+									else
+										return '|cFFFF0000'..L["Enabled"]..'|r'
+									end
+								end,
+								type = 'toggle',
+								order = 0.1,
+								get = function(info)
+									return RUF.db.profile.Appearance.CombatFader.Enabled
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.CombatFader.Enabled = value
+									RUF.CombatFaderRegister()
+								end,
+							},
+							animate = {
+								hidden = true,
+								name = L["Smooth transitions"],
+								desc = L["Enable to smoothly transition between different alpha values."],
+								type = 'toggle',
+								order = 0.121,
+								get = function(info)
+									return RUF.db.profile.Appearance.CombatFader.animate
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.CombatFader.animate = value
+									RUF.CombatFaderUpdate()
+								end,
+							},
+							animationDuration = {
+								hidden = true,
+								name = L["Transition duration"],
+								desc = L["How long the frames take to smoothly transition between different alpha values."],
+								type = 'range',
+								order = 0.122,
+								min = 0,
+								max = 10,
+								softMin = 0,
+								softMax = 3,
+								step = 0.001,
+								bigStep = 0.01,
+								get = function(info)
+									return RUF.db.profile.Appearance.CombatFader.animationDuration
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.CombatFader.animationDuration = value
+								end,
+							},
+							enabledSpacer = {
+								name = " ",
+								type = 'description',
+								order = 0.15,
+								width = 'full',
+							},
+							combatAlpha = {
+								name = L["In combat alpha"],
+								type = 'range',
+								isPercent = true,
+								order = 0.25,
+								min = 0,
+								max = 1,
+								softMin = 0,
+								softMax = 1,
+								step = 0.01,
+								bigStep = 0.05,
+								get = function(info)
+									return RUF.db.profile.Appearance.CombatFader.combatAlpha
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.CombatFader.combatAlpha = value
+									RUF.CombatFaderUpdate()
+								end,
+							},
+							restAlpha = {
+								name = L["Out of combat alpha"],
+								type = 'range',
+								isPercent = true,
+								order = 0.26,
+								min = 0,
+								max = 1,
+								softMin = 0,
+								softMax = 1,
+								step = 0.01,
+								bigStep = 0.01,
+								get = function(info)
+									return RUF.db.profile.Appearance.CombatFader.restAlpha
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.CombatFader.restAlpha = value
+									RUF.CombatFaderUpdate()
+								end,
+							},
+							restSpacer = {
+								name = " ",
+								type = 'description',
+								order = 0.3,
+								width = 'full',
+							},
+							disableWithTarget = {
+								name = L["Enable targeting alpha"],
+								desc = L["Use a different alpha value when you have a target."],
+								type = 'toggle',
+								order = 0.35,
+								get = function(info)
+									return RUF.db.profile.Appearance.CombatFader.targetOverride
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.CombatFader.targetOverride = value
+									RUF.CombatFaderRegister()
+								end,
+							},
+							targetAlpha = {
+								name = L["Targeting alpha"],
+								desc = L["Alpha of all frames when you are targeting something."],
+								type = 'range',
+								isPercent = true,
+								order = 0.36,
+								min = 0,
+								max = 1,
+								softMin = 0,
+								softMax = 1,
+								step = 0.01,
+								bigStep = 0.01,
+								disabled = function() return not RUF.db.profile.Appearance.CombatFader.targetOverride end,
+								get = function(info)
+									return RUF.db.profile.Appearance.CombatFader.targetAlpha
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.CombatFader.targetAlpha = value
+									RUF.CombatFaderUpdate()
+								end,
+							},
+							targetSpacer = {
+								name = " ",
+								type = 'description',
+								order = 0.4,
+								width = 'full',
+							},
+							damagedAlphaToggle = {
+								name = L["Enable player damaged alpha"],
+								desc = L["Use a different alpha value for the player frame when you are under max health."],
+								type = 'toggle',
+								order = 0.45,
+								get = function(info)
+									return RUF.db.profile.Appearance.CombatFader.damagedOverride
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.CombatFader.damagedOverride = value
+									RUF.CombatFaderRegister()
+								end,
+							},
+							damagedPercentTrigger = {
+								name = L["Trigger below this percent"],
+								desc = L["The damaged alpha will only be used when you are below this percentage of health."],
+								type = 'range',
+								isPercent = true,
+								order = 0.46,
+								min = 0.01,
+								max = 1,
+								softMin = 0.01,
+								softMax = 1,
+								step = 0.001,
+								bigStep = 0.01,
+								disabled = function() return not RUF.db.profile.Appearance.CombatFader.damagedOverride end,
+								get = function(info)
+									return RUF.db.profile.Appearance.CombatFader.damagedPercent / 100
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.CombatFader.damagedPercent = value * 100
+									RUF.CombatFaderUpdate()
+								end,
+							},
+							damagedAlpha = {
+								name = L["Damaged alpha"],
+								desc = L["Alpha of the player frame when you are under max health."],
+								type = 'range',
+								isPercent = true,
+								order = 0.47,
+								min = 0,
+								max = 1,
+								softMin = 0,
+								softMax = 1,
+								step = 0.01,
+								bigStep = 0.01,
+								disabled = function() return not RUF.db.profile.Appearance.CombatFader.damagedOverride end,
+								get = function(info)
+									return RUF.db.profile.Appearance.CombatFader.damagedAlpha
+								end,
+								set = function(info, value)
+									RUF.db.profile.Appearance.CombatFader.damagedAlpha = value
+									RUF.CombatFaderUpdate()
+								end,
 							},
 						},
 					},
