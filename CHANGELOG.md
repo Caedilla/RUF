@@ -1,6 +1,7 @@
-# RUF r227-alpha
+# RUF r228-alpha
 ### New
 * Added options to the Combat Fader to allow the player frame to have a different alpha setting if you are below max health.
+* Added options to allow for horizontal party and party pet frames. Note: ZERO real-world testing done on this feature as of yet, only basic tests.
 
 ### Changes
 * Previously added options ot the Combat Fader to smoothly animate alpha changes have been disabled for now due to critical performance issues and will be revisited in a future update.
