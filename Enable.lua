@@ -4,7 +4,6 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 local _, PlayerClass = UnitClass('player')
-local UnitSettingsDone
 
 local function SetClassColors()
 	local function customClassColors()

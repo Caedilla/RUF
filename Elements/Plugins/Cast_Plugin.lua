@@ -123,6 +123,8 @@ local function UNIT_SPELLCAST_START(self, event, unit)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Cast
+	if not element.Enabled then return end
+
 	local name, text, texture, startTime, endTime, _, castID, notInterruptible, spellID = UnitCastingInfo(unit)
 	if(not name) then
 		return element:Hide()
@@ -181,6 +183,7 @@ local function UNIT_SPELLCAST_FAILED(self, event, unit, castID)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Cast
+	if not element.Enabled then return end
 	if(element.castID ~= castID) then
 		return
 	end
@@ -209,6 +212,7 @@ local function UNIT_SPELLCAST_INTERRUPTED(self, event, unit, castID)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Cast
+	if not element.Enabled then return end
 	if(element.castID ~= castID) then
 		return
 	end
@@ -237,6 +241,7 @@ local function UNIT_SPELLCAST_INTERRUPTIBLE(self, event, unit)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Cast
+	if not element.Enabled then return end
 	local shield = element.Shield
 	if(shield) then
 		shield:Hide()
@@ -259,6 +264,7 @@ local function UNIT_SPELLCAST_NOT_INTERRUPTIBLE(self, event, unit)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Cast
+	if not element.Enabled then return end
 	local shield = element.Shield
 	if(shield) then
 		shield:Show()
@@ -281,6 +287,7 @@ local function UNIT_SPELLCAST_DELAYED(self, event, unit)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Cast
+	if not element.Enabled then return end
 	local name, _, _, startTime = UnitCastingInfo(unit)
 	if(not startTime or not element:IsShown()) then return end
 
@@ -308,6 +315,7 @@ local function UNIT_SPELLCAST_STOP(self, event, unit, castID)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Cast
+	if not element.Enabled then return end
 	if(element.castID ~= castID) then
 		return
 	end
@@ -330,6 +338,7 @@ local function UNIT_SPELLCAST_CHANNEL_START(self, event, unit, _, spellID)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Cast
+	if not element.Enabled then return end
 	local name, _, texture, startTime, endTime, _, notInterruptible = UnitChannelInfo(unit)
 	if(not name) then
 		return
@@ -394,6 +403,7 @@ local function UNIT_SPELLCAST_CHANNEL_UPDATE(self, event, unit)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Cast
+	if not element.Enabled then return end
 	local name, _, _, startTime, endTime = UnitChannelInfo(unit)
 	if(not name or not element:IsShown()) then
 		return
@@ -424,6 +434,7 @@ local function UNIT_SPELLCAST_CHANNEL_STOP(self, event, unit)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Cast
+	if not element.Enabled then return end
 	if(element:IsShown()) then
 		element.channeling = nil
 		element.notInterruptible = nil
@@ -441,6 +452,14 @@ local function UNIT_SPELLCAST_CHANNEL_STOP(self, event, unit)
 end
 
 local function onUpdate(self, elapsed)
+	if not self.Enabled then
+		self.casting = nil
+		self.castID = nil
+		self.channeling = nil
+
+		self:Hide()
+		return
+	end
 	if(self.casting) then
 		local duration = self.duration + elapsed
 		if(duration >= self.max) then
@@ -633,14 +652,6 @@ local function Disable(self)
 		element:Hide()
 		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
 			if LibClassicCasterino then
-				self['UNIT_SPELLCAST_START'] = nil
-				self['UNIT_SPELLCAST_DELAYED'] = nil
-				self['UNIT_SPELLCAST_STOP'] = nil
-				self['UNIT_SPELLCAST_FAILED'] = nil
-				self['UNIT_SPELLCAST_INTERRUPTED'] = nil
-				self['UNIT_SPELLCAST_CHANNEL_START'] = nil
-				self['UNIT_SPELLCAST_CHANNEL_UPDATE'] = nil
-				self['UNIT_SPELLCAST_CHANNEL_STOP'] = nil
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_START')
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_DELAYED')
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_STOP')
@@ -649,6 +660,14 @@ local function Disable(self)
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_CHANNEL_START')
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_CHANNEL_UPDATE')
 				LibClassicCasterino.UnregisterCallback(self, 'UNIT_SPELLCAST_CHANNEL_STOP')
+				--[[self['UNIT_SPELLCAST_START'] = nil
+				self['UNIT_SPELLCAST_DELAYED'] = nil
+				self['UNIT_SPELLCAST_STOP'] = nil
+				self['UNIT_SPELLCAST_FAILED'] = nil
+				self['UNIT_SPELLCAST_INTERRUPTED'] = nil
+				self['UNIT_SPELLCAST_CHANNEL_START'] = nil
+				self['UNIT_SPELLCAST_CHANNEL_UPDATE'] = nil
+				self['UNIT_SPELLCAST_CHANNEL_STOP'] = nil]]--
 			else
 				self:UnregisterEvent('UNIT_SPELLCAST_START', UNIT_SPELLCAST_START)
 				self:UnregisterEvent('UNIT_SPELLCAST_FAILED', UNIT_SPELLCAST_FAILED)

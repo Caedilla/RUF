@@ -22,7 +22,7 @@ if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
 end
 
 local function onUpdate(self, elapsed)
-	if self.Enabled == false then self:Hide() return end
+	if self.Enabled ~= true then self:Hide() return end
 	elapsed = elapsed or 0
 	self.updateThrottle = self.updateThrottle or 0
 	self.updateThrottle = self.updateThrottle + elapsed
@@ -305,7 +305,7 @@ function RUF.SetCastBar(self, unit)
 end
 
 function RUF.CastInterrupted(element, unit, name)
-	if element.Enabled == false then element:Hide() return end
+	if element.Enabled ~= true then element:Hide() return end
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
@@ -343,7 +343,7 @@ function RUF.CastInterrupted(element, unit, name)
 end
 
 function RUF.CastUpdate(element, unit, name)
-	if element.Enabled == false then element:Hide() return end
+	if element.Enabled ~= true then element:Hide() return end
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
@@ -381,7 +381,7 @@ function RUF.CastUpdate(element, unit, name)
 end
 
 function RUF.ChannelUpdate(element, unit, name)
-	if element.Enabled == false then element:Hide() return end
+	if element.Enabled ~= true then element:Hide() return end
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
 	local _, _, _, _, _, _, notInterruptible = UnitChannelInfo(unit)
