@@ -77,8 +77,12 @@ function RUF.CreateAuraIcon(element, index)
 	end
 	button.border = border
 
-	local cd = CreateFrame('Cooldown', '$parentCooldown', button, 'CooldownFrameTemplate')
-	cd:SetAllPoints(button.border)
+	if RUF.db.profile.Appearance.Aura.spiral.enabled then
+		local cd = CreateFrame('Cooldown', '$parentCooldown', button, 'CooldownFrameTemplate')
+		cd:SetReverse(RUF.db.profile.Appearance.Aura.spiral.reverse)
+		cd:SetAllPoints(button.border)
+		button.cd = cd
+	end
 
 	local count = button:CreateFontString(nil, 'OVERLAY', 'NumberFontNormal')
 	count:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', -1, 0)
@@ -96,7 +100,6 @@ function RUF.CreateAuraIcon(element, index)
 
 	button.icon = icon
 	button.count = count
-	button.cd = cd
 
 	if(element.PostCreateIcon) then element:PostCreateIcon(button) end
 

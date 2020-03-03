@@ -439,3 +439,7 @@ L["How long the frames take to smoothly transition between different alpha value
 L["Vertical stacking or horizontal stacking."] = true
 L["Horizonal"] = true
 L["Vertical"] = true
+L["Starts the cooldown spirals as empty, filling up as the aura runs out."] = true
+L["Reverse Spiral"] = true
+L["Enables the cooldown spiral showing duration remaining on buff or debuff icons."] = true
+L["Cooldown Sprial"] = true

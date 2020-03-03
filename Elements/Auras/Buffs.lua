@@ -225,6 +225,20 @@ local function PostUpdateBuffIcon(self, unit, button, index, position, duration,
 			pixel:SetPoint('TOPLEFT', button, 'TOPLEFT', -PixelOffset, PixelOffset)
 			pixel:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', PixelOffset, -PixelOffset)
 		end
+		local spiral = RUF.db.profile.Appearance.Aura.spiral
+		if spiral.enabled ~= true then
+			self[position].cd:Hide()
+			self[position].cd = nil
+		else
+			local cd
+			if not self[position].cd then
+				cd = CreateFrame('Cooldown', '$parentCooldown', button, 'CooldownFrameTemplate')
+				cd:SetAllPoints(button.border)
+				button.cd = cd
+			end
+			cd = self[position].cd
+			cd:SetReverse(spiral.reverse)
+		end
 	end
 
 end

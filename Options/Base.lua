@@ -816,6 +816,40 @@ function RUF_Options.MainOptions()
 									},
 								},
 							},
+							spiral = {
+								name = L["Cooldown Sprial"],
+								type = 'group',
+								order = 4,
+								inline = true,
+								args = {
+									enabled = {
+										name = L["Enabled"],
+										desc = L["Enables the cooldown spiral showing duration remaining on buff or debuff icons."],
+										type = 'toggle',
+										order = 0.01,
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.spiral.enabled
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.spiral.enabled = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+									enabled = {
+										name = L["Reverse Spiral"],
+										desc = L["Starts the cooldown spirals as empty, filling up as the aura runs out."],
+										type = 'toggle',
+										order = 0.02,
+										get = function(info)
+											return RUF.db.profile.Appearance.Aura.spiral.reverse
+										end,
+										set = function(info, value)
+											RUF.db.profile.Appearance.Aura.spiral.reverse = value
+											RUF:OptionsUpdateAllAuras()
+										end,
+									},
+								},
+							},
 						},
 					},
 				},

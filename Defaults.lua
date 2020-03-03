@@ -261,6 +261,10 @@ local cfg = {
 					},
 					Offset = 0,
 				},
+				spiral = {
+					enabled = true,
+					reverse = false,
+				},
 			},
 			Colors = {
 				UseClassColors = true, -- Use ClassColors Addon
