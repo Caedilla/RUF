@@ -27,6 +27,8 @@ L["Allows incoming healing bars to overflow out of the frame by this amount. The
 L["Alpha"] = "Alpha"
 --[[Translation missing --]]
 L["Alpha of all frames when you are targeting something."] = "Alpha of all frames when you are targeting something."
+--[[Translation missing --]]
+L["Alpha of the player frame when you are under max health."] = "Alpha of the player frame when you are under max health."
 L["Alphabetically"] = "Alphabetisch"
 L["Always Hidden"] = "Immer Versteckt"
 L["Always Visible"] = "Immer Sichtbar"
@@ -181,6 +183,8 @@ L["Combat"] = "Kampf"
 --[[Translation missing --]]
 L["Combat Fading"] = "Combat Fading"
 --[[Translation missing --]]
+L["Cooldown Sprial"] = "Cooldown Sprial"
+--[[Translation missing --]]
 L["Copy and replace all text elements from the selected unit to this unit."] = "Copy and replace all text elements from the selected unit to this unit."
 --[[Translation missing --]]
 L["Copy and replace settings from the selected unit to this unit."] = "Copy and replace settings from the selected unit to this unit."
@@ -202,6 +206,8 @@ L["Curse"] = "Curse"
 L["Curseforge"] = "Curseforge"
 --[[Translation missing --]]
 L["Custom Width"] = "Custom Width"
+--[[Translation missing --]]
+L["Damaged alpha"] = "Damaged alpha"
 L["Dead"] = "Tot"
 L["Debuff Icons"] = "Debuff Icons"
 L["Debuffs"] = "Debuffs"
@@ -225,6 +231,8 @@ L["Easy"] = "Einfach"
 --[[Translation missing --]]
 L["Elipsis"] = "Elipsis"
 --[[Translation missing --]]
+L["Enable player damaged alpha"] = "Enable player damaged alpha"
+--[[Translation missing --]]
 L["Enable targeting alpha"] = "Enable targeting alpha"
 L["Enable Text Shadow"] = "Aktiviere Textschatten"
 L["Enable the Unit Frame."] = "Aktivieren der Unit-Frames"
@@ -232,7 +240,11 @@ L["Enable the Unit Frame."] = "Aktivieren der Unit-Frames"
 L["Enable to force the bar to a specific color if the cast cannot be interrupted."] = "Enable to force the bar to a specific color if the cast cannot be interrupted."
 --[[Translation missing --]]
 L["Enable to replace this unit frame with the vehicle frame when in a vehicle. If disabled, the pet frame will become the vehicle frame instead."] = "Enable to replace this unit frame with the vehicle frame when in a vehicle. If disabled, the pet frame will become the vehicle frame instead."
+--[[Translation missing --]]
+L["Enable to smoothly transition between different alpha values."] = "Enable to smoothly transition between different alpha values."
 L["Enabled"] = "Aktiviert"
+--[[Translation missing --]]
+L["Enables the cooldown spiral showing duration remaining on buff or debuff icons."] = "Enables the cooldown spiral showing duration remaining on buff or debuff icons."
 --[[Translation missing --]]
 L["Enrage"] = "Enrage"
 L["Fade out of Range"] = "Verberge außerhalb der Reichweite"
@@ -246,7 +258,6 @@ L["Font"] = "Schriftart"
 L["Font Size"] = "Schriftart-Größe"
 --[[Translation missing --]]
 L["Foreground Style"] = "Foreground Style"
-L["Frame"] = "Rahmen"
 --[[Translation missing --]]
 L["Frame Border"] = "Frame Border"
 --[[Translation missing --]]
@@ -258,9 +269,9 @@ L["Free floating"] = "Free floating"
 L["Freeze Animation"] = "Freeze Animation"
 L["Friendly"] = "Freundlich"
 L["Friendly Pet"] = "Freundliches Haustier"
-L["Ghost"] = "Geist"
 --[[Translation missing --]]
-L["Global Appearance Options"] = "Global Appearance Options"
+L["General"] = "General"
+L["Ghost"] = "Geist"
 L["group members"] = "gruppen Mitglied"
 L["Grow up or down."] = "Hoch oder runter Wachsen."
 L["Growth Direction"] = "Wachstumsrichtung"
@@ -281,11 +292,15 @@ L["Highlight Texture"] = "Markiere die Textur"
 --[[Translation missing --]]
 L["Highlight Thickness"] = "Highlight Thickness"
 L["Honor"] = "Honor"
+--[[Translation missing --]]
+L["Horizonal"] = "Horizonal"
 L["Horizontal Growth"] = "Horizontales Wachstum"
 L["Horizontal Offset from the Anchor."] = "Horizontaler Versatz vom Anker."
 L["Horizontal Offset from the Frame Anchor."] = "Horizontaler Versatz vom Rahmenanker."
 L["Horizontal Offset from the previous unit in the group."] = "Horizontal Offset von der vorherigen Einheit in der Gruppe."
 L["Horizontal Spacing"] = "Horizontaler Abstand"
+--[[Translation missing --]]
+L["How long the frames take to smoothly transition between different alpha values."] = "How long the frames take to smoothly transition between different alpha values."
 L["HPPerc"] = "Health: %"
 --[[Translation missing --]]
 L["Icon Height"] = "Icon Height"
@@ -310,6 +325,8 @@ L["Invite Link"] = "Einladen Link"
 L["Justify"] = "Justify"
 --[[Translation missing --]]
 L["Latency"] = "Latency"
+--[[Translation missing --]]
+L["Layout"] = "Layout"
 --[[Translation missing --]]
 L["Lead"] = "Leader"
 L["Left"] = "Links"
@@ -440,6 +457,8 @@ L["Rest"] = "Resting"
 --[[Translation missing --]]
 L["Retail"] = "Retail"
 L["Reverse"] = "Umkehren"
+--[[Translation missing --]]
+L["Reverse Spiral"] = "Reverse Spiral"
 L["Right"] = "Rechts"
 --[[Translation missing --]]
 L["Role"] = "Group Role"
@@ -492,6 +511,8 @@ L["Size"] = "Größe"
 --[[Translation missing --]]
 L["Size relative to the aura icon"] = "Size relative to the aura icon"
 --[[Translation missing --]]
+L["Smooth transitions"] = "Smooth transitions"
+--[[Translation missing --]]
 L["Smoothly animate bar changes. Does not affect class resources that are split into chunks such as Combo Points, or Holy Power."] = "Smoothly animate bar changes. Does not affect class resources that are split into chunks such as Combo Points, or Holy Power."
 L["Sort By"] = "Sortiere nach"
 L["Sort Direction"] = "Sortierrichtung"
@@ -504,6 +525,8 @@ L["Stagger - High"] = "Stagger - Hoch"
 L["Stagger - Low"] = "Stagger - Niedrig"
 L["Stagger - Medium"] = "Stagger - Mittel"
 L["Standard"] = "Standard"
+--[[Translation missing --]]
+L["Starts the cooldown spirals as empty, filling up as the aura runs out."] = "Starts the cooldown spirals as empty, filling up as the aura runs out."
 L["Tag"] = "Tag"
 L["Tags"] = "Tags"
 L["Tapped"] = "Angetippt"
@@ -513,6 +536,8 @@ L["Targeting alpha"] = "Targeting alpha"
 --[[Translation missing --]]
 L["TargetMark"] = "Target Marks"
 L["targettarget"] = "Ziel vom Ziel"
+--[[Translation missing --]]
+L["targettargettarget"] = "Target's Target's Target"
 L["Test Mode"] = "Test Modus"
 L["Text Case"] = "Text Case"
 L["Texts"] = "Text"
@@ -521,6 +546,8 @@ L["Texture"] = "Textur"
 L["The border on buff or debuff icons that is colored using the colors above."] = "The border on buff or debuff icons that is colored using the colors above."
 --[[Translation missing --]]
 L["The colour options below are listed in order of precedence left to right, with the first being the highest priority."] = "The colour options below are listed in order of precedence left to right, with the first being the highest priority."
+--[[Translation missing --]]
+L["The damaged alpha will only be used when you are below this percentage of health."] = "The damaged alpha will only be used when you are below this percentage of health."
 L["The name of the frame for the unit to anchor to. Defaults to UI Parent if set blank."] = "Der Name des Rahmens, an dem die Einheit verankert werden soll. Wird standardmäßig auf UI Parent gesetzt, wenn es leer ist."
 --[[Translation missing --]]
 L["The unit frame border that glows when the unit has a dispellable buff or debuff."] = "The unit frame border that glows when the unit has a dispellable buff or debuff."
@@ -538,6 +565,10 @@ L["Toggle on to force text element to be set to a custom width. If the text is l
 L["Top"] = "Oben"
 L["Top-left"] = "Oben-Links"
 L["Top-right"] = "Oben-Rechts"
+--[[Translation missing --]]
+L["Transition duration"] = "Transition duration"
+--[[Translation missing --]]
+L["Trigger below this percent"] = "Trigger below this percent"
 --[[Translation missing --]]
 L["Trim"] = "Trim"
 --[[Translation missing --]]
@@ -559,17 +590,23 @@ L["Upper Case"] = "Großbuchstaben"
 --[[Translation missing --]]
 L["URL"] = "URL"
 --[[Translation missing --]]
+L["Use a different alpha value for the player frame when you are under max health."] = "Use a different alpha value for the player frame when you are under max health."
+--[[Translation missing --]]
 L["Use a different alpha value when you have a target."] = "Use a different alpha value when you have a target."
 L["Use Bar Color"] = "Benutze Leisten Farbe"
 --[[Translation missing --]]
 L["Use Blizard Colors"] = "Use Blizard Colors"
 --[[Translation missing --]]
 L["Use Class Colors addon"] = "Use Class Colors addon"
+--[[Translation missing --]]
+L["Vertical"] = "Vertical"
 L["Vertical Growth"] = "Vertikales Wachstum"
 L["Vertical Offset from the Anchor."] = "Vertikaler Versatz vom Anker."
 L["Vertical Offset from the Frame Anchor."] = "Vertikaler Versatz vom Rahmenanker."
 L["Vertical Offset from the previous unit in the group."] = "Vertikaler Versatz von der vorherigen Einheit in der Gruppe."
 L["Vertical Spacing"] = "Vertikaler Abstand"
+--[[Translation missing --]]
+L["Vertical stacking or horizontal stacking."] = "Vertical stacking or horizontal stacking."
 L["Very Hard"] = "Sehr schwer"
 L["When reporting an issue, please also post the revision number above. Thanks!"] = "Wenn Sie ein Problem melden, geben Sie auch die oben genannte Revisionsnummer an.Danke!"
 L["Width"] = "Breite"

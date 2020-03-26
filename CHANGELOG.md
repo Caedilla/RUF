@@ -4,9 +4,6 @@
 * Added options to allow for horizontal party and party pet frames.
 * Added options to toggle on or off cooldown spirals on auras as well as reversing their direction available in the global aura options.
 
-### Changes
-* Previously added options ot the Combat Fader to smoothly animate alpha changes have been disabled for now due to critical performance issues and will be revisited in a future update.
-
 ### Fixes
 * Disabling the player cast bar in Classic should no longer cause Lua errors. Hopefully.
 * Disabling Arena units no longer causes them to be re-enabled during arena preparation.

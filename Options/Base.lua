@@ -794,6 +794,7 @@ function RUF_Options.MainOptions()
 							damagedAlphaToggle = {
 								name = L["Enable player damaged alpha"],
 								desc = L["Use a different alpha value for the player frame when you are under max health."],
+								width = 'double',
 								type = 'toggle',
 								order = 0.45,
 								get = function(info)

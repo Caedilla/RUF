@@ -156,7 +156,7 @@ local function UnitGroup(singleFrame, groupFrame, header)
 		order = ord,
 		args = {
 			frameSettings = {
-				name = L["Frame"],
+				name = L["Layout"],
 				type = 'group',
 				childGroups = 'tab',
 				order = 0,

@@ -26,6 +26,8 @@ L["Allows incoming healing bars to overflow out of the frame by this amount. The
 L["Alpha"] = "투명도"
 L["Alpha of all frames when you are targeting something."] = "무언가를 대상으로 선택 할 때 모든 프레임의 투명도입니다."
 --[[Translation missing --]]
+L["Alpha of the player frame when you are under max health."] = "Alpha of the player frame when you are under max health."
+--[[Translation missing --]]
 L["Alphabetically"] = "Alphabetically"
 L["Always Hidden"] = "항상 숨김"
 L["Always Visible"] = "항상 보임"
@@ -159,6 +161,8 @@ L["Colour bar by power color when at 50%."] = "50% 일 때 자원 색상 별 색
 L["Columns"] = "열"
 L["Combat"] = "전투"
 L["Combat Fading"] = "전투 사라짐"
+--[[Translation missing --]]
+L["Cooldown Sprial"] = "Cooldown Sprial"
 L["Copy and replace all text elements from the selected unit to this unit."] = "이 유닛을 선택된 유닛으로부터 모든 문자 요소의 설정을 복사하고 교체합니다."
 L["Copy and replace settings from the selected unit to this unit."] = "이 유닛을 선택된 유닛으로부터 설정을 복사하고 교체합니다."
 L["Copy Settings from:"] = "다음에서 설정 복사:"
@@ -173,6 +177,8 @@ L["Current Version: %s"] = "현재 버전: %s"
 L["Curse"] = "저주"
 L["Curseforge"] = "Curseforge"
 L["Custom Width"] = "사용자정의 너비"
+--[[Translation missing --]]
+L["Damaged alpha"] = "Damaged alpha"
 L["Dead"] = "죽음"
 L["Debuff Icons"] = "디버프 아이콘"
 L["Debuffs"] = "디버프"
@@ -195,13 +201,19 @@ L["Duration"] = "지속시간"
 L["Easy"] = "Easy"
 --[[Translation missing --]]
 L["Elipsis"] = "Elipsis"
+--[[Translation missing --]]
+L["Enable player damaged alpha"] = "Enable player damaged alpha"
 L["Enable targeting alpha"] = "대상 선택 투명도 사용"
 L["Enable Text Shadow"] = "문자 그림자 사용"
 L["Enable the Unit Frame."] = "유닛 프레임 사용"
 L["Enable to force the bar to a specific color if the cast cannot be interrupted."] = "시전을 중단 할 수 없는 경우 바를 특정 색상으로 강제 설정할 수 있습니다."
 --[[Translation missing --]]
 L["Enable to replace this unit frame with the vehicle frame when in a vehicle. If disabled, the pet frame will become the vehicle frame instead."] = "Enable to replace this unit frame with the vehicle frame when in a vehicle. If disabled, the pet frame will become the vehicle frame instead."
+--[[Translation missing --]]
+L["Enable to smoothly transition between different alpha values."] = "Enable to smoothly transition between different alpha values."
 L["Enabled"] = "사용함"
+--[[Translation missing --]]
+L["Enables the cooldown spiral showing duration remaining on buff or debuff icons."] = "Enables the cooldown spiral showing duration remaining on buff or debuff icons."
 L["Enrage"] = "분노"
 L["Fade out of Range"] = "범위에서 사라짐"
 L["Fade the unit frame it the target is out of range of your spells."] = "대상이 주문 범위를 벗어나면 유닛 프레임을 사라지게 합니다."
@@ -214,7 +226,6 @@ L["focustarget"] = "주시 대상"
 L["Font"] = "글꼴"
 L["Font Size"] = "글꼴 크기"
 L["Foreground Style"] = "전경 스타일"
-L["Frame"] = "프레임"
 L["Frame Border"] = "프레임 테두리"
 L["Frame Highlighting"] = "프레임 강조"
 L["Frame Lock"] = "프레임 고정"
@@ -223,9 +234,9 @@ L["Free floating"] = "Free floating"
 L["Freeze Animation"] = "얼리는 애니메이션"
 L["Friendly"] = "아군"
 L["Friendly Pet"] = "아군의 소환수"
-L["Ghost"] = "유령"
 --[[Translation missing --]]
-L["Global Appearance Options"] = "Global Appearance Options"
+L["General"] = "General"
+L["Ghost"] = "유령"
 L["group members"] = "그룹원"
 L["Grow up or down."] = "위나 아래로 성장"
 L["Growth Direction"] = "성장 방향"
@@ -244,11 +255,15 @@ L["Hide this tag at 0 or always display."] = "이 태그가 0이면 숨기거나
 L["Highlight Texture"] = "강조 무늬"
 L["Highlight Thickness"] = "강조 두께"
 L["Honor"] = "명예"
+--[[Translation missing --]]
+L["Horizonal"] = "Horizonal"
 L["Horizontal Growth"] = "수평 성장"
 L["Horizontal Offset from the Anchor."] = "기준으로부터의 수평 좌표"
 L["Horizontal Offset from the Frame Anchor."] = "프레임 기준으로부터의 수평 좌표입니다."
 L["Horizontal Offset from the previous unit in the group."] = "그룹 안 이전 유닛으로부터의 수평 좌표입니다."
 L["Horizontal Spacing"] = "수평 간격"
+--[[Translation missing --]]
+L["How long the frames take to smoothly transition between different alpha values."] = "How long the frames take to smoothly transition between different alpha values."
 --[[Translation missing --]]
 L["HPPerc"] = "Health: %"
 L["Icon Height"] = "아이콘 높이"
@@ -266,6 +281,8 @@ L["Inset from icon edge"] = "아이콘 가장자리에 삽입"
 L["Invite Link"] = "초대 링크"
 L["Justify"] = "맞춤"
 L["Latency"] = "지연"
+--[[Translation missing --]]
+L["Layout"] = "Layout"
 L["Lead"] = "장"
 L["Left"] = "왼쪽"
 L["Level"] = "상태: 레벨"
@@ -371,6 +388,8 @@ L["Replace frame with Vehicle"] = "Replace frame with Vehicle"
 L["Rest"] = "휴식"
 L["Retail"] = "격아"
 L["Reverse"] = "반전"
+--[[Translation missing --]]
+L["Reverse Spiral"] = "Reverse Spiral"
 L["Right"] = "오른쪽"
 --[[Translation missing --]]
 L["Role"] = "Group Role"
@@ -416,6 +435,8 @@ L["Shows all unitframes so you can easily configure them."] = "Shows all unitfra
 L["Simple Border"] = "간단한 테두리"
 L["Size"] = "크기"
 L["Size relative to the aura icon"] = "오라 아이콘을 기준으로 한 크기"
+--[[Translation missing --]]
+L["Smooth transitions"] = "Smooth transitions"
 L["Smoothly animate bar changes. Does not affect class resources that are split into chunks such as Combo Points, or Holy Power."] = "바의 변경을 부드럽게 움직입니다. 연계 점수나 신성한 힘과 같이 덩어리로 분할된 직업 자원에는 영향을 미치지 않습니다."
 L["Sort By"] = "정렬 기준"
 L["Sort Direction"] = "정렬 방향"
@@ -430,6 +451,8 @@ L["Stagger - Low"] = "Stagger - Low"
 --[[Translation missing --]]
 L["Stagger - Medium"] = "Stagger - Medium"
 L["Standard"] = "보통"
+--[[Translation missing --]]
+L["Starts the cooldown spirals as empty, filling up as the aura runs out."] = "Starts the cooldown spirals as empty, filling up as the aura runs out."
 L["Tag"] = "태그"
 L["Tags"] = "태그"
 L["Tapped"] = "클릭됨"
@@ -437,6 +460,8 @@ L["target"] = "대상"
 L["Targeting alpha"] = "대상 선택 투명도"
 L["TargetMark"] = "대상 징표"
 L["targettarget"] = "대상의 대상"
+--[[Translation missing --]]
+L["targettargettarget"] = "Target's Target's Target"
 L["Test Mode"] = "테스트 모드"
 --[[Translation missing --]]
 L["Text Case"] = "Text Case"
@@ -444,6 +469,8 @@ L["Texts"] = "문자"
 L["Texture"] = "무늬"
 L["The border on buff or debuff icons that is colored using the colors above."] = "버프나 디버프 아이콘의 테두리는 위의 색상을 사용하여 색칠됩니다."
 L["The colour options below are listed in order of precedence left to right, with the first being the highest priority."] = "아래의 색상 설정은 우선 순위가 왼쪽에서 오른쪽으로 순서대로 나열되며, 첫 번째가 가장 높은 우선 순위입니다."
+--[[Translation missing --]]
+L["The damaged alpha will only be used when you are below this percentage of health."] = "The damaged alpha will only be used when you are below this percentage of health."
 L["The name of the frame for the unit to anchor to. Defaults to UI Parent if set blank."] = "기준으로 할 유닛에 대한 프레임의 이름입니다. 공란으로 설정하면 부모UI가 기본값입니다."
 L["The unit frame border that glows when the unit has a dispellable buff or debuff."] = "유닛에 해제가능한 버프 또는 디버프가 있을 때 유닛 프레임 테두리를 빛나게 합니다."
 L["These settings affect all frames."] = "이 설정은 모든 프레임에 적용됩니다."
@@ -457,6 +484,10 @@ L["Toggle on to force text element to be set to a custom width. If the text is l
 L["Top"] = "상단"
 L["Top-left"] = "왼쪽 상단"
 L["Top-right"] = "오른쪽 상단"
+--[[Translation missing --]]
+L["Transition duration"] = "Transition duration"
+--[[Translation missing --]]
+L["Trigger below this percent"] = "Trigger below this percent"
 --[[Translation missing --]]
 L["Trim"] = "Trim"
 --[[Translation missing --]]
@@ -476,15 +507,21 @@ L["Up"] = "위"
 L["Upper Case"] = "대문자"
 --[[Translation missing --]]
 L["URL"] = "URL"
+--[[Translation missing --]]
+L["Use a different alpha value for the player frame when you are under max health."] = "Use a different alpha value for the player frame when you are under max health."
 L["Use a different alpha value when you have a target."] = "대상이 있을 때에 다른 투명도 값을 사용합니다."
 L["Use Bar Color"] = "바 색상 사용"
 L["Use Blizard Colors"] = "블리자드 색상 사용"
 L["Use Class Colors addon"] = "직업 색상 애드온 사용"
+--[[Translation missing --]]
+L["Vertical"] = "Vertical"
 L["Vertical Growth"] = "수직 성장"
 L["Vertical Offset from the Anchor."] = "기준으로부터의 수직 좌표입니다."
 L["Vertical Offset from the Frame Anchor."] = "프레임 기준으로부터의 수직 좌표입니다."
 L["Vertical Offset from the previous unit in the group."] = "그룹 안 이전 유닛으로부터의 수직 좌표입니다."
 L["Vertical Spacing"] = "수직 간격"
+--[[Translation missing --]]
+L["Vertical stacking or horizontal stacking."] = "Vertical stacking or horizontal stacking."
 L["Very Hard"] = "매우 어려움"
 --[[Translation missing --]]
 L["When reporting an issue, please also post the revision number above. Thanks!"] = "When reporting an issue, please also post the revision number above. Thanks!"
