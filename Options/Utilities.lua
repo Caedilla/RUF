@@ -645,8 +645,14 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 		if header == 'none' then
 			if profileReference.Enabled == false then
 				unitFrame:Disable()
+				if groupFrame == 'Arena' then
+					unitFrame:SetAttribute('oUF-enableArenaPrep', false)
+				end
 			else
 				unitFrame:Enable()
+				if groupFrame == 'Arena' then
+					unitFrame:SetAttribute('oUF-enableArenaPrep', true)
+				end
 			end
 		end
 

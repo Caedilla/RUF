@@ -420,6 +420,7 @@ function RUF:OnEnable()
 				end
 				if RUF.db.profile.unit[profile].Enabled == false then
 					unitFrame:Disable()
+					unitFrame:SetAttribute('oUF-enableArenaPrep', false)
 				end
 			end
 		end
