@@ -344,6 +344,24 @@ function RUF_Options.Texts()
 						RUF.db.profile.Appearance.Text[TagList[i]].ShowPercAtMax = value
 					end,
 				},
+				NoPerc = {
+					name = L["Hide Percentage"],
+					type = 'toggle',
+					hidden = function()
+						if TagList[i] == 'CurMaxHPPerc' or TagList[i] == 'CurHPPerc' then
+							return false
+						else
+							return true
+						end
+					end,
+					order = 10.01,
+					get = function(info)
+						return RUF.db.profile.Appearance.Text[TagList[i]].NoPerc
+					end,
+					set = function(info, value)
+						RUF.db.profile.Appearance.Text[TagList[i]].NoPerc = value
+					end,
+				},
 			},
 		}
 	end

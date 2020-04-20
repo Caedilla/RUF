@@ -48,6 +48,8 @@ tags['RUF:CurHPPerc'] = function(unit, realunit) -- Current Health and Percent i
 		else
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L["Offline"])
 		end
+	elseif RUF.db.profile.Appearance.Text.CurHPPerc.NoPerc == true then
+		return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
 	elseif cur == max then -- if we're at full health
 		if RUF.db.profile.Appearance.Text.CurHPPerc.ShowPercAtMax == true then
 			return string.format('|cff%02x%02x%02x%s - %s%%|r',r*255,g*255,b*255,RUF:Short(cur,true),RUF:Percent(cur,max))
@@ -155,6 +157,12 @@ tags['RUF:CurMaxHPPerc'] = function(unit, realunit) -- Current Health / Max Heal
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,string.lower(L["Offline"]))
 		else
 			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,L["Offline"])
+		end
+	elseif RUF.db.profile.Appearance.Text.CurMaxHPPerc.NoPerc == true then
+		if cur == max and RUF.db.profile.Appearance.Text.CurMaxHPPerc.ShowMaxAtMax == false then
+			return string.format('|cff%02x%02x%02x%s|r',r*255,g*255,b*255,RUF:Short(cur,true))
+		else
+			return string.format('|cff%02x%02x%02x%s/%s|r',r*255,g*255,b*255,RUF:Short(cur,true),RUF:Short(max,true))
 		end
 	elseif cur == max then -- if we're at full health
 		if RUF.db.profile.Appearance.Text.CurMaxHPPerc.ShowMaxAtMax == true then
