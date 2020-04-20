@@ -1,12 +1,6 @@
-# RUF r231-Release
+# RUF r232-Release
 ### New
-* Added options to the Combat Fader to allow the player frame to have a different alpha setting if you are below max health.
-* Added options to allow for horizontal party and party pet frames.
-* Added options to toggle on or off cooldown spirals on auras as well as reversing their direction available in the global aura options.
-
-### Fixes
-* Disabling the player cast bar in Classic should no longer cause Lua errors. Hopefully.
-* Disabling Arena units no longer causes them to be re-enabled during arena preparation.
+* Added Health: Cur/Max tag with option to hide Max HP when you're at full HP.
 
 ### Known Issues
 * Portraits in free-floating mode ignore mouse clicks and cannot be used to select units.

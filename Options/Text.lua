@@ -317,7 +317,13 @@ function RUF_Options.Texts()
 				MaxAtMax = {
 					name = L["Show Max at Max"],
 					type = 'toggle',
-					hidden = function() return TagList[i] ~= 'CurMaxHPPerc' end,
+					hidden = function()
+						if TagList[i] == 'CurMaxHPPerc' or TagList[i] == 'CurMaxHP' then
+							return false
+						else
+							return true
+						end
+					end,
 					order = 10.01,
 					get = function(info)
 						return RUF.db.profile.Appearance.Text[TagList[i]].ShowMaxAtMax
