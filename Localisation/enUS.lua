@@ -444,3 +444,5 @@ L["Enables the cooldown spiral showing duration remaining on buff or debuff icon
 L["Cooldown Sprial"] = true
 L["General"] = true
 L["Layout"] = true
+L["Enable Nicknames"] = true
+L["Toggles the display of Nicknames from players with addons that use NickTag-1.0 such as Details!"] = true
