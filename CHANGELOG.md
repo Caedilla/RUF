@@ -1,6 +1,9 @@
-# RUF r232-Release
+# RUF r233-Alpha
 ### New
-* Added Health: Cur/Max tag with option to hide Max HP when you're at full HP.
+* Added option to toggle NickTag-1.0 Nicknames in Name tag settings.
+
+### Fixed
+* Russian (and presumably other non-latin characterset names?) names should no longer disappear with certain name abbreviation settings.
 
 ### Known Issues
 * Portraits in free-floating mode ignore mouse clicks and cannot be used to select units.
