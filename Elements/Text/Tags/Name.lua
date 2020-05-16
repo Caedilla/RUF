@@ -10,9 +10,11 @@ local events = oUF.TagEvents or oUF.Tags.Events
 tags['RUF:Name'] = function(unit, realUnit)
 	if not UnitName(unit) then return end
 	local name = UnitName(unit)
-	local nickName = RUF:GetNickname(UnitName(unit), false, true)
-	if nickName then
-		name = nickName
+	if RUF.db.profile.Appearance.Text.Name.Nickname.Enabled then
+		local nickName = RUF:GetNickname(UnitName(unit), false, true)
+		if nickName then
+			name = nickName
+		end
 	end
 	if RUF.db.profile.Appearance.Text.Name.Case == 1 then
 		name = string.upper(name)
@@ -56,38 +58,48 @@ tags['RUF:Name'] = function(unit, realUnit)
 			name = name:sub(1,charLimit)
 			name = name .. '...'
 		elseif style == 2 then -- Abbreviate words that should be trimmed
-			local words = {}
-			local chars = {}
-			local spaces = {}
-			for space in name:gmatch('%W+') do
-				spaces[#spaces+1] = space
-			end
-			spaces[#spaces+1] = ''
-			for word in name:gmatch('%w+') do
-				local firstChar = word:sub(1,1)
-				words[#words+1] = word
-				chars[#chars+1] = firstChar
-				name = name:gsub(word,firstChar,1):gsub('%s','')
-			end
-			name = table.concat(chars)
-			if name:len() >= charLimit then
+			if UnitIsPlayer(unit) then
 				name = name:sub(1,charLimit)
 			else
-				for i = 1,#words do
-					if name:len() < charLimit then
-						chars[i] = words[i] .. spaces[i]
-						local string = table.concat(chars)
-						if string:len() <= charLimit then
-							name = string
+				local words = {}
+				local chars = {}
+				local spaces = {}
+				for space in name:gmatch('%W+') do
+					spaces[#spaces+1] = space
+				end
+				spaces[#spaces+1] = ''
+				for word in name:gmatch('%w+') do
+					local firstChar = word:sub(1,1)
+					words[#words+1] = word
+					chars[#chars+1] = firstChar
+					name = name:gsub(word,firstChar,1):gsub('%s','')
+				end
+				name = table.concat(chars)
+				if name:len() >= charLimit then
+					name = name:sub(1,charLimit)
+				else
+					for i = 1,#words do
+						if name:len() < charLimit then
+							chars[i] = words[i] .. spaces[i]
+							local string = table.concat(chars)
+							if string:len() < charLimit then
+								name = string
+							end
 						end
 					end
 				end
 			end
 		elseif style == 3 then -- Initialism everything
-			for word in name:gmatch('%w+') do
-				name = name:gsub(word,word:sub(1,1),1):gsub('%s',''):gsub('%W+','')
+			if name:len() >= charLimit then
+				if UnitIsPlayer(unit) then
+					name = name:sub(1,1)
+				else
+					for word in name:gmatch('%w+') do
+						name = name:gsub(word,word:sub(1,1),1):gsub('%s',''):gsub('%W+','')
+					end
+					name = name:sub(1,charLimit)
+				end
 			end
-			name = name:sub(1,charLimit)
 		else -- Trim
 			name = name:sub(1,charLimit)
 		end

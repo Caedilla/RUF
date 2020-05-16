@@ -542,6 +542,9 @@ local cfg = {
 						PowerType = false,
 						Reaction = true,
 					},
+					Nickname = {
+						Enabled = true,
+					},
 				},
 				CurPowerPerc = {
 					Enabled = 1,
