@@ -446,3 +446,5 @@ L["General"] = true
 L["Layout"] = true
 L["Enable Nicknames"] = true
 L["Toggles the display of Nicknames from players with addons that use NickTag-1.0 such as Details!"] = true
+L["Attached"] = true
+L["Portraits are not clickable or interactible in free floating mode."] = true

@@ -2857,6 +2857,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 				values = {
 					[1] = L["Unitframe Overlay"],
 					[2] = L["Free floating"],
+					[3] = L["Attached"],
 				},
 				disabled = function()
 					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
@@ -2877,7 +2878,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 				order = 0.2,
 				disabled = function()
 					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
-					if RUF.db.profile.unit[profileName].Frame.Portrait.Style == 2 then return true end
+					if RUF.db.profile.unit[profileName].Frame.Portrait.Style ~= 1 then return true end
 					return false
 				end,
 				get = function(info)
@@ -2901,7 +2902,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 				bigStep = 0.05,
 				disabled = function()
 					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
-					if RUF.db.profile.unit[profileName].Frame.Portrait.Style == 2 then return true end
+					if RUF.db.profile.unit[profileName].Frame.Portrait.Style ~= 1 then return true end
 					return false
 				end,
 				get = function(info)
@@ -2910,6 +2911,16 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 				set = function(info, value)
 					RUF.db.profile.unit[profileName].Frame.Portrait.Alpha = value
 					RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+				end,
+			},
+			freeFloatWarn = {
+				name = '|cFFFF0000' .. L["Portraits are not clickable or interactible in free floating mode."] .. '|r',
+				type = 'description',
+				order = 4.99,
+				width = 'full',
+				hidden = function()
+					if RUF.db.profile.unit[profileName].Frame.Portrait.Style ~= 2 then return true end
+					return false
 				end,
 			},
 			modelAppearance = {
@@ -3039,9 +3050,9 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 				type = 'group',
 				order = 10,
 				inline = true,
-				disabled = function()
+				hidden = function()
 					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
-					if RUF.db.profile.unit[profileName].Frame.Portrait.Style == 1 then return true end
+					if RUF.db.profile.unit[profileName].Frame.Portrait.Style ~= 2 then return true end
 					return false
 				end,
 				args = {
@@ -3147,12 +3158,61 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 					},
 				},
 			},
+			positioningAttached = {
+				name = L["Position"],
+				type = 'group',
+				order = 10,
+				inline = true,
+				hidden = function()
+					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
+					if RUF.db.profile.unit[profileName].Frame.Portrait.Style ~= 3 then return true end
+					return false
+				end,
+				args = {
+					width = {
+						name = L["Width"],
+						type = 'range',
+						order = 0.2,
+						min = 4,
+						max = 600,
+						softMin = 20,
+						softMax = 300,
+						step = 1,
+						bigStep = 1,
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Width
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Width = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
+					anchorTo = {
+						type = 'select',
+						name = L["Anchor To"],
+						order = 1.11,
+						values = {
+							--['BOTTOM'] = L["Bottom"],
+							['LEFT'] = L["Left"],
+							['RIGHT'] = L["Right"],
+							--['TOP'] = L["Top"],
+						},
+						get = function(info)
+							return RUF.db.profile.unit[profileName].Frame.Portrait.Position.AttachedStyleAnchor or 'LEFT'
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].Frame.Portrait.Position.AttachedStyleAnchor = value
+							RUF:OptionsUpdatePortraits(singleFrame, groupFrame, header)
+						end,
+					},
+				},
+			},
 			border = {
 				name = L["Border"],
 				type = 'group',
 				order = 11,
 				inline = true,
-				disabled = function()
+				hidden = function()
 					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
 					if RUF.db.profile.unit[profileName].Frame.Portrait.Style == 1 then return true end
 					return false
@@ -3246,7 +3306,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 				type = 'group',
 				order = 12,
 				inline = true,
-				disabled = function()
+				hidden = function()
 					if not RUF.db.profile.unit[profileName].Frame.Portrait.Enabled == true then return true end
 					if RUF.db.profile.unit[profileName].Frame.Portrait.Style == 1 then return true end
 					return false

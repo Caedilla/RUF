@@ -681,6 +681,11 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 
 		unitFrame:SetWidth(profileReference.Frame.Size.Width)
 		unitFrame:SetHeight(profileReference.Frame.Size.Height)
+		if profileReference.Frame.Portrait.Enabled then
+			if profileReference.Frame.Portrait.Style == 3 then
+				unitFrame.Portrait:SetHeight(profileReference.Frame.Size.Height)
+			end
+		end
 
 		if i == -1 then
 			RUF:UpdateFramePosition(unitFrame,singleFrame,groupFrame,header,i)

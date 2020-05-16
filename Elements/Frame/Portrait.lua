@@ -4,6 +4,18 @@ local _, ns = ...
 local oUF = ns.oUF
 local offsetFix = 0.3
 
+local anchorSwaps = {
+	['BOTTOM'] = 'TOP',
+	['BOTTOMLEFT'] = 'TOPRIGHT',
+	['BOTTOMRIGHT'] = 'TOPLEFT',
+	['CENTER'] = 'CENTER',
+	['LEFT'] = 'RIGHT',
+	['RIGHT'] = 'LEFT',
+	['TOP'] = 'BOTTOM',
+	['TOPLEFT'] = 'BOTTOMRIGHT',
+	['TOPRIGHT'] = 'BOTTOMLEFT',
+}
+
 function RUF.PortraitHealthUpdate(self)
 	local frame = self.__owner
 	local profileReference = RUF.db.profile.unit[frame.frame].Frame.Portrait
@@ -181,6 +193,7 @@ function RUF.PortraitUpdateOptions(self)
 		Portrait.Enabled = true
 		self.__owner:EnableElement('Portrait')
 		Portrait:Show()
+		self.__owner:SetHitRectInsets(0, 0, 0, 0)
 		if profileReference.Style == 1 then
 			Background:Hide()
 			Border:Hide()
@@ -198,14 +211,12 @@ function RUF.PortraitUpdateOptions(self)
 				Portrait:SetAllPoints(self.__owner)
 				Portrait:SetViewInsets(0, 0, 0, 0)
 			end
-		elseif profileReference.Style == 2 then
+		elseif profileReference.Style == 2 or profileReference.Style == 3 then
 			Background:Show()
 			Border:Show()
 			Portrait:SetAlpha(1)
 			Portrait:ClearAllPoints()
 			Portrait:SetViewInsets(0, 0, 0, 0)
-			Portrait:SetSize(profileReference.Width, profileReference.Height)
-			Portrait:SetPoint(profileReference.Position.AnchorFrom, self.__owner, profileReference.Position.AnchorTo, profileReference.Position.x - offsetFix, profileReference.Position.y - offsetFix)
 
 			-- Border
 			local offset = profileReference.Border.Offset
@@ -224,6 +235,21 @@ function RUF.PortraitUpdateOptions(self)
 			Background:SetPoint("BOTTOMRIGHT", Portrait ,"BOTTOMRIGHT", offsetFix, -offsetFix)
 
 			Portrait.Cutaway = false
+			if profileReference.Style == 2 then
+				Portrait:SetSize(profileReference.Width, profileReference.Height)
+				Portrait:SetPoint(profileReference.Position.AnchorFrom, self.__owner, profileReference.Position.AnchorTo, profileReference.Position.x - offsetFix, profileReference.Position.y - offsetFix)
+			elseif profileReference.Style == 3 then
+				Portrait:SetSize(profileReference.Width, self.__owner:GetHeight())
+				local anchor = profileReference.Position.AttachedStyleAnchor or 'LEFT'
+				local anchorTo = anchorSwaps[anchor]
+				Portrait:SetPoint(anchorTo, self.__owner, anchor, 0 - offsetFix, 0 - offsetFix)
+				-- TODO Function to determine total interactible size for any single direction anchor point
+				if anchor == 'LEFT' then
+					self.__owner:SetHitRectInsets(-profileReference.Width, 0, 0, 0)
+				else
+					self.__owner:SetHitRectInsets(0, -profileReference.Width, 0, 0, 0)
+				end
+			end
 		end
 	else
 		Portrait.Enabled = false
