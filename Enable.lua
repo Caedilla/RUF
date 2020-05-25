@@ -241,7 +241,7 @@ function RUF:OnEnable()
 	end
 
 	-- Set RUF stored nickname to one from NickTag so we can have the options menu display correctly (displaying blank if a nickname is not set)
-	RUF:NickTagSetCache(RUF.db.char.NickCache)
+	RUF:NickTagSetCache(RUF.db.global.NickCache)
 	local nickName = RUF:GetNickname(UnitName('player'), false, true) or UnitName('player')
 	if RUF.db.char.Nickname ~= '' then
 		if nickName ~= UnitName('player') then
