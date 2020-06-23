@@ -505,30 +505,35 @@ function RUF.ToggleFrameLock(status)
 	else -- lock
 		for i = 1, #frames do
 			local frameName = 'oUF_RUF_' .. frames[i]
-			local profile = string.lower(frames[i])
-			_G[frameName]:SetMovable(false)
-			_G[frameName]:SetScript('OnMouseDown', nil)
-			_G[frameName]:SetScript('OnMouseUp', nil)
+			if _G[frameName] then
+				local profile = string.lower(frames[i])
+				_G[frameName]:SetMovable(false)
+				_G[frameName]:SetScript('OnMouseDown', nil)
+				_G[frameName]:SetScript('OnMouseUp', nil)
+			end
 		end
 		for i = 1, #groupFrames do
 			local frameName = 'oUF_RUF_' .. groupFrames[i] .. '1'
 			if groupFrames[i]:match('Target') then
 				frameName = _G['oUF_RUF_' .. groupFrames[i]:gsub('Target','') .. '1' .. 'Target']
 			end
-			local profile = string.lower(groupFrames[i])
-			_G[frameName]:SetMovable(false)
-			_G[frameName]:SetScript('OnMouseDown', nil)
-			_G[frameName]:SetScript('OnMouseUp', nil)
+			if _G[frameName] then
+				local profile = string.lower(groupFrames[i])
+				_G[frameName]:SetMovable(false)
+				_G[frameName]:SetScript('OnMouseDown', nil)
+				_G[frameName]:SetScript('OnMouseUp', nil)
+			end
 		end
 		for i = 1, #headers do
 			local frameName = 'oUF_RUF_' .. headers[i]
-			local MoveBG = _G[frameName .. '.MoveBG']
-
-			MoveBG:Hide()
-			MoveBG:SetMovable(false)
-			_G[frameName]:SetMovable(false)
-			MoveBG:SetScript('OnMouseDown', nil)
-			MoveBG:SetScript('OnMouseUp', nil)
+			if _G[frameName] then
+				local MoveBG = _G[frameName .. '.MoveBG']
+				MoveBG:Hide()
+				MoveBG:SetMovable(false)
+				_G[frameName]:SetMovable(false)
+				MoveBG:SetScript('OnMouseDown', nil)
+				MoveBG:SetScript('OnMouseUp', nil)
+			end
 		end
 	end
 
