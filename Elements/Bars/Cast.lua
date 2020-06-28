@@ -306,16 +306,20 @@ end
 
 function RUF.CastInterrupted(element, unit, name)
 	if element.Enabled ~= true then element:Hide() return end
+	local profileUnit = unit
+	if element.__owner.realUnit then
+		profileUnit == element.__owner.realUnit
+	end
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
-	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
+	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(profileUnit)
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
-	local unitProfile = RUF.db.profile.unit[unit].Frame.Bars.Cast
+	local unitProfile = RUF.db.profile.unit[profileUnit].Frame.Bars.Cast
 
 	if notInterruptible and profileReference.ColorInterrupt.Enabled then
 		r, g, b = unpack(profileReference.ColorInterrupt.Color)
 	else
-		r, g, b = RUF:GetBarColor(element, unit, 'Cast')
+		r, g, b = RUF:GetBarColor(element, profileUnit, 'Cast')
 	end
 	element:SetStatusBarColor(r, g, b)
 	if element.SafeZone then
@@ -344,16 +348,20 @@ end
 
 function RUF.CastUpdate(element, unit, name)
 	if element.Enabled ~= true then element:Hide() return end
+	local profileUnit = unit
+	if element.__owner.realUnit then
+		profileUnit == element.__owner.realUnit
+	end
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
-	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unit)
+	local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(profileUnit)
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
-	local unitProfile = RUF.db.profile.unit[unit].Frame.Bars.Cast
+	local unitProfile = RUF.db.profile.unit[profileUnit].Frame.Bars.Cast
 
 	if notInterruptible and profileReference.ColorInterrupt.Enabled then
 		r, g, b = unpack(profileReference.ColorInterrupt.Color)
 	else
-		r, g, b = RUF:GetBarColor(element, unit, 'Cast')
+		r, g, b = RUF:GetBarColor(element, profileUnit, 'Cast')
 	end
 	element:SetStatusBarColor(r, g, b)
 	if element.SafeZone then
@@ -382,16 +390,20 @@ end
 
 function RUF.ChannelUpdate(element, unit, name)
 	if element.Enabled ~= true then element:Hide() return end
+	local profileUnit = unit
+	if element.__owner.realUnit then
+		profileUnit == element.__owner.realUnit
+	end
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
-	local _, _, _, _, _, _, notInterruptible = UnitChannelInfo(unit)
+	local _, _, _, _, _, _, notInterruptible = UnitChannelInfo(profileUnit)
 	local profileReference = RUF.db.profile.Appearance.Bars.Cast
-	local unitProfile = RUF.db.profile.unit[unit].Frame.Bars.Cast
+	local unitProfile = RUF.db.profile.unit[profileUnit].Frame.Bars.Cast
 
 	if notInterruptible and profileReference.ColorInterrupt.Enabled then
 		r, g, b = unpack(profileReference.ColorInterrupt.Color)
 	else
-		r, g, b = RUF:GetBarColor(element, unit, 'Cast')
+		r, g, b = RUF:GetBarColor(element, profileUnit, 'Cast')
 	end
 	element:SetStatusBarColor(r, g, b)
 	if element.SafeZone then
