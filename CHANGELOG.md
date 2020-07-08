@@ -1,4 +1,4 @@
-# RUF r234-Alpha
+# RUF r235-Alpha
 ### New
 * Added option to toggle NickTag-1.0 Nicknames in Name tag settings.
 * Added new portrait style - Attached, similar to free floating, but locked to the left or right of the unitframe instead - Portraits in this mode are interactible unlike free floating portraits.
