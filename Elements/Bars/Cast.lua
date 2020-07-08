@@ -350,7 +350,7 @@ function RUF.CastUpdate(element, unit, name)
 	if element.Enabled ~= true then element:Hide() return end
 	local profileUnit = unit
 	if element.__owner.realUnit then
-		profileUnit == element.__owner.realUnit
+		profileUnit = element.__owner.realUnit
 	end
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
@@ -392,7 +392,7 @@ function RUF.ChannelUpdate(element, unit, name)
 	if element.Enabled ~= true then element:Hide() return end
 	local profileUnit = unit
 	if element.__owner.realUnit then
-		profileUnit == element.__owner.realUnit
+		profileUnit = element.__owner.realUnit
 	end
 	local unitFrame = element.__owner
 	local r, g, b, a, bgMult
