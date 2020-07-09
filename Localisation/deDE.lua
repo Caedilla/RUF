@@ -4,9 +4,9 @@ L = L or {}
 L["%s and class specific resources for other classes."] = "%s and class specific resources for other classes."
 --[[Translation missing --]]
 L["%s, %s, and class specific resources for other classes."] = "%s, %s, and class specific resources for other classes."
-L["0%"] = "0%"
-L["100%"] = "100%"
-L["50%"] = "50%"
+L["0%"] = true
+L["100%"] = true
+L["50%"] = true
 --[[Translation missing --]]
 L["A simple border around the edge of each buff or debuff icon."] = "A simple border around the edge of each buff or debuff icon."
 L["A text area with that name already exists!"] = "Ein Textbereich mit diesem Namen existiert bereits!"
@@ -15,7 +15,7 @@ L["Abbreviate"] = "Abbreviate"
 L["Abbreviate Character Names longer than this. Set 0 for no limit."] = "Kürzere Zeichennamen länger als dies. Setze 0 für kein Limit."
 --[[Translation missing --]]
 L["Abbreviate Style"] = "Abbreviate Style"
-L["Absorb"] = "Absorb"
+L["Absorb"] = true
 --[[Translation missing --]]
 L["Accept"] = "Accept"
 L["Add a Text Area for this unit with this name."] = "Füge einen Textbereich für dieses Unit mit diesem Namen hinzu."
@@ -24,7 +24,7 @@ L["AFKDND"] = "AFK oder DND"
 L["Allow unit frames to be repositioned by dragging."] = "Zulassen, dass Einheitenrahmen durch Ziehen neu positioniert werden."
 --[[Translation missing --]]
 L["Allows incoming healing bars to overflow out of the frame by this amount. The value is a percentage of the frame's width. Set to 0 to disallow overflowing."] = "Allows incoming healing bars to overflow out of the frame by this amount. The value is a percentage of the frame's width. Set to 0 to disallow overflowing."
-L["Alpha"] = "Alpha"
+L["Alpha"] = true
 --[[Translation missing --]]
 L["Alpha of all frames when you are targeting something."] = "Alpha of all frames when you are targeting something."
 --[[Translation missing --]]
@@ -71,10 +71,12 @@ L["Attach To"] = "Anhängen an"
 --[[Translation missing --]]
 L["Attach to the unit frame or allow free placement."] = "Attach to the unit frame or allow free placement."
 --[[Translation missing --]]
+L["Attached"] = "Attached"
+--[[Translation missing --]]
 L["Aura Colors"] = "Aura Colors"
 --[[Translation missing --]]
 L["Aura Highlight Glow"] = "Aura Highlight Glow"
-L["Auras"] = "Auras"
+L["Auras"] = true
 --[[Translation missing --]]
 L["Background"] = "Background"
 L["Background Alpha"] = "Hintergrund Alpha"
@@ -108,8 +110,8 @@ L["Bottom"] = "Unten"
 L["Bottom-left"] = "Unten-Links"
 L["Bottom-right"] = "Unten-Rechts"
 L["Brightness Multiplier"] = "Helligkeitsvervielfacher"
-L["Buff Icons"] = "Buff Icons"
-L["Buffs"] = "Buffs"
+L["Buff Icons"] = true
+L["Buffs"] = true
 --[[Translation missing --]]
 L["Camera Distance"] = "Camera Distance"
 L["Cannot configure while in combat."] = "Kann im Kampf nicht konfiguriert werden."
@@ -195,6 +197,8 @@ L["CurHPPerc"] = "Health: Cur - % < 100"
 L["CurMana"] = "Mana: Cur"
 L["CurManaPerc"] = "Mana: Cur - % < 100"
 --[[Translation missing --]]
+L["CurMaxHP"] = "Health: Cur/Max"
+--[[Translation missing --]]
 L["CurMaxHPPerc"] = "Health: Cur/Max - %"
 L["CurPower"] = "Power: Cur"
 L["CurPowerPerc"] = "Power: Cur - % < 100"
@@ -209,8 +213,8 @@ L["Custom Width"] = "Custom Width"
 --[[Translation missing --]]
 L["Damaged alpha"] = "Damaged alpha"
 L["Dead"] = "Tot"
-L["Debuff Icons"] = "Debuff Icons"
-L["Debuffs"] = "Debuffs"
+L["Debuff Icons"] = true
+L["Debuffs"] = true
 L["Default Buff Glow"] = "Standard Buff Glühen"
 L["Default Debuff Glow"] = "Standard Debuff Glühen"
 --[[Translation missing --]]
@@ -218,7 +222,7 @@ L["Desaturate"] = "Desaturate"
 L["Descending"] = "Absteigend"
 L["Difficulty Colors"] = "Schwierigkeit Farben"
 L["Direction"] = "Richtung"
-L["Disconnected"] = "Disconnected"
+L["Disconnected"] = true
 --[[Translation missing --]]
 L["Discord"] = "Discord"
 --[[Translation missing --]]
@@ -230,6 +234,8 @@ L["Duration"] = "Dauer"
 L["Easy"] = "Einfach"
 --[[Translation missing --]]
 L["Elipsis"] = "Elipsis"
+--[[Translation missing --]]
+L["Enable Nicknames"] = "Enable Nicknames"
 --[[Translation missing --]]
 L["Enable player damaged alpha"] = "Enable player damaged alpha"
 --[[Translation missing --]]
@@ -249,7 +255,7 @@ L["Enables the cooldown spiral showing duration remaining on buff or debuff icon
 L["Enrage"] = "Enrage"
 L["Fade out of Range"] = "Verberge außerhalb der Reichweite"
 L["Fade the unit frame it the target is out of range of your spells."] = "Verberge Einheitenrahmen, wenn das Ziel außerhalb der Reichweite deiner Zauber ist."
-L["Feedback"] = "Feedback"
+L["Feedback"] = true
 L["Fill Type"] = "Füllart"
 L["Filtering"] = "Filterung"
 L["focus"] = "Focus"
@@ -291,7 +297,7 @@ L["Hide this tag at 0 or always display."] = "Verstecke TAG bei 0 oder zeige es 
 L["Highlight Texture"] = "Markiere die Textur"
 --[[Translation missing --]]
 L["Highlight Thickness"] = "Highlight Thickness"
-L["Honor"] = "Honor"
+L["Honor"] = true
 --[[Translation missing --]]
 L["Horizonal"] = "Horizonal"
 L["Horizontal Growth"] = "Horizontales Wachstum"
@@ -310,7 +316,7 @@ L["Icon Width"] = "Icon Width"
 L["In combat alpha"] = "In combat alpha"
 --[[Translation missing --]]
 L["InCombat"] = "In Combat"
-L["Index"] = "Index"
+L["Index"] = true
 L["Indicators"] = "Indikatoren"
 --[[Translation missing --]]
 L["Initialism"] = "Initialism"
@@ -330,8 +336,8 @@ L["Layout"] = "Layout"
 --[[Translation missing --]]
 L["Lead"] = "Leader"
 L["Left"] = "Links"
-L["Level"] = "Level"
-L["Level Text"] = "Level Text"
+L["Level"] = true
+L["Level Text"] = true
 L["Location area of the Indicator to anchor from."] = "Standortbereich des Indikators, von dem aus verankert werden soll."
 L["Location area of the Unitframe to anchor from."] = "Standortbereich des Unitframe, von dem aus verankert werden soll."
 --[[Translation missing --]]
@@ -345,7 +351,7 @@ L["Makes the portrait disappear with the health bar as it lowers."] = "Makes the
 L["ManaPerc"] = "Mana: %"
 --[[Translation missing --]]
 L["Max"] = "Max"
-L["Max Auras"] = "Max Auras"
+L["Max Auras"] = true
 --[[Translation missing --]]
 L["MaxHP"] = "Health: Max"
 L["Maximum Duration"] = "Maximale Dauer"
@@ -356,16 +362,16 @@ L["Model Appearance"] = "Model Appearance"
 L["Monochrome"] = "Einfarbig"
 L["Monochrome Outline"] = "Einfarbig Outline"
 L["Monochrome Thick Outline"] = "Einfarbig Thick Outline"
-L["Name"] = "Name"
-L["Nickname"] = "Nickname"
+L["Name"] = true
+L["Nickname"] = true
 L["None"] = "Nichts"
-L["Normal"] = "Normal"
+L["Normal"] = true
 --[[Translation missing --]]
 L["Not Interruptible Color"] = "Not Interruptible Color"
 --[[Translation missing --]]
 L["Objective"] = "Quest Objective"
-L["Offline"] = "Offline"
-L["Offset"] = "Offset"
+L["Offline"] = true
+L["Offset"] = true
 --[[Translation missing --]]
 L["Open Configuration Panel"] = "Open Configuration Panel"
 --[[Translation missing --]]
@@ -376,9 +382,9 @@ L["Other's Heals"] = "Other's Heals"
 --[[Translation missing --]]
 L["Out of combat alpha"] = "Out of combat alpha"
 L["Out of Range transparency"] = "Außer Reichweite Transparenz"
-L["Outline"] = "Outline"
-L["Overlay Alpha"] = "Overlay Alpha"
-L["Paragon"] = "Paragon"
+L["Outline"] = true
+L["Overlay Alpha"] = true
+L["Paragon"] = true
 L["party"] = "Gruppen"
 L["party1"] = "Gruppe 1"
 --[[Translation missing --]]
@@ -417,7 +423,7 @@ L["pettarget"] = "Pet-Ziel"
 L["Phased"] = "Stufenweise"
 --[[Translation missing --]]
 L["Play sound on highlight"] = "Play sound on highlight"
-L["Player"] = "Player"
+L["Player"] = true
 L["player"] = "Player"
 --[[Translation missing --]]
 L["Player Heals"] = "Player Heals"
@@ -428,6 +434,8 @@ L["Poison"] = "Gift"
 L["Portrait"] = "Portrait"
 --[[Translation missing --]]
 L["Portrait Zoom"] = "Portrait Zoom"
+--[[Translation missing --]]
+L["Portraits are not clickable or interactible in free floating mode."] = "Portraits are not clickable or interactible in free floating mode."
 --[[Translation missing --]]
 L["Position"] = "Position"
 L["Power"] = "Energie"
@@ -524,11 +532,11 @@ L["Spell Name"] = "Spell Name"
 L["Stagger - High"] = "Stagger - Hoch"
 L["Stagger - Low"] = "Stagger - Niedrig"
 L["Stagger - Medium"] = "Stagger - Mittel"
-L["Standard"] = "Standard"
+L["Standard"] = true
 --[[Translation missing --]]
 L["Starts the cooldown spirals as empty, filling up as the aura runs out."] = "Starts the cooldown spirals as empty, filling up as the aura runs out."
-L["Tag"] = "Tag"
-L["Tags"] = "Tags"
+L["Tag"] = true
+L["Tags"] = true
 L["Tapped"] = "Angetippt"
 L["target"] = "Ziel"
 --[[Translation missing --]]
@@ -539,7 +547,7 @@ L["targettarget"] = "Ziel vom Ziel"
 --[[Translation missing --]]
 L["targettargettarget"] = "Target's Target's Target"
 L["Test Mode"] = "Test Modus"
-L["Text Case"] = "Text Case"
+L["Text Case"] = true
 L["Texts"] = "Text"
 L["Texture"] = "Textur"
 --[[Translation missing --]]
@@ -552,7 +560,7 @@ L["The name of the frame for the unit to anchor to. Defaults to UI Parent if set
 --[[Translation missing --]]
 L["The unit frame border that glows when the unit has a dispellable buff or debuff."] = "The unit frame border that glows when the unit has a dispellable buff or debuff."
 L["These settings affect all frames."] = "Diese Einstellungen wirken sich auf alle Rahmen aus."
-L["Thick Outline"] = "Thick Outline"
+L["Thick Outline"] = true
 --[[Translation missing --]]
 L["Thickness of the highlight."] = "Thickness of the highlight."
 --[[Translation missing --]]
@@ -562,6 +570,8 @@ L["Time"] = "Time"
 L["Time Remaining"] = "Verbleibende Zeit"
 --[[Translation missing --]]
 L["Toggle on to force text element to be set to a custom width. If the text is longer than the width, truncation will occur."] = "Toggle on to force text element to be set to a custom width. If the text is longer than the width, truncation will occur."
+--[[Translation missing --]]
+L["Toggles the display of Nicknames from players with addons that use NickTag-1.0 such as Details!"] = "Toggles the display of Nicknames from players with addons that use NickTag-1.0 such as Details!"
 L["Top"] = "Oben"
 L["Top-left"] = "Oben-Links"
 L["Top-right"] = "Oben-Rechts"
@@ -579,7 +589,7 @@ Initialism turns the entire name into initials if it would be trimmed.]=] ] = [=
 Elipsis adds an elipsis to the end of the trimmed name to signify it has been cut short.
 Abbreviate turns any words that would be trimmed into an initial.
 Initialism turns the entire name into initials if it would be trimmed.]=]
-L["Trivial"] = "Trivial"
+L["Trivial"] = true
 L["Type"] = "Typ"
 L["Unfriendly"] = "Unfreundlich"
 L["Unit Options"] = "Einheiten-Einstellung"
@@ -610,9 +620,9 @@ L["Vertical stacking or horizontal stacking."] = "Vertical stacking or horizonta
 L["Very Hard"] = "Sehr schwer"
 L["When reporting an issue, please also post the revision number above. Thanks!"] = "Wenn Sie ein Problem melden, geben Sie auch die oben genannte Revisionsnummer an.Danke!"
 L["Width"] = "Breite"
-L["X Offset"] = "X Offset"
+L["X Offset"] = true
 L["X Spacing"] = "X Abstand"
-L["Y Offset"] = "Y Offset"
+L["Y Offset"] = true
 L["Y Spacing"] = "Y Abstand"
 --[[Translation missing --]]
 L["You have the %s version of RUF installed, but you are playing %s. Please install a compatible version."] = "You have the %s version of RUF installed, but you are playing %s. Please install a compatible version."

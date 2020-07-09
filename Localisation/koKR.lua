@@ -4,9 +4,9 @@ L = L or {}
 L["%s and class specific resources for other classes."] = "%s and class specific resources for other classes."
 --[[Translation missing --]]
 L["%s, %s, and class specific resources for other classes."] = "%s, %s, and class specific resources for other classes."
-L["0%"] = "0%"
-L["100%"] = "100%"
-L["50%"] = "50%"
+L["0%"] = true
+L["100%"] = true
+L["50%"] = true
 L["A simple border around the edge of each buff or debuff icon."] = "각 버프나 디버프 아이콘의 가장자리를 감싸는 간단한 테두리입니다."
 --[[Translation missing --]]
 L["A text area with that name already exists!"] = "A text area with that name already exists!"
@@ -72,6 +72,8 @@ L["Ascending"] = "오름차순"
 L["Assist"] = "지원"
 L["Attach To"] = "부착"
 L["Attach to the unit frame or allow free placement."] = "유닛 프렝임에 부착하거나 자유 배치를 허용합니다."
+--[[Translation missing --]]
+L["Attached"] = "Attached"
 L["Aura Colors"] = "오라 색상"
 L["Aura Highlight Glow"] = "오라 강조 반짝임"
 L["Auras"] = "오라"
@@ -170,12 +172,14 @@ L["CurHP"] = "생명력: 현재"
 L["CurHPPerc"] = "생명력: 현재 - %"
 L["CurMana"] = "마나: 현재"
 L["CurManaPerc"] = "마나: 현재 - % < 100"
+--[[Translation missing --]]
+L["CurMaxHP"] = "Health: Cur/Max"
 L["CurMaxHPPerc"] = "생명력: 현재/최대 - %"
 L["CurPower"] = "자원: 현재"
 L["CurPowerPerc"] = "자원: 현재 - % < 100"
 L["Current Version: %s"] = "현재 버전: %s"
 L["Curse"] = "저주"
-L["Curseforge"] = "Curseforge"
+L["Curseforge"] = true
 L["Custom Width"] = "사용자정의 너비"
 --[[Translation missing --]]
 L["Damaged alpha"] = "Damaged alpha"
@@ -201,6 +205,8 @@ L["Duration"] = "지속시간"
 L["Easy"] = "Easy"
 --[[Translation missing --]]
 L["Elipsis"] = "Elipsis"
+--[[Translation missing --]]
+L["Enable Nicknames"] = "Enable Nicknames"
 --[[Translation missing --]]
 L["Enable player damaged alpha"] = "Enable player damaged alpha"
 L["Enable targeting alpha"] = "대상 선택 투명도 사용"
@@ -364,6 +370,8 @@ L["Plays a sound when a removable aura is found on a unit. Does not affect targe
 L["Poison"] = "독"
 L["Portrait"] = "초상화"
 L["Portrait Zoom"] = "초상화 줌"
+--[[Translation missing --]]
+L["Portraits are not clickable or interactible in free floating mode."] = "Portraits are not clickable or interactible in free floating mode."
 L["Position"] = "위치"
 L["Power"] = "자원"
 L["Power Color"] = "자원 색상"
@@ -481,6 +489,8 @@ L["This syncs with other addons that support NickTag-1.0 such as Details!"] = "�
 L["Time"] = "Time"
 L["Time Remaining"] = "남은 시간"
 L["Toggle on to force text element to be set to a custom width. If the text is longer than the width, truncation will occur."] = "문자 요소가 사용자정의 너비로 설정되도록 설정합니다. 만약 문자가 너비보다 길면 잘립니다."
+--[[Translation missing --]]
+L["Toggles the display of Nicknames from players with addons that use NickTag-1.0 such as Details!"] = "Toggles the display of Nicknames from players with addons that use NickTag-1.0 such as Details!"
 L["Top"] = "상단"
 L["Top-left"] = "왼쪽 상단"
 L["Top-right"] = "오른쪽 상단"
