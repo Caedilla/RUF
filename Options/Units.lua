@@ -266,6 +266,7 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].showPlayer = value
 							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
+							RUF:OptionsUpdateFrame(singleFrame, 'PartyTarget', 'none') -- So we also force Update and Hide/Show the 5th Party Target
 							RUF.TogglePartyTargets()
 							RUF:UpdateOptions()
 						end,

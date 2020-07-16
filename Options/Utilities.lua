@@ -734,7 +734,17 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 					growthDirection = 1
 				end
 			end
-
+--[[
+			if header == 'Party' then -- When we toggle
+				if RUF.db.profile.unit.party.showPlayer then
+					if RUF.db.profile.unit.partytarget.Enabled then
+						for u = 1,5 do
+							UpdateFrame('none','PartyTarget','none',u)
+						end
+					end
+				end
+			end
+]]--
 
 			headerFrame:SetAttribute('unitsPerColumn', growthDirection)
 			headerFrame:SetAttribute('columnSpacing', profileReference.Frame.Position.offsetx)
