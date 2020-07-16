@@ -703,6 +703,18 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 			else
 				RUF:UpdateFramePosition(unitFrame,singleFrame,groupFrame,header,i,anchorFrom,_G['oUF_RUF_' .. groupFrame .. i-1])
 			end
+
+			if groupFrame == 'PartyTarget' then
+				if RUF.db.profile.unit.party.showPlayer then
+					if i == 1 then
+						unitFrame:SetAttribute('unit', 'target')
+					else
+						unitFrame:SetAttribute('unit', 'party' .. i-1 .. 'target')
+					end
+				else
+					unitFrame:SetAttribute('unit', 'party' .. i .. 'target')
+				end
+			end
 		end
 
 		if header ~= 'none' then

@@ -427,6 +427,16 @@ function RUF:OnEnable()
 					unitFrame:Disable()
 					unitFrame:SetAttribute('oUF-enableArenaPrep', false)
 				end
+
+				if profile == 'partytarget' then
+					if RUF.db.profile.unit.party.showPlayer then
+						if u == 1 then
+							unitFrame:SetAttribute('unit', 'target')
+						else
+							unitFrame:SetAttribute('unit', 'party' .. u-1 .. 'target')
+						end
+					end
+				end
 			end
 		end
 	end)
