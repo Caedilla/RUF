@@ -355,7 +355,7 @@ function RUF:OnEnable()
 			if headers[i] == 'PartyPet' then partyNum = petNum end
 			local currentHeader = _G['oUF_RUF_' .. headers[i]]
 			currentHeader.Enabled = profile.Enabled
-			currentHeader:SetAttribute('startingIndex', -4 + partyNum)
+			currentHeader:SetAttribute('startingIndex', -3 + partyNum)
 			currentHeader:Show()
 			currentHeader:SetAttribute('startingIndex', 1)
 			currentHeader:SetClampedToScreen(true)
@@ -396,9 +396,6 @@ function RUF:OnEnable()
 				local unitName = groupFrames[i] .. u
 				if groupFrames[i]:match('Target') then
 					unitName = groupFrames[i]:gsub('Target', '') .. u .. 'Target'
-					if not oUF_RUF_Party5 then
-						if unitName == 'Party5Target' then return end
-					end
 				end
 				local frame = self:Spawn(unitName)
 				local unitFrame = _G['oUF_RUF_' .. unitName]
@@ -440,6 +437,12 @@ function RUF:OnEnable()
 		-- TODO Check other elements and make sure we do this properly for them too.
 		if RUF.db.profile.unit['player'].Frame.Bars.Class.Enabled == false then
 			oUF_RUF_Player:DisableElement('Runes')
+		end
+	end
+
+	if not RUF.db.profile.unit.party.showPlayer then
+		if _G['oUF_RUF_Party5Target'] then
+			_G['oUF_RUF_Party5Target']:Disable()
 		end
 	end
 

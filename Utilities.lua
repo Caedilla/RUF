@@ -342,6 +342,7 @@ function RUF.TogglePartyTargets() -- TODO: Implement this better.
 		numFrames = 5
 	end
 
+
 	local shouldShow = false
 	if IsInRaid() then
 		if showRaid and enable then
@@ -359,19 +360,27 @@ function RUF.TogglePartyTargets() -- TODO: Implement this better.
 
 	for i = 1,5 do
 		local unitFrame = _G['oUF_RUF_Party' .. i .. 'Target']
-		if shouldShow and then
+		if shouldShow then
 			if not unitFrame:IsEnabled() then
-				if i < 5 then
+				if numFrames < 5 then
+					if i < 5 then
+						unitFrame:Enable()
+					else
+						unitFrame:Disable()
+					end
+				else
 					unitFrame:Enable()
-				elseif numFrames < 5 then
+				end
+			elseif numFrames < 5 then
+				if i == 5 then
 					unitFrame:Disable()
 				end
 			end
 		else
 			unitFrame:Disable()
 		end
-
 	end
+
 end
 
 function RUF.RefreshTextElements(singleFrame, groupFrame, header, groupNum)

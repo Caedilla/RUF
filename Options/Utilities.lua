@@ -972,7 +972,15 @@ function RUF:SpawnUnits()
 			else
 				v.Text.DisplayName:Hide()
 			end
-			v:Show()
+			if v.oldUnit == 'party5target' then
+				if RUF.db.profile.unit.party.showPlayer then
+					v:Show()
+				else
+					v:Hide()
+				end
+			else
+				v:Show()
+			end
 		else
 			v:Hide()
 		end
@@ -1010,7 +1018,13 @@ function RUF:RestoreUnits()
 		v:SetAttribute('unit',v.unit)
 		v.Text.DisplayName:Hide()
 		v:Hide()
-		if RUF.db.profile.unit[v.frame].Enabled then
+		if v.unit == 'party5target' then
+			if RUF.db.profile.unit.party.showPlayer and RUF.db.profile.unit[v.frame].Enabled then
+				v:Show()
+			else
+				v:Hide()
+			end
+		elseif RUF.db.profile.unit[v.frame].Enabled then
 			v:Enable()
 		else
 			v:Disable()
