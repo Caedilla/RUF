@@ -318,12 +318,18 @@ function RUF:OnEnable()
 			if profile.showRaid then
 				showIn = 'party, raid'
 			end
+			local showPlayer = false
+			local startingIndex = -3
+			if profile.showPlayer then
+				showPlayer = true
+				startingIndex = -4
+			end
 			self:SpawnHeader(
 				'oUF_RUF_' .. headers[i], template, showIn,
 				'showSolo', false,
 				'showParty', true,
 				'showRaid', false,
-				'showPlayer', false,
+				'showPlayer', profile.showPlayer,
 				'yOffset', profile.Frame.Position.offsety,
 				'unitsPerColumn', growthDirection,
 				'maxColumns', 5,
@@ -349,14 +355,14 @@ function RUF:OnEnable()
 			if headers[i] == 'PartyPet' then partyNum = petNum end
 			local currentHeader = _G['oUF_RUF_' .. headers[i]]
 			currentHeader.Enabled = profile.Enabled
-			currentHeader:SetAttribute('startingIndex', -3 + partyNum)
+			currentHeader:SetAttribute('startingIndex', -4 + partyNum)
 			currentHeader:Show()
 			currentHeader:SetAttribute('startingIndex', 1)
 			currentHeader:SetClampedToScreen(true)
 			RegisterAttributeDriver(currentHeader, 'state-visibility', currentHeader.visibility)
 			if profile.Enabled == false then
 				currentHeader:SetAttribute('showParty', false)
-				for j = 1, 4 do
+				for j = 1, 5 do
 					local disableFrame = _G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j]
 					if disableFrame then
 						_G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j]:Disable()
@@ -390,7 +396,9 @@ function RUF:OnEnable()
 				local unitName = groupFrames[i] .. u
 				if groupFrames[i]:match('Target') then
 					unitName = groupFrames[i]:gsub('Target', '') .. u .. 'Target'
-					if unitName == 'Party5Target' then return end
+					if not oUF_RUF_Party5 then
+						if unitName == 'Party5Target' then return end
+					end
 				end
 				local frame = self:Spawn(unitName)
 				local unitFrame = _G['oUF_RUF_' .. unitName]

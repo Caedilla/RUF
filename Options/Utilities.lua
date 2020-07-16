@@ -730,6 +730,8 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 
 			headerFrame:SetAttribute("Point",anchorFrom)
 			headerFrame:SetAttribute('yOffset',profileReference.Frame.Position.offsety)
+			headerFrame:SetAttribute('showPlayer', RUF.db.profile.unit.party.showPlayer)
+
 			RUF:UpdateFramePosition(headerFrame,singleFrame,groupFrame,header)
 			headerFrame.Enabled = profileReference.Enabled
 

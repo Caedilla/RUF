@@ -251,6 +251,25 @@ local function UnitGroup(singleFrame, groupFrame, header)
 							RUF:UpdateOptions()
 						end,
 					},
+					showPlayer = {
+						name = L["Show Player"],
+						desc = L["Shows the player in the party frames."],
+						type = 'toggle',
+						order = 0.0041,
+						hidden = function()
+							if profileName == 'party' then return false end
+							return true
+						end,
+						get = function(info)
+							return RUF.db.profile.unit[profileName].showPlayer
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].showPlayer = value
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
+							RUF.TogglePartyTargets()
+							RUF:UpdateOptions()
+						end,
+					},
 					enabledSpacer = {
 						name = ' ',
 						type = 'description',

@@ -4675,6 +4675,7 @@ local cfg = {
 					},
 				},
 				["showRaid"] = false,
+				["showPlayer"] = false,
 				["Buffs"] = {
 					["Icons"] = {
 						["Enabled"] = true,

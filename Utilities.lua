@@ -54,7 +54,6 @@ function RUF:copyTable(src, dest)
 	return dest
 end
 
-
 function RUF:Short(value, format)
 	if type(value) == 'number' then
 		local fmt
@@ -335,28 +334,43 @@ end
 
 function RUF.TogglePartyTargets() -- TODO: Implement this better.
 	if InCombatLockdown() then return end
-	for i = 1,4 do
+
+	local showRaid = RUF.db.profile.unit.partytarget.showRaid or false
+	local enable = RUF.db.profile.unit.partytarget.Enabled or false
+	local numFrames = 4
+	if RUF.db.profile.unit.party.showPlayer then -- Use party setting, if we don'y have 5 party units, we don't have 5 party targets.
+		numFrames = 5
+	end
+
+	local shouldShow = false
+	if IsInRaid() then
+		if showRaid and enable then
+			shouldShow = true
+		else
+			shouldShow = false
+		end
+	else
+		if enable then
+			shouldShow = true
+		else
+			shouldShow = false
+		end
+	end
+
+	for i = 1,5 do
 		local unitFrame = _G['oUF_RUF_Party' .. i .. 'Target']
-		local profileName = unitFrame.frame
-		local showRaid = RUF.db.profile.unit[profileName].showRaid or false
-		local enable = RUF.db.profile.unit[profileName].Enabled or false
-		if IsInRaid() then
-			if showRaid and enable then
-				if not unitFrame:IsEnabled() then
+		if shouldShow and then
+			if not unitFrame:IsEnabled() then
+				if i < 5 then
 					unitFrame:Enable()
+				elseif numFrames < 5 then
+					unitFrame:Disable()
 				end
-			else
-				unitFrame:Disable()
 			end
 		else
-			if enable then
-				if not unitFrame:IsEnabled() then
-					unitFrame:Enable()
-				end
-			else
-				unitFrame:Disable()
-			end
+			unitFrame:Disable()
 		end
+
 	end
 end
 
