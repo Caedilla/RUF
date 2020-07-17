@@ -318,10 +318,9 @@ function RUF:OnEnable()
 			if profile.showRaid then
 				showIn = 'party, raid'
 			end
-			local showPlayer = false
+
 			local startingIndex = -3
 			if profile.showPlayer then
-				showPlayer = true
 				startingIndex = -4
 			end
 			self:SpawnHeader(
@@ -355,7 +354,7 @@ function RUF:OnEnable()
 			if headers[i] == 'PartyPet' then partyNum = petNum end
 			local currentHeader = _G['oUF_RUF_' .. headers[i]]
 			currentHeader.Enabled = profile.Enabled
-			currentHeader:SetAttribute('startingIndex', -3 + partyNum)
+			currentHeader:SetAttribute('startingIndex', startingIndex + partyNum)
 			currentHeader:Show()
 			currentHeader:SetAttribute('startingIndex', 1)
 			currentHeader:SetClampedToScreen(true)

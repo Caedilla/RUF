@@ -966,6 +966,7 @@ function RUF:SpawnUnits()
 
 	local headers = RUF.frameList.headers
 	local partyNum,petNum = 0,0
+	local startingIndex = -3
 	if IsInGroup() then
 		partyNum = GetNumSubgroupMembers()
 		for i = 1,partyNum do
@@ -973,11 +974,16 @@ function RUF:SpawnUnits()
 				petNum = petNum + 1
 			end
 		end
+		if RUF.db.profile.unit.party.showPlayer then
+			startingIndex = -4
+		end
 	end
+
+
 	for i = 1,#headers do
 		if headers[i] == 'PartyPet' then partyNum = petNum end
 		local currentHeader = _G['oUF_RUF_' .. headers[i]]
-		currentHeader:SetAttribute('startingIndex',-3 + partyNum)
+		currentHeader:SetAttribute('startingIndex', startingIndex + partyNum)
 		if currentHeader.Enabled then
 			RegisterAttributeDriver(currentHeader,'state-visibility','show')
 		end
