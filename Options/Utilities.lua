@@ -1067,8 +1067,8 @@ function RUF:TestMode()
 	else
 		if TestModeToggle == true and not InCombatLockdown() then
 			RUF:RestoreUnits()
-			RUF:OptionsUpdateFrame(singleFrame, 'PartyTarget', 'none') -- So we also force Update and Hide/Show the 5th Party Target
-			RUF:OptionsUpdateFrame(singleFrame, 'PartyPet', 'none')
+			RUF:OptionsUpdateFrame('none', 'PartyTarget', 'none') -- So we also force Update and Hide/Show the 5th Party Target
+			RUF:OptionsUpdateFrame('none', 'PartyPet', 'none')
 			RUF.TogglePartyChildren('partypet')
 			RUF.TogglePartyChildren('partytarget')
 		end
