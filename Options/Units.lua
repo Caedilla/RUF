@@ -2944,7 +2944,7 @@ local function PortraitSettings(singleFrame, groupFrame, header)
 				end,
 			},
 			freeFloatWarn = {
-				name = '|cFFFF0000' .. L["Portraits are not clickable or interactible in free floating mode."] .. '|r',
+				name = '|cFFFF0000' .. L["Portraits are not clickable or interactable in free floating mode."] .. '|r',
 				type = 'description',
 				order = 4.99,
 				width = 'full',

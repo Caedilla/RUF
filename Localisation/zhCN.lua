@@ -314,7 +314,7 @@ L["Poison"] = "毒药"
 L["Portrait"] = "肖像"
 L["Portrait Zoom"] = "肖像缩放"
 --[[Translation missing --]]
-L["Portraits are not clickable or interactible in free floating mode."] = "Portraits are not clickable or interactible in free floating mode."
+L["Portraits are not clickable or interactable in free floating mode."] = "Portraits are not clickable or interactable in free floating mode."
 L["Position"] = "位置"
 L["Power"] = "能量"
 L["Power Color"] = "能量颜色"

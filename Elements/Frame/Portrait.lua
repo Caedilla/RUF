@@ -243,7 +243,7 @@ function RUF.PortraitUpdateOptions(self)
 				local anchor = profileReference.Position.AttachedStyleAnchor or 'LEFT'
 				local anchorTo = anchorSwaps[anchor]
 				Portrait:SetPoint(anchorTo, self.__owner, anchor, 0 - offsetFix, 0 - offsetFix)
-				-- TODO Function to determine total interactible size for any single direction anchor point
+				-- TODO Function to determine total interactable size for any single direction anchor point
 				if anchor == 'LEFT' then
 					self.__owner:SetHitRectInsets(-profileReference.Width, 0, 0, 0)
 				else

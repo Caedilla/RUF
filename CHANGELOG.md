@@ -2,8 +2,8 @@
 ### New
 * Added option to enable showing the player in the party frames.
 * Added option to toggle NickTag-1.0 Nicknames in Name tag settings.
-* Added new portrait style - Attached, similar to free floating, but locked to the left or right of the unitframe instead - Portraits in this mode are interactible unlike free floating portraits.
-	* As a note: Free floating portraits will continue to remain uninteractible as an intentional choice from this point forward. The attached style is a compromise between truly free-floating, and having interactible portraits.
+* Added new portrait style - Attached, similar to free floating, but locked to the left or right of the unitframe instead - Portraits in this mode are interactable unlike free floating portraits.
+	* As a note: Free floating portraits will continue to remain uninteractable as an intentional choice from this point forward. The attached style is a compromise between truly free-floating, and having interactable portraits.
 
 ### Fixed
 * Party Pets should now spawn in their proper locations (i.e the third party member's pet should spawn in the third place of the party pets, not the first position) - This change means that you may need to re-adjust your positioning for Party Pet units.

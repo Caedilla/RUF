@@ -371,7 +371,7 @@ L["Poison"] = "독"
 L["Portrait"] = "초상화"
 L["Portrait Zoom"] = "초상화 줌"
 --[[Translation missing --]]
-L["Portraits are not clickable or interactible in free floating mode."] = "Portraits are not clickable or interactible in free floating mode."
+L["Portraits are not clickable or interactable in free floating mode."] = "Portraits are not clickable or interactable in free floating mode."
 L["Position"] = "위치"
 L["Power"] = "자원"
 L["Power Color"] = "자원 색상"

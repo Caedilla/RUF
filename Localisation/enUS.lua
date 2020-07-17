@@ -310,7 +310,7 @@ L["Plays a sound when a removable aura is found on a unit. Does not affect targe
 L["Poison"] = true
 L["Portrait"] = true
 L["Portrait Zoom"] = true
-L["Portraits are not clickable or interactible in free floating mode."] = true
+L["Portraits are not clickable or interactable in free floating mode."] = true
 L["Position"] = true
 L["Power"] = true
 L["Power Color"] = true

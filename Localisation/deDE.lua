@@ -435,7 +435,7 @@ L["Portrait"] = "Portrait"
 --[[Translation missing --]]
 L["Portrait Zoom"] = "Portrait Zoom"
 --[[Translation missing --]]
-L["Portraits are not clickable or interactible in free floating mode."] = "Portraits are not clickable or interactible in free floating mode."
+L["Portraits are not clickable or interactable in free floating mode."] = "Portraits are not clickable or interactable in free floating mode."
 --[[Translation missing --]]
 L["Position"] = "Position"
 L["Power"] = "Energie"
