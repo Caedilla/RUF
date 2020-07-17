@@ -332,6 +332,11 @@ function RUF.ReturnTextColors(self, unit, tag, cur, max, test) -- Get Text Color
 	return r, g, b
 end
 
+function RUF.TogglePartyChildrenGroupStatus()
+	RUF.TogglePartyChildren('partypet')
+	RUF.TogglePartyChildren('partytarget')
+end
+
 function RUF.TogglePartyChildren(childUnit) -- TODO: Implement this better.
 	if InCombatLockdown() then return end
 

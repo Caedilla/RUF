@@ -69,7 +69,7 @@ local function SetupFrames(self, unit)
 			RUF.PartyTargetMonitor = CreateFrame('Frame')
 			RUF.PartyTargetMonitor:RegisterEvent('GROUP_ROSTER_UPDATE')
 			RUF.PartyTargetMonitor:RegisterEvent('PLAYER_ENTERING_WORLD')
-			RUF.PartyTargetMonitor:SetScript('OnEvent',RUF.TogglePartyChildren, unit)
+			RUF.PartyTargetMonitor:SetScript('OnEvent',RUF.TogglePartyChildrenGroupStatus)
 		end
 	end
 

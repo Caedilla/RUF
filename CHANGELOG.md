@@ -1,4 +1,4 @@
-# RUF r238-Alpha
+# RUF r239-Alpha
 ### New
 * Added option to enable showing the player in the party frames.
 * Added option to toggle NickTag-1.0 Nicknames in Name tag settings.
@@ -10,6 +10,7 @@
 * Russian (and presumably other non-latin characterset names?) names should no longer disappear with certain name abbreviation settings.
 * When in a vehicle with the player frame set to be the vehicle frame rather than the pet, cast bars should no longer cause lua errors.
 * Fixed NickTag related Lua error from r234-alpha.
+* Fixed attempt to call a string value lua error from r238-alpha.
 
 ### Updates
 * Updated localisations.
