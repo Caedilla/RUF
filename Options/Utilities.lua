@@ -704,17 +704,32 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 				RUF:UpdateFramePosition(unitFrame,singleFrame,groupFrame,header,i,anchorFrom,_G['oUF_RUF_' .. groupFrame .. i-1])
 			end
 
-			if groupFrame == 'PartyTarget' then
+			if groupFrame == 'PartyPet' or groupFrame == 'PartyTarget' and not RUF.db.global.TestMode == true then
+				local unitType = string.gsub(groupFrame, 'Party', '')
+				local prefix,suffix
+				if groupFrame == 'PartyPet' then
+					prefix = 'pet'
+					suffix = ''
+				elseif groupFrame == 'PartyTarget' then
+					prefix = ''
+					suffix = 'target'
+				end
 				if RUF.db.profile.unit.party.showPlayer then
 					if i == 1 then
-						unitFrame:SetAttribute('unit', 'target')
+						unitFrame:SetAttribute('unit', unitType)
+						unitFrame.unit = unitType
 					else
-						unitFrame:SetAttribute('unit', 'party' .. i-1 .. 'target')
+						unitFrame:SetAttribute('unit', 'party' .. prefix .. i-1 .. suffix)
+						unitFrame.unit = 'party' .. prefix .. i-1 .. suffix
 					end
 				else
-					unitFrame:SetAttribute('unit', 'party' .. i .. 'target')
+					unitFrame:SetAttribute('unit', 'party' .. prefix .. i .. suffix)
+					unitFrame.unit = 'partypet' .. prefix .. i .. suffix
 				end
 			end
+
+
+
 		end
 
 		if header ~= 'none' then
@@ -734,17 +749,6 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 					growthDirection = 1
 				end
 			end
---[[
-			if header == 'Party' then -- When we toggle
-				if RUF.db.profile.unit.party.showPlayer then
-					if RUF.db.profile.unit.partytarget.Enabled then
-						for u = 1,5 do
-							UpdateFrame('none','PartyTarget','none',u)
-						end
-					end
-				end
-			end
-]]--
 
 			headerFrame:SetAttribute('unitsPerColumn', growthDirection)
 			headerFrame:SetAttribute('columnSpacing', profileReference.Frame.Position.offsetx)
@@ -965,23 +969,13 @@ function RUF:SpawnUnits()
 	TestModeToggle = true
 
 	local headers = RUF.frameList.headers
-	local partyNum,petNum = 0,0
+	local partyNum = 0
 	local startingIndex = -3
 	if IsInGroup() then
 		partyNum = GetNumSubgroupMembers()
-		for i = 1,partyNum do
-			if UnitExists('partypet' .. i) then
-				petNum = petNum + 1
-			end
-		end
-		if RUF.db.profile.unit.party.showPlayer then
-			startingIndex = -4
-		end
 	end
 
-
 	for i = 1,#headers do
-		if headers[i] == 'PartyPet' then partyNum = petNum end
 		local currentHeader = _G['oUF_RUF_' .. headers[i]]
 		currentHeader:SetAttribute('startingIndex', startingIndex + partyNum)
 		if currentHeader.Enabled then
@@ -1000,7 +994,7 @@ function RUF:SpawnUnits()
 			else
 				v.Text.DisplayName:Hide()
 			end
-			if v.oldUnit == 'party5target' then
+			if v.oldUnit == 'party5target' or v.oldUnit == 'PartyPet5' then
 				if RUF.db.profile.unit.party.showPlayer then
 					v:Show()
 				else
@@ -1046,7 +1040,7 @@ function RUF:RestoreUnits()
 		v:SetAttribute('unit',v.unit)
 		v.Text.DisplayName:Hide()
 		v:Hide()
-		if v.unit == 'party5target' then
+		if v.unit == 'party5target' or v.unit == 'PartyPet5' then
 			if RUF.db.profile.unit.party.showPlayer and RUF.db.profile.unit[v.frame].Enabled then
 				v:Show()
 			else
@@ -1058,6 +1052,7 @@ function RUF:RestoreUnits()
 			v:Disable()
 		end
 	end
+
 	UnitsSpawned = false
 end
 
@@ -1072,7 +1067,10 @@ function RUF:TestMode()
 	else
 		if TestModeToggle == true and not InCombatLockdown() then
 			RUF:RestoreUnits()
-			RUF.TogglePartyTargets()
+			RUF:OptionsUpdateFrame(singleFrame, 'PartyTarget', 'none') -- So we also force Update and Hide/Show the 5th Party Target
+			RUF:OptionsUpdateFrame(singleFrame, 'PartyPet', 'none')
+			RUF.TogglePartyChildren('partypet')
+			RUF.TogglePartyChildren('partytarget')
 		end
 	end
 end

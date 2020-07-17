@@ -64,12 +64,12 @@ local function SetupFrames(self, unit)
 	end
 
 	-- Toggle Party Targets in raid
-	if unit:match('partytarget') then
+	if unit:match('partytarget') or unit:match('partypet') then
 		if not RUF.PartyTargetMonitor then
 			RUF.PartyTargetMonitor = CreateFrame('Frame')
 			RUF.PartyTargetMonitor:RegisterEvent('GROUP_ROSTER_UPDATE')
 			RUF.PartyTargetMonitor:RegisterEvent('PLAYER_ENTERING_WORLD')
-			RUF.PartyTargetMonitor:SetScript('OnEvent',RUF.TogglePartyTargets)
+			RUF.PartyTargetMonitor:SetScript('OnEvent',RUF.TogglePartyChildren, unit)
 		end
 	end
 
@@ -320,9 +320,7 @@ function RUF:OnEnable()
 			end
 
 			local startingIndex = -3
-			if profile.showPlayer then
-				startingIndex = -4
-			end
+
 			self:SpawnHeader(
 				'oUF_RUF_' .. headers[i], template, showIn,
 				'showSolo', false,
@@ -342,16 +340,10 @@ function RUF:OnEnable()
 				profile.Frame.Position.x,
 				profile.Frame.Position.y)
 
-			local partyNum, petNum = 0, 0
+			local partyNum = 0
 			if IsInGroup() then
 				partyNum = GetNumSubgroupMembers()
-				for j = 1, partyNum do
-					if UnitExists('partypet' .. i) then
-						petNum = petNum + 1
-					end
-				end
 			end
-			if headers[i] == 'PartyPet' then partyNum = petNum end
 			local currentHeader = _G['oUF_RUF_' .. headers[i]]
 			currentHeader.Enabled = profile.Enabled
 			currentHeader:SetAttribute('startingIndex', startingIndex + partyNum)
@@ -360,7 +352,6 @@ function RUF:OnEnable()
 			currentHeader:SetClampedToScreen(true)
 			RegisterAttributeDriver(currentHeader, 'state-visibility', currentHeader.visibility)
 			if profile.Enabled == false then
-				currentHeader:SetAttribute('showParty', false)
 				for j = 1, 5 do
 					local disableFrame = _G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j]
 					if disableFrame then
@@ -427,19 +418,48 @@ function RUF:OnEnable()
 					unitFrame:SetAttribute('oUF-enableArenaPrep', false)
 				end
 
-				if profile == 'partytarget' then
+				if profile == 'partypet' or profile == 'partytarget' then
+					local unitType = string.gsub(profile, 'party', '')
 					if RUF.db.profile.unit.party.showPlayer then
 						if u == 1 then
-							unitFrame:SetAttribute('unit', 'target')
+							unitFrame:SetAttribute('unit', unitType)
+							unitFrame.unit = unitType
 						else
-							unitFrame:SetAttribute('unit', 'party' .. u-1 .. 'target')
+							if unitType == 'pet' then
+								unitFrame:SetAttribute('unit', 'partypet' .. u-1)
+								unitFrame.unit = 'partypet' .. u-1
+							elseif unitType == 'target' then
+								unitFrame:SetAttribute('unit', 'party' .. u-1 .. 'target')
+								unitFrame.unit = 'party' .. u-1 .. 'target'
+							end
 						end
 					end
 				end
+
+				if profile == 'partypet' or profile == 'partytarget' then
+					local unitType = string.gsub(profile, 'party', '')
+					local prefix,suffix
+					if profile == 'partypet' then
+						prefix = 'pet'
+						suffix = ''
+					elseif profile == 'partytarget' then
+						prefix = ''
+						suffix = 'target'
+					end
+					if RUF.db.profile.unit.party.showPlayer then
+						if u == 1 then
+							unitFrame:SetAttribute('unit', unitType)
+							unitFrame.unit = unitType
+						else
+							unitFrame:SetAttribute('unit', 'party' .. prefix .. u-1 .. suffix)
+							unitFrame.unit = 'party' .. prefix .. u-1 .. suffix
+						end
+					end
+				end
+
 			end
 		end
 	end)
-
 
 	if PlayerClass == 'DEATHKNIGHT' then
 		-- Cannot disable elements before the unit is actually spawned?

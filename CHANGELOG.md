@@ -1,4 +1,4 @@
-# RUF r237-Alpha
+# RUF r238-Alpha
 ### New
 * Added option to enable showing the player in the party frames.
 * Added option to toggle NickTag-1.0 Nicknames in Name tag settings.
@@ -6,6 +6,7 @@
 	* As a note: Free floating portraits will continue to remain uninteractible as an intentional choice from this point forward. The attached style is a compromise between truly free-floating, and having interactible portraits.
 
 ### Fixed
+* Party Pets should now spawn in their proper locations (i.e the third party member's pet should spawn in the third place of the party pets, not the first position) - This change means that you may need to re-adjust your positioning for Party Pet units.
 * Russian (and presumably other non-latin characterset names?) names should no longer disappear with certain name abbreviation settings.
 * When in a vehicle with the player frame set to be the vehicle frame rather than the pet, cast bars should no longer cause lua errors.
 * Fixed NickTag related Lua error from r234-alpha.

@@ -238,6 +238,7 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						order = 0.004,
 						hidden = function()
 							if profileName == 'partytarget' then return false end
+							if profileName == 'partypet' then return false end
 							if header ~= 'none' then return false end
 							return true
 						end,
@@ -247,7 +248,14 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						set = function(info, value)
 							RUF.db.profile.unit[profileName].showRaid = value
 							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
-							RUF.TogglePartyTargets()
+							if header ~= 'none' then
+								RUF.TogglePartyChildren('partypet')
+								RUF.TogglePartyChildren('partytarget')
+							elseif profileName == 'partytarget' then
+								RUF.TogglePartyChildren('partytarget')
+							elseif profileName == 'partypet' then
+								RUF.TogglePartyChildren('partypet')
+							end
 							RUF:UpdateOptions()
 						end,
 					},
@@ -267,7 +275,9 @@ local function UnitGroup(singleFrame, groupFrame, header)
 							RUF.db.profile.unit[profileName].showPlayer = value
 							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
 							RUF:OptionsUpdateFrame(singleFrame, 'PartyTarget', 'none') -- So we also force Update and Hide/Show the 5th Party Target
-							RUF.TogglePartyTargets()
+							RUF:OptionsUpdateFrame(singleFrame, 'PartyPet', 'none')
+							RUF.TogglePartyChildren('partypet')
+							RUF.TogglePartyChildren('partytarget')
 							RUF:UpdateOptions()
 						end,
 					},

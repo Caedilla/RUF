@@ -332,16 +332,16 @@ function RUF.ReturnTextColors(self, unit, tag, cur, max, test) -- Get Text Color
 	return r, g, b
 end
 
-function RUF.TogglePartyTargets() -- TODO: Implement this better.
+function RUF.TogglePartyChildren(childUnit) -- TODO: Implement this better.
 	if InCombatLockdown() then return end
 
-	local showRaid = RUF.db.profile.unit.partytarget.showRaid or false
-	local enable = RUF.db.profile.unit.partytarget.Enabled or false
+	local unitFrame
+	local showRaid = RUF.db.profile.unit[childUnit].showRaid or false
+	local enable = RUF.db.profile.unit[childUnit].Enabled or false
 	local numFrames = 4
 	if RUF.db.profile.unit.party.showPlayer then -- Use party setting, if we don'y have 5 party units, we don't have 5 party targets.
 		numFrames = 5
 	end
-
 
 	local shouldShow = false
 	if IsInRaid() then
@@ -359,7 +359,11 @@ function RUF.TogglePartyTargets() -- TODO: Implement this better.
 	end
 
 	for i = 1,5 do
-		local unitFrame = _G['oUF_RUF_Party' .. i .. 'Target']
+		if childUnit == 'partypet' then
+			unitFrame = _G['oUF_RUF_PartyPet' .. i]
+		elseif childUnit == 'partytarget' then
+			unitFrame = _G['oUF_RUF_Party' .. i .. 'Target']
+		end
 		if shouldShow then
 			if not unitFrame:IsEnabled() then
 				if numFrames < 5 then

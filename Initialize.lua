@@ -103,10 +103,10 @@ function RUF:OnInitialize()
 			'Arena',
 			'ArenaTarget',
 			'PartyTarget',
+			'PartyPet',
 		}
 		headers = {
 			'Party',
-			'PartyPet',
 		}
 	else
 		frames = {
@@ -119,10 +119,10 @@ function RUF:OnInitialize()
 		}
 		groupFrames = {
 			'PartyTarget',
+			'PartyPet',
 		}
 		headers = {
 			'Party',
-			'PartyPet',
 		}
 	end
 	RUF.frameList = {}
