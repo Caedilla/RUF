@@ -355,12 +355,14 @@ function RUF.TogglePartyChildren(childUnit) -- TODO: Implement this better.
 		else
 			shouldShow = false
 		end
-	else
+	elseif IsInGroup() then
 		if enable then
 			shouldShow = true
 		else
 			shouldShow = false
 		end
+	else
+			shouldShow = false
 	end
 
 	for i = 1,5 do
