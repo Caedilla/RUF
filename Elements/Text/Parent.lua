@@ -52,7 +52,15 @@ function RUF.SetTextParent(self,unit)
 	local font = LSM:Fetch('font', 'RUF')
 	text:SetFont(font,21,'OUTLINE')
 	local displayText = name:gsub('oUF_RUF_',''):gsub('UnitButton','')
-	text:SetText(L[string.lower(displayText)])
+	local unitNum = displayText:match('%d')
+	displayText = string.lower(displayText:gsub('%d',''))
+	if unitNum then
+		displayText = L[displayText .. ' %s']:format(unitNum)
+	else
+		displayText = L[displayText]
+	end
+	--text:SetText(L[string.lower(displayText)])
+	text:SetText(displayText)
 	text:SetAllPoints(testModeDisplayName)
 	testModeDisplayName:Hide()
 

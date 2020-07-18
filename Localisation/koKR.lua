@@ -51,22 +51,11 @@ L["Area on the anchor frame to anchor the indicator to."] = "Area on the anchor 
 --[[Translation missing --]]
 L["Area on the anchor frame to anchor the unitframe to."] = "Area on the anchor frame to anchor the unitframe to."
 L["arena"] = "투기장"
-L["arena1"] = "투기장 1"
 --[[Translation missing --]]
-L["arena1target"] = "Arena 1 Target"
-L["arena2"] = "투기장 2"
---[[Translation missing --]]
-L["arena2target"] = "Arena 2 Target"
-L["arena3"] = "투기장 3"
---[[Translation missing --]]
-L["arena3target"] = "Arena 3 Target"
-L["arena4"] = "투기장 4"
---[[Translation missing --]]
-L["arena4target"] = "Arena 4 Target"
-L["arena5"] = "투기장 5"
---[[Translation missing --]]
-L["arena5target"] = "Arena 5 Target"
+L["arena %s"] = "Arena %s"
 L["arenatarget"] = "투기장 대상"
+--[[Translation missing --]]
+L["arenatarget %s"] = "Arena Target %s"
 L["arenaunits"] = "투기장 유닛"
 L["Ascending"] = "오름차순"
 L["Assist"] = "지원"
@@ -87,22 +76,11 @@ L["Bars"] = "바"
 L["Base Color"] = "기본 색상"
 L["Border"] = "테두리"
 L["boss"] = "보스"
-L["boss1"] = "보스 1"
 --[[Translation missing --]]
-L["boss1target"] = "Boss 1 Target"
-L["boss2"] = "보스 2"
---[[Translation missing --]]
-L["boss2target"] = "Boss 2 Target"
-L["boss3"] = "보스 3"
---[[Translation missing --]]
-L["boss3target"] = "Boss 3 Target"
-L["boss4"] = "보스 4"
---[[Translation missing --]]
-L["boss4target"] = "Boss 4 Target"
-L["boss5"] = "보스 5"
---[[Translation missing --]]
-L["boss5target"] = "Boss 5 Target"
+L["boss %s"] = "Boss %s"
 L["bosstarget"] = "보스 표적"
+--[[Translation missing --]]
+L["bosstarget %s"] = "Boss Target %s"
 L["Bottom"] = "하단"
 L["Bottom-left"] = "왼쪽 하단"
 L["Bottom-right"] = "오른쪽 하단"
@@ -335,29 +313,15 @@ L["Overlay Alpha"] = "오버레이 투명도"
 --[[Translation missing --]]
 L["Paragon"] = "Paragon"
 L["party"] = "파티"
-L["party1"] = "파티 1"
 --[[Translation missing --]]
-L["party1target"] = "Party 1 Target"
-L["party2"] = "파티 2"
---[[Translation missing --]]
-L["party2target"] = "Party 2 Target"
-L["party3"] = "파티 3"
---[[Translation missing --]]
-L["party3target"] = "Party 3 Target"
-L["party4"] = "파티 4"
---[[Translation missing --]]
-L["party4target"] = "Party 4 Target"
-L["party5"] = "파티 5"
---[[Translation missing --]]
-L["party5target"] = "Party 5 Target"
+L["party %s"] = "Party %s"
 L["partypet"] = "파티의 소환수"
-L["partypet1"] = "파티의 소환수 1"
-L["partypet2"] = "파티의 소환수 2"
-L["partypet3"] = "파티의 소환수 3"
-L["partypet4"] = "파티의 소환수 4"
-L["partypet5"] = "파티의 소환수 5"
+--[[Translation missing --]]
+L["partypet %s"] = "Party Pet %s"
 --[[Translation missing --]]
 L["partytarget"] = "Party Targets"
+--[[Translation missing --]]
+L["partytarget %s"] = "Party Target %s"
 L["pet"] = "소환수"
 L["PetHappiness"] = "소환수 만족도"
 L["pettarget"] = "소환수의 대상"
@@ -440,6 +404,8 @@ L["Show Unit in Test Mode."] = "테스트 모드 시 유닛 보기"
 L["Show Unlimited Duration"] = "제한없는 지속시간 보기"
 --[[Translation missing --]]
 L["Shows all unitframes so you can easily configure them."] = "Shows all unitframes so you can easily configure them."
+--[[Translation missing --]]
+L["Shows the player in the party frames."] = "Shows the player in the party frames."
 L["Simple Border"] = "간단한 테두리"
 L["Size"] = "크기"
 L["Size relative to the aura icon"] = "오라 아이콘을 기준으로 한 크기"

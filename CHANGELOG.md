@@ -1,4 +1,4 @@
-# RUF r240-Alpha
+# RUF r240-Release
 ### New
 * Added option to enable showing the player in the party frames.
 * Added option to toggle NickTag-1.0 Nicknames in Name tag settings.
@@ -10,14 +10,11 @@
 * Russian (and presumably other non-latin characterset names?) names should no longer disappear with certain name abbreviation settings.
 * When in a vehicle with the player frame set to be the vehicle frame rather than the pet, cast bars should no longer cause lua errors.
 
-* Fixed NickTag related Lua error from r234-alpha.
-* Fixed attempt to call a string value lua error from r238-alpha.
-* Fixed Party Pet & Party Targets from showing the player pet or target when Show Player option is enabled for Party units while you are outside of a party from r239-alpha.
-
 ### Updates
 * Updated localisations.
 
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.
+* Joining a group while test mode is enabled will show additional party units while remaining in test mode.
 * Test mode Auras display only buffs or debuffs the player currently has, rather than creating a bunch of temp icons.
 * There is no preview of frame aura highlighting in test mode.

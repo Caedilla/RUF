@@ -970,8 +970,9 @@ function RUF:SpawnUnits()
 
 	local headers = RUF.frameList.headers
 	local partyNum = 0
-	local startingIndex = -3
+	local startingIndex = -4
 	if IsInGroup() then
+		startingIndex = -3
 		partyNum = GetNumSubgroupMembers()
 	end
 

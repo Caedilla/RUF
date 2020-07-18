@@ -48,22 +48,11 @@ L["Are you sure you want to replace these settings? You cannot undo this change.
 L["Area on the anchor frame to anchor the indicator to."] = "Bereich auf dem Ankerrahmen, an dem der Indikator verankert werden soll."
 L["Area on the anchor frame to anchor the unitframe to."] = "Bereich auf dem Ankerrahmen, an dem der Einheitenrahmen verankert werden soll."
 L["arena"] = "Arena"
-L["arena1"] = "Arena 1"
 --[[Translation missing --]]
-L["arena1target"] = "Arena 1 Target"
-L["arena2"] = "Arena 2"
---[[Translation missing --]]
-L["arena2target"] = "Arena 2 Target"
-L["arena3"] = "Arena 3"
---[[Translation missing --]]
-L["arena3target"] = "Arena 3 Target"
-L["arena4"] = "Arena 4"
---[[Translation missing --]]
-L["arena4target"] = "Arena 4 Target"
-L["arena5"] = "Arena 5"
---[[Translation missing --]]
-L["arena5target"] = "Arena 5 Target"
+L["arena %s"] = "Arena %s"
 L["arenatarget"] = "Arena Ziel"
+--[[Translation missing --]]
+L["arenatarget %s"] = "Arena Target %s"
 L["arenaunits"] = "Arena Einheiten"
 L["Ascending"] = "Aufsteigend"
 L["Assist"] = "Helfen"
@@ -90,22 +79,11 @@ L["Bars"] = "Balken"
 L["Base Color"] = "Grundfarbe"
 L["Border"] = "Rand"
 L["boss"] = "Boss"
-L["boss1"] = "Boss 1"
 --[[Translation missing --]]
-L["boss1target"] = "Boss 1 Target"
-L["boss2"] = "Boss 2"
---[[Translation missing --]]
-L["boss2target"] = "Boss 2 Target"
-L["boss3"] = "Boss 3"
---[[Translation missing --]]
-L["boss3target"] = "Boss 3 Target"
-L["boss4"] = "Boss 4"
---[[Translation missing --]]
-L["boss4target"] = "Boss 4 Target"
-L["boss5"] = "Boss 5"
---[[Translation missing --]]
-L["boss5target"] = "Boss 5 Target"
+L["boss %s"] = "Boss %s"
 L["bosstarget"] = "Boss Ziel"
+--[[Translation missing --]]
+L["bosstarget %s"] = "Boss Target %s"
 L["Bottom"] = "Unten"
 L["Bottom-left"] = "Unten-Links"
 L["Bottom-right"] = "Unten-Rechts"
@@ -386,36 +364,16 @@ L["Outline"] = true
 L["Overlay Alpha"] = true
 L["Paragon"] = true
 L["party"] = "Gruppen"
-L["party1"] = "Gruppe 1"
 --[[Translation missing --]]
-L["party1target"] = "Party 1 Target"
-L["party2"] = "Gruppe 2"
---[[Translation missing --]]
-L["party2target"] = "Party 2 Target"
-L["party3"] = "Gruppe 3"
---[[Translation missing --]]
-L["party3target"] = "Party 3 Target"
-L["party4"] = "Gruppe 4"
---[[Translation missing --]]
-L["party4target"] = "Party 4 Target"
---[[Translation missing --]]
-L["party5"] = "Party 5"
---[[Translation missing --]]
-L["party5target"] = "Party 5 Target"
+L["party %s"] = "Party %s"
 --[[Translation missing --]]
 L["partypet"] = "Party Pets"
 --[[Translation missing --]]
-L["partypet1"] = "Party Pet 1"
---[[Translation missing --]]
-L["partypet2"] = "Party Pet 2"
---[[Translation missing --]]
-L["partypet3"] = "Party Pet 3"
---[[Translation missing --]]
-L["partypet4"] = "Party Pet 4"
---[[Translation missing --]]
-L["partypet5"] = "Party Pet 5"
+L["partypet %s"] = "Party Pet %s"
 --[[Translation missing --]]
 L["partytarget"] = "Party Targets"
+--[[Translation missing --]]
+L["partytarget %s"] = "Party Target %s"
 L["pet"] = "Pet"
 --[[Translation missing --]]
 L["PetHappiness"] = "Pet Happiness"
@@ -513,6 +471,8 @@ L["Show the ++ for rare elites, + for elites etc."] = "Show the ++ for rare elit
 L["Show Unit in Test Mode."] = "Zeige Einheit im Testmodus."
 L["Show Unlimited Duration"] = "Zeige Unbegrenzte Dauer"
 L["Shows all unitframes so you can easily configure them."] = "Zeigt alle Unitframes an, um zu konfigurieren."
+--[[Translation missing --]]
+L["Shows the player in the party frames."] = "Shows the player in the party frames."
 --[[Translation missing --]]
 L["Simple Border"] = "Simple Border"
 L["Size"] = "Größe"
