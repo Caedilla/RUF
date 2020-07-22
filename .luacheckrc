@@ -52,6 +52,7 @@ globals = {
 	"CUSTOM_CLASS_COLORS",
 
 	-- FrameXML misc
+	"BackdropTemplateMixin",
 	"C_Timer",
 	"ChatFrame_AddMessageEventFilter",
 	"COMBAT_TEXT_SCROLL_FUNCTION",
