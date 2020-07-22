@@ -107,7 +107,7 @@ function RUF.SetFramePortrait(self, unit)
 	if not profileReference then return end
 
 	local Portrait = CreateFrame('PlayerModel', nil, self)
-	local Border = CreateFrame("Frame", nil, Portrait)
+	local Border = CreateFrame("Frame", nil, Portrait, BackdropTemplateMixin and 'BackdropTemplate')
 	local Background = Portrait:CreateTexture(nil, "BACKGROUND")
 	local r, g, b
 

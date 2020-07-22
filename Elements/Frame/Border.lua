@@ -155,7 +155,7 @@ local BuffDispel = {-- PURGES
 
 function RUF.SetFrameBorder(self, unit)
 	local name = self:GetName()
-	local Border = CreateFrame('Frame',name..'.Border',self)
+	local Border = CreateFrame('Frame',name..'.Border',self, BackdropTemplateMixin and 'BackdropTemplate')
 	local offset = RUF.db.profile.Appearance.Border.Offset
 
 	Border:SetPoint('TOPLEFT',self,'TOPLEFT',-offset,offset)
@@ -229,11 +229,10 @@ end
 
 function RUF.SetGlowBorder(self, unit) -- Aura Highlight Border
 	local name = self:GetName()
-	local Border = CreateFrame('Frame',name..'.Border',self)
 	local profileReference = RUF.db.profile.Appearance.Border.Glow
 	local offset = profileReference.Offset
 
-	local GlowBorder = CreateFrame('Frame',name..'.GlowBorder',self)
+	local GlowBorder = CreateFrame('Frame',name..'.GlowBorder',self, BackdropTemplateMixin and 'BackdropTemplate')
 	GlowBorder:SetPoint('TOPLEFT',self,'TOPLEFT',-offset,offset)
 	GlowBorder:SetPoint('BOTTOMRIGHT',self,'BOTTOMRIGHT',offset,-offset)
 	GlowBorder:SetFrameLevel(35)

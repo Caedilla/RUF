@@ -36,7 +36,7 @@ function RUF.CreateAuraIcon(element, index)
 	icon:SetTexCoord(0.05, 0.95, 0.05, 0.95)
 	icon:SetAllPoints(button)
 
-	local pixel = CreateFrame('Frame', nil, button)
+	local pixel = CreateFrame('Frame', nil, button, BackdropTemplateMixin and 'BackdropTemplate')
 	pixel:SetAllPoints(button)
 	pixel:SetFrameLevel(17)
 	pixel:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Aura.Pixel.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Pixel.Style.edgeSize})
@@ -60,7 +60,7 @@ function RUF.CreateAuraIcon(element, index)
 	end
 	button.pixel = pixel
 
-	local border = CreateFrame('Frame', nil, button)
+	local border = CreateFrame('Frame', nil, button, BackdropTemplateMixin and 'BackdropTemplate')
 	border:SetAllPoints(button)
 	border:SetFrameLevel(18)
 	border:SetBackdrop({edgeFile = LSM:Fetch('border', RUF.db.profile.Appearance.Aura.Border.Style.edgeFile), edgeSize = RUF.db.profile.Appearance.Aura.Border.Style.edgeSize})

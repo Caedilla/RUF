@@ -6,7 +6,7 @@ local oUF = ns.oUF
 function RUF.SetPowerBar(self, unit) -- Mana, Rage, Insanity, Maelstrom etc.
 	local Texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Power.Texture)
 	local Bar = CreateFrame('StatusBar', nil, self)
-	local Border = CreateFrame('Frame', nil, Bar)
+	local Border = CreateFrame('Frame', nil, Bar, BackdropTemplateMixin and 'BackdropTemplate')
 	local Background = Bar:CreateTexture(nil, 'BACKGROUND')
 
 	if RUF.db.profile.unit[unit].Frame.Bars.Power.Position.Anchor == 'TOP' then

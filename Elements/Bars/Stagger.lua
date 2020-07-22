@@ -8,7 +8,7 @@ function RUF.SetStagger(self, unit)
 	if uClass ~= 'MONK' then return end
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
 	local Bar = CreateFrame('StatusBar', nil, self)
-	local Border = CreateFrame('Frame', nil, Bar)
+	local Border = CreateFrame('Frame', nil, Bar, BackdropTemplateMixin and 'BackdropTemplate')
 	local Background = Bar:CreateTexture(nil, 'BACKGROUND')
 
 	-- Bar
