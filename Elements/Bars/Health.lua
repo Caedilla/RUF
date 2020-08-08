@@ -42,6 +42,37 @@ local function rgbToHsl(r, g, b)
 	return h, s, l
 end
 
+local firstH, firstS, firstL = rgbToHsl(255/255, 151/255, 3/255)
+local secondH, secondS, secondL = rgbToHsl(hslToRgb( ((firstH * 360) + 67) / 360, firstS, firstL))
+
+local function updateRainbow()
+	local a,b,c = hslToRgb(firstH, firstS, firstL)
+	local x,y,z = hslToRgb(secondH, secondS, secondL)
+	firstH = firstH + (1/360)
+	secondH = secondH + (1/360)
+	if firstH > 1 then
+		firstH = 1/360
+	end
+	if secondH > 1 then
+		secondH = 1/360
+	end
+	--_G["oUF_RUF_Target"].Health:GetStatusBarTexture():SetGradient('HORIZONTAL', a, b, c, x, y, z)
+
+
+	for k, v in next, oUF.objects do
+		if v.Health then
+			if v.Health:GetReverseFill() then
+				v.Health:GetStatusBarTexture():SetGradient('HORIZONTAL', x, y, z, a, b, c)
+			else
+				v.Health:GetStatusBarTexture():SetGradient('HORIZONTAL', a, b, c, x, y, z)
+			end
+		end
+	end
+end
+
+C_Timer.NewTicker(0.001, updateRainbow)
+
+
 function RUF.HealthUpdateColor(element, unit, cur, max)
 	local r, g, b = RUF:GetBarColor(element, unit, 'Health', 'Health', cur)
 
@@ -83,39 +114,11 @@ function RUF.HealthUpdateColor(element, unit, cur, max)
 
 	--local ar, ab, ag = r * 0.5,g * 0.5 ,b * 0.5
 	local br, bb, bg = r, g, b
-	element:GetStatusBarTexture():SetGradient(gradientDirection, ar, ab, ag, br, bb, bg)
+	--element:GetStatusBarTexture():SetGradient(gradientDirection, ar, ab, ag, br, bb, bg)
 
 	--element:SetStatusBarColor(r,g,b)
 
 end
-
-
-
-local firstH, firstS, firstL = rgbToHsl(255/255, 151/255, 3/255)
-local secondH, secondS, secondL = rgbToHsl(hslToRgb( ((firstH * 360) + 67) / 360, firstS, firstL))
-
-local function updateRainbow()
-	local a,b,c = hslToRgb(firstH, firstS, firstL)
-	local x,y,z = hslToRgb(secondH, secondS, secondL)
-	firstH = firstH + (1/360)
-	secondH = secondH + (1/360)
-	if firstH > 1 then
-		firstH = 1/360
-	end
-	if secondH > 1 then
-		secondH = 1/360
-	end
-	--_G["oUF_RUF_Target"].Health:GetStatusBarTexture():SetGradient('HORIZONTAL', a, b, c, x, y, z)
-
-
-	for k, v in next, oUF.objects do
-		if v.Health then
-			v.Health:GetStatusBarTexture():SetGradient('HORIZONTAL', a, b, c, x, y, z)
-		end
-	end
-end
-
-C_Timer.NewTicker(0.001, updateRainbow)
 
 
 
