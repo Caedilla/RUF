@@ -22,6 +22,9 @@ A unitframe layout for oUF
 * Heal Prediction
 * 3D animated portraits
 * Several pre-configured layouts to choose from in the profile section.
+* Optional RGB Rainbows! (Currently in alpha testing!)
+
+![Optional RGB Rainbows!](https://media.forgecdn.net/attachments/307/222/world-of-warcraft-retail-2020.gif "Optional RGB Rainbows!") ![Optional RGB Rainbows!](https://media.forgecdn.net/attachments/307/221/world-of-warcraft-retail-2020.gif "Optional RGB Rainbows!")
 
 ### Live Only Features
 * Supports Focus, Focus's Target, Boss, Boss Targets, Arena, Arena Targets (In addition to the ones mentioned above)
