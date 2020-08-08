@@ -46,11 +46,15 @@ function RUF.HealthUpdateColor(element, unit, cur, max)
 	--element:GetStatusBarTexture():SetGradient(gradientDirection, ar, ab, ag, br, bb, bg)
 	--element:SetStatusBarColor(r,g,b)
 
+	-- Create Ticker per element because that's probably better than looping through all oUF objects to check if it should be enabled for those.
 	if RUF.db.profile.unit[element.__owner.frame].Frame.Bars.Health.rainbow.enabled then
 		if not element.rainbowTimer then
 			element.rainbowTimer = C_Timer.NewTicker(0.001, function()
 				DrawRainbow(element)
 			end)
+		end
+		if not RUF.rainbowTicker then -- If no elements are using the Rainbow Mode, there's no point in having the rgb values for rainbow mode to continually update.
+			RUF.rainbowTicker = C_Timer.NewTicker(0.001, RUF.UpdateRainbow)
 		end
 	else
 		element:SetStatusBarColor(r,g,b)
@@ -59,7 +63,6 @@ function RUF.HealthUpdateColor(element, unit, cur, max)
 			element.rainbowTimer = nil
 		end
 	end
-
 
 end
 

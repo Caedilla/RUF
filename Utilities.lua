@@ -220,7 +220,7 @@ end
 
 local firstH, firstS, firstL = RUF:RGBtoHSL(255/255, 151/255, 3/255)
 local secondH, secondS, secondL = RUF:RGBtoHSL(RUF:HSLtoRGB( ((firstH * 360) + 67) / 360, firstS, firstL))
-local function UpdateRainbow()
+function RUF:UpdateRainbow()
 	firstH = firstH + (1/360)
 	secondH = secondH + (1/360)
 	if firstH > 1 then
@@ -230,7 +230,6 @@ local function UpdateRainbow()
 		secondH = 1/360
 	end
 end
-C_Timer.NewTicker(0.001, UpdateRainbow)
 
 function RUF:GetRainbow()
 	local a,b,c = RUF:HSLtoRGB(firstH, firstS, firstL)
