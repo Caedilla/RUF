@@ -3,75 +3,10 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 
-local function hslToRgb(h, s, l)
-	if s == 0 then return l, l, l end
-	local function to(p, q, t)
-		if t < 0 then t = t + 1 end
-		if t > 1 then t = t - 1 end
-		if t < .16667 then return p + (q - p) * 6 * t end
-		if t < .5 then return q end
-		if t < .66667 then return p + (q - p) * (.66667 - t) * 6 end
-		return p
-	end
-	local q = l < .5 and l * (1 + s) or l + s - l * s
-	local p = 2 * l - q
-	return to(p, q, h + .33334), to(p, q, h), to(p, q, h - .33334)
+local function DrawRainbow(element)
+	local a,b,c,x,y,z = RUF:GetRainbow()
+	element:GetStatusBarTexture():SetGradient('HORIZONTAL', a, b, c, x, y, z)
 end
-
-local function rgbToHsl(r, g, b)
-	local max, min = math.max(r, g, b), math.min(r, g, b)
-	local t = max + min
-	local d = max - min
-	local h, s, l
-
-	if t == 0 then return 0, 0, 0 end
-	l = t / 2
-
-	s = l > .5 and d / (2 - t) or d / t
-
-	if max == r then
-		h = (g - b) / d + (g < b and 6 or 0)
-	elseif max == g then
-		h = (b - r) / d + 2
-	elseif max == b then
-		h = (r - g) / d + 4
-	end
-
-	h = h * 0.16667
-
-	return h, s, l
-end
-
-local firstH, firstS, firstL = rgbToHsl(255/255, 151/255, 3/255)
-local secondH, secondS, secondL = rgbToHsl(hslToRgb( ((firstH * 360) + 67) / 360, firstS, firstL))
-
-local function updateRainbow()
-	local a,b,c = hslToRgb(firstH, firstS, firstL)
-	local x,y,z = hslToRgb(secondH, secondS, secondL)
-	firstH = firstH + (1/360)
-	secondH = secondH + (1/360)
-	if firstH > 1 then
-		firstH = 1/360
-	end
-	if secondH > 1 then
-		secondH = 1/360
-	end
-	--_G["oUF_RUF_Target"].Health:GetStatusBarTexture():SetGradient('HORIZONTAL', a, b, c, x, y, z)
-
-
-	for k, v in next, oUF.objects do
-		if v.Health then
-			if v.Health:GetReverseFill() then
-				v.Health:GetStatusBarTexture():SetGradient('HORIZONTAL', x, y, z, a, b, c)
-			else
-				v.Health:GetStatusBarTexture():SetGradient('HORIZONTAL', a, b, c, x, y, z)
-			end
-		end
-	end
-end
-
-C_Timer.NewTicker(0.001, updateRainbow)
-
 
 function RUF.HealthUpdateColor(element, unit, cur, max)
 	local r, g, b = RUF:GetBarColor(element, unit, 'Health', 'Health', cur)
@@ -103,24 +38,30 @@ function RUF.HealthUpdateColor(element, unit, cur, max)
 	end
 
 	-- Not ideal, gradient is applied to active portion of statusbar texture
-	local gradientDirection = 'HORIZONTAL'
-
-
-
-	local h,s,l = rgbToHsl(r/255, g/255, b/255)
-	local ar, ab, ag = hslToRgb(((h * 360) + 67) / 360 , s, l)
-	ar, ab, ag = ar *255, ab * 255, ag * 255
-
-
-	--local ar, ab, ag = r * 0.5,g * 0.5 ,b * 0.5
-	local br, bb, bg = r, g, b
+	--local gradientDirection = 'HORIZONTAL'
+	--local h,s,l = RUF:RGBtoHSL(r/255, g/255, b/255)
+	--local ar, ab, ag = RUF:HSLtoRGB(((h * 360) + 67) / 360 , s, l)
+	--ar, ab, ag = ar *255, ab * 255, ag * 255
+	--local br, bb, bg = r, g, b
 	--element:GetStatusBarTexture():SetGradient(gradientDirection, ar, ab, ag, br, bb, bg)
-
 	--element:SetStatusBarColor(r,g,b)
 
+	if RUF.db.profile.unit[element.__owner.frame].Frame.Bars.Health.rainbow.enabled then
+		if not element.rainbowTimer then
+			element.rainbowTimer = C_Timer.NewTicker(0.001, function()
+				DrawRainbow(element)
+			end)
+		end
+	else
+		element:SetStatusBarColor(r,g,b)
+		if element.rainbowTimer then
+			element.rainbowTimer:Cancel()
+			element.rainbowTimer = nil
+		end
+	end
+
+
 end
-
-
 
 function RUF.HealthUpdate(self, event, unit)
 	if(not unit or self.unit ~= unit) then return end
@@ -169,12 +110,13 @@ function RUF.SetHealthBar(self, unit)
 	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Health.Color.Tapped
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health.Animate
+	Bar.colorRainbow = RUF.db.profile.unit[self.frame].Frame.Bars.Health.rainbow.enabled
 	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetAllPoints(self)
 	Bar:SetFrameLevel(11)
 	Bar:SetFillStyle(RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill)
-	Bar.FillStyle = RUF.db.profile.unit[unit].Frame.Bars.Health.Fill
+	Bar.FillStyle = RUF.db.profile.unit[self.frame].Frame.Bars.Health.Fill
 
 	-- Register with oUF
 	self.Health = Bar
@@ -194,6 +136,7 @@ function RUF.HealthUpdateOptions(self)
 	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Health.Color.Tapped
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health.Animate
+	Bar.colorRainbow = RUF.db.profile.unit[unit].Frame.Bars.Health.rainbow.enabled
 	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetAllPoints(self.__owner)

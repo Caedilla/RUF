@@ -179,6 +179,65 @@ function RUF:ColorGradient(...)
 	end
 end
 
+function RUF:HSLtoRGB(h, s, l)
+	if s == 0 then return l, l, l end
+	local function to(p, q, t)
+		if t < 0 then t = t + 1 end
+		if t > 1 then t = t - 1 end
+		if t < .16667 then return p + (q - p) * 6 * t end
+		if t < .5 then return q end
+		if t < .66667 then return p + (q - p) * (.66667 - t) * 6 end
+		return p
+	end
+	local q = l < .5 and l * (1 + s) or l + s - l * s
+	local p = 2 * l - q
+	return to(p, q, h + .33334), to(p, q, h), to(p, q, h - .33334)
+end
+
+function RUF:RGBtoHSL(r, g, b)
+	local max, min = math.max(r, g, b), math.min(r, g, b)
+	local t = max + min
+	local d = max - min
+	local h, s, l
+
+	if t == 0 then return 0, 0, 0 end
+	l = t / 2
+
+	s = l > .5 and d / (2 - t) or d / t
+
+	if max == r then
+		h = (g - b) / d + (g < b and 6 or 0)
+	elseif max == g then
+		h = (b - r) / d + 2
+	elseif max == b then
+		h = (r - g) / d + 4
+	end
+
+	h = h * 0.16667
+
+	return h, s, l
+end
+
+local firstH, firstS, firstL = RUF:RGBtoHSL(255/255, 151/255, 3/255)
+local secondH, secondS, secondL = RUF:RGBtoHSL(RUF:HSLtoRGB( ((firstH * 360) + 67) / 360, firstS, firstL))
+local function UpdateRainbow()
+	firstH = firstH + (1/360)
+	secondH = secondH + (1/360)
+	if firstH > 1 then
+		firstH = 1/360
+	end
+	if secondH > 1 then
+		secondH = 1/360
+	end
+end
+C_Timer.NewTicker(0.001, UpdateRainbow)
+
+function RUF:GetRainbow()
+	local a,b,c = RUF:HSLtoRGB(firstH, firstS, firstL)
+	local x,y,z = RUF:HSLtoRGB(secondH, secondS, secondL)
+	return a,b,c,x,y,z
+end
+
 local function AlphaAnimationDataUpdate(self)
 	local parent = self:GetParent()
 	self:GetParent().Alpha.current = parent:GetAlpha()

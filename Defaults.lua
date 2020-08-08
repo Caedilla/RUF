@@ -1005,6 +1005,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -1468,6 +1471,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "REVERSE",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -1943,6 +1949,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -2378,6 +2387,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -2813,6 +2825,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "REVERSE",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -3248,6 +3263,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -3683,6 +3701,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -4118,6 +4139,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -4598,6 +4622,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -5040,6 +5067,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -5479,6 +5509,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -5946,6 +5979,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "REVERSE",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -6384,6 +6420,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -6851,6 +6890,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "REVERSE",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,
@@ -7289,6 +7331,9 @@ local cfg = {
 						["Health"] = {
 							["Animate"] = true,
 							["Fill"] = "STANDARD",
+							["rainbow"] = {
+								["enabled"] = false,
+							},
 						},
 						["Power"] = {
 							["Animate"] = true,

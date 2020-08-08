@@ -418,3 +418,5 @@ L["Y Offset"] = true
 L["Y Spacing"] = true
 L["You have the %s version of RUF installed, but you are playing %s. Please install a compatible version."] = true
 L["Z Offset"] = true
+L["Rainbow Mode"] = true
+L["Enables rainbow RGB animations for this bar."] = true

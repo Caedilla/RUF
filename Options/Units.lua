@@ -778,6 +778,20 @@ local function BarSettings(singleFrame, groupFrame, header)
 					RUF:OptionsUpdateBars(singleFrame, groupFrame, header, barList[i])
 				end,
 			},
+			toggleRainbowMode = {
+				name = L["Rainbow Mode"],
+				desc = L["Enables rainbow RGB animations for this bar."],
+				type = 'toggle',
+				order = 0.5,
+				hidden = i ~= 1,
+				get = function(info)
+					return RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].rainbow.enabled
+				end,
+				set = function(info, value)
+					RUF.db.profile.unit[profileName].Frame.Bars[barList[i]].rainbow.enabled = value
+					RUF:OptionsUpdateBars(singleFrame, groupFrame, header, barList[i])
+				end,
+			},
 			smoothlyAnimate = {
 				name = L["Animate"],
 				desc = L["Smoothly animate bar changes. Does not affect class resources that are split into chunks such as Combo Points, or Holy Power."],
