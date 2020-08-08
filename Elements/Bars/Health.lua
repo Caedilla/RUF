@@ -105,7 +105,14 @@ local function updateRainbow()
 	if secondH > 1 then
 		secondH = 1/360
 	end
-	_G["oUF_RUF_Target"].Health:GetStatusBarTexture():SetGradient('VERTICAL', a, b, c, x, y, z)
+	--_G["oUF_RUF_Target"].Health:GetStatusBarTexture():SetGradient('HORIZONTAL', a, b, c, x, y, z)
+
+
+	for k, v in next, oUF.objects do
+		if v.Health then
+			v.Health:GetStatusBarTexture():SetGradient('HORIZONTAL', a, b, c, x, y, z)
+		end
+	end
 end
 
 C_Timer.NewTicker(0.001, updateRainbow)
