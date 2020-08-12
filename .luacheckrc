@@ -52,6 +52,8 @@ globals = {
 	"CUSTOM_CLASS_COLORS",
 
 	-- FrameXML misc
+	"UnitPvpClassification",
+	"UnitPhaseReason",
 	"BackdropTemplateMixin",
 	"C_Timer",
 	"ChatFrame_AddMessageEventFilter",

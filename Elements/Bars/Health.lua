@@ -11,33 +11,7 @@ end
 function RUF.HealthUpdateColor(element, unit, cur, max)
 	local r, g, b = RUF:GetBarColor(element, unit, 'Health', 'Health', cur)
 
-	-- Update background
-	local bgMult = RUF.db.profile.Appearance.Bars.Health.Background.Multiplier
-	local a = RUF.db.profile.Appearance.Bars.Health.Background.Alpha
-	if RUF.db.profile.Appearance.Bars.Health.Background.UseBarColor == false then
-		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Health.Background.CustomColor)
-	end
-	element.__owner.Background.Base.Texture:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
-
-	-- Why on earth would I do it this way? What was I thinking? This is why you comment code.
-	local Background = {}
-	if element.__owner.frame == 'player' then
-		Background = {
-			element.__owner.Background.Base.Texture,
-		}
-	else
-		Background = {
-			element.__owner.Background.Base.Texture,
-		}
-	end
-
-	for i = 1, #Background do
-		if Background[i] then
-			Background[i]:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Health.Background.Alpha)
-		end
-	end
-
-	-- Not ideal, gradient is applied to active portion of statusbar texture
+		-- Not ideal, gradient is applied to active portion of statusbar texture
 	--local gradientDirection = 'HORIZONTAL'
 	--local h,s,l = RUF:RGBtoHSL(r/255, g/255, b/255)
 	--local ar, ab, ag = RUF:HSLtoRGB(((h * 360) + 67) / 360 , s, l)
@@ -61,6 +35,32 @@ function RUF.HealthUpdateColor(element, unit, cur, max)
 		if element.rainbowTimer then
 			element.rainbowTimer:Cancel()
 			element.rainbowTimer = nil
+		end
+	end
+
+	-- Update background
+	local bgMult = RUF.db.profile.Appearance.Bars.Health.Background.Multiplier
+	local a = RUF.db.profile.Appearance.Bars.Health.Background.Alpha
+	if RUF.db.profile.Appearance.Bars.Health.Background.UseBarColor == false then
+		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Health.Background.CustomColor)
+	end
+	element.__owner.Background.Base.Texture:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
+
+	-- Why on earth would I do it this way? What was I thinking? This is why you comment code.
+	local Background = {}
+	if element.__owner.frame == 'player' then
+		Background = {
+			element.__owner.Background.Base.Texture,
+		}
+	else
+		Background = {
+			element.__owner.Background.Base.Texture,
+		}
+	end
+
+	for i = 1, #Background do
+		if Background[i] then
+			Background[i]:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Health.Background.Alpha)
 		end
 	end
 
@@ -114,7 +114,7 @@ function RUF.SetHealthBar(self, unit)
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health.Animate
 	Bar.colorRainbow = RUF.db.profile.unit[self.frame].Frame.Bars.Health.rainbow.enabled
-	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
+	Bar.frequentUpdates = false -- Is there an option for this? CHECK IT.
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetAllPoints(self)
 	Bar:SetFrameLevel(11)
@@ -140,7 +140,7 @@ function RUF.HealthUpdateOptions(self)
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health.Animate
 	Bar.colorRainbow = RUF.db.profile.unit[unit].Frame.Bars.Health.rainbow.enabled
-	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
+	Bar.frequentUpdates = false -- Is there an option for this? CHECK IT.
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetAllPoints(self.__owner)
 	Bar:SetFrameLevel(10)
