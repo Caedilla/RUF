@@ -114,7 +114,7 @@ function RUF.SetHealthBar(self, unit)
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health.Animate
 	Bar.colorRainbow = RUF.db.profile.unit[self.frame].Frame.Bars.Health.rainbow.enabled
-	Bar.frequentUpdates = false -- Is there an option for this? CHECK IT.
+	Bar.frequentUpdates = RUF.Client == 2 -- UNIT_HEALTH_FREQUENT removed from 9.0, use it for Classic though.
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetAllPoints(self)
 	Bar:SetFrameLevel(11)
@@ -140,7 +140,7 @@ function RUF.HealthUpdateOptions(self)
 	Bar.colorHealth = true -- BaseColor, always enabled, so if none of the other colors match, it falls back to this.
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Health.Animate
 	Bar.colorRainbow = RUF.db.profile.unit[unit].Frame.Bars.Health.rainbow.enabled
-	Bar.frequentUpdates = false -- Is there an option for this? CHECK IT.
+	Bar.frequentUpdates = RUF.Client == 2 -- UNIT_HEALTH_FREQUENT removed from 9.0, use it for Classic though.
 	Bar:SetStatusBarTexture(texture)
 	Bar:SetAllPoints(self.__owner)
 	Bar:SetFrameLevel(10)

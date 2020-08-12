@@ -20,7 +20,7 @@ function RUF.SetStagger(self, unit)
 	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Class.Color.Tapped
 	Bar.colorPower = RUF.db.profile.Appearance.Bars.Class.Color.PowerType
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Class.Animate
-	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
+	Bar.frequentUpdates = true
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
 	Bar:SetStatusBarTexture(texture)
@@ -124,7 +124,7 @@ function RUF.StaggerUpdateOptions(self)
 	Bar.colorTapping = RUF.db.profile.Appearance.Bars.Class.Color.Tapped
 	Bar.colorPower = RUF.db.profile.Appearance.Bars.Class.Color.PowerType
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Class.Animate
-	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
+	Bar.frequentUpdates = true
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Class.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Class.Height
 	Bar:SetStatusBarTexture(texture)

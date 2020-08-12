@@ -281,26 +281,30 @@ local function Enable(self)
 		element.__owner = self
 		element.ForceUpdate = ForceUpdate
 
-		if(element.frequentUpdates) then
-			self:RegisterEvent('UNIT_HEALTH_FREQUENT', Path)
-		else
-			self:RegisterEvent('UNIT_HEALTH', Path)
-		end
-
-		self:RegisterEvent('UNIT_MAXHEALTH', Path)
-		if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
-			self:RegisterEvent('UNIT_HEAL_PREDICTION', Path)
-			self:RegisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
-			self:RegisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
-		end
 		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+			if element.frequentUpdates then
+				self:RegisterEvent('UNIT_HEALTH_FREQUENT', Path)
+			else
+				self:RegisterEvent('UNIT_HEALTH', Path)
+			end
+
+			self:RegisterEvent('UNIT_MAXHEALTH', Path)
+
 			local HealComm = LibStub('LibHealComm-4.0', true)
 			self.HealCommUpdate = HealCommUpdate
 			HealComm.RegisterCallback(self, 'HealComm_HealStarted', 'HealCommUpdate')
 			HealComm.RegisterCallback(self, 'HealComm_HealUpdated', 'HealCommUpdate')
 			HealComm.RegisterCallback(self, 'HealComm_HealDelayed', 'HealCommUpdate')
 			HealComm.RegisterCallback(self, 'HealComm_HealStopped', 'HealCommUpdate')
+
+		else
+			self:RegisterEvent('UNIT_HEALTH', Path)
+			self:RegisterEvent('UNIT_HEAL_PREDICTION', Path)
+			self:RegisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
+			self:RegisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
+			self:RegisterEvent('UNIT_MAXHEALTH', Path)
 		end
+
 
 		if(not element.maxOverflow) then
 			element.maxOverflow = 1.05
@@ -379,20 +383,22 @@ local function Disable(self)
 			element.overHealAbsorb:Hide()
 		end
 
-		self:UnregisterEvent('UNIT_HEALTH', Path)
-		self:UnregisterEvent('UNIT_MAXHEALTH', Path)
-		self:UnregisterEvent('UNIT_HEALTH_FREQUENT', Path)
-		if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
-			self:UnregisterEvent('UNIT_HEAL_PREDICTION', Path)
-			self:UnregisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
-			self:UnregisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
-		end
 		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+			self:UnregisterEvent('UNIT_HEALTH_FREQUENT', Path)
+			self:UnregisterEvent('UNIT_HEALTH', Path)
+			self:UnregisterEvent('UNIT_MAXHEALTH', Path)
+
 			local HealComm = LibStub('LibHealComm-4.0', true)
 			HealComm.UnregisterCallback(self, 'HealComm_HealStarted')
 			HealComm.UnregisterCallback(self, 'HealComm_HealUpdated')
 			HealComm.UnregisterCallback(self, 'HealComm_HealDelayed')
 			HealComm.UnregisterCallback(self, 'HealComm_HealStopped')
+		else
+			self:UnregisterEvent('UNIT_HEALTH', Path)
+			self:UnregisterEvent('UNIT_MAXHEALTH', Path)
+			self:UnregisterEvent('UNIT_HEAL_PREDICTION', Path)
+			self:UnregisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
+			self:UnregisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
 		end
 	end
 end

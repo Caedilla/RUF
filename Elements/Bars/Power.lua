@@ -25,7 +25,7 @@ function RUF.SetPowerBar(self, unit) -- Mana, Rage, Insanity, Maelstrom etc.
 	end
 
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Power.Animate
-	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
+	Bar.frequentUpdates = true
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Power.Height
 	Bar:SetStatusBarTexture(Texture)
@@ -128,7 +128,7 @@ function RUF.PowerUpdateOptions(self)
 
 	local Texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Power.Texture)
 	Bar.Smooth = RUF.db.profile.unit[unit].Frame.Bars.Power.Animate
-	Bar.frequentUpdates = true -- Is there an option for this? CHECK IT.
+	Bar.frequentUpdates = true
 	Bar.hideAtZero = RUF.db.profile.unit[unit].Frame.Bars.Power.Enabled == 1
 	Bar.barHeight = RUF.db.profile.unit[unit].Frame.Bars.Power.Height
 	Bar:SetStatusBarTexture(Texture)

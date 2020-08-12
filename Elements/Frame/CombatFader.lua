@@ -93,7 +93,9 @@ local function PLAYER_ENTERING_WORLD(self, event)
 end
 
 local function UNIT_HEALTH(self, event, unit)
-	if event ~= 'UNIT_HEALTH_FREQUENT' and event ~= 'UNIT_MAXHEALTH' and unit ~= 'player' then return end
+	if unit ~= 'player' then return end
+	if event ~= 'UNIT_HEALTH_FREQUENT' and event ~= 'UNIT_HEALTH' and event ~= 'UNIT_MAXHEALTH' then return end
+
 	if InCombatLockdown() then return end
 	local profileReference = RUF.db.profile.Appearance.CombatFader
 	if profileReference.Enabled == true then
@@ -103,8 +105,12 @@ end
 
 local function PLAYER_REGEN_DISABLED(self, event)
 	if event ~= 'PLAYER_REGEN_DISABLED' then return end
+	if RUF.Client == 1 then
+		RUF:UnregisterEvent('UNIT_HEALTH', UNIT_HEALTH)
+	else
+		RUF:UnregisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH)
+	end
 	RUF:UnregisterEvent('UNIT_TARGET', RUF.CombatFaderUpdate)
-	RUF:UnregisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH)
 	RUF:UnregisterEvent('UNIT_MAXHEALTH', UNIT_HEALTH)
 	RUF:UnregisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFaderUpdate)
 
@@ -123,7 +129,11 @@ function RUF.CombatFaderRegister()
 			end
 		end
 		if profileReference.damagedOverride == true then
-			RUF:RegisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH, true)
+			if RUF.Client == 1 then
+				RUF:RegisterEvent('UNIT_HEALTH', UNIT_HEALTH, true)
+			else
+				RUF:RegisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH, true)
+			end
 			RUF:RegisterEvent('UNIT_MAXHEALTH', UNIT_HEALTH, true)
 		end
 		RUF:RegisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFaderUpdate, true)
@@ -132,8 +142,12 @@ function RUF.CombatFaderRegister()
 		RUF:RegisterEvent('PLAYER_ENTERING_WORLD', PLAYER_ENTERING_WORLD, true)
 		RUF.CombatFaderUpdate()
 	else
+		if RUF.Client == 1 then
+			RUF:UnregisterEvent('UNIT_HEALTH', UNIT_HEALTH)
+		else
+			RUF:UnregisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH)
+		end
 		RUF:UnregisterEvent('UNIT_TARGET', RUF.CombatFaderUpdate)
-		RUF:UnregisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH)
 		RUF:UnregisterEvent('UNIT_MAXHEALTH', UNIT_HEALTH)
 		RUF:UnregisterEvent('PLAYER_TARGET_CHANGED', RUF.CombatFaderUpdate)
 		RUF:UnregisterEvent('PLAYER_REGEN_DISABLED', PLAYER_REGEN_DISABLED)
