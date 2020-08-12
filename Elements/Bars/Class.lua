@@ -12,18 +12,15 @@ local classPowerData = {
 	},
 	MAGE = {
 		classPowerID = 16,
-		requireSpec = 1,
 		classPowerType = 'ARCANE_CHARGES',
 	},
 	MONK = {
 		classPowerID = 12,
-		requireSpec = 3,
 		classPowerType = 'CHI',
 		unitPowerMaxAmount = 6,
 	},
 	PALADIN = {
 		classPowerID = 9,
-		requireSpec = 3,
 		classPowerType = 'HOLY_POWER',
 		unitPowerMaxAmount = 5,
 	},
