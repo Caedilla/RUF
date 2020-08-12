@@ -17,8 +17,6 @@ local function Update(self, event)
 
 		local isInSamePhase
 		if RUF.Client == 1 then
-			isInSamePhase = UnitInPhase(self.unit)
-		else
 			if UnitPlayerOrPetInParty(self.unit) or UnitInRaid(self.unit) then
 				if UnitPhaseReason(self.unit) then
 					isInSamePhase = false
@@ -28,6 +26,8 @@ local function Update(self, event)
 			else
 				isInSamePhase = true
 			end
+		else
+			isInSamePhase = UnitInPhase(self.unit)
 		end
 
 		if element:IsObjectType('FontString') then
@@ -76,6 +76,7 @@ local function Enable(self)
 		element.__owner = self
 		element.ForceUpdate = ForceUpdate
 		self:RegisterEvent('UNIT_PHASE', Path, true)
+		-- CHECK OTHER EVENTS THAT FIRE WHEN TOGGLING WARMODE
 
 		local profileReference = RUF.db.profile.unit[self.frame].Frame.Indicators[elementName]
 		element:SetFont([[Interface\Addons\RUF\Media\RUF.ttf]], profileReference.Size, 'OUTLINE')

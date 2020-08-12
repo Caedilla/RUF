@@ -175,10 +175,12 @@ function RUF.UpdateGlowBorder(self, event)
 		self.GlowBorder:Hide() -- Immediately hide until we check the new unit.
 	end
 	if RUF.Client == 1 then
-		-- GetSpecialization doesn't exist for Classic. All 'specs' can dispel the same types, so set to 10 to follow those values where appropriate.
 		RUF.Specialization = GetSpecialization()
+		if RUF.Specialization > 3 then -- Newly created characters have a spec of 5 as of 9.0.1
+			RUF.Specialization = 10
+		end
 	else
-		RUF.Specialization = 10
+		RUF.Specialization = 10 -- GetSpecialization doesn't exist for Classic. All 'specs' can dispel the same types, so set to 10 to follow those values where appropriate.
 	end
 	local removable = false
 	local dispelType
