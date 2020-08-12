@@ -14,8 +14,22 @@ local function Update(self, event)
 	end
 	if element.Enabled == true then
 		self:EnableElement(elementName..'Indicator')
-		--local isInSamePhase = UnitInPhase(self.unit)
-		local isInSamePhase = not UnitPhaseReason(self.unit)
+
+		local isInSamePhase
+		if RUF.Client == 1 then
+			isInSamePhase = UnitInPhase(self.unit)
+		else
+			if UnitPlayerOrPetInParty(self.unit) or UnitInRaid(self.unit) then
+				if UnitPhaseReason(self.unit) then
+					isInSamePhase = false
+				else
+					isInSamePhase = true
+				end
+			else
+				isInSamePhase = true
+			end
+		end
+
 		if element:IsObjectType('FontString') then
 			if(isInSamePhase) then
 				element:SetText(' ')
