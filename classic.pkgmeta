@@ -29,6 +29,7 @@ externals:
  Libs/LibHealComm-4.0: https://repos.curseforge.com/wow/libhealcomm-4-0
 
 ignore:
+ - Media/PSD
  - Release
  - live.pkgmeta
  - classic.pkgmeta

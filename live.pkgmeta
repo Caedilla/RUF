@@ -27,6 +27,7 @@ externals:
  Libs/NickTag-1.0: https://github.com/Tercioo/NickTag-1.0
 
 ignore:
+ - Media/PSD
  - Libs/LibClassicCasterino
  - Release
  - live.pkgmeta
