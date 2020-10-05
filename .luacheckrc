@@ -46,7 +46,6 @@ globals = {
 
 	-- Libraries
 	"LibStub",
-	"RealMobHealth",
 
 	-- ClassColors
 	"CUSTOM_CLASS_COLORS",

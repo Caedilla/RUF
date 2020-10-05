@@ -1,7 +1,6 @@
 local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
 local LSM = LibStub('LibSharedMedia-3.0')
 local L = LibStub('AceLocale-3.0'):GetLocale('RUF')
-local RMH = RealMobHealth
 local _, ns = ...
 local oUF = ns.oUF
 local tags = oUF.Tags.Methods or oUF.Tags
@@ -10,13 +9,7 @@ local events = oUF.TagEvents or oUF.Tags.Events
 ----------------------------------------------------------------------------------- HEALTH
 tags['RUF:CurHPPerc'] = function(unit, realunit) -- Current Health and Percent if below 100%.
 	if not UnitName(unit) then return end
-	local cur, max
-	if RUF.Client == 2 and RMH then
-		cur,max=RMH.GetUnitHealth(unit)
-		cur,max=RMH.GetUnitHealth(unit)
-	else
-		cur, max = UnitHealth(unit), UnitHealthMax(unit)
-	end
+	local cur, max = UnitHealth(unit), UnitHealthMax(unit)
 	local r,g,b = RUF:ReturnTextColors(unit, 'CurHPPerc', cur, max)
 	if RUF.db.global.TestMode == true then
 		cur = math.random(max /4, max - (max/4))
@@ -62,13 +55,7 @@ events['RUF:CurHPPerc'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
 tags['RUF:HPPerc'] = function(unit, realunit)
 	if not UnitName(unit) then return end
-	local cur, max
-	if RUF.Client == 2 and RMH then
-		cur,max=RMH.GetUnitHealth(unit)
-		cur,max=RMH.GetUnitHealth(unit)
-	else
-		cur, max = UnitHealth(unit), UnitHealthMax(unit)
-	end
+	local cur, max = UnitHealth(unit), UnitHealthMax(unit)
 	local r,g,b = RUF:ReturnTextColors(unit, 'HPPerc', cur, max)
 	if RUF.db.global.TestMode == true then
 		cur = math.random(max /4, max - (max/4))
@@ -82,13 +69,7 @@ events['RUF:HPPerc'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
 tags['RUF:CurHP'] = function(unit, realunit)
 	if not UnitName(unit) then return end
-	local cur, max
-	if RUF.Client == 2 and RMH then
-		cur,max=RMH.GetUnitHealth(unit)
-		cur,max=RMH.GetUnitHealth(unit)
-	else
-		cur, max = UnitHealth(unit), UnitHealthMax(unit)
-	end
+	local cur, max = UnitHealth(unit), UnitHealthMax(unit)
 	local r,g,b = RUF:ReturnTextColors(unit, 'CurHP', cur, max)
 	if RUF.db.global.TestMode == true then
 		cur = math.random(max /4, max - (max/4))
@@ -119,12 +100,7 @@ events['RUF:CurHP'] = 'UNIT_HEALTH UNIT_CONNECTION'
 tags['RUF:CurMaxHPPerc'] = function(unit, realunit) -- Current Health / Max Health and Percent if below 100%.
 	if not UnitName(unit) then return end
 	local cur, max
-	if RUF.Client == 2 and RMH then
-		cur,max=RMH.GetUnitHealth(unit)
-		cur,max=RMH.GetUnitHealth(unit)
-	else
-		cur, max = UnitHealth(unit), UnitHealthMax(unit)
-	end
+	local cur, max = UnitHealth(unit), UnitHealthMax(unit)
 	local r,g,b = RUF:ReturnTextColors(unit, 'CurMaxHPPerc', cur, max)
 	if RUF.db.global.TestMode == true then
 		cur = math.random(max /4, max - (max/4))
@@ -176,13 +152,7 @@ events['RUF:CurMaxHPPerc'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
 tags['RUF:CurMaxHP'] = function(unit, realunit) -- Current Health / Max Health
 	if not UnitName(unit) then return end
-	local cur, max
-	if RUF.Client == 2 and RMH then
-		cur,max=RMH.GetUnitHealth(unit)
-		cur,max=RMH.GetUnitHealth(unit)
-	else
-		cur, max = UnitHealth(unit), UnitHealthMax(unit)
-	end
+	local cur, max = UnitHealth(unit), UnitHealthMax(unit)
 	local r,g,b = RUF:ReturnTextColors(unit, 'CurMaxHP', cur, max)
 	if RUF.db.global.TestMode == true then
 		cur = math.random(max /4, max - (max/4))
@@ -228,13 +198,7 @@ events['RUF:CurMaxHP'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
 tags['RUF:MaxHP'] = function(unit, realunit)
 	if not UnitName(unit) then return end
-	local cur, max
-	if RUF.Client == 2 and RMH then
-		cur,max=RMH.GetUnitHealth(unit)
-		cur,max=RMH.GetUnitHealth(unit)
-	else
-		cur, max = UnitHealth(unit), UnitHealthMax(unit)
-	end
+	local cur, max = UnitHealth(unit), UnitHealthMax(unit)
 	local r,g,b = RUF:ReturnTextColors(unit, 'CurMaxHPPerc', cur, max)
 	if RUF.db.global.TestMode == true then
 		cur = math.random(max /4, max - (max/4))

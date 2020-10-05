@@ -31,7 +31,6 @@ A unitframe layout for oUF
 * Absorb Bar - a semi-transparent bar layered on top of the health bar showing your current absorbs as a percentage of max health.
 
 ### Classic Only Features
-* Supports [RealMobHealth](https://www.curseforge.com/wow/addons/real-mob-health) if installed (must be installed separately)
 * Uses [LibClassicDurations](https://www.curseforge.com/wow/addons/libclassicdurations) to display durations of short buffs and debuffs on units (Use [OmniCC](https://www.curseforge.com/wow/addons/omni-cc) or [TullaCC](https://www.curseforge.com/wow/addons/tullacc) for numbers on the aura icons)
 * Uses [LibClassicCasterino](https://github.com/rgd87/LibClassicCasterino) for Cast Bars to get non-player unit casting information to show enemy cast bars.
 * Uses [LibHealComm-4.0](https://www.curseforge.com/wow/addons/libhealcomm-4-0) for Heal Prediction.
@@ -49,9 +48,6 @@ A unitframe layout for oUF
 # Classic Support
 ### oUF
 **RUF** supports Classic, but requires my modified version of oUF to function. This is included with RUF on Curseforge automatically. As such, you should ensure that you do not have oUF installed separately as it's own addon. (This doesn't matter for Live users, only Classic users)
-
-### RealMobHealth
-**RUF** works with [RealMobHealth](https://www.curseforge.com/wow/addons/real-mob-health) in classic to try and estimate an enemy unit's actual health. If you want show actual health instead of only percentages for enemy units, all you need to do is download RealMobHealth.
 
 ### LibClassicDurations
 Buffs & Debuffs do not return information about their duration in classic, so **RUF** uses [LibClassicDurations](https://www.curseforge.com/wow/addons/libclassicdurations) in Classic to provide this information. It's included with RUF when you download it from Curseforge and works automatically. If you want to see numbers on RUF's buffs or debuffs, you'll want to grab [OmniCC](https://www.curseforge.com/wow/addons/omni-cc) or [TullaCC](https://www.curseforge.com/wow/addons/tullacc) as well.
