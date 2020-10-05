@@ -99,7 +99,6 @@ events['RUF:CurHP'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
 tags['RUF:CurMaxHPPerc'] = function(unit, realunit) -- Current Health / Max Health and Percent if below 100%.
 	if not UnitName(unit) then return end
-	local cur, max
 	local cur, max = UnitHealth(unit), UnitHealthMax(unit)
 	local r,g,b = RUF:ReturnTextColors(unit, 'CurMaxHPPerc', cur, max)
 	if RUF.db.global.TestMode == true then
