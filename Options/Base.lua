@@ -941,22 +941,33 @@ function RUF_Options.MainOptions()
 	}
 
 	--TODO: Only actual blizzard frames should be listed.
-	for k in pairs(RUF.frameList) do
-		for i = 1, #RUF.frameList[k] do
-			options.args.Appearance.args.disableBlizzard.args[RUF.frameList[k][i]] = {
-				name = L[string.lower(RUF.frameList[k][i])],
-				type = 'toggle',
-				get = function(info)
-					if not RUF.db.profile.Appearance.DisableBlizzard[RUF.frameList[k][i]] then
-						return false
-					end
-					return RUF.db.profile.Appearance.DisableBlizzard[RUF.frameList[k][i]]
-				end,
-				set = function(info, value)
-					RUF.db.profile.Appearance.DisableBlizzard[RUF.frameList[k][i]] = value
-				end,
-			}
-		end
+
+	local blizzardFrames = {
+		'player',
+		'pet',
+		'target',
+		'focus',
+		'targettarget',
+		'boss',
+		'party',
+		'arena',
+	}
+
+	for i = 1, #blizzardFrames do
+		options.args.Appearance.args.disableBlizzard.args[blizzardFrames[i]] = {
+			name = L[blizzardFrames[i]],
+			type = 'toggle',
+			get = function(info)
+				return RUF.db.profile.Appearance.disableBlizzard[blizzardFrames[i]]
+			end,
+			set = function(info, value)
+				RUF.db.profile.Appearance.disableBlizzard[blizzardFrames[i]] = value
+				if value == true then
+					oUF:DisableBlizzard(blizzardFrames[i])
+				end
+			end,
+		}
 	end
+
 	return options
 end

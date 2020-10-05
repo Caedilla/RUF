@@ -639,8 +639,16 @@ local cfg = {
 					},
 				},
 			},
-			DisableBlizzard = {
-
+			disableBlizzard = {
+				["player"] = true,
+				["pet"] = true,
+				["target"] = true,
+				["focus"] = true,
+				["targettarget"] = true,
+				["boss"] = true,
+				["party"] = true,
+				["arena"] = true,
+				["nameplate"] = false,
 			},
 		},
 		unit = {

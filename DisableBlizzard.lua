@@ -3,7 +3,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 
--- Override oUF:DisableBlizzard
+-- Override oUF:DisableBlizzard so we only disable frames that are actually set to be disabled by the config options.
 
 -- sourced from Blizzard_ArenaUI/Blizzard_ArenaUI.lua
 local MAX_ARENA_ENEMIES = MAX_ARENA_ENEMIES or 5
@@ -65,73 +65,91 @@ local function handleFrame(baseName, doNotReparent)
 	end
 end
 
-function oUF:DisableBlizzard(unit)
+oUF.DisableBlizzard = function(self, unit)
 	if(not unit) then return end
 
 	if(unit == 'player') then
-		handleFrame(PlayerFrame)
+		if RUF.db.profile.Appearance.disableBlizzard.player == true then
+			handleFrame(PlayerFrame)
 
-		if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
-			-- Modification from Source to support classic. These events are not in Classic.
-			PlayerFrame:RegisterEvent('UNIT_ENTERING_VEHICLE')
-			PlayerFrame:RegisterEvent('UNIT_ENTERED_VEHICLE')
-			PlayerFrame:RegisterEvent('UNIT_EXITING_VEHICLE')
-			PlayerFrame:RegisterEvent('UNIT_EXITED_VEHICLE')
+			if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
+				-- Modification from Source to support classic. These events are not in Classic.
+				PlayerFrame:RegisterEvent('UNIT_ENTERING_VEHICLE')
+				PlayerFrame:RegisterEvent('UNIT_ENTERED_VEHICLE')
+				PlayerFrame:RegisterEvent('UNIT_EXITING_VEHICLE')
+				PlayerFrame:RegisterEvent('UNIT_EXITED_VEHICLE')
+			end
+
+			-- User placed frames don't animate
+			PlayerFrame:SetUserPlaced(true)
+			PlayerFrame:SetDontSavePosition(true)
 		end
-
-		-- User placed frames don't animate
-		PlayerFrame:SetUserPlaced(true)
-		PlayerFrame:SetDontSavePosition(true)
 	elseif(unit == 'pet') then
-		handleFrame(PetFrame)
+		if RUF.db.profile.Appearance.disableBlizzard.pet == true then
+			handleFrame(PetFrame)
+		end
 	elseif(unit == 'target') then
-		handleFrame(TargetFrame)
-		handleFrame(ComboFrame)
+		if RUF.db.profile.Appearance.disableBlizzard.target == true then
+			handleFrame(TargetFrame)
+			handleFrame(ComboFrame)
+		end
 	elseif(unit == 'focus') then
-		handleFrame(FocusFrame)
-		handleFrame(TargetofFocusFrame)
+		if RUF.db.profile.Appearance.disableBlizzard.focus == true then
+			handleFrame(FocusFrame)
+			handleFrame(TargetofFocusFrame)
+		end
 	elseif(unit == 'targettarget') then
-		handleFrame(TargetFrameToT)
+		if RUF.db.profile.Appearance.disableBlizzard.targettarget == true then
+			handleFrame(TargetFrameToT)
+		end
 	elseif(unit:match('boss%d?$')) then
-		local id = unit:match('boss(%d)')
-		if(id) then
-			handleFrame('Boss' .. id .. 'TargetFrame')
-		else
-			for i = 1, MAX_BOSS_FRAMES do
-				handleFrame(string.format('Boss%dTargetFrame', i))
+		if RUF.db.profile.Appearance.disableBlizzard.boss == true then
+			local id = unit:match('boss(%d)')
+			if(id) then
+				handleFrame('Boss' .. id .. 'TargetFrame')
+			else
+				for i = 1, MAX_BOSS_FRAMES do
+					handleFrame(string.format('Boss%dTargetFrame', i))
+				end
 			end
 		end
 	elseif(unit:match('party%d?$')) then
-		local id = unit:match('party(%d)')
-		if(id) then
-			handleFrame('PartyMemberFrame' .. id)
-		else
-			for i = 1, MAX_PARTY_MEMBERS do
-				handleFrame(string.format('PartyMemberFrame%d', i))
+		if RUF.db.profile.Appearance.disableBlizzard.party == true then
+			local id = unit:match('party(%d)')
+			if(id) then
+				handleFrame('PartyMemberFrame' .. id)
+			else
+				for i = 1, MAX_PARTY_MEMBERS do
+					handleFrame(string.format('PartyMemberFrame%d', i))
+				end
 			end
 		end
 	elseif(unit:match('arena%d?$')) then
-		local id = unit:match('arena(%d)')
-		if(id) then
-			handleFrame('ArenaEnemyFrame' .. id)
-		else
-			for i = 1, MAX_ARENA_ENEMIES do
-				handleFrame(string.format('ArenaEnemyFrame%d', i))
+		if RUF.db.profile.Appearance.disableBlizzard.arena == true then
+			local id = unit:match('arena(%d)')
+			if(id) then
+				handleFrame('ArenaEnemyFrame' .. id)
+			else
+				for i = 1, MAX_ARENA_ENEMIES do
+					handleFrame(string.format('ArenaEnemyFrame%d', i))
+				end
 			end
+
+			-- Blizzard_ArenaUI should not be loaded
+			Arena_LoadUI = function() end
+			SetCVar('showArenaEnemyFrames', '0', 'SHOW_ARENA_ENEMY_FRAMES_TEXT')
 		end
-
-		-- Blizzard_ArenaUI should not be loaded
-		Arena_LoadUI = function() end
-		SetCVar('showArenaEnemyFrames', '0', 'SHOW_ARENA_ENEMY_FRAMES_TEXT')
 	elseif(unit:match('nameplate%d+$')) then
-		local frame = C_NamePlate.GetNamePlateForUnit(unit)
-		if(frame and frame.UnitFrame) then
-			if(not frame.UnitFrame.isHooked) then
-				frame.UnitFrame:HookScript('OnShow', insecureOnShow)
-				frame.UnitFrame.isHooked = true
-			end
+		if RUF.db.profile.Appearance.disableBlizzard.nameplate == true then
+			local frame = C_NamePlate.GetNamePlateForUnit(unit)
+			if(frame and frame.UnitFrame) then
+				if(not frame.UnitFrame.isHooked) then
+					frame.UnitFrame:HookScript('OnShow', insecureOnShow)
+					frame.UnitFrame.isHooked = true
+				end
 
-			handleFrame(frame.UnitFrame, true)
+				handleFrame(frame.UnitFrame, true)
+			end
 		end
 	end
 end
