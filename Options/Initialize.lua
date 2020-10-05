@@ -56,7 +56,6 @@ function RUF_Options:OnEnable()
 		LibDualSpec:EnhanceOptions(Profiles, self.db)
 	end
 	InterfaceAddOnsList_Update()
-	GuildRoster()
 
 	-- Profile Management
 	self.db.RegisterCallback(self, 'OnProfileChanged', 'RefreshConfig')
@@ -67,22 +66,8 @@ end
 function RUF_Options:OnInitialize()
 	self:SetEnabledState(false)
 	self.db = RUF.db -- Setup Saved Variables
-	--RUF:UpdateUnitSettings()
-
 
 	RUF_Options:TempOptions()
-	--[[RUF.db.char.GuildNum = GetNumGuildMembers()
-	RUF.db.char.Guild = {}
-	if RUF.db.char.GuildNum > 50 then RUF.db.char.GuildNum = 50 end
-	if RUF.db.char.GuildNum > 0 then
-		for i=1,RUF.db.char.GuildNum do
-			local n = GetGuildRosterInfo(i)
-			local c = select(11,GetGuildRosterInfo(i))
-			RUF.db.char.Guild[i] = {['Name'] = string.gsub(n, '-.*', ''), ['Class'] = c}
-		end
-	else
-		RUF.db.char.Guild[1] = {['Name'] = UnitName('player'), ['Class'] = PlayerClass}
-	end]]--
 end
 
 function RUF:UpdateOptions()

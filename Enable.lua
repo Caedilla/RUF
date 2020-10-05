@@ -227,6 +227,8 @@ local function VariantWarning()
 	windowAnimation:SetScript("OnFinished", function() window:Hide() end)
 end
 
+oUF.DisableBlizzard = function(unit) print(unit) end
+
 function RUF:OnEnable()
 	if RUF.Variant ~= WOW_PROJECT_ID then -- Since the Twitch client seems to so frequently download the wrong version.
 		VariantWarning()
@@ -281,9 +283,10 @@ function RUF:OnEnable()
 				RUF.db.profile.unit[profile].Frame.Position.AnchorTo,
 				RUF.db.profile.unit[profile].Frame.Position.x,
 				RUF.db.profile.unit[profile].Frame.Position.y)
-
 			if RUF.db.profile.unit[profile].Enabled == false then
 				_G['oUF_RUF_' .. frames[i]]:Disable()
+			else
+
 			end
 		end
 

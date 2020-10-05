@@ -60,6 +60,12 @@ function RUF:UpdateFramePosition(unitFrame,singleFrame,groupFrame,header,i,ancho
 	anchorTo = anchorTo or profileReference.AnchorTo
 	offsetX = offsetX or profileReference.x
 	offsetY = offsetY or profileReference.y
+	if not _G[anchorFrame] then
+		--print(unitFrame.frame)
+		--print(unitFrame:GetName())
+		--print("Couldn't find the frame that %s was supposed to be anchored to. The Frame anchor reset to UI Parent. You may want to move it."):format(unitFrame:GetName())
+		anchorFrame = 'UIParent'
+	end
 	if not i or i == -1 or i == 1 then
 		unitFrame:ClearAllPoints()
 		unitFrame:SetPoint(anchorFrom,anchorFrame,anchorTo,offsetX,offsetY)

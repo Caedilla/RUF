@@ -1,4 +1,6 @@
-local RUF = RUF or LibStub('AceAddon-3.0'):GetAddon('RUF')
+local RUF = LibStub("AceAddon-3.0"):NewAddon("RUF", "AceConsole-3.0", "AceComm-3.0", "AceEvent-3.0", "AceSerializer-3.0", "AceTimer-3.0", "NickTag-1.0")
+local _, ns = ...
+local oUF = ns.oUF
 local L = LibStub('AceLocale-3.0'):GetLocale('RUF')
 local ACD = LibStub('AceConfigDialog-3.0')
 local LSM = LibStub('LibSharedMedia-3.0')

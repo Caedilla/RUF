@@ -28,6 +28,9 @@ externals:
  Libs/NickTag-1.0: https://github.com/Tercioo/NickTag-1.0
  Libs/LibHealComm-4.0: https://repos.curseforge.com/wow/libhealcomm-4-0
 
+ move-folders:
+ Libs/oUF: Libs/oUF-Classic
+
 ignore:
  - Media/PSD
  - Release
