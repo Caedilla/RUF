@@ -44,6 +44,19 @@ globals = {
 	"CastingBarFrame",
 	"PetCastingBarFrame",
 
+	-- DisableBlizzard
+	"MAX_ARENA_ENEMIES",
+	"MAX_BOSS_FRAMES",
+	"MAX_PARTY_MEMBERS",
+	"PlayerFrame",
+	"PetFrame",
+	"TargetFrame",
+	"ComboFrame",
+	"FocusFrame",
+	"TargetofFocusFrame",
+	"TargetFrameToT",
+	"Arena_LoadUI",
+
 	-- Libraries
 	"LibStub",
 
