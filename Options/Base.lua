@@ -7,7 +7,7 @@ local oUF = ns.oUF
 local _, PlayerClass = UnitClass('player')
 
 function RUF_Options.MainOptions()
-	local Options = {
+	local options = {
 		type = 'group',
 		name = function(info)
 			return "RUF [|c5500DBBDRaeli's Unit Frames|r] r|c5500DBBD" .. RUF.db.global.Version ..'|r'
@@ -849,6 +849,14 @@ function RUF_Options.MainOptions()
 							},
 						},
 					},
+					disableBlizzard = {
+						name = L["Disable Blizzard Frames"],
+						type = 'group',
+						order = 7,
+						args = {
+
+						},
+					},
 				},
 			},
 			Unit = {
@@ -931,5 +939,24 @@ function RUF_Options.MainOptions()
 			},
 		},
 	}
-	return Options
+
+	--TODO: Only actual blizzard frames should be listed.
+	for k in pairs(RUF.frameList) do
+		for i = 1, #RUF.frameList[k] do
+			options.args.Appearance.args.disableBlizzard.args[RUF.frameList[k][i]] = {
+				name = L[string.lower(RUF.frameList[k][i])],
+				type = 'toggle',
+				get = function(info)
+					if not RUF.db.profile.Appearance.DisableBlizzard[RUF.frameList[k][i]] then
+						return false
+					end
+					return RUF.db.profile.Appearance.DisableBlizzard[RUF.frameList[k][i]]
+				end,
+				set = function(info, value)
+					RUF.db.profile.Appearance.DisableBlizzard[RUF.frameList[k][i]] = value
+				end,
+			}
+		end
+	end
+	return options
 end

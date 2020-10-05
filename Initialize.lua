@@ -14,6 +14,58 @@ local variant = WOW_PROJECT_MAINLINE
 variant = WOW_PROJECT_CLASSIC
 --@end-non-retail@]===]
 
+RUF.Client = 1
+if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+	RUF.Client = 2
+end
+
+local frames = {}
+local groupFrames = {}
+local headers = {}
+if RUF.Client == 1 then
+	frames = {
+		'Player',
+		'Pet',
+		'PetTarget',
+		'Focus',
+		'FocusTarget',
+		'Target',
+		'TargetTarget',
+		'TargetTargetTarget',
+	}
+	groupFrames = {
+		'Boss',
+		'BossTarget',
+		'Arena',
+		'ArenaTarget',
+		'PartyTarget',
+		'PartyPet',
+	}
+	headers = {
+		'Party',
+	}
+else
+	frames = {
+		'Player',
+		'Pet',
+		'PetTarget',
+		'Target',
+		'TargetTarget',
+		'TargetTargetTarget',
+	}
+	groupFrames = {
+		'PartyTarget',
+		'PartyPet',
+	}
+	headers = {
+		'Party',
+	}
+end
+RUF.frameList = {}
+RUF.frameList.frames = frames
+RUF.frameList.groupFrames = groupFrames
+RUF.frameList.headers = headers
+
 function RUF:OnInitialize()
 	RUF.Variant = variant or 1
 	if variant ~= WOW_PROJECT_ID then
@@ -21,20 +73,17 @@ function RUF:OnInitialize()
 	end
 
 	self.db = LibStub('AceDB-3.0'):New('RUFDB', RUF.Layout.cfg, true) -- Setup Saved Variables
-	RUF.Client = 1
-	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
-		-- Running classic client, set global variable so we run classic code alterations.
-		RUF.Client = 2
+
+	if RUF.Client == 1 then
+		local LibDualSpec = LibStub('LibDualSpec-1.0')
+		LibDualSpec:EnhanceDatabase(self.db, 'RUF')
+	else
 		local LibClassicDurations = LibStub('LibClassicDurations', true)
 		if LibClassicDurations then
 			LibClassicDurations:Register(RUF)
 		end
 	end
 
-	if RUF.Client == 1 then
-		local LibDualSpec = LibStub('LibDualSpec-1.0')
-		LibDualSpec:EnhanceDatabase(self.db, 'RUF')
-	end
 
 	-- Register /RUF command
 	self:RegisterChatCommand('RUF', 'ChatCommand')
@@ -84,53 +133,6 @@ function RUF:OnInitialize()
 			end
 		end
 	end
-
-	local frames = {}
-	local groupFrames = {}
-	local headers = {}
-	if RUF.Client == 1 then
-		frames = {
-			'Player',
-			'Pet',
-			'PetTarget',
-			'Focus',
-			'FocusTarget',
-			'Target',
-			'TargetTarget',
-			'TargetTargetTarget',
-		}
-		groupFrames = {
-			'Boss',
-			'BossTarget',
-			'Arena',
-			'ArenaTarget',
-			'PartyTarget',
-			'PartyPet',
-		}
-		headers = {
-			'Party',
-		}
-	else
-		frames = {
-			'Player',
-			'Pet',
-			'PetTarget',
-			'Target',
-			'TargetTarget',
-			'TargetTargetTarget',
-		}
-		groupFrames = {
-			'PartyTarget',
-			'PartyPet',
-		}
-		headers = {
-			'Party',
-		}
-	end
-	RUF.frameList = {}
-	RUF.frameList.frames = frames
-	RUF.frameList.groupFrames = groupFrames
-	RUF.frameList.headers = headers
 
 end
 

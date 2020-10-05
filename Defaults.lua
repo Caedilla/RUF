@@ -639,6 +639,9 @@ local cfg = {
 					},
 				},
 			},
+			DisableBlizzard = {
+
+			},
 		},
 		unit = {
 			["player"] = {

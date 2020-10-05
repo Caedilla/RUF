@@ -420,3 +420,4 @@ L["You have the %s version of RUF installed, but you are playing %s. Please inst
 L["Z Offset"] = true
 L["Rainbow Mode"] = true
 L["Enables rainbow RGB animations for this bar."] = true
+L["Disable Blizzard Frames"] = true
