@@ -1,8 +1,10 @@
-# RUF r241-Alpha
+# RUF r242-Alpha
 ### New
 * Added a Rainbow Mode option to the health bar settings of each unit frame. This turns health bars into a gradient cycling through RGB colours - if you have RGB peripherals from Corsair/Razer etc. you'll be familiar with this effect.
+* Added options to turn off Blizzard unit frames, rather than automatically disabling them all. Re-enabling them requires a UI Reload.
 
 ### Known Issues
+* Health bar colouring is wonky when you have the Use Bar Color option disabled for the background. If you have black healthbars, enable Use Bar Color in the background style section of the Health settings.
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.
 * Joining a group while test mode is enabled will show additional party units while remaining in test mode.
 * Test mode Auras display only buffs or debuffs the player currently has, rather than creating a bunch of temp icons.
