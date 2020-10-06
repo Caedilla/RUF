@@ -237,6 +237,8 @@ function RUF:GetRainbow()
 	return a,b,c,x,y,z
 end
 
+-- TODO: Sort build order and oUF-Classic remaining in live folder.
+
 local function AlphaAnimationDataUpdate(self)
 	local parent = self:GetParent()
 	self:GetParent().Alpha.current = parent:GetAlpha()
