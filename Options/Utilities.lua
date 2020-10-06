@@ -685,7 +685,14 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 			unitFrame:DisableElement('RangeCheck')
 		end
 
-		unitFrame:SetWidth(profileReference.Frame.Size.Width)
+		if unitFrame:GetWidth() ~= profileReference.Frame.Size.Width then
+			unitFrame:SetWidth(profileReference.Frame.Size.Width)
+			if unitFrame.ClassPower then
+				unitFrame.ClassPower.UpdateOptions(unitFrame.ClassPower)
+			elseif unitFrame.ClassicClassPower then
+				unitFrame.ClassPower.UpdateOptions(unitFrame.ClassPower)
+			end
+		end
 		unitFrame:SetHeight(profileReference.Frame.Size.Height)
 		if profileReference.Frame.Portrait.Enabled then
 			if profileReference.Frame.Portrait.Style == 3 then
