@@ -15,9 +15,11 @@ git:
 
 
 deploy:
-  provider: script
-  script:
-    - bash Release/release.sh live
-    - bash Release/release.sh classic
-  on:
-    tags: true
+  - provider: script
+    script: bash Release/release.sh live
+    on:
+      tags: true
+  - provider: script
+      script: bash Release/release.sh classic
+    on:
+      tags: true
