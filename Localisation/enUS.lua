@@ -421,3 +421,4 @@ L["Z Offset"] = true
 L["Rainbow Mode"] = true
 L["Enables rainbow RGB animations for this bar."] = true
 L["Disable Blizzard Frames"] = true
+L["Show in Arena"] = true

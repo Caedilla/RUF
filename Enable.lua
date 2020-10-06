@@ -320,6 +320,9 @@ function RUF:OnEnable()
 			if profile.showRaid then
 				showIn = 'party, raid'
 			end
+			if profile.showArena then
+				showIn = '[@arena1,exists]show;[@arena2,exists]show;[@arena3,exists]show;' .. showIn
+			end
 
 			local startingIndex = -3
 

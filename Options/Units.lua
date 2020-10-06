@@ -259,11 +259,38 @@ local function UnitGroup(singleFrame, groupFrame, header)
 							RUF:UpdateOptions()
 						end,
 					},
+					showArena = {
+						name = L["Show in Arena"],
+						type = 'toggle',
+						order = 0.004,
+						hidden = function()
+							if profileName == 'partytarget' then return false end
+							if profileName == 'partypet' then return false end
+							if header ~= 'none' then return false end
+							return true
+						end,
+						get = function(info)
+							return RUF.db.profile.unit[profileName].showArena
+						end,
+						set = function(info, value)
+							RUF.db.profile.unit[profileName].showArena = value
+							RUF:OptionsUpdateFrame(singleFrame, groupFrame, header)
+							if header ~= 'none' then
+								RUF.TogglePartyChildren('partypet')
+								RUF.TogglePartyChildren('partytarget')
+							elseif profileName == 'partytarget' then
+								RUF.TogglePartyChildren('partytarget')
+							elseif profileName == 'partypet' then
+								RUF.TogglePartyChildren('partypet')
+							end
+							RUF:UpdateOptions()
+						end,
+					},
 					showPlayer = {
 						name = L["Show Player"],
 						desc = L["Shows the player in the party frames."],
 						type = 'toggle',
-						order = 0.0041,
+						order = 0.0042,
 						hidden = function()
 							if profileName == 'party' then return false end
 							return true

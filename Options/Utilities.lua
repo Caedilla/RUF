@@ -785,9 +785,12 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 					RegisterAttributeDriver(headerFrame,'state-visibility',"hide")
 				else
 					unitFrame:Enable()
-					local showIn = '[group:party,nogroup:raid] show;hide'
+					local showIn = '[group:party,nogroup:raid]show;hide'
 					if profileReference.showRaid then
-						showIn = '[group:party,nogroup:raid] show;[group:raid] show;hide'
+						showIn = '[group:party,nogroup:raid]show;[group:raid]show;hide'
+					end
+					if profileReference.showArena then
+						showIn = '[@arena1,exists]show;[@arena2,exists]show;[@arena3,exists]show;' .. showIn
 					end
 					headerFrame.visibility = showIn
 					RegisterAttributeDriver(headerFrame,'state-visibility',headerFrame.visibility)
