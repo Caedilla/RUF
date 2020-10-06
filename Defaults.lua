@@ -4713,6 +4713,7 @@ local cfg = {
 					},
 				},
 				["showRaid"] = false,
+				["showArena"] = false,
 				["showPlayer"] = false,
 				["Buffs"] = {
 					["Icons"] = {
