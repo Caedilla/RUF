@@ -30,9 +30,6 @@ externals:
 ignore:
  - Media/PSD
  - Libs/oUF-Classic
- - Libs/LibClassicCasterino
- - Libs/LibClassicDurations
- - Libs/LibHealComm-4.0
  - Release
  - live.pkgmeta
  - classic.pkgmeta
