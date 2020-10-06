@@ -1,4 +1,4 @@
-# RUF r243-Alpha
+# RUF r244-Alpha
 ### New
 * Added a Rainbow Mode option to the health bar settings of each unit frame. This turns health bars into a gradient cycling through RGB colours - if you have RGB peripherals from Corsair/Razer etc. you'll be familiar with this effect.
 * Added options to turn off Blizzard unit frames, rather than automatically disabling them all. Re-enabling them requires a UI Reload.
