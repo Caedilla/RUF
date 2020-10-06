@@ -6,20 +6,13 @@ addons:
       - luarocks
 
 install: luarocks install --local luacheck
-
-script: /home/travis/.luarocks/bin/luacheck .
+script: /home/travis/.luarocks/bin/luacheck
 
 git:
   depth: 150
 
-
-
 deploy:
-  - provider: script
-    script: bash Release/release.sh live
-    on:
-      tags: true
-  - provider: script
-      script: bash Release/release.sh classic
-    on:
-      tags: true
+  provider: script
+  script: bash Release/release.sh
+  on:
+    tags: true
