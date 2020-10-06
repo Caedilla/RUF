@@ -157,6 +157,7 @@ function RUF.ClassUpdate(self, event, unit, powerType)
 
 	-- Override function of oUF's ClassPower Update function.
 	if not unit then return end
+	if not self.frame then return end
 	if not UnitIsUnit(unit, 'player') and (powerType == classPowerData[uClass].classPowerType or (unit == 'vehicle' and powerType == 'COMBO_POINTS')) then return end
 
 	local element = self.ClassPower
