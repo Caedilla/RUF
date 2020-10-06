@@ -31,11 +31,11 @@ function RUF.HealthUpdateColor(element, unit, cur, max)
 			RUF.rainbowTicker = C_Timer.NewTicker(0.001, RUF.UpdateRainbow)
 		end
 	else
-		element:SetStatusBarColor(r,g,b)
 		if element.rainbowTimer then
 			element.rainbowTimer:Cancel()
 			element.rainbowTimer = nil
 		end
+		element:SetStatusBarColor(r,g,b)
 	end
 
 	-- Update background
@@ -45,24 +45,6 @@ function RUF.HealthUpdateColor(element, unit, cur, max)
 		r, g, b = unpack(RUF.db.profile.Appearance.Bars.Health.Background.CustomColor)
 	end
 	element.__owner.Background.Base.Texture:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, a)
-
-	-- Why on earth would I do it this way? What was I thinking? This is why you comment code.
-	local Background = {}
-	if element.__owner.frame == 'player' then
-		Background = {
-			element.__owner.Background.Base.Texture,
-		}
-	else
-		Background = {
-			element.__owner.Background.Base.Texture,
-		}
-	end
-
-	for i = 1, #Background do
-		if Background[i] then
-			Background[i]:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Health.Background.Alpha)
-		end
-	end
 
 end
 
