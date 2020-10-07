@@ -1,8 +1,9 @@
-# RUF r245-Alpha
+# RUF r246-Alpha
 ### New
 * Added a Rainbow Mode option to the health bar settings of each unit frame. This turns health bars into a gradient cycling through RGB colours - if you have RGB peripherals from Corsair/Razer etc. you'll be familiar with this effect.
 * Added options to turn off Blizzard unit frames, rather than automatically disabling them all. Re-enabling them requires a UI Reload.
 * Added an option to display party frames in Arenas.
+* Added a global option to enable pixel perfect scaling of RUF's frames. Only affects RUF's frames rather than the entire UI scaling.
 
 ## Fixes
 * Class Power should correctly update width with the rest of the frame when adjusting the width of the player frame.
