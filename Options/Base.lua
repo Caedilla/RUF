@@ -49,10 +49,11 @@ function RUF_Options.MainOptions()
 						end,
 					},
 					TestModeShowUnits = {
-						name = '|cff00B2FA'..L["Show Unit in Test Mode."]..'|r',
+						name = '|cff00B2FA'..L["Show Unit in Test Mode"]..'|r',
 						desc = L["Displays the name of the unit frame in test mode."],
 						order = 2,
 						type = 'toggle',
+						width = 1.3,
 						get = function(info)
 							return RUF.db.global.TestModeShowUnits
 						end,

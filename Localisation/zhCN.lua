@@ -343,7 +343,7 @@ L["Show Others"] = "显示其他"
 L["Show Percentage at Max"] = "显示最高百分比"
 L["Show Player"] = "显示自己"
 L["Show the ++ for rare elites, + for elites etc."] = "显示++代表稀有精英，+代表精英等."
-L["Show Unit in Test Mode."] = "在测试模式下显示框体名称"
+L["Show Unit in Test Mode"] = "在测试模式下显示框体名称"
 L["Show Unlimited Duration"] = "显示无限时长"
 L["Shows all unitframes so you can easily configure them."] = "显示所有单元框体以便轻松配置它们"
 --[[Translation missing --]]

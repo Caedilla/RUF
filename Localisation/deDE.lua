@@ -468,7 +468,7 @@ L["Show Percentage at Max"] = "Show Percentage at Max"
 L["Show Player"] = "Zeige Player"
 --[[Translation missing --]]
 L["Show the ++ for rare elites, + for elites etc."] = "Show the ++ for rare elites, + for elites etc."
-L["Show Unit in Test Mode."] = "Zeige Einheit im Testmodus."
+L["Show Unit in Test Mode"] = "Zeige Einheit im Testmodus"
 L["Show Unlimited Duration"] = "Zeige Unbegrenzte Dauer"
 L["Shows all unitframes so you can easily configure them."] = "Zeigt alle Unitframes an, um zu konfigurieren."
 --[[Translation missing --]]

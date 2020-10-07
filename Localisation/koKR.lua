@@ -400,7 +400,7 @@ L["Show Others"] = "Show Others"
 L["Show Percentage at Max"] = "최대 백분율 보기"
 L["Show Player"] = "플레이어 보기"
 L["Show the ++ for rare elites, + for elites etc."] = "희귀정예는 ++, 정예는 +, 등으로 보기"
-L["Show Unit in Test Mode."] = "테스트 모드 시 유닛 보기"
+L["Show Unit in Test Mode"] = "테스트 모드 시 유닛 보기"
 L["Show Unlimited Duration"] = "제한없는 지속시간 보기"
 --[[Translation missing --]]
 L["Shows all unitframes so you can easily configure them."] = "Shows all unitframes so you can easily configure them."
