@@ -524,6 +524,7 @@ function RUF.PixelScale()
 			RUF.PixelScaleMonitor:UnregisterAllEvents()
 			RUF.PixelScaleMonitor:SetScript('OnEvent', nil)
 			RUF.PixelScaleMonitor = nil
+			_G["RUF_PetBattleFrameHider"]:SetScale(1)
 		end
 	end
 end
