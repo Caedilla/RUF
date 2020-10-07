@@ -237,8 +237,6 @@ function RUF:GetRainbow()
 	return a,b,c,x,y,z
 end
 
--- TODO: Sort build order and oUF-Classic remaining in live folder.
-
 local function AlphaAnimationDataUpdate(self)
 	local parent = self:GetParent()
 	self:GetParent().Alpha.current = parent:GetAlpha()
@@ -504,6 +502,30 @@ function RUF.RefreshTextElements(singleFrame, groupFrame, header, groupNum)
 		end
 	end
 
+end
+
+function RUF.PixelScale()
+	if RUF.db.global.pixelScale then
+		local windowHeight = select(2,GetPhysicalScreenSize())
+		local pixelSize = GetScreenHeight() / windowHeight
+		local compareHeight = (768 / (UIParent:GetEffectiveScale() * pixelSize)) - windowHeight
+		if math.abs(compareHeight) < 1 then
+			_G["RUF_PetBattleFrameHider"]:SetScale(pixelSize)
+		end
+		if not RUF.PixelScaleMonitor then
+			local monitor = CreateFrame('frame')
+			monitor:RegisterEvent('UI_SCALE_CHANGED')
+			monitor:RegisterEvent('DISPLAY_SIZE_CHANGED')
+			monitor:SetScript('OnEvent', RUF.PixelScale)
+			RUF.PixelScaleMonitor = monitor
+		end
+	else
+		if RUF.PixelScaleMonitor then
+			RUF.PixelScaleMonitor:UnregisterAllEvents()
+			RUF.PixelScaleMonitor:SetScript('OnEvent', nil)
+			RUF.PixelScaleMonitor = nil
+		end
+	end
 end
 
 function RUF.ToggleFrameLock(status)

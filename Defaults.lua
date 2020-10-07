@@ -2,6 +2,7 @@ local RUF = RUF or LibStub("AceAddon-3.0"):GetAddon("RUF")
 RUF.Layout = {}
 local cfg = {
 	global = {
+		pixelScale = true,
 		TestModeShowUnits = true,
 		Filters = {
 			Lists = {

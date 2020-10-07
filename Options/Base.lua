@@ -62,6 +62,19 @@ function RUF_Options.MainOptions()
 							RUF:TestMode()
 						end,
 					},
+					pixelScale = {
+						name = '|cff00B2FA'..L["Pixel Perfect scaling"]..'|r',
+						desc = L["Scales RUF to be pixel perfect if it isn't already. Only affects RUF, and only does anything if your UI already has pixel perfect scaling."],
+						order = 3,
+						type = 'toggle',
+						get = function(info)
+							return RUF.db.global.pixelScale
+						end,
+						set = function(info, value)
+							RUF.db.global.pixelScale = value
+							RUF:PixelScale()
+						end,
+					}
 				},
 			},
 			Appearance = {

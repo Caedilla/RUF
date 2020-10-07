@@ -481,4 +481,6 @@ function RUF:OnEnable()
 	end
 
 	RUF:UpdateAllUnitSettings()
+
+	RUF.PixelScale()
 end
