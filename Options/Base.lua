@@ -65,7 +65,7 @@ function RUF_Options.MainOptions()
 					},
 					pixelScale = {
 						name = '|cff00B2FA'..L["Pixel Perfect scaling"]..'|r',
-						desc = L["Scales RUF to be pixel perfect if it isn't already. Only affects RUF, and only does anything if your UI already has pixel perfect scaling."],
+						desc = L["Scales RUF to be pixel perfect if it isn't already. Only affects RUF."],
 						order = 3,
 						type = 'toggle',
 						get = function(info)

@@ -423,4 +423,4 @@ L["Enables rainbow RGB animations for this bar."] = true
 L["Disable Blizzard Frames"] = true
 L["Show in Arena"] = true
 L["Pixel Perfect scaling"] = true
-L["Scales RUF to be pixel perfect if it isn't already. Only affects RUF, and only does anything if your UI already has pixel perfect scaling."] = true
+L["Scales RUF to be pixel perfect if it isn't already. Only affects RUF."] = true
