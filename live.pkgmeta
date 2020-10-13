@@ -24,7 +24,6 @@ externals:
  Libs/LibSharedMedia-3.0: https://repos.wowace.com/wow/libsharedmedia-3-0/trunk/LibSharedMedia-3.0
  Libs/AceGUI-3.0-SharedMediaWidgets: https://repos.wowace.com/wow/ace-gui-3-0-shared-media-widgets/trunk/AceGUI-3.0-SharedMediaWidgets
  Libs/LibRangeCheck-2.0: https://repos.wowace.com/wow/librangecheck-2-0/trunk/LibRangeCheck-2.0
- Libs/NickTag-1.0: https://github.com/Tercioo/NickTag-1.0
  Libs/oUF: https://github.com/oUF-wow/oUF
 
 ignore:
