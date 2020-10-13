@@ -18,6 +18,7 @@
 #@end-non-retail@
 ## X-Credits: Icon Font created with IcoMoon.io using icons from Freepik & Plainicon, from www.flaticon.com
 ## X-Curse-Project-ID: 283389
+## X-WOWI-ID: 25717
 
 #@no-lib-strip@
 Embeds.xml
