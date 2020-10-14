@@ -9,6 +9,8 @@ local function DrawRainbow(element)
 end
 
 function RUF.HealthUpdateColor(element, unit, cur, max)
+	if not element then return end
+	if not element.__owner then return end
 	local r, g, b = RUF:GetBarColor(element, unit, 'Health', 'Health', cur)
 
 		-- Not ideal, gradient is applied to active portion of statusbar texture
