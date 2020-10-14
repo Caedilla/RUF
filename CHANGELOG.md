@@ -1,4 +1,4 @@
-# RUF r247-Release
+# RUF r248-Release
 ### Updates
 * Updated interface version for Shadowlands Pre-patch.
 
@@ -10,6 +10,7 @@
 * Added a global option to enable pixel perfect scaling of RUF's frames. Only affects RUF's frames rather than the entire UI scaling.
 
 ## Fixes
+* Fixed a lua error pressent in r247 relating to health.
 * Class Power should correctly update width with the rest of the frame when adjusting the width of the player frame.
 
 ### Known Issues
