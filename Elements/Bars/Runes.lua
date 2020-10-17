@@ -192,7 +192,7 @@ function RUF.RunesUpdate(self, event)
 	end
 end
 
-function RUF.RunesUpdateColor(element, runeID)
+function RUF.RunesUpdateColor(element, rune)
 	local r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	local spec = GetSpecialization() or 0
 	if spec == 1 then -- Blood
@@ -207,11 +207,22 @@ function RUF.RunesUpdateColor(element, runeID)
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
-	local ir = (r*((((runeID+colorAdd)*6.6667)/100)))
-	local ig = (g*((((runeID+colorAdd)*6.6667)/100)))
-	local ib = (b*((((runeID+colorAdd)*6.6667)/100)))
-	element[runeID]:SetStatusBarColor(ir, ig, ib)
-	element[runeID].Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+	if rune and type(rune) ~= 'number' then
+		local realElement = element.Runes
+		for i = 1,#realElement do
+			local ir = (r*((((i+colorAdd)*6.6667)/100)))
+			local ig = (g*((((i+colorAdd)*6.6667)/100)))
+			local ib = (b*((((i+colorAdd)*6.6667)/100)))
+			realElement[i]:SetStatusBarColor(ir, ig, ib)
+			realElement[i].Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+		end
+	else
+		local ir = (r*((((rune+colorAdd)*6.6667)/100)))
+		local ig = (g*((((rune+colorAdd)*6.6667)/100)))
+		local ib = (b*((((rune+colorAdd)*6.6667)/100)))
+		element[rune]:SetStatusBarColor(ir, ig, ib)
+		element[rune].Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+	end
 end
 
 function RUF.RunesUpdateOptions(self)
