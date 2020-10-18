@@ -1,21 +1,11 @@
-# RUF r248-Release
-### Updates
-* Updated interface version for Shadowlands Pre-patch.
-
-
-### New
-* Added a Rainbow Mode option to the health bar settings of each unit frame. This turns health bars into a gradient cycling through RGB colours - if you have RGB peripherals from Corsair/Razer etc. you'll be familiar with this effect.
-* Added options to turn off Blizzard unit frames, rather than automatically disabling them all. Re-enabling them requires a UI Reload.
-* Added an option to display party frames in Arenas.
-* Added a global option to enable pixel perfect scaling of RUF's frames. Only affects RUF's frames rather than the entire UI scaling.
-
+# RUF r249-Alpha
 ## Fixes
-* Fixed a lua error pressent in r247 relating to health.
-* Class Power should correctly update width with the rest of the frame when adjusting the width of the player frame.
+* Pixel Perfect Scaling should now apply regardless of if other addons change the UI scale.
+* Fixed a lua error when playing as a DK.
+* DK Runes should now properly update colours when changing specs again.
 
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.
 * Joining a group while test mode is enabled will show additional party units while remaining in test mode.
 * Test mode Auras display only buffs or debuffs the player currently has, rather than creating a bunch of temp icons.
 * There is no preview of frame aura highlighting in test mode.
-* Changing the width of the player frame will not correctly result in the class resource bar from updating width with it. A UI reload or toggling the class power bar on and off will fix this.
