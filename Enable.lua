@@ -466,6 +466,8 @@ function RUF:OnEnable()
 		end
 	end)
 
+	RUF.PixelScale()
+
 	if PlayerClass == 'DEATHKNIGHT' then
 		-- Cannot disable elements before the unit is actually spawned?
 		-- TODO Check other elements and make sure we do this properly for them too.
@@ -481,6 +483,4 @@ function RUF:OnEnable()
 	end
 
 	RUF:UpdateAllUnitSettings()
-
-	RUF.PixelScale()
 end

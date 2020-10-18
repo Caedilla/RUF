@@ -505,12 +505,15 @@ function RUF.RefreshTextElements(singleFrame, groupFrame, header, groupNum)
 end
 
 function RUF.PixelScale()
+	local RUFParent = _G["RUF_PetBattleFrameHider"]
 	if RUF.db.global.pixelScale then
-		local windowHeight = select(2,GetPhysicalScreenSize())
-		local pixelSize = GetScreenHeight() / windowHeight
-		local compareHeight = (768 / (UIParent:GetEffectiveScale() * pixelSize)) - windowHeight
+		RUFParent:SetIgnoreParentScale(true)
+		local screenHeight = select(2,GetPhysicalScreenSize())
+		local pixelSize = GetScreenHeight() / screenHeight
+		local gamePixelSize = UIParent:GetEffectiveScale() * pixelSize
+		local compareHeight = (768 / gamePixelSize) - screenHeight
 		if math.abs(compareHeight) < 1 then
-			_G["RUF_PetBattleFrameHider"]:SetScale(pixelSize)
+			RUFParent:SetScale(gamePixelSize)
 		end
 		if not RUF.PixelScaleMonitor then
 			local monitor = CreateFrame('frame')
@@ -520,11 +523,12 @@ function RUF.PixelScale()
 			RUF.PixelScaleMonitor = monitor
 		end
 	else
+		RUFParent:SetIgnoreParentScale(false)
+		RUFParent:SetScale(1)
 		if RUF.PixelScaleMonitor then
 			RUF.PixelScaleMonitor:UnregisterAllEvents()
 			RUF.PixelScaleMonitor:SetScript('OnEvent', nil)
 			RUF.PixelScaleMonitor = nil
-			_G["RUF_PetBattleFrameHider"]:SetScale(1)
 		end
 	end
 end
