@@ -26,7 +26,11 @@ local function onUpdate(self, elapsed)
 	elapsed = elapsed or 0
 	self.updateThrottle = self.updateThrottle or 0
 	self.updateThrottle = self.updateThrottle + elapsed
-	local limit = 1.75/GetFramerate() -- limit onUpdate rate for slightly better performance. 0.0125
+	local fps = GetFramerate()
+	local limit = 1/(fps*0.9)
+	if fps < 60 then
+		limit = 1
+	end
 	if self.updateThrottle < limit then return end
 	local add = self.updateThrottle
 	self.updateThrottle = 0
