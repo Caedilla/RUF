@@ -530,6 +530,7 @@ function RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,text)
 		currentText:SetFont(LSM:Fetch('font',profileReference.Font),profileReference.Size,profileReference.Outline)
 		currentText:SetShadowColor(0,0,0,profileReference.Shadow)
 		currentText:ClearAllPoints()
+		currentText:SetHeight(currentText:GetLineHeight())
 		local anchorFrame
 		if profileReference.Position.AnchorFrame == "Frame" then
 			anchorFrame = unitFrame
@@ -537,8 +538,10 @@ function RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,text)
 			anchorFrame = unitFrame.Text[profileReference.Position.AnchorFrame].String
 		end
 		if profileReference.CustomWidth then
-			currentText:SetWidth(profileReference.Width)
-			currentText:SetJustifyH(profileReference.Justify)
+			currentText:SetWordWrap(profileReference.WordWrap or false)
+			currentText:SetWidth(profileReference.Width or 0)
+			currentText:SetJustifyH(profileReference.Justify or 'CENTER')
+			currentText:SetHeight(0)
 		else
 			currentText:SetWidth(0)
 		end

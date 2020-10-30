@@ -120,6 +120,9 @@ function RUF.CreateTextArea(self, unit, textName)
 	Text.overrideUnit = true
 	Text.frequentUpdates = 0.5
 	local anchorPoint = profileReference.Position.Anchor
+	Text:SetWordWrap(false)
+	Text:SetHeight(Text:GetLineHeight()) -- Prevents FontString from collapsing to a 1x1 box when the string is empty, which our tags do to 'hide'
+
 	if profileReference.CustomWidth then
 		if not profileReference.Justify then -- Update existing texts to store this data.
 			if anchorPoint == 'RIGHT' or anchorPoint == 'TOPRIGHT' or anchorPoint == 'BOTTOMRIGHT' then
@@ -130,12 +133,12 @@ function RUF.CreateTextArea(self, unit, textName)
 				profileReference.Justify = 'CENTER'
 			end
 		end
-		local width = profileReference.Width or 300
-		Text:SetWidth(width)
+		Text:SetWordWrap(profileReference.WordWrap or false)
+		Text:SetWidth(profileReference.Width or 300)
 		Text:SetJustifyH(profileReference.Justify)
 	end
-	Text:SetWordWrap(false)
-	Text:SetHeight(Text:GetLineHeight()) -- Prevents FontString from collapsing to a 1x1 box when the string is empty, which our tags do to 'hide'
+
+
 
 	self.Text[textName].String = Text
 	self:Tag(Text, profileReference.Tag)

@@ -1237,12 +1237,18 @@ local function TextSettings(singleFrame, groupFrame, header)
 						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
+				customWidthSpacer = {
+					name = ' ',
+					type = 'description',
+					order = 20,
+					width = 'full',
+				},
 				customWidth = {
 					name = L["Custom Width"],
 					type = 'toggle',
-					desc = L["Toggle on to force text element to be set to a custom width. If the text is longer than the width, truncation will occur."],
-					order = 20,
-					hidden = true,
+					desc = L["Toggle on to force text element to be set to a custom width. If the text is longer than the width, truncation will occur unless word wrap is enabled."],
+					order = 20.01,
+					--hidden = true,
 					get = function(info)
 						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].CustomWidth
 					end,
@@ -1251,10 +1257,30 @@ local function TextSettings(singleFrame, groupFrame, header)
 						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
 					end,
 				},
+				textWrapSpacer = {
+					name = ' ',
+					type = 'description',
+					order = 20.1,
+					width = 'full',
+				},
+				textWrap = {
+					name = L["Word Wrap"],
+					type = 'toggle',
+					desc = L["Allows text to display on multiple lines when the width is too short to display everything on one line."],
+					order = 20.11,
+					hidden = function() return not RUF.db.profile.unit[profileName].Frame.Text[textList[i]].CustomWidth end,
+					get = function(info)
+						return RUF.db.profile.unit[profileName].Frame.Text[textList[i]].WordWrap
+					end,
+					set = function(info, value)
+						RUF.db.profile.unit[profileName].Frame.Text[textList[i]].WordWrap = value
+						RUF:OptionsUpdateTexts(singleFrame,groupFrame,header,textList[i])
+					end,
+				},
 				textWidth = {
 					name = L["Width"],
 					type = 'range',
-					order = 20.05,
+					order = 20.12,
 					min = 0,
 					max = 750,
 					softMin = 10,
@@ -1273,7 +1299,7 @@ local function TextSettings(singleFrame, groupFrame, header)
 				textJustify = {
 					name = L["Justify"],
 					type = 'select',
-					order = 20.1,
+					order = 20.13,
 					values = {
 						['LEFT'] = L["Left"],
 						['RIGHT'] = L["Right"],
