@@ -1,4 +1,4 @@
-# RUF r250-Alpha
+# RUF r251-Alpha
 ## New
 * Added Custom Width option for text elements, along with word wrapping and horizontal justification to allow multi-line text elements.
 
@@ -8,7 +8,7 @@
 * DK Runes should now properly update colours when changing specs again.
 
 ## Changes
-* Cast Bar animtaions should update more frequently for smoother changes.
+* Cast Bar animtaions should update more frequently for smoother changes. Fix from r250 - Should now also be smoother at low framerates too.
 
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.
