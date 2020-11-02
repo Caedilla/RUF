@@ -690,10 +690,10 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 
 		if unitFrame:GetWidth() ~= profileReference.Frame.Size.Width then
 			unitFrame:SetWidth(profileReference.Frame.Size.Width)
-			if unitFrame.ClassPower then
+			if unitFrame.ClassPower and RUF.Client == 1 then
 				unitFrame.ClassPower.UpdateOptions(unitFrame.ClassPower)
-			elseif unitFrame.ClassicClassPower then
-				unitFrame.ClassPower.UpdateOptions(unitFrame.ClassPower)
+			elseif unitFrame.ClassicClassPower and RUF.Client == 2 then
+				unitFrame.ClassicClassPower.UpdateOptions(unitFrame.ClassicClassPower)
 			end
 		end
 		unitFrame:SetHeight(profileReference.Frame.Size.Height)
