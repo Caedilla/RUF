@@ -5,6 +5,7 @@
 ## Fixes
 * Pixel Perfect Scaling should now apply regardless of if other addons change the UI scale.
 * Fixed a lua error when playing as a DK.
+* Fixed a lua error in classic relating to combo points.
 * DK Runes should now properly update colours when changing specs again.
 
 ## Changes
