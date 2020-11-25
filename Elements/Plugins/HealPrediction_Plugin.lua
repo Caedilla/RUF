@@ -190,20 +190,28 @@ local function Update(self, event, unit)
 	end
 
 	if(element.myBar) then
-		element.myBar:SetMinMaxValues(0, maxHealth)
-		element.myBar:SetValue(myIncomingHeal)
-		element.myBar:Show()
 		if not element.myBar.Enabled then
 			element.myBar:SetValue(0)
+		else
+			element.myBar:SetMinMaxValues(0, maxHealth)
+			element.myBar:SetValue(myIncomingHeal)
+			if myIncomingHeal > 0 then
+				element.myBar:SetAlpha(1)
+			end
+			element.myBar:Show()
 		end
 	end
 
 	if(element.otherBar) then
-		element.otherBar:SetMinMaxValues(0, maxHealth)
-		element.otherBar:SetValue(otherIncomingHeal)
-		element.otherBar:Show()
 		if not element.otherBar.Enabled then
 			element.otherBar:SetValue(0)
+		else
+			element.otherBar:SetMinMaxValues(0, maxHealth)
+			element.otherBar:SetValue(otherIncomingHeal)
+			if myIncomingHeal > 0 then
+				element.otherBar:SetAlpha(1)
+			end
+			element.otherBar:Show()
 		end
 	end
 
