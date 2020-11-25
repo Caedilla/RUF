@@ -1,13 +1,7 @@
-# RUF r252-Release
-## New
-* Added Custom Width option for text elements, along with word wrapping and horizontal justification to allow multi-line text elements.
+# RUF r253-Release
 ## Fixes
-* Pixel Perfect Scaling should now apply regardless of if other addons change the UI scale.
-* Fixed a lua error when playing as a DK.
-* Fixed a lua error in classic relating to combo points.
-* DK Runes should now properly update colours when changing specs again.
-## Changes
-* Cast Bar animtaions should update more frequently for smoother changes. Fix from r250 - Should now also be smoother at low framerates too.
+* Party health bars should properly animate again.
+* Heal Prediction should no longer show for a split second on target and target's target units when first targetting someone.
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.
 * Joining a group while test mode is enabled will show additional party units while remaining in test mode.
