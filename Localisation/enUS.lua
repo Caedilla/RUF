@@ -426,3 +426,6 @@ L["Pixel Perfect scaling"] = true
 L["Scales RUF to be pixel perfect if it isn't already. Only affects RUF."] = true
 L["Word Wrap"] = true
 L["Allows text to display on multiple lines when the width is too short to display everything on one line."] = true
+L["Nickname cannot be more than 14 characters long."] = true
+L["Nickname can only contain letters and spaces."] = true
+L["Nickname cannot have repeating spaces or more than two total spaces."] = true

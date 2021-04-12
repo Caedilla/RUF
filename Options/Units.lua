@@ -173,7 +173,7 @@ local function UnitGroup(singleFrame, groupFrame, header)
 							local trimString = string.match(value,"^%s*(.-)%s*$")
 							local valid = RUF:NickValidator(trimString)
 							if valid == true then return true end
-							if valid == 'Length' then return L["Nickname cannot be more than 12 characters long."] end
+							if valid == 'Length' then return L["Nickname cannot be more than 14 characters long."] end
 							if valid == 'Letters' then return L["Nickname can only contain letters and spaces."] end
 							if valid == 'Spaces' then return L["Nickname cannot have repeating spaces or more than two total spaces."] end
 						end,

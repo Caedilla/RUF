@@ -1,14 +1,10 @@
-Changes since tag v8.2.0.1.11
+lightweight tag c0c06e417e19c848bc31ebb18cc9596c8d349fc7 v9.0.2.14
+Author:	Tercio Jose <terciob19@hotmail.com>
+Date:	Tue Jan 19 12:00:33 2021 -0300
 
-commit b0de034ce387ae19426928956b88e3a8ae66d485
+commit c0c06e417e19c848bc31ebb18cc9596c8d349fc7
 Author: Tercio Jose <terciob19@hotmail.com>
-Date:   Mon Sep 9 12:00:09 2019 -0300
+Date:   Tue Jan 19 12:00:33 2021 -0300
 
-    Update README.md
-
-commit 1223144e353547bb6144226641bc36bb366fd711
-Author: Tercio Jose <terciob19@hotmail.com>
-Date:   Mon Sep 9 11:48:03 2019 -0300
-
-    Create Readme with install and use instructions
+    Added support to cyrillic and chinese alphabets
 

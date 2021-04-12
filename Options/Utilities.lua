@@ -19,7 +19,7 @@ local anchorSwaps = {
 }
 
 function RUF:NickValidator(string)
-	if (string.len(string) > 12) then
+	if (string.len(string) > 14) then
 		return 'Length'
 	end
 	if string.find(string,'%p') then
