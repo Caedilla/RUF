@@ -57,7 +57,7 @@ function RUF.SetIndicators(self, unit)
 	RUF.Indicators.Ready(self, unit)
 	RUF.Indicators.Rest(self, unit)
 	RUF.Indicators.TargetMark(self, unit)
-	if RUF.Client == 1 then -- Only load on Standard, not Classic
+	if RUF.IsRetail() then -- Only load on Standard, not Classic
 		 -- Required API functions do not exist in Classic
 		RUF.Indicators.Objective(self, unit) -- No UnitIsQuestBoss()
 		RUF.Indicators.Role(self, unit) -- No UnitGroupRolesAssigned()

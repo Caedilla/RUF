@@ -17,7 +17,7 @@ function RUF_Options.Bars()
 
 	local Powers = {}
 	local PowerDesc = {}
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		Powers = {
 			["ROGUE"] = _G['COMBO_POINTS'] or COMBO_POINTS,
 			["DEATHKNIGHT"] = _G['RUNES'] or RUNES,

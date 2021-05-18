@@ -27,7 +27,7 @@ function RUF_Options.Colors()
 		[4] = L["Trivial"],
 	}
 	local Powers = {}
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		Powers = {
 			[0] = _G['MANA'] or MANA,
 			[1] = _G['RAGE'] or RAGE,
@@ -234,7 +234,7 @@ function RUF_Options.Colors()
 			}
 		end
 	end
-	if RUF.Client == 2 then
+	if RUF.IsClassic() then
 		local i = 14
 		if Powers[i] then
 			Colors.args.powerColors.args[Powers[i]] = {

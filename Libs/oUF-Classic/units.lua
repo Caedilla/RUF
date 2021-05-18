@@ -176,10 +176,12 @@ function oUF:HandleUnit(object, unit)
 		object:RegisterEvent('UNIT_TARGETABLE_CHANGED', object.UpdateAllElements)
 	elseif(unit:match('arena%d?$')) then
 		object:RegisterEvent('ARENA_OPPONENT_UPDATE', object.UpdateAllElements, true)
-		object:RegisterEvent('ARENA_PREP_OPPONENT_SPECIALIZATIONS', updateArenaPreparation, true)
-		object:SetAttribute('oUF-enableArenaPrep', true)
+		if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+			object:RegisterEvent('ARENA_PREP_OPPONENT_SPECIALIZATIONS', updateArenaPreparation, true)
+			object:SetAttribute('oUF-enableArenaPrep', true)
+			object:HookScript('OnEvent', updateArenaPreparation)
+		end
 		-- the event handler only fires for visible frames, so we have to hook it for arena prep
-		object:HookScript('OnEvent', updateArenaPreparation)
 	elseif(unit:match('%w+target')) then
 		enableTargetUpdate(object)
 	end

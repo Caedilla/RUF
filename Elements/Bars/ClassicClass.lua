@@ -18,7 +18,7 @@ local classPowerData = {
 }
 
 function RUF.SetClassicClassBar(self, unit)
-	if RUF.Client == 1 then return end
+	if RUF.IsRetail() then return end
 	if not classPowerData[uClass] then return end
 	local classPowerBar = {}
 	local classPowerBorder = {}

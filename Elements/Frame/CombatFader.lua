@@ -105,7 +105,7 @@ end
 
 local function PLAYER_REGEN_DISABLED(self, event)
 	if event ~= 'PLAYER_REGEN_DISABLED' then return end
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		RUF:UnregisterEvent('UNIT_HEALTH', UNIT_HEALTH)
 	else
 		RUF:UnregisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH)
@@ -124,12 +124,12 @@ function RUF.CombatFaderRegister()
 	local profileReference = RUF.db.profile.Appearance.CombatFader
 	if profileReference.Enabled == true then
 		if profileReference.targetOverride == true then
-			if RUF.Client == 2 then
+			if RUF.IsClassic() then
 				RUF:RegisterEvent('UNIT_TARGET', RUF.CombatFaderUpdate, true)
 			end
 		end
 		if profileReference.damagedOverride == true then
-			if RUF.Client == 1 then
+			if RUF.IsRetail() then
 				RUF:RegisterEvent('UNIT_HEALTH', UNIT_HEALTH, true)
 			else
 				RUF:RegisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH, true)
@@ -142,7 +142,7 @@ function RUF.CombatFaderRegister()
 		RUF:RegisterEvent('PLAYER_ENTERING_WORLD', PLAYER_ENTERING_WORLD, true)
 		RUF.CombatFaderUpdate()
 	else
-		if RUF.Client == 1 then
+		if RUF.IsRetail() then
 			RUF:UnregisterEvent('UNIT_HEALTH', UNIT_HEALTH)
 		else
 			RUF:UnregisterEvent('UNIT_HEALTH_FREQUENT', UNIT_HEALTH)

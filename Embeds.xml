@@ -13,14 +13,8 @@
 <Include file="Libs\AceLocale-3.0\AceLocale-3.0.xml"/>
 <Include file="Libs\AceSerializer-3.0\AceSerializer-3.0.xml"/>
 <Include file="Libs\AceTimer-3.0\AceTimer-3.0.xml"/>
-<Include file="Libs\LibDualSpec-1.0\LibDualSpec-1.0.lua"/>
 <Include file="Libs\LibSharedMedia-3.0\lib.xml"/>
 <Include file="Libs\AceGUI-3.0-SharedMediaWidgets\widget.xml"/>
 <Include file="Libs\LibRangeCheck-2.0\LibRangeCheck-2.0.lua"/>
 <Include file="Libs\NickTag-1.0\NickTag-1.0.xml"/>
-<!--@non-retail@
-<Include file="Libs\LibClassicCasterino\LibClassicCasterino.lua"/>
-<Include file="Libs\LibClassicDurations\LibClassicDurations.xml"/>
-<Include file="Libs\LibHealComm-4.0\LibHealComm-4.0.lua"/>
-@end-non-retail@-->
 </Ui>

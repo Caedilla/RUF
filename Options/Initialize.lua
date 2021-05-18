@@ -50,7 +50,7 @@ function RUF_Options:OnEnable()
 	UnitOptions()
 
 	ACD:SetDefaultSize('RUF',995,690)
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		local LibDualSpec = LibStub('LibDualSpec-1.0')
 		LibDualSpec:EnhanceDatabase(self.db, 'RUF')
 		LibDualSpec:EnhanceOptions(Profiles, self.db)

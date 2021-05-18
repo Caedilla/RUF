@@ -174,7 +174,7 @@ function RUF.UpdateGlowBorder(self, event)
 	if event == 'UNIT_TARGET' then
 		self.GlowBorder:Hide() -- Immediately hide until we check the new unit.
 	end
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		RUF.Specialization = GetSpecialization()
 		if RUF.Specialization > 3 then -- Newly created characters have a spec of 5 as of 9.0.1
 			RUF.Specialization = 10

@@ -37,7 +37,7 @@ local anchorSwaps = {
 local function CopyList(singleFrame, groupFrame, header, section)
 	-- Generate list of units we can copy text elements from
 	local copyList = {}
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		copyList = {
 			['Player'] = L["player"],
 			['Pet'] = L["pet"],
@@ -73,7 +73,7 @@ local function CopyList(singleFrame, groupFrame, header, section)
 		if section == 'Cast' then
 			copyList = nil
 			copyList = {}
-			if RUF.Client == 1 then
+			if RUF.IsRetail() then
 				copyList = {
 					['Player'] = L["player"],
 					--['Pet'] = L["pet"],
@@ -684,7 +684,7 @@ local function BarSettings(singleFrame, groupFrame, header)
 	local Powers = {}
 	local PowerDesc = {}
 
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		Powers = {
 			["ROGUE"] = _G['COMBO_POINTS'] or COMBO_POINTS,
 			["DEATHKNIGHT"] = _G['RUNES'] or RUNES,
@@ -1324,12 +1324,12 @@ end
 
 local function HideIndicatorOptions(profileName,indicator)
 	if indicator == 'Honor' then return true end -- Not implemented
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		if indicator == 'LootMaster' or indicator == 'PetHappiness' then
 			return true
 		end
 	end
-	if RUF.Client == 2 then
+	if RUF.IsClassic() then
 		if indicator == 'Role' or indicator == 'Objective' or indicator == 'Honor' then
 			return true
 		end
@@ -2475,7 +2475,7 @@ local function CastBarSettings(singleFrame, groupFrame, header)
 		hidden = function()
 			if profileName == 'player' or profileName == 'target' then
 				return false
-			elseif RUF.Client == 1 and profileName == 'focus' then
+			elseif RUF.IsRetail() and profileName == 'focus' then
 				return false
 			else
 				return true

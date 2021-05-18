@@ -9,20 +9,70 @@ local includedLayouts = {
 	"Raeli's Layout",
 }
 
-local variant = WOW_PROJECT_MAINLINE
---[===[@non-retail@
-variant = WOW_PROJECT_CLASSIC
---@end-non-retail@]===]
-
-RUF.Client = 1
-if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
-	RUF.Client = 2
+local versionFromToc = GetAddOnMetadata('RUF','Version')
+local versionFromPackager = "@project-version@"
+local isDev = false
+if versionFromToc == "@project-version@" then
+	versionFromToc = 'Dev'
+	isDev = true
 end
+
+local addonVariant = WOW_PROJECT_MAINLINE
+--[===[@non-version-retail@
+--@version-classic@
+addonVariant = WOW_PROJECT_CLASSIC
+--@end-version-classic@
+--@version-bcc@
+intendedWoWProject = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+--@end-version-bcc@
+--@end-non-version-retail@]===]
+RUF.addonVariant = addonVariant
+
+function RUF.IsRetail()
+	return WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+end
+
+function RUF.IsClassic()
+	return WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
+end
+
+function RUF.IsBCC()
+	return WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+end
+
+function RUF.GetClientVariant()
+	if RUF.IsRetail() then return WOW_PROJECT_MAINLINE
+	elseif RUF.IsClassic() then return WOW_PROJECT_CLASSIC
+	elseif RUF.IsBCC() then return WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+	end
+end
+
+function RUF.IsCorrectVersion()
+	return isDev or addonVariant == WOW_PROJECT_ID
+end
+
+
 
 local frames = {}
 local groupFrames = {}
 local headers = {}
-if RUF.Client == 1 then
+if RUF.IsClassic() then
+	frames = {
+		'Player',
+		'Pet',
+		'PetTarget',
+		'Target',
+		'TargetTarget',
+		'TargetTargetTarget',
+	}
+	groupFrames = {
+		'PartyTarget',
+		'PartyPet',
+	}
+	headers = {
+		'Party',
+	}
+else
 	frames = {
 		'Player',
 		'Pet',
@@ -44,22 +94,6 @@ if RUF.Client == 1 then
 	headers = {
 		'Party',
 	}
-else
-	frames = {
-		'Player',
-		'Pet',
-		'PetTarget',
-		'Target',
-		'TargetTarget',
-		'TargetTargetTarget',
-	}
-	groupFrames = {
-		'PartyTarget',
-		'PartyPet',
-	}
-	headers = {
-		'Party',
-	}
 end
 RUF.frameList = {}
 RUF.frameList.frames = frames
@@ -67,14 +101,9 @@ RUF.frameList.groupFrames = groupFrames
 RUF.frameList.headers = headers
 
 function RUF:OnInitialize()
-	RUF.Variant = variant or 1
-	if variant ~= WOW_PROJECT_ID then
-		return
-	end
-
 	self.db = LibStub('AceDB-3.0'):New('RUFDB', RUF.Layout.cfg, true) -- Setup Saved Variables
 
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		local LibDualSpec = LibStub('LibDualSpec-1.0')
 		LibDualSpec:EnhanceDatabase(self.db, 'RUF')
 	else
@@ -83,7 +112,6 @@ function RUF:OnInitialize()
 			LibClassicDurations:Register(RUF)
 		end
 	end
-
 
 	-- Register /RUF command
 	self:RegisterChatCommand('RUF', 'ChatCommand')

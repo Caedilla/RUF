@@ -3,7 +3,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 local _, ns = ...
 local oUF = ns.oUF
 
-if RUF.Client == 1 then
+if RUF.IsRetail() then
 	local function GetCurrentSpec()
 		RUF.Specialization = GetSpecialization()
 	end

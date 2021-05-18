@@ -29,7 +29,7 @@ This element updates by changing the texture.
 local _, ns = ...
 local oUF = ns.oUF
 
-if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then return end
+if WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE then return end
 
 -- sourced from FrameXML/CompactUnitFrame.lua
 local ICONS = {

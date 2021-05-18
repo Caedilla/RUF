@@ -429,3 +429,4 @@ L["Allows text to display on multiple lines when the width is too short to displ
 L["Nickname cannot be more than 14 characters long."] = true
 L["Nickname can only contain letters and spaces."] = true
 L["Nickname cannot have repeating spaces or more than two total spaces."] = true
+L["TBC Classic"] = true

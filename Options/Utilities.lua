@@ -690,9 +690,9 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 
 		if unitFrame:GetWidth() ~= profileReference.Frame.Size.Width then
 			unitFrame:SetWidth(profileReference.Frame.Size.Width)
-			if unitFrame.ClassPower and RUF.Client == 1 then
+			if unitFrame.ClassPower and RUF.IsRetail() then
 				unitFrame.ClassPower.UpdateOptions(unitFrame.ClassPower)
-			elseif unitFrame.ClassicClassPower and RUF.Client == 2 then
+			elseif unitFrame.ClassicClassPower and RUF.IsClassic() then
 				unitFrame.ClassicClassPower.UpdateOptions(unitFrame.ClassicClassPower)
 			end
 		end
@@ -838,7 +838,7 @@ function RUF:OptionsUpdateAllBars()
 			RUF:OptionsUpdateBars(frames[i],nil,nil,'Health')
 			RUF:OptionsUpdateBars(frames[i],nil,nil,'Power')
 			RUF:OptionsUpdateBars(frames[i],nil,nil,'HealPrediction')
-			if RUF.Client == 1 then
+			if RUF.IsRetail() then
 				RUF:OptionsUpdateBars(frames[i],nil,nil,'Absorb')
 				if i == 1 then
 					RUF:OptionsUpdateBars(frames[i],nil,nil,'Class')
@@ -854,7 +854,7 @@ function RUF:OptionsUpdateAllBars()
 		RUF:OptionsUpdateBars(nil,groupFrames[i],nil,'Health')
 		RUF:OptionsUpdateBars(nil,groupFrames[i],nil,'Power')
 		RUF:OptionsUpdateBars(nil,groupFrames[i],nil,'HealPrediction')
-		if RUF.Client == 1 then
+		if RUF.IsRetail() then
 			RUF:OptionsUpdateBars(nil,groupFrames[i],nil,'Absorb')
 		end
 	end
@@ -862,7 +862,7 @@ function RUF:OptionsUpdateAllBars()
 		RUF:OptionsUpdateBars(nil,nil,headers[i],'Health')
 		RUF:OptionsUpdateBars(nil,nil,headers[i],'Power')
 		RUF:OptionsUpdateBars(nil,nil,headers[i],'HealPrediction')
-		if RUF.Client == 1 then
+		if RUF.IsRetail() then
 			RUF:OptionsUpdateBars(nil,nil,headers[i],'Absorb')
 		end
 	end
@@ -899,7 +899,7 @@ function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
 
 		local originalBar = bar
 		if bar == 'Class' then
-			if RUF.Client == 1 then
+			if RUF.IsRetail() then
 				if PlayerClass == 'DEATHKNIGHT' then
 					bar = 'Runes'
 				elseif PlayerClass == 'PRIEST' or PlayerClass == 'SHAMAN' then
@@ -916,12 +916,12 @@ function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
 		unitFrame[bar]:ForceUpdate()
 		if bar then
 			unitFrame[bar].UpdateOptions(unitFrame[bar])
-			if PlayerClass == 'MONK' and RUF.Client == 1 then
+			if PlayerClass == 'MONK' and RUF.IsRetail() then
 				if unitFrame['Stagger'] then
 					unitFrame['Stagger'].UpdateOptions(unitFrame['Stagger'])
 				end
 			end
-			if PlayerClass == 'DRUID' and RUF.Client == 1 then
+			if PlayerClass == 'DRUID' and RUF.IsRetail() then
 				if unitFrame['FakeClassPower'] then
 					unitFrame['FakeClassPower'].UpdateOptions(unitFrame['FakeClassPower'])
 				end
@@ -947,20 +947,20 @@ function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
 				if unitFrame[bar] then
 					unitFrame[bar]:ForceUpdate()
 				end
-				if PlayerClass == 'MONK' and RUF.Client == 1 then
+				if PlayerClass == 'MONK' and RUF.IsRetail() then
 					unitFrame:EnableElement('Stagger')
 					unitFrame['Stagger']:ForceUpdate()
 				end
-				if PlayerClass == 'DRUID' and RUF.Client == 1 then
+				if PlayerClass == 'DRUID' and RUF.IsRetail() then
 					unitFrame:EnableElement('FakeClassPower')
 					unitFrame['FakeClassPower']:ForceUpdate()
 				end
 			else
 				unitFrame:DisableElement(bar)
-				if PlayerClass == 'MONK' and RUF.Client == 1 then
+				if PlayerClass == 'MONK' and RUF.IsRetail() then
 					unitFrame:DisableElement('Stagger')
 				end
-				if PlayerClass == 'DRUID' and RUF.Client == 1 then
+				if PlayerClass == 'DRUID' and RUF.IsRetail() then
 					unitFrame:DisableElement('FakeClassPower')
 				end
 			end

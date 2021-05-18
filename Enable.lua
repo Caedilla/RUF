@@ -42,7 +42,7 @@ local function SetupFrames(self, unit)
 	self:SetFrameLevel(5)
 
 	-- Set Colors
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		SetClassColors()
 	end
 
@@ -89,7 +89,7 @@ local function SetupFrames(self, unit)
 	RUF.SetPowerBar(self, unit)
 	self.Power.Override = RUF.PowerUpdate
 
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		-- Prevents trying to load these elements for Classic since they don't exist in Classic.
 		RUF.SetAbsorbBar(self, unit)
 		self.Absorb.Override = RUF.AbsorbUpdate
@@ -118,7 +118,7 @@ local function SetupFrames(self, unit)
 	if unit == 'player' or unit == 'target' then
 		RUF.SetCastBar(self, unit)
 	end
-	if RUF.Client == 1 and unit == 'focus' then
+	if RUF.IsRetail() and unit == 'focus' then
 		RUF.SetCastBar(self, unit)
 	end
 
@@ -160,7 +160,7 @@ local function SetupFrames(self, unit)
 	-- Indicators
 	RUF.SetIndicators(self, unit)
 
-	if RUF.Client == 1 then
+	if RUF.IsRetail() then
 		self:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED', RUF.SetBarLocation, true)
 		self:RegisterEvent('PLAYER_ENTERING_WORLD', RUF.SetBarLocation, true)
 	end
@@ -184,19 +184,13 @@ local function SetupFrames(self, unit)
 end
 
 local function VariantWarning()
-	local variantString, clientString
-	if RUF.variant == WOW_PROJECT_CLASSIC then
-		variantString = L["Classic"]
-	else
-		variantString = L["Retail"]
-	end
-	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
-		clientString = L["Classic"]
-	else
-		clientString = L["Retail"]
-	end
+	local projectNames = {
+		[WOW_PROJECT_MAINLINE] = L["Retail"],
+		[WOW_PROJECT_CLASSIC] = L["Classic"],
+		[WOW_PROJECT_BURNING_CRUSADE_CLASSIC] = L["TBC Classic"]
+	}
 
-	local message = L["You have the %s version of RUF installed, but you are playing %s. Please install a compatible version."]:format(variantString, clientString)
+	local message = L["You have the %s version of RUF installed, but you are playing %s. Please install a compatible version."]:format(projectNames[RUF.GetClientVariant()], projectNames[WOW_PROJECT_ID])
 	local messagePrefix = "|c5500DBBDRaeli's Unit Frames|r: "
 
 	C_Timer.After(10, function() ChatFrame1:AddMessage(messagePrefix .. message) end)
@@ -228,7 +222,7 @@ local function VariantWarning()
 end
 
 function RUF:OnEnable()
-	if RUF.Variant ~= WOW_PROJECT_ID then -- Since the Twitch client seems to so frequently download the wrong version.
+	if not RUF.IsCorrectVersion() then -- Since the Twitch client seems to so frequently download the wrong version.
 		VariantWarning()
 		return
 	end
@@ -290,7 +284,7 @@ function RUF:OnEnable()
 
 		-- Spawn Headers
 		for i = 1, #headers do
-			for j = 4, 1 do
+			for j = 4, 1, -1 do
 				if _G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j] then
 					if _G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j]:GetObjectType() ~= 'Button' then
 						_G['oUF_RUF_' .. headers[i] .. 'UnitButton' .. j] = nil

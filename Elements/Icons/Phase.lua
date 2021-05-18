@@ -16,7 +16,7 @@ local function Update(self, event)
 		self:EnableElement(elementName..'Indicator')
 
 		local isInSamePhase
-		if RUF.Client == 1 then
+		if RUF.IsRetail() then
 			if UnitPlayerOrPetInParty(self.unit) or UnitInRaid(self.unit) then
 				if UnitPhaseReason(self.unit) then
 					isInSamePhase = false

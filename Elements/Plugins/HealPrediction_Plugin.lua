@@ -103,7 +103,7 @@ local function Update(self, event, unit)
 
 	local myIncomingHeal, allIncomingHeal, absorb, healAbsorb, health, maxHealth, otherIncomingHeal, hasOverHealAbsorb, hasOverAbsorb
 
-	if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
+	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
 		myIncomingHeal = UnitGetIncomingHeals(unit, 'player') or 0
 		allIncomingHeal = UnitGetIncomingHeals(unit) or 0
 		absorb = UnitGetTotalAbsorbs(unit) or 0
@@ -140,7 +140,7 @@ local function Update(self, event, unit)
 			absorb = math.max(0, maxHealth - health - allIncomingHeal)
 		end
 	end
-	if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+	if WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE then
 		local HealComm = LibStub('LibHealComm-4.0', true)
 		local unitGUID = UnitGUID(unit)
 		local lookAhead = element.lookAhead or 5
@@ -289,7 +289,13 @@ local function Enable(self)
 		element.__owner = self
 		element.ForceUpdate = ForceUpdate
 
-		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+		if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+			self:RegisterEvent('UNIT_HEALTH', Path)
+			self:RegisterEvent('UNIT_HEAL_PREDICTION', Path)
+			self:RegisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
+			self:RegisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
+			self:RegisterEvent('UNIT_MAXHEALTH', Path)
+		else
 			if element.frequentUpdates then
 				self:RegisterEvent('UNIT_HEALTH_FREQUENT', Path)
 			else
@@ -304,13 +310,6 @@ local function Enable(self)
 			HealComm.RegisterCallback(self, 'HealComm_HealUpdated', 'HealCommUpdate')
 			HealComm.RegisterCallback(self, 'HealComm_HealDelayed', 'HealCommUpdate')
 			HealComm.RegisterCallback(self, 'HealComm_HealStopped', 'HealCommUpdate')
-
-		else
-			self:RegisterEvent('UNIT_HEALTH', Path)
-			self:RegisterEvent('UNIT_HEAL_PREDICTION', Path)
-			self:RegisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
-			self:RegisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
-			self:RegisterEvent('UNIT_MAXHEALTH', Path)
 		end
 
 
@@ -391,7 +390,13 @@ local function Disable(self)
 			element.overHealAbsorb:Hide()
 		end
 
-		if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+		if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+			self:UnregisterEvent('UNIT_HEALTH', Path)
+			self:UnregisterEvent('UNIT_MAXHEALTH', Path)
+			self:UnregisterEvent('UNIT_HEAL_PREDICTION', Path)
+			self:UnregisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
+			self:UnregisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
+		else
 			self:UnregisterEvent('UNIT_HEALTH_FREQUENT', Path)
 			self:UnregisterEvent('UNIT_HEALTH', Path)
 			self:UnregisterEvent('UNIT_MAXHEALTH', Path)
@@ -401,12 +406,6 @@ local function Disable(self)
 			HealComm.UnregisterCallback(self, 'HealComm_HealUpdated')
 			HealComm.UnregisterCallback(self, 'HealComm_HealDelayed')
 			HealComm.UnregisterCallback(self, 'HealComm_HealStopped')
-		else
-			self:UnregisterEvent('UNIT_HEALTH', Path)
-			self:UnregisterEvent('UNIT_MAXHEALTH', Path)
-			self:UnregisterEvent('UNIT_HEAL_PREDICTION', Path)
-			self:UnregisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
-			self:UnregisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
 		end
 	end
 end

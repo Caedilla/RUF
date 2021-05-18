@@ -18,7 +18,7 @@ local function Update(self, event)
 		self:EnableElement(elementName..'Indicator')
 		local unit = self.unit
 		local unitVehicleUI = false
-		if RUF.Client == 1 then
+		if RUF.IsRetail() then
 			unitVehicleUI = UnitHasVehicleUI(unit)
 		end
 		if UnitInRaid(unit) and not unitVehicleUI then

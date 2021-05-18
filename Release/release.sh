@@ -1,2 +1,3 @@
-curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh| bash -s -- -p 283389 -w 25717 -g 1.13.5 -m classic.pkgmeta
-curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh| bash -s -- -p 283389 -w 25717 -g 9.0.1 -m live.pkgmeta
+curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh| bash -s -- -p 283389 -w 25717 -g classic -m classic.pkgmeta
+curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh| bash -s -- -p 283389 -w 25717 -g bcc -m classic.pkgmeta
+curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh| bash -s -- -p 283389 -w 25717 -g retail -m live.pkgmeta
