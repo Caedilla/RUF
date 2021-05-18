@@ -1,5 +1,7 @@
-# RUF r256-Alpha
+# RUF r257-Alpha
+* Add support for TBCC
 * Temporarily include modified LibRangeCheck-2.0 with TBCC version of RUF.
+* Various Bug Fixes
 
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.

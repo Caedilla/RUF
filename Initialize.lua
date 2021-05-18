@@ -12,10 +12,13 @@ local includedLayouts = {
 local versionFromToc = GetAddOnMetadata('RUF','Version')
 local versionFromPackager = "@project-version@"
 local isDev = false
+
+--@debug@
 if versionFromToc == "@project-version@" then
 	versionFromToc = 'Dev'
 	isDev = true
 end
+--@end-debug@
 
 local addonVariant = WOW_PROJECT_MAINLINE
 --[===[@non-version-retail@
@@ -23,7 +26,7 @@ local addonVariant = WOW_PROJECT_MAINLINE
 addonVariant = WOW_PROJECT_CLASSIC
 --@end-version-classic@
 --@version-bcc@
-intendedWoWProject = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+addonVariant = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 --@end-version-bcc@
 --@end-non-version-retail@]===]
 RUF.addonVariant = addonVariant
@@ -50,8 +53,6 @@ end
 function RUF.IsCorrectVersion()
 	return isDev or addonVariant == WOW_PROJECT_ID
 end
-
-
 
 local frames = {}
 local groupFrames = {}
@@ -101,6 +102,10 @@ RUF.frameList.groupFrames = groupFrames
 RUF.frameList.headers = headers
 
 function RUF:OnInitialize()
+	if not RUF.IsCorrectVersion() then
+		return
+	end
+
 	self.db = LibStub('AceDB-3.0'):New('RUFDB', RUF.Layout.cfg, true) -- Setup Saved Variables
 
 	if RUF.IsRetail() then
