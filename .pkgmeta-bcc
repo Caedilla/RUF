@@ -23,12 +23,16 @@ externals:
  Libs/LibDualSpec-1.0: https://repos.wowace.com/wow/libdualspec-1-0
  Libs/LibSharedMedia-3.0: https://repos.wowace.com/wow/libsharedmedia-3-0/trunk/LibSharedMedia-3.0
  Libs/AceGUI-3.0-SharedMediaWidgets: https://repos.wowace.com/wow/ace-gui-3-0-shared-media-widgets/trunk/AceGUI-3.0-SharedMediaWidgets
- Libs/LibRangeCheck-2.0: https://repos.wowace.com/wow/librangecheck-2-0/trunk/LibRangeCheck-2.0
- Libs/oUF: https://github.com/oUF-wow/oUF
+ Libs/LibClassicDurations: https://repos.curseforge.com/wow/libclassicdurations
+ Libs/LibClassicCasterino: https://github.com/rgd87/LibClassicCasterino
+ Libs/LibHealComm-4.0: https://repos.curseforge.com/wow/libhealcomm-4-0
+
+move-folders:
+ RUF/Libs/oUF-Classic: RUF/Libs/oUF
+ RUF/Libs/LibRangeCheckBCCTemp: RUF/Libs/LibRangeCheck-2.0
 
 ignore:
  - Media/PSD
- - Libs/oUF-Classic
  - Release
  - live.pkgmeta
  - classic.pkgmeta
