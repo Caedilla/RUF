@@ -28,7 +28,8 @@ externals:
 
 ignore:
  - Media/PSD
- - Libs
+ - Libs/oUF-Classic
+ - Libs/LibRangeCheck-2.0
  - Release
  - live.pkgmeta
  - classic.pkgmeta

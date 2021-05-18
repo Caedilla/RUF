@@ -33,7 +33,7 @@ move-folders:
 
 ignore:
  - Media/PSD
- - Libs
+ - Libs/LibRangeCheck-2.0
  - Release
  - live.pkgmeta
  - classic.pkgmeta

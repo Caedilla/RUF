@@ -1,6 +1,7 @@
-# RUF r257-Alpha
+# RUF r258-Alpha
 * Add support for TBCC
 * Temporarily include modified LibRangeCheck-2.0 with TBCC version of RUF.
+* Reinclude NickTag-1.0 properly on classic / retail
 * Various Bug Fixes
 
 ### Known Issues
