@@ -261,6 +261,8 @@ function RUF.SetBuffs(self, unit)
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.x,
 		RUF.db.profile.unit[unit].Buffs.Icons.Position.y)
 
+	Buffs:SetFrameStrata('MEDIUM')
+
 	Buffs:SetSize((RUF.db.profile.unit[unit].Buffs.Icons.Width*RUF.db.profile.unit[unit].Buffs.Icons.Columns), (RUF.db.profile.unit[unit].Buffs.Icons.Height*RUF.db.profile.unit[unit].Buffs.Icons.Rows) + 2)
 	Buffs.size = RUF.db.profile.unit[unit].Buffs.Icons.Width
 	Buffs.width = RUF.db.profile.unit[unit].Buffs.Icons.Width
