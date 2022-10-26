@@ -613,7 +613,8 @@ local function Enable(self, unit)
 		element.holdTime = 0
 		element:SetScript('OnUpdate', element.OnUpdate or onUpdate)
 
-		if(self.unit == 'player') then
+		-- TODO Fix this for DF
+		--[[if(self.unit == 'player') then
 			CastingBarFrame:UnregisterAllEvents()
 			CastingBarFrame.Show = CastingBarFrame.Hide
 			CastingBarFrame:Hide()
@@ -621,7 +622,7 @@ local function Enable(self, unit)
 			PetCastingBarFrame:UnregisterAllEvents()
 			PetCastingBarFrame.Show = PetCastingBarFrame.Hide
 			PetCastingBarFrame:Hide()
-		end
+		end]]--
 
 		if(element:IsObjectType('StatusBar') and not element:GetStatusBarTexture()) then
 			element:SetStatusBarTexture([[Interface\TargetingFrame\UI-StatusBar]])

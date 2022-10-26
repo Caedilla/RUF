@@ -126,7 +126,8 @@ function RUF.SetFramePortrait(self, unit)
 	dirG = 1
 	dirB = 1
 
-	Portrait:SetLight(true, false, dirX, dirY, dirZ, ambStr, ambR, ambG, ambB, dirStr, dirR, dirG, dirB)
+	-- TODO Fix this for DF
+	--Portrait:SetLight(true, false, dirX, dirY, dirZ, ambStr, ambR, ambG, ambB, dirStr, dirR, dirG, dirB)
 	Portrait:SetFrameLevel(11)
 
 	-- Border
