@@ -1,14 +1,6 @@
 language: minimal
 warnings_are_errors: false
 
-addons:
-  apt:
-    packages:
-      - luarocks
-
-install: luarocks install --local luacheck
-script: /home/travis/.luarocks/bin/luacheck .
-
 git:
   depth: 150
 
