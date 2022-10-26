@@ -1,4 +1,5 @@
 language: minimal
+warnings_are_errors: false
 
 addons:
   apt:
