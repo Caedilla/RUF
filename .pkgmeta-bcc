@@ -1,7 +1,5 @@
 package-as: RUF
 
-enable-toc-creation: yes
-
 manual-changelog:
  filename: CHANGELOG.md
  markup-type: markdown
