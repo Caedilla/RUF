@@ -4,7 +4,7 @@ manual-changelog:
  filename: CHANGELOG.md
  markup-type: markdown
 
-enable-nolib-creation: yes
+enable-nolib-creation: no
 
 externals:
  Libs/LibStub-1.0: https://repos.wowace.com/wow/libstub/trunk
