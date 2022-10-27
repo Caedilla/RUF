@@ -26,19 +26,19 @@ jobs:
       - name: Pakcage Retail
         uses: BigWigsMods/packager@v2
         with:
-          args: -S -m .pkgmeta-retail
+          args: -m .pkgmeta-retail
 
       - name: Pakcage Classic
         uses: BigWigsMods/packager@v2
         with:
-          args: -S -m .pkgmeta-classic
+          args: -m .pkgmeta-classic
 
       - name: Pakcage TBCC
         uses: BigWigsMods/packager@v2
         with:
-          args: -S -m .pkgmeta-bcc
+          args: -m .pkgmeta-bcc
 
       - name: Pakcage Wrath
         uses: BigWigsMods/packager@v2
         with:
-          args: -S -m .pkgmeta-wrath
+          args: -m .pkgmeta-wrath
