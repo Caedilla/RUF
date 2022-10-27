@@ -37,4 +37,7 @@ ignore:
  - .pkgmeta-classic
  - .pkgmeta-retail
  - .pkgmeta-wrath
+ - RUF.toc
+ - RUF_TBC.toc
+ - RUF_Vanilla.toc
  - README.md
