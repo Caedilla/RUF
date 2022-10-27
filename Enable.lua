@@ -222,11 +222,6 @@ local function VariantWarning()
 end
 
 function RUF:OnEnable()
-	if not RUF.IsCorrectVersion() then -- Since the Twitch client seems to so frequently download the wrong version.
-		VariantWarning()
-		return
-	end
-
 	if RUF.FirstRun then
 		local function FirstRunReload()
 			C_UI.Reload()

@@ -20,12 +20,6 @@ if versionFromToc == "@project-version@" then
 end
 --@end-do-not-package@
 
-local addonVariant = WOW_PROJECT_MAINLINE
-addonVariant = WOW_PROJECT_CLASSIC
-addonVariant = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-addonVariant = WOW_PROJECT_WRATH_CLASSIC
-RUF.addonVariant = addonVariant
-
 function RUF.IsRetail()
 	return WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 end
@@ -48,10 +42,6 @@ function RUF.GetClientVariant()
 	elseif RUF.IsBCC() then return WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 	elseif RUF.IsClassic() then return WOW_PROJECT_CLASSIC
 	end
-end
-
-function RUF.IsCorrectVersion()
-	return isDev or addonVariant == WOW_PROJECT_ID
 end
 
 local frames = {}
@@ -102,10 +92,6 @@ RUF.frameList.groupFrames = groupFrames
 RUF.frameList.headers = headers
 
 function RUF:OnInitialize()
-	if not RUF.IsCorrectVersion() then
-		return
-	end
-
 	self.db = LibStub('AceDB-3.0'):New('RUFDB', RUF.Layout.cfg, true) -- Setup Saved Variables
 
 	if RUF.IsRetail() then
