@@ -10,16 +10,35 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
+      #WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
       - name: Checkout addon
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Pakcage
+      - name: Pakcage Retail
         uses: BigWigsMods/packager@v2
-        env:
-          CF_API_KEY: ${{ secrets.CF_API_KEY }}
-          WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
-          #WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: -S -m .pkgmeta-retail
+
+      - name: Pakcage Classic
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -S -m .pkgmeta-classic
+
+      - name: Pakcage TBCC
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -S -m .pkgmeta-bcc
+
+      - name: Pakcage Wrath
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -S -m .pkgmeta-wrath
