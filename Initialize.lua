@@ -43,10 +43,16 @@ function RUF.IsBCC()
 	return WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 end
 
+function RUF.IsWrath()
+	return WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
+end
+
 function RUF.GetClientVariant()
 	if RUF.IsRetail() then return WOW_PROJECT_MAINLINE
-	elseif RUF.IsClassic() then return WOW_PROJECT_CLASSIC
+	elseif RUF.IsWrath() then return WOW_PROJECT_WRATH_CLASSIC
 	elseif RUF.IsBCC() then return WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+	elseif RUF.IsClassic() then return WOW_PROJECT_CLASSIC
+
 	end
 end
 

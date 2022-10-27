@@ -1,5 +1,6 @@
-# RUF r260-Beta
-* Add support for Dragonflight
+# RUF r261-Beta
+* Fix issue with auras not displaying correctly
+* Add support for WotLK Classic
 
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.
