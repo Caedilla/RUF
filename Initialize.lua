@@ -13,22 +13,17 @@ local versionFromToc = GetAddOnMetadata('RUF','Version')
 local versionFromPackager = "@project-version@"
 local isDev = false
 
---@debug@
+--@do-not-package@
 if versionFromToc == "@project-version@" then
 	versionFromToc = 'Dev'
 	isDev = true
 end
---@end-debug@
+--@end-do-not-package@
 
 local addonVariant = WOW_PROJECT_MAINLINE
---[===[@non-version-retail@
---@version-classic@
 addonVariant = WOW_PROJECT_CLASSIC
---@end-version-classic@
---@version-bcc@
 addonVariant = WOW_PROJECT_BURNING_CRUSADE_CLASSIC
---@end-version-bcc@
---@end-non-version-retail@]===]
+addonVariant = WOW_PROJECT_WRATH_CLASSIC
 RUF.addonVariant = addonVariant
 
 function RUF.IsRetail()
@@ -52,7 +47,6 @@ function RUF.GetClientVariant()
 	elseif RUF.IsWrath() then return WOW_PROJECT_WRATH_CLASSIC
 	elseif RUF.IsBCC() then return WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 	elseif RUF.IsClassic() then return WOW_PROJECT_CLASSIC
-
 	end
 end
 
