@@ -30,7 +30,6 @@ externals:
  Libs/oUF: https://github.com/oUF-wow/oUF
 
 move-folders:
- RUF/Libs/oUF-Classic: RUF/Libs/oUF-Classic
  RUF/Libs/LibRangeCheckBCCTemp: RUF/Libs/LibRangeCheckBCC
 
 ignore:
