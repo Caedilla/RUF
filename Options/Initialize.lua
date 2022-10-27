@@ -55,7 +55,6 @@ function RUF_Options:OnEnable()
 		LibDualSpec:EnhanceDatabase(self.db, 'RUF')
 		LibDualSpec:EnhanceOptions(Profiles, self.db)
 	end
-	InterfaceAddOnsList_Update()
 
 	-- Profile Management
 	self.db.RegisterCallback(self, 'OnProfileChanged', 'RefreshConfig')
