@@ -194,9 +194,7 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 
 		* show - indicates whether the aura button should be shown (boolean)
 		--]]
-		local show = (element.CustomFilter or customFilter) (element, unit, button, name, texture,
-			count, debuffType, duration, expiration, caster, isStealable, nameplateShowSelf, spellID,
-			canApply, isBossDebuff, casterIsPlayer, nameplateShowAll,timeMod, effect1, effect2, effect3)
+		local show = (element.CustomFilter or customFilter)
 
 		if(show) then
 			-- We might want to consider delaying the creation of an actual cooldown
@@ -231,7 +229,11 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 			end
 
 			if(button.icon) then button.icon:SetTexture(texture) end
-			if(button.count) then button.count:SetText(count > 1 and count) end
+			if(button.count) then
+				if count > 1 and count then
+					button.count:SetText(count)
+				end
+			end
 
 			local size = element.size or 16
 			local width = element.width or size
