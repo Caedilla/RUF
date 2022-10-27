@@ -1,10 +1,10 @@
-## Interface: 100000
+## Interface: 30400
 ## Title: RUF [|c5500DBBDRaeli's Unit Frames|r]
 ## Notes: Raeli's Unit Frames. Simple unitframes using oUF
 ## Author: Raeli
 ## Version: @project-version@
 ## SavedVariables: RUFDB
-## OptionalDeps: oUF, Ace3, AceGUI-3.0-SharedMediaWidgets, LibDualSpec-1.0, LibRangeCheck-2.0, LibSharedMedia-3.0, NickTag-1.0
+## OptionalDeps: oUF, Ace3, AceGUI-3.0-SharedMediaWidgets, LibDualSpec-1.0, LibRangeCheck-2.0, LibSharedMedia-3.0, NickTag-1.0, LibClassicCasterino, LibClassicDurations, LibHealComm-4.0
 
 ## X-Credits: Icon Font created with IcoMoon.io using icons from Freepik & Plainicon, from www.flaticon.com
 ## X-Curse-Project-ID: 283389
@@ -15,12 +15,15 @@ Embeds.xml
 #@end-no-lib-strip@
 EmbedAlways.xml
 
-Libs\LibDualSpec-1.0\LibDualSpec-1.0.lua
+Libs\LibClassicCasterino\LibClassicCasterino.lua
+Libs\LibClassicDurations\LibClassicDurations.xml
+Libs\LibHealComm-4.0\LibHealComm-4.0.lua
 
 Elements\Plugins\Absorb_Plugin.lua
 Elements\Plugins\Aura_Plugin.lua
 Elements\Plugins\BarAnimation_Plugin.lua
 Elements\Plugins\Cast_Plugin.lua
+Elements\Plugins\ClassicClassPower_Plugin.lua
 Elements\Plugins\FakeClassPower_Plugin.lua
 Elements\Plugins\HealPrediction_Plugin.lua
 Elements\Plugins\Range_Plugin.lua
