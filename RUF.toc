@@ -13,9 +13,10 @@
 #@no-lib-strip@
 Embeds.xml
 #@end-no-lib-strip@
-EmbedAlways.xml
+Embeds-Retail.xml
 
 Libs\LibDualSpec-1.0\LibDualSpec-1.0.lua
+Libs\LibRangeCheck-2.0\LibRangeCheck-2.0.lua
 
 Elements\Plugins\Absorb_Plugin.lua
 Elements\Plugins\Aura_Plugin.lua

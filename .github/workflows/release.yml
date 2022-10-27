@@ -23,22 +23,5 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Pakcage Retail
+      - name: Pakcage
         uses: BigWigsMods/packager@v2
-        with:
-          args: -m .pkgmeta-retail -g retail
-
-      - name: Pakcage Classic
-        uses: BigWigsMods/packager@v2
-        with:
-          args: -m .pkgmeta-classic -g classic
-
-      - name: Pakcage TBCC
-        uses: BigWigsMods/packager@v2
-        with:
-          args: -m .pkgmeta-bcc -g bcc
-
-      - name: Pakcage Wrath
-        uses: BigWigsMods/packager@v2
-        with:
-          args: -m .pkgmeta-wrath -g wrath

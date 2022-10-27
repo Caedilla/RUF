@@ -13,11 +13,12 @@
 #@no-lib-strip@
 Embeds.xml
 #@end-no-lib-strip@
-EmbedAlways.xml
+Embeds-Classic.xml
 
 Libs\LibClassicCasterino\LibClassicCasterino.lua
 Libs\LibClassicDurations\LibClassicDurations.xml
 Libs\LibHealComm-4.0\LibHealComm-4.0.lua
+Libs\LibRangeCheckBCC\LibRangeCheck-2.0.lua
 
 Elements\Plugins\Absorb_Plugin.lua
 Elements\Plugins\Aura_Plugin.lua
