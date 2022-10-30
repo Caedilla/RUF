@@ -10,7 +10,7 @@ function RUF_Options.MainOptions()
 	local options = {
 		type = 'group',
 		name = function(info)
-			return "RUF [|c5500DBBDRaeli's Unit Frames|r] r|c5500DBBD" .. RUF.db.global.Version ..'|r'
+			return "RUF [|c5500DBBDRaeli's Unit Frames|r] |c5500DBBD" .. RUF.db.global.Version ..'|r'
 		end,
 		order = 0,
 		childGroups = 'tab',
@@ -901,7 +901,7 @@ function RUF_Options.MainOptions()
 						order = 0,
 					},
 					Revision = {
-						name = "|cffFFCC00" .. L["Current Version: %s"]:format("r|r|c5500DBBD" .. RUF.db.global.Version) .. "|r",
+						name = "|cffFFCC00" .. L["Current Version: %s"]:format("|r|c5500DBBD" .. RUF.db.global.Version) .. "|r",
 						type = 'description',
 						order = 0.5,
 						fontSize = 'large',

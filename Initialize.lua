@@ -137,7 +137,7 @@ function RUF:OnInitialize()
 	RUF.db.global.frameLock = true
 
 	--project-revision
-	RUF.db.global.Version = string.match(GetAddOnMetadata('RUF','Version'),'%d+')
+	RUF.db.global.Version = GetAddOnMetadata('RUF','Version')
 
 	if not RUFDB.profiles then
 		RUF.FirstRun = true
