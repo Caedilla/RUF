@@ -13,6 +13,7 @@ local MAX_BOSS_FRAMES = MAX_BOSS_FRAMES or 5
 
 -- sourced from FrameXML/PartyMemberFrame.lua
 local MAX_PARTY_MEMBERS = MAX_PARTY_MEMBERS or 4
+local isPartyHooked = false
 
 local hiddenParent = CreateFrame('Frame', nil, UIParent)
 hiddenParent:SetAllPoints()
@@ -38,12 +39,12 @@ local function handleFrame(baseName, doNotReparent)
 			frame:SetParent(hiddenParent)
 		end
 
-		local health = frame.healthBar or frame.healthbar
+		local health = frame.healthBar or frame.healthbar or frame.HealthBar
 		if(health) then
 			health:UnregisterAllEvents()
 		end
 
-		local power = frame.manabar
+		local power = frame.manabar or frame.ManaBar
 		if(power) then
 			power:UnregisterAllEvents()
 		end
@@ -53,7 +54,7 @@ local function handleFrame(baseName, doNotReparent)
 			spell:UnregisterAllEvents()
 		end
 
-		local altpowerbar = frame.powerBarAlt
+		local altpowerbar = frame.powerBarAlt or frame.PowerBarAlt
 		if(altpowerbar) then
 			altpowerbar:UnregisterAllEvents()
 		end
@@ -61,6 +62,16 @@ local function handleFrame(baseName, doNotReparent)
 		local buffFrame = frame.BuffFrame
 		if(buffFrame) then
 			buffFrame:UnregisterAllEvents()
+		end
+
+		local petFrame = frame.PetFrame
+		if(petFrame) then
+			petFrame:UnregisterAllEvents()
+		end
+
+		local totFrame = frame.totFrame
+		if(totFrame) then
+			totFrame:UnregisterAllEvents()
 		end
 	end
 end
@@ -115,14 +126,28 @@ oUF.DisableBlizzard = function(self, unit)
 		end
 	elseif(unit:match('party%d?$')) then
 		if RUF.db.profile.Appearance.disableBlizzard.party == true then
-			local id = unit:match('party(%d)')
-			if(id) then
-				handleFrame('PartyMemberFrame' .. id)
+			if RUF.IsRetail() then
+				if(not isPartyHooked) then
+					isPartyHooked = true
+
+					PartyFrame:UnregisterAllEvents()
+
+					for frame in PartyFrame.PartyMemberFramePool:EnumerateActive() do
+						handleFrame(frame)
+					end
+				end
 			else
-				for i = 1, MAX_PARTY_MEMBERS do
-					handleFrame(string.format('PartyMemberFrame%d', i))
+				local id = unit:match('party(%d)')
+				if(id) then
+					handleFrame('PartyMemberFrame' .. id)
+				else
+					for i = 1, MAX_PARTY_MEMBERS do
+						handleFrame(string.format('PartyMemberFrame%d', i))
+					end
 				end
 			end
+
+
 		end
 	elseif(unit:match('arena%d?$')) then
 		if RUF.db.profile.Appearance.disableBlizzard.arena == true then
