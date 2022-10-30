@@ -5,7 +5,7 @@ local oUF = ns.oUF
 
 local function DrawRainbow(element)
 	local a,b,c,x,y,z = RUF:GetRainbow()
-	element:GetStatusBarTexture():SetGradient('HORIZONTAL', a, b, c, x, y, z)
+	element:GetStatusBarTexture():SetGradient('HORIZONTAL', {r=a, g=b, b=c, a=1}, {r=x, g=y, b=z, a=1})
 end
 
 function RUF.HealthUpdateColor(element, unit, cur, max)
