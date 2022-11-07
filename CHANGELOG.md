@@ -1,7 +1,6 @@
-# RUF 262.0.0
-* Aura filtering should work again
-* Fixed an issue in Dragonflight with RGB healthbars
-* Fixed an issue in Dragonflight where Blizzard party frames were not correctly being disabled
+# RUF 262.1.0
+* Absorb bar options should show once again in Dragonflight
+* Updated Range Checking logic so it should work now with units that you cannot heal or attack.
 
 ### Known Issues
 * Toggling on and off Test mode while targetting someone can cause the target portrait to scale incorrectly for the rest of that play session (until you relog or reloadUI). Deselecting your target and then toggling Test Mode on and off again should fix it.
