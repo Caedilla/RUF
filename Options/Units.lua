@@ -220,7 +220,8 @@ local function UnitGroup(singleFrame, groupFrame, header)
 						type = 'toggle',
 						order = 0.004,
 						hidden = function()
-							if RUF.Client ~= 1 then return true end
+							if not RUF.IsRetail() then return true end
+							if not RUF.IsWrath() then return true end
 							if profileName ~= 'player' then return true end
 						end,
 						get = function(info)
@@ -753,7 +754,7 @@ local function BarSettings(singleFrame, groupFrame, header)
 				name = L["Absorb"],
 				type = 'group',
 				order = 25,
-				hidden = RUF.Client ~= 1,
+				hidden = not RUF.IsRetail(),
 				args = {},
 			},
 		},

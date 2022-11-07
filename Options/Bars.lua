@@ -70,7 +70,7 @@ function RUF_Options.Bars()
 			type = 'group',
 			order = i,
 			hidden = function()
-				if RUF.Client ~= 1 then
+				if not RUF.IsRetail() then
 					if i == 4 then return true end
 				end
 			end,
