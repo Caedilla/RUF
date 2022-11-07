@@ -108,9 +108,11 @@ HarmSpells["WARLOCK"] = {
 
 local function IsUnitInRange(unit)
 	if not unit then return end
+	if UnitInRange(unit) then return true end -- If the unit is in the same group we don't need to check anything else.
 	local canAttack = UnitCanAttack('player', unit)
 	local canHelp = UnitCanAssist('player', unit)
 	local isFriend = UnitIsFriend('player', unit)
+	local interactDistance = CheckInteractDistance(unit, 1)
 	local isVisible = UnitIsVisible(unit)
 	local rangeSpells, minRange, maxRange
 	local connected = UnitIsConnected(unit)
@@ -145,7 +147,7 @@ local function IsUnitInRange(unit)
 				return true
 			end
 		end
-		if not canHelp and not canAttack and isFriend then return true end -- We can't reliably get range on units we cannot interact with so don't fade the frame out.
+		if interactDistance then return true end
 	end
 
 	return false
