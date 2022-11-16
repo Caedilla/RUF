@@ -23,6 +23,10 @@ local BuffDispel = {-- PURGES
 		[4] = {'Enrage'},
 		[10] = {'None'},
 	},
+	['EVOKER'] = {
+		[1] = {'None'},
+		[2] = {'None'},
+	},
 	['HUNTER'] = {
 		[1] = {'Enrage'},
 		[2] = {'Enrage'},
