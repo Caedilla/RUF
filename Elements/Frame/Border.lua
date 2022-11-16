@@ -26,6 +26,7 @@ local DebuffDispel = {-- DISPELLING ALLIES, 10 = Classic since there are no spec
 	['EVOKER'] = {
 		[1] = {'Poison'},
 		[2] = {'Msgic','Poison'},
+		[10] = {'None'},
 	},
 	['HUNTER'] = {
 		[1] = {'None'},
@@ -104,6 +105,7 @@ local BuffDispel = {-- PURGES
 	['EVOKER'] = {
 		[1] = {'None'},
 		[2] = {'None'},
+		[10] = {'None'},
 	},
 	['HUNTER'] = {
 		[1] = {'Enrage'},
