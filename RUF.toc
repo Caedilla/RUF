@@ -1,4 +1,4 @@
-## Interface: 100000
+## Interface: 100002
 ## Title: RUF [|c5500DBBDRaeli's Unit Frames|r]
 ## Notes: Raeli's Unit Frames. Simple unitframes using oUF
 ## Author: Raeli
