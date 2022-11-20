@@ -234,6 +234,8 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 			if(button.count) then
 				if count > 1 and count then
 					button.count:SetText(count)
+				else
+					button.count:SetText("")
 				end
 			end
 
