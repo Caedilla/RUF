@@ -74,17 +74,25 @@ local VISIBLE = 1
 local HIDDEN = 0
 
 local function UpdateTooltip(self)
-	GameTooltip:SetUnitAura(self:GetParent().__owner.unit, self:GetID(), self.filter)
+	if(GameTooltip:IsForbidden()) then return end
+
+	if(self.isHarmful) then
+		GameTooltip:SetUnitDebuffByAuraInstanceID(self:GetParent().__owner.unit, self.auraInstanceID)
+	else
+		GameTooltip:SetUnitBuffByAuraInstanceID(self:GetParent().__owner.unit, self.auraInstanceID)
+	end
 end
 
 local function onEnter(self)
-	if(not self:IsVisible()) then return end
+	if(GameTooltip:IsForbidden() or not self:IsVisible()) then return end
 
-	GameTooltip:SetOwner(self, self:GetParent().tooltipAnchor)
+	GameTooltip:SetOwner(self, self:GetParent().__restricted and 'ANCHOR_CURSOR' or self:GetParent().tooltipAnchor)
 	self:UpdateTooltip()
 end
 
 local function onLeave()
+	if(GameTooltip:IsForbidden()) then return end
+
 	GameTooltip:Hide()
 end
 
@@ -235,7 +243,7 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 				if count > 1 and count then
 					button.count:SetText(count)
 				else
-					button.count:SetText("")
+					button.count:SetText('')
 				end
 			end
 
@@ -356,7 +364,7 @@ local function UpdateAuras(self, event, unit)
 			if(button.icon) then button.icon:SetTexture() end
 			if(button.overlay) then button.overlay:Hide() end
 			if(button.stealable) then button.stealable:Hide() end
-			if(button.count) then button.count:SetText() end
+			if(button.count) then button.count:SetText('') end
 
 			button:EnableMouse(false)
 			button:Show()
