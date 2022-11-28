@@ -37,6 +37,12 @@ function RUF_Options.Bars()
 				_G["STAGGER"] or STAGGER,
 			},
 		}
+	elseif RUF.IsWrath() then
+		Powers = {
+			["DEATHKNIGHT"] = _G['RUNES'] or RUNES,
+			["DRUID"] = _G['COMBO_POINTS'] or COMBO_POINTS,
+			["ROGUE"] = _G['COMBO_POINTS'] or COMBO_POINTS,
+		}
 	else
 		Powers = {
 			["DRUID"] = _G['COMBO_POINTS'] or COMBO_POINTS,

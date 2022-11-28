@@ -695,6 +695,13 @@ function RUF:OptionsUpdateFrame(singleFrame,groupFrame,header)
 			elseif unitFrame.ClassicClassPower and RUF.IsClassic() then
 				unitFrame.ClassicClassPower.UpdateOptions(unitFrame.ClassicClassPower)
 			end
+			if RUF.IsWrath() then
+				if unitFrame.ClassPower then
+					unitFrame.ClassPower.UpdateOptions(unitFrame.ClassPower)
+				elseif unitFrame.ClassicClassPower then
+					unitFrame.ClassicClassPower.UpdateOptions(unitFrame.ClassicClassPower)
+				end
+			end
 		end
 		unitFrame:SetHeight(profileReference.Frame.Size.Height)
 		if profileReference.Frame.Portrait.Enabled then
@@ -838,15 +845,11 @@ function RUF:OptionsUpdateAllBars()
 			RUF:OptionsUpdateBars(frames[i],nil,nil,'Health')
 			RUF:OptionsUpdateBars(frames[i],nil,nil,'Power')
 			RUF:OptionsUpdateBars(frames[i],nil,nil,'HealPrediction')
+			if i == 1 then
+				RUF:OptionsUpdateBars(frames[i],nil,nil,'Class')
+			end
 			if RUF.IsRetail() then
 				RUF:OptionsUpdateBars(frames[i],nil,nil,'Absorb')
-				if i == 1 then
-					RUF:OptionsUpdateBars(frames[i],nil,nil,'Class')
-				end
-			else
-				if i == 1 then
-					RUF:OptionsUpdateBars(frames[i],nil,nil,'Class')
-				end
 			end
 		end
 	end
@@ -906,6 +909,12 @@ function RUF:OptionsUpdateBars(singleFrame,groupFrame,header,bar)
 					bar = 'FakeClassPower'
 				else
 					bar = 'ClassPower'
+				end
+			elseif RUF.IsWrath() then
+				if PlayerClass == 'DEATHKNIGHT' then
+					bar = 'Runes'
+				else
+					bar = 'ClassicClassPower'
 				end
 			else
 				bar = 'ClassicClassPower'

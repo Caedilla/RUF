@@ -192,7 +192,9 @@ local function Enable(self, unit)
 			end
 		end
 
-		self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED', Path)
+		if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+			self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED', Path)
+		end
 		self:RegisterEvent('RUNE_POWER_UPDATE', Path, true)
 
 		return true
@@ -205,8 +207,9 @@ local function Disable(self)
 		for i = 1, #element do
 			element[i]:Hide()
 		end
-
-		self:UnregisterEvent('PLAYER_SPECIALIZATION_CHANGED', Path)
+		if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+			self:UnregisterEvent('PLAYER_SPECIALIZATION_CHANGED', Path)
+		end
 		self:UnregisterEvent('RUNE_POWER_UPDATE', Path)
 	end
 end

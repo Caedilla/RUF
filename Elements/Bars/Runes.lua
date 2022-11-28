@@ -39,14 +39,18 @@ function RUF.SetRunes(self, unit)
 
 	local texture = LSM:Fetch('statusbar', RUF.db.profile.Appearance.Bars.Class.Texture)
 	local r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
-	local spec = GetSpecialization() or 0
-	if spec == 1 then -- Blood
-		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[50])
-	elseif spec == 2 then -- Frost
-		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[51])
-	elseif spec == 3 then -- Unholy
-		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[52])
-	else -- no value returned yet?
+	if RUF.IsRetail() then
+		local spec = GetSpecialization() or 0
+		if spec == 1 then -- Blood
+			r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[50])
+		elseif spec == 2 then -- Frost
+			r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[51])
+		elseif spec == 3 then -- Unholy
+			r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[52])
+		else -- no value returned yet?
+			r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+		end
+	else
 		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
 	end
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
@@ -194,34 +198,69 @@ end
 
 function RUF.RunesUpdateColor(element, rune)
 	local r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
-	local spec = GetSpecialization() or 0
-	if spec == 1 then -- Blood
-		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[50])
-	elseif spec == 2 then -- Frost
-		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[51])
-	elseif spec == 3 then -- Unholy
-		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[52])
-	else -- no value returned yet?
-		r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+	if RUF.IsRetail() then
+		local spec = GetSpecialization() or 0
+		if spec == 1 then -- Blood
+			r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[50])
+		elseif spec == 2 then -- Frost
+			r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[51])
+		elseif spec == 3 then -- Unholy
+			r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[52])
+		else -- no value returned yet?
+			r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[classPowerData[uClass].classPowerID])
+		end
 	end
 	local bgMult = RUF.db.profile.Appearance.Bars.Class.Background.Multiplier
 	local colorAdd = RUF.db.profile.Appearance.Bars.Class.Color.SegmentMultiplier
 
-	if rune and type(rune) ~= 'number' then
-		local realElement = element.Runes
-		for i = 1,#realElement do
-			local ir = (r*((((i+colorAdd)*6.6667)/100)))
-			local ig = (g*((((i+colorAdd)*6.6667)/100)))
-			local ib = (b*((((i+colorAdd)*6.6667)/100)))
-			realElement[i]:SetStatusBarColor(ir, ig, ib)
-			realElement[i].Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+	if RUF.IsRetail() then
+		if rune and type(rune) ~= 'number' then
+			local realElement = element.Runes
+			for i = 1,#realElement do
+				local ir = (r*((((i+colorAdd)*6.6667)/100)))
+				local ig = (g*((((i+colorAdd)*6.6667)/100)))
+				local ib = (b*((((i+colorAdd)*6.6667)/100)))
+				realElement[i]:SetStatusBarColor(ir, ig, ib)
+				realElement[i].Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+			end
+		else
+			local ir = (r*((((rune+colorAdd)*6.6667)/100)))
+			local ig = (g*((((rune+colorAdd)*6.6667)/100)))
+			local ib = (b*((((rune+colorAdd)*6.6667)/100)))
+			element[rune]:SetStatusBarColor(ir, ig, ib)
+			element[rune].Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
 		end
 	else
-		local ir = (r*((((rune+colorAdd)*6.6667)/100)))
-		local ig = (g*((((rune+colorAdd)*6.6667)/100)))
-		local ib = (b*((((rune+colorAdd)*6.6667)/100)))
-		element[rune]:SetStatusBarColor(ir, ig, ib)
-		element[rune].Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+		if rune and type(rune) ~= 'number' then
+			local realElement = element.Runes
+			for i = 1,#realElement do
+				if 1 < 3 then
+					r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[20])
+				elseif i > 2 and i < 5 then
+					r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[22])
+				else
+					r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[21])
+				end
+				local ir = (r*((((i+colorAdd)*6.6667)/100)))
+				local ig = (g*((((i+colorAdd)*6.6667)/100)))
+				local ib = (b*((((i+colorAdd)*6.6667)/100)))
+				realElement[i]:SetStatusBarColor(ir, ig, ib)
+				realElement[i].Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+			end
+		else
+			if rune < 3 then
+				r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[20])
+			elseif rune > 2 and rune < 5 then
+				r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[22])
+			else
+				r, g, b = unpack(RUF.db.profile.Appearance.Colors.PowerColors[21])
+			end
+			local ir = (r*((((rune+colorAdd)*6.6667)/100)))
+			local ig = (g*((((rune+colorAdd)*6.6667)/100)))
+			local ib = (b*((((rune+colorAdd)*6.6667)/100)))
+			element[rune]:SetStatusBarColor(ir, ig, ib)
+			element[rune].Background:SetVertexColor(r*bgMult, g*bgMult, b*bgMult, RUF.db.profile.Appearance.Bars.Class.Background.Alpha)
+		end
 	end
 end
 

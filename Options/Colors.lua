@@ -55,6 +55,18 @@ function RUF_Options.Colors()
 			[76] = L["Stagger - Medium"],
 			[77] = L["Stagger - High"],
 		}
+	elseif RUF.IsWrath() then
+		Powers = {
+			[0] = _G['MANA'] or MANA,
+			[1] = _G['RAGE'] or RAGE,
+			[2] = _G['FOCUS'] or FOCUS,
+			[3] = _G['ENERGY'] or ENERGY,
+			[6] = _G['RUNIC_POWER'] or RUNIC_POWER,
+			[14] = _G['COMBO_POINTS'] or COMBO_POINTS,
+			[20] = L["Runes - Blood"],
+			[21] = L["Runes - Frost"],
+			[22] = L["Runes - Unholy"],
+		}
 	else
 		Powers = {
 			[0] = _G['MANA'] or MANA,
@@ -218,70 +230,21 @@ function RUF_Options.Colors()
 			}
 		end
 	end
-	for i=0,#Powers do
-		if Powers[i] then
-			Colors.args.powerColors.args[Powers[i]] = {
-				name = Powers[i],
-				type = 'color',
-				order = 0,
-				get = function(info)
-					return unpack(RUF.db.profile.Appearance.Colors.PowerColors[i])
-				end,
-				set = function(info, r,g,b)
-					RUF.db.profile.Appearance.Colors.PowerColors[i] = {r,g,b}
-					RUF:OptionsUpdateAllBars()
-				end,
-			}
-		end
-	end
-	if RUF.IsClassic() then
-		local i = 14
-		if Powers[i] then
-			Colors.args.powerColors.args[Powers[i]] = {
-				name = Powers[i],
-				type = 'color',
-				order = 0,
-				get = function(info)
-					return unpack(RUF.db.profile.Appearance.Colors.PowerColors[i])
-				end,
-				set = function(info, r,g,b)
-					RUF.db.profile.Appearance.Colors.PowerColors[i] = {r,g,b}
-					RUF:OptionsUpdateAllBars()
-				end,
-			}
-		end
-	end
-	for i=50,52 do
-		if Powers[i] then
-			Colors.args.powerColors.args[Powers[i]] = {
-				name = Powers[i],
-				type = 'color',
-				order = 10,
-				get = function(info)
-					return unpack(RUF.db.profile.Appearance.Colors.PowerColors[i])
-				end,
-				set = function(info, r,g,b)
-					RUF.db.profile.Appearance.Colors.PowerColors[i] = {r,g,b}
-					RUF:OptionsUpdateAllBars()
-				end,
-			}
-		end
-	end
-	for i=75,77 do
-		if Powers[i] then
-			Colors.args.powerColors.args[Powers[i]] = {
-				name = Powers[i],
-				type = 'color',
-				order = 20,
-				get = function(info)
-					return unpack(RUF.db.profile.Appearance.Colors.PowerColors[i])
-				end,
-				set = function(info, r,g,b)
-					RUF.db.profile.Appearance.Colors.PowerColors[i] = {r,g,b}
-					RUF:OptionsUpdateAllBars()
-				end,
-			}
-		end
+
+	for k in pairs(Powers) do
+		Colors.args.powerColors.args[Powers[k]] = {
+			name = Powers[k],
+			type = 'color',
+			order = 0,
+			get = function(info)
+				return unpack(RUF.db.profile.Appearance.Colors.PowerColors[k])
+			end,
+			set = function(info, r,g,b)
+				RUF.db.profile.Appearance.Colors.PowerColors[k] = {r,g,b}
+				RUF:OptionsUpdateAllBars()
+			end,
+		}
+
 	end
 	for i=1,#Reactions do
 		if Reactions[i] then
