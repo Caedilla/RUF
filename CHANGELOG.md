@@ -1,3 +1,5 @@
+# RUF 262.2.1
+* Fixed incorrect Essence amount for Evokers
 # RUF 262.2.0
 * Added support for Death Knight runes in Wrath Classic
 * Fixed a bug with stack counts for auras
