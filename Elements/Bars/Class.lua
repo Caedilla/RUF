@@ -10,6 +10,11 @@ local classPowerData = {
 		classPowerID = 4,
 		classPowerType = 'COMBO_POINTS',
 	},
+	EVOKER = {
+		classPowerID = 19,
+		classPowerType = 'ESSENCE',
+		unitPowerMaxAmount = 4,
+	},
 	MAGE = {
 		classPowerID = 16,
 		classPowerType = 'ARCANE_CHARGES',
@@ -27,7 +32,7 @@ local classPowerData = {
 	ROGUE = {
 		classPowerID = 4,
 		classPowerType = 'COMBO_POINTS',
-		unitPowerMaxAmount = 6,
+		unitPowerMaxAmount = 7,
 	},
 	WARLOCK = {
 		classPowerID = 7,

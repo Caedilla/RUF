@@ -115,6 +115,7 @@ colors.power[13] = colors.power.INSANITY
 colors.power[16] = colors.power.ARCANE_CHARGES
 colors.power[17] = colors.power.FURY
 colors.power[18] = colors.power.PAIN
+colors.power[19] = colors.power.ESSENCE
 
 local function colorsAndPercent(a, b, ...)
 	if(a <= 0 or b == 0) then

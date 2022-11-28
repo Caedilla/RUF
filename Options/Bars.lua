@@ -19,13 +19,14 @@ function RUF_Options.Bars()
 	local PowerDesc = {}
 	if RUF.IsRetail() then
 		Powers = {
-			["ROGUE"] = _G['COMBO_POINTS'] or COMBO_POINTS,
 			["DEATHKNIGHT"] = _G['RUNES'] or RUNES,
-			["WARLOCK"] = _G['SOUL_SHARDS'] or SOUL_SHARDS,
-			["PALADIN"] = _G['HOLY_POWER'] or HOLY_POWER,
-			["SHAMAN"] = _G['MAELSTROM'] or MAELSTROM,
-			["PRIEST"] = _G['INSANITY'] or INSANITY,
+			["EVOKER"] = _G['ESSENCE'] or ESSENCE,
 			["MAGE"] = _G['ARCANE_CHARGES'] or ARCANE_CHARGES,
+			["PALADIN"] = _G['HOLY_POWER'] or HOLY_POWER,
+			["PRIEST"] = _G['INSANITY'] or INSANITY,
+			["ROGUE"] = _G['COMBO_POINTS'] or COMBO_POINTS,
+			["SHAMAN"] = _G['MAELSTROM'] or MAELSTROM,
+			["WARLOCK"] = _G['SOUL_SHARDS'] or SOUL_SHARDS,
 		}
 		PowerDesc = {
 			["DRUID"] = {

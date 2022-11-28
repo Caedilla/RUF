@@ -48,6 +48,7 @@ function RUF_Options.Colors()
 			[16] = _G['ARCANE_CHARGES'] or ARCANE_CHARGES,
 			[17] = _G['FURY'] or FURY,
 			[18] = _G['PAIN'] or PAIN,
+			[19] = _G['ESSENCE'] or ESSENCE,
 			[50] = L["Runes - Blood"],
 			[51] = L["Runes - Frost"],
 			[52] = L["Runes - Unholy"],
