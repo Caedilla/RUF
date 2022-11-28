@@ -48,7 +48,7 @@ function RUF_Options.Colors()
 			[16] = _G['ARCANE_CHARGES'] or ARCANE_CHARGES,
 			[17] = _G['FURY'] or FURY,
 			[18] = _G['PAIN'] or PAIN,
-			[19] = _G['ESSENCE'] or ESSENCE,
+			[19] = _G['POWER_TYPE_ESSENCE'] or POWER_TYPE_ESSENCE,
 			[50] = L["Runes - Blood"],
 			[51] = L["Runes - Frost"],
 			[52] = L["Runes - Unholy"],
@@ -81,15 +81,16 @@ function RUF_Options.Colors()
 		[0] = C_CreatureInfo.GetClassInfo(6), -- Death Knight
 		[1] = C_CreatureInfo.GetClassInfo(12), -- Demon Hunter
 		[2] = C_CreatureInfo.GetClassInfo(11), -- Druid
-		[3] = C_CreatureInfo.GetClassInfo(3), -- Hunter
-		[4] = C_CreatureInfo.GetClassInfo(8), -- Mage
-		[5] = C_CreatureInfo.GetClassInfo(10), -- Monk
-		[6] = C_CreatureInfo.GetClassInfo(2), -- Paladin
-		[7] = C_CreatureInfo.GetClassInfo(5), -- Priest
-		[8] = C_CreatureInfo.GetClassInfo(4), -- Rogue
-		[9] = C_CreatureInfo.GetClassInfo(7), -- Shaman
-		[10] = C_CreatureInfo.GetClassInfo(9), -- Warlock
-		[11] = C_CreatureInfo.GetClassInfo(1), -- Warrior
+		[3] = C_CreatureInfo.GetClassInfo(13), -- Evoker
+		[4] = C_CreatureInfo.GetClassInfo(3), -- Hunter
+		[5] = C_CreatureInfo.GetClassInfo(8), -- Mage
+		[6] = C_CreatureInfo.GetClassInfo(10), -- Monk
+		[7] = C_CreatureInfo.GetClassInfo(2), -- Paladin
+		[8] = C_CreatureInfo.GetClassInfo(5), -- Priest
+		[9] = C_CreatureInfo.GetClassInfo(4), -- Rogue
+		[10] = C_CreatureInfo.GetClassInfo(7), -- Shaman
+		[11] = C_CreatureInfo.GetClassInfo(9), -- Warlock
+		[12] = C_CreatureInfo.GetClassInfo(1), -- Warrior
 	}
 	local Colors = {
 		name = L["Colors"],

@@ -12,7 +12,7 @@ local classPowerData = {
 	},
 	EVOKER = {
 		classPowerID = 19,
-		classPowerType = 'ESSENCE',
+		classPowerType = 'POWER_TYPE_ESSENCE',
 		unitPowerMaxAmount = 4,
 	},
 	MAGE = {

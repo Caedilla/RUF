@@ -20,7 +20,7 @@ function RUF_Options.Bars()
 	if RUF.IsRetail() then
 		Powers = {
 			["DEATHKNIGHT"] = _G['RUNES'] or RUNES,
-			["EVOKER"] = _G['ESSENCE'] or ESSENCE,
+			["EVOKER"] = _G['POWER_TYPE_ESSENCE'] or POWER_TYPE_ESSENCE,
 			["MAGE"] = _G['ARCANE_CHARGES'] or ARCANE_CHARGES,
 			["PALADIN"] = _G['HOLY_POWER'] or HOLY_POWER,
 			["PRIEST"] = _G['INSANITY'] or INSANITY,
