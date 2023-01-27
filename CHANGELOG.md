@@ -1,3 +1,6 @@
+# RUF 262.2.2
+* Updated interface versions
+
 # RUF 262.2.1
 * Fixed incorrect Essence amount for Evokers
 # RUF 262.2.0
