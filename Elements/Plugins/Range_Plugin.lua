@@ -94,7 +94,8 @@ FriendSpells['SHAMAN'] = {
 	546, -- ['Water Walking'], -- 30
 }
 HarmSpells['SHAMAN'] = {
-	403, -- ['Lightning Bolt'], -- 40
+	188196, -- ['Lightning Bolt'] Dragonflight -- 40
+	403, -- ['Lightning Bolt'] Classic -- 40
 	370, -- ['Purge'], -- 30
 	73899, -- ['Primal Strike'],. -- 5
 }
