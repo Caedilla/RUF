@@ -1,8 +1,15 @@
+# RUF 262.2.3
+* Fixed an issue with range checking for Shamans in Dragonflight.
+
+
 # RUF 262.2.2
 * Updated interface versions
 
+
 # RUF 262.2.1
 * Fixed incorrect Essence amount for Evokers
+
+
 # RUF 262.2.0
 * Added support for Death Knight runes in Wrath Classic
 * Fixed a bug with stack counts for auras
