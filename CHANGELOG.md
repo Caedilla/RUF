@@ -1,3 +1,6 @@
+# RUF 262.2.4
+* Updated interface version
+
 # RUF 262.2.3
 * Fixed an issue with range checking for Shamans in Dragonflight.
 
